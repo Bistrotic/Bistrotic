@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\src\Core\Fiveforty.Infrastructure\Fiveforty.Infrastructure.csproj" />
+	</ItemGroup>
+</Project>

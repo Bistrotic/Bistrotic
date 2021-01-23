@@ -3,7 +3,7 @@
 		<TargetFramework>netstandard2.1</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\Fiveforty.Commands.Abstractions\Fiveforty.Commands.Abstractions.csproj" />
-	  <ProjectReference Include="..\Fiveforty.Infrastructure\Fiveforty.Infrastructure.csproj" />
+		<ProjectReference Include="..\Fiveforty.Commands.Abstractions\Fiveforty.Commands.Abstractions.csproj" />
+		<ProjectReference Include="..\Fiveforty.Infrastructure\Fiveforty.Infrastructure.csproj" />
 	</ItemGroup>
 </Project>

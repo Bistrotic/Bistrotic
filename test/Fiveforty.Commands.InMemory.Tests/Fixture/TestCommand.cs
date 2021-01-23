@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Fiveforty.Commands.InMemory.Tests.Fixture
+﻿namespace Fiveforty.Commands.InMemory.Tests.Fixture
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
     public class TestCommand
     {
-        
     }
 }

@@ -1,11 +1,5 @@
 ﻿namespace Fiveforty.Infrastructure.Tests.Fixture
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-
     public interface ITestInterface
     {
     }
@@ -35,6 +29,10 @@
     }
 
     public class TestConcrete5 : ITestInterface<string>
+    {
+    }
+
+    public class TestConcrete6 : TestConcrete5
     {
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Fiveforty.Module
+﻿using Fiveforty.Module.Definitions;
+
+namespace Fiveforty.Module
 {
     public abstract class Module : IModule
     {

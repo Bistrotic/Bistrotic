@@ -1,4 +1,4 @@
-﻿namespace Fiveforty.Module
+﻿namespace Fiveforty.Module.Definitions
 {
     using System;
     using System.Threading.Tasks;

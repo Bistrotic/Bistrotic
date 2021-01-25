@@ -6,7 +6,7 @@
 
     public interface IModuleActivator
     {
-        Task<IModule?> GetModule(ModuleDefinition definition);
+        Task<IModule?> FindModule(ModuleDefinition definition);
 
         Task<IModule> GetRequiredModule(ModuleDefinition definition);
     }

@@ -39,27 +39,12 @@
             );
         }
 
-        private IEnumerable<ModuleDefinition> GetDependencies(IEnumerable<ModuleDefinition> dependencies)
-        {
-            _ = _moduleDefinitionsByName ??= GetModuleDefinitionsByName().GetAwaiter().GetResult();
-            List<ModuleDefinition> list = new();
-            foreach (ModuleDefinition definition in dependencies)
-            {
-                if (definition.Dependencies.Any())
-                {
-                    list.AddRange(GetDependencies(GetModuleDefinitionDependencies(definition)));
-                }
-                list.Add(definition);
-            }
-            return list;
-        }
-
         private async Task<IModule> GetModule(ModuleDefinition moduleDefinition)
         {
             var activators = await GetModuleActivators();
             foreach (var activator in activators)
             {
-                var module = await activator.GetModule(moduleDefinition);
+                IModule? module = await activator.FindModule(moduleDefinition);
                 if (module != null)
                 {
                     return module;
@@ -77,21 +62,6 @@
             return Task.FromResult(_moduleActivators);
         }
 
-        private List<ModuleDefinition> GetModuleDefinitionDependencies(ModuleDefinition module)
-        {
-            _ = _moduleDefinitionsByName ??= GetModuleDefinitionsByName().GetAwaiter().GetResult();
-            List<ModuleDefinition> list = new List<ModuleDefinition>(module.Dependencies.Length);
-            foreach (string dependencyName in module.Dependencies)
-            {
-                if (!_moduleDefinitionsByName.TryGetValue(dependencyName, out ModuleDefinition? moduleDefinition))
-                {
-                    throw new ModuleDefinitionDependencyNotFoundException(module, dependencyName);
-                }
-                list.Add(moduleDefinition);
-            }
-            return list;
-        }
-
         private async Task<List<ModuleDefinition>> GetModuleDefinitions()
         {
             if (_moduleDefinitions == null)
@@ -99,12 +69,24 @@
                 var definitions = await GetModuleDefinitionsByName();
                 var list = new List<ModuleDefinition>(definitions.Count);
                 var added = new HashSet<string>(definitions.Count);
-                foreach (var definition in definitions.OrderByDescending(p => p.Value.Priority))
-                {
-                }
-                _moduleDefinitions = list;
+                _moduleDefinitions = GetModuleDefinitionsWithDependencies(definitions.OrderByDescending(p => p.Value.Priority).Select(p => p.Value));
             }
             return _moduleDefinitions;
+        }
+
+        private List<ModuleDefinition> GetModuleDefinitionsByName(IEnumerable<string> names)
+        {
+            _ = _moduleDefinitionsByName ??= GetModuleDefinitionsByName().GetAwaiter().GetResult();
+            List<ModuleDefinition> list = new List<ModuleDefinition>(names.Count());
+            foreach (string name in names)
+            {
+                if (!_moduleDefinitionsByName.TryGetValue(name, out ModuleDefinition? moduleDefinition))
+                {
+                    throw new ModuleDefinitionNotFoundException(name);
+                }
+                list.Add(moduleDefinition);
+            }
+            return list;
         }
 
         private async Task<Dictionary<string, ModuleDefinition>> GetModuleDefinitionsByName()
@@ -125,6 +107,45 @@
                 _moduleDefinitionsByName = definitions.ToDictionary(k => k.NormalizedName, v => v);
             }
             return _moduleDefinitionsByName;
+        }
+
+        private List<ModuleDefinition> GetModuleDefinitionsWithDependencies(IEnumerable<ModuleDefinition> modules, List<string>? tree = null, List<ModuleDefinition>? loaded = null)
+        {
+            _ = _moduleDefinitionsByName ??= GetModuleDefinitionsByName().GetAwaiter().GetResult();
+            _ = tree ??= new List<string>(10);
+            List<ModuleDefinition> list = new();
+
+            foreach (ModuleDefinition definition in modules)
+            {
+                if (loaded?.Where(p => p.NormalizedName == definition.NormalizedName).Any() == true
+                    || list.Where(p => p.NormalizedName == definition.NormalizedName).Any() == true)
+                {
+                    // The module has already been added
+                    return list;
+                }
+                tree.Add(definition.NormalizedName);
+                if (definition.Dependencies.Any())
+                {
+                    var circularReferences = definition.Dependencies.Where(p => tree.Contains(p)).ToArray();
+                    if (circularReferences.Any())
+                    {
+                        throw new ModuleDefinitionCircularDependencyException(definition.NormalizedName, circularReferences.First(), tree.ToArray());
+                    }
+                    List<ModuleDefinition>? dependencies = null;
+                    try
+                    {
+                        dependencies = GetModuleDefinitionsByName(definition.Dependencies);
+                    }
+                    catch (ModuleDefinitionNotFoundException e)
+                    {
+                        throw new ModuleDefinitionDependencyNotFoundException(definition, e.NotFoundName, null, e);
+                    }
+                    list.AddRange(GetModuleDefinitionsWithDependencies(dependencies, tree, list));
+                }
+                list.Add(definition);
+                tree.Remove(definition.NormalizedName);
+            }
+            return list;
         }
     }
 }

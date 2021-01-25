@@ -19,7 +19,7 @@ namespace Fiveforty.Module
             _log = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public Task<IModule?> GetModule(ModuleDefinition definition)
+        public Task<IModule?> FindModule(ModuleDefinition definition)
         {
             if (!string.IsNullOrWhiteSpace(definition.TypeName))
             {

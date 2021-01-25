@@ -3,7 +3,8 @@
     using System;
     using System.Linq;
 
-    public record ModuleDefinition
+    [Serializable]
+    public record ModuleDefinition : IModuleDefinition
     {
         public ModuleDefinition(string name, string typeName, string? normalizedName = null, string[]? dependencies = null)
         {
@@ -32,7 +33,7 @@
         public string TypeName { get; }
         public string NormalizedName { get; }
 
-        private static string NormalizeName(string name)
+        public static string NormalizeName(string name)
             => name.Trim().ToLowerInvariant().Replace(' ', '_');
 
         public string Description { get; init; } = string.Empty;

@@ -1,12 +1,12 @@
 namespace Fiveforty.Infrastructure.Tests
 {
+    using System;
+    using System.Reflection;
+
     using Fiveforty.Infrastructure.Reflection;
     using Fiveforty.Infrastructure.Tests.Fixture;
 
     using FluentAssertions;
-
-    using System;
-    using System.Reflection;
 
     using Xunit;
 
@@ -97,6 +97,9 @@ namespace Fiveforty.Infrastructure.Tests
         [Fact]
         public void HasInterface_NullArguments()
         {
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+#pragma warning disable CS8604 // Possible null reference argument.
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
             Type type = null;
             type.Invoking(t => t
                 .HasInterface(typeof(ITestInterface)))
@@ -106,6 +109,9 @@ namespace Fiveforty.Infrastructure.Tests
                 .HasInterface(null))
                 .Should()
                 .Throw<ArgumentNullException>();
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+#pragma warning restore CS8604 // Possible null reference argument.
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
         }
 
         [Fact]

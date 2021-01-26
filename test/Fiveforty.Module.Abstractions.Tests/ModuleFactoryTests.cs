@@ -76,7 +76,7 @@ namespace Fiveforty.Module.Abstractions.Tests
             });
             var modules = await factory.GetModules();
             modules
-                .Select(p => p.GetDefinition().Name)
+                .Select(p => p.ModuleDefinition.Name)
                 .ToArray()
                 .Should()
                 .ContainInOrder("Module1", "Module2", "Module3", "Module4", "Module5", "Module6");
@@ -134,7 +134,7 @@ namespace Fiveforty.Module.Abstractions.Tests
                 .Should()
                 .HaveCount(6);
             modules
-                .Select(p => p.GetDefinition().Name)
+                .Select(p => p.ModuleDefinition.Name)
                 .ToArray()
                 .Should()
                 .ContainInOrder("Module1", "Module2", "Module3", "Module4", "Module5", "Module6");

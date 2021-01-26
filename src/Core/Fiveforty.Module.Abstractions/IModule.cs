@@ -1,7 +1,7 @@
-﻿using Fiveforty.Module.Definitions;
-
-namespace Fiveforty.Module
+﻿namespace Fiveforty.Module
 {
+    using Fiveforty.Module.Definitions;
+
     public interface IModule
     {
         ModuleDefinition ModuleDefinition { get; }

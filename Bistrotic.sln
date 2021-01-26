@@ -10,6 +10,14 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Shared", "src\Bistrotic.Shared\Bistrotic.Shared.csproj", "{46F91371-0B54-427D-8148-C55EF43EF470}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{182A0247-1BA4-4C54-ACD2-AFA7876EB077}"
+	ProjectSection(SolutionItems) = preProject
+		build\Dependencies.AspNetCore.props = build\Dependencies.AspNetCore.props
+		build\Dependencies.Build.props = build\Dependencies.Build.props
+		build\Dependencies.External.props = build\Dependencies.External.props
+		build\Dependencies.NetCore.props = build\Dependencies.NetCore.props
+		build\Dependencies.props = build\Dependencies.props
+		build\DependencyManagement.targets = build\DependencyManagement.targets
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{734F31E4-0FD5-47C6-AF88-DCF2A80E1F2F}"
 	ProjectSection(SolutionItems) = preProject
@@ -18,8 +26,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{734F31
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{23C5C740-B906-4598-A789-6E5027F0A07C}"
+	ProjectSection(SolutionItems) = preProject
+		src\Core\Directory.build.props = src\Core\Directory.build.props
+		src\Core\Directory.build.targets = src\Core\Directory.build.targets
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{1299CE2B-441E-4AB4-97E3-E439F145E9F9}"
+	ProjectSection(SolutionItems) = preProject
+		test\Directory.build.props = test\Directory.build.props
+		test\Directory.build.targets = test\Directory.build.targets
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiveforty.Commands.InMemory.Tests", "Test\Fiveforty.Commands.InMemory.Tests\Fiveforty.Commands.InMemory.Tests.csproj", "{5454FADF-7AE5-483C-8791-C97155C9FB04}"
 EndProject
@@ -33,19 +49,25 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiveforty.Infrastructure", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiveforty.Infrastructure.Tests", "Test\Fiveforty.Infrastructure.Tests\Fiveforty.Infrastructure.Tests.csproj", "{56076C8F-35AD-4D5D-9277-AC7CE1D276CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiveforty.Module.Abstractions", "src\Core\Fiveforty.Module.Abstractions\Fiveforty.Module.Abstractions.csproj", "{39521D44-EC47-4F2F-A5AC-A0D481FA54A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiveforty.Module.Abstractions", "src\Core\Fiveforty.Module.Abstractions\Fiveforty.Module.Abstractions.csproj", "{39521D44-EC47-4F2F-A5AC-A0D481FA54A2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{5DEBE9B8-E56C-4E95-A592-9CB0194A8221}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{C95CEBC9-31B9-4BA7-BFAF-AE75997E196A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{90B3C6C8-2BE3-4E1A-ADBB-B0CCAAD183FB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{90B3C6C8-2BE3-4E1A-ADBB-B0CCAAD183FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiveforty.Module.UnitsClient", "src\Modules\Client\Fiveforty.Module.UnitsClient\Fiveforty.Module.UnitsClient.csproj", "{64A1784A-6A31-4007-B9F5-DD77A64C0FF4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servers", "Servers", "{4D6ADF6B-E0E9-433D-8CE8-583E26623B7E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{4D6ADF6B-E0E9-433D-8CE8-583E26623B7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiveforty.Module.Abstractions.Tests", "test\Fiveforty.Module.Abstractions.Tests\Fiveforty.Module.Abstractions.Tests.csproj", "{C10D2ED7-B33F-46B7-9C35-518FC808F961}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiveforty.Module.Abstractions.Tests", "test\Fiveforty.Module.Abstractions.Tests\Fiveforty.Module.Abstractions.Tests.csproj", "{C10D2ED7-B33F-46B7-9C35-518FC808F961}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiveforty.Application.Server", "src\Core\Fiveforty.Application.Server\Fiveforty.Application.Server.csproj", "{12BA89BC-FF1B-43EE-A37B-AB6BC9597E8D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiveforty.Application.Client", "src\Core\Fiveforty.Application.Client\Fiveforty.Application.Client.csproj", "{A485FBDC-E36A-4399-A5D7-D7D2DD8E7A5D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiveforty.Application.Service", "src\Core\Fiveforty.Application.Service\Fiveforty.Application.Service.csproj", "{A4F52DE5-B511-4B94-86A6-D039B5853D46}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiveforty.Module.UnitsService", "src\Modules\Services\Fiveforty.Module.UnitsService\Fiveforty.Module.UnitsService.csproj", "{D923A667-09D4-4CFB-A2BD-7632CDA256E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,14 +115,26 @@ Global
 		{39521D44-EC47-4F2F-A5AC-A0D481FA54A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39521D44-EC47-4F2F-A5AC-A0D481FA54A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39521D44-EC47-4F2F-A5AC-A0D481FA54A2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{64A1784A-6A31-4007-B9F5-DD77A64C0FF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{64A1784A-6A31-4007-B9F5-DD77A64C0FF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{64A1784A-6A31-4007-B9F5-DD77A64C0FF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{64A1784A-6A31-4007-B9F5-DD77A64C0FF4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C10D2ED7-B33F-46B7-9C35-518FC808F961}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C10D2ED7-B33F-46B7-9C35-518FC808F961}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C10D2ED7-B33F-46B7-9C35-518FC808F961}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C10D2ED7-B33F-46B7-9C35-518FC808F961}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12BA89BC-FF1B-43EE-A37B-AB6BC9597E8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12BA89BC-FF1B-43EE-A37B-AB6BC9597E8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12BA89BC-FF1B-43EE-A37B-AB6BC9597E8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12BA89BC-FF1B-43EE-A37B-AB6BC9597E8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A485FBDC-E36A-4399-A5D7-D7D2DD8E7A5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A485FBDC-E36A-4399-A5D7-D7D2DD8E7A5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A485FBDC-E36A-4399-A5D7-D7D2DD8E7A5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A485FBDC-E36A-4399-A5D7-D7D2DD8E7A5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4F52DE5-B511-4B94-86A6-D039B5853D46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4F52DE5-B511-4B94-86A6-D039B5853D46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4F52DE5-B511-4B94-86A6-D039B5853D46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4F52DE5-B511-4B94-86A6-D039B5853D46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D923A667-09D4-4CFB-A2BD-7632CDA256E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D923A667-09D4-4CFB-A2BD-7632CDA256E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D923A667-09D4-4CFB-A2BD-7632CDA256E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D923A667-09D4-4CFB-A2BD-7632CDA256E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -115,9 +149,12 @@ Global
 		{39521D44-EC47-4F2F-A5AC-A0D481FA54A2} = {23C5C740-B906-4598-A789-6E5027F0A07C}
 		{C95CEBC9-31B9-4BA7-BFAF-AE75997E196A} = {5DEBE9B8-E56C-4E95-A592-9CB0194A8221}
 		{90B3C6C8-2BE3-4E1A-ADBB-B0CCAAD183FB} = {5DEBE9B8-E56C-4E95-A592-9CB0194A8221}
-		{64A1784A-6A31-4007-B9F5-DD77A64C0FF4} = {C95CEBC9-31B9-4BA7-BFAF-AE75997E196A}
 		{4D6ADF6B-E0E9-433D-8CE8-583E26623B7E} = {5DEBE9B8-E56C-4E95-A592-9CB0194A8221}
 		{C10D2ED7-B33F-46B7-9C35-518FC808F961} = {1299CE2B-441E-4AB4-97E3-E439F145E9F9}
+		{12BA89BC-FF1B-43EE-A37B-AB6BC9597E8D} = {23C5C740-B906-4598-A789-6E5027F0A07C}
+		{A485FBDC-E36A-4399-A5D7-D7D2DD8E7A5D} = {23C5C740-B906-4598-A789-6E5027F0A07C}
+		{A4F52DE5-B511-4B94-86A6-D039B5853D46} = {23C5C740-B906-4598-A789-6E5027F0A07C}
+		{D923A667-09D4-4CFB-A2BD-7632CDA256E2} = {90B3C6C8-2BE3-4E1A-ADBB-B0CCAAD183FB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA165E9D-6B6A-49BD-9879-44123F389ACD}

@@ -6,4 +6,7 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.2" />
 	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Core\Fiveforty.Application.Client\Fiveforty.Application.Client.csproj" />
+	</ItemGroup>
 </Project>

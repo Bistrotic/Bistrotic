@@ -1,13 +1,13 @@
-﻿using System;
-using System.Threading.Tasks;
-
-using Fiveforty.Module.Definitions;
-using Fiveforty.Module.Exceptions;
-
-using Microsoft.Extensions.Logging;
-
-namespace Fiveforty.Module
+﻿namespace Fiveforty.Module
 {
+    using System;
+    using System.Threading.Tasks;
+
+    using Fiveforty.Module.Definitions;
+    using Fiveforty.Module.Exceptions;
+
+    using Microsoft.Extensions.Logging;
+
     public class ServiceProviderModuleActivator : IModuleActivator
     {
         private readonly ILogger _log;
@@ -54,8 +54,7 @@ namespace Fiveforty.Module
             {
                 throw new InvalidModuleDefinitionException(definition, $"Type {nameof(ModuleDefinition.TypeName)} not found in service provider. Check if the module has been added to the service container.");
             }
-            IModule? module = service as IModule;
-            if (module == null)
+            if (service is not IModule module)
             {
                 throw new InvalidModuleDefinitionException(definition, $"The type {nameof(ModuleDefinition.TypeName)} class does not implement the {nameof(IModule)} interface.");
             }

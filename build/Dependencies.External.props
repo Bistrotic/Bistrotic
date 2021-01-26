@@ -1,0 +1,6 @@
+<Project>
+	<ItemGroup>
+		<Dependency Include="Microsoft.Tye.Extensions.Configuration" Version="0.7.0-alpha.21070.7" />
+		<Dependency Include="Dapr.AspNetCore" Version="1.0.0-rc02" />
+	</ItemGroup>
+</Project>

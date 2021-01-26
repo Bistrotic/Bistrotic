@@ -7,8 +7,8 @@
 
     public class ModuleFactoryBuilder
     {
-        private List<Func<IModuleDefinitionLoader>> _definitionLoaders = new List<Func<IModuleDefinitionLoader>>();
-        private List<Func<IModuleActivator>> _moduleActivators = new List<Func<IModuleActivator>>();
+        private readonly List<Func<IModuleDefinitionLoader>> _definitionLoaders = new List<Func<IModuleDefinitionLoader>>();
+        private readonly List<Func<IModuleActivator>> _moduleActivators = new List<Func<IModuleActivator>>();
 
         public ModuleFactoryBuilder AddDefinitionLoader(Func<IModuleDefinitionLoader> loader)
         {

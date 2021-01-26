@@ -1,10 +1,10 @@
-﻿using System;
-using System.Runtime.Serialization;
-
-using Fiveforty.Module.Definitions;
-
-namespace Fiveforty.Module.Exceptions
+﻿namespace Fiveforty.Module.Exceptions
 {
+    using System;
+    using System.Runtime.Serialization;
+
+    using Fiveforty.Module.Definitions;
+
     public class InvalidModuleDefinitionTypeException : InvalidModuleDefinitionException
     {
         public InvalidModuleDefinitionTypeException(ModuleDefinition definition) : this(definition, string.Empty)

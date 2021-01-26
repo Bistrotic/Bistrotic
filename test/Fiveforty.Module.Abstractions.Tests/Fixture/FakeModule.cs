@@ -1,76 +1,46 @@
-﻿using Fiveforty.Module.Definitions;
-
-namespace Fiveforty.Module.Abstractions.Tests.Fixture
+﻿namespace Fiveforty.Module.Abstractions.Tests.Fixture
 {
-    public class FakeModule1 : IModule
+    using Fiveforty.Module.Definitions;
+
+    public class FakeModule1 : ServiceModule, IModule
     {
-        private readonly ModuleDefinition _definition;
-
-        public FakeModule1(ModuleDefinition definition)
+        public FakeModule1(ModuleDefinition definition) : base(definition)
         {
-            _definition = definition;
         }
-
-        public ModuleDefinition GetDefinition() => _definition;
     }
 
-    public class FakeModule2 : IModule
+    public class FakeModule2 : ServiceModule, IModule
     {
-        private readonly ModuleDefinition _definition;
-
-        public FakeModule2(ModuleDefinition definition)
+        public FakeModule2(ModuleDefinition definition) : base(definition)
         {
-            _definition = definition;
         }
-
-        public ModuleDefinition GetDefinition() => _definition;
     }
 
-    public class FakeModule3 : IModule
+    public class FakeModule3 : ServiceModule, IModule
     {
-        private readonly ModuleDefinition _definition;
-
-        public FakeModule3(ModuleDefinition definition)
+        public FakeModule3(ModuleDefinition definition) : base(definition)
         {
-            _definition = definition;
         }
-
-        public ModuleDefinition GetDefinition() => _definition;
     }
 
-    public class FakeModule4 : IModule
+    public class FakeModule4 : ServiceModule, IModule
     {
-        private readonly ModuleDefinition _definition;
-
-        public FakeModule4(ModuleDefinition definition)
+        public FakeModule4(ModuleDefinition definition) : base(definition)
         {
-            _definition = definition;
         }
-
-        public ModuleDefinition GetDefinition() => _definition;
     }
 
-    public class FakeModule5 : IModule
+    public class FakeModule5 : ServiceModule, IModule
     {
-        private readonly ModuleDefinition _definition;
-
-        public FakeModule5(ModuleDefinition definition)
+        public FakeModule5(ModuleDefinition definition) : base(definition)
         {
-            _definition = definition;
         }
-
-        public ModuleDefinition GetDefinition() => _definition;
     }
 
-    public class FakeModule6 : IModule
+    public class FakeModule6 : ServiceModule, IModule
     {
-        private readonly ModuleDefinition _definition;
-
-        public FakeModule6(ModuleDefinition definition)
+        public FakeModule6(ModuleDefinition definition) : base(definition)
         {
-            _definition = definition;
         }
-
-        public ModuleDefinition GetDefinition() => _definition;
     }
 }

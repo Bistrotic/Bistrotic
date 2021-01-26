@@ -1,4 +1,5 @@
 <Project>
+	<Import Project="../build/Dependencies.props" />
 	<PropertyGroup>
 		<LangVersion>preview</LangVersion>
 		<Nullable>enable</Nullable>

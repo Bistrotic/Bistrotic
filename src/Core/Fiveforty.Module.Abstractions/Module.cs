@@ -1,18 +1,19 @@
-﻿using System;
-
-using Fiveforty.Module.Definitions;
-
-namespace Fiveforty.Module
+﻿namespace Fiveforty.Module
 {
+    using System;
+
+    using Fiveforty.Module.Definitions;
+
     public abstract class Module : IModule
     {
-        private ModuleDefinition _moduleDefinition;
-
-        public Module(ModuleDefinition? moduleDefinition = null)
+        public Module(ModuleType moduleType, ModuleDefinition moduleDefinition)
         {
-            _moduleDefinition = moduleDefinition ?? throw new ArgumentNullException(nameof(moduleDefinition));
+            ModuleType = moduleType;
+            ModuleDefinition = moduleDefinition ?? throw new ArgumentNullException(nameof(moduleDefinition));
         }
 
-        public ModuleDefinition ModuleDefinition => _moduleDefinition;
+        public ModuleDefinition ModuleDefinition { get; }
+
+        public ModuleType ModuleType { get; }
     }
 }

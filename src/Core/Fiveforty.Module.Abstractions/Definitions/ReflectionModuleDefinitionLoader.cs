@@ -4,17 +4,8 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Microsoft.Extensions.Logging;
-
     public class ReflectionModuleDefinitionLoader : IModuleDefinitionLoader
     {
-        private readonly ILogger _log;
-
-        public ReflectionModuleDefinitionLoader(ILogger<ReflectionModuleDefinitionLoader> logger)
-        {
-            _log = logger ?? throw new ArgumentNullException(nameof(logger));
-        }
-
         public Task<ModuleDefinition[]> GetDefinitions()
         {
             return Task.FromResult(AppDomain
@@ -27,7 +18,7 @@
                 );
         }
 
-        private ModuleDefinition GetModuleDefinition(Type moduleType)
+        private static ModuleDefinition GetModuleDefinition(Type moduleType)
             => new ModuleDefinition(
                 moduleType.Name,
                 moduleType.AssemblyQualifiedName

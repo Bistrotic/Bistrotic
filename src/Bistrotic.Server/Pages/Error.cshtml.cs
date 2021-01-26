@@ -14,7 +14,9 @@
     [IgnoreAntiforgeryToken]
     public class ErrorModel : PageModel
     {
+#pragma warning disable IDE0052 // Remove unread private members
         private readonly ILogger<ErrorModel> _logger;
+#pragma warning restore IDE0052 // Remove unread private members
 
         public ErrorModel(ILogger<ErrorModel> logger)
         {

@@ -1,14 +1,13 @@
 ﻿namespace Bistrotic.Server.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     using Bistrotic.Shared;
 
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
 
     [ApiController]
     [Route("[controller]")]
@@ -19,7 +18,9 @@
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
+#pragma warning disable IDE0052 // Remove unread private members
         private readonly ILogger<WeatherForecastController> _logger;
+#pragma warning restore IDE0052 // Remove unread private members
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {

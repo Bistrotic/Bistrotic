@@ -3,4 +3,5 @@
 	<Import Project="Dependencies.AspNetCore.props" />
 	<Import Project="Dependencies.External.props" />
 	<Import Project="Dependencies.Build.props" />
+	<Import Project="Dependencies.Test.props" />
 </Project>

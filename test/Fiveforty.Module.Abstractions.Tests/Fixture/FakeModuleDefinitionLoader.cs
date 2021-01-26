@@ -1,9 +1,10 @@
-﻿using System.Threading.Tasks;
-
-using Fiveforty.Module.Definitions;
-
-namespace Fiveforty.Module.Abstractions.Tests.Fixture
+﻿namespace Fiveforty.Module.Abstractions.Tests.Fixture
 {
+    using System;
+    using System.Threading.Tasks;
+
+    using Fiveforty.Module.Definitions;
+
     internal class FakeDuplicatesModuleDefinitionLoader : IModuleDefinitionLoader
     {
         public Task<ModuleDefinition[]> GetDefinitions()
@@ -24,8 +25,7 @@ namespace Fiveforty.Module.Abstractions.Tests.Fixture
     {
         public Task<ModuleDefinition[]> GetDefinitions()
         {
-            return Task.FromResult(new ModuleDefinition[] {
-            });
+            return Task.FromResult(Array.Empty<ModuleDefinition>());
         }
     }
 

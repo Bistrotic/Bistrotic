@@ -2,9 +2,11 @@
 {
     using Fiveforty.Module.Definitions;
 
+    using Microsoft.Extensions.Configuration;
+
     public class UnitClientModule : ClientModule
     {
-        public UnitClientModule(ModuleDefinition moduleDefinition) : base(moduleDefinition)
+        public UnitClientModule(ModuleDefinition moduleDefinition, IConfiguration configuration) : base(moduleDefinition, configuration)
         {
         }
     }

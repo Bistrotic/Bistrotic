@@ -11,6 +11,10 @@ namespace Fiveforty.Module.Abstractions.Tests
 
     using FluentAssertions;
 
+    using Microsoft.Extensions.Configuration;
+
+    using Moq;
+
     using Xunit;
 
     public class ModuleFactoryTests
@@ -18,12 +22,13 @@ namespace Fiveforty.Module.Abstractions.Tests
         [Fact]
         public async Task GetModules_FromOneLoaderAndOneActivator()
         {
+            IConfiguration configuration = (new Mock<IConfiguration>()).Object;
             var factory = new ModuleFactory(
                 new List<Func<IModuleDefinitionLoader>> {
                 () => new FakeModuleDefinitionLoader1()
                 },
                 new List<Func<IModuleActivator>> {
-                () => new FakeModuleActivator1()
+                () => new FakeModuleActivator1(configuration)
             });
             (await factory.GetModules())
                 .Should()
@@ -33,13 +38,14 @@ namespace Fiveforty.Module.Abstractions.Tests
         [Fact]
         public async Task GetModules_FromTwoActivators()
         {
+            IConfiguration configuration = (new Mock<IConfiguration>()).Object;
             var factory = new ModuleFactory(
                 new List<Func<IModuleDefinitionLoader>> {
                 () => new FakeModuleDefinitionLoader1(),
                 },
                 new List<Func<IModuleActivator>> {
-                () => new FakeModuleActivator2(),
-                () => new FakeModuleActivator3()
+                () => new FakeModuleActivator2(configuration),
+                () => new FakeModuleActivator3(configuration)
             });
             (await factory.GetModules())
                 .Should()
@@ -49,12 +55,13 @@ namespace Fiveforty.Module.Abstractions.Tests
         [Fact]
         public Task GetModules_WithCircularDependency()
         {
+            IConfiguration configuration = (new Mock<IConfiguration>()).Object;
             var factory = new ModuleFactory(
                 new List<Func<IModuleDefinitionLoader>> {
                 () => new FakeModuleDefinitionWithCircularDependenciesLoader(),
                 },
                 new List<Func<IModuleActivator>> {
-                () => new FakeModuleActivator1()
+                () => new FakeModuleActivator1(configuration)
             });
             factory
                 .Invoking(p => p.GetModules())
@@ -67,12 +74,13 @@ namespace Fiveforty.Module.Abstractions.Tests
         [Fact]
         public async Task GetModules_WithDependencies()
         {
+            IConfiguration configuration = (new Mock<IConfiguration>()).Object;
             var factory = new ModuleFactory(
                 new List<Func<IModuleDefinitionLoader>> {
                 () => new FakeModuleDefinitionWithDependenciesLoader(),
                 },
                 new List<Func<IModuleActivator>> {
-                () => new FakeModuleActivator1()
+                () => new FakeModuleActivator1(configuration)
             });
             var modules = await factory.GetModules();
             modules
@@ -88,13 +96,14 @@ namespace Fiveforty.Module.Abstractions.Tests
         [Fact]
         public async Task GetModules_WithDuplicateActivations()
         {
+            IConfiguration configuration = (new Mock<IConfiguration>()).Object;
             var factory = new ModuleFactory(
                 new List<Func<IModuleDefinitionLoader>> {
                 () => new FakeModuleDefinitionLoader1()
                 },
                 new List<Func<IModuleActivator>> {
-                () => new FakeModuleActivator1(),
-                () => new FakeModuleActivator2()
+                () => new FakeModuleActivator1(configuration),
+                () => new FakeModuleActivator2(configuration)
             });
             (await factory.GetModules())
                 .Should()
@@ -104,12 +113,13 @@ namespace Fiveforty.Module.Abstractions.Tests
         [Fact]
         public Task GetModules_WithDuplicateModuleDefinitions()
         {
+            IConfiguration configuration = (new Mock<IConfiguration>()).Object;
             var factory = new ModuleFactory(
                 new List<Func<IModuleDefinitionLoader>> {
                 () => new FakeDuplicatesModuleDefinitionLoader(),
                 },
                 new List<Func<IModuleActivator>> {
-                () => new FakeModuleActivator1()
+                () => new FakeModuleActivator1(configuration)
             });
             factory
                 .Invoking(p => p.GetModules())
@@ -122,12 +132,13 @@ namespace Fiveforty.Module.Abstractions.Tests
         [Fact]
         public async Task GetModules_WithPriority()
         {
+            IConfiguration configuration = (new Mock<IConfiguration>()).Object;
             var factory = new ModuleFactory(
                 new List<Func<IModuleDefinitionLoader>> {
                 () => new FakeModuleDefinitionWithPrioriryLoader(),
                 },
                 new List<Func<IModuleActivator>> {
-                () => new FakeModuleActivator1()
+                () => new FakeModuleActivator1(configuration)
             });
             var modules = await factory.GetModules();
             modules

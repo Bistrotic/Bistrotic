@@ -20,7 +20,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Bistrotic.Shared\Bistrotic.Shared.csproj" />
-		<ProjectReference Include="..\Core\Fiveforty.Application.Client\Fiveforty.Application.Client.csproj" />
+		<ProjectReference Include="..\Core\Bistrotic.Application.Client\Bistrotic.Application.Client.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

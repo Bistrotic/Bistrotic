@@ -2,7 +2,7 @@
 {
     using System.Threading.Tasks;
 
-    using Fiveforty.Application.Server;
+    using Bistrotic.Application.Server;
 
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Hosting;

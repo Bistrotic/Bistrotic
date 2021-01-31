@@ -1,4 +1,4 @@
-﻿namespace Fiveforty.Domain.Messages
+﻿namespace Bistrotic.Domain
 {
     public interface IEvent
     {

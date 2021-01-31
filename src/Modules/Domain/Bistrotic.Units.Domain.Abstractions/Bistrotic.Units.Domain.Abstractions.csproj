@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<RootNamespace>Bistrotic.Units.Domain</RootNamespace>
+	</PropertyGroup>
+</Project>

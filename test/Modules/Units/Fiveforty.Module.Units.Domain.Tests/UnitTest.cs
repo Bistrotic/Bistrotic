@@ -1,10 +1,10 @@
-namespace Fiveforty.Module.Units.Domain.Tests
+namespace Bistrotic.Module.Units.Domain.Tests
 {
     using System;
     using System.Threading.Tasks;
 
-    using Fiveforty.Domain;
-    using Fiveforty.Module.Units.Domain.Events;
+    using Bistrotic.Domain;
+    using Bistrotic.Module.Units.Domain.Events;
 
     using Moq;
 

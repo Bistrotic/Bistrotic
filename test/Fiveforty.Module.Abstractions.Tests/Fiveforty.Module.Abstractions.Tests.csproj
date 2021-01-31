@@ -17,6 +17,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\src\Core\Fiveforty.Module.Abstractions\Fiveforty.Module.Abstractions.csproj" />
+		<ProjectReference Include="..\..\src\Core\Bistrotic.Module.Abstractions\Bistrotic.Module.Abstractions.csproj" />
 	</ItemGroup>
 </Project>

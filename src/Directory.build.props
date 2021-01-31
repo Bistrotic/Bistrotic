@@ -6,4 +6,7 @@
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.DependencyValidation.Analyzers" />
+	</ItemGroup>
 </Project>

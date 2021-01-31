@@ -1,7 +1,7 @@
-﻿namespace Fiveforty.Queries
+﻿namespace Bistrotic.Queries
 {
     public interface IQuery<TResult>
     {
-        string QueryId { get; }
+        QueryId QueryId { get; }
     }
 }

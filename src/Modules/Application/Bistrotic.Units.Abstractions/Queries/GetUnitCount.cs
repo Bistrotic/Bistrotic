@@ -1,6 +1,6 @@
-﻿namespace Fiveforty.Module.Units.Queries
+﻿namespace Bistrotic.Module.Units.Queries
 {
-    using Fiveforty.Queries;
+    using Bistrotic.Queries;
 
     public record GetUnitCount : Query<int>
     {

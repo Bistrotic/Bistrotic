@@ -1,6 +1,6 @@
-﻿namespace Fiveforty.Module.Units
+﻿namespace Bistrotic.Module.Units
 {
-    using Fiveforty.Commands;
+    using Bistrotic.Commands;
 
     public interface IUnitCommandService : ICommandService
     {

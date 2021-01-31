@@ -16,6 +16,6 @@
 	  <PackageReference Include="Microsoft.DependencyValidation.Analyzers" Version="0.11.0" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\..\src\Module\Fiveforty.Module.Units.Domain\Fiveforty.Module.Units.Domain.csproj" />
+		<ProjectReference Include="..\..\..\..\src\Module\Bistrotic.Module.Units.Domain\Bistrotic.Module.Units.Domain.csproj" />
 	</ItemGroup>
 </Project>

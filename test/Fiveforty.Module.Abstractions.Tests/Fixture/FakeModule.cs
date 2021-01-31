@@ -1,6 +1,6 @@
-﻿namespace Fiveforty.Module.Abstractions.Tests.Fixture
+﻿namespace Bistrotic.Module.Abstractions.Tests.Fixture
 {
-    using Fiveforty.Module.Definitions;
+    using Bistrotic.Module.Definitions;
 
     using Microsoft.Extensions.Configuration;
 

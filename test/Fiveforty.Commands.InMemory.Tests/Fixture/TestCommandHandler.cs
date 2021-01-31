@@ -1,4 +1,4 @@
-﻿namespace Fiveforty.Commands.InMemory.Tests.Fixture
+﻿namespace Bistrotic.Commands.InMemory.Tests.Fixture
 {
     using System;
     using System.Collections.Generic;

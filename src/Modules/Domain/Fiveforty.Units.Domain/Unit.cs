@@ -1,8 +1,6 @@
-﻿namespace Fiveforty.Module.Units.Domain
+﻿namespace Bistrotic.Module.Units.Domain
 {
     using System;
-
-    using Fiveforty.Domain;
 
     public class Unit : IEntity, IAggregateRoot
     {

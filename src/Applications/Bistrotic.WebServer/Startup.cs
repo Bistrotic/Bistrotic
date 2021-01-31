@@ -1,4 +1,4 @@
-﻿using Fiveforty.Application.Server;
+﻿using Bistrotic.Application.Server;
 
 using Microsoft.AspNetCore.Hosting;
 

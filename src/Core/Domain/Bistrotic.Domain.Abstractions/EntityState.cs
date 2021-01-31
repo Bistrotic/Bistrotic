@@ -1,8 +1,6 @@
-﻿namespace Fiveforty.Domain
+﻿namespace Bistrotic.Domain
 {
     using System;
-
-    using Fiveforty.Domain.Messages;
 
     public class EntityState : IEntityState
     {
@@ -30,8 +28,8 @@
         {
             if (@event.Etag != null ||
                 string.IsNullOrWhiteSpace(@event.Id) ||
-                Id != string.Empty ||
-                CreatedBy != string.Empty ||
+                !string.IsNullOrWhiteSpace(Id) ||
+                !string.IsNullOrWhiteSpace(CreatedBy) ||
                 LastModifiedDate != null ||
                 LastModifiedBy != null)
             {
@@ -47,7 +45,7 @@
         {
             if (@event.Etag == null ||
                 string.IsNullOrWhiteSpace(@event.Id) ||
-                Id == string.Empty)
+                string.IsNullOrWhiteSpace(Id))
             {
                 throw new StateUpdateException(@event, this);
             }

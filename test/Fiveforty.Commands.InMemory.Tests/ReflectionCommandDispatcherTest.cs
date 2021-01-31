@@ -1,4 +1,4 @@
-namespace Fiveforty.Commands.InMemory.Tests
+namespace Bistrotic.Commands.InMemory.Tests
 {
     using System;
 

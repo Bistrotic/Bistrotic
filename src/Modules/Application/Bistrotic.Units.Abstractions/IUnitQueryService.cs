@@ -1,10 +1,10 @@
-﻿namespace Fiveforty.Module.Units
+﻿namespace Bistrotic.Module.Units
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using Fiveforty.Module.Units.ModelViews;
-    using Fiveforty.Queries;
+    using Bistrotic.Module.Units.ModelViews;
+    using Bistrotic.Queries;
 
     public interface IUnitQueryService : IQueryService
     {

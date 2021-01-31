@@ -1,4 +1,4 @@
-﻿namespace Fiveforty.Infrastructure.Tests.Fixture
+﻿namespace Bistrotic.Infrastructure.Tests.Fixture
 {
     public interface ITestInterface
     {

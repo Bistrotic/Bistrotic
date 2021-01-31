@@ -23,6 +23,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Bistrotic.Client\Bistrotic.Client.csproj" />
 		<ProjectReference Include="..\Bistrotic.Shared\Bistrotic.Shared.csproj" />
-		<ProjectReference Include="..\Core\Fiveforty.Application.Server\Fiveforty.Application.Server.csproj" />
+		<ProjectReference Include="..\Core\Bistrotic.Application.Server\Bistrotic.Application.Server.csproj" />
 	</ItemGroup>
 </Project>

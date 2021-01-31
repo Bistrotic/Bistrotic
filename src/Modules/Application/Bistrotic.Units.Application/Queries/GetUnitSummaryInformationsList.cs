@@ -1,9 +1,9 @@
-﻿namespace Fiveforty.Module.Units.Queries
+﻿namespace Bistrotic.Units.Application.Queries
 {
     using System.Collections.Generic;
 
-    using Fiveforty.Module.Units.ModelViews;
-    using Fiveforty.Queries;
+    using Bistrotic.Units.Application.ModelViews;
+    using Bistrotic.Queries;
 
     public record GetUnitSummaryInformationsList(int Take = 0, int Skip = 0) : Query<List<UnitSummaryInformations>>
     {

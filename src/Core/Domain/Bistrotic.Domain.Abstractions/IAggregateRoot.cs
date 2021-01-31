@@ -1,4 +1,4 @@
-﻿namespace Fiveforty.Domain
+﻿namespace Bistrotic.Domain
 {
     public interface IAggregateRoot
     {

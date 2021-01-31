@@ -1,4 +1,4 @@
-﻿namespace Fiveforty.Queries
+﻿namespace Bistrotic.Queries
 {
     using System.Threading.Tasks;
 

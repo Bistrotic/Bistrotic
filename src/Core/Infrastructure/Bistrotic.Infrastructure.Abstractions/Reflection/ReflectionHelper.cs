@@ -1,4 +1,4 @@
-﻿namespace Fiveforty.Infrastructure.Reflection
+﻿namespace Bistrotic.Infrastructure.Reflection
 {
     using System;
     using System.Collections.Generic;

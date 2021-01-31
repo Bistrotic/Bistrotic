@@ -1,6 +1,6 @@
-﻿namespace Fiveforty.Module.Units.Domain
+﻿namespace Bistrotic.Module.Units.Domain
 {
-    using Fiveforty.Domain;
+    using Bistrotic.Domain;
 
     public class UnitState : EntityState
     {

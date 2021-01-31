@@ -1,9 +1,9 @@
-﻿namespace Fiveforty.Module.Abstractions.Tests.Fixture
+﻿namespace Bistrotic.Module.Abstractions.Tests.Fixture
 {
     using System;
     using System.Threading.Tasks;
 
-    using Fiveforty.Module.Definitions;
+    using Bistrotic.Module.Definitions;
 
     internal class FakeDuplicatesModuleDefinitionLoader : IModuleDefinitionLoader
     {

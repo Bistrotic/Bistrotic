@@ -1,13 +1,13 @@
-namespace Fiveforty.Module.Abstractions.Tests
+namespace Bistrotic.Module.Abstractions.Tests
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Fiveforty.Module.Abstractions.Tests.Fixture;
-    using Fiveforty.Module.Definitions;
-    using Fiveforty.Module.Exceptions;
+    using Bistrotic.Module.Abstractions.Tests.Fixture;
+    using Bistrotic.Module.Definitions;
+    using Bistrotic.Module.Exceptions;
 
     using FluentAssertions;
 

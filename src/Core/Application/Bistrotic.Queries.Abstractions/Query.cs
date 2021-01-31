@@ -1,9 +1,7 @@
-﻿namespace Fiveforty.Queries
+﻿namespace Bistrotic.Queries
 {
-    using Fiveforty.Infrastructure;
-
     public record Query<TResult> : IQuery<TResult>
     {
-        public string QueryId { get; } = UniqueId.Create();
+        public QueryId QueryId { get; } = new QueryId();
     }
 }

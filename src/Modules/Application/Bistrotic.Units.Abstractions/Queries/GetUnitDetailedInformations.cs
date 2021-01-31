@@ -1,7 +1,7 @@
-﻿namespace Fiveforty.Module.Units.Queries
+﻿namespace Bistrotic.Module.Units.Queries
 {
-    using Fiveforty.Module.Units.ModelViews;
-    using Fiveforty.Queries;
+    using Bistrotic.Module.Units.ModelViews;
+    using Bistrotic.Queries;
 
     public record GetUnitDetailedInformations(string Id) : Query<UnitDetailedInformations>
     {

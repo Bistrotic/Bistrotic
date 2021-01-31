@@ -1,4 +1,4 @@
-﻿namespace Fiveforty.Commands
+﻿namespace Bistrotic.Commands
 {
     /// <summary>
     /// Interface ICommand Implements the <see cref="System.Runtime.Serialization.ISerializable"/>

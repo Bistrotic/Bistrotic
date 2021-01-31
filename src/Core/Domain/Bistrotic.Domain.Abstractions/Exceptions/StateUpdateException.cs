@@ -1,10 +1,8 @@
-﻿namespace Fiveforty.Domain
+﻿namespace Bistrotic.Domain
 {
     using System;
     using System.Runtime.Serialization;
     using System.Text.Json;
-
-    using Fiveforty.Domain.Messages;
 
     [Serializable]
     internal class StateUpdateException : Exception

@@ -1,9 +1,9 @@
-﻿namespace Fiveforty.Module.Abstractions.Tests.Fixture
+﻿namespace Bistrotic.Module.Abstractions.Tests.Fixture
 {
     using System.Threading.Tasks;
 
-    using Fiveforty.Module.Definitions;
-    using Fiveforty.Module.Exceptions;
+    using Bistrotic.Module.Definitions;
+    using Bistrotic.Module.Exceptions;
 
     using Microsoft.Extensions.Configuration;
 

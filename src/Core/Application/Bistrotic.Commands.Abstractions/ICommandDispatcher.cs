@@ -1,4 +1,4 @@
-﻿namespace Fiveforty.Commands
+﻿namespace Bistrotic.Commands
 {
     using System.Threading.Tasks;
 

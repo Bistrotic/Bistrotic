@@ -2,6 +2,8 @@
 {
     using System;
 
+    using Bistrotic.Domain.Messages;
+
     public class EntityState : IEntityState
     {
         public string CreatedBy { get; private set; } = string.Empty;

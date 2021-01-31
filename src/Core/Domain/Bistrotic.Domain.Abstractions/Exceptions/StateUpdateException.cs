@@ -4,6 +4,8 @@
     using System.Runtime.Serialization;
     using System.Text.Json;
 
+    using Bistrotic.Domain.Messages;
+
     [Serializable]
     internal class StateUpdateException : Exception
     {

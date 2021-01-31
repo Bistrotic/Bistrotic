@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<RootNamespace>Fiveforty.Domain</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<AdditionalFiles Include="..\..\Bistrotic.Architecture\DependencyValidation.layerdiagram" Link="DependencyValidation.layerdiagram">
+			<Visible>False</Visible>
+		</AdditionalFiles>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.DependencyValidation.Analyzers" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Fiveforty.Domain.Messages\Fiveforty.Domain.Messages.csproj" />
+	</ItemGroup>
+</Project>

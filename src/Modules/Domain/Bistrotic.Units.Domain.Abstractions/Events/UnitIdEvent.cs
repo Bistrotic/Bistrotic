@@ -8,8 +8,8 @@
 
     public abstract record UnitIdEvent : Event
     {
-        protected UnitIdEvent(UserName userName, UnitId unitId, MessageId correlationId, Etag? etag = null)
-            : base(userName, unitId, correlationId, etag)
+        protected UnitIdEvent(UnitId unitId)
+            : base(unitId)
         {
         }
         public UnitId UnitId

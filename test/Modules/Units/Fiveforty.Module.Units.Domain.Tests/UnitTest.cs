@@ -3,9 +3,6 @@ namespace Bistrotic.Module.Units.Domain.Tests
     using System;
     using System.Threading.Tasks;
 
-    using Bistrotic.Domain;
-    using Bistrotic.Module.Units.Domain.Events;
-
     using Moq;
 
     using Xunit;

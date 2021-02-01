@@ -1,0 +1,21 @@
+﻿using Bistrotic.Domain.Messages;
+using Bistrotic.Domain.ValueTypes;
+
+namespace Bistrotic.Application.Messages
+{
+    public class Envelope<T> : IEnvelope
+        where T : IMessage
+    {
+        public Envelope(UserName userName, T message, MessageId? correlationId = null, Etag? etag = null)
+        {
+            UserName = userName;
+            Message = message;
+        }
+
+        public MessageId? CorrelationId { get; }
+        public Etag? Etag { get; }
+        public T Message { get; }
+        public UserName UserName { get; }
+        IMessage IEnvelope.Message => Message;
+    }
+}

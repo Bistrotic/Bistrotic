@@ -3,6 +3,7 @@ namespace Bistrotic.Infrastructure.Tests
     using System;
     using System.Reflection;
 
+    using Bistrotic.Infrastructure.Reflection;
     using Bistrotic.Infrastructure.Tests.Fixture;
 
     using FluentAssertions;

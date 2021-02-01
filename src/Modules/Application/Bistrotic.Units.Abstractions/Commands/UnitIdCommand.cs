@@ -3,13 +3,12 @@
     using System;
 
     using Bistrotic.Application.Commands;
-    using Bistrotic.Domain.ValueTypes;
     using Bistrotic.Units.Domain.ValueTypes;
 
     public abstract record UnitIdCommand : Command
     {
-        protected UnitIdCommand(UserName userName, UnitId UnitId, Etag? etag, MessageId? CorrelationId)
-            : base(userName, UnitId, etag, CorrelationId)
+        protected UnitIdCommand(UnitId UnitId)
+            : base(UnitId)
         {
         }
         public UnitId UnitId

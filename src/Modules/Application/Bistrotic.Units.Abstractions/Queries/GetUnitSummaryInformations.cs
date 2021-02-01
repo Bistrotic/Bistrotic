@@ -5,7 +5,7 @@
     using Bistrotic.Units.Application.Queries;
     using Bistrotic.Units.Domain.ValueTypes;
 
-    public record GetUnitSummaryInformations(UserName UserName, UnitId UnitId) : UnitIdQuery<UnitSummaryInformations>(UserName, UnitId)
+    public record GetUnitSummaryInformations(UnitId UnitId) : UnitIdQuery<UnitSummaryInformations>(UnitId)
     {
     }
 }

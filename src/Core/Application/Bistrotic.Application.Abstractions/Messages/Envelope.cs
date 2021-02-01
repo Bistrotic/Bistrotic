@@ -10,6 +10,8 @@ namespace Bistrotic.Application.Messages
         {
             UserName = userName;
             Message = message;
+            CorrelationId = correlationId;
+            Etag = etag;
         }
 
         public MessageId? CorrelationId { get; }

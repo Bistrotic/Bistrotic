@@ -1,11 +1,10 @@
 ﻿namespace Bistrotic.Module.Units.Domain.Commands
 {
-    using Bistrotic.Domain.ValueTypes;
     using Bistrotic.Units.Application.Commands;
     using Bistrotic.Units.Domain.ValueTypes;
 
-    public record ChangeUnitDescription(UserName UserName, UnitId UnitId, Etag Etag, string? Description, MessageId? CorrelationId = null) :
-        UnitIdCommand(UserName, UnitId, Etag, CorrelationId)
+    public record ChangeUnitDescription(UnitId UnitId, string? Description) :
+        UnitIdCommand(UnitId)
     {
     }
 }

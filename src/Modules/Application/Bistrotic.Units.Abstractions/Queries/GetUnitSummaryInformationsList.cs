@@ -2,10 +2,12 @@
 {
     using System.Collections.Generic;
 
+    using Bistrotic.Application.Queries;
+    using Bistrotic.Domain.ValueTypes;
     using Bistrotic.Module.Units.ModelViews;
-    using Bistrotic.Queries;
 
-    public record GetUnitSummaryInformationsList(int Take = 0, int Skip = 0) : Query<List<UnitSummaryInformations>>
+    public record GetUnitSummaryInformationsList(UserName UserName, int Take = 0, int Skip = 0)
+        : Query<List<UnitSummaryInformations>>(UserName, null)
     {
     }
 }

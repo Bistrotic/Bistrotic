@@ -1,2 +1,5 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\Application\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj" />
+  </ItemGroup>
 </Project>

@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Bistrotic.Application.Commands
+﻿namespace Bistrotic.Application.Commands
 {
-    public class Command
+    using Bistrotic.Domain.Messages;
+    using Bistrotic.Domain.ValueTypes;
+
+    public record Command(
+        UserName UserName,
+        BusinessId? Id = null,
+        Etag? Etag = null,
+        MessageId? CorrelationId = null)
+            : Message(UserName, Id, CorrelationId)
     {
     }
 }

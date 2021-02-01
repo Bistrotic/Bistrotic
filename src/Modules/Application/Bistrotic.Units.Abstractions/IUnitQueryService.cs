@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
 
     using Bistrotic.Module.Units.ModelViews;
-    using Bistrotic.Queries;
+    using Bistrotic.Application.Queries;
 
     public interface IUnitQueryService : IQueryService
     {

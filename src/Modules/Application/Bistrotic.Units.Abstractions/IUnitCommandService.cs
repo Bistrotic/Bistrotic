@@ -1,6 +1,6 @@
 ﻿namespace Bistrotic.Module.Units
 {
-    using Bistrotic.Commands;
+    using Bistrotic.Application.Commands;
 
     public interface IUnitCommandService : ICommandService
     {

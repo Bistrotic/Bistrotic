@@ -1,5 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<ItemGroup>
-		<ProjectReference Include="..\..\..\Core\Application\Bistrotic.Commands.Abstractions\Bistrotic.Commands.Abstractions.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\Application\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj" />
+    <ProjectReference Include="..\..\..\Core\Domain\Bistrotic.Domain.Abstractions\Bistrotic.Domain.Abstractions.csproj" />
+  </ItemGroup>
 </Project>

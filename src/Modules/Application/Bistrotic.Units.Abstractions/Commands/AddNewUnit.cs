@@ -1,9 +1,10 @@
 ﻿namespace Bistrotic.Units.Application.Commands
 {
-    using Bistrotic.Commands;
+    using Bistrotic.Domain.ValueTypes;
+    using Bistrotic.Units.Application.Abstractions.ValueTypes;
 
-    public record AddNewUnit(string UserName, string Id, string Name, string? Description = null) :
-        Command(UserName, Id, null)
+    public record AddNewUnit(UserName UserName, UnitId UnitId, string Name, string? Description, MessageId? CorrelationId = null)
+        : UnitIdCommand(UserName, UnitId, null, CorrelationId)
     {
     }
 }

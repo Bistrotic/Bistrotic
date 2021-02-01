@@ -1,8 +1,10 @@
 ﻿namespace Bistrotic.Module.Units.Queries
 {
-    using Bistrotic.Queries;
+    using Bistrotic.Application.Queries;
+    using Bistrotic.Domain.ValueTypes;
 
-    public record GetUnitCount : Query<int>
+    public record GetUnitCount(UserName UserName)
+        : Query<string>(UserName, null)
     {
     }
 }

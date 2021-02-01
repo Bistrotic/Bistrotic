@@ -4,7 +4,7 @@
 
     using Bistrotic.Application.Commands;
     using Bistrotic.Domain.ValueTypes;
-    using Bistrotic.Units.Application.Abstractions.ValueTypes;
+    using Bistrotic.Units.Domain.ValueTypes;
 
     public abstract record UnitIdCommand : Command
     {

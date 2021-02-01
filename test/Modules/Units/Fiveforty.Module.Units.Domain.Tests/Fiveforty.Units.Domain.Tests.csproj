@@ -1,0 +1,8 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\src\Module\Bistrotic.Module.Units.Domain\Bistrotic.Module.Units.Domain.csproj" />
+	</ItemGroup>
+</Project>

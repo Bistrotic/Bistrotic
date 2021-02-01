@@ -1,6 +1,6 @@
 <Project>
-	<TargetFramework>net5.0</TargetFramework>
 	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 		<DockerfileContext>..\..</DockerfileContext>
 	</PropertyGroup>

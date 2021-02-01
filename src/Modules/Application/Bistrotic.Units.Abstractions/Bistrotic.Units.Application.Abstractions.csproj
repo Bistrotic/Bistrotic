@@ -2,5 +2,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\Application\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj" />
     <ProjectReference Include="..\..\..\Core\Domain\Bistrotic.Domain.Abstractions\Bistrotic.Domain.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Domain\Bistrotic.Units.Domain.Abstractions\Bistrotic.Units.Domain.Abstractions.csproj" />
   </ItemGroup>
 </Project>

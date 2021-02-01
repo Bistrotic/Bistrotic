@@ -4,7 +4,7 @@
 
     using Bistrotic.Application.Queries;
     using Bistrotic.Domain.ValueTypes;
-    using Bistrotic.Units.Application.Abstractions.ValueTypes;
+    using Bistrotic.Units.Domain.ValueTypes;
 
     public abstract record UnitIdQuery<TResult> : Query<TResult>
     {

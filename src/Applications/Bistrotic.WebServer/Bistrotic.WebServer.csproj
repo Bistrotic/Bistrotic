@@ -21,6 +21,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.WebServer\Bistrotic.Infrastructure.WebServer.csproj" />
 		<ProjectReference Include="..\Bistrotic.Client\Bistrotic.Client.csproj" />
 		<ProjectReference Include="..\Bistrotic.Shared\Bistrotic.Shared.csproj" />
 		<ProjectReference Include="..\Core\Bistrotic.Application.Server\Bistrotic.Application.Server.csproj" />

@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8_Build", "8_Build", "{182A
 		build\Dependencies.props = build\Dependencies.props
 		build\Dependencies.Test.props = build\Dependencies.Test.props
 		build\DependencyManagement.targets = build\DependencyManagement.targets
+		src\Directory.build.props = src\Directory.build.props
+		src\Directory.build.targets = src\Directory.build.targets
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "9_Deploy", "9_Deploy", "{734F31E4-0FD5-47C6-AF88-DCF2A80E1F2F}"
@@ -37,22 +39,42 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiveforty.Infrastructure.Tests", "Test\Fiveforty.Infrastructure.Tests\Fiveforty.Infrastructure.Tests.csproj", "{56076C8F-35AD-4D5D-9277-AC7CE1D276CF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1_Modules", "1_Modules", "{5DEBE9B8-E56C-4E95-A592-9CB0194A8221}"
+	ProjectSection(SolutionItems) = preProject
+		src\Modules\Directory.build.props = src\Modules\Directory.build.props
+		src\Modules\Directory.build.targets = src\Modules\Directory.build.targets
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{C95CEBC9-31B9-4BA7-BFAF-AE75997E196A}"
+	ProjectSection(SolutionItems) = preProject
+		src\Modules\Presentation\Directory.build.props = src\Modules\Presentation\Directory.build.props
+		src\Modules\Presentation\Directory.build.targets = src\Modules\Presentation\Directory.build.targets
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{90B3C6C8-2BE3-4E1A-ADBB-B0CCAAD183FB}"
+	ProjectSection(SolutionItems) = preProject
+		src\Modules\Infrastructure\Directory.build.props = src\Modules\Infrastructure\Directory.build.props
+		src\Modules\Infrastructure\Directory.build.targets = src\Modules\Infrastructure\Directory.build.targets
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{4D6ADF6B-E0E9-433D-8CE8-583E26623B7E}"
+	ProjectSection(SolutionItems) = preProject
+		src\Modules\Domain\Directory.build.props = src\Modules\Domain\Directory.build.props
+		src\Modules\Domain\Directory.build.targets = src\Modules\Domain\Directory.build.targets
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiveforty.Module.Abstractions.Tests", "test\Fiveforty.Module.Abstractions.Tests\Fiveforty.Module.Abstractions.Tests.csproj", "{C10D2ED7-B33F-46B7-9C35-518FC808F961}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{2B0D7C3D-F29B-4073-ADB1-CE3602F4BEBB}"
+	ProjectSection(SolutionItems) = preProject
+		src\Modules\Application\Directory.build.props = src\Modules\Application\Directory.build.props
+		src\Modules\Application\Directory.build.targets = src\Modules\Application\Directory.build.targets
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{7FC87AE8-D1DA-4306-81B0-29C270E7E104}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Units", "Units", "{39D4F000-E0C7-4DB3-A80F-6D75FAAB44FE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiveforty.Module.Units.Domain.Tests", "test\Modules\Units\Fiveforty.Module.Units.Domain.Tests\Fiveforty.Module.Units.Domain.Tests.csproj", "{122412F7-72BE-4F13-9839-13E80DEE7F05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiveforty.Units.Domain.Tests", "test\Modules\Units\Fiveforty.Module.Units.Domain.Tests\Fiveforty.Units.Domain.Tests.csproj", "{122412F7-72BE-4F13-9839-13E80DEE7F05}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{17634B5D-1BCA-4A1D-BA37-4293453A5CEC}"
 	ProjectSection(SolutionItems) = preProject
@@ -79,6 +101,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application"
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3_Applications", "3_Applications", "{9AD0F4D0-F052-4D81-A2C9-F9A301DC8807}"
+	ProjectSection(SolutionItems) = preProject
+		src\Applications\Directory.build.props = src\Applications\Directory.build.props
+		src\Applications\Directory.build.targets = src\Applications\Directory.build.targets
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.BlazorClient", "src\Applications\Bistrotic.BlazorClient\Bistrotic.BlazorClient.csproj", "{CF1C280C-921A-4EFB-AA8E-03750E75003D}"
 EndProject
@@ -104,11 +130,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Units.Application
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Units.Application", "src\Modules\Application\Bistrotic.Units.Application\Bistrotic.Units.Application.csproj", "{B7AC3C11-87C6-4B52-B8C3-F00FF4D3DAFB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Units.Domain", "src\Modules\Domain\Fiveforty.Units.Domain\Bistrotic.Units.Domain.csproj", "{261A630E-85AE-4F97-BF8E-417F0ABB8DBB}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Units.Domain.Abstractions", "src\Modules\Domain\Bistrotic.Units.Domain.Abstractions\Bistrotic.Units.Domain.Abstractions.csproj", "{514AC827-064A-49F7-9BFB-8B1AF036B098}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Application.Abstractions", "src\Core\Application\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj", "{61D73F65-0B6E-46E4-9D19-C91FC7971CB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Application.Abstractions", "src\Core\Application\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj", "{61D73F65-0B6E-46E4-9D19-C91FC7971CB5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Units.Domain", "src\Modules\Domain\Bistrotic.Units.Domain\Bistrotic.Units.Domain.csproj", "{6B943632-BF66-4B97-89A8-48D7289E95A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -180,10 +206,6 @@ Global
 		{B7AC3C11-87C6-4B52-B8C3-F00FF4D3DAFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7AC3C11-87C6-4B52-B8C3-F00FF4D3DAFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7AC3C11-87C6-4B52-B8C3-F00FF4D3DAFB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{261A630E-85AE-4F97-BF8E-417F0ABB8DBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{261A630E-85AE-4F97-BF8E-417F0ABB8DBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{261A630E-85AE-4F97-BF8E-417F0ABB8DBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{261A630E-85AE-4F97-BF8E-417F0ABB8DBB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{514AC827-064A-49F7-9BFB-8B1AF036B098}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{514AC827-064A-49F7-9BFB-8B1AF036B098}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{514AC827-064A-49F7-9BFB-8B1AF036B098}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -192,6 +214,10 @@ Global
 		{61D73F65-0B6E-46E4-9D19-C91FC7971CB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61D73F65-0B6E-46E4-9D19-C91FC7971CB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61D73F65-0B6E-46E4-9D19-C91FC7971CB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B943632-BF66-4B97-89A8-48D7289E95A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B943632-BF66-4B97-89A8-48D7289E95A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B943632-BF66-4B97-89A8-48D7289E95A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B943632-BF66-4B97-89A8-48D7289E95A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -223,9 +249,9 @@ Global
 		{1B3ADC86-CA99-409C-B0F1-69918F929B5E} = {17634B5D-1BCA-4A1D-BA37-4293453A5CEC}
 		{3B893598-C5E1-44F0-A810-35964FC5B0A4} = {2B0D7C3D-F29B-4073-ADB1-CE3602F4BEBB}
 		{B7AC3C11-87C6-4B52-B8C3-F00FF4D3DAFB} = {2B0D7C3D-F29B-4073-ADB1-CE3602F4BEBB}
-		{261A630E-85AE-4F97-BF8E-417F0ABB8DBB} = {4D6ADF6B-E0E9-433D-8CE8-583E26623B7E}
 		{514AC827-064A-49F7-9BFB-8B1AF036B098} = {4D6ADF6B-E0E9-433D-8CE8-583E26623B7E}
 		{61D73F65-0B6E-46E4-9D19-C91FC7971CB5} = {C74D717A-F4C0-4C99-B367-117E51415AF5}
+		{6B943632-BF66-4B97-89A8-48D7289E95A0} = {4D6ADF6B-E0E9-433D-8CE8-583E26623B7E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA165E9D-6B6A-49BD-9879-44123F389ACD}

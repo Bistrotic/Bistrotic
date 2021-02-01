@@ -1,14 +1,11 @@
-﻿namespace Bistrotic.Server.Controllers
+﻿using System;
+using System.Collections.Generic;
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+
+namespace Bistrotic.Server.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Bistrotic.Shared;
-
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Logging;
-
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase

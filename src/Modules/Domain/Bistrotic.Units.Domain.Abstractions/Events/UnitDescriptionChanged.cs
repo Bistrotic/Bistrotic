@@ -1,9 +1,10 @@
-﻿namespace Bistrotic.Module.Units.Domain.Events
+﻿namespace Bistrotic.Units.Domain.Events
 {
-    using Bistrotic.Domain.Messages;
+    using Bistrotic.Domain.ValueTypes;
+    using Bistrotic.Units.Domain.ValueTypes;
 
-    public record UnitDescriptionChanged(string UserName, string Id, string Etag, string? Description) :
-        Event(UserName, Id, Etag)
+    public record UnitDescriptionChanged(UserName UserName, UnitId UnitId, string? Description, MessageId CorrelationId, Etag? Etag = null) :
+        UnitIdEvent(UserName, UnitId, CorrelationId, Etag)
     {
     }
 }

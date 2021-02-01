@@ -1,10 +1,10 @@
-﻿namespace Bistrotic.Module.Units.Domain.Events
+﻿namespace Bistrotic.Units.Domain.Events
 {
-    using Bistrotic.Domain.Messages;
-    using Bistrotic.Infrastructure;
+    using Bistrotic.Domain.ValueTypes;
+    using Bistrotic.Units.Domain.ValueTypes;
 
-    public record NewUnitAdded(string UserName, string Id, string Name, string? Description = null) :
-        Event(UserName, Id, UniqueId.Create())
+    public record NewUnitAdded(UserName UserName, UnitId UnitId, string Name, string? Description, MessageId CorrelationId, Etag? Etag = null) :
+        UnitIdEvent(UserName, UnitId, CorrelationId, Etag)
     {
     }
 }

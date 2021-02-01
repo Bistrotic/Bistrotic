@@ -29,7 +29,7 @@
         private void InitState(IEvent @event)
         {
             if (@event.Etag != null ||
-                string.IsNullOrWhiteSpace(@event.Id) ||
+                string.IsNullOrWhiteSpace(@event.MessageId) ||
                 !string.IsNullOrWhiteSpace(Id) ||
                 !string.IsNullOrWhiteSpace(CreatedBy) ||
                 LastModifiedDate != null ||
@@ -37,8 +37,8 @@
             {
                 throw new StateInitializationException(@event, this);
             }
-            Etag = @event.Etag ?? Convert.ToBase64String(Guid.NewGuid().ToByteArray()).Substring(0, 22);
-            Id = @event.Id;
+            Etag = @event.Etag?.Value ?? Convert.ToBase64String(Guid.NewGuid().ToByteArray()).Substring(0, 22);
+            Id = @event.MessageId;
             CreatedBy = @event.UserName;
             CreatedDate = DateTime.UtcNow;
         }
@@ -46,13 +46,13 @@
         private void UpdateState(IEvent @event)
         {
             if (@event.Etag == null ||
-                string.IsNullOrWhiteSpace(@event.Id) ||
+                string.IsNullOrWhiteSpace(@event.MessageId) ||
                 string.IsNullOrWhiteSpace(Id))
             {
                 throw new StateUpdateException(@event, this);
             }
             Etag = @event.Etag ?? Convert.ToBase64String(Guid.NewGuid().ToByteArray()).Substring(0, 22);
-            Id = @event.Id;
+            Id = @event.MessageId;
             CreatedBy = @event.UserName;
             CreatedDate = DateTime.UtcNow;
         }

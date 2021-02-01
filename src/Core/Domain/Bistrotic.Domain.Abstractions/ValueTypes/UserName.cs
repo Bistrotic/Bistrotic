@@ -13,5 +13,6 @@ namespace Bistrotic.Domain.ValueTypes
                 throw new ArgumentException($"User name not defined or has more than {DomainConstants.MAX_USER_NAME_LENGTH} characters. Name : '{Value}'.", nameof(value));
         }
         public string Value { get; }
+        public static implicit operator string(UserName name) => name.Value;
     }
 }

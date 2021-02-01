@@ -2,6 +2,8 @@
 {
     using System.Threading.Tasks;
 
+    using Bistrotic.Application.Commands;
+
     /// <summary>
     /// Interface ICommandDispatcher
     /// </summary>

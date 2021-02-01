@@ -1,4 +1,6 @@
-﻿namespace Bistrotic.Commands
+﻿using Bistrotic.Application.Commands;
+
+namespace Bistrotic.Commands
 {
     /// <summary>
     /// Interface ICommandHandlerProvider

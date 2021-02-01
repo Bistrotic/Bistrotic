@@ -24,5 +24,7 @@
             Value = autoIdentifier?.Value ?? GenerateIdentifier();
         }
         public string Value { get; init; }
+
+        public static implicit operator string(AutoIdentifier id) => id.Value;
     }
 }

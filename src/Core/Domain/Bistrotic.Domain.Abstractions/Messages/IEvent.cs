@@ -4,6 +4,6 @@ namespace Bistrotic.Domain.Messages
 {
     public interface IEvent : IMessage
     {
-        Etag Etag { get; }
+        Etag? Etag { get; }
     }
 }

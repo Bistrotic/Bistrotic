@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bistrotic.Commands
+namespace Bistrotic.Application.Commands
 {
     public class Command
     {
-        
     }
 }

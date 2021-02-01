@@ -2,4 +2,7 @@
 	<PropertyGroup>
 		<RootNamespace>Bistrotic.Commands</RootNamespace>
 	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj" />
+	</ItemGroup>
 </Project>

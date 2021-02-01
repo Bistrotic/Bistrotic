@@ -2,6 +2,7 @@
 {
     using System;
     using System.Runtime.Serialization;
+    using System.Windows.Input;
 
     [Serializable]
     internal class InvalidCommandException : Exception

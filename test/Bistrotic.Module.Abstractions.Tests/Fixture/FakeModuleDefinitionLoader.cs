@@ -3,7 +3,7 @@
     using System;
     using System.Threading.Tasks;
 
-    using Bistrotic.Module.Definitions;
+    using Bistrotic.Infrastructure.Modules.Definitions;
 
     internal class FakeDuplicatesModuleDefinitionLoader : IModuleDefinitionLoader
     {

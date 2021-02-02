@@ -2,8 +2,9 @@
 {
     using System.Threading.Tasks;
 
-    using Bistrotic.Module.Definitions;
-    using Bistrotic.Module.Exceptions;
+    using Bistrotic.Infrastructure.Modules;
+    using Bistrotic.Infrastructure.Modules.Definitions;
+    using Bistrotic.Infrastructure.Modules.Exceptions;
 
     using Microsoft.Extensions.Configuration;
 

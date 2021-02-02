@@ -5,9 +5,10 @@ namespace Bistrotic.Module.Abstractions.Tests
     using System.Linq;
     using System.Threading.Tasks;
 
+    using Bistrotic.Infrastructure.Modules;
+    using Bistrotic.Infrastructure.Modules.Definitions;
+    using Bistrotic.Infrastructure.Modules.Exceptions;
     using Bistrotic.Module.Abstractions.Tests.Fixture;
-    using Bistrotic.Module.Definitions;
-    using Bistrotic.Module.Exceptions;
 
     using FluentAssertions;
 

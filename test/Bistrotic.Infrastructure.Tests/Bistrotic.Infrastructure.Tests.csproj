@@ -1,21 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
-	</PropertyGroup>
 	<ItemGroup>
-	  <AdditionalFiles Include="..\..\src\Bistrotic.Architecture\DependencyValidation1.layerdiagram" Link="DependencyValidation1.layerdiagram">
-	    <Visible>False</Visible>
-	  </AdditionalFiles>
-	</ItemGroup>
-	<ItemGroup>
-	  <AdditionalFiles Include="..\..\src\Bistrotic.Architecture\DependencyValidation.layerdiagram" Link="DependencyValidation.layerdiagram">
-	    <Visible>False</Visible>
-	  </AdditionalFiles>
-	</ItemGroup>
-	<ItemGroup>
-	  <PackageReference Include="Microsoft.DependencyValidation.Analyzers" Version="0.11.0" />
-	</ItemGroup>
-	<ItemGroup>
-	  <ProjectReference Include="..\..\src\Core\Infrastructure\Bistrotic.Infrastructure.Abstractions\Bistrotic.Infrastructure.Abstractions.csproj" />
+		<ProjectReference Include="..\..\src\Core\Infrastructure\Bistrotic.Infrastructure.Abstractions\Bistrotic.Infrastructure.Abstractions.csproj" />
 	</ItemGroup>
 </Project>

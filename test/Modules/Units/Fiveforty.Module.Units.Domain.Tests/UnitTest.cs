@@ -1,44 +1,33 @@
 namespace Bistrotic.Module.Units.Domain.Tests
 {
-    using System;
-    using System.Threading.Tasks;
+    using System.Linq;
 
-    using Moq;
+    using Bistrotic.Units.Domain.Events;
+    using Bistrotic.Units.Domain.ValueTypes;
+
+    using FluentAssertions;
 
     using Xunit;
 
     public class UnitTest
     {
         [Theory]
-        [InlineData("JohnDoe", "L", "Liter", "Metric unit of capacity equal to one cubic decimeter.")]
-        [InlineData("DonaldDuck", "M", "Meter", null)]
-        public async Task AddNewUnit(string userName, string id, string name, string? description)
+        [InlineData("L", "Liter", "Metric unit of capacity equal to one cubic decimeter.")]
+        [InlineData("M", "Meter", null)]
+        public void AddNewUnit(string id, string name, string? description)
         {
-            var unitRepositoryMock = new Mock<IRepository<UnitState>>();
-            unitRepositoryMock
-                .Verify(p =>
-                    p.Save(
-                        It.Is<NewUnitAdded>(v =>
-                            v.Id == id &&
-                            v.Name == name &&
-                            v.Description == description &&
-                            v.DateTime != DateTime.MinValue &&
-                            v.UserName == userName &&
-                            !string.IsNullOrEmpty(v.Etag)
-                        ),
-                        It.Is<UnitState>(v =>
-                            v.Id == id &&
-                            v.Name == name &&
-                            v.Description == description &&
-                            v.CreatedDate != DateTime.MinValue &&
-                            v.CreatedBy == userName &&
-                            !string.IsNullOrEmpty(v.Etag))),
-                    Times.Once
-                );
-            var unitRepository = unitRepositoryMock.Object;
-            Unit unit = new Unit(unitRepository);
-            await unit.AddNew(userName, id, name, description);
-            unitRepositoryMock.Verify();
+            var events = Unit.AddNew(new UnitId(id), name, description, out Unit unit);
+            unit.Should().NotBeNull();
+            unit.State.Name.Should().Be(name);
+            unit.State.Description.Should().Be(name);
+            unit.AggregateId.Should().Be(id);
+            events.Should().HaveCount(1);
+            var @event = events.First();
+            @event.Should().BeOfType<NewUnitAdded>();
+            var newUnitAdded = (NewUnitAdded)@event;
+            newUnitAdded.Name.Should().Be(name);
+            newUnitAdded.Description.Should().Be(name);
+            newUnitAdded.UnitId.Should().Be(new UnitId(id));
         }
     }
 }

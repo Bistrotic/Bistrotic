@@ -34,14 +34,6 @@
     </Validate>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Applications\Bistrotic.BlazorClient\Bistrotic.BlazorClient.csproj">
-      <Name>Bistrotic.BlazorClient</Name>
-      <Project>{cf1c280c-921a-4efb-aa8e-03750e75003d}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Applications\Bistrotic.WebServer\Bistrotic.WebServer.csproj">
-      <Name>Bistrotic.WebServer</Name>
-      <Project>{51883189-0dc9-43cf-89e1-27f92a01171b}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\Modules\Application\Bistrotic.Units.Abstractions\Bistrotic.Units.Application.Abstractions.csproj">
       <Name>Bistrotic.Units.Application.Abstractions</Name>
       <Project>{3b893598-c5e1-44f0-a810-35964fc5b0a4}</Project>
@@ -61,6 +53,10 @@
     <ProjectReference Include="..\..\Modules\Presentation\Bistrotic.Units.Presentation\Bistrotic.Units.Presentation.csproj">
       <Name>Bistrotic.Units.Presentation</Name>
       <Project>{37dba16b-4a87-40ac-b78d-353ca2032ee2}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Programs\Bistrotic.WebClient\Bistrotic.WebClient.csproj">
+      <Name>Bistrotic.WebClient</Name>
+      <Project>{e3888182-9eab-401f-85d0-189e37225796}</Project>
     </ProjectReference>
     <ProjectReference Include="..\Application\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj">
       <Name>Bistrotic.Application.Abstractions</Name>

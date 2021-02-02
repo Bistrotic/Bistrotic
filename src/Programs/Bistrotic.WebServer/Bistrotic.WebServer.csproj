@@ -11,5 +11,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.WebServer\Bistrotic.Infrastructure.WebServer.csproj" />
+		<ProjectReference Include="..\..\Modules\Application\Bistrotic.Units.Abstractions\Bistrotic.Units.Application.Abstractions.csproj" />
 	</ItemGroup>
 </Project>

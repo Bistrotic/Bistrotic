@@ -93,15 +93,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application"
 		src\Core\Application\Directory.build.targets = src\Core\Application\Directory.build.targets
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3_Applications", "3_Applications", "{9AD0F4D0-F052-4D81-A2C9-F9A301DC8807}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3_Programs", "3_Programs", "{9AD0F4D0-F052-4D81-A2C9-F9A301DC8807}"
 	ProjectSection(SolutionItems) = preProject
-		src\Applications\Directory.build.props = src\Applications\Directory.build.props
-		src\Applications\Directory.build.targets = src\Applications\Directory.build.targets
+		src\Programs\Directory.build.props = src\Programs\Directory.build.props
+		src\Programs\Directory.build.targets = src\Programs\Directory.build.targets
 	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.BlazorClient", "src\Applications\Bistrotic.BlazorClient\Bistrotic.BlazorClient.csproj", "{CF1C280C-921A-4EFB-AA8E-03750E75003D}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.WebServer", "src\Applications\Bistrotic.WebServer\Bistrotic.WebServer.csproj", "{51883189-0DC9-43CF-89E1-27F92A01171B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Queries.Abstractions", "src\Core\Application\Bistrotic.Queries.Abstractions\Bistrotic.Queries.Abstractions.csproj", "{9563C7C0-9788-4F28-8232-A0EC87CCAD0F}"
 EndProject
@@ -143,7 +139,11 @@ Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "Bistrotic.Architecture", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Presentation.Abstractions", "src\Core\Presentation\Bistrotic.Presentation.Abstractions\Bistrotic.Presentation.Abstractions.csproj", "{B13B3C1A-642E-473A-9D8A-CE8841C4BB66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Units.Presentation", "src\Modules\Presentation\Bistrotic.Units.Presentation\Bistrotic.Units.Presentation.csproj", "{37DBA16B-4A87-40AC-B78D-353CA2032EE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Units.Presentation", "src\Modules\Presentation\Bistrotic.Units.Presentation\Bistrotic.Units.Presentation.csproj", "{37DBA16B-4A87-40AC-B78D-353CA2032EE2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.WebServer", "src\Programs\Bistrotic.WebServer\Bistrotic.WebServer.csproj", "{A9C402CA-EBBF-4122-9883-1836569A91A6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.WebClient", "src\Programs\Bistrotic.WebClient\Bistrotic.WebClient.csproj", "{E3888182-9EAB-401F-85D0-189E37225796}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -151,14 +151,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CF1C280C-921A-4EFB-AA8E-03750E75003D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CF1C280C-921A-4EFB-AA8E-03750E75003D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CF1C280C-921A-4EFB-AA8E-03750E75003D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CF1C280C-921A-4EFB-AA8E-03750E75003D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{51883189-0DC9-43CF-89E1-27F92A01171B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{51883189-0DC9-43CF-89E1-27F92A01171B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{51883189-0DC9-43CF-89E1-27F92A01171B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{51883189-0DC9-43CF-89E1-27F92A01171B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9563C7C0-9788-4F28-8232-A0EC87CCAD0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9563C7C0-9788-4F28-8232-A0EC87CCAD0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9563C7C0-9788-4F28-8232-A0EC87CCAD0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -239,6 +231,14 @@ Global
 		{37DBA16B-4A87-40AC-B78D-353CA2032EE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37DBA16B-4A87-40AC-B78D-353CA2032EE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37DBA16B-4A87-40AC-B78D-353CA2032EE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9C402CA-EBBF-4122-9883-1836569A91A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9C402CA-EBBF-4122-9883-1836569A91A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9C402CA-EBBF-4122-9883-1836569A91A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9C402CA-EBBF-4122-9883-1836569A91A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3888182-9EAB-401F-85D0-189E37225796}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3888182-9EAB-401F-85D0-189E37225796}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3888182-9EAB-401F-85D0-189E37225796}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3888182-9EAB-401F-85D0-189E37225796}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -254,8 +254,6 @@ Global
 		{18B2A0BB-26B0-47D6-8949-DFA20293D6EB} = {23C5C740-B906-4598-A789-6E5027F0A07C}
 		{AA61F54B-167D-4249-975C-FA3CAA08399E} = {23C5C740-B906-4598-A789-6E5027F0A07C}
 		{C74D717A-F4C0-4C99-B367-117E51415AF5} = {23C5C740-B906-4598-A789-6E5027F0A07C}
-		{CF1C280C-921A-4EFB-AA8E-03750E75003D} = {9AD0F4D0-F052-4D81-A2C9-F9A301DC8807}
-		{51883189-0DC9-43CF-89E1-27F92A01171B} = {9AD0F4D0-F052-4D81-A2C9-F9A301DC8807}
 		{9563C7C0-9788-4F28-8232-A0EC87CCAD0F} = {C74D717A-F4C0-4C99-B367-117E51415AF5}
 		{69F6A7B4-6A07-4799-A1AF-B68FD2CC565F} = {AA61F54B-167D-4249-975C-FA3CAA08399E}
 		{394916DF-7495-4250-9166-77818CA1F8B9} = {C74D717A-F4C0-4C99-B367-117E51415AF5}
@@ -276,6 +274,8 @@ Global
 		{240671F6-117C-45F0-9F9B-3B6A7DBFDD93} = {FCFA1245-E128-4C9C-9BF9-1378B07DCFF0}
 		{B13B3C1A-642E-473A-9D8A-CE8841C4BB66} = {18B2A0BB-26B0-47D6-8949-DFA20293D6EB}
 		{37DBA16B-4A87-40AC-B78D-353CA2032EE2} = {C95CEBC9-31B9-4BA7-BFAF-AE75997E196A}
+		{A9C402CA-EBBF-4122-9883-1836569A91A6} = {9AD0F4D0-F052-4D81-A2C9-F9A301DC8807}
+		{E3888182-9EAB-401F-85D0-189E37225796} = {9AD0F4D0-F052-4D81-A2C9-F9A301DC8807}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA165E9D-6B6A-49BD-9879-44123F389ACD}

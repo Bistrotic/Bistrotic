@@ -1,6 +1,6 @@
 {
-  "name": "Bistrotic",
-  "short_name": "Bistrotic",
+  "name": "Bistrotic.WebClient",
+  "short_name": "Bistrotic.WebClient",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",

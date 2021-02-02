@@ -288,27 +288,6 @@
         </dependencyFromLayerToLayer>
       </dependencyToLayers>
       <childLayers>
-        <layer Id="3ed0d5dd-05af-49d2-b276-0a8cff821930" name="Bistrotic.BlazorClient">
-          <dependencyToLayers>
-            <dependencyFromLayerToLayer Id="fe302a1a-6052-47b5-ae18-d11b955fe1e6" direction="Forward">
-              <layerMoniker Id="015a84a4-5203-44c1-8e0a-8fc33756903e" />
-            </dependencyFromLayerToLayer>
-            <dependencyFromLayerToLayer Id="d4d3f46e-aceb-4176-b737-f8a096cef011" direction="Forward">
-              <layerMoniker Id="3e65470a-eecd-423b-a5f0-a1f317431b1e" />
-            </dependencyFromLayerToLayer>
-          </dependencyToLayers>
-          <references>
-            <reference Id="2004d6a6-a1fc-43d1-882e-33b28e01b79f" name="Bistrotic.BlazorClient">
-              <ArtifactNode Label="Bistrotic.BlazorClient" Category="CodeSchema_Project" Id="(Assembly=../../Applications/Bistrotic.BlazorClient/Bistrotic.BlazorClient.csproj)">
-                <Category Ref="File" />
-              </ArtifactNode>
-              <ExpandedNode Id="(Assembly=Bistrotic.BlazorClient)" Label="Bistrotic.BlazorClient.dll" Category="CodeSchema_Assembly">
-                <LinkCategory Ref="Produces" />
-                <LinkCategory Ref="Represents" />
-              </ExpandedNode>
-            </reference>
-          </references>
-        </layer>
         <layer Id="82626bd1-28e3-4b69-9ba6-26589e0d2197" name="Bistrotic.WebServer">
           <dependencyToLayers>
             <dependencyFromLayerToLayer Id="2255d2ea-6775-4d2b-be44-b335e7af7f78" direction="Forward">
@@ -321,6 +300,27 @@
                 <Category Ref="File" />
               </ArtifactNode>
               <ExpandedNode Id="(Assembly=Bistrotic.WebServer)" Label="Bistrotic.WebServer.dll" Category="CodeSchema_Assembly">
+                <LinkCategory Ref="Produces" />
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+          </references>
+        </layer>
+        <layer Id="ecf5abc9-db31-4fcb-a276-93c49dfd59ea" name="Bistrotic.WebClient">
+          <dependencyToLayers>
+            <dependencyFromLayerToLayer Id="125f5080-5f5f-4aa7-ba16-83ad418e661e" direction="Forward">
+              <layerMoniker Id="015a84a4-5203-44c1-8e0a-8fc33756903e" />
+            </dependencyFromLayerToLayer>
+            <dependencyFromLayerToLayer Id="25f7c77b-d171-422b-8a94-11a9bc799527" direction="Forward">
+              <layerMoniker Id="3e65470a-eecd-423b-a5f0-a1f317431b1e" />
+            </dependencyFromLayerToLayer>
+          </dependencyToLayers>
+          <references>
+            <reference Id="a7d86c42-d6ed-4ea3-82b5-8799e16a1b90" name="Bistrotic.WebClient">
+              <ArtifactNode Label="Bistrotic.WebClient" Category="CodeSchema_Project" Id="(Assembly=../../Programs/Bistrotic.WebClient/Bistrotic.WebClient.csproj)">
+                <Category Ref="File" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=Bistrotic.WebClient)" Label="Bistrotic.WebClient.dll" Category="CodeSchema_Assembly">
                 <LinkCategory Ref="Produces" />
                 <LinkCategory Ref="Represents" />
               </ExpandedNode>

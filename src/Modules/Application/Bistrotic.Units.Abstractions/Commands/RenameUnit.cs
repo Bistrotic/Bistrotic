@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.Module.Units.Domain.Commands
+﻿namespace Bistrotic.Units.Application.Domain.Commands
 {
     using Bistrotic.Units.Application.Commands;
     using Bistrotic.Units.Domain.ValueTypes;

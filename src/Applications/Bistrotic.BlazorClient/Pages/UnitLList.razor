@@ -1,0 +1,41 @@
+﻿@page "/unit"
+@inject IQueryDispatcher queryDispatcher
+
+<h1>Units</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (units == null)
+{
+<p><em>Loading...</em></p>
+}
+else
+{
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var unit in units)
+			{
+		<tr>
+			<td>@unit.Id</td>
+			<td>@unit.Name</td>
+		</tr>
+		}
+	</tbody>
+</table>
+}
+
+@code {
+	private UnitSummaryInformations[]? units;
+
+	protected override async Task OnInitializedAsync()
+	{
+		units = await queryDispatcher.Dispatch<UnitSummaryInformations[]>(new GetUnitSummaryInformationsList());
+	}
+
+}

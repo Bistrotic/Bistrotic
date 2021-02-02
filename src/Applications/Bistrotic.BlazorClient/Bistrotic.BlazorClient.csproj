@@ -2,17 +2,6 @@
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
 	</PropertyGroup>
-	<PropertyGroup>
-		<ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
-	</PropertyGroup>
-	<ItemGroup>
-		<AdditionalFiles Include="..\..\Core\Bistrotic.Core.Architecture\CoreDependency.layerdiagram" Link="CoreDependency.layerdiagram" />
-		<None Include="..\..\Core\Bistrotic.Core.Architecture\CoreDependency.layerdiagram.layout" Link="CoreDependency.layerdiagram.layout" />
-		<None Include="..\..\Core\Bistrotic.Core.Architecture\CoreDependency.layerdiagram.suppressions" Link="CoreDependency.layerdiagram.suppressions" />
-	  <AdditionalFiles Include="..\..\Core\Bistrotic.Core.Architecture\CoreDependency.layerdiagram" Link="CoreDependency.layerdiagram">
-	    <Visible>False</Visible>
-	  </AdditionalFiles>
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" />
@@ -21,9 +10,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.BlazorClient\Bistrotic.Infrastructure.BlazorClient.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
+		<ProjectReference Include="..\..\Modules\Presentation\Bistrotic.Units.Presentation\Bistrotic.Units.Presentation.csproj" />
 	</ItemGroup>
 </Project>

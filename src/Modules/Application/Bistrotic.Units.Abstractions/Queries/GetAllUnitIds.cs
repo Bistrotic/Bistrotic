@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.Module.Units.Queries
+﻿namespace Bistrotic.Units.Application.Queries
 {
     public record GetAllUnitIds(int Take, int Skip)
     {

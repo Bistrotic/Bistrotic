@@ -1,3 +1,6 @@
 <Project>
 	<Import Project="..\Directory.build.props" />
+	<PropertyGroup>
+		<NoWarn>DV2001;DV2002;$(NoWarn)</NoWarn>
+	</PropertyGroup>
 </Project>

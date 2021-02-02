@@ -1,7 +1,6 @@
-﻿namespace Bistrotic.Module.Units.Queries
+﻿namespace Bistrotic.Units.Application.Queries
 {
-    using Bistrotic.Module.Units.ModelViews;
-    using Bistrotic.Units.Application.Queries;
+    using Bistrotic.Units.Application.ModelViews;
     using Bistrotic.Units.Domain.ValueTypes;
 
     public record GetUnitDetailedInformations(UnitId UnitId)

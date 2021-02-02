@@ -6,6 +6,7 @@
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 
 		<IsPackable>false</IsPackable>
+		<NoWarn>DV2001;DV2002;$(NoWarn)</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>

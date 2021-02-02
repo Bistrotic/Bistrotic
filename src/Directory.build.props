@@ -10,9 +10,8 @@
 		<PackageReference Include="Microsoft.DependencyValidation.Analyzers" />
 	</ItemGroup>
 	<ItemGroup>
-		<AdditionalFiles Include="Architecture\Bistrotic.Architecture\CoreDependency.layerdiagram" Link="CoreDependency.layerdiagram">
+		<AdditionalFiles Include="$(SolutionDir)src\Architecture\Bistrotic.Architecture\CoreDependency.layerdiagram" Link="CoreDependency.layerdiagram">
 			<Visible>False</Visible>
 		</AdditionalFiles>
 	</ItemGroup>
-
 </Project>

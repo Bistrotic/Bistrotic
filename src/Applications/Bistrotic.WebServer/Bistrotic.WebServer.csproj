@@ -1,20 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
-	</PropertyGroup>
-
-	<PropertyGroup>
+		<NoWarn>DV2001;DV2002;$(NoWarn)</NoWarn>
 		<UserSecretsId>d2f32761-e372-4b71-856f-21cfde0ec899</UserSecretsId>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<AdditionalFiles Include="..\..\Core\Bistrotic.Core.Architecture\CoreDependency.layerdiagram" Link="CoreDependency.layerdiagram" />
-		<None Include="..\..\Core\Bistrotic.Core.Architecture\CoreDependency.layerdiagram.layout" Link="CoreDependency.layerdiagram.layout" />
-		<None Include="..\..\Core\Bistrotic.Core.Architecture\CoreDependency.layerdiagram.suppressions" Link="CoreDependency.layerdiagram.suppressions" />
-	  <AdditionalFiles Include="..\..\Core\Bistrotic.Core.Architecture\CoreDependency.layerdiagram" Link="CoreDependency.layerdiagram">
-	    <Visible>False</Visible>
-	  </AdditionalFiles>
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" />

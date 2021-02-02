@@ -1,8 +1,8 @@
-namespace Bistrotic.Client
+namespace Bistrotic.BlazorClient
 {
     using System.Threading.Tasks;
 
-    using Bistrotic.BlazorClient;
+    using Bistrotic.Client;
 
     public class Program : ClientProgram<App>
     {

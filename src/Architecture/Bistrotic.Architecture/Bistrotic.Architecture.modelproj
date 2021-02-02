@@ -34,6 +34,34 @@
     </Validate>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Applications\Bistrotic.BlazorClient\Bistrotic.BlazorClient.csproj">
+      <Name>Bistrotic.BlazorClient</Name>
+      <Project>{cf1c280c-921a-4efb-aa8e-03750e75003d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Applications\Bistrotic.WebServer\Bistrotic.WebServer.csproj">
+      <Name>Bistrotic.WebServer</Name>
+      <Project>{51883189-0dc9-43cf-89e1-27f92a01171b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Modules\Application\Bistrotic.Units.Abstractions\Bistrotic.Units.Application.Abstractions.csproj">
+      <Name>Bistrotic.Units.Application.Abstractions</Name>
+      <Project>{3b893598-c5e1-44f0-a810-35964fc5b0a4}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Modules\Application\Bistrotic.Units.Application\Bistrotic.Units.Application.csproj">
+      <Name>Bistrotic.Units.Application</Name>
+      <Project>{b7ac3c11-87c6-4b52-b8c3-f00ff4d3dafb}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Modules\Domain\Bistrotic.Units.Domain.Abstractions\Bistrotic.Units.Domain.Abstractions.csproj">
+      <Name>Bistrotic.Units.Domain.Abstractions</Name>
+      <Project>{514ac827-064a-49f7-9bfb-8b1af036b098}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Modules\Domain\Bistrotic.Units.Domain\Bistrotic.Units.Domain.csproj">
+      <Name>Bistrotic.Units.Domain</Name>
+      <Project>{6b943632-bf66-4b97-89a8-48d7289e95a0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Modules\Presentation\Bistrotic.Units.Presentation\Bistrotic.Units.Presentation.csproj">
+      <Name>Bistrotic.Units.Presentation</Name>
+      <Project>{37dba16b-4a87-40ac-b78d-353ca2032ee2}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\Application\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj">
       <Name>Bistrotic.Application.Abstractions</Name>
       <Project>{61d73f65-0b6e-46e4-9d19-c91fc7971cb5}</Project>

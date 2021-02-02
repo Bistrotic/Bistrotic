@@ -1,5 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<ItemGroup>
+	  <AdditionalFiles Include="..\..\..\..\src\Core\Bistrotic.Core.Architecture\CoreDependency.layerdiagram" Link="CoreDependency.layerdiagram">
+	    <Visible>False</Visible>
+	  </AdditionalFiles>
+	</ItemGroup>
+	<ItemGroup>
 		<ProjectReference Include="..\..\..\..\src\Modules\Domain\Bistrotic.Units.Domain\Bistrotic.Units.Domain.csproj" />
 	</ItemGroup>
 </Project>

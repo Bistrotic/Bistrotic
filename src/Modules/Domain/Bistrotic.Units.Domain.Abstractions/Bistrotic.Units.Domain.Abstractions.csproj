@@ -1,8 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
+	<PropertyGroup>
 		<RootNamespace>Bistrotic.Units.Domain</RootNamespace>
 	</PropertyGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\..\..\Core\Domain\Bistrotic.Domain.Abstractions\Bistrotic.Domain.Abstractions.csproj" />
+		<ProjectReference Include="..\..\..\Core\Domain\Bistrotic.Domain.Abstractions\Bistrotic.Domain.Abstractions.csproj" />
 	</ItemGroup>
 </Project>

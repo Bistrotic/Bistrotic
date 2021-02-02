@@ -1,6 +1,8 @@
 <Project>
-	<PropertyGroup>
-		<TargetFramework>netstandard2.1</TargetFramework>
-	</PropertyGroup>
+	<ItemGroup>
+		<AdditionalFiles Include="Bistrotic.Modules.Architecture\ModulesDependency.layerdiagram" Link="ModulesDependency.layerdiagram">
+			<Visible>False</Visible>
+		</AdditionalFiles>
+	</ItemGroup>
 	<Import Project="..\Directory.build.props" />
 </Project>

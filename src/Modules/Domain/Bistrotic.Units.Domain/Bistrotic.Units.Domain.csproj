@@ -1,4 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\Core\Domain\Bistrotic.Domain.Abstractions\Bistrotic.Domain.Abstractions.csproj" />
 		<ProjectReference Include="..\Bistrotic.Units.Domain.Abstractions\Bistrotic.Units.Domain.Abstractions.csproj" />

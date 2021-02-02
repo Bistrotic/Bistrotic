@@ -1,7 +1,4 @@
 <Project>
-	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
-	</PropertyGroup>
 	<Import Project="../build/Dependencies.props" />
 	<PropertyGroup>
 		<LangVersion>preview</LangVersion>
@@ -12,4 +9,10 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.DependencyValidation.Analyzers" />
 	</ItemGroup>
+	<ItemGroup>
+		<AdditionalFiles Include="Architecture\Bistrotic.Architecture\CoreDependency.layerdiagram" Link="CoreDependency.layerdiagram">
+			<Visible>False</Visible>
+		</AdditionalFiles>
+	</ItemGroup>
+
 </Project>

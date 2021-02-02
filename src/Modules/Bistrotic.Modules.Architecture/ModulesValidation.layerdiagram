@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="0507dbbb-f7e5-4d22-a068-badffa4fbe04" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/LayerDesigner">
+  <layers>
+    <layer Id="874068bf-5979-414f-b2cc-9c3dca79b82e" name="Domain">
+      <childLayers>
+        <layer Id="08a1a7a6-bd53-4549-8034-b186e177dd15" name="Bistrotic.Units.Domain">
+          <references>
+            <reference Id="d0a2a93f-4d65-4208-9660-fed19f80c23d" name="Bistrotic.Units.Domain">
+              <ArtifactNode Label="Bistrotic.Units.Domain" Category="CodeSchema_Project" Id="(Assembly=../Domain/Bistrotic.Units.Domain/Bistrotic.Units.Domain.csproj)">
+                <Category Ref="File" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=Bistrotic.Units.Domain)" Label="Bistrotic.Units.Domain.dll" Category="CodeSchema_Assembly">
+                <LinkCategory Ref="Produces" />
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+          </references>
+        </layer>
+      </childLayers>
+    </layer>
+    <layer Id="a94d9ecb-68c5-4fff-81c7-a569bf681751" name="Presentation&#xD;&#xA;" />
+    <layer Id="11ec9999-1b41-42b1-b91f-1fa5dd9889ce" name="Infrastructure&#xD;&#xA;" />
+    <layer Id="dac2bd40-38b1-49cf-8dff-e960dcb70b1f" name="Application">
+      <childLayers>
+        <layer Id="2b63f1f7-410a-4082-8b84-dfa9b1030663" name="Bistrotic.Units.Application.Abstractions">
+          <references>
+            <reference Id="a0d47d57-0dcf-4005-a821-2517095f4a8f" name="Bistrotic.Units.Application.Abstractions">
+              <ArtifactNode Label="Bistrotic.Units.Application.Abstractions" Category="CodeSchema_Project" Id="(Assembly=../Application/Bistrotic.Units.Abstractions/Bistrotic.Units.Application.Abstractions.csproj)">
+                <Category Ref="File" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=Bistrotic.Units.Application.Abstractions)" Label="Bistrotic.Units.Application.Abstractions.dll" Category="CodeSchema_Assembly">
+                <LinkCategory Ref="Produces" />
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+          </references>
+        </layer>
+        <layer Id="daa59ca9-f7d5-45ff-b687-2d48ea3c9427" name="Bistrotic.Units.Application">
+          <references>
+            <reference Id="f88d9342-40d6-4a24-9288-ab71a3cd305a" name="Bistrotic.Units.Application">
+              <ArtifactNode Label="Bistrotic.Units.Application" Category="CodeSchema_Project" Id="(Assembly=../Application/Bistrotic.Units.Application/Bistrotic.Units.Application.csproj)">
+                <Category Ref="File" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=Bistrotic.Units.Application)" Label="Bistrotic.Units.Application.dll" Category="CodeSchema_Assembly">
+                <LinkCategory Ref="Produces" />
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+          </references>
+        </layer>
+      </childLayers>
+    </layer>
+  </layers>
+</layerModel>

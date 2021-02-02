@@ -1,29 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
 
 	<PropertyGroup>
 		<UserSecretsId>d2f32761-e372-4b71-856f-21cfde0ec899</UserSecretsId>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<AdditionalFiles Include="..\Bistrotic.Architecture\DependencyValidation1.layerdiagram" Link="DependencyValidation1.layerdiagram">
-			<Visible>False</Visible>
-		</AdditionalFiles>
-		<AdditionalFiles Include="..\Bistrotic.Architecture\DependencyValidation.layerdiagram" Link="DependencyValidation.layerdiagram">
-			<Visible>False</Visible>
-		</AdditionalFiles>
-		<None Include="..\Bistrotic.Architecture\DependencyValidation1.layerdiagram.layout" Link="DependencyValidation1.layerdiagram.layout" />
-		<None Include="..\Bistrotic.Architecture\DependencyValidation1.layerdiagram.suppressions" Link="DependencyValidation1.layerdiagram.suppressions" />
+		<AdditionalFiles Include="..\..\Core\Bistrotic.Core.Architecture\CoreDependency.layerdiagram" Link="CoreDependency.layerdiagram" />
+		<None Include="..\..\Core\Bistrotic.Core.Architecture\CoreDependency.layerdiagram.layout" Link="CoreDependency.layerdiagram.layout" />
+		<None Include="..\..\Core\Bistrotic.Core.Architecture\CoreDependency.layerdiagram.suppressions" Link="CoreDependency.layerdiagram.suppressions" />
+	  <AdditionalFiles Include="..\..\Core\Bistrotic.Core.Architecture\CoreDependency.layerdiagram" Link="CoreDependency.layerdiagram">
+	    <Visible>False</Visible>
+	  </AdditionalFiles>
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" />
-		<PackageReference Include="Microsoft.DependencyValidation.Analyzers" Version="0.11.0" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.WebServer\Bistrotic.Infrastructure.WebServer.csproj" />
-		<ProjectReference Include="..\Bistrotic.Client\Bistrotic.Client.csproj" />
-		<ProjectReference Include="..\Bistrotic.Shared\Bistrotic.Shared.csproj" />
-		<ProjectReference Include="..\Core\Bistrotic.Application.Server\Bistrotic.Application.Server.csproj" />
 	</ItemGroup>
 </Project>

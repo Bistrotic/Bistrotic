@@ -2,7 +2,6 @@
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
 	</PropertyGroup>
-
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" PrivateAssets="all" />

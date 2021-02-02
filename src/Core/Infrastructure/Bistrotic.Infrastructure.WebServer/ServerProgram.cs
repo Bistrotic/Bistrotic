@@ -7,11 +7,17 @@
     public class ServerProgram<TStartup> where TStartup : class
     {
         public static IWebHost CreateHostBuilder(string[] args) =>
-              WebHost.CreateDefaultBuilder(args)
-                .UseConfiguration(new ConfigurationBuilder()
+              WebHost
+                .CreateDefaultBuilder<TStartup>(args)
+                .UseEnvironment("Development")
+                .CaptureStartupErrors(true)
+                .ConfigureAppConfiguration((hoistingContext, config) =>
+                {
+                    config
+                    .AddEnvironmentVariables()
                     .AddCommandLine(args)
-                    .Build())
-                .UseStartup<TStartup>()
+                    .Build();
+                })
                 .Build();
     }
 }

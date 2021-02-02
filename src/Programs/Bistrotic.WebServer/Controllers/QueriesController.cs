@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Threading.Tasks;
 
 using Bistrotic.Units.Application.ModelViews;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace Bistrotic.Server.Controllers
+namespace Bistrotic.WebServer.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -22,10 +21,9 @@ namespace Bistrotic.Server.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<UnitSummaryInformations> GetUnitSummaryInformations()
+        public Task<ActionResult<UnitSummaryInformations[]>> GetUnitSummaryInformations()
         {
-            var rng = new Random();
-            return new UnitSummaryInformations[]
+            return Task.FromResult<ActionResult<UnitSummaryInformations[]>>(Ok(new UnitSummaryInformations[]
             {
                 new UnitSummaryInformations("L", "Liter"),
                 new UnitSummaryInformations("L", "Liter"),
@@ -33,7 +31,7 @@ namespace Bistrotic.Server.Controllers
                 new UnitSummaryInformations("L", "Liter"),
                 new UnitSummaryInformations("L", "Liter"),
                 new UnitSummaryInformations("L", "Liter"),
-            };
+            }));
         }
     }
 }

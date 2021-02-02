@@ -44,8 +44,8 @@ namespace Bistrotic.Application.Server
             app.UseCloudEvents();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
                 endpoints.MapControllers();
+                endpoints.MapRazorPages();
                 endpoints.MapFallbackToFile("index.html");
             });
         }

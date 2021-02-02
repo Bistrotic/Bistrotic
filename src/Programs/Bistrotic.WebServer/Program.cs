@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.Server
+﻿namespace Bistrotic.WebServer
 {
     using System.Threading.Tasks;
 

@@ -31,11 +31,15 @@ else
 }
 
 @code {
-	private IEnumerable<UnitSummaryInformations>? units;
+	private UnitSummaryInformations[]? units = null;
 
 	protected override async Task OnInitializedAsync()
 	{
-		units = await Http.GetFromJsonAsync<IEnumerable<UnitSummaryInformations>>($"api/queries/{nameof(GetUnitSummaryInformationsList)}");
+		const string url = "queries/" + nameof(GetUnitSummaryInformationsList);
+		string response = await Http.GetStringAsync(url);
+		Console.WriteLine(url);
+		Console.WriteLine(response);
+		//units = await Http.GetFromJsonAsync<IEnumerable<UnitSummaryInformations>>(url);
 	}
 
 }

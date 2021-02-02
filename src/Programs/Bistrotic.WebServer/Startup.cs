@@ -2,7 +2,7 @@
 
 using Microsoft.AspNetCore.Hosting;
 
-namespace Bistrotic.Server
+namespace Bistrotic.WebServer
 {
     public class Startup : ServerStartup
     {

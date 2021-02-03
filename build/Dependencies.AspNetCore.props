@@ -3,5 +3,10 @@
 		<Dependency Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.2" />
 		<Dependency Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="5.0.2" />
 		<Dependency Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.2" />
+		<Dependency Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.2" />
+		<Dependency Include="Microsoft.AspNetCore.ApiAuthorization.IdentityServer" Version="5.0.2" />
+		<Dependency Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.2" />
+		<Dependency Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.2" />
+		<Dependency Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.2" />
 	</ItemGroup>
 </Project>

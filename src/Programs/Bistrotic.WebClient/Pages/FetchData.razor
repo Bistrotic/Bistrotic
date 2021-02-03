@@ -35,10 +35,17 @@ else
 
 	protected override async Task OnInitializedAsync()
 	{
-		const string url = "queries/" + nameof(GetUnitSummaryInformationsList);
-		string response = await Http.GetStringAsync(url);
-		Console.WriteLine(url);
-		Console.WriteLine(response);
+		const string url = "api/queries/ask/test";
+		try
+		{
+			string response = await Http.GetStringAsync(url);
+			Console.WriteLine(url);
+			Console.WriteLine(response);
+		}
+		catch (Exception e)
+		{
+			Console.WriteLine(e.Message);
+		}
 		//units = await Http.GetFromJsonAsync<IEnumerable<UnitSummaryInformations>>(url);
 	}
 

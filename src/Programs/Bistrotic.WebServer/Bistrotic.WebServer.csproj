@@ -6,10 +6,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.WebServer\Bistrotic.Infrastructure.WebServer.csproj" />
 		<ProjectReference Include="..\..\Modules\Application\Bistrotic.Units.Abstractions\Bistrotic.Units.Application.Abstractions.csproj" />
 	</ItemGroup>

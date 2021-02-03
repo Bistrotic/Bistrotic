@@ -20,10 +20,11 @@ namespace Bistrotic.WebServer.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public Task<ActionResult<UnitSummaryInformations[]>> GetUnitSummaryInformations()
+        [HttpGet("ask/{query}")]
+        public Task<IActionResult> Ask(string query)
         {
-            return Task.FromResult<ActionResult<UnitSummaryInformations[]>>(Ok(new UnitSummaryInformations[]
+            _logger.LogDebug($"Ask for query : {query}");
+            return Task.FromResult<IActionResult>(Ok(new UnitSummaryInformations[]
             {
                 new UnitSummaryInformations("L", "Liter"),
                 new UnitSummaryInformations("L", "Liter"),

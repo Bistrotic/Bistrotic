@@ -12,7 +12,8 @@ namespace Bistrotic.Client
     {
         public static WebAssemblyHostBuilder CreateHostBuilder(string[] args)
         {
-            var builder = WebAssemblyHostBuilder.CreateDefault(args);
+            var builder = WebAssemblyHostBuilder
+                .CreateDefault(args);
             builder.RootComponents.Add<TApp>("#app");
             builder.Services.AddOptions();
 

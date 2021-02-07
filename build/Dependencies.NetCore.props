@@ -6,5 +6,9 @@
 		<Dependency Include="Microsoft.JSInterop.WebAssembly" Version="5.0.2" />
 		<Dependency Include="System.Net.Http.Json" Version="5.0.0" />
 		<Dependency Include="System.Text.Json" Version="5.0.1" />
+		<Dependency Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.2" />
+		<Dependency Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.2" />
+		<Dependency Include="System.Net.Http" Version="5.0.0" />
+		<Dependency Include="Microsoft.Extensions.Http" Version="5.0.0" />
 	</ItemGroup>
 </Project>

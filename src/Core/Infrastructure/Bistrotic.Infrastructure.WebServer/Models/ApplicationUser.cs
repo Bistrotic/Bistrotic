@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.Application.WebServer.Models
+﻿namespace Bistrotic.Infrastructure.WebServer.Models
 {
     using Microsoft.AspNetCore.Identity;
 

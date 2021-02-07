@@ -1,11 +1,11 @@
-namespace Bistrotic.Application.WebServer
+namespace Bistrotic.Infrastructure.WebServer
 {
+    using System;
     using System.Threading.Tasks;
 
-    using Bistrotic.Application.WebServer.Models;
-    using Bistrotic.WebServer.Data;
+    using Bistrotic.Infrastructure.WebServer.Models;
 
-    using Microsoft.AspNetCore.Authentication;
+    using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -18,7 +18,8 @@ namespace Bistrotic.Application.WebServer
 
 #pragma warning disable CA1822 // Mark members as static
 
-    public abstract class ServerStartup
+    public abstract class ServerStartup<TDbContext>
+        where TDbContext : ApiAuthorizationDbContext<ApplicationUser>
     {
         private readonly IWebHostEnvironment _environment;
 
@@ -36,6 +37,7 @@ namespace Bistrotic.Application.WebServer
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseMigrationsEndPoint();
                 app.UseWebAssemblyDebugging();
             }
             else
@@ -57,9 +59,9 @@ namespace Bistrotic.Application.WebServer
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.Map("api/{**slug}", HandleApiFallback);
                 endpoints.MapBlazorHub();
                 endpoints.MapControllers();
-                endpoints.Map("api/{**slug}", HandleApiFallback);
                 endpoints.MapRazorPages();
                 endpoints.MapFallbackToPage("index.html");
             });
@@ -67,18 +69,9 @@ namespace Bistrotic.Application.WebServer
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<TDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                 .AddEntityFrameworkStores<ApplicationDbContext>();
-
-            services.AddIdentityServer()
-                .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
-
-            services.AddAuthentication()
-                .AddIdentityServerJwt();
 
             services
                  .AddServerSideBlazor()
@@ -92,8 +85,31 @@ namespace Bistrotic.Application.WebServer
 
             services.AddControllersWithViews().AddDapr();
             services.AddRazorPages();
+            services.AddIdentityCore<IdentityUser>(options => { })
+                .AddEntityFrameworkStores<TDbContext>()
+                .AddSignInManager()
+                .AddDefaultTokenProviders();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 6;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+
+                // Lockout settings
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                options.Lockout.MaxFailedAccessAttempts = 10;
+                options.Lockout.AllowedForNewUsers = true;
+
+                // User settings
+                options.User.RequireUniqueEmail = false;
+            });
+
             services.AddAuthentication(IdentityConstants.ApplicationScheme)
-                    .AddCookie(IdentityConstants.ApplicationScheme);
+                .AddCookie(IdentityConstants.ApplicationScheme);
 
             services.ConfigureApplicationCookie(options =>
             {

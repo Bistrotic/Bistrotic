@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.Application.WebServer
+﻿namespace Bistrotic.Infrastructure.WebServer
 {
     using Microsoft.AspNetCore;
     using Microsoft.AspNetCore.Hosting;

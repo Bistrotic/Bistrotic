@@ -1,20 +1,20 @@
 namespace Bistrotic.Application.Abstractions.Tests
 {
-    using Bistrotic.Domain.ValueTypes;
+    using Bistrotic.Application.ValueTypes;
 
     using FluentAssertions;
 
     using Xunit;
 
-    public class MessageIdTest
+    public class QueryIdTest
     {
         [Theory]
         [InlineData(null)]
         [InlineData("")]
         [InlineData("            ")]
-        public void MessageId_default_constructor(string value)
+        public void QueryId_default_constructor(string value)
         {
-            var messageId = new MessageId(value);
+            var messageId = new QueryId(value);
             messageId.Value.Should().NotBeNullOrWhiteSpace();
             messageId.Value.Should().HaveLength(22);
         }
@@ -25,9 +25,9 @@ namespace Bistrotic.Application.Abstractions.Tests
         [InlineData("AAAAAALLLLLLLLLLLLLLLLLLLLLLLLUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG")]
         [InlineData("        L")]
         [InlineData("L               ")]
-        public void MessageId_string_constructor(string value)
+        public void QueryId_string_constructor(string value)
         {
-            var messageId = new MessageId(value);
+            var messageId = new QueryId(value);
             messageId.Value.Should().Be(value.Trim());
         }
     }

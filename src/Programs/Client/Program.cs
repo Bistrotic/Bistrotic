@@ -5,6 +5,7 @@ namespace Bistrotic.Client
     using System.Threading.Tasks;
 
     using Bistrotic.BlazorClient;
+    using Bistrotic.Infrastructure;
 
     using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
     using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -17,7 +18,7 @@ namespace Bistrotic.Client
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
 
-            builder.Services.AddBistroticClient(builder.HostEnvironment, typeof(Program).Namespace ?? string.Empty, "Bistrotic.ServerAPI");
+            builder.Services.AddBistroticClient(builder.HostEnvironment, typeof(Program).Namespace ?? string.Empty, BistroticConstants.ServerApiName);
             // builder.Services.AddHttpClient("Bistrotic.ServerAPI", client => client.BaseAddress =
             // new Uri(builder.HostEnvironment.BaseAddress))
             // .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();

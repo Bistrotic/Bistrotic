@@ -4,6 +4,6 @@
 
     public interface ICommandService
     {
-        Task Tell(ICommand command);
+        Task Tell<TCommand>(TCommand command) where TCommand : ICommand;
     }
 }

@@ -11,6 +11,7 @@
 		<PackageReference Include="System.Net.Http.Json" />
 	</ItemGroup>
 	<ItemGroup>
+		<ProjectReference Include="..\..\Application\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj" />
 		<ProjectReference Include="..\Bistrotic.Infrastructure.Abstractions\Bistrotic.Infrastructure.Abstractions.csproj" />
 		<ProjectReference Include="..\Bistrotic.Infrastructure.Modules\Bistrotic.Infrastructure.Modules.csproj" />
 	</ItemGroup>

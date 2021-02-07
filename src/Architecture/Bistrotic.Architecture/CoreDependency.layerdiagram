@@ -125,6 +125,9 @@
             <dependencyFromLayerToLayer Id="9ac97f98-401a-4285-a4ce-d3c2561f7f7e" direction="Forward">
               <layerMoniker Id="778c015d-4d5b-4b34-83df-04299c9d6308" />
             </dependencyFromLayerToLayer>
+            <dependencyFromLayerToLayer Id="664ce3b0-491b-4206-8f25-c175d461c17f" direction="Forward">
+              <layerMoniker Id="57f70c36-3dfa-4cd4-a43e-e77bc5307107" />
+            </dependencyFromLayerToLayer>
           </dependencyToLayers>
           <references>
             <reference Id="12ecae9e-55aa-4a0c-9b81-cfca2e3dc3d9" name="Bistrotic.Infrastructure.BlazorClient">
@@ -525,6 +528,9 @@
           <dependencyToLayers>
             <dependencyFromLayerToLayer Id="c0a6fb2f-9424-4b3f-baf1-1eaec3d589ef" direction="Forward">
               <layerMoniker Id="015a84a4-5203-44c1-8e0a-8fc33756903e" />
+            </dependencyFromLayerToLayer>
+            <dependencyFromLayerToLayer Id="d3d2c648-e7aa-4a8e-89cf-191b99dae4f0" direction="Forward">
+              <layerMoniker Id="778c015d-4d5b-4b34-83df-04299c9d6308" />
             </dependencyFromLayerToLayer>
           </dependencyToLayers>
           <references>

@@ -2,7 +2,13 @@
 {
     using Bistrotic.Domain.ValueTypes;
 
-    public record QueryId(QueryId? Id = null) : MessageId(Id)
+    public record QueryId : MessageId
     {
+        public QueryId(QueryId queryId) : base(queryId)
+        {
+        }
+        public QueryId(string? queryId = null) : base(queryId)
+        {
+        }
     }
 }

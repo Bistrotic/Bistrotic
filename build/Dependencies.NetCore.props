@@ -1,5 +1,6 @@
 <Project>
 	<ItemGroup>
+		<Dependency Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0" />
 		<Dependency Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
 		<Dependency Include="Microsoft.Extensions.Logging.Configuration" Version="5.0.0" />
 		<Dependency Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />

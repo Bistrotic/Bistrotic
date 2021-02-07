@@ -2,8 +2,12 @@
 {
     using Bistrotic.Application.ValueTypes;
 
-    public interface IQuery<TResult>
+    public interface IQuery
     {
         QueryId QueryId { get; }
+    }
+
+    public interface IQuery<TResult> : IQuery
+    {
     }
 }

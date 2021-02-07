@@ -34,6 +34,10 @@
     </Validate>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\Application\Bistrotic.Application\Bistrotic.Application.csproj">
+      <Name>Bistrotic.Application</Name>
+      <Project>{3a8bfb32-8bc0-4003-ad58-6fb44ff2097d}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\Modules\Application\Bistrotic.Roles.Application.Abstractions\Bistrotic.Roles.Application.Abstractions.csproj">
       <Name>Bistrotic.Roles.Application.Abstractions</Name>
       <Project>{9dc1fee7-0e3d-427a-bb17-6f55df4dd691}</Project>
@@ -117,10 +121,6 @@
     <ProjectReference Include="..\Application\Bistrotic.Commands.Abstractions\Bistrotic.Commands.Abstractions.csproj">
       <Name>Bistrotic.Commands.Abstractions</Name>
       <Project>{394916df-7495-4250-9166-77818ca1f8b9}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\Application\Bistrotic.Queries.Abstractions\Bistrotic.Queries.Abstractions.csproj">
-      <Name>Bistrotic.Queries.Abstractions</Name>
-      <Project>{9563c7c0-9788-4f28-8232-a0ec87ccad0f}</Project>
     </ProjectReference>
     <ProjectReference Include="..\Domain\Bistrotic.Domain.Abstractions\Bistrotic.Domain.Abstractions.csproj">
       <Name>Bistrotic.Domain.Abstractions</Name>

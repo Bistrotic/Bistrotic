@@ -19,9 +19,13 @@
                 .ToBase64String(Guid.NewGuid().ToByteArray())
                 .Substring(0, 22);
 
-        public AutoIdentifier(AutoIdentifier? autoIdentifier = null)
+        public AutoIdentifier(AutoIdentifier autoIdentifier)
         {
-            Value = autoIdentifier?.Value ?? GenerateIdentifier();
+            Value = autoIdentifier.Value ?? GenerateIdentifier();
+        }
+        public AutoIdentifier(string? id = null)
+        {
+            Value = string.IsNullOrWhiteSpace(id) ? GenerateIdentifier() : id.Trim();
         }
         public string Value { get; init; }
 

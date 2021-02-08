@@ -4,9 +4,9 @@
 		<LangVersion>preview</LangVersion>
 		<Nullable>enable</Nullable>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-
+		<Deterministic>true</Deterministic>
 		<IsPackable>false</IsPackable>
-		<NoWarn>DV2001;DV2002;$(NoWarn)</NoWarn>
+		<NoWarn>CA1014;DV2001;DV2002;$(NoWarn)</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>

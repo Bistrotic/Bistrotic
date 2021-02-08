@@ -9,6 +9,8 @@
 		<CodeAnalysisTreatWarningsAsErrors>false</CodeAnalysisTreatWarningsAsErrors>
 		<AnalysisLevel>latest</AnalysisLevel>
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<Deterministic>true</Deterministic>
+		<NoWarn>$(NoWarn);CA1014</NoWarn>
 	</PropertyGroup>
 	<PropertyGroup>
 		<MinVerTagPrefix>v</MinVerTagPrefix>

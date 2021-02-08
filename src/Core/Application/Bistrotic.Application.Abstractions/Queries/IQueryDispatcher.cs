@@ -4,6 +4,8 @@
 
     public interface IQueryDispatcher
     {
+        Task<object?> Dispatch(IQuery query);
+
         Task<TResult> Dispatch<TQuery, TResult>(TQuery query)
             where TQuery : IQuery<TResult>;
     }

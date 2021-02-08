@@ -1,6 +1,7 @@
 ﻿namespace Bistrotic.Infrastructure.BlazorClient
 {
     using System;
+    using System.Net;
     using System.Net.Http;
     using System.Net.Http.Json;
 
@@ -23,17 +24,38 @@
         public async Task<TResult> Ask<TQuery, TResult>(TQuery query)
             where TQuery : IQuery<TResult>
         {
-            var result = await _httpClient
-                .GetFromJsonAsync<TResult>($"api/query/{query.GetType().FullName}/{JsonSerializer.Serialize(query)}")
-                .ConfigureAwait(false);
-            if (result == null)
+            try
             {
-                throw new QueryResultNullException(query);
+                var result = await _httpClient
+                    .GetFromJsonAsync<TResult>($"api/query/{query.GetType().Assembly.GetName().Name}/{query.GetType().FullName}/{JsonSerializer.Serialize(query)}")
+                    .ConfigureAwait(false);
+                if (result == null)
+                {
+                    throw new QueryResultNullException(query);
+                }
+                return result;
             }
-            return result;
+            catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
+            {
+                // Handle 404
+                Console.WriteLine($"Query handler for '{query.GetType().Name}' not found: " + ex.Message);
+                throw;
+            }
         }
 
-        public Task Tell<TCommand>(TCommand command) where TCommand : ICommand
-            => _httpClient.PostAsJsonAsync($"api/command/{command.GetType().FullName}", command);
+        public async Task Tell<TCommand>(TCommand command) where TCommand : ICommand
+        {
+            try
+            {
+                var response = await _httpClient.PostAsJsonAsync($"api/command/{command.GetType().Assembly.GetName().Name}/{command.GetType().FullName}", command);
+                response.EnsureSuccessStatusCode();
+            }
+            catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
+            {
+                // Handle 404
+                Console.WriteLine($"Command handler for '{command.GetType().Name}' not found: " + ex.Message);
+                throw;
+            }
+        }
     }
 }

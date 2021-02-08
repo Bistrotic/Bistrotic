@@ -27,5 +27,16 @@ namespace Bistrotic.Application.Queries
             return handler?.Handle(query)
                 ?? Task.FromException<TResult>(new InvalidQueryHandlerTypeException(handlerFunc().GetType(), typeof(IQueryHandler<TQuery, TResult>)));
         }
+
+        public Task<object?> Dispatch(IQuery query)
+        {
+            if (!_handlers.TryGetValue(query.GetType(), out Func<IQueryHandler>? handlerFunc))
+            {
+                return Task.FromException<object?>(new QueryHandlerNotFoundException(query.GetType()));
+            }
+            IQueryHandler? handler = handlerFunc();
+            return handler?.Handle(query)
+                ?? Task.FromException<object?>(new InvalidQueryHandlerTypeException(handlerFunc().GetType(), typeof(IQueryHandler)));
+        }
     }
 }

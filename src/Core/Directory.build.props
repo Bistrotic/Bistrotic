@@ -1,3 +1,7 @@
 <Project>
 	<Import Project="..\Directory.build.props" />
+	<PropertyGroup>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	</PropertyGroup>
 </Project>

@@ -53,16 +53,19 @@ namespace Bistrotic.Application.Queries
             {
                 throw new InvalidQueryHandlerTypeException($"Handle method not found on handler '{service.GetType().FullName}'.");
             }
-            if (!(handleMethod.Invoke(service, new[] { query }) is Task<object> resultTask))
+            if (handleMethod.Invoke(service, new[] { query }) is Task<object> resultTask)
+            {
+                var result = await resultTask.ConfigureAwait(false);
+                if (resultType.IsInstanceOfType(result))
+                {
+                    return result;
+                }
+                throw new InvalidQueryHandlerTypeException($"Handle method returns a value with an invalid type on handler '{service.GetType().FullName}': Expected:{resultType.Name}; Result:{result.GetType().Name}.");
+            }
+            else
             {
                 throw new InvalidQueryHandlerTypeException($"Handle method returns null on handler '{service.GetType().FullName}'.");
             }
-            var result = await resultTask.ConfigureAwait(false);
-            if (resultType.IsInstanceOfType(result))
-            {
-                return result;
-            }
-            throw new InvalidQueryHandlerTypeException($"Handle method returns a value with an invalid type on handler '{service.GetType().FullName}': Expected:{resultType.Name}; Result:{result.GetType().Name}.");
         }
 
         private static Type MakeQueryHandlerInterface(Type queryType, Type resultType)

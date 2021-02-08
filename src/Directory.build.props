@@ -5,13 +5,15 @@
 		<Nullable>enable</Nullable>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+		<AnalysisMode>AllEnabledByDefault</AnalysisMode>
+		<CodeAnalysisTreatWarningsAsErrors>false</CodeAnalysisTreatWarningsAsErrors>
 	</PropertyGroup>
 	<PropertyGroup>
 		<MinVerTagPrefix>v</MinVerTagPrefix>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.DependencyValidation.Analyzers" />
-		<PackageReference Include="MinVer">
+		<PackageReference Include="Microsoft.DependencyValidation.Analyzers" Version="$(MicrosoftDependencyValidationAnalyzersVersion)" />
+		<PackageReference Include="MinVer" Version="$(MinVerVersion)">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>

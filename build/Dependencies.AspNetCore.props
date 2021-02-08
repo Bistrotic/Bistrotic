@@ -1,12 +1,13 @@
 <Project>
-	<ItemGroup>
-		<Dependency Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.2" />
-		<Dependency Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="5.0.2" />
-		<Dependency Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="5.0.2" />
-		<Dependency Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.2" />
-		<Dependency Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.2" />
-		<Dependency Include="Microsoft.AspNetCore.ApiAuthorization.IdentityServer" Version="5.0.2" />
-		<Dependency Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.2" />
-		<Dependency Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.2" />
-	</ItemGroup>
+	<PropertyGroup>
+		<AspNetCoreVersion>5.0.2</AspNetCoreVersion>
+		<MicrosoftAspNetCoreComponentsWebAssemblyVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreComponentsWebAssemblyVersion>
+		<MicrosoftAspNetCoreComponentsWebAssemblyServerVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreComponentsWebAssemblyServerVersion>
+		<MicrosoftAspNetCoreComponentsWebAssemblyAuthenticationVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreComponentsWebAssemblyAuthenticationVersion>
+		<MicrosoftAspNetCoreComponentsWebAssemblyDevServerVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreComponentsWebAssemblyDevServerVersion>
+		<MicrosoftAspNetCoreIdentityUIVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreIdentityUIVersion>
+		<MicrosoftAspNetCoreApiAuthorizationIdentityServerVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreApiAuthorizationIdentityServerVersion>
+		<MicrosoftAspNetCoreIdentityEntityFrameworkCoreVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreIdentityEntityFrameworkCoreVersion>
+		<MicrosoftAspNetCoreDiagnosticsEntityFrameworkCoreVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreDiagnosticsEntityFrameworkCoreVersion>
+	</PropertyGroup>
 </Project>

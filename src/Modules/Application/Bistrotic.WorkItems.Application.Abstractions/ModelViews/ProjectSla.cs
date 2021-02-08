@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.WorkItems.Application.Abstractions.ModelViews
+﻿namespace Bistrotic.WorkItems.Application.ModelViews
 {
     using System.Collections.Immutable;
 

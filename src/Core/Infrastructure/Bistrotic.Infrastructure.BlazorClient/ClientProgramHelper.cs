@@ -1,4 +1,4 @@
-namespace Bistrotic.BlazorClient
+namespace Bistrotic.Infrastructure.BlazorClient
 {
     using System;
     using System.Net.Http;
@@ -13,7 +13,7 @@ namespace Bistrotic.BlazorClient
     {
         public static IServiceCollection AddBistroticClient(this IServiceCollection services, IWebAssemblyHostEnvironment hostEnvironment, string clientName, string serverApiName)
         {
-            services.AddHttpClient(serverApiName, client => client.BaseAddress = new
+            services.AddHttpClient<HttpCommandQueryClient>(serverApiName, client => client.BaseAddress = new
                 Uri(hostEnvironment.BaseAddress)).AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 
             // Supply HttpClient instances that include access tokens when making requests to the

@@ -4,7 +4,7 @@ namespace Bistrotic.Client
     using System.Net.Http;
     using System.Threading.Tasks;
 
-    using Bistrotic.BlazorClient;
+    using Bistrotic.Infrastructure.BlazorClient;
     using Bistrotic.Infrastructure;
 
     using Microsoft.AspNetCore.Components.WebAssembly.Authentication;

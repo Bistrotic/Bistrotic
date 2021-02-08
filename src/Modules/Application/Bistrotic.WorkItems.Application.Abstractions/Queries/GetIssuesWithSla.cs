@@ -1,15 +1,14 @@
-﻿namespace Bistrotic.WorkItems.Application.Abstractions.Queries
+﻿namespace Bistrotic.WorkItems.Application.Queries
 {
+    using System.Collections.Generic;
+
     using Bistrotic.Application.Queries;
-    using Bistrotic.WorkItems.Application.Abstractions.ModelViews;
+    using Bistrotic.WorkItems.Application.ModelViews;
 
     public record GetIssuesWithSla(
-        string SlaGroupName,
-        int[] AcknowlegeTimeInMinutes,
-        int[] ResolutionTimeInMinutes,
-        bool OnlyActiveSla,
-        bool OnlyActiveIssues = true
-        ) : Query<ActiveIssueWithSla>
+                    bool SuspendedSla = false,
+                    bool ClosedIssues = false
+        ) : Query<List<IssueWithSla>>
     {
     }
 }

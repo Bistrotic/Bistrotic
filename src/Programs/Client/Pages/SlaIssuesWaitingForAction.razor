@@ -1,0 +1,79 @@
+﻿@page "/issues/sla/waitingaction"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@attribute [Authorize]
+@inject HttpCommandQueryClient CommandQueryClient
+
+<h1>Issue SLA</h1>
+
+<p>List of all issues with anav active SLA.</p>
+
+@if (issues == null)
+{
+<p><em>Loading...</em></p>
+}
+else
+{
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Title</th>
+			<th>Assignee</th>
+			<th>Priority</th>
+			<th>Created</th>
+			<th>Acknowledge</th>
+			<th>Resolution</th>
+			<th>Suspended</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var issue in issues)
+			{
+		<tr>
+			<td>@issue.WorkItemId</td>
+			<td>@issue.Title</td>
+			<td>@issue.Assignee</td>
+			<td>@issue.Priority</td>
+			<td>@issue.CreatedDateTime</td>
+			@if (issue.AcknowledgedDateTime == null)
+					{
+			<td>@issue.AcknoledgeRemainingTimeInSeconds</td>
+			}
+					else
+					{
+			<td>@issue.AcknowledgedDateTime</td>
+			}
+			@if (issue.ClosedDateTime == null)
+					{
+			<td>issue.RemainingResolutionTimeInSeconds</td>
+			}
+					else
+					{
+			<td>@issue.ClosedDateTime</td>
+			}
+			<td>@issue.SlaSuspendedTimeInSeconds</td>
+			<td>@issue.WaitingForActionTimeInSeconds</td>
+		</tr>
+		}
+	</tbody>
+</table>
+}
+
+@code {
+	private List<IssueWithSla>? issues;
+
+	protected override async Task OnInitializedAsync()
+	{
+		try
+		{
+			issues = await CommandQueryClient.Ask<GetIssuesWithSla, List<IssueWithSla>>(new GetIssuesWithSla(false, false));
+		}
+		catch (AccessTokenNotAvailableException exception)
+		{
+			exception.Redirect();
+		}
+	}
+
+}

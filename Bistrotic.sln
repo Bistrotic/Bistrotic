@@ -11,7 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8_Build", "8_Build", "{182A
 		build\Dependencies.NetCore.props = build\Dependencies.NetCore.props
 		build\Dependencies.props = build\Dependencies.props
 		build\Dependencies.Test.props = build\Dependencies.Test.props
-		build\DependencyManagement.targets = build\DependencyManagement.targets
 		src\Directory.build.props = src\Directory.build.props
 		src\Directory.build.targets = src\Directory.build.targets
 		Nuget.config = Nuget.config
@@ -101,8 +100,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3_Programs", "3_Programs", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Domain.Abstractions", "src\Core\Domain\Bistrotic.Domain.Abstractions\Bistrotic.Domain.Abstractions.csproj", "{69F6A7B4-6A07-4799-A1AF-B68FD2CC565F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Commands.Abstractions", "src\Core\Application\Bistrotic.Commands.Abstractions\Bistrotic.Commands.Abstractions.csproj", "{394916DF-7495-4250-9166-77818CA1F8B9}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Infrastructure.Abstractions", "src\Core\Infrastructure\Bistrotic.Infrastructure.Abstractions\Bistrotic.Infrastructure.Abstractions.csproj", "{EE8C8484-26DB-4CCF-8648-582ABC9470C8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Infrastructure.ServiceHost", "src\Core\Infrastructure\Bistrotic.Infrastructure.ServiceHost\Bistrotic.Infrastructure.ServiceHost.csproj", "{E82A2C2E-E23E-4CF5-944E-56C7C2DD884C}"
@@ -143,39 +140,39 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Client", "src\Pro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Server", "src\Programs\Server\Bistrotic.Server.csproj", "{95730D4C-9DEE-4A2A-99E5-870F42F09721}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Users.Application.Abstractions", "src\Modules\Application\Bistrotic.Users.Application.Abstractions\Bistrotic.Users.Application.Abstractions.csproj", "{1D5AEC61-239E-45E2-9B9D-CDAE158BAFB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Users.Application.Abstractions", "src\Modules\Application\Bistrotic.Users.Application.Abstractions\Bistrotic.Users.Application.Abstractions.csproj", "{1D5AEC61-239E-45E2-9B9D-CDAE158BAFB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Users.Application", "src\Modules\Application\Bistrotic.Users.Application\Bistrotic.Users.Application.csproj", "{13780A7F-0CBF-4BC5-A6B4-95C6E56F8368}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Users.Application", "src\Modules\Application\Bistrotic.Users.Application\Bistrotic.Users.Application.csproj", "{13780A7F-0CBF-4BC5-A6B4-95C6E56F8368}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Roles.Application.Abstractions", "src\Modules\Application\Bistrotic.Roles.Application.Abstractions\Bistrotic.Roles.Application.Abstractions.csproj", "{9DC1FEE7-0E3D-427A-BB17-6F55DF4DD691}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Roles.Application.Abstractions", "src\Modules\Application\Bistrotic.Roles.Application.Abstractions\Bistrotic.Roles.Application.Abstractions.csproj", "{9DC1FEE7-0E3D-427A-BB17-6F55DF4DD691}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Roles.Application", "src\Modules\Application\Bistrotic.Roles.Application\Bistrotic.Roles.Application.csproj", "{51C8E71C-B9F2-4BBB-906F-380023D904F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Roles.Application", "src\Modules\Application\Bistrotic.Roles.Application\Bistrotic.Roles.Application.csproj", "{51C8E71C-B9F2-4BBB-906F-380023D904F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.WorkItems.Application.Abstractions", "src\Modules\Application\Bistrotic.WorkItems.Application.Abstractions\Bistrotic.WorkItems.Application.Abstractions.csproj", "{13F43DEB-4004-477E-8D45-09F112E9D9A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.WorkItems.Application.Abstractions", "src\Modules\Application\Bistrotic.WorkItems.Application.Abstractions\Bistrotic.WorkItems.Application.Abstractions.csproj", "{13F43DEB-4004-477E-8D45-09F112E9D9A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.WorkItems.Application", "src\Modules\Application\Bistrotic.WorkItems.Application\Bistrotic.WorkItems.Application.csproj", "{1E617452-687E-44E4-852B-0EB1546183E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.WorkItems.Application", "src\Modules\Application\Bistrotic.WorkItems.Application\Bistrotic.WorkItems.Application.csproj", "{1E617452-687E-44E4-852B-0EB1546183E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Users.Domain.Abstractions", "src\Modules\Domain\Bistrotic.Users.Domain.Abstractions\Bistrotic.Users.Domain.Abstractions.csproj", "{BA6AA9A7-EF47-4336-A14D-FC4613481922}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Users.Domain.Abstractions", "src\Modules\Domain\Bistrotic.Users.Domain.Abstractions\Bistrotic.Users.Domain.Abstractions.csproj", "{BA6AA9A7-EF47-4336-A14D-FC4613481922}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Users.Domain", "src\Modules\Domain\Bistrotic.Users.Domain\Bistrotic.Users.Domain.csproj", "{3AE887D5-DA10-4543-B254-3A17058F6A91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Users.Domain", "src\Modules\Domain\Bistrotic.Users.Domain\Bistrotic.Users.Domain.csproj", "{3AE887D5-DA10-4543-B254-3A17058F6A91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Roles.Domain.Abstractions", "src\Modules\Domain\Bistrotic.Roles.Domain.Abstractions\Bistrotic.Roles.Domain.Abstractions.csproj", "{9199CF9B-66B9-428F-BE2D-3C11751F48B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Roles.Domain.Abstractions", "src\Modules\Domain\Bistrotic.Roles.Domain.Abstractions\Bistrotic.Roles.Domain.Abstractions.csproj", "{9199CF9B-66B9-428F-BE2D-3C11751F48B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Roles.Domain", "src\Modules\Domain\Bistrotic.Roles.Domain\Bistrotic.Roles.Domain.csproj", "{540EC9B6-1FD1-4981-95F2-474AC7754A47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Roles.Domain", "src\Modules\Domain\Bistrotic.Roles.Domain\Bistrotic.Roles.Domain.csproj", "{540EC9B6-1FD1-4981-95F2-474AC7754A47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.WorkItems.Domain.Abstractions", "src\Modules\Domain\Bistrotic.WorkItems.Domain.Abstractions\Bistrotic.WorkItems.Domain.Abstractions.csproj", "{C45D84E3-46C3-4D9B-8D78-7D1CFBB48F3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.WorkItems.Domain.Abstractions", "src\Modules\Domain\Bistrotic.WorkItems.Domain.Abstractions\Bistrotic.WorkItems.Domain.Abstractions.csproj", "{C45D84E3-46C3-4D9B-8D78-7D1CFBB48F3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.WorkItems.Domain", "src\Modules\Domain\Bistrotic.WorkItems.Domain\Bistrotic.WorkItems.Domain.csproj", "{148E3C82-62B8-4F9E-B6DE-3422711DC880}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.WorkItems.Domain", "src\Modules\Domain\Bistrotic.WorkItems.Domain\Bistrotic.WorkItems.Domain.csproj", "{148E3C82-62B8-4F9E-B6DE-3422711DC880}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Application", "src\Core\Application\Bistrotic.Application\Bistrotic.Application.csproj", "{3A8BFB32-8BC0-4003-AD58-6FB44FF2097D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Application", "src\Core\Application\Bistrotic.Application\Bistrotic.Application.csproj", "{3A8BFB32-8BC0-4003-AD58-6FB44FF2097D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Application.Tests", "test\Bistrotic.Application.Tests\Bistrotic.Application.Tests.csproj", "{23A9A4BC-2DF9-4D0A-B72A-CE90E21FB3DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Application.Abstractions.Tests", "test\Bistrotic.Application.Abstractions.Tests\Bistrotic.Application.Abstractions.Tests.csproj", "{AED03AB3-4116-41B2-A283-9BE62D20EE58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Application.Abstractions.Tests", "test\Bistrotic.Application.Abstractions.Tests\Bistrotic.Application.Abstractions.Tests.csproj", "{AED03AB3-4116-41B2-A283-9BE62D20EE58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Domain.Abstractions", "test\Bistrotic.Domain.Abstractions\Bistrotic.Domain.Abstractions.csproj", "{1BBECF02-4F6E-4904-B4C6-E650D421A2A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Domain.Abstractions.Tests", "test\Bistrotic.Domain.Abstractions.Tests\Bistrotic.Domain.Abstractions.Tests.csproj", "{1BBECF02-4F6E-4904-B4C6-E650D421A2A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.WorkItems.Presentation", "src\Modules\Presentation\Bistrotic.WorkItems.Presentation\Bistrotic.WorkItems.Presentation.csproj", "{A7EEC562-84AD-409B-844F-13DAFBE30BAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.WorkItems.Presentation", "src\Modules\Presentation\Bistrotic.WorkItems.Presentation\Bistrotic.WorkItems.Presentation.csproj", "{A7EEC562-84AD-409B-844F-13DAFBE30BAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -187,10 +184,6 @@ Global
 		{69F6A7B4-6A07-4799-A1AF-B68FD2CC565F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69F6A7B4-6A07-4799-A1AF-B68FD2CC565F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69F6A7B4-6A07-4799-A1AF-B68FD2CC565F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{394916DF-7495-4250-9166-77818CA1F8B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{394916DF-7495-4250-9166-77818CA1F8B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{394916DF-7495-4250-9166-77818CA1F8B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{394916DF-7495-4250-9166-77818CA1F8B9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EE8C8484-26DB-4CCF-8648-582ABC9470C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EE8C8484-26DB-4CCF-8648-582ABC9470C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE8C8484-26DB-4CCF-8648-582ABC9470C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -351,7 +344,6 @@ Global
 		{AA61F54B-167D-4249-975C-FA3CAA08399E} = {23C5C740-B906-4598-A789-6E5027F0A07C}
 		{C74D717A-F4C0-4C99-B367-117E51415AF5} = {23C5C740-B906-4598-A789-6E5027F0A07C}
 		{69F6A7B4-6A07-4799-A1AF-B68FD2CC565F} = {AA61F54B-167D-4249-975C-FA3CAA08399E}
-		{394916DF-7495-4250-9166-77818CA1F8B9} = {C74D717A-F4C0-4C99-B367-117E51415AF5}
 		{EE8C8484-26DB-4CCF-8648-582ABC9470C8} = {17634B5D-1BCA-4A1D-BA37-4293453A5CEC}
 		{E82A2C2E-E23E-4CF5-944E-56C7C2DD884C} = {17634B5D-1BCA-4A1D-BA37-4293453A5CEC}
 		{D4D7016B-113E-4067-B0E4-C1FD37A09D57} = {17634B5D-1BCA-4A1D-BA37-4293453A5CEC}

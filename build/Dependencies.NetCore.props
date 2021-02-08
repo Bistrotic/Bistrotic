@@ -1,15 +1,15 @@
 <Project>
-	<ItemGroup>
-		<Dependency Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0" />
-		<Dependency Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
-		<Dependency Include="Microsoft.Extensions.Logging.Configuration" Version="5.0.0" />
-		<Dependency Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
-		<Dependency Include="Microsoft.JSInterop.WebAssembly" Version="5.0.2" />
-		<Dependency Include="System.Net.Http.Json" Version="5.0.0" />
-		<Dependency Include="System.Text.Json" Version="5.0.1" />
-		<Dependency Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.2" />
-		<Dependency Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.2" />
-		<Dependency Include="System.Net.Http" Version="5.0.0" />
-		<Dependency Include="Microsoft.Extensions.Http" Version="5.0.0" />
-	</ItemGroup>
+	<PropertyGroup>
+		<MicrosoftExtensionsDependencyInjectionVersion>5.0.0</MicrosoftExtensionsDependencyInjectionVersion>
+		<MicrosoftExtensionsLoggingAbstractionsVersion>5.0.0</MicrosoftExtensionsLoggingAbstractionsVersion>
+		<MicrosoftExtensionsLoggingConfigurationVersion>5.0.0</MicrosoftExtensionsLoggingConfigurationVersion>
+		<MicrosoftExtensionsConfigurationAbstractionsVersion>5.0.0</MicrosoftExtensionsConfigurationAbstractionsVersion>
+		<MicrosoftJSInteropWebAssemblyVersion>5.0.2</MicrosoftJSInteropWebAssemblyVersion>
+		<SystemNetHttpJsonVersion>5.0.0</SystemNetHttpJsonVersion>
+		<SystemTextJsonVersion>5.0.1</SystemTextJsonVersion>
+		<MicrosoftEntityFrameworkCoreSqlServerVersion>5.0.2</MicrosoftEntityFrameworkCoreSqlServerVersion>
+		<MicrosoftEntityFrameworkCoreToolsVersion>5.0.2</MicrosoftEntityFrameworkCoreToolsVersion>
+		<SystemNetHttpVersion>5.0.0</SystemNetHttpVersion>
+		<MicrosoftExtensionsHttpVersion>5.0.0</MicrosoftExtensionsHttpVersion>
+	</PropertyGroup>
 </Project>

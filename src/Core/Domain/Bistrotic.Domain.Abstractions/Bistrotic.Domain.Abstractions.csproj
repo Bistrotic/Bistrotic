@@ -4,6 +4,6 @@
 		<RootNamespace>Bistrotic.Domain</RootNamespace>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="System.Text.Json" />
+		<PackageReference Include="System.Text.Json" Version="$(SystemTextJsonVersion)" />
 	</ItemGroup>
 </Project>

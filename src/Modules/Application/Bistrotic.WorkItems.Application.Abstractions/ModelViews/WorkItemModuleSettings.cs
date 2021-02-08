@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.WorkItems.Application.Abstractions.ModelViews
+﻿namespace Bistrotic.WorkItems.Application.ModelViews
 {
     public record WorkItemModuleSettings(
         string AzureDevOpsServerUrl = "",

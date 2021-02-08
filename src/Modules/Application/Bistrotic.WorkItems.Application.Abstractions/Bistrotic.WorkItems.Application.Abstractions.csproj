@@ -1,16 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<RootNamespace>Bistrotic.WorkItems.Application</RootNamespace>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\Application\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj" />
-    <ProjectReference Include="..\..\Domain\Bistrotic.WorkItems.Domain.Abstractions\Bistrotic.WorkItems.Domain.Abstractions.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Core\Application\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj" />
+		<ProjectReference Include="..\..\Domain\Bistrotic.WorkItems.Domain.Abstractions\Bistrotic.WorkItems.Domain.Abstractions.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Commands\" />
-  </ItemGroup>
-
+	<ItemGroup>
+		<Folder Include="Commands\" />
+	</ItemGroup>
 </Project>

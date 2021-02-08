@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.Application.Client
+﻿namespace Bistrotic.Infrastructure.BlazorClient
 {
     using System;
     using System.Net.Http;

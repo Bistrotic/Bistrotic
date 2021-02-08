@@ -5,8 +5,7 @@
     using System.Threading.Tasks;
 
     using Bistrotic.Application.Queries;
-    using Bistrotic.WorkItems.Application.Abstractions.ModelViews;
-    using Bistrotic.WorkItems.Application.Abstractions.Queries;
+    using Bistrotic.WorkItems.Application.ModelViews;
 
     using Microsoft.Extensions.Configuration;
 

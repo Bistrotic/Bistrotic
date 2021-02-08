@@ -6,7 +6,7 @@
 
     public abstract class ServerModule : Module
     {
-        public ServerModule(ModuleDefinition moduleDefinition, IConfiguration configuration) : base(ModuleType.Server, moduleDefinition, configuration)
+        protected ServerModule(ModuleDefinition moduleDefinition, IConfiguration configuration) : base(ModuleType.Server, moduleDefinition, configuration)
         {
         }
     }

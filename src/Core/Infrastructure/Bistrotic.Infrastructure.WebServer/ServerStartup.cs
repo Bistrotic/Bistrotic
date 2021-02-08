@@ -23,7 +23,7 @@ namespace Bistrotic.Infrastructure.WebServer
     {
         private readonly IWebHostEnvironment _environment;
 
-        public ServerStartup(IWebHostEnvironment environment, IConfiguration configuration)
+        protected ServerStartup(IWebHostEnvironment environment, IConfiguration configuration)
         {
             _environment = environment;
             Configuration = configuration;
@@ -55,7 +55,7 @@ namespace Bistrotic.Infrastructure.WebServer
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseSwagger();
-            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Bistrotic V1"); });
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Bistrotic V1"));
 
             app.UseEndpoints(endpoints =>
             {
@@ -85,7 +85,7 @@ namespace Bistrotic.Infrastructure.WebServer
 
             services.AddControllersWithViews().AddDapr();
             services.AddRazorPages();
-            services.AddIdentityCore<IdentityUser>(options => { })
+            services.AddIdentityCore<IdentityUser>(_ => { })
                 .AddEntityFrameworkStores<TDbContext>()
                 .AddSignInManager()
                 .AddDefaultTokenProviders();
@@ -122,7 +122,7 @@ namespace Bistrotic.Infrastructure.WebServer
             });
             services.AddMvc();
 
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "Bistrotic", Version = "v1" }); });
+            services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Bistrotic", Version = "v1" }));
         }
 
         private Task HandleApiFallback(HttpContext context)

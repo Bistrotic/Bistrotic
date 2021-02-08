@@ -7,7 +7,7 @@
     using Bistrotic.Domain.Messages;
 
     [Serializable]
-    internal class StateInitializationException : Exception
+    public class StateInitializationException : Exception
     {
         public StateInitializationException() : this(null, null, null)
         {

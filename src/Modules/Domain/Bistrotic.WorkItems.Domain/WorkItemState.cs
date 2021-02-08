@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Bistrotic.WorkItems.Domain
+﻿namespace Bistrotic.WorkItems.Domain
 {
     public class WorkItemState
     {
-        
     }
 }

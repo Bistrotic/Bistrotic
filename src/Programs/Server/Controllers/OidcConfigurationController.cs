@@ -20,6 +20,7 @@
         public IActionResult GetClientRequestParameters([FromRoute] string clientId)
         {
             var parameters = ClientRequestParametersProvider.GetClientParameters(HttpContext, clientId);
+            _logger.LogDebug($"User '{HttpContext?.User?.Identity?.Name}' Oidc configuration to {clientId}.");
             return Ok(parameters);
         }
     }

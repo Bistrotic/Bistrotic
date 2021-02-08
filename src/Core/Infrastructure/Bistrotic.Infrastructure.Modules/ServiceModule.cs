@@ -6,7 +6,7 @@
 
     public abstract class ServiceModule : Module
     {
-        public ServiceModule(ModuleDefinition moduleDefinition, IConfiguration configuration) : base(ModuleType.Server, moduleDefinition, configuration)
+        protected ServiceModule(ModuleDefinition moduleDefinition, IConfiguration configuration) : base(ModuleType.Server, moduleDefinition, configuration)
         {
         }
     }

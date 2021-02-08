@@ -122,12 +122,9 @@
             }
             foreach (Type t in type.GetInterfaces())
             {
-                if (t.IsGenericType)
+                if (t.IsGenericType && t.GetGenericTypeDefinition() == genericInterfaceType)
                 {
-                    if (t.GetGenericTypeDefinition() == genericInterfaceType)
-                    {
-                        return t.GetGenericArguments();
-                    }
+                    return t.GetGenericArguments();
                 }
             }
             throw new ArgumentException($"The type {genericInterfaceType.Name} is not assignable from {type.Name}.", nameof(genericInterfaceType));
@@ -160,8 +157,7 @@
             }
             if (interfaceType.IsGenericType && type
                                                     .GetInterfaces()
-                                                    .Where(p => p.IsGenericType && p.GetGenericTypeDefinition() == interfaceType)
-                                                    .Any())
+                                                    .Any(p => p.IsGenericType && p.GetGenericTypeDefinition() == interfaceType))
             {
                 return true;
             }

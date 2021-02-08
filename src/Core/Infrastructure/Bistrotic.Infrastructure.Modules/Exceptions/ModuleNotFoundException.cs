@@ -6,6 +6,7 @@
 
     using Bistrotic.Infrastructure.Modules.Definitions;
 
+    [Serializable]
     public class ModuleNotFoundException : Exception
     {
         public ModuleNotFoundException()
@@ -22,6 +23,14 @@
 
         public ModuleNotFoundException(ModuleDefinition definition, string? message, Exception? innerException)
             : base($"Module with normalized name {definition.NormalizedName}, was not found. {message}\nDefinition : {JsonSerializer.Serialize(definition)}", innerException)
+        {
+        }
+
+        public ModuleNotFoundException(string? message) : base(message)
+        {
+        }
+
+        public ModuleNotFoundException(string? message, Exception? innerException) : base(message, innerException)
         {
         }
 

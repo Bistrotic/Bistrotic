@@ -19,7 +19,7 @@
             Name = name;
             TypeName = typeName;
             NormalizedName = NormalizeName(string.IsNullOrWhiteSpace(normalizedName) ? Name : normalizedName);
-            if (dependencies == null || !dependencies.Any())
+            if (dependencies?.Any() != true)
             {
                 Dependencies = Array.Empty<string>();
             }

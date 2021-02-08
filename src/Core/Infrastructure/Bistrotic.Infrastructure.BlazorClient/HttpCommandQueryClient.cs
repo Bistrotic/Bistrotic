@@ -23,7 +23,9 @@
         public async Task<TResult> Ask<TQuery, TResult>(TQuery query)
             where TQuery : IQuery<TResult>
         {
-            var result = await _httpClient.GetFromJsonAsync<TResult>($"api/query/{query.GetType().FullName}/{JsonSerializer.Serialize(query)}");
+            var result = await _httpClient
+                .GetFromJsonAsync<TResult>($"api/query/{query.GetType().FullName}/{JsonSerializer.Serialize(query)}")
+                .ConfigureAwait(false);
             if (result == null)
             {
                 throw new QueryResultNullException(query);
@@ -31,9 +33,7 @@
             return result;
         }
 
-        public async Task Tell<TCommand>(TCommand command) where TCommand : ICommand
-        {
-            await _httpClient.PostAsJsonAsync($"api/command/{command.GetType().FullName}", command);
-        }
+        public Task Tell<TCommand>(TCommand command) where TCommand : ICommand
+            => _httpClient.PostAsJsonAsync($"api/command/{command.GetType().FullName}", command);
     }
 }

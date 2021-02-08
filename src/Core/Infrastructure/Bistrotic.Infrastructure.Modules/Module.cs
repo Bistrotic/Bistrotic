@@ -8,7 +8,7 @@
 
     public abstract class Module : IModule
     {
-        public Module(ModuleType moduleType, ModuleDefinition moduleDefinition, IConfiguration configuration)
+        protected Module(ModuleType moduleType, ModuleDefinition moduleDefinition, IConfiguration configuration)
         {
             ModuleType = moduleType;
             ModuleDefinition = moduleDefinition ?? throw new ArgumentNullException(nameof(moduleDefinition));

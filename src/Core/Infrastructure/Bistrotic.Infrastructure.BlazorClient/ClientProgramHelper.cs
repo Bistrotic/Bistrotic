@@ -20,10 +20,7 @@ namespace Bistrotic.Infrastructure.BlazorClient
             // server project
             services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient(serverApiName));
 
-            services.AddApiAuthorization(options =>
-            {
-                options.ProviderOptions.ConfigurationEndpoint = "_configuration/" + clientName;
-            });
+            services.AddApiAuthorization(options => options.ProviderOptions.ConfigurationEndpoint = "_configuration/" + clientName);
             services.AddOptions();
             return services;
         }

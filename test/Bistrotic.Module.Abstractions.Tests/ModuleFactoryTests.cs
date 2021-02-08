@@ -31,7 +31,7 @@ namespace Bistrotic.Module.Abstractions.Tests
                 new List<Func<IModuleActivator>> {
                 () => new FakeModuleActivator1(configuration)
             });
-            (await factory.GetModules())
+            (await factory.GetModules().ConfigureAwait(false))
                 .Should()
                 .HaveCount(6);
         }
@@ -48,7 +48,7 @@ namespace Bistrotic.Module.Abstractions.Tests
                 () => new FakeModuleActivator2(configuration),
                 () => new FakeModuleActivator3(configuration)
             });
-            (await factory.GetModules())
+            (await factory.GetModules().ConfigureAwait(false))
                 .Should()
                 .HaveCount(6);
         }
@@ -83,10 +83,9 @@ namespace Bistrotic.Module.Abstractions.Tests
                 new List<Func<IModuleActivator>> {
                 () => new FakeModuleActivator1(configuration)
             });
-            var modules = await factory.GetModules();
+            var modules = await factory.GetModules().ConfigureAwait(false);
             modules
                 .Select(p => p.ModuleDefinition.Name)
-                .ToArray()
                 .Should()
                 .ContainInOrder("Module1", "Module2", "Module3", "Module4", "Module5", "Module6");
             modules
@@ -106,7 +105,7 @@ namespace Bistrotic.Module.Abstractions.Tests
                 () => new FakeModuleActivator1(configuration),
                 () => new FakeModuleActivator2(configuration)
             });
-            (await factory.GetModules())
+            (await factory.GetModules().ConfigureAwait(false))
                 .Should()
                 .HaveCount(6);
         }
@@ -141,13 +140,12 @@ namespace Bistrotic.Module.Abstractions.Tests
                 new List<Func<IModuleActivator>> {
                 () => new FakeModuleActivator1(configuration)
             });
-            var modules = await factory.GetModules();
+            var modules = await factory.GetModules().ConfigureAwait(false);
             modules
                 .Should()
                 .HaveCount(6);
             modules
                 .Select(p => p.ModuleDefinition.Name)
-                .ToArray()
                 .Should()
                 .ContainInOrder("Module1", "Module2", "Module3", "Module4", "Module5", "Module6");
         }

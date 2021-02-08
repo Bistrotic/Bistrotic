@@ -7,7 +7,7 @@ using Bistrotic.Application.Queries;
 namespace Bistrotic.Application.Client.Exceptions
 {
     [Serializable]
-    internal class QueryResultNullException : Exception
+    public class QueryResultNullException : Exception
     {
         public QueryResultNullException()
         {

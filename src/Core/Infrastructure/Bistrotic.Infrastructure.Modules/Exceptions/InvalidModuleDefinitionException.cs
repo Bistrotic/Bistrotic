@@ -6,6 +6,7 @@
 
     using Bistrotic.Infrastructure.Modules.Definitions;
 
+    [Serializable]
     public class InvalidModuleDefinitionException : Exception
     {
         public InvalidModuleDefinitionException()
@@ -22,6 +23,14 @@
 
         public InvalidModuleDefinitionException(ModuleDefinition definition, string? message, Exception? innerException)
             : base($"Invalid module definition : {message}\nDefinition : {JsonSerializer.Serialize(definition)}", innerException)
+        {
+        }
+
+        public InvalidModuleDefinitionException(string? message) : base(message)
+        {
+        }
+
+        public InvalidModuleDefinitionException(string? message, Exception? innerException) : base(message, innerException)
         {
         }
 

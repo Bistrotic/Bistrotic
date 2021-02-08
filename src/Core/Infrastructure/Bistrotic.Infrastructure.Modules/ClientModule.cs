@@ -6,7 +6,7 @@
 
     public abstract class ClientModule : Module, IClientModule
     {
-        public ClientModule(ModuleDefinition moduleDefinition, IConfiguration configuration) : base(ModuleType.Client, moduleDefinition, configuration)
+        protected ClientModule(ModuleDefinition moduleDefinition, IConfiguration configuration) : base(ModuleType.Client, moduleDefinition, configuration)
         {
         }
     }

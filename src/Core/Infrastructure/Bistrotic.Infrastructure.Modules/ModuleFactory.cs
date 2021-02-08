@@ -32,19 +32,19 @@
 
         public async Task<IEnumerable<IModule>> GetModules()
         {
-            var definitions = await GetModuleDefinitions();
+            var definitions = await GetModuleDefinitions().ConfigureAwait(false);
             return await Task.WhenAll(definitions
                 .Select(p => GetModule(p))
                 .ToArray()
-            );
+            ).ConfigureAwait(false);
         }
 
         private async Task<IModule> GetModule(ModuleDefinition moduleDefinition)
         {
-            var activators = await GetModuleActivators();
+            var activators = await GetModuleActivators().ConfigureAwait(false);
             foreach (var activator in activators)
             {
-                IModule? module = await activator.FindModule(moduleDefinition);
+                IModule? module = await activator.FindModule(moduleDefinition).ConfigureAwait(false);
                 if (module != null)
                 {
                     return module;
@@ -66,10 +66,11 @@
         {
             if (_moduleDefinitions == null)
             {
-                var definitions = await GetModuleDefinitionsByName();
-                var list = new List<ModuleDefinition>(definitions.Count);
-                var added = new HashSet<string>(definitions.Count);
-                _moduleDefinitions = GetModuleDefinitionsWithDependencies(definitions.OrderByDescending(p => p.Value.Priority).Select(p => p.Value));
+                var definitions = await GetModuleDefinitionsByName()
+                    .ConfigureAwait(false);
+                _moduleDefinitions = GetModuleDefinitionsWithDependencies(definitions
+                    .OrderByDescending(p => p.Value.Priority)
+                    .Select(p => p.Value));
             }
             return _moduleDefinitions;
         }
@@ -95,7 +96,10 @@
             {
                 var loaders = _definitionLoaderFuncs.Select(p => p()).ToArray();
                 var definitionsTasks = loaders.Select(p => p.GetDefinitions()).ToArray();
-                var definitions = (await Task.WhenAll(definitionsTasks)).SelectMany(p => p);
+                var definitions = (await Task
+                    .WhenAll(definitionsTasks)
+                    .ConfigureAwait(false))
+                        .SelectMany(p => p);
                 var duplicates = definitions
                           .GroupBy(p => p.NormalizedName)
                           .Where(p => p.Count() > 1)
@@ -117,8 +121,8 @@
 
             foreach (ModuleDefinition definition in modules)
             {
-                if (loaded?.Where(p => p.NormalizedName == definition.NormalizedName).Any() == true
-                    || list.Where(p => p.NormalizedName == definition.NormalizedName).Any() == true)
+                if (loaded?.Any(p => p.NormalizedName == definition.NormalizedName) == true
+                    || list.Any(p => p.NormalizedName == definition.NormalizedName))
                 {
                     // The module has already been added
                     return list;
@@ -127,9 +131,9 @@
                 if (definition.Dependencies.Any())
                 {
                     var circularReferences = definition.Dependencies.Where(p => tree.Contains(p)).ToArray();
-                    if (circularReferences.Any())
+                    if (circularReferences.Length > 0)
                     {
-                        throw new ModuleDefinitionCircularDependencyException(definition.NormalizedName, circularReferences.First(), tree.ToArray());
+                        throw new ModuleDefinitionCircularDependencyException(definition.NormalizedName, circularReferences[0], tree.ToArray());
                     }
                     List<ModuleDefinition>? dependencies = null;
                     try

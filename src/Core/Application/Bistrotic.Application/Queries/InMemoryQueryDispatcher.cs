@@ -9,7 +9,7 @@ namespace Bistrotic.Application.Queries
 {
     public class InMemoryQueryDispatcher : IQueryDispatcher
     {
-        private ImmutableDictionary<Type, Func<IQueryHandler>> _handlers;
+        private readonly ImmutableDictionary<Type, Func<IQueryHandler>> _handlers;
 
         public InMemoryQueryDispatcher(Dictionary<Type, Func<IQueryHandler>> handlers)
         {

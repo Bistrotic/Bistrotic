@@ -47,7 +47,7 @@
 
         public async Task<IModule> GetRequiredModule(ModuleDefinition definition)
         {
-            return await FindModule(definition) ?? throw new ModuleNotFoundException(definition);
+            return await FindModule(definition).ConfigureAwait(false) ?? throw new ModuleNotFoundException(definition);
         }
     }
 
@@ -81,7 +81,7 @@
 
         public async Task<IModule> GetRequiredModule(ModuleDefinition definition)
         {
-            return await FindModule(definition) ?? throw new ModuleNotFoundException(definition);
+            return await FindModule(definition).ConfigureAwait(false) ?? throw new ModuleNotFoundException(definition);
         }
     }
 
@@ -115,7 +115,7 @@
 
         public async Task<IModule> GetRequiredModule(ModuleDefinition definition)
         {
-            return await FindModule(definition) ?? throw new ModuleNotFoundException(definition);
+            return await FindModule(definition).ConfigureAwait(false) ?? throw new ModuleNotFoundException(definition);
         }
     }
 }

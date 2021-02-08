@@ -6,42 +6,42 @@
 
     using Microsoft.Extensions.Configuration;
 
-    public class FakeModule1 : ServiceModule, IModule
+    public class FakeModule1 : ServiceModule
     {
         public FakeModule1(ModuleDefinition definition, IConfiguration configuration) : base(definition, configuration)
         {
         }
     }
 
-    public class FakeModule2 : ServiceModule, IModule
+    public class FakeModule2 : ServiceModule
     {
         public FakeModule2(ModuleDefinition definition, IConfiguration configuration) : base(definition, configuration)
         {
         }
     }
 
-    public class FakeModule3 : ServiceModule, IModule
+    public class FakeModule3 : ServiceModule
     {
         public FakeModule3(ModuleDefinition definition, IConfiguration configuration) : base(definition, configuration)
         {
         }
     }
 
-    public class FakeModule4 : ServiceModule, IModule
+    public class FakeModule4 : ServiceModule
     {
         public FakeModule4(ModuleDefinition definition, IConfiguration configuration) : base(definition, configuration)
         {
         }
     }
 
-    public class FakeModule5 : ServiceModule, IModule
+    public class FakeModule5 : ServiceModule
     {
         public FakeModule5(ModuleDefinition definition, IConfiguration configuration) : base(definition, configuration)
         {
         }
     }
 
-    public class FakeModule6 : ServiceModule, IModule
+    public class FakeModule6 : ServiceModule
     {
         public FakeModule6(ModuleDefinition definition, IConfiguration configuration) : base(definition, configuration)
         {

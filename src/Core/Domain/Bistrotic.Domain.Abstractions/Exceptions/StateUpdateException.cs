@@ -7,7 +7,7 @@
     using Bistrotic.Domain.Messages;
 
     [Serializable]
-    internal class StateUpdateException : Exception
+    public class StateUpdateException : Exception
     {
         public StateUpdateException()
         {

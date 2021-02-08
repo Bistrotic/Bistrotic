@@ -3,6 +3,7 @@ using System.Runtime.Serialization;
 
 namespace Bistrotic.Application.Exceptions
 {
+    [Serializable]
     public class InvalidQueryHandlerTypeException : Exception
     {
         public InvalidQueryHandlerTypeException()

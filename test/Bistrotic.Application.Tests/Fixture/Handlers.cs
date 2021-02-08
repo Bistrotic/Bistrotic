@@ -20,7 +20,7 @@
 
     public abstract class Query<T> : IQuery<T>
     {
-        public Query()
+        protected Query()
         {
             QueryId = new QueryId();
         }

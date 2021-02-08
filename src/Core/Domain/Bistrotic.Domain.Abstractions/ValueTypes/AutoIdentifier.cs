@@ -23,7 +23,7 @@
         {
             Value = autoIdentifier.Value ?? GenerateIdentifier();
         }
-        public AutoIdentifier(string? id = null)
+        public AutoIdentifier(string? id)
         {
             Value = string.IsNullOrWhiteSpace(id) ? GenerateIdentifier() : id.Trim();
         }

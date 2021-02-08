@@ -3,7 +3,7 @@
     using Microsoft.AspNetCore;
     using Microsoft.AspNetCore.Hosting;
 
-    public class ServerProgram<TStartup> where TStartup : class
+    public static class ServerProgram<TStartup> where TStartup : class
     {
         public static IWebHost CreateHostBuilder(string[] args) =>
               WebHost

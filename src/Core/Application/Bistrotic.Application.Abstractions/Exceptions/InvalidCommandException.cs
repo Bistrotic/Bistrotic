@@ -5,7 +5,7 @@
     using System.Windows.Input;
 
     [Serializable]
-    internal class InvalidCommandException : Exception
+    public class InvalidCommandException : Exception
     {
         public InvalidCommandException()
         {

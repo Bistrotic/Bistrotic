@@ -6,9 +6,5 @@ namespace Bistrotic.Commands.InMemory.Tests
 
     public class ReflectionCommandDispatcherTest
     {
-        [Fact]
-        public void Test1()
-        {
-        }
     }
 }

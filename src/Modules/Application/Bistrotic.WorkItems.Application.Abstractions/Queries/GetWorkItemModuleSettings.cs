@@ -3,7 +3,7 @@
     using Bistrotic.Application.Queries;
     using Bistrotic.WorkItems.Application.ModelViews;
 
-    public record GetWorkItemModuleSettings : Query<WorkItemModuleSettings>
+    public record GetWorkItemModuleSettings : SettingsQuery<WorkItemModuleSettings>
     {
     }
 }

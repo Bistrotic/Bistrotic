@@ -1,27 +1,31 @@
 namespace Bistrotic.Infrastructure.WebServer
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
+    using Bistrotic.Infrastructure.Modules;
+    using Bistrotic.Infrastructure.Modules.Definitions;
     using Bistrotic.Infrastructure.WebServer.Models;
 
     using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
+    using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Microsoft.OpenApi.Models;
 
-#pragma warning disable CA1822 // Mark members as static
-
     public abstract class ServerStartup<TDbContext>
         where TDbContext : ApiAuthorizationDbContext<ApplicationUser>
     {
         private readonly IWebHostEnvironment _environment;
+
+        private IEnumerable<IServerModule>? _serverModules;
 
         protected ServerStartup(IWebHostEnvironment environment, IConfiguration configuration)
         {
@@ -31,8 +35,10 @@ namespace Bistrotic.Infrastructure.WebServer
 
         public IConfiguration Configuration { get; }
 
+        protected IEnumerable<IServerModule> ServerModules => _serverModules ??= GetServerModules();
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -47,88 +53,69 @@ namespace Bistrotic.Infrastructure.WebServer
                 // scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseBlazorFrameworkFiles();
             app.UseRouting();
+            app.UseIdentityServer();
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Bistrotic V1"));
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.Map("api/{**slug}", HandleApiFallback);
-                endpoints.MapBlazorHub();
-                endpoints.MapControllers();
-                endpoints.MapRazorPages();
-                endpoints.MapFallbackToPage("index.html");
-            });
         }
 
-        public void ConfigureServices(IServiceCollection services)
+        public virtual void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<TDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-
-            services
-                 .AddServerSideBlazor()
-                .AddCircuitOptions(options =>
-                {
-                    if (_environment.IsDevelopment())
-                    {
-                        options.DetailedErrors = true;
-                    }
-                });
-
+            ConfigureSecurity(services);
+            services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddControllersWithViews().AddDapr();
             services.AddRazorPages();
-            services.AddIdentityCore<IdentityUser>(_ => { })
-                .AddEntityFrameworkStores<TDbContext>()
-                .AddSignInManager()
-                .AddDefaultTokenProviders();
-
-            services.Configure<IdentityOptions>(options =>
-            {
-                // Password settings
-                options.Password.RequireDigit = false;
-                options.Password.RequiredLength = 6;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = false;
-                options.Password.RequireLowercase = false;
-
-                // Lockout settings
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
-                options.Lockout.MaxFailedAccessAttempts = 10;
-                options.Lockout.AllowedForNewUsers = true;
-
-                // User settings
-                options.User.RequireUniqueEmail = false;
-            });
-
-            services.AddAuthentication(IdentityConstants.ApplicationScheme)
-                .AddCookie(IdentityConstants.ApplicationScheme);
-
-            services.ConfigureApplicationCookie(options =>
-            {
-                options.Cookie.HttpOnly = false;
-                options.Events.OnRedirectToLogin = context =>
-                {
-                    context.Response.StatusCode = 401;
-                    return Task.CompletedTask;
-                };
-            });
-            services.AddMvc();
-
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Bistrotic", Version = "v1" }));
+            ConfigureModules(services);
         }
 
-        private Task HandleApiFallback(HttpContext context)
+        protected virtual void ConfigureModules(IServiceCollection services)
+        {
+            foreach (IServerModule module in ServerModules)
+            {
+                module.ConfigureServices(services);
+            }
+        }
+
+        protected virtual void ConfigureSecurity(IServiceCollection services)
+        {
+            services.AddDbContext<TDbContext>(options =>
+                 options.UseSqlServer(
+                     Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDatabaseDeveloperPageExceptionFilter();
+
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<TDbContext>();
+
+            services.AddIdentityServer()
+                .AddApiAuthorization<ApplicationUser, TDbContext>();
+
+            services.AddAuthentication()
+                .AddIdentityServerJwt();
+        }
+
+        protected Task HandleApiFallback(HttpContext context)
         {
             context.Response.StatusCode = StatusCodes.Status404NotFound;
             return Task.FromResult(0);
+        }
+
+        private IEnumerable<IServerModule> GetServerModules()
+        {
+            var modules = new ModuleFactory(
+                new Func<IModuleDefinitionLoader>[] { () => new ReflectionModuleDefinitionLoader() },
+                new Func<IModuleActivator>[] { () => new ReflectionModuleActivator(Configuration) });
+            return modules.GetModules()
+                .GetAwaiter()
+                .GetResult()
+                .OfType<IServerModule>()
+                .Select(p => p);
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.

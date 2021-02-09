@@ -1,7 +1,9 @@
-﻿namespace Bistrotic.Infrastructure.Modules.Abstractions
+﻿using Microsoft.Extensions.DependencyInjection;
+
+namespace Bistrotic.Infrastructure.Modules
 {
     public interface IServerModule : IModule
     {
-        string ServiceName { get; set; }
+        void ConfigureServices(IServiceCollection services);
     }
 }

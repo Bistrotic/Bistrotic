@@ -4,6 +4,9 @@
 		<MicrosoftExtensionsLoggingAbstractionsVersion>5.0.0</MicrosoftExtensionsLoggingAbstractionsVersion>
 		<MicrosoftExtensionsLoggingConfigurationVersion>5.0.0</MicrosoftExtensionsLoggingConfigurationVersion>
 		<MicrosoftExtensionsConfigurationAbstractionsVersion>5.0.0</MicrosoftExtensionsConfigurationAbstractionsVersion>
+		<MicrosoftExtensionsConfigurationVersion>5.0.0</MicrosoftExtensionsConfigurationVersion>
+		<MicrosoftExtensionsConfigurationBinderVersion>5.0.0</MicrosoftExtensionsConfigurationBinderVersion>
+		<MicrosoftExtensionsOptionsVersion>5.0.0</MicrosoftExtensionsOptionsVersion>
 		<MicrosoftJSInteropWebAssemblyVersion>5.0.2</MicrosoftJSInteropWebAssemblyVersion>
 		<SystemNetHttpJsonVersion>5.0.0</SystemNetHttpJsonVersion>
 		<SystemTextJsonVersion>5.0.1</SystemTextJsonVersion>
@@ -11,5 +14,6 @@
 		<MicrosoftEntityFrameworkCoreToolsVersion>5.0.2</MicrosoftEntityFrameworkCoreToolsVersion>
 		<SystemNetHttpVersion>5.0.0</SystemNetHttpVersion>
 		<MicrosoftExtensionsHttpVersion>5.0.0</MicrosoftExtensionsHttpVersion>
+		<MicrosoftExtensionsHostingAbstractionsVersion>5.0.0</MicrosoftExtensionsHostingAbstractionsVersion>
 	</PropertyGroup>
 </Project>

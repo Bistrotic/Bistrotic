@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" DefaultTargets="Build"
-  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -102,6 +101,10 @@
     <ProjectReference Include="..\..\Modules\Domain\Bistrotic.WorkItems.Domain\Bistrotic.WorkItems.Domain.csproj">
       <Name>Bistrotic.WorkItems.Domain</Name>
       <Project>{148e3c82-62b8-4f9e-b6de-3422711dc880}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Modules\Infrastructure\Bistrotic.WorkItems.Server\Bistrotic.WorkItems.Server.csproj">
+      <Name>Bistrotic.WorkItems.Server</Name>
+      <Project>{0902ff4d-8531-4b07-9793-f61219abd713}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\Modules\Presentation\Bistrotic.Units.Presentation\Bistrotic.Units.Presentation.csproj">
       <Name>Bistrotic.Units.Presentation</Name>

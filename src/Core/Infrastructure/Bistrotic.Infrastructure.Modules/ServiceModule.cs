@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.Infrastructure.Modules.Abstractions
+﻿namespace Bistrotic.Infrastructure.Modules
 {
     using Bistrotic.Infrastructure.Modules.Definitions;
 

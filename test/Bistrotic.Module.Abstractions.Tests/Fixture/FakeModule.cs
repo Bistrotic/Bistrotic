@@ -1,7 +1,6 @@
 ﻿namespace Bistrotic.Module.Abstractions.Tests.Fixture
 {
     using Bistrotic.Infrastructure.Modules;
-    using Bistrotic.Infrastructure.Modules.Abstractions;
     using Bistrotic.Infrastructure.Modules.Definitions;
 
     using Microsoft.Extensions.Configuration;

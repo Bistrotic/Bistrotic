@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.WorkItems.Application.ModelViews
+﻿namespace Bistrotic.WorkItems.Application.Models
 {
     public record PrioritySla(
         int Priority,

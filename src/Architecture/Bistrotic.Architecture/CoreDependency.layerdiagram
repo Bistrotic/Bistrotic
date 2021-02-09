@@ -92,58 +92,6 @@
         </dependencyFromLayerToLayer>
       </dependencyToLayers>
       <childLayers>
-        <layer Id="70465409-213a-4294-aa18-60b3adbd3bdd" name="Bistrotic.Units.Application">
-          <references>
-            <reference Id="9b1377ce-bbcc-4b17-9fa4-8660238b0847" name="Bistrotic.Units.Application">
-              <ArtifactNode Label="Bistrotic.Units.Application" Category="CodeSchema_Project" Id="(Assembly=../../Modules/Application/Bistrotic.Units.Application/Bistrotic.Units.Application.csproj)">
-                <Category Ref="File" />
-              </ArtifactNode>
-              <ExpandedNode Id="(Assembly=Bistrotic.Units.Application)" Label="Bistrotic.Units.Application.dll" Category="CodeSchema_Assembly">
-                <LinkCategory Ref="Produces" />
-                <LinkCategory Ref="Represents" />
-              </ExpandedNode>
-            </reference>
-          </references>
-        </layer>
-        <layer Id="bff11812-c13a-4ee8-88ed-b0a49a0abf77" name="Bistrotic.Roles.Application">
-          <references>
-            <reference Id="8dc0ed01-693d-4215-8d11-b470e7a45ef5" name="Bistrotic.Roles.Application">
-              <ArtifactNode Label="Bistrotic.Roles.Application" Category="CodeSchema_Project" Id="(Assembly=../../Modules/Application/Bistrotic.Roles.Application/Bistrotic.Roles.Application.csproj)">
-                <Category Ref="File" />
-              </ArtifactNode>
-              <ExpandedNode Id="(Assembly=Bistrotic.Roles.Application)" Label="Bistrotic.Roles.Application.dll" Category="CodeSchema_Assembly">
-                <LinkCategory Ref="Produces" />
-                <LinkCategory Ref="Represents" />
-              </ExpandedNode>
-            </reference>
-          </references>
-        </layer>
-        <layer Id="bde072f0-52cc-477a-815c-9f36a37754cb" name="Bistrotic.Users.Application">
-          <references>
-            <reference Id="406fb88f-794c-4224-a4b2-37b5918a9748" name="Bistrotic.Users.Application">
-              <ArtifactNode Label="Bistrotic.Users.Application" Category="CodeSchema_Project" Id="(Assembly=../../Modules/Application/Bistrotic.Users.Application/Bistrotic.Users.Application.csproj)">
-                <Category Ref="File" />
-              </ArtifactNode>
-              <ExpandedNode Id="(Assembly=Bistrotic.Users.Application)" Label="Bistrotic.Users.Application.dll" Category="CodeSchema_Assembly">
-                <LinkCategory Ref="Produces" />
-                <LinkCategory Ref="Represents" />
-              </ExpandedNode>
-            </reference>
-          </references>
-        </layer>
-        <layer Id="d2c99dc6-5bea-4e3b-a1b7-9e9591631a5d" name="Bistrotic.WorkItems.Application">
-          <references>
-            <reference Id="4beb1211-92cf-4b12-8a60-cce5374f6701" name="Bistrotic.WorkItems.Application">
-              <ArtifactNode Label="Bistrotic.WorkItems.Application" Category="CodeSchema_Project" Id="(Assembly=../../Modules/Application/Bistrotic.WorkItems.Application/Bistrotic.WorkItems.Application.csproj)">
-                <Category Ref="File" />
-              </ArtifactNode>
-              <ExpandedNode Id="(Assembly=Bistrotic.WorkItems.Application)" Label="Bistrotic.WorkItems.Application.dll" Category="CodeSchema_Assembly">
-                <LinkCategory Ref="Produces" />
-                <LinkCategory Ref="Represents" />
-              </ExpandedNode>
-            </reference>
-          </references>
-        </layer>
         <layer Id="8facdef4-93f7-4880-9d62-f5f39c4c827f" name="Bistrotic.Application">
           <references>
             <reference Id="2bf9e2b6-e9af-4159-aa3c-defb1d5fd76e" name="Bistrotic.Application">
@@ -156,6 +104,87 @@
               </ExpandedNode>
             </reference>
           </references>
+        </layer>
+        <layer Id="0d164feb-3932-49c9-afad-8c02f2bf640a" name="Application Modules">
+          <dependencyToLayers>
+            <dependencyFromLayerToLayer Id="3d40696d-126b-48bf-850b-1301f4417be2" direction="Forward">
+              <layerMoniker Id="8facdef4-93f7-4880-9d62-f5f39c4c827f" />
+            </dependencyFromLayerToLayer>
+          </dependencyToLayers>
+          <childLayers>
+            <layer Id="bff11812-c13a-4ee8-88ed-b0a49a0abf77" name="Bistrotic.Roles.Application">
+              <dependencyToLayers>
+                <dependencyFromLayerToLayer Id="9bf6d18c-ddd9-4b30-aab8-4fb891cb9dbc" direction="Forward">
+                  <layerMoniker Id="705e8404-55bd-49e0-a956-ab2bdc49da25" />
+                </dependencyFromLayerToLayer>
+              </dependencyToLayers>
+              <references>
+                <reference Id="8dc0ed01-693d-4215-8d11-b470e7a45ef5" name="Bistrotic.Roles.Application">
+                  <ArtifactNode Label="Bistrotic.Roles.Application" Category="CodeSchema_Project" Id="(Assembly=../../Modules/Application/Bistrotic.Roles.Application/Bistrotic.Roles.Application.csproj)">
+                    <Category Ref="File" />
+                  </ArtifactNode>
+                  <ExpandedNode Id="(Assembly=Bistrotic.Roles.Application)" Label="Bistrotic.Roles.Application.dll" Category="CodeSchema_Assembly">
+                    <LinkCategory Ref="Produces" />
+                    <LinkCategory Ref="Represents" />
+                  </ExpandedNode>
+                </reference>
+              </references>
+            </layer>
+            <layer Id="70465409-213a-4294-aa18-60b3adbd3bdd" name="Bistrotic.Units.Application">
+              <dependencyToLayers>
+                <dependencyFromLayerToLayer Id="67e1c0cb-84a2-488e-b983-ae39f89c60a5" direction="Forward">
+                  <layerMoniker Id="63823292-0f0c-434a-a031-7a768bbe1956" />
+                </dependencyFromLayerToLayer>
+              </dependencyToLayers>
+              <references>
+                <reference Id="9b1377ce-bbcc-4b17-9fa4-8660238b0847" name="Bistrotic.Units.Application">
+                  <ArtifactNode Label="Bistrotic.Units.Application" Category="CodeSchema_Project" Id="(Assembly=../../Modules/Application/Bistrotic.Units.Application/Bistrotic.Units.Application.csproj)">
+                    <Category Ref="File" />
+                  </ArtifactNode>
+                  <ExpandedNode Id="(Assembly=Bistrotic.Units.Application)" Label="Bistrotic.Units.Application.dll" Category="CodeSchema_Assembly">
+                    <LinkCategory Ref="Produces" />
+                    <LinkCategory Ref="Represents" />
+                  </ExpandedNode>
+                </reference>
+              </references>
+            </layer>
+            <layer Id="d2c99dc6-5bea-4e3b-a1b7-9e9591631a5d" name="Bistrotic.WorkItems.Application">
+              <dependencyToLayers>
+                <dependencyFromLayerToLayer Id="9e3848bc-f781-49da-9a75-7d4a1ff9da06" direction="Forward">
+                  <layerMoniker Id="5424c60e-e32b-4c2d-8ecd-ff9e8e8835b8" />
+                </dependencyFromLayerToLayer>
+              </dependencyToLayers>
+              <references>
+                <reference Id="4beb1211-92cf-4b12-8a60-cce5374f6701" name="Bistrotic.WorkItems.Application">
+                  <ArtifactNode Label="Bistrotic.WorkItems.Application" Category="CodeSchema_Project" Id="(Assembly=../../Modules/Application/Bistrotic.WorkItems.Application/Bistrotic.WorkItems.Application.csproj)">
+                    <Category Ref="File" />
+                  </ArtifactNode>
+                  <ExpandedNode Id="(Assembly=Bistrotic.WorkItems.Application)" Label="Bistrotic.WorkItems.Application.dll" Category="CodeSchema_Assembly">
+                    <LinkCategory Ref="Produces" />
+                    <LinkCategory Ref="Represents" />
+                  </ExpandedNode>
+                </reference>
+              </references>
+            </layer>
+            <layer Id="bde072f0-52cc-477a-815c-9f36a37754cb" name="Bistrotic.Users.Application">
+              <dependencyToLayers>
+                <dependencyFromLayerToLayer Id="efa8f881-41c6-44ab-9344-c8d3bd5177ea" direction="Forward">
+                  <layerMoniker Id="ab602976-bf1f-4914-8bed-0b14544e5a6c" />
+                </dependencyFromLayerToLayer>
+              </dependencyToLayers>
+              <references>
+                <reference Id="406fb88f-794c-4224-a4b2-37b5918a9748" name="Bistrotic.Users.Application">
+                  <ArtifactNode Label="Bistrotic.Users.Application" Category="CodeSchema_Project" Id="(Assembly=../../Modules/Application/Bistrotic.Users.Application/Bistrotic.Users.Application.csproj)">
+                    <Category Ref="File" />
+                  </ArtifactNode>
+                  <ExpandedNode Id="(Assembly=Bistrotic.Users.Application)" Label="Bistrotic.Users.Application.dll" Category="CodeSchema_Assembly">
+                    <LinkCategory Ref="Produces" />
+                    <LinkCategory Ref="Represents" />
+                  </ExpandedNode>
+                </reference>
+              </references>
+            </layer>
+          </childLayers>
         </layer>
       </childLayers>
     </layer>
@@ -186,78 +215,6 @@
     </layer>
     <layer Id="03e64b26-49c1-4396-9ca7-901a931b3e82" name="Domain Facade">
       <childLayers>
-        <layer Id="63823292-0f0c-434a-a031-7a768bbe1956" name="Bistrotic.Units.Domain.Abstractions">
-          <dependencyToLayers>
-            <dependencyFromLayerToLayer Id="9f48cb42-6662-4228-bfb7-78dc515f8312" direction="Forward">
-              <layerMoniker Id="02dda02c-84ec-4b42-8793-96729fd83599" />
-            </dependencyFromLayerToLayer>
-          </dependencyToLayers>
-          <references>
-            <reference Id="c6821ee0-81be-40c8-b817-761b5db9affb" name="Bistrotic.Units.Domain.Abstractions">
-              <ArtifactNode Label="Bistrotic.Units.Domain.Abstractions" Category="CodeSchema_Project" Id="(Assembly=../../Modules/Domain/Bistrotic.Units.Domain.Abstractions/Bistrotic.Units.Domain.Abstractions.csproj)">
-                <Category Ref="File" />
-              </ArtifactNode>
-              <ExpandedNode Id="(Assembly=Bistrotic.Units.Domain.Abstractions)" Label="Bistrotic.Units.Domain.Abstractions.dll" Category="CodeSchema_Assembly">
-                <LinkCategory Ref="Produces" />
-                <LinkCategory Ref="Represents" />
-              </ExpandedNode>
-            </reference>
-          </references>
-        </layer>
-        <layer Id="705e8404-55bd-49e0-a956-ab2bdc49da25" name="Bistrotic.Roles.Domain.Abstractions">
-          <dependencyToLayers>
-            <dependencyFromLayerToLayer Id="65880c25-0c71-457b-b1b0-0d0074d89bf5" direction="Forward">
-              <layerMoniker Id="02dda02c-84ec-4b42-8793-96729fd83599" />
-            </dependencyFromLayerToLayer>
-          </dependencyToLayers>
-          <references>
-            <reference Id="bc583f4e-6dfc-480d-b047-fbdc90e25023" name="Bistrotic.Roles.Domain.Abstractions">
-              <ArtifactNode Label="Bistrotic.Roles.Domain.Abstractions" Category="CodeSchema_Project" Id="(Assembly=../../Modules/Domain/Bistrotic.Roles.Domain.Abstractions/Bistrotic.Roles.Domain.Abstractions.csproj)">
-                <Category Ref="File" />
-              </ArtifactNode>
-              <ExpandedNode Id="(Assembly=Bistrotic.Roles.Domain.Abstractions)" Label="Bistrotic.Roles.Domain.Abstractions.dll" Category="CodeSchema_Assembly">
-                <LinkCategory Ref="Produces" />
-                <LinkCategory Ref="Represents" />
-              </ExpandedNode>
-            </reference>
-          </references>
-        </layer>
-        <layer Id="ab602976-bf1f-4914-8bed-0b14544e5a6c" name="Bistrotic.Users.Domain.Abstractions">
-          <dependencyToLayers>
-            <dependencyFromLayerToLayer Id="5ec72bc2-ff7d-4167-a19f-cac4f706e55d" direction="Forward">
-              <layerMoniker Id="02dda02c-84ec-4b42-8793-96729fd83599" />
-            </dependencyFromLayerToLayer>
-          </dependencyToLayers>
-          <references>
-            <reference Id="1a97a0b6-4e72-479b-8284-1d31c9baf0e3" name="Bistrotic.Users.Domain.Abstractions">
-              <ArtifactNode Label="Bistrotic.Users.Domain.Abstractions" Category="CodeSchema_Project" Id="(Assembly=../../Modules/Domain/Bistrotic.Users.Domain.Abstractions/Bistrotic.Users.Domain.Abstractions.csproj)">
-                <Category Ref="File" />
-              </ArtifactNode>
-              <ExpandedNode Id="(Assembly=Bistrotic.Users.Domain.Abstractions)" Label="Bistrotic.Users.Domain.Abstractions.dll" Category="CodeSchema_Assembly">
-                <LinkCategory Ref="Produces" />
-                <LinkCategory Ref="Represents" />
-              </ExpandedNode>
-            </reference>
-          </references>
-        </layer>
-        <layer Id="5424c60e-e32b-4c2d-8ecd-ff9e8e8835b8" name="Bistrotic.WorkItems.Domain.Abstractions">
-          <dependencyToLayers>
-            <dependencyFromLayerToLayer Id="ff406d78-024c-4dc9-887b-e7a54a9a9f44" direction="Forward">
-              <layerMoniker Id="02dda02c-84ec-4b42-8793-96729fd83599" />
-            </dependencyFromLayerToLayer>
-          </dependencyToLayers>
-          <references>
-            <reference Id="c13aa1b9-5b7d-4ab7-8ac0-d3e183b44b06" name="Bistrotic.WorkItems.Domain.Abstractions">
-              <ArtifactNode Label="Bistrotic.WorkItems.Domain.Abstractions" Category="CodeSchema_Project" Id="(Assembly=../../Modules/Domain/Bistrotic.WorkItems.Domain.Abstractions/Bistrotic.WorkItems.Domain.Abstractions.csproj)">
-                <Category Ref="File" />
-              </ArtifactNode>
-              <ExpandedNode Id="(Assembly=Bistrotic.WorkItems.Domain.Abstractions)" Label="Bistrotic.WorkItems.Domain.Abstractions.dll" Category="CodeSchema_Assembly">
-                <LinkCategory Ref="Produces" />
-                <LinkCategory Ref="Represents" />
-              </ExpandedNode>
-            </reference>
-          </references>
-        </layer>
         <layer Id="02dda02c-84ec-4b42-8793-96729fd83599" name="Bistrotic.Domain.Abstractions">
           <references>
             <reference Id="d6dc9317-8c34-4677-9b1e-359e13a4aaa9" name="Bistrotic.Domain.Abstractions">
@@ -272,6 +229,67 @@
             </reference>
           </references>
         </layer>
+        <layer Id="51b48fe7-2d2e-46b1-8463-f3d082c8ec19" name="Domain Facade Modules">
+          <dependencyToLayers>
+            <dependencyFromLayerToLayer Id="862a7163-87d1-4f2d-afe1-1d848add2f6c" direction="Forward">
+              <layerMoniker Id="02dda02c-84ec-4b42-8793-96729fd83599" />
+            </dependencyFromLayerToLayer>
+          </dependencyToLayers>
+          <childLayers>
+            <layer Id="5424c60e-e32b-4c2d-8ecd-ff9e8e8835b8" name="Bistrotic.WorkItems.Domain.Abstractions">
+              <references>
+                <reference Id="c13aa1b9-5b7d-4ab7-8ac0-d3e183b44b06" name="Bistrotic.WorkItems.Domain.Abstractions">
+                  <ArtifactNode Label="Bistrotic.WorkItems.Domain.Abstractions" Category="CodeSchema_Project" Id="(Assembly=../../Modules/Domain/Bistrotic.WorkItems.Domain.Abstractions/Bistrotic.WorkItems.Domain.Abstractions.csproj)">
+                    <Category Ref="File" />
+                  </ArtifactNode>
+                  <ExpandedNode Id="(Assembly=Bistrotic.WorkItems.Domain.Abstractions)" Label="Bistrotic.WorkItems.Domain.Abstractions.dll" Category="CodeSchema_Assembly">
+                    <LinkCategory Ref="Produces" />
+                    <LinkCategory Ref="Represents" />
+                  </ExpandedNode>
+                </reference>
+              </references>
+            </layer>
+            <layer Id="ab602976-bf1f-4914-8bed-0b14544e5a6c" name="Bistrotic.Users.Domain.Abstractions">
+              <references>
+                <reference Id="1a97a0b6-4e72-479b-8284-1d31c9baf0e3" name="Bistrotic.Users.Domain.Abstractions">
+                  <ArtifactNode Label="Bistrotic.Users.Domain.Abstractions" Category="CodeSchema_Project" Id="(Assembly=../../Modules/Domain/Bistrotic.Users.Domain.Abstractions/Bistrotic.Users.Domain.Abstractions.csproj)">
+                    <Category Ref="File" />
+                  </ArtifactNode>
+                  <ExpandedNode Id="(Assembly=Bistrotic.Users.Domain.Abstractions)" Label="Bistrotic.Users.Domain.Abstractions.dll" Category="CodeSchema_Assembly">
+                    <LinkCategory Ref="Produces" />
+                    <LinkCategory Ref="Represents" />
+                  </ExpandedNode>
+                </reference>
+              </references>
+            </layer>
+            <layer Id="705e8404-55bd-49e0-a956-ab2bdc49da25" name="Bistrotic.Roles.Domain.Abstractions">
+              <references>
+                <reference Id="bc583f4e-6dfc-480d-b047-fbdc90e25023" name="Bistrotic.Roles.Domain.Abstractions">
+                  <ArtifactNode Label="Bistrotic.Roles.Domain.Abstractions" Category="CodeSchema_Project" Id="(Assembly=../../Modules/Domain/Bistrotic.Roles.Domain.Abstractions/Bistrotic.Roles.Domain.Abstractions.csproj)">
+                    <Category Ref="File" />
+                  </ArtifactNode>
+                  <ExpandedNode Id="(Assembly=Bistrotic.Roles.Domain.Abstractions)" Label="Bistrotic.Roles.Domain.Abstractions.dll" Category="CodeSchema_Assembly">
+                    <LinkCategory Ref="Produces" />
+                    <LinkCategory Ref="Represents" />
+                  </ExpandedNode>
+                </reference>
+              </references>
+            </layer>
+            <layer Id="63823292-0f0c-434a-a031-7a768bbe1956" name="Bistrotic.Units.Domain.Abstractions">
+              <references>
+                <reference Id="c6821ee0-81be-40c8-b817-761b5db9affb" name="Bistrotic.Units.Domain.Abstractions">
+                  <ArtifactNode Label="Bistrotic.Units.Domain.Abstractions" Category="CodeSchema_Project" Id="(Assembly=../../Modules/Domain/Bistrotic.Units.Domain.Abstractions/Bistrotic.Units.Domain.Abstractions.csproj)">
+                    <Category Ref="File" />
+                  </ArtifactNode>
+                  <ExpandedNode Id="(Assembly=Bistrotic.Units.Domain.Abstractions)" Label="Bistrotic.Units.Domain.Abstractions.dll" Category="CodeSchema_Assembly">
+                    <LinkCategory Ref="Produces" />
+                    <LinkCategory Ref="Represents" />
+                  </ExpandedNode>
+                </reference>
+              </references>
+            </layer>
+          </childLayers>
+        </layer>
       </childLayers>
     </layer>
     <layer Id="010362df-60bc-4579-8038-24bae86b290b" name="Application Facade&#xD;&#xA;">
@@ -281,58 +299,6 @@
         </dependencyFromLayerToLayer>
       </dependencyToLayers>
       <childLayers>
-        <layer Id="73fff3e0-1b58-45f7-ac87-e9c4ca2fd417" name="Bistrotic.Units.Application.Abstractions">
-          <references>
-            <reference Id="b238a259-907c-433a-8701-c01b7738b5e5" name="Bistrotic.Units.Application.Abstractions">
-              <ArtifactNode Label="Bistrotic.Units.Application.Abstractions" Category="CodeSchema_Project" Id="(Assembly=../../Modules/Application/Bistrotic.Units.Abstractions/Bistrotic.Units.Application.Abstractions.csproj)">
-                <Category Ref="File" />
-              </ArtifactNode>
-              <ExpandedNode Id="(Assembly=Bistrotic.Units.Application.Abstractions)" Label="Bistrotic.Units.Application.Abstractions.dll" Category="CodeSchema_Assembly">
-                <LinkCategory Ref="Produces" />
-                <LinkCategory Ref="Represents" />
-              </ExpandedNode>
-            </reference>
-          </references>
-        </layer>
-        <layer Id="213307b1-1c01-44ba-b580-537632d97334" name="Bistrotic.Roles.Application.Abstractions">
-          <references>
-            <reference Id="f5a83e1b-48eb-43ff-918a-7a1dfbae2e87" name="Bistrotic.Roles.Application.Abstractions">
-              <ArtifactNode Label="Bistrotic.Roles.Application.Abstractions" Category="CodeSchema_Project" Id="(Assembly=../../Modules/Application/Bistrotic.Roles.Application.Abstractions/Bistrotic.Roles.Application.Abstractions.csproj)">
-                <Category Ref="File" />
-              </ArtifactNode>
-              <ExpandedNode Id="(Assembly=Bistrotic.Roles.Application.Abstractions)" Label="Bistrotic.Roles.Application.Abstractions.dll" Category="CodeSchema_Assembly">
-                <LinkCategory Ref="Produces" />
-                <LinkCategory Ref="Represents" />
-              </ExpandedNode>
-            </reference>
-          </references>
-        </layer>
-        <layer Id="3643d9c2-0018-4d5c-994d-e509549c0f76" name="Bistrotic.Users.Application.Abstractions">
-          <references>
-            <reference Id="9909a6cd-29f5-4f11-ab73-a42af126e8d1" name="Bistrotic.Users.Application.Abstractions">
-              <ArtifactNode Label="Bistrotic.Users.Application.Abstractions" Category="CodeSchema_Project" Id="(Assembly=../../Modules/Application/Bistrotic.Users.Application.Abstractions/Bistrotic.Users.Application.Abstractions.csproj)">
-                <Category Ref="File" />
-              </ArtifactNode>
-              <ExpandedNode Id="(Assembly=Bistrotic.Users.Application.Abstractions)" Label="Bistrotic.Users.Application.Abstractions.dll" Category="CodeSchema_Assembly">
-                <LinkCategory Ref="Produces" />
-                <LinkCategory Ref="Represents" />
-              </ExpandedNode>
-            </reference>
-          </references>
-        </layer>
-        <layer Id="3b3af6cf-b9b9-4fd9-b436-2ce7334e9035" name="Bistrotic.WorkItems.Application.Abstractions">
-          <references>
-            <reference Id="28525043-0a9a-447e-9307-4c45c54dcd2e" name="Bistrotic.WorkItems.Application.Abstractions">
-              <ArtifactNode Label="Bistrotic.WorkItems.Application.Abstractions" Category="CodeSchema_Project" Id="(Assembly=../../Modules/Application/Bistrotic.WorkItems.Application.Abstractions/Bistrotic.WorkItems.Application.Abstractions.csproj)">
-                <Category Ref="File" />
-              </ArtifactNode>
-              <ExpandedNode Id="(Assembly=Bistrotic.WorkItems.Application.Abstractions)" Label="Bistrotic.WorkItems.Application.Abstractions.dll" Category="CodeSchema_Assembly">
-                <LinkCategory Ref="Produces" />
-                <LinkCategory Ref="Represents" />
-              </ExpandedNode>
-            </reference>
-          </references>
-        </layer>
         <layer Id="d30b0715-fe1e-47a8-83fe-e5de37fd8c45" name="Bistrotic.Application.Abstractions">
           <references>
             <reference Id="fd5d7de5-4ea0-4676-8e7f-4a1b1d7885a0" name="Bistrotic.Application.Abstractions">
@@ -346,6 +312,67 @@
               </ExpandedNode>
             </reference>
           </references>
+        </layer>
+        <layer Id="ad35f39e-0842-4b51-87d6-fba7bccb0f94" name="Application Facade Modules">
+          <dependencyToLayers>
+            <dependencyFromLayerToLayer Id="7e355c75-6af4-41c0-a60f-1d1531693780" direction="Forward">
+              <layerMoniker Id="d30b0715-fe1e-47a8-83fe-e5de37fd8c45" />
+            </dependencyFromLayerToLayer>
+          </dependencyToLayers>
+          <childLayers>
+            <layer Id="73fff3e0-1b58-45f7-ac87-e9c4ca2fd417" name="Bistrotic.Units.Application.Abstractions">
+              <references>
+                <reference Id="b238a259-907c-433a-8701-c01b7738b5e5" name="Bistrotic.Units.Application.Abstractions">
+                  <ArtifactNode Label="Bistrotic.Units.Application.Abstractions" Category="CodeSchema_Project" Id="(Assembly=../../Modules/Application/Bistrotic.Units.Abstractions/Bistrotic.Units.Application.Abstractions.csproj)">
+                    <Category Ref="File" />
+                  </ArtifactNode>
+                  <ExpandedNode Id="(Assembly=Bistrotic.Units.Application.Abstractions)" Label="Bistrotic.Units.Application.Abstractions.dll" Category="CodeSchema_Assembly">
+                    <LinkCategory Ref="Produces" />
+                    <LinkCategory Ref="Represents" />
+                  </ExpandedNode>
+                </reference>
+              </references>
+            </layer>
+            <layer Id="213307b1-1c01-44ba-b580-537632d97334" name="Bistrotic.Roles.Application.Abstractions">
+              <references>
+                <reference Id="f5a83e1b-48eb-43ff-918a-7a1dfbae2e87" name="Bistrotic.Roles.Application.Abstractions">
+                  <ArtifactNode Label="Bistrotic.Roles.Application.Abstractions" Category="CodeSchema_Project" Id="(Assembly=../../Modules/Application/Bistrotic.Roles.Application.Abstractions/Bistrotic.Roles.Application.Abstractions.csproj)">
+                    <Category Ref="File" />
+                  </ArtifactNode>
+                  <ExpandedNode Id="(Assembly=Bistrotic.Roles.Application.Abstractions)" Label="Bistrotic.Roles.Application.Abstractions.dll" Category="CodeSchema_Assembly">
+                    <LinkCategory Ref="Produces" />
+                    <LinkCategory Ref="Represents" />
+                  </ExpandedNode>
+                </reference>
+              </references>
+            </layer>
+            <layer Id="3643d9c2-0018-4d5c-994d-e509549c0f76" name="Bistrotic.Users.Application.Abstractions">
+              <references>
+                <reference Id="9909a6cd-29f5-4f11-ab73-a42af126e8d1" name="Bistrotic.Users.Application.Abstractions">
+                  <ArtifactNode Label="Bistrotic.Users.Application.Abstractions" Category="CodeSchema_Project" Id="(Assembly=../../Modules/Application/Bistrotic.Users.Application.Abstractions/Bistrotic.Users.Application.Abstractions.csproj)">
+                    <Category Ref="File" />
+                  </ArtifactNode>
+                  <ExpandedNode Id="(Assembly=Bistrotic.Users.Application.Abstractions)" Label="Bistrotic.Users.Application.Abstractions.dll" Category="CodeSchema_Assembly">
+                    <LinkCategory Ref="Produces" />
+                    <LinkCategory Ref="Represents" />
+                  </ExpandedNode>
+                </reference>
+              </references>
+            </layer>
+            <layer Id="3b3af6cf-b9b9-4fd9-b436-2ce7334e9035" name="Bistrotic.WorkItems.Application.Abstractions">
+              <references>
+                <reference Id="28525043-0a9a-447e-9307-4c45c54dcd2e" name="Bistrotic.WorkItems.Application.Abstractions">
+                  <ArtifactNode Label="Bistrotic.WorkItems.Application.Abstractions" Category="CodeSchema_Project" Id="(Assembly=../../Modules/Application/Bistrotic.WorkItems.Application.Abstractions/Bistrotic.WorkItems.Application.Abstractions.csproj)">
+                    <Category Ref="File" />
+                  </ArtifactNode>
+                  <ExpandedNode Id="(Assembly=Bistrotic.WorkItems.Application.Abstractions)" Label="Bistrotic.WorkItems.Application.Abstractions.dll" Category="CodeSchema_Assembly">
+                    <LinkCategory Ref="Produces" />
+                    <LinkCategory Ref="Represents" />
+                  </ExpandedNode>
+                </reference>
+              </references>
+            </layer>
+          </childLayers>
         </layer>
       </childLayers>
     </layer>
@@ -490,6 +517,9 @@
             <dependencyFromLayerToLayer Id="f0460f0b-d58d-4a99-a62c-3feb22d49fac" direction="Forward">
               <layerMoniker Id="23bf0116-52b0-4cbc-9b16-8cb34d529aa8" />
             </dependencyFromLayerToLayer>
+            <dependencyFromLayerToLayer Id="e3f3a33d-58e1-4837-948d-24a726e98d84" direction="Forward">
+              <layerMoniker Id="93f0ea85-c31a-4584-87de-983477a9a866" />
+            </dependencyFromLayerToLayer>
           </dependencyToLayers>
           <references>
             <reference Id="a8348761-5a8a-432a-9372-cc0485cdd2ee" name="Bistrotic.Infrastructure.WebServer">
@@ -503,6 +533,37 @@
               </ExpandedNode>
             </reference>
           </references>
+        </layer>
+        <layer Id="243ccc0e-81a3-4fa1-bda5-e54105d93c56" name="Infrastructure Modules">
+          <dependencyToLayers>
+            <dependencyFromLayerToLayer Id="005a240e-46d8-41dd-ae8e-a4cc20440a27" direction="Forward">
+              <layerMoniker Id="23bf0116-52b0-4cbc-9b16-8cb34d529aa8" />
+            </dependencyFromLayerToLayer>
+            <dependencyFromLayerToLayer Id="12c8dc90-b3db-435b-b544-7ee38df62b52" direction="Forward">
+              <layerMoniker Id="93f0ea85-c31a-4584-87de-983477a9a866" />
+            </dependencyFromLayerToLayer>
+            <dependencyFromLayerToLayer Id="bb2a5b28-53dd-4b1d-be56-4f4baf38ea76" direction="Forward">
+              <layerMoniker Id="8fd7c6b9-7c80-4ff0-93e8-ce8473d590cc" />
+            </dependencyFromLayerToLayer>
+            <dependencyFromLayerToLayer Id="b361e36c-1f03-41ad-9088-668e7de9ef92" direction="Forward">
+              <layerMoniker Id="010362df-60bc-4579-8038-24bae86b290b" />
+            </dependencyFromLayerToLayer>
+          </dependencyToLayers>
+          <childLayers>
+            <layer Id="4e8e60b8-1158-44d5-8c08-77cddd577eda" name="Bistrotic.WorkItems.Server">
+              <references>
+                <reference Id="282e1484-9046-4c9b-8b71-3bd4f4b3ece7" name="Bistrotic.WorkItems.Server">
+                  <ArtifactNode Label="Bistrotic.WorkItems.Server" Category="CodeSchema_Project" Id="(Assembly=../../Modules/Infrastructure/Bistrotic.WorkItems.Server/Bistrotic.WorkItems.Server.csproj)">
+                    <Category Ref="File" />
+                  </ArtifactNode>
+                  <ExpandedNode Id="(Assembly=Bistrotic.WorkItems.Server)" Label="Bistrotic.WorkItems.Server.dll" Category="CodeSchema_Assembly">
+                    <LinkCategory Ref="Produces" />
+                    <LinkCategory Ref="Represents" />
+                  </ExpandedNode>
+                </reference>
+              </references>
+            </layer>
+          </childLayers>
         </layer>
       </childLayers>
     </layer>

@@ -3,12 +3,14 @@
     using Microsoft.AspNetCore;
     using Microsoft.AspNetCore.Hosting;
 
-    public static class ServerProgram<TStartup> where TStartup : class
+    public static class ServerProgram
     {
-        public static IWebHost CreateHostBuilder(string[] args) =>
-              WebHost
-                .CreateDefaultBuilder<TStartup>(args)
-                .CaptureStartupErrors(true)
-                .Build();
+        public static IWebHost CreateHostBuilder<TStartup>(string[] args)
+            where TStartup : class
+            =>
+             WebHost
+               .CreateDefaultBuilder<TStartup>(args)
+               .CaptureStartupErrors(true)
+               .Build();
     }
 }

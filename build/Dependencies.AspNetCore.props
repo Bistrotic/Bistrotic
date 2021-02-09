@@ -9,5 +9,6 @@
 		<MicrosoftAspNetCoreApiAuthorizationIdentityServerVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreApiAuthorizationIdentityServerVersion>
 		<MicrosoftAspNetCoreIdentityEntityFrameworkCoreVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreIdentityEntityFrameworkCoreVersion>
 		<MicrosoftAspNetCoreDiagnosticsEntityFrameworkCoreVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreDiagnosticsEntityFrameworkCoreVersion>
+		<MicrosoftAspNetCoreAppVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreAppVersion>
 	</PropertyGroup>
 </Project>

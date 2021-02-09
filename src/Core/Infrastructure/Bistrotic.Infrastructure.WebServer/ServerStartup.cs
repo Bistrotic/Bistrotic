@@ -76,9 +76,11 @@ namespace Bistrotic.Infrastructure.WebServer
 
         protected virtual void ConfigureModules(IServiceCollection services)
         {
+            IMvcBuilder mvcBuilder = services.AddControllers();
             foreach (IServerModule module in ServerModules)
             {
                 module.ConfigureServices(services);
+                mvcBuilder.AddApplicationPart(module.GetType().Assembly);
             }
         }
 

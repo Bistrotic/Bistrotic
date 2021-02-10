@@ -1,8 +1,9 @@
 ﻿namespace Bistrotic.Application.Queries
 {
     using Bistrotic.Application.ValueTypes;
+    using Bistrotic.Domain.Messages;
 
-    public interface IQuery
+    public interface IQuery : IMessage
     {
         QueryId QueryId { get; }
     }

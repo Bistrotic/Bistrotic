@@ -17,6 +17,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.BlazorClient\Bistrotic.Infrastructure.BlazorClient.csproj" />
 		<ProjectReference Include="..\..\Modules\Application\Bistrotic.WorkItems.Application.Abstractions\Bistrotic.WorkItems.Application.Abstractions.csproj" />
+		<ProjectReference Include="..\..\Modules\Presentation\Bistrotic.WorkItems.Presentation\Bistrotic.WorkItems.Presentation.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

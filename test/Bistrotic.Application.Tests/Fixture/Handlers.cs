@@ -18,29 +18,19 @@
         }
     }
 
-    public abstract class Query<T> : IQuery<T>
-    {
-        protected Query()
-        {
-            QueryId = new QueryId();
-        }
-
-        public QueryId QueryId { get; }
-    }
-
-    public class Query1 : Query<int>
+    public record Query1 : TestQuery<int>
     {
     }
 
-    public class Query2 : Query<string>
+    public record Query2 : TestQuery<string>
     {
     }
 
-    public class Query3 : Query<Guid>
+    public record Query3 : TestQuery<Guid>
     {
     }
 
-    public class Query4 : Query<QueryId>
+    public record Query4 : TestQuery<QueryId>
     {
     }
 
@@ -73,6 +63,13 @@
         public override Task<string> Handle(Query2 query)
         {
             return Task.FromResult("2");
+        }
+    }
+
+    public abstract record TestQuery<T> : Query<T>
+    {
+        protected TestQuery() : base("test")
+        {
         }
     }
 }

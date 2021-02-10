@@ -196,6 +196,15 @@
         <dependencyFromLayerToLayer Id="aa30e86f-a4d4-4189-a707-cc1d909a7f40" direction="Forward">
           <layerMoniker Id="03e64b26-49c1-4396-9ca7-901a931b3e82" />
         </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="5b44481c-4c9c-495c-a436-35c148da85c5" direction="Forward">
+          <layerMoniker Id="4fd8f997-7bf4-49dc-9920-be1163cef77a" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="9d0dd4f8-1a40-4ae8-b6c2-95c75d157fb2" direction="Forward">
+          <layerMoniker Id="243ccc0e-81a3-4fa1-bda5-e54105d93c56" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="fe47060d-9342-48c6-9230-938246c3eb94" direction="Forward">
+          <layerMoniker Id="93f0ea85-c31a-4584-87de-983477a9a866" />
+        </dependencyFromLayerToLayer>
       </dependencyToLayers>
       <childLayers>
         <layer Id="5396c6fe-c3fe-4f45-b40f-5f6b86f69898" name="Bistrotic.Units.Presentation">
@@ -205,6 +214,20 @@
                 <Category Ref="File" />
               </ArtifactNode>
               <ExpandedNode Id="(Assembly=Bistrotic.Units.Presentation)" Label="Bistrotic.Units.Presentation.dll" Category="CodeSchema_Assembly">
+                <LinkCategory Ref="Produces" />
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+          </references>
+        </layer>
+        <layer Id="3c7c2607-5724-45b1-ad50-da19e9082829" name="Bistrotic.WorkItems.Presentation">
+          <references>
+            <reference Id="a997bb55-36ea-46f8-9218-9dec63264a25" name="Bistrotic.WorkItems.Presentation">
+              <ArtifactNode Label="Bistrotic.WorkItems.Presentation" Category="CodeSchema_Project" Id="(Assembly=../../Modules/Presentation/Bistrotic.WorkItems.Presentation/Bistrotic.WorkItems.Presentation.csproj)">
+                <Category Ref="File" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=Bistrotic.WorkItems.Presentation)" Label="Bistrotic.WorkItems.Presentation.dll" Category="CodeSchema_Assembly">
+                <Category Ref="FileSystem.Category.FileOfType.dll" />
                 <LinkCategory Ref="Produces" />
                 <LinkCategory Ref="Represents" />
               </ExpandedNode>
@@ -387,6 +410,9 @@
         <dependencyFromLayerToLayer Id="fd66a19d-f347-427f-8168-284ef63f2cbb" direction="Forward">
           <layerMoniker Id="23bf0116-52b0-4cbc-9b16-8cb34d529aa8" />
         </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="66611631-9517-4978-bf3c-7f71c215b115" direction="Forward">
+          <layerMoniker Id="3e65470a-eecd-423b-a5f0-a1f317431b1e" />
+        </dependencyFromLayerToLayer>
       </dependencyToLayers>
       <childLayers>
         <layer Id="0c8aea8f-41e7-44f2-a09b-88f634ed1d7a" name="Bistrotic.Server">
@@ -459,6 +485,9 @@
           <dependencyToLayers>
             <dependencyFromLayerToLayer Id="0650a183-ba4d-430a-8596-9373ac791886" direction="Forward">
               <layerMoniker Id="23bf0116-52b0-4cbc-9b16-8cb34d529aa8" />
+            </dependencyFromLayerToLayer>
+            <dependencyFromLayerToLayer Id="67350deb-3e71-476d-a631-cc84becd1b52" direction="Forward">
+              <layerMoniker Id="93f0ea85-c31a-4584-87de-983477a9a866" />
             </dependencyFromLayerToLayer>
           </dependencyToLayers>
           <references>
@@ -551,6 +580,11 @@
           </dependencyToLayers>
           <childLayers>
             <layer Id="4e8e60b8-1158-44d5-8c08-77cddd577eda" name="Bistrotic.WorkItems.Server">
+              <dependencyToLayers>
+                <dependencyFromLayerToLayer Id="b8b5c9ff-2073-4eec-862c-44793191e471" direction="Forward">
+                  <layerMoniker Id="f17e0d54-ffba-4e1d-a303-ecf7b8cb6a55" />
+                </dependencyFromLayerToLayer>
+              </dependencyToLayers>
               <references>
                 <reference Id="282e1484-9046-4c9b-8b71-3bd4f4b3ece7" name="Bistrotic.WorkItems.Server">
                   <ArtifactNode Label="Bistrotic.WorkItems.Server" Category="CodeSchema_Project" Id="(Assembly=../../Modules/Infrastructure/Bistrotic.WorkItems.Server/Bistrotic.WorkItems.Server.csproj)">

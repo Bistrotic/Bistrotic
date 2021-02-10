@@ -1,22 +1,22 @@
-﻿namespace Bistrotic.Infrastructure.Modules.Definitions
+﻿namespace Bistrotic.Infrastructure.BlazorClient
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
 
-    public class ReflectionModuleDefinitionLoader : IModuleDefinitionLoader
+    using Bistrotic.Infrastructure.Modules.Definitions;
+
+    public class ReflectionClientModuleDefinitionLoader : IModuleDefinitionLoader
     {
         public Task<ModuleDefinition[]> GetDefinitions()
-        {
-            return Task.FromResult<ModuleDefinition[]>(AppDomain
+            => Task.FromResult(AppDomain
                 .CurrentDomain
                 .GetAssemblies()
                 .SelectMany(p => p.GetTypes())
-                .Where(p => typeof(IModule).IsAssignableFrom(p) && p.IsClass && !p.IsAbstract)
+                .Where(p => p.IsClass && !p.IsAbstract && typeof(IClientModule).IsAssignableFrom(p))
                 .Select(p => GetModuleDefinition(p))
                 .ToArray()
                 );
-        }
 
         private static ModuleDefinition GetModuleDefinition(Type moduleType)
             => new ModuleDefinition(

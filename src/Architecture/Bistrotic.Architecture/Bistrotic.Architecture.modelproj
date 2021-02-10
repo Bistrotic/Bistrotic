@@ -110,6 +110,10 @@
       <Name>Bistrotic.Units.Presentation</Name>
       <Project>{37dba16b-4a87-40ac-b78d-353ca2032ee2}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\Modules\Presentation\Bistrotic.WorkItems.Presentation\Bistrotic.WorkItems.Presentation.csproj">
+      <Name>Bistrotic.WorkItems.Presentation</Name>
+      <Project>{a7eec562-84ad-409b-844f-13dafbe30baf}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\Programs\Client\Bistrotic.Client.csproj">
       <Name>Bistrotic.Client</Name>
       <Project>{571c888b-7bbd-48de-9f5c-ad6ecb9886e8}</Project>

@@ -1,0 +1,47 @@
+﻿namespace Bistrotic.Infrastructure.BlazorClient
+{
+    using System;
+    using System.Threading.Tasks;
+
+    using Bistrotic.Infrastructure.Modules;
+    using Bistrotic.Infrastructure.Modules.Definitions;
+    using Bistrotic.Infrastructure.Modules.Exceptions;
+
+    using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+
+    public class ReflectionClientModuleActivator : IModuleActivator
+    {
+        private readonly string _clientName;
+        private readonly IWebAssemblyHostEnvironment _hostEnvironment;
+        private readonly string _serverApiName;
+
+        public ReflectionClientModuleActivator(IWebAssemblyHostEnvironment hostEnvironment, string clientName, string serverApiName)
+        {
+            _hostEnvironment = hostEnvironment;
+            _clientName = clientName;
+            _serverApiName = serverApiName;
+        }
+
+        public Task<IModule?> FindModule(ModuleDefinition definition)
+        {
+            Type? moduleType = Type.GetType(definition.TypeName, false, false);
+            if (moduleType == null)
+            {
+                return Task.FromResult<IModule?>(null);
+            }
+            return Task.FromResult((IModule?)(Activator.CreateInstance(moduleType, definition, _hostEnvironment, _clientName, _serverApiName) as IClientModule));
+        }
+
+        public Task<IModule> GetRequiredModule(ModuleDefinition definition)
+        {
+            Type? moduleType = Type.GetType(definition.TypeName, false, false);
+            if (moduleType == null)
+            {
+                throw new ModuleNotFoundException(definition, $"Type {definition.TypeName} not found.");
+            }
+            return Task.FromResult((IModule?)(
+                Activator.CreateInstance(moduleType, definition, _hostEnvironment, _clientName, _serverApiName) as IClientModule)
+                    ?? throw new Exception($"Error while creating instance of {moduleType.FullName}."));
+        }
+    }
+}

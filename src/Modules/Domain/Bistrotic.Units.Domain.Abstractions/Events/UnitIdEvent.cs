@@ -3,13 +3,12 @@
     using System;
 
     using Bistrotic.Domain.Messages;
-    using Bistrotic.Domain.ValueTypes;
     using Bistrotic.Units.Domain.ValueTypes;
 
     public abstract record UnitIdEvent : Event
     {
         protected UnitIdEvent(UnitId unitId)
-            : base(unitId)
+            : base(UnitConstants.DomainName, unitId)
         {
         }
         public UnitId UnitId

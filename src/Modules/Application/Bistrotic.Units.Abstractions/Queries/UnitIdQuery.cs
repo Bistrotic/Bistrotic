@@ -3,12 +3,13 @@
     using System;
 
     using Bistrotic.Application.Queries;
+    using Bistrotic.Units.Domain;
     using Bistrotic.Units.Domain.ValueTypes;
 
     public abstract record UnitIdQuery<TResult> : Query<TResult>
     {
         protected UnitIdQuery(UnitId UnitId)
-            : base(UnitId)
+            : base(UnitConstants.DomainName, UnitId)
         {
         }
         public UnitId UnitId

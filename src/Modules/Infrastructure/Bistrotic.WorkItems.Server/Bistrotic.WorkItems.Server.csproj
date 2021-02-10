@@ -8,6 +8,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.Modules\Bistrotic.Infrastructure.Modules.csproj" />
+		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.WebServer\Bistrotic.Infrastructure.WebServer.csproj" />
 		<ProjectReference Include="..\..\Application\Bistrotic.WorkItems.Application\Bistrotic.WorkItems.Application.csproj" />
 	</ItemGroup>
 </Project>

@@ -3,8 +3,8 @@
     using Bistrotic.Domain.Messages;
     using Bistrotic.Domain.ValueTypes;
 
-    public record Command(BusinessId? Id = null)
-            : Message(Id)
+    public record Command(string Domain, BusinessId? Id = null)
+            : Message(Domain, Id)
     {
     }
 }

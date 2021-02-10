@@ -4,18 +4,14 @@
 
     using Bistrotic.Infrastructure.Modules.Definitions;
 
-    using Microsoft.Extensions.Configuration;
-
     public abstract class Module : IModule
     {
-        protected Module(ModuleType moduleType, ModuleDefinition moduleDefinition, IConfiguration configuration)
+        protected Module(ModuleType moduleType, ModuleDefinition moduleDefinition)
         {
             ModuleType = moduleType;
             ModuleDefinition = moduleDefinition ?? throw new ArgumentNullException(nameof(moduleDefinition));
-            Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
         public ModuleDefinition ModuleDefinition { get; }
         public ModuleType ModuleType { get; }
     }

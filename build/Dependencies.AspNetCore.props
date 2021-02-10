@@ -1,6 +1,6 @@
 <Project>
 	<PropertyGroup>
-		<AspNetCoreVersion>5.0.2</AspNetCoreVersion>
+		<AspNetCoreVersion>5.0.3</AspNetCoreVersion>
 		<MicrosoftAspNetCoreComponentsWebAssemblyVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreComponentsWebAssemblyVersion>
 		<MicrosoftAspNetCoreComponentsWebAssemblyServerVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreComponentsWebAssemblyServerVersion>
 		<MicrosoftAspNetCoreComponentsWebAssemblyAuthenticationVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreComponentsWebAssemblyAuthenticationVersion>
@@ -10,5 +10,6 @@
 		<MicrosoftAspNetCoreIdentityEntityFrameworkCoreVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreIdentityEntityFrameworkCoreVersion>
 		<MicrosoftAspNetCoreDiagnosticsEntityFrameworkCoreVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreDiagnosticsEntityFrameworkCoreVersion>
 		<MicrosoftAspNetCoreAppVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreAppVersion>
+		<MicrosoftAspNetCoreWebUtilitiesVersion>2.2.0</MicrosoftAspNetCoreWebUtilitiesVersion>
 	</PropertyGroup>
 </Project>

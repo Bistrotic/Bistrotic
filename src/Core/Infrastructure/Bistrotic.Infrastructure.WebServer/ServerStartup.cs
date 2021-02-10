@@ -8,6 +8,7 @@ namespace Bistrotic.Infrastructure.WebServer
     using Bistrotic.Infrastructure.Modules;
     using Bistrotic.Infrastructure.Modules.Definitions;
     using Bistrotic.Infrastructure.WebServer.Models;
+    using Bistrotic.Infrastructure.WebServer.Modules;
 
     using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
     using Microsoft.AspNetCore.Authentication;
@@ -111,8 +112,8 @@ namespace Bistrotic.Infrastructure.WebServer
         private IEnumerable<IServerModule> GetServerModules()
         {
             var modules = new ModuleFactory(
-                new Func<IModuleDefinitionLoader>[] { () => new ReflectionModuleDefinitionLoader() },
-                new Func<IModuleActivator>[] { () => new ReflectionModuleActivator(Configuration) });
+                new Func<IModuleDefinitionLoader>[] { () => new ReflectionServerModuleDefinitionLoader() },
+                new Func<IModuleActivator>[] { () => new ReflectionServerModuleActivator(Configuration, _environment) });
             return modules.GetModules()
                 .GetAwaiter()
                 .GetResult()

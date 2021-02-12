@@ -2,11 +2,13 @@
 {
     using System.Threading.Tasks;
 
+    using Bistrotic.Application.Messages;
+
     public interface IQueryDispatcher
     {
-        Task<object?> Dispatch(IQuery query);
+        Task<object?> Dispatch(IEnvelope query);
 
-        Task<TResult> Dispatch<TQuery, TResult>(TQuery query)
+        Task<TResult> Dispatch<TQuery, TResult>(Envelope<TQuery> query)
             where TQuery : IQuery<TResult>;
     }
 }

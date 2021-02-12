@@ -1,14 +1,15 @@
 namespace Bistrotic.Application.Tests
 {
     using System;
+    using System.Threading.Tasks;
 
     using Bistrotic.Application.Queries;
     using Bistrotic.Application.Tests.Fixture;
-    using Bistrotic.Application.ValueTypes;
+    using Bistrotic.Domain.ValueTypes;
+
+    using FluentAssertions;
 
     using Xunit;
-    using FluentAssertions;
-    using System.Threading.Tasks;
 
     public class InMemoryQueryDispatcherTest
     {
@@ -23,8 +24,8 @@ namespace Bistrotic.Application.Tests
             (await dispatcher.Dispatch<Query3, Guid>(new Query3()).ConfigureAwait(false))
                 .Should().Be(new Guid("3"));
             var query = new Query4();
-            (await dispatcher.Dispatch<Query4, QueryId>(query).ConfigureAwait(false))
-                .Should().Be(query.QueryId);
+            (await dispatcher.Dispatch<Query4, MessageId>(query).ConfigureAwait(false))
+                .Should().Be(query.MessageId);
         }
     }
 }

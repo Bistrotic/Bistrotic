@@ -3,9 +3,18 @@
     using System.Collections.Generic;
 
     using Bistrotic.Application.Queries;
-    using Bistrotic.Units.Domain;
 
-    public record GetUnitSearchMatching(string Pattern, int Take = 0, int Skip = 0) : Query<List<int>>(UnitConstants.DomainName)
+    public sealed class GetUnitSearchMatching : Query<List<int>>
     {
+        public GetUnitSearchMatching(string pattern, int take = 0, int skip = 0)
+        {
+            Pattern = pattern;
+            Take = take;
+            Skip = skip;
+        }
+
+        public string Pattern { get; }
+        public int Skip { get; }
+        public int Take { get; }
     }
 }

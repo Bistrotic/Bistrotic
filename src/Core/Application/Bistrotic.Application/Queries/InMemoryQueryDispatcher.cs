@@ -4,6 +4,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 
 using Bistrotic.Application.Exceptions;
+using Bistrotic.Application.Messages;
 
 namespace Bistrotic.Application.Queries
 {
@@ -16,7 +17,7 @@ namespace Bistrotic.Application.Queries
             _handlers = handlers?.ToImmutableDictionary() ?? throw new ArgumentNullException(nameof(handlers));
         }
 
-        public Task<TResult> Dispatch<TQuery, TResult>(TQuery query)
+        public Task<TResult> Dispatch<TQuery, TResult>(Envelope<TQuery> query)
             where TQuery : IQuery<TResult>
         {
             if (!_handlers.TryGetValue(query.GetType(), out Func<IQueryHandler>? handlerFunc))
@@ -28,9 +29,9 @@ namespace Bistrotic.Application.Queries
                 ?? Task.FromException<TResult>(new InvalidQueryHandlerTypeException(handlerFunc().GetType(), typeof(IQueryHandler<TQuery, TResult>)));
         }
 
-        public Task<object?> Dispatch(IQuery query)
+        public Task<object?> Dispatch(IEnvelope query)
         {
-            if (!_handlers.TryGetValue(query.GetType(), out Func<IQueryHandler>? handlerFunc))
+            if (!_handlers.TryGetValue(query.Message.GetType(), out Func<IQueryHandler>? handlerFunc))
             {
                 return Task.FromException<object?>(new QueryHandlerNotFoundException(query.GetType()));
             }

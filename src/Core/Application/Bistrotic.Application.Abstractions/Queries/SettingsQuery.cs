@@ -1,7 +1,7 @@
 ﻿namespace Bistrotic.Application.Queries
 {
-    public record SettingsQuery<TResult>(string Domain)
-        : Query<TResult>(Domain)
+    public abstract class SettingsQuery<TResult>
+        : Query<TResult>
     {
     }
 }

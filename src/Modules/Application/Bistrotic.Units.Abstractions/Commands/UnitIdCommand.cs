@@ -1,18 +1,13 @@
 ﻿namespace Bistrotic.Units.Application.Commands
 {
-    using System;
-
     using Bistrotic.Application.Commands;
-    using Bistrotic.Units.Domain;
     using Bistrotic.Units.Domain.ValueTypes;
 
-    public abstract record UnitIdCommand : Command
+    public abstract class UnitIdCommand : Command<UnitId>
     {
-        protected UnitIdCommand(UnitId UnitId)
-            : base(UnitConstants.DomainName, UnitId)
+        protected UnitIdCommand(UnitId unitId)
+            : base(unitId)
         {
         }
-        public UnitId UnitId
-            => new UnitId(Id ?? throw new NullReferenceException(nameof(Id)));
     }
 }

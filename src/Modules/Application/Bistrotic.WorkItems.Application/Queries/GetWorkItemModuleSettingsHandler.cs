@@ -5,7 +5,7 @@
 
     using Microsoft.Extensions.Options;
 
-    public class GetWorkItemModuleSettingsHandler : SettingsQueryHandler<GetWorkItemModuleSettings, WorkItemModuleSettings>
+    public sealed class GetWorkItemModuleSettingsHandler : SettingsQueryHandler<GetWorkItemModuleSettings, WorkItemModuleSettings>
     {
         public GetWorkItemModuleSettingsHandler(IOptions<WorkItemModuleSettings> options) : base(options)
         {

@@ -3,8 +3,14 @@
     using Bistrotic.Units.Application.Commands;
     using Bistrotic.Units.Domain.ValueTypes;
 
-    public record RenameUnit(UnitId UnitId, string NewName) :
-        UnitIdCommand(UnitId)
+    public sealed class RenameUnit :
+        UnitIdCommand
     {
+        public RenameUnit(UnitId unitId, string newName) : base(unitId)
+        {
+            NewName = newName;
+        }
+
+        public string NewName { get; }
     }
 }

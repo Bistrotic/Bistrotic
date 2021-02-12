@@ -3,8 +3,11 @@
     using Bistrotic.Units.Application.ModelViews;
     using Bistrotic.Units.Domain.ValueTypes;
 
-    public record GetUnitDetailedInformations(UnitId UnitId)
-        : UnitIdQuery<UnitDetailedInformations>(UnitId)
+    public sealed class GetUnitDetailedInformations
+        : UnitIdQuery<UnitDetailedInformations>
     {
+        public GetUnitDetailedInformations(UnitId unitId) : base(unitId)
+        {
+        }
     }
 }

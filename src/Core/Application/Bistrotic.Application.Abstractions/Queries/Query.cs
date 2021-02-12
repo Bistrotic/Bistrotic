@@ -1,12 +1,19 @@
 ﻿namespace Bistrotic.Application.Queries
 {
-    using Bistrotic.Application.ValueTypes;
     using Bistrotic.Domain.Messages;
     using Bistrotic.Domain.ValueTypes;
 
-    public record Query<TResult>(string Domain, BusinessId? Id = null) :
-        Message(Domain, Id, null), IQuery<TResult>
+    public abstract class Query<TResult> :
+        Message, IQuery<TResult>
     {
-        public QueryId QueryId { get; } = new QueryId();
+    }
+
+    public abstract class Query<TId, TResult> :
+        Message<TId>, IQuery<TResult>
+        where TId : BusinessId
+    {
+        protected Query(TId id) : base(id)
+        {
+        }
     }
 }

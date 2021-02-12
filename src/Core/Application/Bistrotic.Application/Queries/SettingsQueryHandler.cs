@@ -1,9 +1,9 @@
 ﻿namespace Bistrotic.Application.Queries
 {
-    using System.Text.Json;
     using System.Threading.Tasks;
 
-    using Microsoft.Extensions.Logging;
+    using Bistrotic.Application.Messages;
+
     using Microsoft.Extensions.Options;
 
     public abstract class SettingsQueryHandler<TQuery, TSettings>
@@ -18,7 +18,7 @@
             _options = options;
         }
 
-        public override Task<TSettings> Handle(TQuery query)
+        public override Task<TSettings> Handle(Envelope<TQuery> query)
         {
             return Task.FromResult(_options.Value);
         }

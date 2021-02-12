@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using Bistrotic.Application.Exceptions;
+using Bistrotic.Application.Messages;
 
 namespace Bistrotic.Application.Queries
 {
@@ -15,40 +16,40 @@ namespace Bistrotic.Application.Queries
             _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
         }
 
-        public Task<TResult> Dispatch<TQuery, TResult>(TQuery query)
+        public Task<TResult> Dispatch<TQuery, TResult>(Envelope<TQuery> query)
             where TQuery : IQuery<TResult>
         {
             Type handlerType = MakeQueryHandlerInterface(typeof(TQuery), typeof(TResult));
             object? service = _serviceProvider.GetService(handlerType);
             if (service == null)
             {
-                return Task.FromException<TResult>(new QueryHandlerNotFoundException(query.GetType()));
+                return Task.FromException<TResult>(new QueryHandlerNotFoundException(query.Message.GetType()));
             }
             IQueryHandler<TQuery, TResult>? handler = service as IQueryHandler<TQuery, TResult>;
             return handler?.Handle(query)
                 ?? Task.FromException<TResult>(new InvalidQueryHandlerTypeException(service.GetType(), typeof(IQueryHandler<TQuery, TResult>)));
         }
 
-        public async Task<object?> Dispatch(IQuery query)
+        public async Task<object?> Dispatch(IEnvelope query)
         {
-            Type? genericQueryType = Array.Find(query.GetType().GetInterfaces(), p => p.IsGenericType && p.GetGenericTypeDefinition() == typeof(IQuery<>));
+            Type? genericQueryType = Array.Find(query.Message.GetType().GetInterfaces(), p => p.IsGenericType && p.GetGenericTypeDefinition() == typeof(IQuery<>));
             if (genericQueryType == null)
             {
-                throw new InvalidQueryTypeException(query.GetType(), $"Does not implement type {typeof(IQuery<>).Name}");
+                throw new InvalidQueryTypeException(query.Message.GetType(), $"Does not implement type {typeof(IQuery<>).Name}");
             }
             Type? resultType = genericQueryType.GenericTypeArguments.FirstOrDefault();
             if (resultType == null)
             {
-                throw new InvalidQueryTypeException(query.GetType(), $"Can't retreive generic type {typeof(IQuery<>).Name} argument.");
+                throw new InvalidQueryTypeException(query.Message.GetType(), $"Can't retreive generic type {typeof(IQuery<>).Name} argument.");
             }
 
-            Type handlerType = MakeQueryHandlerInterface(query.GetType(), resultType);
+            Type handlerType = MakeQueryHandlerInterface(query.Message.GetType(), resultType);
             object? service = _serviceProvider.GetService(handlerType);
             if (service == null)
             {
-                throw new QueryHandlerNotFoundException(query.GetType());
+                throw new QueryHandlerNotFoundException(query.Message.GetType());
             }
-            var handleMethod = service.GetType().GetMethod("Handle", new[] { query.GetType() });
+            var handleMethod = service.GetType().GetMethod("Handle", new[] { query.Message.GetType() });
             if (handleMethod == null)
             {
                 throw new InvalidQueryHandlerTypeException($"Handle method not found on handler '{service.GetType().FullName}'.");

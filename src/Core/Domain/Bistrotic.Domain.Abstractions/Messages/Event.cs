@@ -1,13 +1,16 @@
 ﻿namespace Bistrotic.Domain.Messages
 {
-    using System;
-
     using Bistrotic.Domain.ValueTypes;
 
-    public record Event(string Domain, BusinessId Id)
-        : Message(Domain, Id), IEvent
+    public abstract class Event : Message, IEvent
     {
-        public string EventId { get; } = Convert.ToBase64String(Guid.NewGuid().ToByteArray()).Substring(0, 22);
-        public DateTime DateTime { get; } = DateTime.UtcNow;
+    }
+
+    public abstract class Event<TId> : Message<TId>, IEvent
+        where TId : BusinessId
+    {
+        protected Event(TId id) : base(id)
+        {
+        }
     }
 }

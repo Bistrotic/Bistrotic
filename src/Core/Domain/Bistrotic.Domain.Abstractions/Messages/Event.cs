@@ -7,8 +7,12 @@
     }
 
     public abstract class Event<TId> : Message<TId>, IEvent
-        where TId : BusinessId
+        where TId : BusinessId, new()
     {
+        protected Event()
+        {
+        }
+
         protected Event(TId id) : base(id)
         {
         }

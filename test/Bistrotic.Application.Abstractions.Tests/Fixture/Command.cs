@@ -7,16 +7,30 @@
     {
     }
 
-    public class TestIdCommand : Command<TestId>
+    public sealed class TestId : BusinessId
     {
-        public TestIdCommand(TestId id) : base(id)
+        public TestId()
         {
         }
+
+        public TestId(string id) : base(id)
+        {
+        }
+
+        public TestId(TestId id) : base(id)
+        {
+        }
+
+        public static implicit operator TestId(string value) => new TestId(value);
     }
 
-    public sealed record TestId : BusinessId
+    public class TestIdCommand : Command<TestId>
     {
-        public TestId(string id) : base(id)
+        public TestIdCommand()
+        {
+        }
+
+        public TestIdCommand(TestId id) : base(id)
         {
         }
     }

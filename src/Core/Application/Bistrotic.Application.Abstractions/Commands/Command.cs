@@ -9,8 +9,12 @@
     }
 
     public abstract class Command<TId>
-            : Message<TId> where TId : BusinessId
+            : Message<TId> where TId : BusinessId, new()
     {
+        protected Command()
+        {
+        }
+
         protected Command(TId id) : base(id)
         {
         }

@@ -5,6 +5,10 @@
 
     public abstract class UnitIdQuery<TResult> : Query<UnitId, TResult>
     {
+        protected UnitIdQuery()
+        {
+        }
+
         protected UnitIdQuery(UnitId unitId)
             : base(unitId)
         {

@@ -1,5 +1,6 @@
 ﻿namespace Bistrotic.WorkItems.Application.Queries
 {
+    using System;
     using System.Collections.Generic;
 
     using Bistrotic.Application.Queries;
@@ -7,10 +8,15 @@
 
     public sealed class GetIssuesWithSla : Query<List<IssueWithSla>>
     {
-        public GetIssuesWithSla(bool suspendedSla = false, bool closedIssues = false)
+        public GetIssuesWithSla(bool suspendedSla, bool closedIssues)
         {
             SuspendedSla = suspendedSla;
             ClosedIssues = closedIssues;
+        }
+
+        [Obsolete("For serialization only")]
+        public GetIssuesWithSla()
+        {
         }
 
         public bool ClosedIssues { get; }

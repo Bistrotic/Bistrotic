@@ -1,5 +1,7 @@
 ﻿namespace Bistrotic.WorkItems.Server
 {
+    using System.Collections.Generic;
+
     using Bistrotic.Application.Queries;
     using Bistrotic.Infrastructure.Modules.Definitions;
     using Bistrotic.Infrastructure.WebServer.Modules;
@@ -20,6 +22,7 @@
         public override void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IQueryHandler<GetWorkItemModuleSettings, WorkItemModuleSettings>, GetWorkItemModuleSettingsHandler>();
+            services.AddTransient<IQueryHandler<GetIssuesWithSla, List<IssueWithSla>>, GetIssuesWithSlaHandler>();
         }
     }
 }

@@ -12,9 +12,9 @@ namespace Bistrotic.Application.Abstractions.Tests
         public void Query_default_constructor()
         {
             var message = new TestQueryNoId();
-            message.MessageId.Value.Should().NotBeNullOrWhiteSpace();
-            message.MessageId.Value.Should().HaveLength(22);
-            message.Id?.Value.Should().BeNull();
+            message.MessageId.Should().NotBeNullOrWhiteSpace();
+            message.MessageId.Should().HaveLength(22);
+            message.Id?.Should().BeNull();
         }
 
         [Theory]
@@ -26,9 +26,9 @@ namespace Bistrotic.Application.Abstractions.Tests
         public void QueryId_string_constructor(string value)
         {
             var message = new TestIdQuery(new TestId(value));
-            message.MessageId.Value.Should().NotBeNullOrWhiteSpace();
-            message.MessageId.Value.Should().HaveLength(22);
-            message.Id.Value.Should().Be(value.Trim());
+            message.MessageId.Should().NotBeNullOrWhiteSpace();
+            message.MessageId.Should().HaveLength(22);
+            message.Id.Should().Be(value.Trim());
         }
     }
 }

@@ -12,8 +12,8 @@ namespace Bistrotic.Application.Abstractions.Tests
         public void Command_default_constructor()
         {
             var message = new TestCommandNoId();
-            message.MessageId.Value.Should().NotBeNullOrWhiteSpace();
-            message.MessageId.Value.Should().HaveLength(22);
+            message.MessageId.Should().NotBeNullOrWhiteSpace();
+            message.MessageId.Should().HaveLength(22);
             message.Id?.Should().BeNull();
         }
 
@@ -26,8 +26,8 @@ namespace Bistrotic.Application.Abstractions.Tests
         public void CommandId_string_constructor(string value)
         {
             var message = new TestIdCommand(new TestId(value));
-            message.MessageId.Value.Should().NotBeNullOrWhiteSpace();
-            message.MessageId.Value.Should().HaveLength(22);
+            message.MessageId.Should().NotBeNullOrWhiteSpace();
+            message.MessageId.Should().HaveLength(22);
             message.Id.Should().Be(value.Trim());
         }
     }

@@ -1,15 +1,24 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel;
+using System.Diagnostics;
 
 namespace Bistrotic.Domain.ValueTypes
 {
     [DebuggerDisplay("{Value}")]
-    public record Etag : AutoIdentifier
+    [TypeConverter(typeof(StringValueConverter<Etag>))]
+    public sealed class Etag : AutoIdentifier
     {
-        public Etag(MessageId messageId) : base(messageId)
+        public Etag()
         {
         }
-        public Etag(string? id = null) : base(id)
+
+        public Etag(Etag etag) : base(etag)
         {
         }
+
+        public Etag(string etag) : base(etag)
+        {
+        }
+
+        public static implicit operator Etag(string value) => new Etag(value);
     }
 }

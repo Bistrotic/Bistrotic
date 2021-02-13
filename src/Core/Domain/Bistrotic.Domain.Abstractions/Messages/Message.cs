@@ -1,30 +1,35 @@
-﻿using System;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 using Bistrotic.Domain.ValueTypes;
 
 namespace Bistrotic.Domain.Messages
 {
     public abstract class Message<TId> : IMessage
-        where TId : BusinessId
+        where TId : BusinessId, new()
     {
-        protected Message(TId id)
+        protected Message()
         {
-            Id = id ?? throw new ArgumentNullException(nameof(id));
+            Id = new TId();
+            MessageId = new MessageId();
         }
 
-        public TId Id { get; }
+        protected Message(TId id)
+        {
+            Id = id ?? new TId();
+            MessageId = new MessageId();
+        }
 
-        public MessageId MessageId { get; } = new MessageId();
-        BusinessId? IMessage.Id => Id;
+        public string Id { get; }
+
+        public string MessageId { get; }
     }
 
     public abstract class Message : IMessage
 
     {
         [JsonIgnore(Condition = JsonIgnoreCondition.Always)]
-        public BusinessId? Id => null;
+        public string? Id => null;
 
-        public MessageId MessageId { get; } = new MessageId();
+        public string MessageId { get; } = new MessageId();
     }
 }

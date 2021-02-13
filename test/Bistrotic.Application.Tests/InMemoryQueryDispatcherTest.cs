@@ -30,7 +30,7 @@ namespace Bistrotic.Application.Tests
                 ).ConfigureAwait(false))
                 .Should().Be(new Guid("3"));
             var query = new Envelope<Query4>(new UserName("User 4"), new Query4());
-            (await dispatcher.Dispatch<Query4, MessageId>(query).ConfigureAwait(false))
+            (await dispatcher.Dispatch<Query4, string>(query).ConfigureAwait(false))
                 .Should().Be(query.Message.MessageId);
         }
     }

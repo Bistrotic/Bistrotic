@@ -1,18 +1,17 @@
-﻿
-
-namespace Bistrotic.WorkItems.Application.Queries
+﻿namespace Bistrotic.WorkItems.Application.Queries
 {
     using Bistrotic.WorkItems.Application.ModelViews;
     using Bistrotic.Application.Queries;
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using System;
+    using Bistrotic.Application.Messages;
 
     public class GetIssuesWithSlaHandler : QueryHandler<GetIssuesWithSla, List<IssueWithSla>>
     {
-        public override Task<List<IssueWithSla>> Handle(GetIssuesWithSla query)
+        public override Task<List<IssueWithSla>> Handle(Envelope<GetIssuesWithSla> query)
         {
-            return Task.FromResult( new List<IssueWithSla>()
+            return Task.FromResult(new List<IssueWithSla>()
             {
                 new IssueWithSla("56",
                 "",

@@ -4,31 +4,26 @@
     using System.Diagnostics;
 
     [DebuggerDisplay("{Value}")]
-    public record AutoIdentifier
+    public abstract class AutoIdentifier : StringValue
     {
-        public AutoIdentifier()
+        protected AutoIdentifier(AutoIdentifier autoIdentifier)
         {
-            // Compiler complains on the Value property if this default constructor is removed :
-            // CS8618 Non-nullable field must contain a non-null value when exiting constructor.
-            // Consider declaring as nullable.
+            Value = string.IsNullOrWhiteSpace(autoIdentifier?.Value) ? GenerateIdentifier() : autoIdentifier.Value;
+        }
+
+        protected AutoIdentifier(string id)
+        {
+            Value = string.IsNullOrWhiteSpace(id) ? GenerateIdentifier() : id.Trim();
+        }
+
+        protected AutoIdentifier()
+        {
             Value = GenerateIdentifier();
         }
 
         public static string GenerateIdentifier()
-            => Convert
+                                            => Convert
                 .ToBase64String(Guid.NewGuid().ToByteArray())
                 .Substring(0, 22);
-
-        public AutoIdentifier(AutoIdentifier autoIdentifier)
-        {
-            Value = autoIdentifier.Value ?? GenerateIdentifier();
-        }
-        public AutoIdentifier(string? id)
-        {
-            Value = string.IsNullOrWhiteSpace(id) ? GenerateIdentifier() : id.Trim();
-        }
-        public string Value { get; init; }
-
-        public static implicit operator string(AutoIdentifier id) => id.Value;
     }
 }

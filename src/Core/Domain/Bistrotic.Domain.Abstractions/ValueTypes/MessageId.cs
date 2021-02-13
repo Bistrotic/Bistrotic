@@ -1,15 +1,26 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel;
+using System.Diagnostics;
+using System.Text.Json.Serialization;
 
 namespace Bistrotic.Domain.ValueTypes
 {
     [DebuggerDisplay("{Value}")]
-    public record MessageId : AutoIdentifier
+    [TypeConverter(typeof(StringValueConverter<MessageId>))]
+    [JsonConverter(typeof(StringValueJsonConverter<MessageId>))]
+    public sealed class MessageId : AutoIdentifier
     {
         public MessageId(MessageId messageId) : base(messageId)
         {
         }
-        public MessageId(string? id = null) : base(id)
+
+        public MessageId()
         {
         }
+
+        public MessageId(string id) : base(id)
+        {
+        }
+
+        public static implicit operator MessageId(string value) => new MessageId(value);
     }
 }

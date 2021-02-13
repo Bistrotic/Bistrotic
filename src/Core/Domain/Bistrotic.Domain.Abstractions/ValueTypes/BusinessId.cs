@@ -3,8 +3,18 @@
     using System.Diagnostics;
 
     [DebuggerDisplay("{Value}")]
-    public abstract record BusinessId(string Value)
+    public abstract class BusinessId : AutoIdentifier
     {
-        public static implicit operator string(BusinessId id) => id.Value;
+        protected BusinessId(string value) : base(value)
+        {
+        }
+
+        protected BusinessId(BusinessId value) : base(value)
+        {
+        }
+
+        protected BusinessId()
+        {
+        }
     }
 }

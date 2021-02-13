@@ -6,7 +6,6 @@
 
     using Bistrotic.Application.Messages;
     using Bistrotic.Application.Queries;
-    using Bistrotic.Domain.ValueTypes;
 
     public class Handlers : Dictionary<Type, Func<IQueryHandler>>
     {
@@ -31,7 +30,7 @@
     {
     }
 
-    public sealed class Query4 : TestQuery<MessageId>
+    public sealed class Query4 : TestQuery<string>
     {
     }
 
@@ -43,9 +42,9 @@
         }
     }
 
-    public class QueryHandlerId : QueryHandler<Query4, MessageId>
+    public class QueryHandlerId : QueryHandler<Query4, string>
     {
-        public override Task<MessageId> Handle(Envelope<Query4> query)
+        public override Task<string> Handle(Envelope<Query4> query)
         {
             return Task.FromResult(query.Message.MessageId);
         }

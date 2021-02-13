@@ -10,9 +10,13 @@
 
     public abstract class Query<TId, TResult> :
         Message<TId>, IQuery<TResult>
-        where TId : BusinessId
+        where TId : BusinessId, new()
     {
         protected Query(TId id) : base(id)
+        {
+        }
+
+        protected Query() : base(new TId())
         {
         }
     }

@@ -5,6 +5,7 @@ namespace Bistrotic.Infrastructure.WebServer
     using System.Linq;
     using System.Threading.Tasks;
 
+    using Bistrotic.Application.Queries;
     using Bistrotic.Infrastructure.Modules;
     using Bistrotic.Infrastructure.Modules.Definitions;
     using Bistrotic.Infrastructure.WebServer.Models;
@@ -68,6 +69,7 @@ namespace Bistrotic.Infrastructure.WebServer
         public virtual void ConfigureServices(IServiceCollection services)
         {
             ConfigureSecurity(services);
+            services.AddTransient<IQueryDispatcher, IocQueryDispatcher>();
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddControllersWithViews().AddDapr();
             services.AddRazorPages();

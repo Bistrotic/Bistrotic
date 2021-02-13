@@ -9,6 +9,7 @@
 		<PackageReference Include="System.Text.Json" Version="$(SystemTextJsonVersion)" />
 	</ItemGroup>
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\Core\Application\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj" />
 		<ProjectReference Include="..\..\..\Core\Application\Bistrotic.Application\Bistrotic.Application.csproj" />
 		<ProjectReference Include="..\Bistrotic.WorkItems.Application.Abstractions\Bistrotic.WorkItems.Application.Abstractions.csproj" />
 	</ItemGroup>

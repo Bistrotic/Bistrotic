@@ -23,11 +23,11 @@
             _logger = logger;
         }
 
-        [HttpGet]
+        [HttpGet(nameof(GetIssuesWithSla))]
         public Task<List<IssueWithSla>> GetIssuesWithSla([FromQuery] GetIssuesWithSla query)
             => Ask<GetIssuesWithSla, List<IssueWithSla>>(query);
 
-        [HttpGet]
+        [HttpGet(nameof(GetWorkItemModuleSettings))]
         public Task<WorkItemModuleSettings> GetWorkItemModuleSettings([FromQuery] GetWorkItemModuleSettings query)
             => Ask<GetWorkItemModuleSettings, WorkItemModuleSettings>(query);
 

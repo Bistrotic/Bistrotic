@@ -2,10 +2,8 @@
 {
     using Bistrotic.Application.Queries;
     using Bistrotic.WorkItems.Application.ModelViews;
-    using Bistrotic.WorkItems.Domain;
 
-    public record GetWorkItemModuleSettings()
-        : SettingsQuery<WorkItemModuleSettings>(WorkItemConstants.DomainName)
+    public sealed class GetWorkItemModuleSettings : SettingsQuery<WorkItemModuleSettings>
     {
     }
 }

@@ -3,8 +3,13 @@
     using Bistrotic.Units.Application.Commands;
     using Bistrotic.Units.Domain.ValueTypes;
 
-    public record ChangeUnitDescription(UnitId UnitId, string? Description) :
-        UnitIdCommand(UnitId)
+    public sealed class ChangeUnitDescription : UnitIdCommand
     {
+        public ChangeUnitDescription(UnitId unitId, string? description) : base(unitId)
+        {
+            Description = description;
+        }
+
+        public string? Description { get; }
     }
 }

@@ -3,7 +3,10 @@
     using Bistrotic.Units.Application.ModelViews;
     using Bistrotic.Units.Domain.ValueTypes;
 
-    public record GetUnitSummaryInformations(UnitId UnitId) : UnitIdQuery<UnitSummaryInformations>(UnitId)
+    public sealed class GetUnitSummaryInformations : UnitIdQuery<UnitSummaryInformations>
     {
+        public GetUnitSummaryInformations(UnitId unitId) : base(unitId)
+        {
+        }
     }
 }

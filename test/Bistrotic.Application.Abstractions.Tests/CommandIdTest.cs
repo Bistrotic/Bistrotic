@@ -1,7 +1,5 @@
 namespace Bistrotic.Application.Abstractions.Tests
 {
-    using Bistrotic.Application.ValueTypes;
-
     using FluentAssertions;
 
     using Xunit;

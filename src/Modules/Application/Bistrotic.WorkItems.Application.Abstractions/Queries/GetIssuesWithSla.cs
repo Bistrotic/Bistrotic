@@ -4,12 +4,16 @@
 
     using Bistrotic.Application.Queries;
     using Bistrotic.WorkItems.Application.ModelViews;
-    using Bistrotic.WorkItems.Domain;
 
-    public record GetIssuesWithSla(
-                    bool SuspendedSla = false,
-                    bool ClosedIssues = false
-        ) : Query<List<IssueWithSla>>(WorkItemConstants.DomainName)
+    public sealed class GetIssuesWithSla : Query<List<IssueWithSla>>
     {
+        public GetIssuesWithSla(bool suspendedSla = false, bool closedIssues = false)
+        {
+            SuspendedSla = suspendedSla;
+            ClosedIssues = closedIssues;
+        }
+
+        public bool ClosedIssues { get; }
+        public bool SuspendedSla { get; }
     }
 }

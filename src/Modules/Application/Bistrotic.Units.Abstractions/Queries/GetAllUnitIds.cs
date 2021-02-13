@@ -1,11 +1,18 @@
 ﻿using System.Collections.Generic;
 
 using Bistrotic.Application.Queries;
-using Bistrotic.Units.Domain;
 
 namespace Bistrotic.Units.Application.Queries
 {
-    public record GetAllUnitIds(int Take, int Skip) : Query<List<int>>(UnitConstants.DomainName)
+    public sealed class GetAllUnitIds : Query<List<int>>
     {
+        public GetAllUnitIds(int take, int skip)
+        {
+            Take = take;
+            Skip = skip;
+        }
+
+        public int Skip { get; }
+        public int Take { get; }
     }
 }

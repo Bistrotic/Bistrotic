@@ -2,8 +2,14 @@
 {
     using Bistrotic.Units.Domain.ValueTypes;
 
-    public record UnitDescriptionChanged(UnitId UnitId, string? Description) :
-        UnitIdEvent(UnitId)
+    public sealed class UnitDescriptionChanged :
+        UnitIdEvent
     {
+        public UnitDescriptionChanged(UnitId unitId, string? description) : base(unitId)
+        {
+            Description = description;
+        }
+
+        public string? Description { get; }
     }
 }

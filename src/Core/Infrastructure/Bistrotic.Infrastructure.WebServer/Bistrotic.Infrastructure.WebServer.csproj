@@ -18,6 +18,8 @@
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="$(MicrosoftEntityFrameworkCoreToolsVersion)" />
 	</ItemGroup>
 	<ItemGroup>
+		<ProjectReference Include="..\..\Application\Bistrotic.Application\Bistrotic.Application.csproj" />
+		<ProjectReference Include="..\..\Application\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj" />
 		<ProjectReference Include="..\Bistrotic.Infrastructure.Abstractions\Bistrotic.Infrastructure.Abstractions.csproj" />
 		<ProjectReference Include="..\Bistrotic.Infrastructure.Modules\Bistrotic.Infrastructure.Modules.csproj" />
 	</ItemGroup>

@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using Bistrotic.Application.Messages;
     using Bistrotic.Application.Queries;
     using Bistrotic.Domain.ValueTypes;
 

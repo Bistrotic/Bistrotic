@@ -1,18 +1,27 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Text.Json.Serialization;
 
 namespace Bistrotic.Domain.ValueTypes
 {
     [DebuggerDisplay("{Value}")]
-    public record UserName
+    [TypeConverter(typeof(StringValueConverter<UserName>))]
+    [JsonConverter(typeof(StringValueJsonConverter<UserName>))]
+    public sealed class UserName : StringValue
     {
-        public UserName(string value)
+        public UserName()
+        {
+            Value = string.Empty;
+        }
+
+        public UserName(string? value)
         {
             Value = value?.Trim() ?? string.Empty;
             if (string.IsNullOrWhiteSpace(value) || Value.Length > DomainConstants.MAX_USER_NAME_LENGTH)
                 throw new ArgumentException($"User name not defined or has more than {DomainConstants.MAX_USER_NAME_LENGTH} characters. Name : '{Value}'.", nameof(value));
         }
-        public string Value { get; }
-        public static implicit operator string(UserName name) => name.Value;
+
+        public static implicit operator UserName(string? value) => value == null ? new UserName() : new UserName(value);
     }
 }

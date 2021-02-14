@@ -6,7 +6,7 @@
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<Deterministic>true</Deterministic>
 		<IsPackable>false</IsPackable>
-		<NoWarn>CA1014;DV2001;DV2002;$(NoWarn)</NoWarn>
+		<NoWarn>CA1014;$(NoWarn)</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -16,15 +16,9 @@
 		<PackageReference Include="xunit" Version="$(xunitVersion)" />
 		<PackageReference Include="xunit.runner.visualstudio" Version="$(xunitrunnervisualstudioVersion)" />
 		<PackageReference Include="coverlet.collector" Version="$(coverletcollectorVersion)" />
-		<PackageReference Include="Microsoft.DependencyValidation.Analyzers" Version="$(MicrosoftDependencyValidationAnalyzersVersion)" />
 		<PackageReference Include="MinVer" Version="$(MinVerVersion)">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-	</ItemGroup>
-	<ItemGroup>
-		<AdditionalFiles Include="$(SolutionDir)src\Architecture\Bistrotic.Architecture\CoreDependency.layerdiagram" Link="CoreDependency.layerdiagram">
-			<Visible>False</Visible>
-		</AdditionalFiles>
 	</ItemGroup>
 </Project>

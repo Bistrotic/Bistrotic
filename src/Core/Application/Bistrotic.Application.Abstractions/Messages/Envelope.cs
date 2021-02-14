@@ -6,7 +6,7 @@ namespace Bistrotic.Application.Messages
     public class Envelope<T> : IEnvelope
         where T : IMessage
     {
-        public Envelope(UserName userName, T message, MessageId? correlationId = null, Etag? etag = null)
+        public Envelope(T message, UserName userName, MessageId? correlationId = null, Etag? etag = null)
         {
             UserName = userName;
             Message = message;

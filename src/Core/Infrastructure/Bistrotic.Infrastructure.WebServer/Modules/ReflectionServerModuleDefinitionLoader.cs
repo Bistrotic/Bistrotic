@@ -9,14 +9,15 @@
     public class ReflectionServerModuleDefinitionLoader : IModuleDefinitionLoader
     {
         public Task<ModuleDefinition[]> GetDefinitions()
-            => Task.FromResult(AppDomain
+            => Task.FromResult(
+                AppDomain
                 .CurrentDomain
                 .GetAssemblies()
                 .SelectMany(p => p.GetTypes())
                 .Where(p => p.IsClass && !p.IsAbstract && typeof(IServerModule).IsAssignableFrom(p))
                 .Select(p => GetModuleDefinition(p))
                 .ToArray()
-                );
+            );
 
         private static ModuleDefinition GetModuleDefinition(Type moduleType)
             => new ModuleDefinition(

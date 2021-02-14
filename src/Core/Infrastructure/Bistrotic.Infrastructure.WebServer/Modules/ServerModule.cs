@@ -9,12 +9,14 @@
 
     public abstract class ServerModule : Module, IServerModule
     {
-        protected ServerModule(ModuleDefinition moduleDefinition, IConfiguration configuration, IWebHostEnvironment environment) : base(ModuleType.Server, moduleDefinition)
+        protected ServerModule(ModuleDefinition moduleDefinition, IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode) : base(ModuleType.Server, moduleDefinition)
         {
             Configuration = configuration;
             Environment = environment;
+            ClientMode = clientMode;
         }
 
+        public ClientMode ClientMode { get; }
         public IConfiguration Configuration { get; }
         public IWebHostEnvironment Environment { get; }
 

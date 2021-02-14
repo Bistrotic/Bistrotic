@@ -3,10 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
 		<UserSecretsId>Bistrotic.Server-1FC1BD61-13EC-45BE-BAC1-DDBF55AE4137</UserSecretsId>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<NoWarn>1701;1702;DV2002</NoWarn>
+		<NoWarn>1701;1702;$(NoWarn)</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>

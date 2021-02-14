@@ -12,13 +12,15 @@
 
     public class ReflectionServerModuleActivator : IModuleActivator
     {
+        private readonly ClientMode _clientMode;
         private readonly IConfiguration _configuration;
         private readonly IWebHostEnvironment _environment;
 
-        public ReflectionServerModuleActivator(IConfiguration configuration, IWebHostEnvironment environment)
+        public ReflectionServerModuleActivator(IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             _environment = environment;
+            _clientMode = clientMode;
         }
 
         public Task<IModule?> FindModule(ModuleDefinition definition)
@@ -28,7 +30,7 @@
             {
                 return Task.FromResult<IModule?>(null);
             }
-            return Task.FromResult((IModule?)(Activator.CreateInstance(moduleType, definition, _configuration, _environment) as IServerModule));
+            return Task.FromResult((IModule?)(Activator.CreateInstance(moduleType, definition, _configuration, _environment, _clientMode) as IServerModule));
         }
 
         public Task<IModule> GetRequiredModule(ModuleDefinition definition)
@@ -36,11 +38,14 @@
             Type? moduleType = Type.GetType(definition.TypeName, false, false);
             if (moduleType == null)
             {
-                throw new ModuleNotFoundException(definition, $"Type {definition.TypeName} not found.");
+                return Task.FromException<IModule>(new ModuleNotFoundException(definition, $"Type {definition.TypeName} not found."));
             }
-            return Task.FromResult((IModule?)(
-                Activator.CreateInstance(moduleType, definition, _configuration) as IServerModule)
-                    ?? throw new Exception($"Error while creating instance of {moduleType.FullName}."));
+            IModule? module = Activator.CreateInstance(moduleType, definition, _configuration, _environment, _clientMode) as IServerModule;
+            if (module == null)
+            {
+                return Task.FromException<IModule>(new Exception($"Error while creating instance of {moduleType.FullName}."));
+            }
+            return Task.FromResult(module);
         }
     }
 }

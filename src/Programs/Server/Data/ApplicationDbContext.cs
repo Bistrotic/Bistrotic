@@ -1,6 +1,6 @@
 ﻿namespace Bistrotic.Server.Data
 {
-    using Bistrotic.Infrastructure.WebServer.Models;
+    using Bistrotic.Infrastructure.Models;
 
     using IdentityServer4.EntityFramework.Options;
 

@@ -37,11 +37,14 @@
             Type? moduleType = Type.GetType(definition.TypeName, false, false);
             if (moduleType == null)
             {
-                throw new ModuleNotFoundException(definition, $"Type {definition.TypeName} not found.");
+                return Task.FromException<IModule>(new ModuleNotFoundException(definition, $"Type {definition.TypeName} not found."));
             }
-            return Task.FromResult((IModule?)(
-                Activator.CreateInstance(moduleType, definition, _hostEnvironment, _clientName, _serverApiName) as IClientModule)
-                    ?? throw new Exception($"Error while creating instance of {moduleType.FullName}."));
+            IModule? module = Activator.CreateInstance(moduleType, definition, _hostEnvironment, _clientName, _serverApiName) as IClientModule;
+            if (module == null)
+            {
+                return Task.FromException<IModule>(new Exception($"Error while creating instance of {moduleType.FullName}."));
+            }
+            return Task.FromResult(module);
         }
     }
 }

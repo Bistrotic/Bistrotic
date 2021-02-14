@@ -3,7 +3,7 @@
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @using Bistrotic.Shared
 @attribute [Authorize]
-@inject HttpClient Http
+@inject BistroticHttpClient service
 
 <h1>Weather forecast</h1>
 
@@ -45,7 +45,7 @@ else
 	{
 		try
 		{
-			forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
+			forecasts = await service.HttpClient.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
 		}
 		catch (AccessTokenNotAvailableException exception)
 		{

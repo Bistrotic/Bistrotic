@@ -15,17 +15,15 @@
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<DebugType>portable</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="$(MicrosoftSourceLinkGitHubVersion)" PrivateAssets="All" />
-		<PackageReference Include="Microsoft.DependencyValidation.Analyzers" Version="$(MicrosoftDependencyValidationAnalyzersVersion)" />
 		<PackageReference Include="MinVer" Version="$(MinVerVersion)">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-	</ItemGroup>
-	<ItemGroup>
-		<AdditionalFiles Include="$(SolutionDir)src\Architecture\Bistrotic.Architecture\CoreDependency.layerdiagram" Link="CoreDependency.layerdiagram">
-			<Visible>False</Visible>
-		</AdditionalFiles>
 	</ItemGroup>
 </Project>

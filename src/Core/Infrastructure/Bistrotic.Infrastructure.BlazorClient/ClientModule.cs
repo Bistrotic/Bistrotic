@@ -8,18 +8,20 @@
 
     public abstract class ClientModule : Module, IClientModule
     {
-        protected readonly string _clientName;
-        protected readonly string _serverApiName;
-
-        protected ClientModule(ModuleDefinition moduleDefinition, IWebAssemblyHostEnvironment hostEnvironment, string clientName, string serverApiName)
+        protected ClientModule(ModuleDefinition moduleDefinition, IWebAssemblyHostEnvironment hostEnvironment, string clientName, string serverApiName, ClientMode clientMode)
                     : base(ModuleType.Client, moduleDefinition)
         {
             Environment = hostEnvironment;
-            _clientName = clientName;
-            _serverApiName = serverApiName;
+            ClientName = clientName;
+            ServerApiName = serverApiName;
+            ClientMode = clientMode;
         }
 
         public IWebAssemblyHostEnvironment Environment { get; }
+        protected ClientMode ClientMode { get; }
+
+        protected string ClientName { get; }
+        protected string ServerApiName { get; }
 
         public abstract void ConfigureServices(IServiceCollection services);
     }

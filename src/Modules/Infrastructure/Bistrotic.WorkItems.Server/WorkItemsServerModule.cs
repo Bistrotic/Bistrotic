@@ -3,6 +3,7 @@
     using System.Collections.Generic;
 
     using Bistrotic.Application.Queries;
+    using Bistrotic.Infrastructure;
     using Bistrotic.Infrastructure.Modules.Definitions;
     using Bistrotic.Infrastructure.WebServer.Modules;
     using Bistrotic.WorkItems.Application.ModelViews;
@@ -12,10 +13,10 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
-    internal sealed class WorkItemsServerModule : ServerModule
+    public sealed class WorkItemsServerModule : ServerModule
     {
-        public WorkItemsServerModule(ModuleDefinition moduleDefinition, IConfiguration configuration, IWebHostEnvironment environment)
-            : base(moduleDefinition, configuration, environment)
+        public WorkItemsServerModule(ModuleDefinition moduleDefinition, IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode)
+            : base(moduleDefinition, configuration, environment, clientMode)
         {
         }
 

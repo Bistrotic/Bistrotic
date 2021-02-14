@@ -3,12 +3,14 @@ namespace Bistrotic.Infrastructure.WebServer
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Security.Principal;
     using System.Threading.Tasks;
 
     using Bistrotic.Application.Queries;
+    using Bistrotic.Infrastructure.Models;
     using Bistrotic.Infrastructure.Modules;
     using Bistrotic.Infrastructure.Modules.Definitions;
-    using Bistrotic.Infrastructure.WebServer.Models;
+    using Bistrotic.Infrastructure.WebServer.Controllers;
     using Bistrotic.Infrastructure.WebServer.Modules;
 
     using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
@@ -33,7 +35,10 @@ namespace Bistrotic.Infrastructure.WebServer
         {
             _environment = environment;
             Configuration = configuration;
+            ClientMode = configuration.GetSection(nameof(ClientMode)).Get<ClientMode>();
         }
+
+        public ClientMode ClientMode { get; }
 
         public IConfiguration Configuration { get; }
 
@@ -80,6 +85,7 @@ namespace Bistrotic.Infrastructure.WebServer
         protected virtual void ConfigureModules(IServiceCollection services)
         {
             IMvcBuilder mvcBuilder = services.AddControllers();
+            mvcBuilder.AddApplicationPart(typeof(QueryController).Assembly);
             foreach (IServerModule module in ServerModules)
             {
                 module.ConfigureServices(services);
@@ -103,6 +109,8 @@ namespace Bistrotic.Infrastructure.WebServer
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
+            // Inject IPrincipal
+            services.AddTransient<IPrincipal>(provider => provider.GetService<IHttpContextAccessor>()?.HttpContext?.User ?? throw new Exception("User not defined."));
         }
 
         protected Task HandleApiFallback(HttpContext context)
@@ -115,12 +123,11 @@ namespace Bistrotic.Infrastructure.WebServer
         {
             var modules = new ModuleFactory(
                 new Func<IModuleDefinitionLoader>[] { () => new ReflectionServerModuleDefinitionLoader() },
-                new Func<IModuleActivator>[] { () => new ReflectionServerModuleActivator(Configuration, _environment) });
+                new Func<IModuleActivator>[] { () => new ReflectionServerModuleActivator(Configuration, _environment, ClientMode) });
             return modules.GetModules()
                 .GetAwaiter()
                 .GetResult()
-                .OfType<IServerModule>()
-                .Select(p => p);
+                .Cast<IServerModule>();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.

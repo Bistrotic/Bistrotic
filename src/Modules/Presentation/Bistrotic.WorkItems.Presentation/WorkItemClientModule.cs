@@ -1,29 +1,26 @@
-﻿using System;
-
-using Bistrotic.Infrastructure.BlazorClient;
-using Bistrotic.Infrastructure.Modules.Definitions;
-
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace Bistrotic.WorkItems.Presentation
+﻿namespace Bistrotic.WorkItems.Presentation
 {
+    using Bistrotic.Infrastructure;
+    using Bistrotic.Infrastructure.BlazorClient;
+    using Bistrotic.Infrastructure.Modules.Definitions;
+
+    using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+    using Microsoft.Extensions.DependencyInjection;
+
     public class WorkItemClientModule : ClientModule
     {
-        public WorkItemClientModule(ModuleDefinition moduleDefinition, IWebAssemblyHostEnvironment hostEnvironment, string clientName, string serverApiName)
-            : base(moduleDefinition, hostEnvironment, clientName, serverApiName)
+        public WorkItemClientModule(
+            ModuleDefinition moduleDefinition,
+            IWebAssemblyHostEnvironment hostEnvironment,
+            string clientName,
+            string serverApiName,
+            ClientMode clientMode)
+            : base(moduleDefinition, hostEnvironment, clientName, serverApiName, clientMode)
         {
         }
 
         public override void ConfigureServices(IServiceCollection services)
         {
-            services
-                .AddHttpClient<WorkItemHttpClient>(
-                    _serverApiName,
-                    client =>
-                        client.BaseAddress = new Uri(Environment.BaseAddress))
-                                                    .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Bistrotic.Domain.ValueTypes
 
         public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
         {
-            writer.WriteStringValue(value?.Value ?? string.Empty);
+            writer.WriteStringValue(string.IsNullOrEmpty(value?.Value) ? null : value?.Value);
         }
     }
 }

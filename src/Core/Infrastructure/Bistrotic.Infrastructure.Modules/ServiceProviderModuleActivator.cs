@@ -42,21 +42,21 @@
         {
             if (string.IsNullOrWhiteSpace(definition.TypeName))
             {
-                throw new InvalidModuleDefinitionException(definition, $"{nameof(ModuleDefinition.TypeName)} is mandatory to be loaded by {this.GetType().Name}.");
+                return Task.FromException<IModule>(new InvalidModuleDefinitionException(definition, $"{nameof(ModuleDefinition.TypeName)} is mandatory to be loaded by {this.GetType().Name}."));
             }
             var type = Type.GetType(definition.TypeName);
             if (type == null)
             {
-                throw new InvalidModuleDefinitionException(definition, $"Type {nameof(ModuleDefinition.TypeName)} not found. Check dependencies on the package containing the type.");
+                return Task.FromException<IModule>(new InvalidModuleDefinitionException(definition, $"Type {nameof(ModuleDefinition.TypeName)} not found. Check dependencies on the package containing the type."));
             }
             var service = Task.FromResult(_serviceProvider.GetService(type));
             if (service == null)
             {
-                throw new InvalidModuleDefinitionException(definition, $"Type {nameof(ModuleDefinition.TypeName)} not found in service provider. Check if the module has been added to the service container.");
+                return Task.FromException<IModule>(new InvalidModuleDefinitionException(definition, $"Type {nameof(ModuleDefinition.TypeName)} not found in service provider. Check if the module has been added to the service container."));
             }
             if (service is not IModule module)
             {
-                throw new InvalidModuleDefinitionException(definition, $"The type {nameof(ModuleDefinition.TypeName)} class does not implement the {nameof(IModule)} interface.");
+                return Task.FromException<IModule>(new InvalidModuleDefinitionException(definition, $"The type {nameof(ModuleDefinition.TypeName)} class does not implement the {nameof(IModule)} interface."));
             }
             return Task.FromResult(module);
         }

@@ -20,17 +20,15 @@ namespace Bistrotic.Infrastructure.BlazorClient
         public static IServiceCollection AddBistroticClient(this IServiceCollection services, IWebAssemblyHostEnvironment hostEnvironment, string clientName, string serverApiName)
         {
             services
-                 .AddHttpClient<HttpClient>(
-                     serverApiName,
-                     client =>
-                         client.BaseAddress = new Uri(hostEnvironment.BaseAddress))
-                                                     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
+                 .AddHttpClient<BistroticHttpClient>(serverApiName, client =>
+                            client.BaseAddress = new Uri(hostEnvironment.BaseAddress)
+                         )
+                         .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
             // Supply HttpClient instances that include access tokens when making requests to the
             // server project
             services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient(serverApiName));
 
             services.AddApiAuthorization(options => options.ProviderOptions.ConfigurationEndpoint = "_configuration/" + clientName);
-            services.AddOptions();
             services.AddBistroticClientModules(hostEnvironment, clientName, serverApiName);
             return services;
         }
@@ -43,7 +41,7 @@ namespace Bistrotic.Infrastructure.BlazorClient
 
         public static IServiceCollection AddBistroticClientModules(this IServiceCollection services, IWebAssemblyHostEnvironment hostEnvironment, string clientName, string serverApiName)
         {
-            foreach (IClientModule module in ClientProgramHelper.GetClientModules(hostEnvironment, clientName, serverApiName))
+            foreach (IClientModule module in GetClientModules(hostEnvironment, clientName, serverApiName))
             {
                 module.ConfigureServices(services);
             }
@@ -58,8 +56,18 @@ namespace Bistrotic.Infrastructure.BlazorClient
             return modules.GetModules()
                 .GetAwaiter()
                 .GetResult()
-                .OfType<IClientModule>()
-                .Select(p => p);
+                .Where(p => IsClientModule(p.GetType()))
+                .Cast<IClientModule>()
+                .ToArray();
+        }
+
+        private static bool IsClientModule(Type p)
+        {
+            if (p.IsClass && !p.IsAbstract)
+            {
+                return typeof(IClientModule).IsAssignableFrom(p);
+            }
+            return false;
         }
     }
 }

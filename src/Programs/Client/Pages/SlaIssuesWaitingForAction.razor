@@ -1,6 +1,6 @@
 ﻿@page "/issues/sla/waitingaction"
 @attribute [Authorize]
-@inject WorkItemHttpClient Client
+@inject BistroticHttpClient service
 
 <h1>Issue SLA</h1>
 
@@ -64,9 +64,12 @@ else
 
 	protected override async Task OnInitializedAsync()
 	{
+#if DEBUG
+ await Task.Delay(10000);
+#endif
 		try
 		{
-			issues = await Client.GetIssuesWithSla(false, false);
+			issues = await service.Ask<GetIssuesWithSla, List<IssueWithSla>>(new GetIssuesWithSla(true, true));
 		}
 		catch (AccessTokenNotAvailableException exception)
 		{

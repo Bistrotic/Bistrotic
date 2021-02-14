@@ -30,7 +30,7 @@
             string? description,
             out Unit unit)
         {
-            unit = new Unit(unitId, new UnitState(name, description));
+            unit = new Unit(unitId, new UnitState() { Name = name, Description = description });
             return new IEvent[] { new NewUnitAdded(unitId, name, description) };
         }
     }

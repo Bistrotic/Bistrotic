@@ -3,7 +3,7 @@
 
 <h1>Issue SLA</h1>
 
-<p>List of all issues with anav active SLA.</p>
+<p>List of all issues with an active SLA.</p>
 
 @if (issues == null)
 {
@@ -29,7 +29,7 @@ else
 		@foreach (var issue in issues)
 			{
 		<tr>
-			<td>@issue.WorkItemId</td>
+			<td><a href="@issue.WorkItemUrl">@issue.WorkItemId</a></td>
 			<td>@issue.Title</td>
 			<td>@issue.Assignee</td>
 			<td>@issue.Priority</td>
@@ -63,9 +63,6 @@ else
 
 	protected override async Task OnInitializedAsync()
 	{
-#if DEBUG
- await Task.Delay(10000);
-#endif
 		try
 		{
 			issues = await service.Ask<GetIssuesWithSla, List<IssueWithSla>>(new GetIssuesWithSla(true, true));

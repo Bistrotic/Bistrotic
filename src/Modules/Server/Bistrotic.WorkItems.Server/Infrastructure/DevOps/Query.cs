@@ -15,7 +15,6 @@
     {
         private readonly IEnumerable<string> _fieldNames;
         private readonly string? _query;
-        private readonly string? _queryName;
         private bool disposedValue;
         private WorkItemTrackingHttpClient? witClient;
 
@@ -24,12 +23,12 @@
         /// </summary>
         /// <param name="project">The DevOps query instance.</param>
         /// <param name="queryName">The DevOps project name.</param>
-        public Query(Project project, string queryName, IEnumerable<string> fieldNames)
+        public Query(Project project, string query, IEnumerable<string> fieldNames)
         {
             Project = project;
             Server = project.Server;
-            _queryName = queryName;
             _fieldNames = fieldNames;
+            _query = query;
         }
 
         public Query(Server server, string query, IEnumerable<string> fieldNames)
@@ -83,7 +82,11 @@
             }
 
             // get work items for the ids found in query
-            return await WitClient.GetWorkItemsAsync(ids, _fieldNames, result.AsOf).ConfigureAwait(false);
+            return (await WitClient
+                .GetWorkItemsAsync(ids, _fieldNames, result.AsOf, WorkItemExpand.Links)
+                .ConfigureAwait(false))
+                    .ConvertAll(p => new WorkItem(p))
+;
         }
 
         /// <summary>

@@ -10,60 +10,11 @@
     using Bistrotic.WorkItems.Application.ModelViews;
     using Bistrotic.WorkItems.Infrastructure.DevOps;
 
-    using Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models;
+    using Fd = Infrastructure.DevOps.WorkItemFieldType;
 
     public class GetIssuesWithSlaHandler : QueryHandler<GetIssuesWithSla, List<IssueWithSla>>
     {
         private readonly IQueryDispatcher _queryDispatcher;
-
-        private var list = new List<IssueWithSla>()
-            {
-                new IssueWithSla("56",
-                "",
-                "Test 1",
-                "Eden Park",
-                "jpiquot@fiveforty.fr",
-                2,
-                DateTime.Now - new TimeSpan(1, 26, 10),
-                DateTime.Now - new TimeSpan(1, 16, 20),
-                0,
-                null,
-                0,
-                36700,
-                3000,
-                0
-                ),
-                new IssueWithSla("68",
-                "",
-                "Test 2",
-                "Eden Park",
-                "jpiquot@fiveforty.fr",
-                2,
-                DateTime.Now - new TimeSpan(2, 35, 20),
-                null,
-                5000,
-                null,
-                2000,
-                6000,
-                0,
-                1000
-                ),
-                new IssueWithSla("75",
-                "",
-                "Test 3",
-                "Eden Park",
-                "jlascaux@fiveforty.fr",
-                2,
-                DateTime.Now - new TimeSpan(4, 26, 10),
-                DateTime.Now - new TimeSpan(4, 0, 0),
-                0,
-                null,
-                2500,
-                36700,
-                1000,
-                5000
-                )
-            };
 
         public GetIssuesWithSlaHandler(IQueryDispatcher queryDispatcher)
         {
@@ -81,12 +32,22 @@
             var server = new Server(settings.AzureDevOpsServerUrl, settings.PersonalAccessToken);
 
             server.Connect();
-            var wiql = "Select [Id] " +
+            const string? wiql = "Select [Id] " +
                     "From WorkItems " +
                     "Where [Work Item Type] = 'Issue' " +
                     "Order By [State] Asc, [Changed Date] Desc";
 
-            var query = new Query(server, wiql, new[] { "System.Id", "System.Title", "System.State" });
+            var query = new Query(server, wiql, new[]
+            {
+                Fd.Id,
+                Fd.Title,
+                Fd.State,
+                Fd.TeamProject,
+                Fd.AssignedTo,
+                Fd.Priority,
+                Fd.CreatedDate,
+                Fd.ClosedDate
+            });
             List<WorkItem> wis = await query.GetQueryWorkItems();
             var issues = new List<IssueWithSla>(wis.Count);
             foreach (var wi in wis)
@@ -94,21 +55,22 @@
                 issues.Add(new IssueWithSla
                 {
                     WorkItemId = wi.Id,
-                    WorkItemUrl = wi.Url,
-                    Title = (string)wi.Fields[WorkItemFieldType.Title],
-                    ProjectName = wi.,
-                    string Assignee,
-                    int Priority,
-                    DateTime CreatedDateTime,
-                    DateTime ? AcknowledgedDateTime,
-                    int AcknoledgeRemainingTimeInSeconds,
-                    DateTime ? ClosedDateTime,
-                    int ResolutionDurationInSeconds,
-                    int RemainingResolutionTimeInSeconds,
-                    int SlaSuspendedTimeInSeconds,
-                    int WaitingForActionTimeInSeconds
+                    WorkItemUrl = wi.HtmlUrl,
+                    Title = wi.Title,
+                    ProjectName = wi.TeamProject,
+                    Assignee = wi.AssignedTo,
+                    Priority = (int)wi.Priority,
+                    CreatedDateTime = wi.CreatedDate,
+                    AcknowledgedDateTime = DateTime.Now.AddDays(-1),
+                    AcknoledgeRemainingTimeInSeconds = 10,
+                    ClosedDateTime = wi.ClosedDate,
+                    ResolutionDurationInSeconds = 100,
+                    RemainingResolutionTimeInSeconds = 500,
+                    SlaSuspendedTimeInSeconds = 100,
+                    WaitingForActionTimeInSeconds = 250
                 });
             }
+            return issues;
         }
     }
 }

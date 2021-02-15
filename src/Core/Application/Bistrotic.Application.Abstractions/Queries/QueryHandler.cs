@@ -13,11 +13,11 @@ namespace Bistrotic.Application.Queries
             return queryType == typeof(TQuery);
         }
 
-        public abstract Task<TResult> Handle(Envelope<TQuery> query);
+        public abstract Task<TResult> Handle(Envelope<TQuery> envelope);
 
-        public async Task<object?> Handle(IEnvelope query)
+        public async Task<object?> Handle(IEnvelope envelope)
         {
-            return await Handle((Envelope<TQuery>)query)
+            return await Handle(new Envelope<TQuery>(envelope))
                 .ConfigureAwait(false);
         }
     }

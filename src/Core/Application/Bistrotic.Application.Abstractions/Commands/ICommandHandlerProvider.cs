@@ -1,6 +1,6 @@
 ﻿using Bistrotic.Application.Commands;
 
-namespace Bistrotic.Commands
+namespace Bistrotic.Application.Commands
 {
     /// <summary>
     /// Interface ICommandHandlerProvider

@@ -9,12 +9,12 @@
     {
         public bool CanHandle(Type queryType);
 
-        Task<object?> Handle(IEnvelope query);
+        Task<object?> Handle(IEnvelope envelope);
     }
 
     public interface IQueryHandler<TQuery, TResult> : IQueryHandler
         where TQuery : IQuery<TResult>
     {
-        Task<TResult> Handle(Envelope<TQuery> query);
+        Task<TResult> Handle(Envelope<TQuery> envelope);
     }
 }

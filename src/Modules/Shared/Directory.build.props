@@ -1,0 +1,7 @@
+<Project>
+	<Import Project="..\Directory.build.props" />
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Core\Domain\Bistrotic.Domain.Abstractions\Bistrotic.Domain.Abstractions.csproj" />
+		<ProjectReference Include="..\..\..\Core\Application\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj" />
+	</ItemGroup>
+</Project>

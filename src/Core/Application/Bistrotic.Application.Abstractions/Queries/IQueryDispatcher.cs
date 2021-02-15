@@ -6,9 +6,9 @@
 
     public interface IQueryDispatcher
     {
-        Task<object?> Dispatch(IEnvelope query);
+        Task<object?> Dispatch(IEnvelope envelope);
 
-        Task<TResult> Dispatch<TQuery, TResult>(Envelope<TQuery> query)
+        Task<TResult> Dispatch<TQuery, TResult>(Envelope<TQuery> envelope)
             where TQuery : IQuery<TResult>;
     }
 }

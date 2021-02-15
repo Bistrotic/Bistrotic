@@ -14,6 +14,14 @@ namespace Bistrotic.Application.Messages
             Etag = etag;
         }
 
+        public Envelope(IEnvelope envelope)
+        {
+            UserName = envelope.UserName;
+            Message = (T)envelope.Message;
+            CorrelationId = envelope.CorrelationId;
+            Etag = envelope.Etag;
+        }
+
         public MessageId? CorrelationId { get; }
         public Etag? Etag { get; }
         public T Message { get; }

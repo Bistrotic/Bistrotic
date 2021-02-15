@@ -1,5 +1,7 @@
 <Project>
 	<PropertyGroup>
+		<MicrosoftTeamFoundationServerClientVersion>16.178.1-preview</MicrosoftTeamFoundationServerClientVersion>
+		<MicrosoftVisualStudioServicesClientVersion>16.178.1-preview</MicrosoftVisualStudioServicesClientVersion>
 		<MicrosoftTyeExtensionsConfigurationVersion>0.7.0-alpha.21109.1</MicrosoftTyeExtensionsConfigurationVersion>
 		<DaprAspNetCoreVersion>1.0.0-rc05</DaprAspNetCoreVersion>
 		<SwashbuckleAspNetCoreVersion>6.0.3</SwashbuckleAspNetCoreVersion>

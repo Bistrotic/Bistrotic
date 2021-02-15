@@ -3,13 +3,12 @@
     using Bistrotic.Domain.Messages;
     using Bistrotic.Domain.ValueTypes;
 
-    public abstract class Command
-            : Message
+    public abstract class Command : Message, ICommand
     {
     }
 
-    public abstract class Command<TId>
-            : Message<TId> where TId : BusinessId, new()
+    public abstract class Command<TId> : Message<TId>, ICommand
+        where TId : BusinessId, new()
     {
         protected Command()
         {

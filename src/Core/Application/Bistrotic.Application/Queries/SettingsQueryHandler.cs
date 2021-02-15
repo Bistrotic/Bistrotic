@@ -18,7 +18,7 @@
             _options = options;
         }
 
-        public override Task<TSettings> Handle(Envelope<TQuery> query)
+        public override Task<TSettings> Handle(Envelope<TQuery> envelope)
         {
             return Task.FromResult(_options.Value);
         }

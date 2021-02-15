@@ -19,8 +19,9 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.BlazorClient\Bistrotic.Infrastructure.BlazorClient.csproj" />
-		<ProjectReference Include="..\..\Modules\Application\Bistrotic.WorkItems.Application.Abstractions\Bistrotic.WorkItems.Application.Abstractions.csproj" />
-		<ProjectReference Include="..\..\Modules\Presentation\Bistrotic.WorkItems.Presentation\Bistrotic.WorkItems.Presentation.csproj" />
+		<ProjectReference Include="..\..\Modules\Client\Bistrotic.Units.Client\Bistrotic.Units.Client.csproj" />
+		<ProjectReference Include="..\..\Modules\Client\Bistrotic.WorkItems.Client\Bistrotic.WorkItems.Client.csproj" />
+		<ProjectReference Include="..\..\Modules\Shared\Bistrotic.WorkItems.Shared\Bistrotic.WorkItems.Shared.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

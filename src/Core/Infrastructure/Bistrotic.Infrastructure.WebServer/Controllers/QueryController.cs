@@ -31,7 +31,7 @@
         [HttpGet("ask")]
         public async Task<IActionResult> Ask(string assemblyQualifiedName, string jsonValue)
         {
-            UserName userName = "anonymous";
+            UserName userName = _principal.Identity?.Name ?? "anonymous";
             IQuery query = (IQuery)new JsonMessage(assemblyQualifiedName, jsonValue).GetMessage();
             var queryType = query.GetType();
             _logger.LogDebug($"User '{userName}' asked for query : {queryType.Name}");

@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.Commands
+﻿namespace Bistrotic.Application.Commands
 {
     using System.Threading.Tasks;
 

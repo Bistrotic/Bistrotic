@@ -73,7 +73,7 @@ namespace Bistrotic.Infrastructure.WebServer
 
         public virtual void ConfigureServices(IServiceCollection services)
         {
-            ConfigureSecurity(services);
+            ConfigureSecurityServices(services);
             services.AddTransient<IQueryDispatcher, IocQueryDispatcher>();
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddControllersWithViews().AddDapr();
@@ -93,7 +93,7 @@ namespace Bistrotic.Infrastructure.WebServer
             }
         }
 
-        protected virtual void ConfigureSecurity(IServiceCollection services)
+        protected virtual void ConfigureSecurityServices(IServiceCollection services)
         {
             services.AddDbContext<TDbContext>(options =>
                  options.UseSqlServer(

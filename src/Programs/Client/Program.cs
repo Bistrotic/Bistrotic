@@ -10,7 +10,7 @@ namespace Bistrotic.Client
 
     public static class Program
     {
-        public static Task Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             if (builder.HostEnvironment.IsDevelopment())
@@ -26,7 +26,8 @@ namespace Bistrotic.Client
             builder.Services.AddBistroticClient(builder.HostEnvironment, typeof(Program).Namespace ?? string.Empty, BistroticConstants.ServerApiName);
 
             builder.Logging.AddBistroticClient();
-            return builder.Build().RunAsync();
+            await builder.Build().RunAsync();
+            Console.WriteLine("Main ended");
         }
     }
 }

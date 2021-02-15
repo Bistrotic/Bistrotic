@@ -73,12 +73,14 @@ namespace Bistrotic.Infrastructure.WebServer
 
         public virtual void ConfigureServices(IServiceCollection services)
         {
-            ConfigureSecurityServices(services);
+            services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddTransient<IQueryDispatcher, IocQueryDispatcher>();
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddControllersWithViews().AddDapr();
             services.AddRazorPages();
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Bistrotic", Version = "v1" }));
+
+            ConfigureSecurityServices(services);
             ConfigureModules(services);
         }
 
@@ -98,8 +100,6 @@ namespace Bistrotic.Infrastructure.WebServer
             services.AddDbContext<TDbContext>(options =>
                  options.UseSqlServer(
                      Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<TDbContext>();

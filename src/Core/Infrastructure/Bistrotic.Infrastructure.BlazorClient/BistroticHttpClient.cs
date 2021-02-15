@@ -33,9 +33,7 @@
                 var message = JsonMessage.New(query);
                 var url = QueryHelpers.AddQueryString(_queryUrl, nameof(JsonMessage.AssemblyQualifiedName), message.AssemblyQualifiedName);
                 url = QueryHelpers.AddQueryString(url, nameof(JsonMessage.JsonValue), message.JsonValue);
-                var result = await HttpClient
-                    .GetFromJsonAsync<TResult>(url)
-                    .ConfigureAwait(false);
+                var result = await HttpClient.GetFromJsonAsync<TResult>(url);
                 if (result == null)
                 {
                     throw new QueryResultNullException(query);
@@ -55,9 +53,7 @@
             var commandType = typeof(TCommand);
             try
             {
-                await HttpClient
-                    .PostAsJsonAsync(_commandUrl, JsonMessage.New(command))
-                    .ConfigureAwait(false);
+                await HttpClient.PostAsJsonAsync(_commandUrl, JsonMessage.New(command));
             }
             catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
             {

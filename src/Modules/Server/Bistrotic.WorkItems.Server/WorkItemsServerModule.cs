@@ -1,7 +1,6 @@
 ﻿namespace Bistrotic.WorkItems.Server
 {
     using System.Collections.Generic;
-    using System.Configuration;
 
     using Bistrotic.Application.Queries;
     using Bistrotic.Infrastructure;
@@ -9,7 +8,6 @@
     using Bistrotic.Infrastructure.WebServer.Modules;
     using Bistrotic.WorkItems.Application.ModelViews;
     using Bistrotic.WorkItems.Application.Queries;
-    using Bistrotic.WorkItems.Infrastructure.DevOps;
 
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
@@ -26,7 +24,6 @@
         {
             services.AddTransient<IQueryHandler<GetWorkItemModuleSettings, WorkItemModuleSettings>, GetWorkItemModuleSettingsHandler>();
             services.AddTransient<IQueryHandler<GetIssuesWithSla, List<IssueWithSla>>, GetIssuesWithSlaHandler>();
-            services.Configure<DevOpsSettings>(Configuration.GetSection(nameof(DevOpsSettings)));
             services.Configure<WorkItemModuleSettings>(Configuration.GetSection(nameof(WorkItemModuleSettings)));
         }
     }

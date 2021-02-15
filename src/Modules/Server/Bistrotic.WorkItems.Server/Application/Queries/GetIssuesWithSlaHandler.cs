@@ -6,13 +6,17 @@
 
     using Bistrotic.Application.Messages;
     using Bistrotic.Application.Queries;
+    using Bistrotic.WorkItems.Application.Exceptions;
     using Bistrotic.WorkItems.Application.ModelViews;
+    using Bistrotic.WorkItems.Infrastructure.DevOps;
+
+    using Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models;
 
     public class GetIssuesWithSlaHandler : QueryHandler<GetIssuesWithSla, List<IssueWithSla>>
     {
-        public override Task<List<IssueWithSla>> Handle(Envelope<GetIssuesWithSla> envelope)
-        {
-            return Task.FromResult(new List<IssueWithSla>()
+        private readonly IQueryDispatcher _queryDispatcher;
+
+        private var list = new List<IssueWithSla>()
             {
                 new IssueWithSla("56",
                 "",
@@ -59,7 +63,52 @@
                 1000,
                 5000
                 )
-            });
+            };
+
+        public GetIssuesWithSlaHandler(IQueryDispatcher queryDispatcher)
+        {
+            _queryDispatcher = queryDispatcher;
+        }
+
+        public async override Task<List<IssueWithSla>> Handle(Envelope<GetIssuesWithSla> envelope)
+        {
+            var settings = await _queryDispatcher
+                .Dispatch<GetWorkItemModuleSettings, WorkItemModuleSettings>(new Envelope<GetWorkItemModuleSettings>(new GetWorkItemModuleSettings(), envelope));
+            if (string.IsNullOrWhiteSpace(settings.AzureDevOpsServerUrl) || string.IsNullOrWhiteSpace(settings.PersonalAccessToken))
+            {
+                throw new DevOpsServerConfigurationMissingException();
+            }
+            var server = new Server(settings.AzureDevOpsServerUrl, settings.PersonalAccessToken);
+
+            server.Connect();
+            var wiql = "Select [Id] " +
+                    "From WorkItems " +
+                    "Where [Work Item Type] = 'Issue' " +
+                    "Order By [State] Asc, [Changed Date] Desc";
+
+            var query = new Query(server, wiql, new[] { "System.Id", "System.Title", "System.State" });
+            List<WorkItem> wis = await query.GetQueryWorkItems();
+            var issues = new List<IssueWithSla>(wis.Count);
+            foreach (var wi in wis)
+            {
+                issues.Add(new IssueWithSla
+                {
+                    WorkItemId = wi.Id,
+                    WorkItemUrl = wi.Url,
+                    Title = (string)wi.Fields[WorkItemFieldType.Title],
+                    ProjectName = wi.,
+                    string Assignee,
+                    int Priority,
+                    DateTime CreatedDateTime,
+                    DateTime ? AcknowledgedDateTime,
+                    int AcknoledgeRemainingTimeInSeconds,
+                    DateTime ? ClosedDateTime,
+                    int ResolutionDurationInSeconds,
+                    int RemainingResolutionTimeInSeconds,
+                    int SlaSuspendedTimeInSeconds,
+                    int WaitingForActionTimeInSeconds
+                });
+            }
         }
     }
 }

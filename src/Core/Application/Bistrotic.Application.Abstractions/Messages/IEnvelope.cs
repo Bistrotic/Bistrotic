@@ -6,7 +6,6 @@
     public interface IEnvelope
     {
         MessageId? CorrelationId { get; }
-        Etag? Etag { get; }
         IMessage Message { get; }
         UserName UserName { get; }
     }

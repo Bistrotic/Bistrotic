@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
 		<ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
-		<NoWarn>$(NoWarn);IDE0005</NoWarn>
+		<NoWarn>$(NoWarn);IDE0005;RCS1090</NoWarn>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
 		<MonoRuntimeDebuggerEnabled>true</MonoRuntimeDebuggerEnabled>

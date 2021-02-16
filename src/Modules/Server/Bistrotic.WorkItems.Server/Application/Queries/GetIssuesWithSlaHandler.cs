@@ -29,7 +29,7 @@
             {
                 throw new DevOpsServerConfigurationMissingException();
             }
-            var server = new Server(settings.AzureDevOpsServerUrl, settings.PersonalAccessToken);
+            var server = new DevOpsServer(settings.AzureDevOpsServerUrl, settings.PersonalAccessToken);
 
             server.Connect();
             const string? wiql = "Select [Id] " +

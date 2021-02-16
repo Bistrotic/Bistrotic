@@ -3,6 +3,6 @@
 		<TargetFramework>net5.0</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\..\..\..\src\Modules\Shared\Bistrotic.Units.Shared\Bistrotic.Units.Shared.csproj" />
+		<ProjectReference Include="..\..\..\..\src\Modules\Shared\Bistrotic.Units.Shared\Bistrotic.Units.Shared.csproj" />
 	</ItemGroup>
 </Project>

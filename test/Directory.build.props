@@ -15,7 +15,10 @@
 		<PackageReference Include="Moq" Version="$(MoqVersion)" />
 		<PackageReference Include="xunit" Version="$(xunitVersion)" />
 		<PackageReference Include="xunit.runner.visualstudio" Version="$(xunitrunnervisualstudioVersion)" />
-		<PackageReference Include="coverlet.collector" Version="$(coverletcollectorVersion)" />
+		<PackageReference Include="coverlet.collector" Version="$(coverletcollectorVersion)">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
 		<PackageReference Include="MinVer" Version="$(MinVerVersion)">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

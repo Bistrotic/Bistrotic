@@ -18,7 +18,7 @@
         /// </summary>
         /// <param name="server">The DevOps server instance.</param>
         /// <param name="projectName">The DevOps project name.</param>
-        public Project(Server server, string projectName)
+        public Project(DevOpsServer server, string projectName)
         {
             Server = server;
             this.projectName = projectName;
@@ -32,7 +32,7 @@
         /// <summary>
         /// Gets the Server instance.
         /// </summary>
-        public Server Server { get; }
+        public DevOpsServer Server { get; }
 
         private TeamProject TeamProject => project ??= GetProject().GetAwaiter().GetResult();
 

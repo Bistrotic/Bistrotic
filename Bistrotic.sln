@@ -108,19 +108,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Application.Abstr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Domain.Abstractions.Tests", "test\Bistrotic.Domain.Abstractions.Tests\Bistrotic.Domain.Abstractions.Tests.csproj", "{1BBECF02-4F6E-4904-B4C6-E650D421A2A3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Server", "_Server", "{756666BF-F864-4B17-BF12-638B9E4272F5}"
-	ProjectSection(SolutionItems) = preProject
-		src\Modules\Server\Directory.build.props = src\Modules\Server\Directory.build.props
-		src\Modules\Server\Directory.build.targets = src\Modules\Server\Directory.build.targets
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.WorkItems.Server", "src\Modules\Server\Bistrotic.WorkItems.Server\Bistrotic.WorkItems.Server.csproj", "{E35A1FE8-2914-4CDB-8FA8-003D9CEF6423}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Shared", "_Shared", "{538C3D29-6FB8-4858-AB47-5744C74320EB}"
-	ProjectSection(SolutionItems) = preProject
-		src\Modules\Shared\Directory.build.props = src\Modules\Shared\Directory.build.props
-		src\Modules\Shared\Directory.build.targets = src\Modules\Shared\Directory.build.targets
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.WorkItems.Shared", "src\Modules\Shared\Bistrotic.WorkItems.Shared\Bistrotic.WorkItems.Shared.csproj", "{2F0FCC73-B654-4D24-8938-3ED680EF538F}"
 EndProject
@@ -134,17 +122,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Units.Shared.Test
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WorkItems", "WorkItems", "{792B598C-0FEE-425B-BB5E-0FF6EEEADD1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.WorkItems.Shared.Tests", "test\Modules\WorkItems\Bistrotic.WorkItems.Shared.Tests\Bistrotic.WorkItems.Shared.Tests.csproj", "{256838B6-C62B-4A84-86C5-7540D1AC9A88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.WorkItems.Shared.Tests", "test\Modules\WorkItems\Bistrotic.WorkItems.Shared.Tests\Bistrotic.WorkItems.Shared.Tests.csproj", "{256838B6-C62B-4A84-86C5-7540D1AC9A88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.WorkItems.Server.Tests", "test\Modules\WorkItems\Bistrotic.WorkItems.Server.Tests\Bistrotic.WorkItems.Server.Tests.csproj", "{DA965840-FAF6-480E-9A3B-6E6C0E0BC575}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.WorkItems.Server.Tests", "test\Modules\WorkItems\Bistrotic.WorkItems.Server.Tests\Bistrotic.WorkItems.Server.Tests.csproj", "{DA965840-FAF6-480E-9A3B-6E6C0E0BC575}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WorkItems", "WorkItems", "{96887FDB-117E-4CEA-8D77-57812B037239}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Client", "_Client", "{FD6612B6-609F-4545-8D08-D53DF9A4001A}"
-	ProjectSection(SolutionItems) = preProject
-		src\Modules\Client\Directory.build.props = src\Modules\Client\Directory.build.props
-		src\Modules\Client\Directory.build.targets = src\Modules\Client\Directory.build.targets
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -276,9 +258,7 @@ Global
 		{23A9A4BC-2DF9-4D0A-B72A-CE90E21FB3DC} = {1299CE2B-441E-4AB4-97E3-E439F145E9F9}
 		{AED03AB3-4116-41B2-A283-9BE62D20EE58} = {1299CE2B-441E-4AB4-97E3-E439F145E9F9}
 		{1BBECF02-4F6E-4904-B4C6-E650D421A2A3} = {1299CE2B-441E-4AB4-97E3-E439F145E9F9}
-		{756666BF-F864-4B17-BF12-638B9E4272F5} = {5DEBE9B8-E56C-4E95-A592-9CB0194A8221}
 		{E35A1FE8-2914-4CDB-8FA8-003D9CEF6423} = {96887FDB-117E-4CEA-8D77-57812B037239}
-		{538C3D29-6FB8-4858-AB47-5744C74320EB} = {5DEBE9B8-E56C-4E95-A592-9CB0194A8221}
 		{2F0FCC73-B654-4D24-8938-3ED680EF538F} = {96887FDB-117E-4CEA-8D77-57812B037239}
 		{7A686709-1FFA-4B45-91DF-12D0E05EA145} = {C95CEBC9-31B9-4BA7-BFAF-AE75997E196A}
 		{2222A282-CB4F-472B-B820-9054A25F158B} = {96887FDB-117E-4CEA-8D77-57812B037239}
@@ -288,7 +268,6 @@ Global
 		{256838B6-C62B-4A84-86C5-7540D1AC9A88} = {792B598C-0FEE-425B-BB5E-0FF6EEEADD1B}
 		{DA965840-FAF6-480E-9A3B-6E6C0E0BC575} = {792B598C-0FEE-425B-BB5E-0FF6EEEADD1B}
 		{96887FDB-117E-4CEA-8D77-57812B037239} = {5DEBE9B8-E56C-4E95-A592-9CB0194A8221}
-		{FD6612B6-609F-4545-8D08-D53DF9A4001A} = {5DEBE9B8-E56C-4E95-A592-9CB0194A8221}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA165E9D-6B6A-49BD-9879-44123F389ACD}

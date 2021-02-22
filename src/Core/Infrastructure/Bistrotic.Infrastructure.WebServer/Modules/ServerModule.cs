@@ -1,5 +1,6 @@
 ﻿namespace Bistrotic.Infrastructure.WebServer.Modules
 {
+    using Bistrotic.Application.Messages;
     using Bistrotic.Infrastructure.Modules;
     using Bistrotic.Infrastructure.Modules.Definitions;
 
@@ -19,6 +20,8 @@
         public ClientMode ClientMode { get; }
         public IConfiguration Configuration { get; }
         public IWebHostEnvironment Environment { get; }
+
+        public abstract void ConfigureMessages(IMessageFactoryBuilder messageBuilder);
 
         public abstract void ConfigureServices(IServiceCollection services);
     }

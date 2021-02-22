@@ -1,8 +1,8 @@
-﻿using System;
-using System.Runtime.Serialization;
-
-namespace Bistrotic.Application.Exceptions
+﻿namespace Bistrotic.Application.Exceptions
 {
+    using System;
+    using System.Runtime.Serialization;
+
     [Serializable]
     public class InvalidCommandHandlerTypeException : Exception
     {

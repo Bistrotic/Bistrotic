@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
 
+    using Bistrotic.Application.Messages;
     using Bistrotic.Application.Queries;
     using Bistrotic.Infrastructure;
     using Bistrotic.Infrastructure.Modules.Definitions;
@@ -18,6 +19,11 @@
         public WorkItemsServerModule(ModuleDefinition moduleDefinition, IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode)
             : base(moduleDefinition, configuration, environment, clientMode)
         {
+        }
+
+        public override void ConfigureMessages(IMessageFactoryBuilder messageBuilder)
+        {
+            messageBuilder.AddAssemblyMessages(typeof(GetIssuesWithSla).Assembly);
         }
 
         public override void ConfigureServices(IServiceCollection services)

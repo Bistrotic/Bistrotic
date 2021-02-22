@@ -3,36 +3,38 @@
     using System;
     using System.Security.Principal;
     using System.Threading.Tasks;
+    using System.Web;
 
     using Bistrotic.Application.Exceptions;
     using Bistrotic.Application.Messages;
     using Bistrotic.Application.Queries;
-    using Bistrotic.Domain.Messages;
     using Bistrotic.Domain.ValueTypes;
 
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
 
     [ApiController]
-    [Route("api/[controller]")]
-    public class QueryController : ControllerBase
+    [Route("api/[action]")]
+    public class QueryCommandController : ControllerBase
     {
-        private readonly ILogger<QueryController> _logger;
+        private readonly ILogger<QueryCommandController> _logger;
+        private readonly IMessageFactory _messageFactory;
         private readonly IPrincipal _principal;
         private readonly IQueryDispatcher _queryDispatcher;
 
-        public QueryController(IQueryDispatcher queryDispatcher, ILogger<QueryController> logger, IPrincipal principal)
+        public QueryCommandController(IQueryDispatcher queryDispatcher, IMessageFactory messageFactory, ILogger<QueryCommandController> logger, IPrincipal principal)
         {
             _queryDispatcher = queryDispatcher ?? throw new ArgumentNullException(nameof(queryDispatcher));
+            _messageFactory = messageFactory;
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _principal = principal ?? throw new ArgumentNullException(nameof(principal));
         }
 
-        [HttpGet("ask")]
-        public async Task<IActionResult> Ask(string assemblyQualifiedName, string jsonValue)
+        [HttpGet("{queryName}/{jsonValue}")]
+        public async Task<IActionResult> Ask(string queryName, string jsonValue)
         {
             UserName userName = _principal.Identity?.Name ?? "anonymous";
-            IQuery query = (IQuery)new JsonMessage(assemblyQualifiedName, jsonValue).GetMessage();
+            IQuery query = (IQuery)_messageFactory.GetMessage(queryName, HttpUtility.HtmlDecode(jsonValue));
             var queryType = query.GetType();
             _logger.LogDebug($"User '{userName}' asked for query : {queryType.Name}");
             try

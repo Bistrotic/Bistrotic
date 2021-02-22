@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.Application.Commands
+﻿namespace Bistrotic.Application.Exceptions
 {
     using System;
     using System.Runtime.Serialization;

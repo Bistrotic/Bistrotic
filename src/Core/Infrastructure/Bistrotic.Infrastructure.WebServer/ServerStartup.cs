@@ -6,6 +6,7 @@ namespace Bistrotic.Infrastructure.WebServer
     using System.Security.Principal;
     using System.Threading.Tasks;
 
+    using Bistrotic.Application.Messages;
     using Bistrotic.Application.Queries;
     using Bistrotic.Infrastructure.Models;
     using Bistrotic.Infrastructure.Modules;
@@ -87,12 +88,15 @@ namespace Bistrotic.Infrastructure.WebServer
         protected virtual void ConfigureModules(IServiceCollection services)
         {
             IMvcBuilder mvcBuilder = services.AddControllers();
-            mvcBuilder.AddApplicationPart(typeof(QueryController).Assembly);
+            mvcBuilder.AddApplicationPart(typeof(QueryCommandController).Assembly);
+            IMessageFactoryBuilder messageBuilder = new InMemoryMessageFactoryBuilder();
             foreach (IServerModule module in ServerModules)
             {
                 module.ConfigureServices(services);
+                module.ConfigureMessages(messageBuilder);
                 mvcBuilder.AddApplicationPart(module.GetType().Assembly);
             }
+            services.AddSingleton(messageBuilder.Build());
         }
 
         protected virtual void ConfigureSecurityServices(IServiceCollection services)

@@ -14,10 +14,6 @@
 
     public class BistroticHttpClient : IQueryService, ICommandService
     {
-        private const string _commandUrl = "api/command/tell/";
-        private const string _jsonValueName = "Value";
-        private const string _queryUrl = "api/query/ask/";
-
         public BistroticHttpClient(HttpClient httpClient)
         {
             HttpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));

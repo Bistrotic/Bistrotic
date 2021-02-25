@@ -8,6 +8,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.WebServer\Bistrotic.Infrastructure.WebServer.csproj" />
+		<ProjectReference Include="..\..\Modules\Server\Bistrotic.OpenIdDict.Server\Bistrotic.OpenIdDict.Server.csproj" />
 		<ProjectReference Include="..\..\Modules\Server\Bistrotic.WorkItems.Server\Bistrotic.WorkItems.Server.csproj" />
 		<ProjectReference Include="..\..\Modules\Shared\Bistrotic.WorkItems.Shared\Bistrotic.WorkItems.Shared.csproj" />
 		<ProjectReference Include="..\Client\Bistrotic.Client.csproj" />
@@ -18,7 +19,6 @@
 		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="$(MicrosoftAspNetCoreDiagnosticsEntityFrameworkCoreVersion)" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="$(MicrosoftAspNetCoreIdentityEntityFrameworkCoreVersion)" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="$(MicrosoftAspNetCoreIdentityUIVersion)" />
-		<PackageReference Include="Microsoft.AspNetCore.ApiAuthorization.IdentityServer" Version="$(MicrosoftAspNetCoreApiAuthorizationIdentityServerVersion)" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(MicrosoftEntityFrameworkCoreSqlServerVersion)" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="$(MicrosoftEntityFrameworkCoreToolsVersion)" />
 	</ItemGroup>

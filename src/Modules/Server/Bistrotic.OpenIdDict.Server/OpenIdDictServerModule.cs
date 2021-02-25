@@ -6,6 +6,7 @@
 
     using Bistrotic.Application.Messages;
     using Bistrotic.Infrastructure;
+    using Bistrotic.Infrastructure.Models;
     using Bistrotic.Infrastructure.Modules.Definitions;
     using Bistrotic.Infrastructure.WebServer.Modules;
     using Bistrotic.OpenIdDict.Application.Queries;
@@ -86,7 +87,8 @@
                     // Note: the sample uses the code and refresh token flows but you can enable the
                     // other flows if you need to support implicit, password or client credentials.
                     options.AllowAuthorizationCodeFlow()
-                           .AllowRefreshTokenFlow();
+                            .RequireProofKeyForCodeExchange()
+                            .AllowRefreshTokenFlow();
 
                     // Register the signing and encryption credentials.
                     options.AddDevelopmentEncryptionCertificate()

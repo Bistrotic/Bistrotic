@@ -59,7 +59,6 @@ namespace Bistrotic.Infrastructure.WebServer
             app.UseStaticFiles();
             app.UseBlazorFrameworkFiles();
             app.UseRouting();
-            app.UseIdentityServer();
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseSwagger();

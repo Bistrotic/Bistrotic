@@ -8,5 +8,6 @@
 		<MinVerVersion>2.4.0</MinVerVersion>
 		<OpenIddictAspNetCoreVersion>3.0.1</OpenIddictAspNetCoreVersion>
 		<OpenIddictEntityFrameworkCoreVersion>3.0.1</OpenIddictEntityFrameworkCoreVersion>
+		<SystemLinqAsyncVersion>5.0.0</SystemLinqAsyncVersion>
 	</PropertyGroup>
 </Project>

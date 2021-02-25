@@ -1,13 +1,12 @@
 namespace Bistrotic.Server
 {
     using Bistrotic.Infrastructure.WebServer;
-    using Bistrotic.Server.Data;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
 
-    public class Startup : ServerStartup<ApplicationDbContext>
+    public class Startup : ServerStartup
     {
         public Startup(IWebHostEnvironment environment, IConfiguration configuration) : base(environment, configuration)
         {

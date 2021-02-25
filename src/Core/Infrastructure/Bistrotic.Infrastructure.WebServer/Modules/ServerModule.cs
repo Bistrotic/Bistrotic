@@ -1,9 +1,14 @@
 ﻿namespace Bistrotic.Infrastructure.WebServer.Modules
 {
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     using Bistrotic.Application.Messages;
     using Bistrotic.Infrastructure.Modules;
     using Bistrotic.Infrastructure.Modules.Definitions;
 
+    using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -21,8 +26,22 @@
         public IConfiguration Configuration { get; }
         public IWebHostEnvironment Environment { get; }
 
+        public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+        }
+
         public abstract void ConfigureMessages(IMessageFactoryBuilder messageBuilder);
 
         public abstract void ConfigureServices(IServiceCollection services);
+
+        public virtual Task StartAsync(IServiceProvider serviceProvider, CancellationToken cancellationToken)
+        {
+            return Task.CompletedTask;
+        }
+
+        public virtual Task StopAsync(IServiceProvider serviceProvider, CancellationToken cancellationToken)
+        {
+            return Task.CompletedTask;
+        }
     }
 }

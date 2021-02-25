@@ -6,5 +6,7 @@
 		<DaprAspNetCoreVersion>1.0.0-rc05</DaprAspNetCoreVersion>
 		<SwashbuckleAspNetCoreVersion>6.0.3</SwashbuckleAspNetCoreVersion>
 		<MinVerVersion>2.4.0</MinVerVersion>
+		<OpenIddictAspNetCoreVersion>3.0.1</OpenIddictAspNetCoreVersion>
+		<OpenIddictEntityFrameworkCoreVersion>3.0.1</OpenIddictEntityFrameworkCoreVersion>
 	</PropertyGroup>
 </Project>

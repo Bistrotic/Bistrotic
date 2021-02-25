@@ -2,4 +2,7 @@
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
 	</PropertyGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\Bistrotic.Infrastructure.Host\Bistrotic.Infrastructure.Host.csproj" />
+	</ItemGroup>
 </Project>

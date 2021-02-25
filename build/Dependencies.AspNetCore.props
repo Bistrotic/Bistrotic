@@ -5,10 +5,12 @@
 		<MicrosoftAspNetCoreComponentsWebAssemblyServerVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreComponentsWebAssemblyServerVersion>
 		<MicrosoftAspNetCoreComponentsWebAssemblyAuthenticationVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreComponentsWebAssemblyAuthenticationVersion>
 		<MicrosoftAspNetCoreComponentsWebAssemblyDevServerVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreComponentsWebAssemblyDevServerVersion>
-		<MicrosoftAspNetCoreIdentityUIVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreIdentityUIVersion>
-		<MicrosoftAspNetCoreApiAuthorizationIdentityServerVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreApiAuthorizationIdentityServerVersion>
-		<MicrosoftAspNetCoreIdentityEntityFrameworkCoreVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreIdentityEntityFrameworkCoreVersion>
 		<MicrosoftAspNetCoreDiagnosticsEntityFrameworkCoreVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreDiagnosticsEntityFrameworkCoreVersion>
+		<MicrosoftAspNetCoreIdentityEntityFrameworkCoreVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreIdentityEntityFrameworkCoreVersion>
+		<MicrosoftAspNetCoreApiAuthorizationIdentityServerVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreApiAuthorizationIdentityServerVersion>
+		<MicrosoftAspNetCoreAuthenticationJwtBearerVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreAuthenticationJwtBearerVersion>
+		<MicrosoftAspNetCoreAuthenticationOpenIdConnectVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreAuthenticationOpenIdConnectVersion>
+		<MicrosoftAspNetCoreIdentityUIVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreIdentityUIVersion>
 		<MicrosoftAspNetCoreAppVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreAppVersion>
 		<MicrosoftAspNetCoreWebUtilitiesVersion>2.2.0</MicrosoftAspNetCoreWebUtilitiesVersion>
 	</PropertyGroup>

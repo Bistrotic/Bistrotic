@@ -3,30 +3,24 @@ namespace Bistrotic.Infrastructure.WebServer
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Security.Principal;
     using System.Threading.Tasks;
 
     using Bistrotic.Application.Messages;
     using Bistrotic.Application.Queries;
-    using Bistrotic.Infrastructure.Models;
     using Bistrotic.Infrastructure.Modules;
     using Bistrotic.Infrastructure.Modules.Definitions;
     using Bistrotic.Infrastructure.WebServer.Controllers;
     using Bistrotic.Infrastructure.WebServer.Modules;
 
-    using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
-    using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
-    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Microsoft.OpenApi.Models;
 
-    public abstract class ServerStartup<TDbContext>
-        where TDbContext : ApiAuthorizationDbContext<ApplicationUser>
+    public abstract class ServerStartup
     {
         private readonly IWebHostEnvironment _environment;
 
@@ -81,8 +75,13 @@ namespace Bistrotic.Infrastructure.WebServer
             services.AddRazorPages();
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Bistrotic", Version = "v1" }));
 
-            ConfigureSecurityServices(services);
             ConfigureModules(services);
+        }
+
+        protected static Task HandleApiFallback(HttpContext context)
+        {
+            context.Response.StatusCode = StatusCodes.Status404NotFound;
+            return Task.FromResult(0);
         }
 
         protected virtual void ConfigureModules(IServiceCollection services)
@@ -97,30 +96,6 @@ namespace Bistrotic.Infrastructure.WebServer
                 mvcBuilder.AddApplicationPart(module.GetType().Assembly);
             }
             services.AddSingleton(messageBuilder.Build());
-        }
-
-        protected virtual void ConfigureSecurityServices(IServiceCollection services)
-        {
-            services.AddDbContext<TDbContext>(options =>
-                 options.UseSqlServer(
-                     Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<TDbContext>();
-
-            services.AddIdentityServer()
-                .AddApiAuthorization<ApplicationUser, TDbContext>();
-
-            services.AddAuthentication()
-                .AddIdentityServerJwt();
-            // Inject IPrincipal
-            services.AddTransient<IPrincipal>(provider => provider.GetService<IHttpContextAccessor>()?.HttpContext?.User ?? throw new Exception("User not defined."));
-        }
-
-        protected Task HandleApiFallback(HttpContext context)
-        {
-            context.Response.StatusCode = StatusCodes.Status404NotFound;
-            return Task.FromResult(0);
         }
 
         private IEnumerable<IServerModule> GetServerModules()

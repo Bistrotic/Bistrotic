@@ -20,6 +20,5 @@
 
 	<ItemGroup>
 		<Folder Include="Components\" />
-		<Folder Include="Pages\" />
 	</ItemGroup>
 </Project>

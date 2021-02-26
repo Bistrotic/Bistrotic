@@ -1,9 +1,5 @@
 ﻿namespace Bistrotic.Infrastructure.WebServer.Modules
 {
-    using System;
-    using System.Threading;
-    using System.Threading.Tasks;
-
     using Bistrotic.Application.Messages;
     using Bistrotic.Infrastructure.Modules;
     using Bistrotic.Infrastructure.Modules.Definitions;
@@ -33,15 +29,5 @@
         public abstract void ConfigureMessages(IMessageFactoryBuilder messageBuilder);
 
         public abstract void ConfigureServices(IServiceCollection services);
-
-        public virtual Task StartAsync(IServiceProvider serviceProvider, CancellationToken cancellationToken)
-        {
-            return Task.CompletedTask;
-        }
-
-        public virtual Task StopAsync(IServiceProvider serviceProvider, CancellationToken cancellationToken)
-        {
-            return Task.CompletedTask;
-        }
     }
 }

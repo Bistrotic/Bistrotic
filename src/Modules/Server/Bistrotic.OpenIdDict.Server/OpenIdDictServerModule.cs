@@ -1,9 +1,5 @@
 ﻿namespace Bistrotic.OpenIdDict
 {
-    using System;
-    using System.Threading;
-    using System.Threading.Tasks;
-
     using Bistrotic.Application.Messages;
     using Bistrotic.Infrastructure;
     using Bistrotic.Infrastructure.Models;
@@ -11,15 +7,13 @@
     using Bistrotic.Infrastructure.WebServer.Modules;
     using Bistrotic.OpenIdDict.Application.Queries;
     using Bistrotic.OpenIdDict.Data;
+    using Bistrotic.OpenIdDict.Workers;
 
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Hosting;
-
-    using OpenIddict.Abstractions;
 
     using static OpenIddict.Abstractions.OpenIddictConstants;
 
@@ -40,7 +34,8 @@
             services.AddDbContext<SecurityDbContext>(options =>
             {
                 // Configure the context to use Microsoft SQL Server.
-                options.UseSqlServer(Configuration.GetConnectionString(nameof(OpenIdDict)));
+                options.UseSqlServer(Configuration.GetConnectionString(nameof(OpenIdDict)),
+                    x => x.MigrationsAssembly(typeof(SecurityDbContext).Assembly.GetName().Name));
 
                 // Register the entity sets needed by OpenIddict.
                 // Note: use the generic overload if you need to replace the default OpenIddict entities.
@@ -111,55 +106,9 @@
                     // Register the ASP.NET Core host.
                     options.UseAspNetCore();
                 });
-        }
-
-        public override async Task StartAsync(IServiceProvider serviceProvider, CancellationToken cancellationToken)
-        {
-            using var scope = serviceProvider.CreateScope();
-
-            var context = scope.ServiceProvider.GetRequiredService<SecurityDbContext>();
-            await context.Database.EnsureCreatedAsync(cancellationToken);
-            if (!Environment.IsDevelopment())
-                return;
-            var manager = scope.ServiceProvider.GetRequiredService<IOpenIddictApplicationManager>();
-
-            if (await manager.FindByClientIdAsync("bistrotic-client", cancellationToken) is null)
-            {
-#pragma warning disable S1075 // URIs should not be hardcoded
-                const string debugUrl = "https://localhost:5001/authentication/";
-#pragma warning restore S1075 // URIs should not be hardcoded
-                await manager.CreateAsync(new OpenIddictApplicationDescriptor
-                {
-                    ClientId = "bistrotic-client",
-                    ConsentType = ConsentTypes.Explicit,
-                    DisplayName = "Bistrotic client application",
-                    Type = ClientTypes.Public,
-                    PostLogoutRedirectUris =
-                    {
-                        new Uri(debugUrl+"logout-callback")
-                    },
-                    RedirectUris =
-                    {
-                        new Uri(debugUrl+"login-callback")
-                    },
-                    Permissions =
-                    {
-                        Permissions.Endpoints.Authorization,
-                        Permissions.Endpoints.Logout,
-                        Permissions.Endpoints.Token,
-                        Permissions.GrantTypes.AuthorizationCode,
-                        Permissions.GrantTypes.RefreshToken,
-                        Permissions.ResponseTypes.Code,
-                        Permissions.Scopes.Email,
-                        Permissions.Scopes.Profile,
-                        Permissions.Scopes.Roles
-                    },
-                    Requirements =
-                    {
-                        Requirements.Features.ProofKeyForCodeExchange
-                    }
-                }, cancellationToken);
-            }
+            // Register the worker responsible of seeding the database with the sample clients if in
+            // development environment.
+            services.AddHostedService<OpenIdDevelopmentWorker>();
         }
     }
 

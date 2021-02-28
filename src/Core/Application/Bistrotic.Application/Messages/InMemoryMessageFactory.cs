@@ -7,6 +7,9 @@
 
     using Bistrotic.Application.Exceptions;
     using Bistrotic.Domain.Messages;
+    using Bistrotic.Infrastructure.Helpers;
+
+    using Microsoft.Extensions.Primitives;
 
     public class InMemoryMessageFactory : IMessageFactory
     {
@@ -22,6 +25,9 @@
             Type messageType = GetMessageType(name);
             return (JsonSerializer.Deserialize(jsonValue, messageType) as IMessage) ?? throw new InvalidMessageException(messageType, jsonValue);
         }
+
+        public IMessage GetMessage(string name, IEnumerable<KeyValuePair<string, StringValues>> values)
+            => (IMessage)values.ToObject(GetMessageType(name));
 
         public Type GetMessageType(string name)
         {

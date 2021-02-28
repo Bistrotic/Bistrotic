@@ -10,6 +10,7 @@
 		<MicrosoftExtensionsSecretManagerToolsVersion>2.0.2</MicrosoftExtensionsSecretManagerToolsVersion>
 		<MicrosoftExtensionsOptionsVersion>5.0.0</MicrosoftExtensionsOptionsVersion>
 		<MicrosoftExtensionsIdentityStoresVersion>5.0.0</MicrosoftExtensionsIdentityStoresVersion>
+		<MicrosoftExtensionsPrimitivesVersion>5.0.0</MicrosoftExtensionsPrimitivesVersion>
 		<MicrosoftJSInteropWebAssemblyVersion>5.0.3</MicrosoftJSInteropWebAssemblyVersion>
 		<SystemNetHttpJsonVersion>5.0.0</SystemNetHttpJsonVersion>
 		<SystemTextJsonVersion>5.0.1</SystemTextJsonVersion>

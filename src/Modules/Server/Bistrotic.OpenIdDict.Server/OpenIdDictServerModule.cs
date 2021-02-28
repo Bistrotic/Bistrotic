@@ -2,11 +2,11 @@
 {
     using Bistrotic.Application.Messages;
     using Bistrotic.Infrastructure;
-    using Bistrotic.Infrastructure.Models;
     using Bistrotic.Infrastructure.Modules.Definitions;
     using Bistrotic.Infrastructure.WebServer.Modules;
     using Bistrotic.OpenIdDict.Application.Queries;
     using Bistrotic.OpenIdDict.Data;
+    using Bistrotic.OpenIdDict.Models;
     using Bistrotic.OpenIdDict.Workers;
 
     using Microsoft.AspNetCore.Hosting;

@@ -5,12 +5,12 @@
     using System.Net.Http;
     using System.Net.Http.Json;
     using System.Threading.Tasks;
-    using System.Web;
 
     using Bistrotic.Application;
     using Bistrotic.Application.Client.Exceptions;
     using Bistrotic.Application.Commands;
     using Bistrotic.Application.Queries;
+    using Bistrotic.Infrastructure.Helpers;
 
     public class BistroticHttpClient : IQueryService, ICommandService
     {
@@ -27,7 +27,7 @@
             try
             {
                 var result = await HttpClient
-                    .GetFromJsonAsync<TResult>($"api/ask/{queryType.Name.ToLowerInvariant()}/{HttpUtility.HtmlEncode(query.Json())}");
+                    .GetFromJsonAsync<TResult>(query.ToHttpQueryString($"api/ask/{queryType.Name.ToLowerInvariant()}/"));
                 if (result == null)
                 {
                     throw new QueryResultNullException(query);

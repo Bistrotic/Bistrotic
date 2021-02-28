@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.Infrastructure.Models
+﻿namespace Bistrotic.OpenIdDict.Models
 {
     using Microsoft.AspNetCore.Identity;
 

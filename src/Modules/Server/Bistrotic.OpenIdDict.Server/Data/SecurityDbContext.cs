@@ -1,6 +1,6 @@
 ﻿namespace Bistrotic.OpenIdDict.Data
 {
-    using Bistrotic.Infrastructure.Models;
+    using Bistrotic.OpenIdDict.Models;
 
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;

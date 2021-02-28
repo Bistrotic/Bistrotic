@@ -52,12 +52,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 		src\Core\Infrastructure\Directory.build.targets = src\Core\Infrastructure\Directory.build.targets
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{18B2A0BB-26B0-47D6-8949-DFA20293D6EB}"
-	ProjectSection(SolutionItems) = preProject
-		src\Core\Presentation\Directory.build.props = src\Core\Presentation\Directory.build.props
-		src\Core\Presentation\Directory.build.targets = src\Core\Presentation\Directory.build.targets
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{AA61F54B-167D-4249-975C-FA3CAA08399E}"
 	ProjectSection(SolutionItems) = preProject
 		src\Core\Domain\Directory.build.props = src\Core\Domain\Directory.build.props
@@ -94,8 +88,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Infrastructure.Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Module.Abstractions.Tests", "test\Bistrotic.Module.Abstractions.Tests\Bistrotic.Module.Abstractions.Tests.csproj", "{37C00D6E-0B58-4474-AF31-AD1FE4BEEE3B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Presentation.Abstractions", "src\Core\Presentation\Bistrotic.Presentation.Abstractions\Bistrotic.Presentation.Abstractions.csproj", "{B13B3C1A-642E-473A-9D8A-CE8841C4BB66}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Client", "src\Programs\Client\Bistrotic.Client.csproj", "{571C888B-7BBD-48DE-9F5C-AD6ECB9886E8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Server", "src\Programs\Server\Bistrotic.Server.csproj", "{95730D4C-9DEE-4A2A-99E5-870F42F09721}"
@@ -130,13 +122,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WorkItems", "WorkItems", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OpenIdDict", "OpenIdDict", "{80839ADC-FF5C-4830-8E88-B6E8FCD16E3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.OpenIdDict.Shared", "src\Modules\Shared\Bistrotic.OpenIdDict.Shared\Bistrotic.OpenIdDict.Shared.csproj", "{05188814-B180-4859-9A2E-C2CBA4A9BDCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.OpenIdDict.Shared", "src\Modules\Shared\Bistrotic.OpenIdDict.Shared\Bistrotic.OpenIdDict.Shared.csproj", "{05188814-B180-4859-9A2E-C2CBA4A9BDCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.OpenIdDict.Client", "src\Modules\Client\Bistrotic.OpenIdDict.Client\Bistrotic.OpenIdDict.Client.csproj", "{9FF79280-96EE-4F77-BC75-377B50D31D25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.OpenIdDict.Client", "src\Modules\Client\Bistrotic.OpenIdDict.Client\Bistrotic.OpenIdDict.Client.csproj", "{9FF79280-96EE-4F77-BC75-377B50D31D25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.OpenIdDict.Server", "src\Modules\Server\Bistrotic.OpenIdDict.Server\Bistrotic.OpenIdDict.Server.csproj", "{A3B9FF34-A8C9-41CE-B062-E0FA77EC3BCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.OpenIdDict.Server", "src\Modules\Server\Bistrotic.OpenIdDict.Server\Bistrotic.OpenIdDict.Server.csproj", "{A3B9FF34-A8C9-41CE-B062-E0FA77EC3BCB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Infrastructure.Host", "src\Core\Infrastructure\Bistrotic.Infrastructure.Host\Bistrotic.Infrastructure.Host.csproj", "{F62AE002-3766-4AD2-8F6F-14810F347709}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Infrastructure.Host", "src\Core\Infrastructure\Bistrotic.Infrastructure.Host\Bistrotic.Infrastructure.Host.csproj", "{F62AE002-3766-4AD2-8F6F-14810F347709}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Infrastructure.Abstractions.Tests", "test\Bistrotic.Infrastructure.Abstractions.Tests\Bistrotic.Infrastructure.Abstractions.Tests.csproj", "{88F02AB7-2CB4-4486-91AD-D5128803249B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -180,10 +174,6 @@ Global
 		{37C00D6E-0B58-4474-AF31-AD1FE4BEEE3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37C00D6E-0B58-4474-AF31-AD1FE4BEEE3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37C00D6E-0B58-4474-AF31-AD1FE4BEEE3B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B13B3C1A-642E-473A-9D8A-CE8841C4BB66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B13B3C1A-642E-473A-9D8A-CE8841C4BB66}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B13B3C1A-642E-473A-9D8A-CE8841C4BB66}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B13B3C1A-642E-473A-9D8A-CE8841C4BB66}.Release|Any CPU.Build.0 = Release|Any CPU
 		{571C888B-7BBD-48DE-9F5C-AD6ECB9886E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{571C888B-7BBD-48DE-9F5C-AD6ECB9886E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{571C888B-7BBD-48DE-9F5C-AD6ECB9886E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -256,6 +246,10 @@ Global
 		{F62AE002-3766-4AD2-8F6F-14810F347709}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F62AE002-3766-4AD2-8F6F-14810F347709}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F62AE002-3766-4AD2-8F6F-14810F347709}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88F02AB7-2CB4-4486-91AD-D5128803249B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88F02AB7-2CB4-4486-91AD-D5128803249B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88F02AB7-2CB4-4486-91AD-D5128803249B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88F02AB7-2CB4-4486-91AD-D5128803249B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -265,7 +259,6 @@ Global
 		{7FC87AE8-D1DA-4306-81B0-29C270E7E104} = {1299CE2B-441E-4AB4-97E3-E439F145E9F9}
 		{39D4F000-E0C7-4DB3-A80F-6D75FAAB44FE} = {7FC87AE8-D1DA-4306-81B0-29C270E7E104}
 		{17634B5D-1BCA-4A1D-BA37-4293453A5CEC} = {23C5C740-B906-4598-A789-6E5027F0A07C}
-		{18B2A0BB-26B0-47D6-8949-DFA20293D6EB} = {23C5C740-B906-4598-A789-6E5027F0A07C}
 		{AA61F54B-167D-4249-975C-FA3CAA08399E} = {23C5C740-B906-4598-A789-6E5027F0A07C}
 		{C74D717A-F4C0-4C99-B367-117E51415AF5} = {23C5C740-B906-4598-A789-6E5027F0A07C}
 		{69F6A7B4-6A07-4799-A1AF-B68FD2CC565F} = {AA61F54B-167D-4249-975C-FA3CAA08399E}
@@ -277,7 +270,6 @@ Global
 		{61D73F65-0B6E-46E4-9D19-C91FC7971CB5} = {C74D717A-F4C0-4C99-B367-117E51415AF5}
 		{9EF0C27E-7179-4371-920B-EBCA2AC47D63} = {1299CE2B-441E-4AB4-97E3-E439F145E9F9}
 		{37C00D6E-0B58-4474-AF31-AD1FE4BEEE3B} = {1299CE2B-441E-4AB4-97E3-E439F145E9F9}
-		{B13B3C1A-642E-473A-9D8A-CE8841C4BB66} = {18B2A0BB-26B0-47D6-8949-DFA20293D6EB}
 		{571C888B-7BBD-48DE-9F5C-AD6ECB9886E8} = {9AD0F4D0-F052-4D81-A2C9-F9A301DC8807}
 		{95730D4C-9DEE-4A2A-99E5-870F42F09721} = {9AD0F4D0-F052-4D81-A2C9-F9A301DC8807}
 		{3A8BFB32-8BC0-4003-AD58-6FB44FF2097D} = {C74D717A-F4C0-4C99-B367-117E51415AF5}
@@ -299,6 +291,7 @@ Global
 		{9FF79280-96EE-4F77-BC75-377B50D31D25} = {80839ADC-FF5C-4830-8E88-B6E8FCD16E3A}
 		{A3B9FF34-A8C9-41CE-B062-E0FA77EC3BCB} = {80839ADC-FF5C-4830-8E88-B6E8FCD16E3A}
 		{F62AE002-3766-4AD2-8F6F-14810F347709} = {17634B5D-1BCA-4A1D-BA37-4293453A5CEC}
+		{88F02AB7-2CB4-4486-91AD-D5128803249B} = {1299CE2B-441E-4AB4-97E3-E439F145E9F9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA165E9D-6B6A-49BD-9879-44123F389ACD}

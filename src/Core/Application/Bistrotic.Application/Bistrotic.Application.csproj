@@ -10,6 +10,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\Infrastructure\Bistrotic.Infrastructure.Abstractions\Bistrotic.Infrastructure.Abstractions.csproj" />
 		<ProjectReference Include="..\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj" />
 	</ItemGroup>
 </Project>

@@ -6,8 +6,8 @@
     using System.Security.Claims;
     using System.Threading.Tasks;
 
-    using Bistrotic.Infrastructure.Models;
     using Bistrotic.OpenIdDict.Atributes;
+    using Bistrotic.OpenIdDict.Models;
     using Bistrotic.OpenIdDict.ViewModels;
 
     using Microsoft.AspNetCore;

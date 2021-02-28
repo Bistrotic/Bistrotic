@@ -22,8 +22,10 @@
         }
 
         public static string GenerateIdentifier()
-                                            => Convert
+            => Convert
                 .ToBase64String(Guid.NewGuid().ToByteArray())
-                .Substring(0, 22);
+                .Substring(0, 22)
+                .Replace("/", "_", StringComparison.InvariantCulture)
+                .Replace("+", "-", StringComparison.InvariantCulture);
     }
 }

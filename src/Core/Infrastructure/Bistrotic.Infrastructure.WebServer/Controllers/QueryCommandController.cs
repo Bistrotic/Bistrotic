@@ -1,6 +1,7 @@
 ﻿namespace Bistrotic.Infrastructure.WebServer.Controllers
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
     using System.Web;
 
@@ -29,12 +30,12 @@
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        [HttpGet("{queryName}/{jsonValue}")]
-        public async Task<IActionResult> Ask(string queryName, string jsonValue)
+        [HttpGet("{queryName}")]
+        public async Task<IActionResult> Ask(string queryName)
         {
             if (string.IsNullOrWhiteSpace(User?.Identity?.Name))
                 return Unauthorized("User name is not defined");
-            IQuery query = (IQuery)_messageFactory.GetMessage(queryName, HttpUtility.HtmlDecode(jsonValue));
+            IQuery query = (IQuery)_messageFactory.GetMessage(queryName, HttpContext.Request.Query);
             var queryType = query.GetType();
             _logger.LogDebug($"User '{User.Identity.Name}' asked for query : {queryType.Name}");
             try
@@ -55,6 +56,11 @@
             {
                 _logger.LogError($"User '{User.Identity.Name}' asked for a not found business object '{ex.Name}' with id '{ex.Id}'. Query {queryType.Name}");
                 return NotFound(new { ex.Id, ex.Name });
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Error while asking for query '{queryType.Name}' by the user '{User.Identity.Name}'.\n{e.Message}");
+                return StatusCode(500);
             }
         }
 

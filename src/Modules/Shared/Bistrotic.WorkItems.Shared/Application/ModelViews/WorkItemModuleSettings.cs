@@ -11,5 +11,6 @@ namespace Bistrotic.WorkItems.Application.ModelViews
         public string? ClientSecret { get; init; }
         public string? PersonalAccessToken { get; init; }
         public List<ProjectSla> ProjectSlas { get; init; } = new List<ProjectSla>();
+        public string? SlaGroupName { get; init; }
     }
 }

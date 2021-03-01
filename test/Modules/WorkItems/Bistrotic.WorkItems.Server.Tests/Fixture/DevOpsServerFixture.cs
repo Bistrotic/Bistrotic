@@ -17,7 +17,7 @@
             Settings.AzureDevOpsServerUrl ?? string.Empty,
             Settings.PersonalAccessToken ?? string.Empty);
 
-        private WorkItemModuleSettings Settings => _settings ??= GetSettings();
+        public WorkItemModuleSettings Settings => _settings ??= GetSettings();
 
         public void Dispose()
         {
@@ -42,7 +42,7 @@
         private static WorkItemModuleSettings GetSettings()
         {
             var builder = new ConfigurationBuilder()
-                .AddUserSecrets<DevOpsServerUnitTests>();
+                .AddUserSecrets<DevOpsServerTests>();
 
             return builder.Build().GetSection(nameof(WorkItemModuleSettings)).Get<WorkItemModuleSettings>();
         }

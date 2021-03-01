@@ -19,7 +19,7 @@ namespace Bistrotic.Domain.Messages
             MessageId = new MessageId();
         }
 
-        public string Id { get; }
+        public string Id { get; init; }
 
         public string MessageId { get; }
     }

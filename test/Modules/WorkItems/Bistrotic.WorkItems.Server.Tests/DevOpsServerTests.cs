@@ -6,11 +6,11 @@ namespace Bistrotic.WorkItems.Server.Tests
 
     using Xunit;
 
-    public class DevOpsServerUnitTests : IClassFixture<DevOpsServerFixture>
+    public class DevOpsServerTests : IClassFixture<DevOpsServerFixture>
     {
         private readonly DevOpsServerFixture _serverFixture;
 
-        public DevOpsServerUnitTests(DevOpsServerFixture serverFixture)
+        public DevOpsServerTests(DevOpsServerFixture serverFixture)
         {
             _serverFixture = serverFixture;
         }

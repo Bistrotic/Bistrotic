@@ -7,11 +7,12 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.TeamFoundationServer.Client" Version="$(MicrosoftTeamFoundationServerClientVersion)" />
 		<PackageReference Include="Microsoft.VisualStudio.Services.Client" Version="$(MicrosoftVisualStudioServicesClientVersion)" />
-	</ItemGroup>
-	<ItemGroup>
-		<Folder Include="Domain\" />
+		<PackageReference Include="Microsoft.VisualStudio.Services.MemberEntitlementManagement.WebApi" Version="$(MicrosoftVisualStudioServicesMemberEntitlementManagementWebApiVersion)" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\Shared\Bistrotic.WorkItems.Shared\Bistrotic.WorkItems.Shared.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="Domain\" />
 	</ItemGroup>
 </Project>

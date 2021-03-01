@@ -21,10 +21,23 @@
         {
             get
             {
-                var assignee = (IdentityRef?)_wi.Fields[Fd.AssignedTo];
-                if (assignee != null)
+                var user = (IdentityRef?)_wi.Fields[Fd.AssignedTo];
+                if (user != null)
                 {
-                    return assignee.DisplayName;
+                    return user.UniqueName;
+                }
+                return string.Empty;
+            }
+        }
+
+        public string ChangedBy
+        {
+            get
+            {
+                var user = (IdentityRef?)_wi.Fields[Fd.ChangedBy];
+                if (user != null)
+                {
+                    return user.UniqueName;
                 }
                 return string.Empty;
             }
@@ -44,6 +57,7 @@
             }
         }
 
+        public DateTime? ChangedDate => GetField<DateTime?>(Fd.ChangedDate);
         public DateTime? ClosedDate => GetField<DateTime?>(Fd.ClosedDate);
         public DateTime CreatedDate => GetField<DateTime?>(Fd.CreatedDate) ?? DateTime.MinValue;
         public int Id => _wi.Id ?? 0;

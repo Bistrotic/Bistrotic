@@ -21,34 +21,9 @@ namespace Bistrotic.Infrastructure.Helpers
             .Where(x => x.CanRead)
             .ToDictionary(x => x.Name, x => x.GetValue(obj, null));
 
-        /// <summary>
-        /// Set a private Property Value on a given Object. Uses Reflection.
-        /// </summary>
-        /// <param name="obj">Object from where the Property Value is returned</param>
-        /// <param name="propName">Propertyname as string.</param>
-        /// <param name="val">the value to set</param>
-        /// <exception cref="ArgumentOutOfRangeException">if the Property is not found</exception>
-        public static void SetPrivateFieldValue(this object obj, string propName, object val)
-        {
-            if (obj == null) throw new ArgumentNullException(nameof(obj));
-            Type? t = obj.GetType();
-            FieldInfo? fi = null;
-            while (fi == null && t != null)
-            {
-                fi = t.GetField(propName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-                t = t.BaseType;
-            }
-            if (fi == null) throw new ArgumentOutOfRangeException("propName", $"Field {propName} was not found in Type {obj.GetType().FullName}");
-            fi.SetValue(obj, val);
-        }
-
         public static object ToObject(this IEnumerable<KeyValuePair<string, StringValues>> values, Type type)
         {
             object? obj = Activator.CreateInstance(type);
-            if (property == null)
-            {
-                throw new KeyNotFoundException($"The property with name '{pair.Key}' not found on object type '{type.Name}'.");
-            }
             if (obj == null)
             {
                 throw new TypeInitializationException(type.FullName, null);
@@ -57,10 +32,34 @@ namespace Bistrotic.Infrastructure.Helpers
             {
                 if (!StringValues.IsNullOrEmpty(pair.Value))
                 {
-                    property.SetValue(obj, JsonSerializer.Deserialize(pair.Value, property.PropertyType), BindingFlags.NonPublic, null, null, null);
+                    obj.SetValue(pair.Key, pair.Value);
                 }
             }
             return obj;
+        }
+
+        private static void SetValue(this object obj, string propertyName, string value)
+        {
+            Type type = obj.GetType() ?? throw new TypeLoadException("The object type can't be retreived.");
+            PropertyInfo? property = type.GetProperty(
+                propertyName,
+                BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance
+                );
+            if (property != null)
+            {
+                property.SetValue(obj, JsonSerializer.Deserialize(value, property.PropertyType));
+                return;
+            }
+            FieldInfo? field = type.GetField(
+                propertyName,
+                BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance
+                );
+            if (field != null)
+            {
+                field.SetValue(obj, JsonSerializer.Deserialize(value, field.FieldType));
+                return;
+            }
+            throw new KeyNotFoundException($"The property with name '{propertyName}' not found on object type '{type.Name}'.");
         }
     }
 }

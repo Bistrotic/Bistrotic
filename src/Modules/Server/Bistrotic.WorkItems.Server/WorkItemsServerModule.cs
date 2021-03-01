@@ -9,6 +9,7 @@
     using Bistrotic.Infrastructure.WebServer.Modules;
     using Bistrotic.WorkItems.Application.ModelViews;
     using Bistrotic.WorkItems.Application.Queries;
+    using Bistrotic.WorkItems.Application.QueryHandlers;
 
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;

@@ -1,7 +1,9 @@
 <Project>
 	<PropertyGroup>
-		<MicrosoftTeamFoundationServerClientVersion>16.178.1-preview</MicrosoftTeamFoundationServerClientVersion>
-		<MicrosoftVisualStudioServicesClientVersion>16.178.1-preview</MicrosoftVisualStudioServicesClientVersion>
+		<MicrosoftTeamFoundationVersion>16.182.0-preview</MicrosoftTeamFoundationVersion>
+		<MicrosoftTeamFoundationServerClientVersion>$(MicrosoftTeamFoundationVersion)</MicrosoftTeamFoundationServerClientVersion>
+		<MicrosoftVisualStudioServicesClientVersion>$(MicrosoftTeamFoundationVersion)</MicrosoftVisualStudioServicesClientVersion>
+		<MicrosoftVisualStudioServicesMemberEntitlementManagementWebApiVersion>$(MicrosoftTeamFoundationVersion)</MicrosoftVisualStudioServicesMemberEntitlementManagementWebApiVersion>
 		<MicrosoftTyeExtensionsConfigurationVersion>0.7.0-alpha.21109.1</MicrosoftTyeExtensionsConfigurationVersion>
 		<DaprAspNetCoreVersion>1.0.0-rc05</DaprAspNetCoreVersion>
 		<SwashbuckleAspNetCoreVersion>6.0.3</SwashbuckleAspNetCoreVersion>
@@ -9,5 +11,6 @@
 		<OpenIddictAspNetCoreVersion>3.0.1</OpenIddictAspNetCoreVersion>
 		<OpenIddictEntityFrameworkCoreVersion>3.0.1</OpenIddictEntityFrameworkCoreVersion>
 		<SystemLinqAsyncVersion>5.0.0</SystemLinqAsyncVersion>
+		<MediatRExtensionsMicrosoftDependencyInjectionVersion>9.0.0</MediatRExtensionsMicrosoftDependencyInjectionVersion>
 	</PropertyGroup>
 </Project>

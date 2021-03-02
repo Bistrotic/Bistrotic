@@ -13,11 +13,11 @@
         private DevOpsServer? _server;
         private WorkItemModuleSettings? _settings;
 
-        public DevOpsServer Server => _server ??= new DevOpsServer(
-            Settings.AzureDevOpsServerUrl ?? string.Empty,
-            Settings.PersonalAccessToken ?? string.Empty);
-
         public WorkItemModuleSettings Settings => _settings ??= GetSettings();
+
+        internal DevOpsServer Server => _server ??= new DevOpsServer(
+                    Settings.AzureDevOpsServerUrl ?? string.Empty,
+            Settings.PersonalAccessToken ?? string.Empty);
 
         public void Dispose()
         {

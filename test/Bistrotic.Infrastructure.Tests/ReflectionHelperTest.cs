@@ -1,12 +1,16 @@
 namespace Bistrotic.Infrastructure.Tests
 {
     using System;
+    using System.Collections.Generic;
     using System.Reflection;
+    using System.Text.Json;
 
-    using Bistrotic.Infrastructure.Reflection;
+    using Bistrotic.Infrastructure.Helpers;
     using Bistrotic.Infrastructure.Tests.Fixture;
 
     using FluentAssertions;
+
+    using Microsoft.Extensions.Primitives;
 
     using Xunit;
 
@@ -121,6 +125,96 @@ namespace Bistrotic.Infrastructure.Tests
                 .HasInterface(typeof(ITestInterface))
                 .Should()
                 .BeTrue();
+        }
+
+        [Theory]
+        [InlineData("L l")]
+        [InlineData("/L l/")]
+        [InlineData("\\/L l\\/")]
+        [InlineData("àaA")]
+        [InlineData("Eéèe")]
+        [InlineData("M@fd1523çççç\\\\èé/+ {}")]
+        [InlineData("+-*/=")]
+        public void ToObjet_set_base_string_property_check(string value)
+        {
+            var values = new Dictionary<string, StringValues>
+            {
+                { nameof(DummyBaseObject.StringBaseProperty), JsonSerializer.Serialize(value) }
+            };
+            var obj = (DummyObject)values.ToObject(typeof(DummyObject));
+            obj.StringBaseProperty.Should().Be(value);
+        }
+
+        [Theory]
+        [InlineData("L l")]
+        [InlineData("/L l/")]
+        [InlineData("\\/L l\\/")]
+        [InlineData("àaA")]
+        [InlineData("Eéèe")]
+        [InlineData("M@fd1523çççç\\\\èé/+ {}")]
+        [InlineData("+-*/=")]
+        public void ToObjet_set_init_only_set_string_property_check(string value)
+        {
+            var values = new Dictionary<string, StringValues>
+            {
+                { nameof(DummyObject.StringInitOnlySetProperty), JsonSerializer.Serialize(value) }
+            };
+            var obj = (DummyObject)values.ToObject(typeof(DummyObject));
+            obj.StringInitOnlySetProperty.Should().Be(value);
+        }
+
+        [Theory]
+        [InlineData("L l")]
+        [InlineData("/L l/")]
+        [InlineData("\\/L l\\/")]
+        [InlineData("àaA")]
+        [InlineData("Eéèe")]
+        [InlineData("M@fd1523çççç\\\\èé/+ {}")]
+        [InlineData("+-*/=")]
+        public void ToObjet_set_private_set_string_property_check(string value)
+        {
+            var values = new Dictionary<string, StringValues>
+            {
+                { nameof(DummyObject.StringPrivateSetProperty), JsonSerializer.Serialize(value) }
+            };
+            var obj = (DummyObject)values.ToObject(typeof(DummyObject));
+            obj.StringPrivateSetProperty.Should().Be(value);
+        }
+
+        [Theory]
+        [InlineData("L l")]
+        [InlineData("/L l/")]
+        [InlineData("\\/L l\\/")]
+        [InlineData("àaA")]
+        [InlineData("Eéèe")]
+        [InlineData("M@fd1523çççç\\\\èé/+ {}")]
+        [InlineData("+-*/=")]
+        public void ToObjet_set_readonly_string_property_check(string value)
+        {
+            var values = new Dictionary<string, StringValues>
+            {
+                { nameof(DummyObject.StringReadOnlyProperty), JsonSerializer.Serialize(value) }
+            };
+            var obj = (DummyObject)values.ToObject(typeof(DummyObject));
+            obj.StringReadOnlyProperty.Should().Be(value);
+        }
+
+        [Theory]
+        [InlineData("L l")]
+        [InlineData("/L l/")]
+        [InlineData("\\/L l\\/")]
+        [InlineData("àaA")]
+        [InlineData("Eéèe")]
+        [InlineData("M@fd1523çççç\\\\èé/+ {}")]
+        [InlineData("+-*/=")]
+        public void ToObjet_set_string_property_check(string value)
+        {
+            var values = new Dictionary<string, StringValues>
+            {
+                { nameof(DummyObject.StringProperty), JsonSerializer.Serialize(value) }
+            };
+            var obj = (DummyObject)values.ToObject(typeof(DummyObject));
+            obj.StringProperty.Should().Be(value);
         }
 
         [Fact]

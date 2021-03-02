@@ -4,7 +4,7 @@
 		<MicrosoftTeamFoundationServerClientVersion>$(MicrosoftTeamFoundationVersion)</MicrosoftTeamFoundationServerClientVersion>
 		<MicrosoftVisualStudioServicesClientVersion>$(MicrosoftTeamFoundationVersion)</MicrosoftVisualStudioServicesClientVersion>
 		<MicrosoftVisualStudioServicesMemberEntitlementManagementWebApiVersion>$(MicrosoftTeamFoundationVersion)</MicrosoftVisualStudioServicesMemberEntitlementManagementWebApiVersion>
-		<MicrosoftTyeExtensionsConfigurationVersion>0.7.0-alpha.21109.1</MicrosoftTyeExtensionsConfigurationVersion>
+		<MicrosoftTyeExtensionsConfigurationVersion>0.6.0-alpha.21075.5</MicrosoftTyeExtensionsConfigurationVersion>
 		<DaprAspNetCoreVersion>1.0.0-rc05</DaprAspNetCoreVersion>
 		<SwashbuckleAspNetCoreVersion>6.0.3</SwashbuckleAspNetCoreVersion>
 		<MinVerVersion>2.4.0</MinVerVersion>

@@ -10,7 +10,7 @@
     using Microsoft.VisualStudio.Services.Graph;
     using Microsoft.VisualStudio.Services.Graph.Client;
 
-    public class DevOpsGroup
+    internal class DevOpsGroup
     {
         private readonly string _groupName;
         private readonly DevOpsServer _server;

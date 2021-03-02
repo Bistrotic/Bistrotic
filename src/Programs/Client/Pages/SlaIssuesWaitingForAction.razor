@@ -34,13 +34,13 @@ else
 			<td>@issue.Assignee</td>
 			<td>@issue.Priority</td>
 			<td>@issue.CreatedDateTime</td>
-			@if (issue.AcknowledgedDateTime == null)
+			@if (issue.AcknowledgmentDateTime == null)
 					{
-			<td>@issue.AcknoledgeRemainingTimeInSeconds</td>
+			<td>@issue.AcknowledgmentRemainingTimeInSeconds</td>
 			}
 					else
 					{
-			<td>@issue.AcknowledgedDateTime</td>
+			<td>@issue.AcknowledgmentDateTime</td>
 			}
 			@if (issue.ClosedDateTime == null)
 					{
@@ -51,7 +51,7 @@ else
 			<td>@issue.ClosedDateTime</td>
 			}
 			<td>@issue.SlaSuspendedTimeInSeconds</td>
-			<td>@issue.WaitingForActionTimeInSeconds</td>
+			<td>@issue.SlaActiveTimeInSeconds</td>
 		</tr>
 		}
 	</tbody>

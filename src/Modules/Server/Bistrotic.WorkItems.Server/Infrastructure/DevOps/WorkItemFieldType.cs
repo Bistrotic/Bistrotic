@@ -3,7 +3,7 @@
     /// <summary>
     /// Class WorkItemFieldType.
     /// </summary>
-    public static class WorkItemFieldType
+    internal static class WorkItemFieldType
     {
         /// <summary>
         /// The activated by

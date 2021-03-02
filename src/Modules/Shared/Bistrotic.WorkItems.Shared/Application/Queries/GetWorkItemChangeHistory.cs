@@ -11,7 +11,7 @@
         {
         }
 
-        public GetWorkItemChangeHistory(WokItemId id) : base(id)
+        public GetWorkItemChangeHistory(WorkItemId id) : base(id)
         {
         }
     }

@@ -1,6 +1,10 @@
 ﻿namespace Bistrotic.WorkItems.Domain
 {
-    public class WorkItemState
+    public enum WorkItemState
     {
+        New,
+        Active,
+        Resolved,
+        Closed
     }
 }

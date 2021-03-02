@@ -3,16 +3,18 @@
     using System;
     using System.Linq;
 
+    using Bistrotic.WorkItems.Domain.Entities;
+
     using Microsoft.VisualStudio.Services.WebApi;
 
     using Fd = WorkItemFieldType;
     using Wi = Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models.WorkItem;
 
-    public class WorkItem
+    internal class DevOpsWorkItem
     {
         private readonly Wi _wi;
 
-        public WorkItem(Wi workItem)
+        public DevOpsWorkItem(Wi workItem)
         {
             _wi = workItem;
         }
@@ -64,6 +66,19 @@
         public long Priority => GetField<long>(Fd.Priority);
         public string TeamProject => GetField(Fd.TeamProject);
         public string Title => GetField(Fd.Title);
+
+        public WorkItem ToWorkItem() => new WorkItem
+        {
+            AssignedTo = AssignedTo,
+            ChangedBy = ChangedBy,
+            ChangedDate = ChangedDate,
+            ClosedDate = ClosedDate,
+            CreatedDate = CreatedDate,
+            Id = new Domain.WorkItemId(Id.ToString()),
+            Priority = Priority,
+            Project = TeamProject,
+            Title = Title
+        };
 
         private string GetField(string name)
         {

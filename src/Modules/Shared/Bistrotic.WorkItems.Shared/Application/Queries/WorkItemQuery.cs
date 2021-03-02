@@ -3,13 +3,13 @@
     using Bistrotic.Application.Queries;
     using Bistrotic.WorkItems.Domain;
 
-    public abstract class WorkItemQuery<TResult> : Query<WokItemId, TResult>
+    public abstract class WorkItemQuery<TResult> : Query<WorkItemId, TResult>
     {
         protected WorkItemQuery()
         {
         }
 
-        protected WorkItemQuery(WokItemId id) : base(id)
+        protected WorkItemQuery(WorkItemId id) : base(id)
         {
         }
     }

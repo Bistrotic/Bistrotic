@@ -7,7 +7,7 @@
     /// <summary>
     /// Class ActivityCollection. Gives an ordered list of activities.
     /// </summary>
-    public class ActivityCollection
+    internal class ActivityCollection
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ActivityCollection"/> class.

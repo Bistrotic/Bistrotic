@@ -1,6 +1,5 @@
 ﻿namespace Bistrotic.WorkItems.Application.QueryHandlers
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -60,38 +59,25 @@
                 Fd.CreatedDate,
                 Fd.ClosedDate
             });
-            List<WorkItem> wis = await query.GetQueryWorkItems();
+            List<DevOpsWorkItem> wis = await query.GetQueryWorkItems();
             var issues = new List<IssueWithSla>(wis.Count);
             foreach (var wi in wis)
             {
                 var wiHistory = await _queryDispatcher
                     .Dispatch<GetWorkItemChangeHistory, IEnumerable<WorkItemChange>>(
-                    new Envelope<GetWorkItemChangeHistory>(new GetWorkItemChangeHistory(new WokItemId(wi.Id.ToString())), envelope)
+                    new Envelope<GetWorkItemChangeHistory>(new GetWorkItemChangeHistory(new WorkItemId(wi.Id.ToString())), envelope)
                     );
-                var slaHistory = wiHistory
+                var slaLog = new WorkItemSlaLog(wiHistory
                     .OrderBy(p => p.ChangeDate)
-                    .Select(p => new { p.ChangeDate, IsSla = slaMembers.Any(o => o.Name == p.UserName) })
-                    .ToList();
-                DateTime? acknowledgeDate = slaHistory.Where(p => p.IsSla).Select(p => p.ChangeDate).FirstOrDefault();
+                    .Select(p => new WorkItemSlaLogItem
+                    {
+                        DateTime = p.ChangeDate,
+                        InSla = slaMembers.Any(o => o.Name == p.UserName),
+                        State = p.State
+                    }));
                 const int acknowledgeTime = 3600;
                 const int resolutionTime = 3600 * 8 * 5;
-                issues.Add(new IssueWithSla
-                {
-                    WorkItemId = wi.Id,
-                    WorkItemUrl = wi.HtmlUrl,
-                    Title = wi.Title,
-                    ProjectName = wi.TeamProject,
-                    Assignee = wi.AssignedTo,
-                    Priority = (int)wi.Priority,
-                    CreatedDateTime = wi.CreatedDate,
-                    AcknowledgedDateTime = acknowledgeDate,
-                    AcknoledgeRemainingTimeInSeconds = acknowledgeDate == null ? 0 : acknowledgeTime - (int)(DateTime.Now - wi.CreatedDate).TotalSeconds,
-                    ClosedDateTime = wi.ClosedDate,
-                    ResolutionDurationInSeconds = wi.ClosedDate == null ? 0 : (int)(wi.ClosedDate.Value - wi.CreatedDate).TotalSeconds,
-                    RemainingResolutionTimeInSeconds = wi.ClosedDate == null ? resolutionTime - (int)(DateTime.Now - wi.CreatedDate).TotalSeconds : 0,
-                    SlaSuspendedTimeInSeconds = (slaHistory.LastOrDefault()?.IsSla == true) ? 0 : (int)(DateTime.Now - wi.ChangedDate.Value).TotalSeconds,
-                    WaitingForActionTimeInSeconds = (slaHistory.LastOrDefault()?.IsSla == true) ? (int)(DateTime.Now - wi.ChangedDate.Value).TotalSeconds : 0
-                });
+                issues.Add(new IssueWithSla(wi.ToWorkItem(), slaLog, wi.HtmlUrl, acknowledgeTime, resolutionTime));
             }
             return issues;
         }

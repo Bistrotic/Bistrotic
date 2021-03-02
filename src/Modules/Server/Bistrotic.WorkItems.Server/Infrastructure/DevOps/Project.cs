@@ -8,7 +8,7 @@
     /// <summary>
     /// Project class. It handles de DevOps project informations.
     /// </summary>
-    public class Project
+    internal class Project
     {
         private readonly string projectName;
         private TeamProject? project;
@@ -25,14 +25,14 @@
         }
 
         /// <summary>
-        /// Gets the DevOps project Id.
-        /// </summary>
-        public Guid Id => TeamProject.Id;
-
-        /// <summary>
         /// Gets the Server instance.
         /// </summary>
         public DevOpsServer Server { get; }
+
+        /// <summary>
+        /// Gets the DevOps project Id.
+        /// </summary>
+        public Guid Id => TeamProject.Id;
 
         private TeamProject TeamProject => project ??= GetProject().GetAwaiter().GetResult();
 

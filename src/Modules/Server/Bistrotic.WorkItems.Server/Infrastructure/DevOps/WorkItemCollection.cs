@@ -12,7 +12,7 @@
     /// <summary>
     /// The WorkItemCollection class. Handles all the WorkItemCollection informations.
     /// </summary>
-    public class WorkItemCollection : IDisposable
+    internal class WorkItemCollection : IDisposable
     {
         private bool disposedValue;
         private WorkItemTrackingHttpClient? witClient;
@@ -39,17 +39,17 @@
             GC.SuppressFinalize(this);
         }
 
-        public async Task<WorkItem> GetWorkItem(int id, CancellationToken cancellationToken = default)
-            => new WorkItem(await WitClient
+        public async Task<DevOpsWorkItem> GetWorkItem(int id, CancellationToken cancellationToken = default)
+            => new DevOpsWorkItem(await WitClient
                 .GetWorkItemAsync(null, id, null, null, WorkItemExpand.All, null, cancellationToken)
                 .ConfigureAwait(false));
 
-        public async Task<IEnumerable<WorkItem>> GetWorkItemHistory(int id, CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<DevOpsWorkItem>> GetWorkItemHistory(int id, CancellationToken cancellationToken = default)
         {
             return (await WitClient
                 .GetRevisionsAsync(null, id, null, null, WorkItemExpand.All, null, cancellationToken)
                 .ConfigureAwait(false))
-                .Select(p => new WorkItem(p));
+                .Select(p => new DevOpsWorkItem(p));
         }
 
         /// <summary>

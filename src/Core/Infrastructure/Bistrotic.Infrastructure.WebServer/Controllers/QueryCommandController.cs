@@ -46,9 +46,9 @@
                         ))
                     .ConfigureAwait(false));
             }
-            catch (QueryHandlerNotFoundException)
+            catch (QueryHandlerNotFoundException e)
             {
-                _logger.LogError($"User '{User.Identity.Name}' asked for unkown query : {queryType.Name}");
+                _logger.LogError($"Error while asking for query '{queryType.Name}' by the user '{User.Identity.Name}'.\n{e.Message}");
                 return BadRequest(new { Query = queryType.Name });
             }
             catch (BusinessObjectNotFoundException ex)

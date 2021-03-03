@@ -31,6 +31,7 @@
         {
             services.AddTransient<IQueryHandler<GetWorkItemModuleSettings, WorkItemModuleSettings>, GetWorkItemModuleSettingsHandler>();
             services.AddTransient<IQueryHandler<GetIssuesWithSla, List<IssueWithSla>>, GetIssuesWithSlaHandler>();
+            services.AddTransient<IQueryHandler<GetSecurityGroupMembers, IEnumerable<SecurityGroupMember>>, GetSecurityGroupMembersHandler>();
             services.Configure<WorkItemModuleSettings>(Configuration.GetSection(nameof(WorkItemModuleSettings)));
         }
     }

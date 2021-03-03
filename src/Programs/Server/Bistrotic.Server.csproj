@@ -7,11 +7,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.WebServer\Bistrotic.Infrastructure.WebServer.csproj" />
-		<ProjectReference Include="..\..\Modules\Server\Bistrotic.OpenIdDict.Server\Bistrotic.OpenIdDict.Server.csproj" />
 		<ProjectReference Include="..\..\Modules\Server\Bistrotic.QuartzScheduler.Server\Bistrotic.QuartzScheduler.Server.csproj" />
 		<ProjectReference Include="..\..\Modules\Server\Bistrotic.WorkItems.Server\Bistrotic.WorkItems.Server.csproj" />
-		<ProjectReference Include="..\..\Modules\Shared\Bistrotic.WorkItems.Shared\Bistrotic.WorkItems.Shared.csproj" />
+		<ProjectReference Include="..\..\Modules\Server\Bistrotic.OpenIdDict.Server\Bistrotic.OpenIdDict.Server.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.WebServer\Bistrotic.Infrastructure.WebServer.csproj" />
 		<ProjectReference Include="..\Client\Bistrotic.Client.csproj" />
 	</ItemGroup>
 

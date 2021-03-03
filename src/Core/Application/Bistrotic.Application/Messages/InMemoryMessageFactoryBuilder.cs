@@ -18,6 +18,7 @@
                 .Where(p => p.IsClass && !p.IsAbstract && typeof(IMessage).IsAssignableFrom(p)))
             {
                 _messageTypes.Add(t);
+                Console.WriteLine("Message added : " + t.Name);
             }
             return this;
         }

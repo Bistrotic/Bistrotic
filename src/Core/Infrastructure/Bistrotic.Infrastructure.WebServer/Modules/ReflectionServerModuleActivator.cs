@@ -30,7 +30,12 @@
             {
                 return Task.FromResult<IModule?>(null);
             }
-            return Task.FromResult((IModule?)(Activator.CreateInstance(moduleType, definition, _configuration, _environment, _clientMode) as IServerModule));
+            var module = Activator.CreateInstance(moduleType, definition, _configuration, _environment, _clientMode) as IServerModule;
+            if (module != null)
+            {
+                Console.WriteLine("Module activated : " + moduleType.Name);
+            }
+            return Task.FromResult((IModule?)module);
         }
 
         public Task<IModule> GetRequiredModule(ModuleDefinition definition)
@@ -45,6 +50,8 @@
             {
                 return Task.FromException<IModule>(new Exception($"Error while creating instance of {moduleType.FullName}."));
             }
+            Console.WriteLine("Module activated : " + moduleType.Name);
+
             return Task.FromResult(module);
         }
     }

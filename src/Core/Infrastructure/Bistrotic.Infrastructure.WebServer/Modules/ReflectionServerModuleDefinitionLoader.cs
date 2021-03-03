@@ -20,10 +20,14 @@
             );
 
         private static ModuleDefinition GetModuleDefinition(Type moduleType)
-            => new ModuleDefinition(
+        {
+            var module = new ModuleDefinition(
                 moduleType.Name,
                 moduleType.AssemblyQualifiedName
                     ?? throw new Exception($"Type {moduleType.FullName} has an empty assembly qualified name.")
                 );
+            Console.WriteLine("Reflection loader found module : " + moduleType.Name);
+            return module;
+        }
     }
 }

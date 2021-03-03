@@ -5,6 +5,7 @@ namespace Bistrotic.Server
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.Logging;
 
     public class Startup : ServerStartup
     {
@@ -13,9 +14,9 @@ namespace Bistrotic.Server
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public override void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public override void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggingBuilder logging)
         {
-            base.Configure(app, env);
+            base.Configure(app, env, logging);
 
             app.UseEndpoints(endpoints =>
                 {

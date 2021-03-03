@@ -9,8 +9,8 @@
             where TStartup : class
             =>
              WebHost
-               .CreateDefaultBuilder<TStartup>(args)
-               .CaptureStartupErrors(true)
-               .Build();
+                .CreateDefaultBuilder<TStartup>(args)
+                .CaptureStartupErrors(true)
+                .Build();
     }
 }

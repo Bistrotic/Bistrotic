@@ -2,6 +2,7 @@
 	<PropertyGroup>
 		<MicrosoftExtensionsDependencyInjectionVersion>5.0.1</MicrosoftExtensionsDependencyInjectionVersion>
 		<MicrosoftExtensionsLoggingAbstractionsVersion>5.0.0</MicrosoftExtensionsLoggingAbstractionsVersion>
+		<MicrosoftExtensionsLoggingConsoleVersion>5.0.0</MicrosoftExtensionsLoggingConsoleVersion>
 		<MicrosoftExtensionsLoggingConfigurationVersion>5.0.0</MicrosoftExtensionsLoggingConfigurationVersion>
 		<MicrosoftExtensionsConfigurationAbstractionsVersion>5.0.0</MicrosoftExtensionsConfigurationAbstractionsVersion>
 		<MicrosoftExtensionsConfigurationVersion>5.0.0</MicrosoftExtensionsConfigurationVersion>

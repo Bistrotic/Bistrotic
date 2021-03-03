@@ -9,7 +9,9 @@
     {
         public static void Main(string[] args)
         {
-            ServerProgram.CreateHostBuilder<Startup>(args).Run();
+            ServerProgram
+                .CreateHostBuilder<Startup>(args)
+                .Run();
         }
     }
 }

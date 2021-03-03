@@ -12,5 +12,6 @@
 		<OpenIddictEntityFrameworkCoreVersion>3.0.1</OpenIddictEntityFrameworkCoreVersion>
 		<SystemLinqAsyncVersion>5.0.0</SystemLinqAsyncVersion>
 		<MediatRExtensionsMicrosoftDependencyInjectionVersion>9.0.0</MediatRExtensionsMicrosoftDependencyInjectionVersion>
+		<MicrosoftExtensionsLoggingAzureAppServicesVersion>5.0.3</MicrosoftExtensionsLoggingAzureAppServicesVersion>
 	</PropertyGroup>
 </Project>

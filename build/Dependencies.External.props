@@ -13,5 +13,6 @@
 		<SystemLinqAsyncVersion>5.0.0</SystemLinqAsyncVersion>
 		<MediatRExtensionsMicrosoftDependencyInjectionVersion>9.0.0</MediatRExtensionsMicrosoftDependencyInjectionVersion>
 		<MicrosoftExtensionsLoggingAzureAppServicesVersion>5.0.3</MicrosoftExtensionsLoggingAzureAppServicesVersion>
+		<QuartzAspNetCoreVersion>3.2.4</QuartzAspNetCoreVersion>
 	</PropertyGroup>
 </Project>

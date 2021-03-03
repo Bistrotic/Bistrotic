@@ -130,7 +130,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.OpenIdDict.Server
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Infrastructure.Host", "src\Core\Infrastructure\Bistrotic.Infrastructure.Host\Bistrotic.Infrastructure.Host.csproj", "{F62AE002-3766-4AD2-8F6F-14810F347709}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Infrastructure.Abstractions.Tests", "test\Bistrotic.Infrastructure.Abstractions.Tests\Bistrotic.Infrastructure.Abstractions.Tests.csproj", "{88F02AB7-2CB4-4486-91AD-D5128803249B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Infrastructure.Abstractions.Tests", "test\Bistrotic.Infrastructure.Abstractions.Tests\Bistrotic.Infrastructure.Abstractions.Tests.csproj", "{88F02AB7-2CB4-4486-91AD-D5128803249B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "QuartzScheduler", "QuartzScheduler", "{C9B912AC-CF84-412C-9ED5-DE7054622C05}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.QuartzScheduler.Shared", "src\Modules\Shared\Bistrotic.QuartzScheduler.Shared\Bistrotic.QuartzScheduler.Shared.csproj", "{C6C5A5B7-FE04-4BC1-98FE-B2EDE25FA027}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.QuartzScheduler.Server", "src\Modules\Server\Bistrotic.QuartzScheduler.Server\Bistrotic.QuartzScheduler.Server.csproj", "{9F80AAB6-0AEE-4473-96E0-C869BA80E092}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -250,6 +256,14 @@ Global
 		{88F02AB7-2CB4-4486-91AD-D5128803249B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88F02AB7-2CB4-4486-91AD-D5128803249B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88F02AB7-2CB4-4486-91AD-D5128803249B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6C5A5B7-FE04-4BC1-98FE-B2EDE25FA027}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6C5A5B7-FE04-4BC1-98FE-B2EDE25FA027}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6C5A5B7-FE04-4BC1-98FE-B2EDE25FA027}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6C5A5B7-FE04-4BC1-98FE-B2EDE25FA027}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F80AAB6-0AEE-4473-96E0-C869BA80E092}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F80AAB6-0AEE-4473-96E0-C869BA80E092}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F80AAB6-0AEE-4473-96E0-C869BA80E092}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F80AAB6-0AEE-4473-96E0-C869BA80E092}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -292,6 +306,9 @@ Global
 		{A3B9FF34-A8C9-41CE-B062-E0FA77EC3BCB} = {80839ADC-FF5C-4830-8E88-B6E8FCD16E3A}
 		{F62AE002-3766-4AD2-8F6F-14810F347709} = {17634B5D-1BCA-4A1D-BA37-4293453A5CEC}
 		{88F02AB7-2CB4-4486-91AD-D5128803249B} = {1299CE2B-441E-4AB4-97E3-E439F145E9F9}
+		{C9B912AC-CF84-412C-9ED5-DE7054622C05} = {5DEBE9B8-E56C-4E95-A592-9CB0194A8221}
+		{C6C5A5B7-FE04-4BC1-98FE-B2EDE25FA027} = {C9B912AC-CF84-412C-9ED5-DE7054622C05}
+		{9F80AAB6-0AEE-4473-96E0-C869BA80E092} = {C9B912AC-CF84-412C-9ED5-DE7054622C05}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA165E9D-6B6A-49BD-9879-44123F389ACD}

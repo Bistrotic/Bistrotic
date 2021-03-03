@@ -41,24 +41,21 @@ namespace Bistrotic.Infrastructure.WebServer
         protected IEnumerable<IServerModule> ServerModules => _serverModules ??= GetServerModules();
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggingBuilder logging)
+        public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseMigrationsEndPoint();
                 app.UseWebAssemblyDebugging();
-                logging.AddDebug();
             }
             else
             {
-                logging.AddAzureWebAppDiagnostics();
                 app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production
                 // scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            logging.AddConsole();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -77,6 +74,12 @@ namespace Bistrotic.Infrastructure.WebServer
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddControllersWithViews().AddDapr();
             services.AddRazorPages();
+            services.AddLogging(p =>
+            {
+                p.AddDebug();
+                p.AddAzureWebAppDiagnostics();
+                p.AddConsole();
+            });
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Bistrotic", Version = "v1" }));
 
             ConfigureModules(services);

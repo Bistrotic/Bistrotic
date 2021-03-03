@@ -11,11 +11,11 @@ namespace Bistrotic.WorkItems.Server.Tests
 
     using Xunit;
 
-    public class DevOpsSecurityGroupTests : IClassFixture<DevOpsServerFixture>
+    public class DevOpsGroupTests : IClassFixture<DevOpsServerFixture>
     {
         private readonly DevOpsServerFixture _serverFixture;
 
-        public DevOpsSecurityGroupTests(DevOpsServerFixture serverFixture)
+        public DevOpsGroupTests(DevOpsServerFixture serverFixture)
         {
             _serverFixture = serverFixture;
         }
@@ -32,6 +32,20 @@ namespace Bistrotic.WorkItems.Server.Tests
             graphGroup.PrincipalName
                 .Should()
                 .Be(groupName);
+        }
+
+        [Fact]
+        public async Task GetMembers_should_return_at_least_one_member()
+        {
+            var groupName = _serverFixture.Settings.SlaGroupName ?? string.Empty;
+            groupName.Should().NotBeNullOrWhiteSpace();
+            var server = _serverFixture.Server;
+            server.Connect();
+            var devOpsgroup = new DevOpsGroup(server, groupName);
+            var members = await devOpsgroup.GetMembers();
+            members
+                .Should()
+                .NotBeEmpty();
         }
     }
 }

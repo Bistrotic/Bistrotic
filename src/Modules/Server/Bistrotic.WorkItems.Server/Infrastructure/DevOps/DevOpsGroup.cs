@@ -24,11 +24,11 @@
             _groupName = groupName;
         }
 
-        public async Task<GraphGroup> GetGroup(CancellationToken? cancellationToken = null)
+        public async Task<GraphGroup> GetGroup(CancellationToken cancellationToken = default)
         {
             if (_graphGroup == null)
             {
-                var graphClient = await GetGraphClient();
+                var graphClient = await GetGraphClient(cancellationToken);
                 SubjectDescriptor descriptor = (await GetGroupDescriptors(cancellationToken))
                     .Where(p => string.Equals(_groupName, p.Key, StringComparison.InvariantCultureIgnoreCase))
                     .Select(p => p.Value)
@@ -37,21 +37,24 @@
                 {
                     throw new DevOpsGroupNotFoundException(_groupName, (await GetGroupDescriptors(cancellationToken)).Keys);
                 }
-                _graphGroup = await graphClient.GetGroupAsync(descriptor, null, cancellationToken ?? new CancellationToken());
+                _graphGroup = await graphClient.GetGroupAsync(descriptor, null, cancellationToken);
             }
             return _graphGroup;
         }
 
-        public async Task<Dictionary<string, SubjectDescriptor>> GetGroupDescriptors(CancellationToken? cancellationToken = null)
+        public async Task<Dictionary<string, SubjectDescriptor>> GetGroupDescriptors(CancellationToken cancellationToken = default)
         {
             if (_descriptors == null)
             {
-                var graphClient = await GetGraphClient();
-                var groups = await graphClient.ListGroupsAsync(null, null, null, null, cancellationToken ?? new CancellationToken());
+                var graphClient = await GetGraphClient(cancellationToken);
+                var groups = await graphClient.ListGroupsAsync(null, null, null, null, cancellationToken);
                 var descriptors = groups.GraphGroups.ToDictionary(k => k.PrincipalName, v => v.Descriptor);
                 if (groups.ContinuationToken != null)
                 {
-                    var continuationTasks = groups.ContinuationToken.Select(p => graphClient.ListGroupsAsync(null, null, p, null, cancellationToken ?? new CancellationToken()));
+                    var continuationTasks = groups
+                            .ContinuationToken
+                            .Select(p => graphClient
+                                .ListGroupsAsync(null, null, p, null, cancellationToken));
                     foreach (GraphGroup group in (await Task.WhenAll(continuationTasks)).SelectMany(p => p.GraphGroups))
                     {
                         descriptors.Add(group.PrincipalName, group.Descriptor);
@@ -62,21 +65,49 @@
             return _descriptors;
         }
 
-        public async Task<IEnumerable<GraphUser>> GetMembers(CancellationToken? cancellationToken = null)
-        {
-            var graphClient = await GetGraphClient();
-            var group = await GetGroup(cancellationToken);
-            var tasks = (await graphClient.ListMembershipsAsync(
-                group.Descriptor,
-                GraphTraversalDirection.Down,
-                null,
-                null,
-                cancellationToken ?? new CancellationToken()))
-                .Select(p => graphClient.GetUserAsync(p.MemberDescriptor, cancellationToken));
-            return await Task.WhenAll(tasks);
-        }
+        public async Task<IEnumerable<GraphUser>> GetMembers(CancellationToken cancellationToken = default)
+            => await GetMembers(new[] { (await GetGroup(cancellationToken)).Descriptor }, new HashSet<SubjectDescriptor>(), cancellationToken);
 
-        private async Task<GraphHttpClient> GetGraphClient()
-            => _collectionClient ??= await _server.Connection.GetClientAsync<GraphHttpClient>();
+        private async Task<GraphHttpClient> GetGraphClient(CancellationToken cancellationToken = default)
+            => _collectionClient ??= await _server.Connection.GetClientAsync<GraphHttpClient>(cancellationToken);
+
+        private async Task<IEnumerable<GraphUser>> GetMembers(IEnumerable<SubjectDescriptor> parents, HashSet<SubjectDescriptor> found, CancellationToken cancellationToken = default)
+        {
+            found.AddRange(parents);
+            var graphClient = await GetGraphClient(cancellationToken);
+            var membersTasks = parents
+                .Select(p => graphClient.ListMembershipsAsync(
+                    p,
+                    GraphTraversalDirection.Down,
+                    1,
+                    null,
+                    cancellationToken))
+                .ToList();
+            var members = (await Task.WhenAll(membersTasks))
+                .SelectMany(p => p)
+                .Select(p => p.MemberDescriptor)
+                .ToList();
+            var noDupMembers = members
+                .Where(p => !found.Contains(p))
+                .ToList();
+            var usersTasks = noDupMembers
+                .Where(p => p.SubjectType == "aad" || p.SubjectType == "ad" || p.SubjectType == "msa")
+                .Select(p => graphClient.GetUserAsync(p, cancellationToken))
+                .ToList();
+            var users = new List<GraphUser>(await Task.WhenAll(usersTasks));
+            found.AddRange(users.ConvertAll(p => p.Descriptor));
+            var groups = noDupMembers
+                .Where(p => p.SubjectType == "aadgp" || p.SubjectType == "vssgp")
+                .ToList();
+            if (groups.Count > 0)
+            {
+                var subUsers = await GetMembers(groups, found, cancellationToken);
+                if (subUsers.Any())
+                {
+                    users.AddRange(subUsers);
+                }
+            }
+            return users.ToList();
+        }
     }
 }

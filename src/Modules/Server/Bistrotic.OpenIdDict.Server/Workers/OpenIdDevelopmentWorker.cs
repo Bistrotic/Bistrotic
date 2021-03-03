@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
 using Bistrotic.Infrastructure;
 using Bistrotic.OpenIdDict.Data;
+using Bistrotic.OpenIdDict.Settings;
 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 
 using OpenIddict.Abstractions;
 
@@ -28,33 +32,25 @@ namespace Bistrotic.OpenIdDict.Workers
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            if (!_environment.IsDevelopment())
-                return;
             using var scope = _serviceProvider.CreateScope();
 
             var context = scope.ServiceProvider.GetRequiredService<SecurityDbContext>();
+            var settings = scope.ServiceProvider.GetRequiredService<IOptions<OpenIdSettings>>();
             await context.Database.EnsureCreatedAsync(cancellationToken);
             var manager = scope.ServiceProvider.GetRequiredService<IOpenIddictApplicationManager>();
-
+            var authorizedUrls = new List<string>(settings.Value.AuthoriredUrls);
+            if (authorizedUrls.Count == 0 && _environment.IsDevelopment())
+            {
+                authorizedUrls.AddRange(new[] { "https://localhost:5001", "http://localhost:5000", "https://localhost:6001", "http://localhost:6000" });
+            }
             if (await manager.FindByClientIdAsync(BistroticConstants.ServerApiName, cancellationToken) is null)
             {
-#pragma warning disable S1075 // URIs should not be hardcoded
-                const string debugUrl = "https://localhost:5001/authentication/";
-#pragma warning restore S1075 // URIs should not be hardcoded
-                await manager.CreateAsync(new OpenIddictApplicationDescriptor
+                var descriptor = new OpenIddictApplicationDescriptor
                 {
                     ClientId = BistroticConstants.ServerApiName,
                     ConsentType = ConsentTypes.Explicit,
-                    DisplayName = "Bistrotic client application",
+                    DisplayName = nameof(Bistrotic) + " client application",
                     Type = ClientTypes.Public,
-                    PostLogoutRedirectUris =
-                    {
-                        new Uri(debugUrl+"logout-callback")
-                    },
-                    RedirectUris =
-                    {
-                        new Uri(debugUrl+"login-callback")
-                    },
                     Permissions =
                     {
                         Permissions.Endpoints.Authorization,
@@ -71,7 +67,20 @@ namespace Bistrotic.OpenIdDict.Workers
                     {
                         Requirements.Features.ProofKeyForCodeExchange
                     }
-                }, cancellationToken);
+                };
+
+                foreach (var uri in authorizedUrls
+                    .Select(p => new Uri(new Uri(p), "authentication/logout-callback")))
+                {
+                    descriptor.PostLogoutRedirectUris.Add(uri);
+                }
+
+                foreach (var uri in authorizedUrls
+                     .Select(p => new Uri(new Uri(p), "authentication/login-callback")))
+                {
+                    descriptor.RedirectUris.Add(uri);
+                }
+                await manager.CreateAsync(descriptor, cancellationToken);
             }
         }
 

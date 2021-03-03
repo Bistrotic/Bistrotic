@@ -28,21 +28,18 @@ namespace Bistrotic.Infrastructure.BlazorClient
             // server project
             services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient(serverApiName));
 
-            // TODO move to openid module
-            //           services.AddApiAuthorization(options => options.ProviderOptions.ConfigurationEndpoint = "_configuration/" + clientName);
             services.AddOidcAuthentication(options =>
             {
                 options.ProviderOptions.ClientId = serverApiName;
-                options.ProviderOptions.Authority = "https://localhost:5001/";
+                options.ProviderOptions.Authority = hostEnvironment.BaseAddress;
                 options.ProviderOptions.ResponseType = "code";
 
-                // Note: response_mode=fragment is the best option for a SPA. Unfortunately, the Blazor WASM
-                // authentication stack is impacted by a bug that prevents it from correctly extracting
-                // authorization error responses (e.g error=access_denied responses) from the URL fragment.
-                // For more information about this bug, visit https://github.com/dotnet/aspnetcore/issues/28344.
-                //
+                // Note: response_mode=fragment is the best option for a SPA. Unfortunately, the
+                // Blazor WASM authentication stack is impacted by a bug that prevents it from
+                // correctly extracting authorization error responses (e.g error=access_denied
+                // responses) from the URL fragment. For more information about this bug, visit https://github.com/dotnet/aspnetcore/issues/28344.
                 options.ProviderOptions.ResponseMode = "query";
-                options.AuthenticationPaths.RemoteRegisterPath = "https://localhost:5001/Identity/Account/Register";
+                options.AuthenticationPaths.RemoteRegisterPath = new Uri(new Uri(hostEnvironment.BaseAddress), "Identity/Account/Register").ToString();
             });
             services.AddBistroticClientModules(hostEnvironment, clientName, serverApiName);
             return services;

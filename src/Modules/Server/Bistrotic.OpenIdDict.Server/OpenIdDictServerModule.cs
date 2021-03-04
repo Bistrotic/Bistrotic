@@ -203,12 +203,7 @@
             X509Certificate2? cert = null;
             if (thumbprint != null)
             {
-                cert =
-                    GetCertificate(StoreName.CertificateAuthority, StoreLocation.LocalMachine, thumbprint) ??
-                    GetCertificate(StoreName.CertificateAuthority, StoreLocation.CurrentUser, thumbprint) ??
-                    GetCertificate(StoreName.Root, StoreLocation.LocalMachine, thumbprint) ??
-                    GetCertificate(StoreName.Root, StoreLocation.CurrentUser, thumbprint) ??
-                    GetCertificate(StoreName.My, StoreLocation.CurrentUser, thumbprint);
+                cert = GetCertificate(StoreName.My, StoreLocation.CurrentUser, thumbprint);
                 if (cert == null && RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     cert = GetCertificate(StoreName.My, StoreLocation.LocalMachine, thumbprint);
@@ -219,6 +214,27 @@
                 var directories = new List<string>();
                 Configuration.GetSection(nameof(OpenIdSettings)).Bind(nameof(OpenIdSettings.CertificatePaths), directories);
                 directories.Add(AppDomain.CurrentDomain.BaseDirectory);
+                // Add Azure WebSites certificate paths
+                string? WEBSITE_PRIVATE_CERTS_PATH = Configuration.GetValue<string>(nameof(WEBSITE_PRIVATE_CERTS_PATH));
+                if (!string.IsNullOrWhiteSpace(WEBSITE_PRIVATE_CERTS_PATH))
+                {
+                    directories.Add(WEBSITE_PRIVATE_CERTS_PATH);
+                }
+                string? WEBSITE_INTERMEDIATE_CERTS_PATH = Configuration.GetValue<string>(nameof(WEBSITE_INTERMEDIATE_CERTS_PATH));
+                if (!string.IsNullOrWhiteSpace(WEBSITE_INTERMEDIATE_CERTS_PATH))
+                {
+                    directories.Add(WEBSITE_INTERMEDIATE_CERTS_PATH);
+                }
+                string? WEBSITE_PUBLIC_CERTS_PATH = Configuration.GetValue<string>(nameof(WEBSITE_PUBLIC_CERTS_PATH));
+                if (!string.IsNullOrWhiteSpace(WEBSITE_PUBLIC_CERTS_PATH))
+                {
+                    directories.Add(WEBSITE_PUBLIC_CERTS_PATH);
+                }
+                string? WEBSITE_ROOT_CERTS_PATH = Configuration.GetValue<string>(nameof(WEBSITE_ROOT_CERTS_PATH));
+                if (!string.IsNullOrWhiteSpace(WEBSITE_ROOT_CERTS_PATH))
+                {
+                    directories.Add(WEBSITE_ROOT_CERTS_PATH);
+                }
                 cert = GetFileCertificate(directories, fileName);
                 return cert ?? throw new Exception($"The certificate file '{fileName}' could not be found in directories : {string.Join("; ", directories)}");
             }

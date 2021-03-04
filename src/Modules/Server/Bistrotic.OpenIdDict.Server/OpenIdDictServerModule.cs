@@ -148,9 +148,9 @@
                 string filePath = Path.Combine(path, fileName);
                 if (File.Exists(filePath))
                 {
-                    var cert = (X509Certificate2)X509Certificate.CreateFromCertFile(filePath);
+                    var cert = X509Certificate2.CreateFromCertFile(filePath);
                     Console.WriteLine($"Loaded certificate : {filePath}.");
-                    return cert;
+                    return new X509Certificate2(cert);
                 }
             }
             return null;

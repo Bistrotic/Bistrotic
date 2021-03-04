@@ -23,7 +23,7 @@
         {
             get
             {
-                var user = (IdentityRef?)_wi.Fields[Fd.AssignedTo];
+                var user = GetField<IdentityRef?>(Fd.AssignedTo);
                 if (user != null)
                 {
                     return user.UniqueName;
@@ -36,7 +36,7 @@
         {
             get
             {
-                var user = (IdentityRef?)_wi.Fields[Fd.ChangedBy];
+                var user = GetField<IdentityRef?>(Fd.ChangedBy);
                 if (user != null)
                 {
                     return user.UniqueName;

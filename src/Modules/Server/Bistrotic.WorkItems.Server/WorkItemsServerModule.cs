@@ -29,6 +29,7 @@
 
         public override void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IQueryHandler<GetWorkItemChangeHistory, IEnumerable<WorkItemChange>>, GetWorkItemChangeHistoryHandler>();
             services.AddTransient<IQueryHandler<GetWorkItemModuleSettings, WorkItemModuleSettings>, GetWorkItemModuleSettingsHandler>();
             services.AddTransient<IQueryHandler<GetIssuesWithSla, List<IssueWithSla>>, GetIssuesWithSlaHandler>();
             services.AddTransient<IQueryHandler<GetSecurityGroupMembers, IEnumerable<SecurityGroupMember>>, GetSecurityGroupMembersHandler>();

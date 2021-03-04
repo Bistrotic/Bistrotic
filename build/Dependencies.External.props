@@ -8,6 +8,7 @@
 		<DaprAspNetCoreVersion>1.0.0</DaprAspNetCoreVersion>
 		<SwashbuckleAspNetCoreVersion>6.0.7</SwashbuckleAspNetCoreVersion>
 		<MinVerVersion>2.4.0</MinVerVersion>
+		<OpenIddictVersion>3.0.1</OpenIddictVersion>
 		<OpenIddictAspNetCoreVersion>3.0.1</OpenIddictAspNetCoreVersion>
 		<OpenIddictEntityFrameworkCoreVersion>3.0.1</OpenIddictEntityFrameworkCoreVersion>
 		<SystemLinqAsyncVersion>5.0.0</SystemLinqAsyncVersion>

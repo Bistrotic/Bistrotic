@@ -138,6 +138,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.QuartzScheduler.S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.QuartzScheduler.Server", "src\Modules\Server\Bistrotic.QuartzScheduler.Server\Bistrotic.QuartzScheduler.Server.csproj", "{9F80AAB6-0AEE-4473-96E0-C869BA80E092}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Tools", "src\Programs\Bistrotic.Tools\Bistrotic.Tools.csproj", "{B057DA7D-5B1F-47C7-8490-9F436DF9BC01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -264,6 +266,10 @@ Global
 		{9F80AAB6-0AEE-4473-96E0-C869BA80E092}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F80AAB6-0AEE-4473-96E0-C869BA80E092}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F80AAB6-0AEE-4473-96E0-C869BA80E092}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B057DA7D-5B1F-47C7-8490-9F436DF9BC01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B057DA7D-5B1F-47C7-8490-9F436DF9BC01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B057DA7D-5B1F-47C7-8490-9F436DF9BC01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B057DA7D-5B1F-47C7-8490-9F436DF9BC01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -309,6 +315,7 @@ Global
 		{C9B912AC-CF84-412C-9ED5-DE7054622C05} = {5DEBE9B8-E56C-4E95-A592-9CB0194A8221}
 		{C6C5A5B7-FE04-4BC1-98FE-B2EDE25FA027} = {C9B912AC-CF84-412C-9ED5-DE7054622C05}
 		{9F80AAB6-0AEE-4473-96E0-C869BA80E092} = {C9B912AC-CF84-412C-9ED5-DE7054622C05}
+		{B057DA7D-5B1F-47C7-8490-9F436DF9BC01} = {9AD0F4D0-F052-4D81-A2C9-F9A301DC8807}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA165E9D-6B6A-49BD-9879-44123F389ACD}

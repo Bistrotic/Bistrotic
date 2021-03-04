@@ -141,15 +141,9 @@
             return null;
         }
 
-        private static X509Certificate2? GetFileCertificate(IEnumerable<string>? paths, string fileName)
+        private static X509Certificate2? GetFileCertificate(IEnumerable<string> paths, string fileName)
         {
-            var allPaths = new List<string>();
-            if (paths != null)
-            {
-                allPaths.AddRange(paths);
-            }
-            allPaths.Add(AppDomain.CurrentDomain.BaseDirectory);
-            foreach (var path in allPaths)
+            foreach (var path in paths)
             {
                 string filePath = Path.Combine(path, fileName);
                 if (File.Exists(filePath))
@@ -222,9 +216,11 @@
             }
             if (cert == null && !string.IsNullOrWhiteSpace(fileName))
             {
-                var directories = Configuration.GetSection(nameof(OpenIdSettings)).GetValue<IEnumerable<string>>(nameof(OpenIdSettings.CertificatePaths));
+                var directories = new List<string>();
+                Configuration.GetSection(nameof(OpenIdSettings)).Bind(nameof(OpenIdSettings.CertificatePaths), directories);
+                directories.Add(AppDomain.CurrentDomain.BaseDirectory);
                 cert = GetFileCertificate(directories, fileName);
-                return cert ?? throw new Exception($"The certificate file '{fileName}' could not be found in directories : {string.Join("; ", directories ?? Array.Empty<string>())}");
+                return cert ?? throw new Exception($"The certificate file '{fileName}' could not be found in directories : {string.Join("; ", directories)}");
             }
             return cert ?? throw new Exception($"The certificate with thumbprint '{thumbprint}' could not be found.");
         }

@@ -9,6 +9,8 @@
         public string? EncryptionCertificateFile { get; init; }
         public string? EncryptionCertificateThumbprint { get; init; }
         public string? SigningCertificateFile { get; init; }
+        public string? SigningCertificateFilePassword { get; init; }
         public string? SigningCertificateThumbprint { get; init; }
+        public string? SigningCertificateThumbprintPassword { get; init; }
     }
 }

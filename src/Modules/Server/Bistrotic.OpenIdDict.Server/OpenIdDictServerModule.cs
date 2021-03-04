@@ -1,8 +1,9 @@
 ﻿namespace Bistrotic.OpenIdDict
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
-    using System.Runtime.InteropServices;
+    using System.Linq;
     using System.Security.Cryptography.X509Certificates;
 
     using Bistrotic.Application.Messages;
@@ -115,10 +116,56 @@
             services.AddHostedService<OpenIdDevelopmentWorker>();
         }
 
+        private static X509Certificate2? GetCertificate(StoreName storeName, StoreLocation storeLocation, string thumbprint)
+        {
+            try
+            {
+                var store = new X509Store(storeName, storeLocation);
+                store.Open(OpenFlags.ReadOnly);
+                var cert = store
+                    .Certificates
+                    .Find(X509FindType.FindByThumbprint, thumbprint, false)
+                    .OfType<X509Certificate2>()
+                    .SingleOrDefault();
+                if (cert != null)
+                {
+                    Console.WriteLine($"Loaded certificate : {storeLocation}/{storeName}/{thumbprint}.");
+                }
+                return cert;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error loading certificate '{thumbprint}' in store Name='{storeName}', Location='{storeLocation}'.\n{e.Message}");
+            }
+            return null;
+        }
+
+        private static X509Certificate2? GetFileCertificate(IEnumerable<string>? paths, string fileName)
+        {
+            var allPaths = new List<string>();
+            if (paths != null)
+            {
+                allPaths.AddRange(paths);
+            }
+            allPaths.Add(AppDomain.CurrentDomain.BaseDirectory);
+            foreach (var path in allPaths)
+            {
+                string filePath = Path.Combine(path, fileName);
+                if (File.Exists(filePath))
+                {
+                    var cert = (X509Certificate2)X509Certificate.CreateFromCertFile(filePath);
+                    Console.WriteLine($"Loaded certificate : {filePath}.");
+                    return cert;
+                }
+            }
+            return null;
+        }
+
         private void AddCertificates(OpenIddictServerBuilder options)
         {
             string thumbprint = Configuration.GetSection(nameof(OpenIdSettings)).GetValue<string>(nameof(OpenIdSettings.EncryptionCertificateThumbprint));
-            if (string.IsNullOrWhiteSpace(thumbprint))
+            string fileName = Configuration.GetSection(nameof(OpenIdSettings)).GetValue<string>(nameof(OpenIdSettings.EncryptionCertificateFile));
+            if (string.IsNullOrWhiteSpace(thumbprint) && string.IsNullOrWhiteSpace(fileName))
             {
                 if (Environment.IsDevelopment())
                 {
@@ -127,23 +174,17 @@
                 }
                 else
                 {
-                    throw new NotSupportedException($"Auto generated encryption certificate can only be used in development environments. Set a certificate using {nameof(OpenIdSettings)}:{nameof(OpenIdSettings.EncryptionCertificateThumbprint)} setting.");
+                    throw new NotSupportedException($"Auto generated encryption certificate can only be used in development environments. Set a certificate using {nameof(OpenIdSettings)}:{nameof(OpenIdSettings.EncryptionCertificateThumbprint)} or {nameof(OpenIdSettings)}:{nameof(OpenIdSettings.EncryptionCertificateFile)} settings.");
                 }
             }
             else
             {
-                Console.WriteLine("Using encryption certificate with thumbprint : " + thumbprint);
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                {
-                    options.AddEncryptionCertificate(thumbprint);
-                }
-                else
-                {
-                    options.AddEncryptionCertificate(GetCertificate(thumbprint));
-                }
+                Console.WriteLine($"Encryption certificate : Thumbprint='{thumbprint}', FileName='{fileName}'.");
+                options.AddEncryptionCertificate(GetCertificate(thumbprint, fileName));
             }
             thumbprint = Configuration.GetSection(nameof(OpenIdSettings)).GetValue<string>(nameof(OpenIdSettings.SigningCertificateThumbprint));
-            if (string.IsNullOrWhiteSpace(thumbprint))
+            fileName = Configuration.GetSection(nameof(OpenIdSettings)).GetValue<string>(nameof(OpenIdSettings.SigningCertificateFile));
+            if (string.IsNullOrWhiteSpace(thumbprint) && string.IsNullOrWhiteSpace(fileName))
             {
                 if (Environment.IsDevelopment())
                 {
@@ -152,51 +193,36 @@
                 }
                 else
                 {
-                    throw new NotSupportedException($"Auto generated signing certificate can only be used in development environments. Set a certificate using {nameof(OpenIdSettings)}:{nameof(OpenIdSettings.SigningCertificateThumbprint)} setting.");
+                    throw new NotSupportedException($"Auto generated signing certificate can only be used in development environments. Set a certificate using {nameof(OpenIdSettings)}:{nameof(OpenIdSettings.SigningCertificateThumbprint)} or {nameof(OpenIdSettings)}:{nameof(OpenIdSettings.SigningCertificateFile)} settings.");
                 }
             }
             else
             {
-                Console.WriteLine("Using signing certificate with thumbprint : " + thumbprint);
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                {
-                    options.AddSigningCertificate(thumbprint);
-                }
-                else
-                {
-                    options.AddSigningCertificate(GetCertificate(thumbprint));
-                }
+                Console.WriteLine($"Signing certificate : Thumbprint='{thumbprint}', FileName='{fileName}'.");
+                options.AddSigningCertificate(GetCertificate(thumbprint, fileName));
             }
         }
 
-        private X509Certificate2? GetAzureLinuxCertificate(string thumbprint, string configurationName)
+        private X509Certificate2 GetCertificate(string thumbprint, string fileName)
         {
-            string? path = Configuration.GetValue<string?>(configurationName);
-            if (!string.IsNullOrWhiteSpace(path))
+            X509Certificate2? cert = null;
+            if (thumbprint != null)
             {
-                string fileName = Path.Combine(path, thumbprint + ".der");
-                if (File.Exists(fileName))
-                {
-                    return (X509Certificate2)X509Certificate.CreateFromCertFile(fileName);
-                }
+                cert =
+                GetCertificate(StoreName.CertificateAuthority, StoreLocation.LocalMachine, thumbprint) ??
+                GetCertificate(StoreName.CertificateAuthority, StoreLocation.CurrentUser, thumbprint) ??
+                GetCertificate(StoreName.Root, StoreLocation.LocalMachine, thumbprint) ??
+                GetCertificate(StoreName.Root, StoreLocation.CurrentUser, thumbprint) ??
+                GetCertificate(StoreName.My, StoreLocation.LocalMachine, thumbprint) ??
+                GetCertificate(StoreName.My, StoreLocation.CurrentUser, thumbprint);
             }
-            return null;
-        }
-
-        private X509Certificate2? GetAzureLinuxCertificate(string thumbprint)
-            => GetAzureLinuxCertificate(thumbprint, "WEBSITE_PRIVATE_CERTS_PATH") ??
-                GetAzureLinuxCertificate(thumbprint, "WEBSITE_PUBLIC_CERTS_PATH") ??
-                GetAzureLinuxCertificate(thumbprint, "WEBSITE_ROOT_CERTS_PATH") ??
-                GetAzureLinuxCertificate(thumbprint, "WEBSITE_INTERMEDIATE_CERTS_PATH");
-
-        private X509Certificate2 GetCertificate(string thumbprint)
-        {
-            var cert = GetAzureLinuxCertificate(thumbprint);
-            if (cert == null)
+            if (cert == null && !string.IsNullOrWhiteSpace(fileName))
             {
-                throw new FileNotFoundException("Certificate file '" + thumbprint + ".der' not found. Check that the certificates have been added to the Azure App Service and you have set WEBSITE_LOAD_CERTIFICATES=<comma-separated-certificate-thumbprints> in application settings.");
+                var directories = Configuration.GetSection(nameof(OpenIdSettings)).GetValue<IEnumerable<string>>(nameof(OpenIdSettings.CertificatePaths));
+                cert = GetFileCertificate(directories, fileName);
+                return cert ?? throw new Exception($"The certificate file '{fileName}' could not be found in directories : {string.Join("; ", directories ?? Array.Empty<string>())}");
             }
-            return cert;
+            return cert ?? throw new Exception($"The certificate with thumbprint '{thumbprint}' could not be found.");
         }
     }
 }

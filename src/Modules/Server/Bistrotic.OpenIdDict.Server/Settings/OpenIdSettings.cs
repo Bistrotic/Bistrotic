@@ -4,8 +4,11 @@
 
     public class OpenIdSettings
     {
-        public IEnumerable<string> AuthoriredUrls { get; } = new List<string>();
-        public string? EncryptionCertificateThumbprint { get; }
-        public string? SigningCertificateThumbprint { get; }
+        public IEnumerable<string> AuthorizedUrls { get; init; } = new List<string>();
+        public IEnumerable<string> CertificatePaths { get; init; } = new List<string>();
+        public string? EncryptionCertificateFile { get; init; }
+        public string? EncryptionCertificateThumbprint { get; init; }
+        public string? SigningCertificateFile { get; init; }
+        public string? SigningCertificateThumbprint { get; init; }
     }
 }

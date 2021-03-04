@@ -1,6 +1,8 @@
 ﻿namespace Bistrotic.OpenIdDict
 {
     using System;
+    using System.Runtime.InteropServices;
+    using System.Security.Cryptography.X509Certificates;
 
     using Bistrotic.Application.Messages;
     using Bistrotic.Infrastructure;
@@ -90,39 +92,7 @@
                     options.AllowAuthorizationCodeFlow()
                             .RequireProofKeyForCodeExchange()
                             .AllowRefreshTokenFlow();
-                    string thumbprint = Configuration.GetSection(nameof(OpenIdSettings)).GetValue<string>(nameof(OpenIdSettings.EncryptionCertificateThumbprint));
-                    if (string.IsNullOrWhiteSpace(thumbprint))
-                    {
-                        if (Environment.IsDevelopment())
-                        {
-                            options.AddDevelopmentEncryptionCertificate();
-                        }
-                        else
-                        {
-                            throw new NotSupportedException($"Auto generated encryption certificate can only be used in development environments. Set a certificate using {nameof(OpenIdSettings)}:{nameof(OpenIdSettings.EncryptionCertificateThumbprint)} setting.");
-                        }
-                    }
-                    else
-                    {
-                        options.AddEncryptionCertificate(thumbprint);
-                    }
-                    thumbprint = Configuration.GetSection(nameof(OpenIdSettings)).GetValue<string>(nameof(OpenIdSettings.SigningCertificateThumbprint));
-                    if (string.IsNullOrWhiteSpace(thumbprint))
-                    {
-                        if (Environment.IsDevelopment())
-                        {
-                            options.AddDevelopmentSigningCertificate();
-                        }
-                        else
-                        {
-                            throw new NotSupportedException($"Auto generated signing certificate can only be used in development environments. Set a certificate using {nameof(OpenIdSettings)}:{nameof(OpenIdSettings.SigningCertificateThumbprint)} setting.");
-                        }
-                    }
-                    else
-                    {
-                        options.AddSigningCertificate(thumbprint);
-                    }
-                    // Register the ASP.NET Core host and configure the ASP.NET Core-specific options.
+                    AddCertificates(options);
                     options.UseAspNetCore()
                            .EnableAuthorizationEndpointPassthrough()
                            .EnableLogoutEndpointPassthrough()
@@ -142,6 +112,60 @@
             // Register the worker responsible of seeding the database with the sample clients if in
             // development environment.
             services.AddHostedService<OpenIdDevelopmentWorker>();
+        }
+
+        private void AddCertificates(OpenIddictServerBuilder options)
+        {
+            string thumbprint = Configuration.GetSection(nameof(OpenIdSettings)).GetValue<string>(nameof(OpenIdSettings.EncryptionCertificateThumbprint));
+            if (string.IsNullOrWhiteSpace(thumbprint))
+            {
+                if (Environment.IsDevelopment())
+                {
+                    Console.WriteLine("Using auto generated development encryption certificate");
+                    options.AddDevelopmentEncryptionCertificate();
+                }
+                else
+                {
+                    throw new NotSupportedException($"Auto generated encryption certificate can only be used in development environments. Set a certificate using {nameof(OpenIdSettings)}:{nameof(OpenIdSettings.EncryptionCertificateThumbprint)} setting.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Using encryption certificate with thumbprint : " + thumbprint);
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    options.AddEncryptionCertificate(thumbprint);
+                }
+                else
+                {
+                    options.AddEncryptionCertificate(thumbprint, StoreName.Root, StoreLocation.LocalMachine);
+                }
+            }
+            thumbprint = Configuration.GetSection(nameof(OpenIdSettings)).GetValue<string>(nameof(OpenIdSettings.SigningCertificateThumbprint));
+            if (string.IsNullOrWhiteSpace(thumbprint))
+            {
+                if (Environment.IsDevelopment())
+                {
+                    Console.WriteLine("Using auto generated development signing certificate");
+                    options.AddDevelopmentSigningCertificate();
+                }
+                else
+                {
+                    throw new NotSupportedException($"Auto generated signing certificate can only be used in development environments. Set a certificate using {nameof(OpenIdSettings)}:{nameof(OpenIdSettings.SigningCertificateThumbprint)} setting.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Using signing certificate with thumbprint : " + thumbprint);
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    options.AddSigningCertificate(thumbprint);
+                }
+                else
+                {
+                    options.AddSigningCertificate(thumbprint, StoreName.Root, StoreLocation.LocalMachine);
+                }
+            }
         }
     }
 }

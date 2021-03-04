@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using System.Runtime.InteropServices;
     using System.Security.Cryptography.X509Certificates;
 
     using Bistrotic.Application.Messages;
@@ -209,12 +210,15 @@
             if (thumbprint != null)
             {
                 cert =
-                GetCertificate(StoreName.CertificateAuthority, StoreLocation.LocalMachine, thumbprint) ??
-                GetCertificate(StoreName.CertificateAuthority, StoreLocation.CurrentUser, thumbprint) ??
-                GetCertificate(StoreName.Root, StoreLocation.LocalMachine, thumbprint) ??
-                GetCertificate(StoreName.Root, StoreLocation.CurrentUser, thumbprint) ??
-                GetCertificate(StoreName.My, StoreLocation.LocalMachine, thumbprint) ??
-                GetCertificate(StoreName.My, StoreLocation.CurrentUser, thumbprint);
+                    GetCertificate(StoreName.CertificateAuthority, StoreLocation.LocalMachine, thumbprint) ??
+                    GetCertificate(StoreName.CertificateAuthority, StoreLocation.CurrentUser, thumbprint) ??
+                    GetCertificate(StoreName.Root, StoreLocation.LocalMachine, thumbprint) ??
+                    GetCertificate(StoreName.Root, StoreLocation.CurrentUser, thumbprint) ??
+                    GetCertificate(StoreName.My, StoreLocation.CurrentUser, thumbprint);
+                if (cert == null && RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    cert = GetCertificate(StoreName.My, StoreLocation.LocalMachine, thumbprint);
+                }
             }
             if (cert == null && !string.IsNullOrWhiteSpace(fileName))
             {

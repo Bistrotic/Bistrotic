@@ -138,7 +138,7 @@
                 }
                 else
                 {
-                    options.AddEncryptionCertificate(thumbprint, StoreName.Root, StoreLocation.LocalMachine);
+                    options.AddEncryptionCertificate(thumbprint, StoreName.CertificateAuthority, StoreLocation.LocalMachine);
                 }
             }
             thumbprint = Configuration.GetSection(nameof(OpenIdSettings)).GetValue<string>(nameof(OpenIdSettings.SigningCertificateThumbprint));
@@ -163,7 +163,7 @@
                 }
                 else
                 {
-                    options.AddSigningCertificate(thumbprint, StoreName.Root, StoreLocation.LocalMachine);
+                    options.AddSigningCertificate(thumbprint, StoreName.CertificateAuthority, StoreLocation.LocalMachine);
                 }
             }
         }

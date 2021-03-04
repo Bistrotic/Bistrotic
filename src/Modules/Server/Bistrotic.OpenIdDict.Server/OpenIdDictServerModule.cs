@@ -1,6 +1,7 @@
 ﻿namespace Bistrotic.OpenIdDict
 {
     using System;
+    using System.IO;
     using System.Runtime.InteropServices;
     using System.Security.Cryptography.X509Certificates;
 
@@ -138,7 +139,7 @@
                 }
                 else
                 {
-                    options.AddEncryptionCertificate(thumbprint, StoreName.CertificateAuthority, StoreLocation.LocalMachine);
+                    options.AddEncryptionCertificate(GetCertificate(thumbprint));
                 }
             }
             thumbprint = Configuration.GetSection(nameof(OpenIdSettings)).GetValue<string>(nameof(OpenIdSettings.SigningCertificateThumbprint));
@@ -163,9 +164,39 @@
                 }
                 else
                 {
-                    options.AddSigningCertificate(thumbprint, StoreName.CertificateAuthority, StoreLocation.LocalMachine);
+                    options.AddSigningCertificate(GetCertificate(thumbprint));
                 }
             }
+        }
+
+        private X509Certificate2? GetAzureLinuxCertificate(string thumbprint, string configurationName)
+        {
+            string? path = Configuration.GetValue<string?>(configurationName);
+            if (!string.IsNullOrWhiteSpace(path))
+            {
+                string fileName = Path.Combine(path, thumbprint + ".der");
+                if (File.Exists(fileName))
+                {
+                    return (X509Certificate2)X509Certificate.CreateFromCertFile(fileName);
+                }
+            }
+            return null;
+        }
+
+        private X509Certificate2? GetAzureLinuxCertificate(string thumbprint)
+            => GetAzureLinuxCertificate(thumbprint, "WEBSITE_PRIVATE_CERTS_PATH") ??
+                GetAzureLinuxCertificate(thumbprint, "WEBSITE_PUBLIC_CERTS_PATH") ??
+                GetAzureLinuxCertificate(thumbprint, "WEBSITE_ROOT_CERTS_PATH") ??
+                GetAzureLinuxCertificate(thumbprint, "WEBSITE_INTERMEDIATE_CERTS_PATH");
+
+        private X509Certificate2 GetCertificate(string thumbprint)
+        {
+            var cert = GetAzureLinuxCertificate(thumbprint);
+            if (cert == null)
+            {
+                throw new FileNotFoundException("Certificate file '" + thumbprint + ".der' not found. Check that the certificates have been added to the Azure App Service and you have set WEBSITE_LOAD_CERTIFICATES=<comma-separated-certificate-thumbprints> in application settings.");
+            }
+            return cert;
         }
     }
 }

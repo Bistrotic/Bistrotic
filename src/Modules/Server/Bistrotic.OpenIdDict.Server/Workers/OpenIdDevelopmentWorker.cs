@@ -82,6 +82,22 @@ namespace Bistrotic.OpenIdDict.Workers
                 }
                 await manager.CreateAsync(descriptor, cancellationToken);
             }
+            const string powerBiClient = "PowerBIClient";
+            if (await manager.FindByClientIdAsync(powerBiClient, cancellationToken) is null)
+            {
+                var descriptor = new OpenIddictApplicationDescriptor
+                {
+                    ClientId = BistroticConstants.ServerApiName,
+                    ClientSecret = "C01CAEEF-DC17-4D1E-B054-3422BD330047",
+                    DisplayName = "Power BI client application",
+                    Permissions =
+                    {
+                        Permissions.Endpoints.Token,
+                        Permissions.GrantTypes.ClientCredentials,
+                    }
+                };
+                await manager.CreateAsync(descriptor, cancellationToken);
+            }
         }
 
         public Task StopAsync(CancellationToken cancellationToken) => Task.CompletedTask;

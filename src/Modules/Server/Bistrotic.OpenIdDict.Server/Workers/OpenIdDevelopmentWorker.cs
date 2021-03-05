@@ -87,7 +87,7 @@ namespace Bistrotic.OpenIdDict.Workers
             {
                 var descriptor = new OpenIddictApplicationDescriptor
                 {
-                    ClientId = BistroticConstants.ServerApiName,
+                    ClientId = powerBiClient,
                     ClientSecret = "C01CAEEF-DC17-4D1E-B054-3422BD330047",
                     DisplayName = "Power BI client application",
                     Permissions =

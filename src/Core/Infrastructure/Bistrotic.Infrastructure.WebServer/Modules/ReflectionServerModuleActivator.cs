@@ -48,7 +48,7 @@
             IModule? module = Activator.CreateInstance(moduleType, definition, _configuration, _environment, _clientMode) as IServerModule;
             if (module == null)
             {
-                return Task.FromException<IModule>(new Exception($"Error while creating instance of {moduleType.FullName}."));
+                return Task.FromException<IModule>(new ModuleInstanceNotCreatedException($"Error while creating instance of {moduleType.FullName}."));
             }
             Console.WriteLine("Module activated : " + moduleType.Name);
 

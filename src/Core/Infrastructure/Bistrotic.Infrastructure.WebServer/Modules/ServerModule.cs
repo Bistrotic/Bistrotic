@@ -9,7 +9,7 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
-    public abstract class ServerModule : Module, IServerModule
+    public abstract class ServerModule : ModuleBase, IServerModule
     {
         protected ServerModule(ModuleDefinition moduleDefinition, IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode) : base(ModuleType.Server, moduleDefinition)
         {

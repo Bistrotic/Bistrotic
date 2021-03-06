@@ -131,9 +131,9 @@ namespace Bistrotic.Infrastructure.Helpers
         }
 
         public static IDictionary<string, object> GetPropertyNotNullValues(this object obj)
-                                                            => GetPropertyValues(obj)
+            => GetPropertyValues(obj)
                     .Where(p => p.Value != null)
-                    .ToDictionary(k => k.Key, v => v.Value ?? throw new NullReferenceException());
+                    .ToDictionary(k => k.Key, v => v.Value ?? throw new ArgumentException("only to remove nullability check error",nameof(obj)));
 
         public static IDictionary<string, object?> GetPropertyValues(this object obj) => obj
             .GetType()

@@ -4,7 +4,7 @@
 
     using Microsoft.Extensions.Configuration;
 
-    public abstract class ServiceModule : Module
+    public abstract class ServiceModule : ModuleBase
     {
         protected ServiceModule(ModuleDefinition moduleDefinition, IConfiguration configuration) : base(ModuleType.Server, moduleDefinition)
         {

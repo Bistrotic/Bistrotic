@@ -5,7 +5,7 @@
     using Bistrotic.Application.Queries;
     using Bistrotic.QuartzScheduler.Application.ModelViews;
 
-    public class GetJobSummaryList : Query<IEnumerable<JobSummary>>
+    public class GetJobSummaryList : QueryBase<IEnumerable<JobSummary>>
     {
     }
 }

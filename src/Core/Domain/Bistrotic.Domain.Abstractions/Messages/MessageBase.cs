@@ -4,16 +4,16 @@ using Bistrotic.Domain.ValueTypes;
 
 namespace Bistrotic.Domain.Messages
 {
-    public abstract class Message<TId> : IMessage
+    public abstract class MessageBase<TId> : IMessage
         where TId : BusinessId, new()
     {
-        protected Message()
+        protected MessageBase()
         {
             Id = new TId();
             MessageId = new MessageId();
         }
 
-        protected Message(TId id)
+        protected MessageBase(TId id)
         {
             Id = id ?? new TId();
             MessageId = new MessageId();

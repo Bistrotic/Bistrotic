@@ -1,6 +1,6 @@
 ﻿namespace Bistrotic.Domain.Messages
 {
-    public abstract class Event : Message, IEvent
+    public abstract class EventBase : Message, IEvent
     {
     }
 }

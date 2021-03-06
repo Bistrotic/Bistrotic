@@ -66,7 +66,7 @@
         }
     }
 
-    public abstract class TestQuery<TResult> : Query<TResult>
+    public abstract class TestQuery<TResult> : QueryBase<TResult>
     {
     }
 }

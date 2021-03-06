@@ -4,7 +4,7 @@ using Bistrotic.Application.Queries;
 
 namespace Bistrotic.Units.Application.Queries
 {
-    public sealed class GetAllUnitIds : Query<List<int>>
+    public sealed class GetAllUnitIds : QueryBase<List<int>>
     {
         public GetAllUnitIds(int take, int skip)
         {

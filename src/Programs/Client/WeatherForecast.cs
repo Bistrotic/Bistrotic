@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.Shared
+﻿namespace Bistrotic.Client
 {
     using System;
     using System.Collections.Generic;

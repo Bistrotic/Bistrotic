@@ -4,7 +4,7 @@ using Bistrotic.Units.Application.ModelViews;
 namespace Bistrotic.Units.Application.Queries
 {
     public sealed class GetUnitSummaryInformationsList
-        : Query<UnitSummaryInformations[]>
+        : QueryBase<UnitSummaryInformations[]>
     {
         public GetUnitSummaryInformationsList(int take = 0, int skip = 0)
         {

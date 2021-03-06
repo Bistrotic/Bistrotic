@@ -2,6 +2,7 @@ namespace Bistrotic.Module.Units.Domain.Tests
 {
     using System.Linq;
 
+    using Bistrotic.Units.Domain;
     using Bistrotic.Units.Domain.Events;
     using Bistrotic.Units.Domain.ValueTypes;
 

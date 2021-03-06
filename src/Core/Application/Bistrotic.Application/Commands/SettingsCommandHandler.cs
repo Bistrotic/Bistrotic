@@ -8,7 +8,7 @@
 
     public abstract class SettingsCommandHandler<TCommand, TSettings>
         : CommandHandler<TCommand>
-        where TCommand : Command
+        where TCommand : CommandBase
         where TSettings : class
     {
         private readonly IOptions<TSettings> _options;

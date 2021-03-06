@@ -3,7 +3,7 @@
     using Bistrotic.Application.Commands;
     using Bistrotic.Domain.ValueTypes;
 
-    public class TestCommandNoId : Command
+    public class TestCommandNoId : CommandBase
     {
     }
 

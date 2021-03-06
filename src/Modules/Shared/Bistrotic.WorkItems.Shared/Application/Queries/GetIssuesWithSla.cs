@@ -6,7 +6,7 @@
     using Bistrotic.Application.Queries;
     using Bistrotic.WorkItems.Application.ModelViews;
 
-    public sealed class GetIssuesWithSla : Query<List<IssueWithSla>>
+    public sealed class GetIssuesWithSla : QueryBase<List<IssueWithSla>>
     {
         public GetIssuesWithSla(bool suspendedSla, bool closedIssues)
         {

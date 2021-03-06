@@ -3,7 +3,7 @@
     using Bistrotic.Application.Queries;
     using Bistrotic.OpenIdDict.Application.ViewModels;
 
-    public class GetUserDetails : Query<UserDetailsViewModel>
+    public class GetUserDetails : QueryBase<UserDetailsViewModel>
     {
     }
 }

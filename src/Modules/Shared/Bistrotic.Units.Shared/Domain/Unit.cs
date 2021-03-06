@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.Module.Units.Domain
+﻿namespace Bistrotic.Units.Domain
 {
     using System;
     using System.Collections.Generic;

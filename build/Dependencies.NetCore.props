@@ -19,6 +19,8 @@
 		<MicrosoftEntityFrameworkCoreToolsVersion>5.0.3</MicrosoftEntityFrameworkCoreToolsVersion>
 		<SystemNetHttpVersion>5.0.0</SystemNetHttpVersion>
 		<MicrosoftExtensionsHttpVersion>5.0.0</MicrosoftExtensionsHttpVersion>
+		<MicrosoftIdentityWebVersion>1.7.0</MicrosoftIdentityWebVersion>
+		<MicrosoftIdentityWebMicrosoftGraphVersion>$(MicrosoftIdentityWebVersion)</MicrosoftIdentityWebMicrosoftGraphVersion>
 		<MicrosoftExtensionsHostingAbstractionsVersion>5.0.0</MicrosoftExtensionsHostingAbstractionsVersion>
 	</PropertyGroup>
 </Project>

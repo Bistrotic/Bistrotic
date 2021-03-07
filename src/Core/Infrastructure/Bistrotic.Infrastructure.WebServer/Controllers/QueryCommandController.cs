@@ -14,7 +14,6 @@
     using Microsoft.Extensions.Logging;
 
     [ApiController]
-    [Authorize]
     [Route("api/[action]")]
     public class QueryCommandController : ControllerBase
     {
@@ -32,33 +31,37 @@
         [HttpGet("{queryName}")]
         public async Task<IActionResult> Ask(string queryName)
         {
-            if (string.IsNullOrWhiteSpace(User?.Identity?.Name))
-                return Unauthorized("User name is not defined");
+            string? userName = User?.Identity?.Name;
+            if (string.IsNullOrWhiteSpace(userName))
+            {
+                userName = "nonidentified";
+                //return Unauthorized("User name is not defined");
+            }
             IQuery query = (IQuery)_messageFactory.GetMessage(queryName, HttpContext.Request.Query);
             var queryType = query.GetType();
-            _logger.LogDebug($"User '{User.Identity.Name}' asked for query : {queryType.Name}");
+            _logger.LogDebug($"User '{userName}' asked for query : {queryType.Name}");
             try
             {
                 return Ok(await _queryDispatcher
                     .Dispatch(new Envelope<IQuery>(
                         query,
-                        User.Identity.Name
+                        userName
                         ))
                     .ConfigureAwait(false));
             }
             catch (QueryHandlerNotFoundException e)
             {
-                _logger.LogError($"Error while asking for query '{queryType.Name}' by the user '{User.Identity.Name}'.\n{e.Message}");
+                _logger.LogError($"Error while asking for query '{queryType.Name}' by the user '{userName}'.\n{e.Message}");
                 return BadRequest(new { Query = queryType.Name });
             }
             catch (BusinessObjectNotFoundException ex)
             {
-                _logger.LogError($"User '{User.Identity.Name}' asked for a not found business object '{ex.Name}' with id '{ex.Id}'. Query {queryType.Name}");
+                _logger.LogError($"User '{userName}' asked for a not found business object '{ex.Name}' with id '{ex.Id}'. Query {queryType.Name}");
                 return NotFound(new { ex.Id, ex.Name });
             }
             catch (Exception e)
             {
-                _logger.LogError($"Error while asking for query '{queryType.Name}' by the user '{User.Identity.Name}'.\n{e.Message}");
+                _logger.LogError($"Error while asking for query '{queryType.Name}' by the user '{userName}'.\n{e.Message}");
                 return StatusCode(500);
             }
         }

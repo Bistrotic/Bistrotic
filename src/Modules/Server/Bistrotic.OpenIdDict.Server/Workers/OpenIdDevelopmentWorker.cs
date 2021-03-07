@@ -38,7 +38,7 @@ namespace Bistrotic.OpenIdDict.Workers
             var settings = scope.ServiceProvider.GetRequiredService<IOptions<OpenIdSettings>>();
             await context.Database.EnsureCreatedAsync(cancellationToken);
             var manager = scope.ServiceProvider.GetRequiredService<IOpenIddictApplicationManager>();
-            var authorizedUrls = new List<string>(settings.Value.AuthorizedUrls);
+            var authorizedUrls = new List<string>(settings.Value.AuthorizedUrls??Array.Empty<string>());
             if (authorizedUrls.Count == 0 && _environment.IsDevelopment())
             {
                 authorizedUrls.AddRange(new[] { "https://localhost:5001", "http://localhost:5000", "https://localhost:6001", "http://localhost:6000" });

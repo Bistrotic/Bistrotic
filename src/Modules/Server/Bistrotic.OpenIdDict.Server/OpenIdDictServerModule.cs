@@ -9,6 +9,7 @@
 
     using Bistrotic.Application.Messages;
     using Bistrotic.Infrastructure;
+    using Bistrotic.Infrastructure.Helpers;
     using Bistrotic.Infrastructure.Modules.Definitions;
     using Bistrotic.Infrastructure.WebServer.Modules;
     using Bistrotic.OpenIdDict.Application.Queries;
@@ -28,9 +29,12 @@
 
     public sealed class OpenIdDictServerModule : ServerModule
     {
+        private readonly OpenIdSettings _settings;
+
         public OpenIdDictServerModule(ModuleDefinition moduleDefinition, IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode)
             : base(moduleDefinition, configuration, environment, clientMode)
         {
+            _settings = configuration.GetSettings<OpenIdSettings>();
         }
 
         public override void ConfigureMessages(IMessageFactoryBuilder messageBuilder)
@@ -40,7 +44,7 @@
 
         public override void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<OpenIdSettings>(Configuration.GetSection(nameof(OpenIdSettings)));
+            services.ConfigureSettings<OpenIdSettings>(Configuration);
 
             services.AddDbContext<SecurityDbContext>(options =>
             {
@@ -101,8 +105,22 @@
                            .EnableLogoutEndpointPassthrough()
                            .EnableStatusCodePagesIntegration()
                            .EnableTokenEndpointPassthrough();
+                    if (_settings.AllowGoogleAuthentication)
+                    {
+                        options.AllowCustomFlow("urn:ietf:params:oauth:grant-type:google_identity_token");
+                        options.AllowCustomFlow("urn:ietf:params:oauth:grant-type:google_access_token");
+                    }
+                    if (_settings.AllowFacebookAuthentication)
+                    {
+                        options.AllowCustomFlow("urn:ietf:params:oauth:grant-type:facebook_access_token");
+                        options.AllowCustomFlow("urn:ietf:params:oauth:grant-type:facebook_identity_token");
+                    }
+                    if (_settings.AllowMicrosoftAuthentication)
+                    {
+                        options.AllowCustomFlow("urn:ietf:params:oauth:grant-type:microsoft_access_token");
+                        options.AllowCustomFlow("urn:ietf:params:oauth:grant-type:microsoft_identity_token");
+                    }
                 })
-
                 // Register the OpenIddict validation components.
                 .AddValidation(options =>
                 {
@@ -203,7 +221,11 @@
             X509Certificate2? cert = null;
             if (thumbprint != null)
             {
-                cert = GetCertificate(StoreName.My, StoreLocation.CurrentUser, thumbprint);
+                cert = GetCertificate(StoreName.My, StoreLocation.CurrentUser, thumbprint) ??
+                    GetCertificate(StoreName.Root, StoreLocation.CurrentUser, thumbprint) ??
+                    GetCertificate(StoreName.Root, StoreLocation.LocalMachine, thumbprint) ??
+                    GetCertificate(StoreName.CertificateAuthority, StoreLocation.CurrentUser, thumbprint) ??
+                    GetCertificate(StoreName.CertificateAuthority, StoreLocation.LocalMachine, thumbprint);
                 if (cert == null && RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     cert = GetCertificate(StoreName.My, StoreLocation.LocalMachine, thumbprint);

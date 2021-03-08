@@ -6,13 +6,11 @@
     using System.Security.Claims;
     using System.Threading.Tasks;
 
-    using Bistrotic.OpenIdDict.Atributes;
     using Bistrotic.OpenIdDict.Models;
     using Bistrotic.OpenIdDict.ViewModels;
 
     using Microsoft.AspNetCore;
     using Microsoft.AspNetCore.Authentication;
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -24,7 +22,6 @@
     using static OpenIddict.Abstractions.OpenIddictConstants;
 
 #pragma warning disable S125 // Sections of code should not be commented out
-
     public class AuthorizationController : Controller
     {
         private readonly IOpenIddictApplicationManager _applicationManager;
@@ -46,10 +43,16 @@
             _signInManager = signInManager;
             _userManager = userManager;
         }
-
-        [Authorize, FormValueRequired("submit.Accept")]
         [HttpPost("~/connect/authorize"), ValidateAntiForgeryToken]
-        public async Task<IActionResult> Accept()
+        public async Task<IActionResult> AuthorizeAcceptOrDeny()
+        {
+            if (HttpContext.Request.Form?.ContainsKey("submit.Accept") == true)
+                return await Accept();
+            if (HttpContext.Request.Form?.ContainsKey("submit.Deny") == true)
+                return Deny();
+            return await Authorize();
+        }
+        private async Task<IActionResult> Accept()
         {
             // var authenticationResult = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             var request = HttpContext.GetOpenIddictServerRequest() ??
@@ -121,7 +124,7 @@
         }
 
         // [HttpGet("~/connect/authorize")] [HttpPost("~/connect/authorize")]
-        [Route("~/connect/authorize")]
+        [HttpGet("~/connect/authorize")]
         [IgnoreAntiforgeryToken]
         public async Task<IActionResult> Authorize()
         {
@@ -292,11 +295,9 @@
             }
         }
 
-        [Authorize, FormValueRequired("submit.Deny")]
-        [HttpPost("~/connect/authorize"), ValidateAntiForgeryToken]
         // Notify OpenIddict that the authorization grant has been denied by the resource owner to
         // redirect the user agent to the client application using the appropriate response_mode.
-        public IActionResult Deny() => Forbid(OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
+        private IActionResult Deny() => Forbid(OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
 
         [HttpPost("~/connect/token"), Produces("application/json")]
         public async Task<IActionResult> Exchange()

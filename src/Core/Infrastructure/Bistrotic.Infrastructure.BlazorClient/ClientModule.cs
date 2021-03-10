@@ -6,7 +6,7 @@
     using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
     using Microsoft.Extensions.DependencyInjection;
 
-    public abstract class ClientModule : Module, IClientModule
+    public abstract class ClientModule : ModuleBase, IClientModule
     {
         protected ClientModule(ModuleDefinition moduleDefinition, IWebAssemblyHostEnvironment hostEnvironment, string clientName, string serverApiName, ClientMode clientMode)
                     : base(ModuleType.Client, moduleDefinition)

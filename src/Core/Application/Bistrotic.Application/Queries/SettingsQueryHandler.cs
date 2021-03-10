@@ -8,7 +8,7 @@
 
     public abstract class SettingsQueryHandler<TQuery, TSettings>
         : QueryHandler<TQuery, TSettings>
-        where TQuery : Query<TSettings>
+        where TQuery : QueryBase<TSettings>
         where TSettings : class
     {
         private readonly IOptions<TSettings> _options;

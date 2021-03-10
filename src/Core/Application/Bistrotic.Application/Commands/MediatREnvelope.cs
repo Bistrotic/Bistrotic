@@ -24,5 +24,12 @@ namespace Bistrotic.Application.Queries
 
         public bool Equals(MediatREnvelope<TMessage>? other)
             => other != null && other.Message.MessageId == Message.MessageId;
+
+        public override bool Equals(object? obj)
+        {
+            return Equals(obj as MediatREnvelope<TMessage>);
+        }
+
+        public override int GetHashCode() => Message.GetHashCode();
     }
 }

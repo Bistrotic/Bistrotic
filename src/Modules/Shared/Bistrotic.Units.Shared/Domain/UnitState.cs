@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.Module.Units.Domain
+﻿namespace Bistrotic.Units.Domain
 {
     using Bistrotic.Domain;
 

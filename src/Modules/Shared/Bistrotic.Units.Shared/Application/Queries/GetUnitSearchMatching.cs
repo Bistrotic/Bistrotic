@@ -4,7 +4,7 @@
 
     using Bistrotic.Application.Queries;
 
-    public sealed class GetUnitSearchMatching : Query<List<int>>
+    public sealed class GetUnitSearchMatching : QueryBase<List<int>>
     {
         public GetUnitSearchMatching(string pattern, int take = 0, int skip = 0)
         {

@@ -8,5 +8,6 @@
         MessageId? CorrelationId { get; }
         IMessage Message { get; }
         UserName UserName { get; }
+        MessageId? CausationId { get; }
     }
 }

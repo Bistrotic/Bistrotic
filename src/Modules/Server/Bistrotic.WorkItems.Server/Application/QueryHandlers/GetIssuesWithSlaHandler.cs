@@ -1,6 +1,7 @@
 ﻿namespace Bistrotic.WorkItems.Application.QueryHandlers
 {
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -65,7 +66,9 @@
             {
                 var wiHistory = await _queryDispatcher
                     .Dispatch<GetWorkItemChangeHistory, IEnumerable<WorkItemChange>>(
-                    new Envelope<GetWorkItemChangeHistory>(new GetWorkItemChangeHistory(new WorkItemId(wi.Id.ToString())), envelope)
+                    new Envelope<GetWorkItemChangeHistory>(
+                        new GetWorkItemChangeHistory(
+                            new WorkItemId(wi.Id.ToString(CultureInfo.InvariantCulture))), envelope)
                     );
                 var slaLog = new WorkItemSlaLog(wiHistory
                     .OrderBy(p => p.ChangeDate)

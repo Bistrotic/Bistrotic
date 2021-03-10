@@ -42,7 +42,7 @@
             IModule? module = Activator.CreateInstance(moduleType, definition, _hostEnvironment, _clientName, _serverApiName) as IClientModule;
             if (module == null)
             {
-                return Task.FromException<IModule>(new Exception($"Error while creating instance of {moduleType.FullName}."));
+                return Task.FromException<IModule>(new ModuleInstanceNotCreatedException(definition, $"Error while creating instance of {moduleType.FullName}."));
             }
             return Task.FromResult(module);
         }

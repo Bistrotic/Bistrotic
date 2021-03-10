@@ -39,7 +39,7 @@
         public string Description { get; init; } = string.Empty;
         public string Version { get; init; } = "1.0.0";
         public IEnumerable<string> Dependencies { get; }
-        public int Priority { get; init; } = 0;
+        public int Priority { get; init; }
         public bool Enabled { get; init; } = true;
     }
 }

@@ -2,14 +2,14 @@
 {
     using Bistrotic.Domain.ValueTypes;
 
-    public abstract class Event<TId> : Message<TId>, IEvent
+    public abstract class EventBase<TId> : MessageBase<TId>, IEvent
         where TId : BusinessId, new()
     {
-        protected Event()
+        protected EventBase()
         {
         }
 
-        protected Event(TId id) : base(id)
+        protected EventBase(TId id) : base(id)
         {
         }
     }

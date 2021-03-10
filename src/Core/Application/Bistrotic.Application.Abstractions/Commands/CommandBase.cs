@@ -3,11 +3,11 @@
     using Bistrotic.Domain.Messages;
     using Bistrotic.Domain.ValueTypes;
 
-    public abstract class Command : Message, ICommand
+    public abstract class CommandBase : Message, ICommand
     {
     }
 
-    public abstract class Command<TId> : Message<TId>, ICommand
+    public abstract class Command<TId> : MessageBase<TId>, ICommand
         where TId : BusinessId, new()
     {
         protected Command()

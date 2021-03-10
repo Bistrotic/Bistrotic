@@ -3,7 +3,7 @@
     using Bistrotic.Application.Queries;
     using Bistrotic.WorkItems.Domain;
 
-    public abstract class WorkItemQuery<TResult> : Query<WorkItemId, TResult>
+    public abstract class WorkItemQuery<TResult> : QueryBase<WorkItemId, TResult>
     {
         protected WorkItemQuery()
         {

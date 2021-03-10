@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -36,7 +37,7 @@
             server.Connect();
 
             var wiCollection = new WorkItemCollection(server);
-            int id = Convert.ToInt32(envelope.Message.Id);
+            int id = Convert.ToInt32(envelope.Message.Id, CultureInfo.InvariantCulture);
             return (await wiCollection.GetWorkItemHistory(id))
                 .Select(p => new WorkItemChange
                 {

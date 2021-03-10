@@ -30,7 +30,7 @@
             {
                 var graphClient = await GetGraphClient(cancellationToken);
                 SubjectDescriptor descriptor = (await GetGroupDescriptors(cancellationToken))
-                    .Where(p => string.Equals(_groupName, p.Key, StringComparison.InvariantCultureIgnoreCase))
+                    .Where(p => string.Equals(_groupName, p.Key, StringComparison.OrdinalIgnoreCase))
                     .Select(p => p.Value)
                     .FirstOrDefault();
                 if (string.IsNullOrWhiteSpace(descriptor.Identifier))

@@ -2,14 +2,14 @@
 {
     using Bistrotic.Application.Queries;
 
-    public class TestIdQuery : Query<TestId, int>
+    public class TestIdQuery : QueryBase<TestId, int>
     {
         public TestIdQuery(TestId id) : base(id)
         {
         }
     }
 
-    public class TestQueryNoId : Query<string>
+    public class TestQueryNoId : QueryBase<string>
     {
     }
 }

@@ -4,9 +4,9 @@
 
     using Bistrotic.Infrastructure.Modules.Definitions;
 
-    public abstract class Module : IModule
+    public abstract class ModuleBase : IModule
     {
-        protected Module(ModuleType moduleType, ModuleDefinition moduleDefinition)
+        protected ModuleBase(ModuleType moduleType, ModuleDefinition moduleDefinition)
         {
             ModuleType = moduleType;
             ModuleDefinition = moduleDefinition ?? throw new ArgumentNullException(nameof(moduleDefinition));

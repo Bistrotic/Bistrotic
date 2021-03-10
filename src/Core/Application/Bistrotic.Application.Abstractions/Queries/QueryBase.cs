@@ -3,20 +3,20 @@
     using Bistrotic.Domain.Messages;
     using Bistrotic.Domain.ValueTypes;
 
-    public abstract class Query<TResult> :
+    public abstract class QueryBase<TResult> :
         Message, IQuery<TResult>
     {
     }
 
-    public abstract class Query<TId, TResult> :
-        Message<TId>, IQuery<TResult>
+    public abstract class QueryBase<TId, TResult> :
+        MessageBase<TId>, IQuery<TResult>
         where TId : BusinessId, new()
     {
-        protected Query(TId id) : base(id)
+        protected QueryBase(TId id) : base(id)
         {
         }
 
-        protected Query() : base(new TId())
+        protected QueryBase() : base(new TId())
         {
         }
     }

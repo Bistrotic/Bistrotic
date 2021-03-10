@@ -1,6 +1,7 @@
 ﻿namespace Bistrotic.WorkItems.Infrastructure.DevOps
 {
     using System;
+    using System.Globalization;
     using System.Linq;
 
     using Bistrotic.WorkItems.Domain.Entities;
@@ -67,14 +68,14 @@
         public string TeamProject => GetField(Fd.TeamProject);
         public string Title => GetField(Fd.Title);
 
-        public WorkItem ToWorkItem() => new WorkItem
+        public WorkItem ToWorkItem() => new()
         {
             AssignedTo = AssignedTo,
             ChangedBy = ChangedBy,
             ChangedDate = ChangedDate,
             ClosedDate = ClosedDate,
             CreatedDate = CreatedDate,
-            Id = new Domain.WorkItemId(Id.ToString()),
+            Id = new Domain.WorkItemId(Id.ToString(CultureInfo.InvariantCulture)),
             Priority = Priority,
             Project = TeamProject,
             Title = Title

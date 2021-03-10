@@ -22,7 +22,7 @@
             => new ModuleDefinition(
                 moduleType.Name,
                 moduleType.AssemblyQualifiedName
-                    ?? throw new Exception($"Type {moduleType.FullName} has an empty assembly qualified name.")
+                    ?? throw new TypeInitializationException(moduleType.FullName, null)
                 );
     }
 }

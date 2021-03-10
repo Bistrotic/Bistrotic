@@ -6,7 +6,7 @@
     using Bistrotic.Application.Queries;
     using Bistrotic.WorkItems.Application.ModelViews;
 
-    public sealed class GetSecurityGroupMembers : Query<IEnumerable<SecurityGroupMember>>
+    public sealed class GetSecurityGroupMembers : QueryBase<IEnumerable<SecurityGroupMember>>
     {
         public GetSecurityGroupMembers(string groupName)
         {

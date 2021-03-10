@@ -12,6 +12,7 @@
 		<MicrosoftExtensionsOptionsVersion>5.0.0</MicrosoftExtensionsOptionsVersion>
 		<MicrosoftExtensionsIdentityStoresVersion>5.0.0</MicrosoftExtensionsIdentityStoresVersion>
 		<MicrosoftExtensionsPrimitivesVersion>5.0.0</MicrosoftExtensionsPrimitivesVersion>
+		<MicrosoftExtensionsOptionsConfigurationExtensionsVersion>5.0.0</MicrosoftExtensionsOptionsConfigurationExtensionsVersion>
 		<MicrosoftJSInteropWebAssemblyVersion>5.0.3</MicrosoftJSInteropWebAssemblyVersion>
 		<SystemNetHttpJsonVersion>5.0.0</SystemNetHttpJsonVersion>
 		<SystemTextJsonVersion>5.0.1</SystemTextJsonVersion>
@@ -19,6 +20,8 @@
 		<MicrosoftEntityFrameworkCoreToolsVersion>5.0.3</MicrosoftEntityFrameworkCoreToolsVersion>
 		<SystemNetHttpVersion>5.0.0</SystemNetHttpVersion>
 		<MicrosoftExtensionsHttpVersion>5.0.0</MicrosoftExtensionsHttpVersion>
+		<MicrosoftIdentityWebVersion>1.7.0</MicrosoftIdentityWebVersion>
+		<MicrosoftIdentityWebMicrosoftGraphVersion>$(MicrosoftIdentityWebVersion)</MicrosoftIdentityWebMicrosoftGraphVersion>
 		<MicrosoftExtensionsHostingAbstractionsVersion>5.0.0</MicrosoftExtensionsHostingAbstractionsVersion>
 		<MicrosoftCodeAnalysisCSharpVersion>3.9.0</MicrosoftCodeAnalysisCSharpVersion>
 		<MicrosoftCodeAnalysisCommonVersion>3.9.0</MicrosoftCodeAnalysisCommonVersion>

@@ -2,7 +2,7 @@
 {
     using Bistrotic.Application.Queries;
 
-    public sealed class GetUnitCount : Query<int>
+    public sealed class GetUnitCount : QueryBase<int>
     {
     }
 }

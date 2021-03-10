@@ -112,7 +112,7 @@
         }
     }
 
-    public abstract class TestCommand : Command
+    public abstract class TestCommand : CommandBase
     {
     }
 

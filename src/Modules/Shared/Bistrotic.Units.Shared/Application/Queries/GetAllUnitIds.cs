@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-
-using Bistrotic.Application.Queries;
-
-namespace Bistrotic.Units.Application.Queries
+﻿namespace Bistrotic.Units.Application.Queries
 {
+    using System.Collections.Generic;
+
+    using Bistrotic.Application.Queries;
+
     public sealed class GetAllUnitIds : Query<List<int>>
     {
         public GetAllUnitIds(int take, int skip)

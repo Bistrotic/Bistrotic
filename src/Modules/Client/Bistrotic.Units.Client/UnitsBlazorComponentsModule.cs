@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.Units.Presentation
+﻿namespace Bistrotic.Units
 {
     public class UnitsBlazorComponentsModule
     {

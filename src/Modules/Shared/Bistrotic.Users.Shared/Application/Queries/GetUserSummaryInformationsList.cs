@@ -4,7 +4,7 @@ using Bistrotic.Users.Application.ModelViews;
 namespace Bistrotic.Users.Application.Queries
 {
     public sealed class GetUsersummaryInformationsList
-        : Query<UsersummaryInformations[]>
+        : QueryBase<UsersummaryInformations[]>
     {
         public GetUsersummaryInformationsList(int take = 0, int skip = 0)
         {

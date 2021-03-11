@@ -3,7 +3,7 @@
     using Bistrotic.Domain.Messages;
     using Bistrotic.Users.Domain.ValueTypes;
 
-    public abstract class UserIdEvent : Event<UserId>
+    public abstract class UserIdEvent : EventBase<UserId>
     {
         protected UserIdEvent(UserId UserId)
             : base(UserId)

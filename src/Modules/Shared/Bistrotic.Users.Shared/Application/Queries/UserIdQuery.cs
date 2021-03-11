@@ -3,7 +3,7 @@
     using Bistrotic.Application.Queries;
     using Bistrotic.Users.Domain.ValueTypes;
 
-    public abstract class UserIdQuery<TResult> : Query<UserId, TResult>
+    public abstract class UserIdQuery<TResult> : QueryBase<UserId, TResult>
     {
         protected UserIdQuery()
         {

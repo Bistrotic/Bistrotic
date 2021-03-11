@@ -20,6 +20,7 @@
             Assignee = wi.AssignedTo;
             Priority = (int)wi.Priority;
             CreatedDateTime = wi.CreatedDate;
+            ResolvedDateTime = slaLog.ResolvedDateTime;
             AcknowledgmentDateTime = slaLog.AcknowledgedDateTime;
             AcknowledgmentRemainingTimeInSeconds = slaLog.GetAcknowledgmentRemainingSeconds(slaAcknowledgmentTime);
             ClosedDateTime = wi.ClosedDate;
@@ -33,6 +34,7 @@
         public int AcknowledgmentRemainingTimeInSeconds { get; init; }
         public string? Assignee { get; init; }
         public DateTime? ClosedDateTime { get; init; }
+        public DateTime? ResolvedDateTime { get; init; }
         public DateTime CreatedDateTime { get; init; }
         public int Priority { get; init; }
         public string? ProjectName { get; init; }

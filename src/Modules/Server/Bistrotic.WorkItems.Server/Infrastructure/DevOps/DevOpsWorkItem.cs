@@ -67,6 +67,7 @@
         public long Priority => GetField<long>(Fd.Priority);
         public string TeamProject => GetField(Fd.TeamProject);
         public string Title => GetField(Fd.Title);
+        public string State => GetField(Fd.State);
 
         public WorkItem ToWorkItem() => new()
         {

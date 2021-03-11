@@ -11,6 +11,7 @@
     using Bistrotic.WorkItems.Application.Exceptions;
     using Bistrotic.WorkItems.Application.ModelViews;
     using Bistrotic.WorkItems.Application.Queries;
+    using Bistrotic.WorkItems.Domain;
     using Bistrotic.WorkItems.Infrastructure.DevOps;
 
     public class GetWorkItemChangeHistoryHandler : QueryHandler<GetWorkItemChangeHistory, IEnumerable<WorkItemChange>>
@@ -43,7 +44,15 @@
                 {
                     ChangeDate = p.ChangedDate ?? DateTime.MinValue,
                     ChangeType = ChangeType.Update,
-                    UserName = p.ChangedBy
+                    UserName = p.ChangedBy,
+                    State = p.State switch
+                    {
+                        "New" => WorkItemState.New,
+                        "Active" => WorkItemState.Active,
+                        "Closed" => WorkItemState.Closed,
+                        "Resolved" => WorkItemState.Resolved,
+                        _ => WorkItemState.Active
+                    }
                 });
         }
     }

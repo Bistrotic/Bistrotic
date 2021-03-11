@@ -23,6 +23,7 @@ else
 			<th>Resolution</th>
 			<th>Suspended</th>
 			<th>Action</th>
+			<th>Closed</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -35,23 +36,24 @@ else
 			<td>@issue.Priority</td>
 			<td>@issue.CreatedDateTime</td>
 			@if (issue.AcknowledgmentDateTime == null)
-					{
-			<td>@issue.AcknowledgmentRemainingTimeInSeconds</td>
+			{
+				<td>@issue.AcknowledgmentRemainingTimeInSeconds</td>
 			}
-					else
-					{
-			<td>@issue.AcknowledgmentDateTime</td>
+			else
+			{
+				<td>@issue.AcknowledgmentDateTime</td>
 			}
-			@if (issue.ClosedDateTime == null)
-					{
-			<td>@issue.RemainingResolutionTimeInSeconds</td>
+			@if (issue.ResolvedDateTime == null)
+			{
+				<td>@issue.RemainingResolutionTimeInSeconds</td>
 			}
-					else
-					{
-			<td>@issue.ClosedDateTime</td>
+			else
+			{
+				<td>@issue.ResolvedDateTime</td>
 			}
 			<td>@issue.SlaSuspendedTimeInSeconds</td>
 			<td>@issue.SlaActiveTimeInSeconds</td>
+			<td>@issue.ClosedDateTime</td>
 		</tr>
 		}
 	</tbody>

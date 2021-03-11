@@ -159,16 +159,24 @@
             return null;
         }
 
-        private static X509Certificate2? GetFileCertificate(IEnumerable<string> paths, string fileName)
+        private static X509Certificate2? GetFileCertificate(IEnumerable<string> paths, string fileName, string? password)
         {
             foreach (var path in paths)
             {
                 string filePath = Path.Combine(path, fileName);
                 if (File.Exists(filePath))
                 {
-                    var cert = X509Certificate2.CreateFromCertFile(filePath);
-                    Console.WriteLine($"Loaded certificate : {filePath}.");
-                    return new X509Certificate2(cert);
+                    X509Certificate2 cert;
+                    if (string.Equals(Path.GetExtension(filePath), ".pfx", StringComparison.OrdinalIgnoreCase))
+                    {
+                        cert = new X509Certificate2(filePath, password);
+                    }
+                    else
+                    {
+                        cert = new X509Certificate2(X509Certificate2.CreateFromCertFile(filePath));
+                    }
+                    Console.WriteLine($"Loaded certificate : {filePath}. Thumbprint={cert.Thumbprint}");
+                    return cert;
                 }
             }
             return null;
@@ -193,7 +201,7 @@
             else
             {
                 Console.WriteLine($"Encryption certificate : Thumbprint='{thumbprint}', FileName='{fileName}'.");
-                options.AddEncryptionCertificate(GetCertificate(thumbprint, fileName));
+                options.AddEncryptionCertificate(GetCertificate(thumbprint, fileName, _settings.EncryptionCertificateFilePassword));
             }
             thumbprint = Configuration.GetSection(nameof(OpenIdSettings)).GetValue<string>(nameof(OpenIdSettings.SigningCertificateThumbprint));
             fileName = Configuration.GetSection(nameof(OpenIdSettings)).GetValue<string>(nameof(OpenIdSettings.SigningCertificateFile));
@@ -212,11 +220,11 @@
             else
             {
                 Console.WriteLine($"Signing certificate : Thumbprint='{thumbprint}', FileName='{fileName}'.");
-                options.AddSigningCertificate(GetCertificate(thumbprint, fileName));
+                options.AddSigningCertificate(GetCertificate(thumbprint, fileName, _settings.SigningCertificateFilePassword));
             }
         }
 
-        private X509Certificate2 GetCertificate(string thumbprint, string fileName)
+        private X509Certificate2 GetCertificate(string thumbprint, string fileName, string? password)
         {
             X509Certificate2? cert = null;
             if (thumbprint != null)
@@ -236,7 +244,7 @@
                 var directories = new List<string>();
                 Configuration.GetSection(nameof(OpenIdSettings)).Bind(nameof(OpenIdSettings.CertificatePaths), directories);
                 directories.Add(AppDomain.CurrentDomain.BaseDirectory);
-                cert = GetFileCertificate(directories, fileName);
+                cert = GetFileCertificate(directories, fileName, password);
                 return cert ?? throw new Exception($"The certificate file '{fileName}' could not be found in directories : {string.Join("; ", directories)}");
             }
             return cert ?? throw new Exception($"The certificate with thumbprint '{thumbprint}' could not be found.");

@@ -10,11 +10,6 @@
 		<CompilerVisibleProperty Include="ModuleName" />
 		<CompilerVisibleProperty Include="RootNamespace" />
 	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="Scriban" Version="$(ScribanVersion)" />
-	</ItemGroup>
-
 	<ItemGroup>
 		<ProjectReference Include="..\..\Shared\Bistrotic.Users.Shared\Bistrotic.Users.Shared.csproj" />
 	</ItemGroup>

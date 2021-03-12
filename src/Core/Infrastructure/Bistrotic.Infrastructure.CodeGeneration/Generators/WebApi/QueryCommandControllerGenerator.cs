@@ -30,9 +30,10 @@
                     "Microsoft.AspNetCore.Authorization",
                     "Microsoft.AspNetCore.Mvc",
                     "Microsoft.Extensions.Logging",
+                    "System.Threading.Tasks"
                 };
                 usings.AddRange(receiver.Messages
-                        .Where(p => string.IsNullOrWhiteSpace(p.Namespace))
+                        .Where(p => !string.IsNullOrWhiteSpace(p.Namespace))
                         .Select(p => p.Namespace)
                         .Distinct());
                 var className = moduleName + "ApiController";

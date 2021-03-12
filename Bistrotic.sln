@@ -158,8 +158,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Infrastructure.Co
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Bistrotic.Users.Shared", "src\Modules\Shared\Bistrotic.Users.Shared\Bistrotic.Users.Shared.shproj", "{A9FDF1B7-CDAB-46E6-8FB5-88AD3CACE806}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BistroricGen", "src\BistroricGen\BistroricGen.csproj", "{DC1E5689-D620-447D-A343-94CDD75B279A}"
-EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		src\Modules\Shared\Bistrotic.Users.Shared\Bistrotic.Users.Shared.projitems*{a9fdf1b7-cdab-46e6-8fb5-88ad3cace806}*SharedItemsImports = 13
@@ -319,10 +317,6 @@ Global
 		{4C8B9586-4E8F-489C-ABF0-69781998D4E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C8B9586-4E8F-489C-ABF0-69781998D4E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C8B9586-4E8F-489C-ABF0-69781998D4E2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DC1E5689-D620-447D-A343-94CDD75B279A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DC1E5689-D620-447D-A343-94CDD75B279A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DC1E5689-D620-447D-A343-94CDD75B279A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DC1E5689-D620-447D-A343-94CDD75B279A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -378,7 +372,6 @@ Global
 		{69D5BC89-EAE9-45BC-9631-80A40FB5B75A} = {C370444D-26E5-46BA-BF74-3F435D6D8D28}
 		{4C8B9586-4E8F-489C-ABF0-69781998D4E2} = {17634B5D-1BCA-4A1D-BA37-4293453A5CEC}
 		{A9FDF1B7-CDAB-46E6-8FB5-88AD3CACE806} = {EACE1F1E-9916-483A-A747-67B7A4138153}
-		{DC1E5689-D620-447D-A343-94CDD75B279A} = {5DEBE9B8-E56C-4E95-A592-9CB0194A8221}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA165E9D-6B6A-49BD-9879-44123F389ACD}

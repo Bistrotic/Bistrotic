@@ -9,9 +9,9 @@ namespace Bistrotic.Infrastructure.CodeGeneration.Tests
     using Bistrotic.Application.Messages;
     using Bistrotic.Application.Queries;
     using Bistrotic.Domain.ValueTypes;
-    using Bistrotic.Infrastructure.CodeGeneration.Attributes;
     using Bistrotic.Infrastructure.CodeGeneration.Generators.WebApi;
     using Bistrotic.Infrastructure.CodeGeneration.Tests.Fixtures;
+    using Bistrotic.Infrastructure.Helpers;
     using Bistrotic.Infrastructure.WebServer.Controllers;
 
     using FluentAssertions;
@@ -83,8 +83,10 @@ namespace MyCode.Commands
 
         private static Compilation CreateCompilation(string source)
         {
+            byte[] netstandard = typeof(QueryCommandControllerGeneratorTest).Assembly.GetResource("netstandard20.netstandard");
             var references = new List<PortableExecutableReference>
             {
+                AssemblyMetadata.CreateFromImage(netstandard).GetReference(display: "netstandard (netstandard20)"),
                 MetadataReference.CreateFromFile(typeof(Object).GetTypeInfo().Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(Attribute).GetTypeInfo().Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(Binder).GetTypeInfo().Assembly.Location),

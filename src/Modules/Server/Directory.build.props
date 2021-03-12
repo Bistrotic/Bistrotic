@@ -6,4 +6,11 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.WebServer\Bistrotic.Infrastructure.WebServer.csproj" />
 	</ItemGroup>
+	<ItemGroup>
+		<CompilerVisibleProperty Include="ModuleName" />
+		<CompilerVisibleProperty Include="RootNamespace" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.CodeGeneration\Bistrotic.Infrastructure.CodeGeneration.csproj" />
+	</ItemGroup>
 </Project>

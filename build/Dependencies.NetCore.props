@@ -25,5 +25,6 @@
 		<MicrosoftExtensionsHostingAbstractionsVersion>5.0.0</MicrosoftExtensionsHostingAbstractionsVersion>
 		<MicrosoftCodeAnalysisCSharpVersion>3.9.0</MicrosoftCodeAnalysisCSharpVersion>
 		<MicrosoftCodeAnalysisCommonVersion>3.9.0</MicrosoftCodeAnalysisCommonVersion>
+		<MicrosoftCodeAnalysisWorkspacesVersion>3.9.0</MicrosoftCodeAnalysisWorkspacesVersion>
 	</PropertyGroup>
 </Project>

@@ -22,7 +22,4 @@
 		<AdditionalFiles Include="AnalyzerReleases.Shipped.md" />
 		<AdditionalFiles Include="AnalyzerReleases.Unshipped.md" />
 	</ItemGroup>
-	<ItemGroup>
-	  <ProjectReference Include="..\Infrastructure\Bistrotic.Infrastructure.CodeGeneration.Abstractions\Bistrotic.Infrastructure.CodeGeneration.Abstractions.csproj" />
-	</ItemGroup>
 </Project>

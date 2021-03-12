@@ -2,7 +2,6 @@
 {
     using Bistrotic.Application.Commands;
     using Bistrotic.Domain.ValueTypes;
-    using Bistrotic.Infrastructure.CodeGeneration.Attributes;
 
     [ApiCommand]
     public class TestCommand : ICommand

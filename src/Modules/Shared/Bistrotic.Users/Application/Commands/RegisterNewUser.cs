@@ -1,6 +1,6 @@
 ﻿namespace Bistrotic.Users.Application.Commands
 {
-    using Bistrotic.Application.Commands;
+    using Bistrotic.Infrastructure.CodeGeneration.Attributes;
     using Bistrotic.Users.Domain.ValueTypes;
 
     [ApiCommand]

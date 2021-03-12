@@ -1,10 +1,10 @@
-﻿namespace Bistrotic.Users.Application.Commands
+﻿namespace Bistrotic.Users.Application.Domain.Commands
 {
     using System;
 
-    using Bistrotic.Application.Commands;
+    using Bistrotic.Infrastructure.CodeGeneration.Attributes;
+    using Bistrotic.Users.Application.Commands;
     using Bistrotic.Users.Domain.ValueTypes;
-
     [ApiCommand]
     public sealed class ChangeUserIdentity : UserIdCommand
     {

@@ -11,7 +11,7 @@ namespace {{namespace}}
 
     [ApiController]
     [Authorize]
-    public class {{ modulename }}ApiController : QueryCommandControllerBase
+    public sealed class {{ modulename }}ApiController : QueryCommandControllerBase
     {
          public {{ modulename }}ApiController(
             IQueryDispatcher queryDispatcher,

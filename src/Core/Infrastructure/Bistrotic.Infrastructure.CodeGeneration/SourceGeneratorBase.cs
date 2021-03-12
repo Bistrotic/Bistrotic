@@ -17,6 +17,13 @@
                                                                                               DiagnosticSeverity.Error,
                                                                                               isEnabledByDefault: true);
 
+        private static readonly DiagnosticDescriptor BistroticCodeGenerationInfo = new(id: "BCG0002",
+                                                                                               title: "Bistrotic code generation",
+                                                                                               messageFormat: "Generating code with '{0}'.",
+                                                                                               category: "Design",
+                                                                                               DiagnosticSeverity.Info,
+                                                                                               isEnabledByDefault: true);
+
         public void Execute(GeneratorExecutionContext context)
         {
             try
@@ -31,6 +38,7 @@
                 {
                     namespaceName = nameof(Bistrotic) + "." + moduleName;
                 }
+                context.ReportDiagnostic(Diagnostic.Create(BistroticCodeGenerationInfo, Location.None, GetType().Name));
                 Execute(context, moduleName, namespaceName);
             }
             catch (Exception e)

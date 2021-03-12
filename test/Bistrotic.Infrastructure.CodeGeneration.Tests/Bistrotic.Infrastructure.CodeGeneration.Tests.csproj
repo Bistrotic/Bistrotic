@@ -12,12 +12,15 @@
 		<CompilerVisibleProperty Include="RootNamespace" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="$(MicrosoftCodeAnalysisCSharpVersion)" />
+		<EmbeddedResource Include="$(NuGetPackageRoot)\netstandard.library\2.0.3\build\netstandard2.0\ref\netstandard.dll">
+			<LogicalName>netstandard20.netstandard</LogicalName>
+			<Link>Resources\netstandard20\netstandard.dll</Link>
+		</EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\Core\Application\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj" />
-		<ProjectReference Include="..\..\src\Core\Bistrotic.Infrastructure.CodeGeneration\Bistrotic.Infrastructure.CodeGeneration.csproj" />
+		<ProjectReference Include="..\..\src\Core\Infrastructure\Bistrotic.Infrastructure.CodeGeneration\Bistrotic.Infrastructure.CodeGeneration.csproj" />
 		<ProjectReference Include="..\..\src\Core\Infrastructure\Bistrotic.Infrastructure.WebServer\Bistrotic.Infrastructure.WebServer.csproj" />
 	</ItemGroup>
 </Project>

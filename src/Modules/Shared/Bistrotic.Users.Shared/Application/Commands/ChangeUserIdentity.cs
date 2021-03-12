@@ -2,9 +2,10 @@
 {
     using System;
 
+    using Bistrotic.Infrastructure.CodeGeneration.Attributes;
     using Bistrotic.Users.Application.Commands;
     using Bistrotic.Users.Domain.ValueTypes;
-
+    [ApiCommand]
     public sealed class ChangeUserIdentity : UserIdCommand
     {
         public ChangeUserIdentity(UserId UserId, string? firstName = null, string? lastName = null, DateTime? birthDate = null) : base(UserId)

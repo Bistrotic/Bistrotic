@@ -24,7 +24,7 @@
                 string moduleName = context.GetMSBuildProperty("ModuleName");
                 if (string.IsNullOrWhiteSpace(moduleName))
                 {
-                    moduleName = nameof(Bistrotic) + "Module";
+                    moduleName = nameof(Bistrotic) + "Undefined";
                 }
                 string namespaceName = context.GetMSBuildProperty("RootNamespace");
                 if (string.IsNullOrWhiteSpace(namespaceName))

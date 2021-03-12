@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.Units
+﻿namespace Bistrotic.Users
 {
     using Bistrotic.Application.Messages;
     using Bistrotic.Infrastructure;

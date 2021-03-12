@@ -6,4 +6,7 @@
 	<ItemGroup>
 		<Folder Include="Infrastructure\" />
 	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.CodeGeneration.Abstractions\Bistrotic.Infrastructure.CodeGeneration.Abstractions.csproj" />
+	</ItemGroup>
 </Project>

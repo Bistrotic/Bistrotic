@@ -39,7 +39,7 @@
                 var template = Template.Parse(QueryCommandControllerTemplate.Value);
                 var result = template.Render(new
                 {
-                    ModuleName = moduleName,
+                    Modulename = moduleName,
                     Namespace = namespaceName,
                     Queries = receiver.Messages.OfType<QueryDefinition>().ToList(),
                     Commands = receiver.Messages.OfType<CommandDefinition>().ToList(),

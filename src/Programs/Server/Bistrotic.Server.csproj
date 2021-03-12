@@ -10,7 +10,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Modules\Server\Bistrotic.AzureAd.Server\Bistrotic.MicrosoftIdentity.Server.csproj" />
+		<ProjectReference Include="..\..\Modules\Server\Bistrotic.MicrosoftIdentity.Server\Bistrotic.MicrosoftIdentity.Server.csproj" />
 		<ProjectReference Include="..\..\Modules\Server\Bistrotic.QuartzScheduler.Server\Bistrotic.QuartzScheduler.Server.csproj" />
 		<ProjectReference Include="..\..\Modules\Server\Bistrotic.WorkItems.Server\Bistrotic.WorkItems.Server.csproj" />
 		<ProjectReference Include="..\..\Modules\Server\Bistrotic.OpenIdDict.Server\Bistrotic.OpenIdDict.Server.csproj" />

@@ -1,14 +1,26 @@
 namespace Bistrotic.Infrastructure.CodeGeneration.Tests
 {
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
 
+    using Bistrotic.Application.Commands;
+    using Bistrotic.Application.Messages;
+    using Bistrotic.Application.Queries;
+    using Bistrotic.Domain.ValueTypes;
+    using Bistrotic.Infrastructure.CodeGeneration.Attributes;
     using Bistrotic.Infrastructure.CodeGeneration.Generators.WebApi;
+    using Bistrotic.Infrastructure.CodeGeneration.Tests.Fixtures;
+    using Bistrotic.Infrastructure.WebServer.Controllers;
 
     using FluentAssertions;
 
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.CSharp;
+    using Microsoft.Extensions.Logging;
 
     using Xunit;
 
@@ -19,15 +31,18 @@ namespace Bistrotic.Infrastructure.CodeGeneration.Tests
         {
             // Create the 'input' compilation that the generator will act on
             Compilation inputCompilation = CreateCompilation(@"
-namespace MyCode
+namespace MyCode.Commands
 {
-    public class Program
+    using Bistrotic.Application.Commands;
+    using Bistrotic.Domain.ValueTypes;
+    using Bistrotic.Infrastructure.CodeGeneration.Attributes;
+
+    [ApiCommand]
+    public class MyTestCommand : ICommand
     {
-        public static void Main(string[] args)
-        {
-        }
-    }
-}
+        public string? Id { get; }
+        public string MessageId { get; } = new MessageId();
+    }}
 ");
             // directly create an instance of the generator (Note: in the compiler this is loaded
             // from an assembly, and created via reflection at runtime)
@@ -46,8 +61,10 @@ namespace MyCode
             var syntaxTree = outputCompilation.SyntaxTrees.Skip(1).First();
             var text = syntaxTree.GetText().ToString();
             text.Should().NotBeNullOrWhiteSpace();
-            var outputDiagnostics = outputCompilation.GetDiagnostics();
-            outputDiagnostics.IsEmpty.Should().BeTrue(); // verify the compilation with the added source has no diagnostics
+            foreach (var diag in outputCompilation.GetDiagnostics())
+            {
+                diag.GetMessage().Should().BeNullOrWhiteSpace(); // verify the compilation with the added source has no diagnostics
+            }
 
             // Or we can look at the results directly:
             GeneratorDriverRunResult runResult = driver.GetRunResult();
@@ -65,9 +82,37 @@ namespace MyCode
         }
 
         private static Compilation CreateCompilation(string source)
-            => CSharpCompilation.Create("compilation",
-                new[] { CSharpSyntaxTree.ParseText(source) },
-                new[] { MetadataReference.CreateFromFile(typeof(Binder).GetTypeInfo().Assembly.Location) },
-                new CSharpCompilationOptions(OutputKind.ConsoleApplication));
+        {
+            var references = new List<PortableExecutableReference>
+            {
+                MetadataReference.CreateFromFile(typeof(Object).GetTypeInfo().Assembly.Location),
+                MetadataReference.CreateFromFile(typeof(Attribute).GetTypeInfo().Assembly.Location),
+                MetadataReference.CreateFromFile(typeof(Binder).GetTypeInfo().Assembly.Location),
+                MetadataReference.CreateFromFile(typeof(ApiCommandAttribute).GetTypeInfo().Assembly.Location),
+                MetadataReference.CreateFromFile(typeof(MessageId).GetTypeInfo().Assembly.Location),
+                MetadataReference.CreateFromFile(typeof(ICommand).GetTypeInfo().Assembly.Location),
+                MetadataReference.CreateFromFile(typeof(IQuery).GetTypeInfo().Assembly.Location),
+                MetadataReference.CreateFromFile(typeof(QueryCommandControllerBase).GetTypeInfo().Assembly.Location),
+                MetadataReference.CreateFromFile(typeof(ControllerBase).GetTypeInfo().Assembly.Location),
+                MetadataReference.CreateFromFile(typeof(ApiControllerAttribute).GetTypeInfo().Assembly.Location),
+                MetadataReference.CreateFromFile(typeof(RouteAttribute).GetTypeInfo().Assembly.Location),
+                MetadataReference.CreateFromFile(typeof(AuthorizeAttribute).GetTypeInfo().Assembly.Location),
+                MetadataReference.CreateFromFile(typeof(ApiControllerAttribute).GetTypeInfo().Assembly.Location),
+                MetadataReference.CreateFromFile(typeof(IQueryDispatcher).GetTypeInfo().Assembly.Location),
+                MetadataReference.CreateFromFile(typeof(IMessageFactory).GetTypeInfo().Assembly.Location),
+                MetadataReference.CreateFromFile(typeof(ILogger).GetTypeInfo().Assembly.Location),
+                MetadataReference.CreateFromFile(typeof(TestCommand).GetTypeInfo().Assembly.Location)
+            };
+            Assembly
+                .GetEntryAssembly()?
+                .GetReferencedAssemblies()
+                .ToList()
+                .ForEach(a => references.Add(MetadataReference.CreateFromFile(Assembly.Load(a).Location)));
+            return CSharpCompilation
+                .Create("compilation")
+                .WithOptions(new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary))
+                .AddSyntaxTrees(new[] { CSharpSyntaxTree.ParseText(source) })
+                .AddReferences(references);
+        }
     }
 }

@@ -22,6 +22,7 @@
             CreatedDateTime = wi.CreatedDate;
             ResolvedDateTime = slaLog.ResolvedDateTime;
             AcknowledgmentDateTime = slaLog.AcknowledgedDateTime;
+            AcknowledgmentTimeInSeconds = slaLog.AcknowledgmentTimeInSeconds;
             AcknowledgmentRemainingTimeInSeconds = slaLog.GetAcknowledgmentRemainingSeconds(slaAcknowledgmentTime);
             ClosedDateTime = wi.ClosedDate;
             ResolutionTimeInSeconds = slaLog.ResolutionTimeInSeconds;
@@ -31,6 +32,7 @@
         }
 
         public DateTime? AcknowledgmentDateTime { get; init; }
+        public int AcknowledgmentTimeInSeconds { get; }
         public int AcknowledgmentRemainingTimeInSeconds { get; init; }
         public string? Assignee { get; init; }
         public DateTime? ClosedDateTime { get; init; }

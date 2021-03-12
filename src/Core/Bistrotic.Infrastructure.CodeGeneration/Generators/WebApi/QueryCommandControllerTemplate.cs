@@ -5,27 +5,12 @@
         public const string Value = @"
 namespace {{namespace}}
 {
-    using System;
-    using System.Threading.Tasks;
-    using System.Web;
-
-    using Bistrotic.Application.Commands;
-    using Bistrotic.Application.Exceptions;
-    using Bistrotic.Application.Messages;
-    using Bistrotic.Application.Queries;
-    using Bistrotic.Infrastructure.WebServer.Controllers;
-
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Logging;
-
 {{ for u in usings }}
     using {{ u }};
 {{ end }}
 
     [ApiController]
     [Authorize]
-    [Route(""api/[{{ modulename }}]"")]
     public class {{ modulename }}ApiController : QueryCommandControllerBase
     {
          public {{ modulename }}ApiController(
@@ -35,6 +20,13 @@ namespace {{namespace}}
             : base(queryDispatcher, messageFactory, logger)
         {
         }
+{{ for command in commands }}
+        [HttpPost(""api/{{ modulename | string.downcase }}/{{ command.name | string.downcase }}"")]
+        public Task<IActionResult> {{ command.name }}([FromBody] {{ command.name }} command)
+        {
+            return base.Tell(command);
+        }
+{{ end }}
     }
 }
 ";

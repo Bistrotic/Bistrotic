@@ -158,6 +158,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MicrosoftIdentity", "Micros
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.MicrosoftIdentity.Server", "src\Modules\Server\Bistrotic.MicrosoftIdentity.Server\Bistrotic.MicrosoftIdentity.Server.csproj", "{69D5BC89-EAE9-45BC-9631-80A40FB5B75A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Infrastructure.CodeGeneration.Abstractions", "src\Core\Infrastructure\Bistrotic.Infrastructure.CodeGeneration.Abstractions\Bistrotic.Infrastructure.CodeGeneration.Abstractions.csproj", "{4BCC9FA3-7DF6-4882-9759-A27D25C9625A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -316,6 +318,10 @@ Global
 		{69D5BC89-EAE9-45BC-9631-80A40FB5B75A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69D5BC89-EAE9-45BC-9631-80A40FB5B75A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69D5BC89-EAE9-45BC-9631-80A40FB5B75A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BCC9FA3-7DF6-4882-9759-A27D25C9625A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BCC9FA3-7DF6-4882-9759-A27D25C9625A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BCC9FA3-7DF6-4882-9759-A27D25C9625A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BCC9FA3-7DF6-4882-9759-A27D25C9625A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -371,6 +377,7 @@ Global
 		{CD1FD4B3-0D27-483B-AF9A-7F5ACAF87AE4} = {EACE1F1E-9916-483A-A747-67B7A4138153}
 		{C370444D-26E5-46BA-BF74-3F435D6D8D28} = {5DEBE9B8-E56C-4E95-A592-9CB0194A8221}
 		{69D5BC89-EAE9-45BC-9631-80A40FB5B75A} = {C370444D-26E5-46BA-BF74-3F435D6D8D28}
+		{4BCC9FA3-7DF6-4882-9759-A27D25C9625A} = {17634B5D-1BCA-4A1D-BA37-4293453A5CEC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA165E9D-6B6A-49BD-9879-44123F389ACD}

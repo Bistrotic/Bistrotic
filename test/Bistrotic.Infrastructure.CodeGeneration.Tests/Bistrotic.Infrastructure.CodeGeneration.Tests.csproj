@@ -5,13 +5,19 @@
 
 		<IsPackable>false</IsPackable>
 		<ModuleName>CodeGenerationTest</ModuleName>
+		<UseNETCoreGenerator>true</UseNETCoreGenerator>
 	</PropertyGroup>
-
+	<ItemGroup>
+		<CompilerVisibleProperty Include="ModuleName" />
+		<CompilerVisibleProperty Include="RootNamespace" />
+	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="$(MicrosoftCodeAnalysisCSharpVersion)" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\src\Core\Application\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj" />
 		<ProjectReference Include="..\..\src\Core\Bistrotic.Infrastructure.CodeGeneration\Bistrotic.Infrastructure.CodeGeneration.csproj" />
+		<ProjectReference Include="..\..\src\Core\Infrastructure\Bistrotic.Infrastructure.WebServer\Bistrotic.Infrastructure.WebServer.csproj" />
 	</ItemGroup>
 </Project>

@@ -4,7 +4,7 @@
 		<TargetFramework>net5.0</TargetFramework>
 
 		<IsPackable>false</IsPackable>
-		<ModuleName>WebServerTest</ModuleName>
+		<ModuleName>BlazorClientTest</ModuleName>
 		<UseNETCoreGenerator>true</UseNETCoreGenerator>
 	</PropertyGroup>
 	<ItemGroup>
@@ -20,7 +20,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\Core\Application\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj" />
-		<ProjectReference Include="..\..\src\Core\Infrastructure\Bistrotic.Infrastructure.CodeGeneration.WebServer\Bistrotic.Infrastructure.CodeGeneration.WebServer.csproj" />
-		<ProjectReference Include="..\..\src\Core\Infrastructure\Bistrotic.Infrastructure.WebServer\Bistrotic.Infrastructure.WebServer.csproj" />
+		<ProjectReference Include="..\..\src\Core\Infrastructure\Bistrotic.Infrastructure.CodeGeneration.BlazorClient\Bistrotic.Infrastructure.CodeGeneration.BlazorClient.csproj" />
+		<ProjectReference Include="..\..\src\Core\Infrastructure\Bistrotic.Infrastructure.BlazorClient\Bistrotic.Infrastructure.BlazorClient.csproj" />
 	</ItemGroup>
 </Project>

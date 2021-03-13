@@ -25,7 +25,6 @@
                 {
                     namespaceName = nameof(Bistrotic) + "." + moduleName;
                 }
-                context.ReportDiagnostic(Diagnostic.Create(DiagnosticMessages.CodeGenerationInfo, Location.None, GetType().Name));
                 Execute(context, moduleName, namespaceName);
             }
             catch (Exception e)

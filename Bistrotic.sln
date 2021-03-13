@@ -160,6 +160,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Infrastructure.Co
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Bistrotic.Infrastructure.CodeGeneration.Shared", "src\Core\Infrastructure\Bistrotic.Infrastructure.CodeGeneration.Shared\Bistrotic.Infrastructure.CodeGeneration.Shared.shproj", "{0A1BE2C0-37C6-428D-8BF5-C2DDDF7A0E4A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Infrastructure.CodeGeneration.WebServer.Tests", "test\Bistrotic.Infrastructure.CodeGeneration.WebServer.Tests\Bistrotic.Infrastructure.CodeGeneration.WebServer.Tests.csproj", "{A9E4D4B2-DDBF-4FF9-BE72-8B13EEB66619}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Infrastructure.CodeGeneration.BlazorClient.Tests", "test\Bistrotic.Infrastructure.CodeGeneration.BlazorClient.Tests\Bistrotic.Infrastructure.CodeGeneration.BlazorClient.Tests.csproj", "{A6D2692B-8689-4D30-B5DF-D375BA760C30}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		src\Core\Infrastructure\Bistrotic.Infrastructure.CodeGeneration.Shared\Bistrotic.Infrastructure.CodeGeneration.Shared.projitems*{06beda32-e705-4093-90b0-c61e81c646c2}*SharedItemsImports = 5
@@ -322,6 +326,14 @@ Global
 		{7ECFC9D7-9D45-46AD-B6DF-1393D98505C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7ECFC9D7-9D45-46AD-B6DF-1393D98505C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7ECFC9D7-9D45-46AD-B6DF-1393D98505C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9E4D4B2-DDBF-4FF9-BE72-8B13EEB66619}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9E4D4B2-DDBF-4FF9-BE72-8B13EEB66619}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9E4D4B2-DDBF-4FF9-BE72-8B13EEB66619}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9E4D4B2-DDBF-4FF9-BE72-8B13EEB66619}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6D2692B-8689-4D30-B5DF-D375BA760C30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6D2692B-8689-4D30-B5DF-D375BA760C30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6D2692B-8689-4D30-B5DF-D375BA760C30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6D2692B-8689-4D30-B5DF-D375BA760C30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -378,6 +390,8 @@ Global
 		{06BEDA32-E705-4093-90B0-C61E81C646C2} = {17634B5D-1BCA-4A1D-BA37-4293453A5CEC}
 		{7ECFC9D7-9D45-46AD-B6DF-1393D98505C4} = {17634B5D-1BCA-4A1D-BA37-4293453A5CEC}
 		{0A1BE2C0-37C6-428D-8BF5-C2DDDF7A0E4A} = {17634B5D-1BCA-4A1D-BA37-4293453A5CEC}
+		{A9E4D4B2-DDBF-4FF9-BE72-8B13EEB66619} = {1299CE2B-441E-4AB4-97E3-E439F145E9F9}
+		{A6D2692B-8689-4D30-B5DF-D375BA760C30} = {1299CE2B-441E-4AB4-97E3-E439F145E9F9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA165E9D-6B6A-49BD-9879-44123F389ACD}

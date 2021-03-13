@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.Infrastructure.CodeGeneration.Generators.WebApi
+﻿namespace Bistrotic.Infrastructure.CodeGeneration.WebApiClient
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -12,7 +12,7 @@
     using Scriban;
 
     [Generator]
-    public sealed class QueryCommandControllerGenerator : SourceGeneratorBase
+    public sealed class QueryCommandWebApiClientGenerator : SourceGeneratorBase
     {
         public override void Initialize(GeneratorInitializationContext context)
         {
@@ -22,21 +22,22 @@
 
         protected override void Execute(GeneratorExecutionContext context, string moduleName, string namespaceName)
         {
-            if (context.SyntaxReceiver is QueryCommandSyntaxReceiver receiver)
+            if (context.SyntaxReceiver is QueryCommandSyntaxReceiver receiver && receiver.Messages.Count > 0)
             {
                 var usings = new List<string>()
                 {
                     "Bistrotic.Application.Messages",
                     "Bistrotic.Application.Queries",
                     "Bistrotic.Infrastructure.BlazorClient",
-                    "System.Threading.Tasks"
+                    "System.Threading.Tasks",
+                    "System.Net.Http"
                 };
                 usings.AddRange(receiver.Messages
                         .Where(p => !string.IsNullOrWhiteSpace(p.Namespace))
                         .Select(p => p.Namespace)
                         .Distinct());
                 var className = moduleName + "WebApiClient";
-                var template = Template.Parse(QueryCommandControllerTemplate.Value);
+                var template = Template.Parse(QueryCommandWebApiClientTemplate.Value);
                 var result = template.Render(new
                 {
                     Modulename = moduleName,

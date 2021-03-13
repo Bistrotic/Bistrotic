@@ -1,6 +1,13 @@
 <Project>
 	<Import Project="..\Directory.build.props" />
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="$(MicrosoftAspNetCoreComponentsWebAssemblyVersion)" />
+		<CompilerVisibleProperty Include="ModuleName" />
+		<CompilerVisibleProperty Include="RootNamespace" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.BlazorClient\Bistrotic.Infrastructure.BlazorClient.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.CodeGeneration.BlazorClient\Bistrotic.Infrastructure.CodeGeneration.BlazorClient.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	</ItemGroup>
 </Project>

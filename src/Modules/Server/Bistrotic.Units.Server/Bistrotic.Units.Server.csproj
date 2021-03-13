@@ -2,12 +2,12 @@
 
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
-		<RootNamespace>Bistrotic.Units</RootNamespace>
 		<OutputType>Library</OutputType>
+		<RootNamespace>Bistrotic.Units</RootNamespace>
+		<ModuleName>Units</ModuleName>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.CodeGeneration\Bistrotic.Infrastructure.CodeGeneration.csproj" />
 		<ProjectReference Include="..\..\Shared\Bistrotic.Units.Shared\Bistrotic.Units.Shared.csproj" />
 	</ItemGroup>
 </Project>

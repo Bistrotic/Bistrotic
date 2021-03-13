@@ -9,7 +9,6 @@ namespace Bistrotic.Infrastructure.CodeGeneration.Tests
     using Bistrotic.Application.Messages;
     using Bistrotic.Application.Queries;
     using Bistrotic.Domain.ValueTypes;
-    using Bistrotic.Infrastructure.CodeGeneration.Generators.WebApi;
     using Bistrotic.Infrastructure.CodeGeneration.Tests.Fixtures;
     using Bistrotic.Infrastructure.Helpers;
     using Bistrotic.Infrastructure.WebServer.Controllers;

@@ -8,6 +8,7 @@
 
     using Bistrotic.Application.Messages;
     using Bistrotic.Application.Queries;
+    using Bistrotic.Domain.ValueTypes;
     using Bistrotic.WorkItems.Application.Exceptions;
     using Bistrotic.WorkItems.Application.ModelViews;
     using Bistrotic.WorkItems.Application.Queries;
@@ -27,7 +28,7 @@
         {
             var settings = await _queryDispatcher
                 .Dispatch<GetWorkItemModuleSettings, WorkItemModuleSettings>(
-                    new Envelope<GetWorkItemModuleSettings>(new GetWorkItemModuleSettings(), envelope)
+                    new Envelope<GetWorkItemModuleSettings>(new GetWorkItemModuleSettings(), new MessageId(), envelope)
                     );
             if (string.IsNullOrWhiteSpace(settings.AzureDevOpsServerUrl) || string.IsNullOrWhiteSpace(settings.PersonalAccessToken))
             {

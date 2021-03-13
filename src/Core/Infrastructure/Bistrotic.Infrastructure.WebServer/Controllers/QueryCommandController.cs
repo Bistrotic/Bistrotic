@@ -8,6 +8,7 @@
     using Bistrotic.Application.Exceptions;
     using Bistrotic.Application.Messages;
     using Bistrotic.Application.Queries;
+    using Bistrotic.Domain.ValueTypes;
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -45,6 +46,7 @@
                 return Ok(await _queryDispatcher
                     .Dispatch(new Envelope<IQuery>(
                         query,
+                        new MessageId(),
                         userName
                         ))
                     .ConfigureAwait(false));
@@ -79,6 +81,7 @@
                 return Ok(await _queryDispatcher
                     .Dispatch(new Envelope<ICommand>(
                         command,
+                        new MessageId(),
                         User.Identity.Name
                         ))
                     .ConfigureAwait(false));

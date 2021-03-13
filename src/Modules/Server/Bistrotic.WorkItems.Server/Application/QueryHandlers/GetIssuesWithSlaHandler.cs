@@ -7,6 +7,7 @@
 
     using Bistrotic.Application.Messages;
     using Bistrotic.Application.Queries;
+    using Bistrotic.Domain.ValueTypes;
     using Bistrotic.WorkItems.Application.Exceptions;
     using Bistrotic.WorkItems.Application.ModelViews;
     using Bistrotic.WorkItems.Application.Queries;
@@ -27,7 +28,7 @@
         public async override Task<List<IssueWithSla>> Handle(Envelope<GetIssuesWithSla> envelope)
         {
             var settings = await _queryDispatcher
-                .Dispatch<GetWorkItemModuleSettings, WorkItemModuleSettings>(new Envelope<GetWorkItemModuleSettings>(new GetWorkItemModuleSettings(), envelope));
+                .Dispatch<GetWorkItemModuleSettings, WorkItemModuleSettings>(new Envelope<GetWorkItemModuleSettings>(new GetWorkItemModuleSettings(), new MessageId(), envelope));
             if (string.IsNullOrWhiteSpace(settings.AzureDevOpsServerUrl) || string.IsNullOrWhiteSpace(settings.PersonalAccessToken))
             {
                 throw new DevOpsServerConfigurationMissingException();
@@ -38,7 +39,7 @@
             }
             var slaMembers = await _queryDispatcher
                 .Dispatch<GetSecurityGroupMembers, IEnumerable<SecurityGroupMember>>(
-                new Envelope<GetSecurityGroupMembers>(new GetSecurityGroupMembers(settings.SlaGroupName), envelope)
+                new Envelope<GetSecurityGroupMembers>(new GetSecurityGroupMembers(settings.SlaGroupName), new MessageId(), envelope)
                 );
 
             var server = new DevOpsServer(settings.AzureDevOpsServerUrl, settings.PersonalAccessToken);
@@ -68,7 +69,7 @@
                     .Dispatch<GetWorkItemChangeHistory, IEnumerable<WorkItemChange>>(
                     new Envelope<GetWorkItemChangeHistory>(
                         new GetWorkItemChangeHistory(
-                            new WorkItemId(wi.Id.ToString(CultureInfo.InvariantCulture))), envelope)
+                            new WorkItemId(wi.Id.ToString(CultureInfo.InvariantCulture))), new MessageId(), envelope)
                     );
                 var slaLog = new WorkItemSlaLog(wiHistory
                     .OrderBy(p => p.ChangeDate)

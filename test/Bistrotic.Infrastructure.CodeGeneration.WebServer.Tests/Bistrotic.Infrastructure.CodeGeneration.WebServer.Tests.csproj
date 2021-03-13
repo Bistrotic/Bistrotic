@@ -20,7 +20,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\Core\Application\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj" />
-		<ProjectReference Include="..\..\src\Core\Infrastructure\Bistrotic.Infrastructure.CodeGeneration\Bistrotic.Infrastructure.CodeGeneration.csproj" />
+		<ProjectReference Include="..\..\src\Core\Infrastructure\Bistrotic.Infrastructure.CodeGeneration.WebServer\Bistrotic.Infrastructure.CodeGeneration.WebServer.csproj" />
 		<ProjectReference Include="..\..\src\Core\Infrastructure\Bistrotic.Infrastructure.WebServer\Bistrotic.Infrastructure.WebServer.csproj" />
 	</ItemGroup>
 </Project>

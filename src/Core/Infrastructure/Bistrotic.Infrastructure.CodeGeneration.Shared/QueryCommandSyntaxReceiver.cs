@@ -1,12 +1,14 @@
-﻿namespace Bistrotic.Infrastructure.CodeGeneration.Generators.WebApi
+﻿namespace Bistrotic.Infrastructure.CodeGeneration
 {
     using System.Collections.Generic;
     using System.Linq;
 
+    using Bistrotic.Infrastructure.CodeGeneration.Messages;
+
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-    internal sealed class QueryCommandSyntaxReceiver : ISyntaxReceiver
+    public sealed class QueryCommandSyntaxReceiver : ISyntaxReceiver
     {
         private const string ApiCommand = nameof(ApiCommand);
         private const string ApiQuery = nameof(ApiQuery);

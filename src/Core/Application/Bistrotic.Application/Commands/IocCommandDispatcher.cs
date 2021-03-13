@@ -16,7 +16,7 @@
         }
 
         public Task Dispatch<TCommand>(Envelope<TCommand> envelope)
-            where TCommand : ICommand
+            where TCommand : class
         {
             Type handlerType = MakeCommandHandlerInterface(typeof(TCommand));
             object? service = _serviceProvider.GetService(handlerType);

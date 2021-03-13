@@ -3,10 +3,10 @@
     using System;
     using System.Threading.Tasks;
 
-    using Bistrotic.Application.Commands;
     using Bistrotic.Application.Exceptions;
     using Bistrotic.Application.Messages;
     using Bistrotic.Application.Queries;
+    using Bistrotic.Domain.ValueTypes;
 
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
@@ -24,9 +24,10 @@
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        protected async Task<IActionResult> Ask<TQuery>(TQuery query)
-            where TQuery : IQuery
+        protected async Task<IActionResult> Ask<TQuery>(TQuery query, string? messageId = null)
+            where TQuery : class, IQuery
         {
+            MessageId msgId = string.IsNullOrWhiteSpace(messageId) ? new MessageId() : new MessageId(messageId);
             if (string.IsNullOrWhiteSpace(User?.Identity?.Name))
                 return Unauthorized("User name is not defined");
             _logger.LogDebug($"User '{User.Identity.Name}' asked for query : {typeof(TQuery).Name}");
@@ -35,6 +36,7 @@
                 return Ok(await _queryDispatcher
                     .Dispatch(new Envelope<TQuery>(
                         query,
+                        msgId,
                         User.Identity.Name
                         ))
                     .ConfigureAwait(false));
@@ -56,9 +58,11 @@
             }
         }
 
-        protected async Task<IActionResult> Tell<TCommand>(TCommand command)
-            where TCommand : ICommand
+        protected async Task<IActionResult> Tell<TCommand>(TCommand command, string? messageId = null)
+            where TCommand : class
         {
+            MessageId msgId = string.IsNullOrWhiteSpace(messageId) ? new MessageId() : new MessageId(messageId);
+
             if (string.IsNullOrWhiteSpace(User?.Identity?.Name))
                 return Unauthorized("User name is not defined");
             _logger.LogDebug($"User '{User.Identity.Name}' told to execute command : {typeof(TCommand).Name}");
@@ -67,6 +71,7 @@
                 return Ok(await _queryDispatcher
                     .Dispatch(new Envelope<TCommand>(
                         command,
+                        msgId,
                         User.Identity.Name
                         ))
                     .ConfigureAwait(false));

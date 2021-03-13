@@ -17,7 +17,7 @@
         }
 
         public Task<TResult> Dispatch<TQuery, TResult>(Envelope<TQuery> envelope)
-            where TQuery : IQuery<TResult>
+            where TQuery : class, IQuery<TResult>
         {
             Type handlerType = MakeQueryHandlerInterface(typeof(TQuery), typeof(TResult));
             object? service = _serviceProvider.GetService(handlerType);

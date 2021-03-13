@@ -2,8 +2,8 @@
 
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
-		<RootNamespace>Bistrotic.Users</RootNamespace>
 		<OutputType>Library</OutputType>
+		<RootNamespace>Bistrotic.Users</RootNamespace>
 		<ModuleName>Users</ModuleName>
 	</PropertyGroup>
 	<Import Project="..\..\Shared\Bistrotic.Users.Shared\Bistrotic.Users.Shared.projitems" Label="Shared" />

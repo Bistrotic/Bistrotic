@@ -72,8 +72,9 @@ namespace Bistrotic.Infrastructure.WebServer
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddTransient<IQueryDispatcher, IocQueryDispatcher>();
             services.AddDatabaseDeveloperPageExceptionFilter();
-            services.AddControllersWithViews().AddDapr();
-            services.AddRazorPages();
+            services
+                .AddMvc()
+                .AddDapr();
             services.AddLogging(p =>
             {
                 p.AddDebug();

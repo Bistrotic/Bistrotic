@@ -1,17 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>Bistrotic.MicrosoftIdentity</RootNamespace>
-  </PropertyGroup>
-    
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Identity.Web" Version="$(MicrosoftIdentityWebVersion)" />
-    <PackageReference Include="Microsoft.Identity.Web.MicrosoftGraph" Version="$(MicrosoftIdentityWebMicrosoftGraphVersion)" />
-  </ItemGroup>
-    
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.Abstractions\Bistrotic.Infrastructure.Abstractions.csproj" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<OutputType>Library</OutputType>
+		<RootNamespace>Bistrotic.MicrosoftIdentity</RootNamespace>
+		<ModuleName>MicrosoftIdentity</ModuleName>
+	</PropertyGroup>
 
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Identity.Web" Version="$(MicrosoftIdentityWebVersion)" />
+		<PackageReference Include="Microsoft.Identity.Web.MicrosoftGraph" Version="$(MicrosoftIdentityWebMicrosoftGraphVersion)" />
+	</ItemGroup>
 </Project>

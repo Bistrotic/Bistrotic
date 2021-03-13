@@ -4,7 +4,7 @@
 
     public interface IQueryService
     {
-        Task<TResult> Ask<TQuery, TResult>(TQuery query)
-            where TQuery : IQuery<TResult>;
+        Task<TResult> Ask<TQuery, TResult>(string messageId, TQuery query)
+            where TQuery : class, IQuery<TResult>;
     }
 }

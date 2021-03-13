@@ -21,13 +21,13 @@
 
         public HttpClient HttpClient { get; }
 
-        public async Task<TResult> Ask<TQuery, TResult>(TQuery query) where TQuery : IQuery<TResult>
+        public async Task<TResult> Ask<TQuery, TResult>(string messageId, TQuery query) where TQuery : class, IQuery<TResult>
         {
             var queryType = typeof(TQuery);
             try
             {
                 var result = await HttpClient
-                    .GetFromJsonAsync<TResult>(query.ToHttpQueryString($"api/ask/{queryType.Name.ToLowerInvariant()}/"));
+                    .GetFromJsonAsync<TResult>(query.ToHttpQueryString($"api/ask/{queryType.Name.ToLowerInvariant()}/?MessageId={messageId}"));
                 if (result == null)
                 {
                     throw new QueryResultNullException(query);
@@ -42,12 +42,12 @@
             }
         }
 
-        public async Task Tell<TCommand>(TCommand command) where TCommand : ICommand
+        public async Task Tell<TCommand>(string messageId, TCommand command) where TCommand : ICommand
         {
             var commandType = typeof(TCommand);
             try
             {
-                await HttpClient.PostAsJsonAsync($"api/tell/{commandType.Name.ToLowerInvariant()}", command.Json());
+                await HttpClient.PostAsJsonAsync($"api/tell/{commandType.Name.ToLowerInvariant()}/?MessageId={messageId}", command.Json());
             }
             catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
             {

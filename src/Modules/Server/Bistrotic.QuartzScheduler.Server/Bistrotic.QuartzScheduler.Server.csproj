@@ -2,8 +2,9 @@
 
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
-		<RootNamespace>Bistrotic.QuartzScheduler</RootNamespace>
 		<OutputType>Library</OutputType>
+		<RootNamespace>Bistrotic.QuartzScheduler</RootNamespace>
+		<ModuleName>QuartzScheduler</ModuleName>
 	</PropertyGroup>
 
 	<ItemGroup>

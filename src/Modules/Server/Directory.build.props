@@ -1,8 +1,5 @@
 <Project>
 	<Import Project="..\Directory.build.props" />
-	<PropertyGroup>
-		<OutputType>Library</OutputType>
-	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.WebServer\Bistrotic.Infrastructure.WebServer.csproj" />
 	</ItemGroup>
@@ -11,6 +8,6 @@
 		<CompilerVisibleProperty Include="RootNamespace" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.CodeGeneration\Bistrotic.Infrastructure.CodeGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.CodeGeneration.WebServer\Bistrotic.Infrastructure.CodeGeneration.WebServer.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	</ItemGroup>
 </Project>

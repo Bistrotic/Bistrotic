@@ -17,8 +17,8 @@ namespace Bistrotic.Application.Queries
         }
 
         /// <exclude/>
-        public Task<TResult> Ask<TQuery, TResult>(TQuery query) where TQuery : IQuery<TResult>
+        public Task<TResult> Ask<TQuery, TResult>(string messageId, TQuery query) where TQuery : class, IQuery<TResult>
             => _queryDispatcher
-                    .Dispatch<TQuery, TResult>(new Envelope<TQuery>(query, _user?.Identity?.Name));
+                    .Dispatch<TQuery, TResult>(new Envelope<TQuery>(query, messageId, _user?.Identity?.Name));
     }
 }

@@ -117,7 +117,7 @@
     }
 
     public class TestCommandHandler<TCommand> : CommandHandler<TCommand>, ITestCommandHandler
-        where TCommand : ICommand
+        where TCommand : class
     {
         public int CallCount { get; private set; }
 

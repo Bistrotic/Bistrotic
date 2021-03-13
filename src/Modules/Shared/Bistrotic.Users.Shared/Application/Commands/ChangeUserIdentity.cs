@@ -6,17 +6,33 @@
     using Bistrotic.Users.Domain.ValueTypes;
 
     [ApiCommand]
-    public sealed class ChangeUserIdentity : UserIdCommand
+    public record ChangeUserIdentity
     {
-        public ChangeUserIdentity(UserId UserId, string? firstName = null, string? lastName = null, DateTime? birthDate = null) : base(UserId)
+        public ChangeUserIdentity(
+            UserId userId,
+            string? oldFirstName = null,
+            string? oldLastName = null,
+            DateTime? oldBirthDate = null,
+            string? newFirstName = null,
+            string? newLastName = null,
+            DateTime? newBirthDate = null
+            )
         {
-            FirstName = firstName ?? string.Empty;
-            LastName = lastName ?? string.Empty;
-            BirthDate = birthDate ?? DateTime.MinValue;
+            UserId = userId;
+            OldFirstName = oldFirstName;
+            OldLastName = oldLastName;
+            OldBirthDate = oldBirthDate;
+            NewFirstName = newFirstName;
+            NewLastName = newLastName;
+            NewBirthDate = newBirthDate;
         }
 
-        public DateTime BirthDate { get; init; }
-        public string FirstName { get; init; }
-        public string LastName { get; init; }
+        public string UserId { get; init; }
+        public string? OldFirstName { get; init; }
+        public string? OldLastName { get; init; }
+        public DateTime? OldBirthDate { get; init; }
+        public string? NewFirstName { get; init; }
+        public string? NewLastName { get; init; }
+        public DateTime? NewBirthDate { get; init; }
     }
 }

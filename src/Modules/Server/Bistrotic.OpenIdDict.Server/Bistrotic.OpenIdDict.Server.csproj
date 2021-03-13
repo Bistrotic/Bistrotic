@@ -2,8 +2,9 @@
 
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
-		<RootNamespace>Bistrotic.OpenIdDict</RootNamespace>
 		<OutputType>Library</OutputType>
+		<RootNamespace>Bistrotic.OpenIdDict</RootNamespace>
+		<ModuleName>OpenIdDict</ModuleName>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="$(MicrosoftAspNetCoreIdentityEntityFrameworkCoreVersion)" />

@@ -1,7 +1,6 @@
 ﻿namespace Bistrotic.Application.Queries
 {
     using System;
-    using System.Collections.Generic;
 
     using Microsoft.Extensions.DependencyInjection;
 
@@ -13,7 +12,7 @@
         }
 
         public static void AddQueryHandler<TQuery, TResult>(this IServiceCollection services, Func<IServiceProvider, IQueryHandler<TQuery, TResult>> handler)
-                    where TQuery : IQuery<TResult>
+                    where TQuery : class, IQuery<TResult>
         {
             services.AddTransient(handler);
         }

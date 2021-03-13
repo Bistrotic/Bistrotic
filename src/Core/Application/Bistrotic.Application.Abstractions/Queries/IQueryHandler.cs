@@ -13,7 +13,7 @@
     }
 
     public interface IQueryHandler<TQuery, TResult> : IQueryHandler
-        where TQuery : IQuery<TResult>
+        where TQuery : class, IQuery<TResult>
     {
         Task<TResult> Handle(Envelope<TQuery> envelope);
     }

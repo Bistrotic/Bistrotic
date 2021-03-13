@@ -6,7 +6,7 @@
     using Bistrotic.Application.Messages;
 
     public abstract class CommandHandler<TCommand> : ICommandHandler<TCommand>
-        where TCommand : ICommand
+        where TCommand : class
     {
         public bool CanHandle(Type CommandType)
         {

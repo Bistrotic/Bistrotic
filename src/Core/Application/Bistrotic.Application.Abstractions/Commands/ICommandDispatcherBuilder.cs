@@ -5,7 +5,7 @@
     public interface ICommandDispatcherBuilder
     {
         ICommandDispatcherBuilder AddCommandHandler<TCommand>(Func<ICommandHandler<TCommand>> handler)
-            where TCommand : ICommand;
+            where TCommand : class;
 
         ICommandDispatcher Build();
     }

@@ -5,7 +5,6 @@ namespace Bistrotic.Server
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.Logging;
 
     public class Startup : ServerStartup
     {

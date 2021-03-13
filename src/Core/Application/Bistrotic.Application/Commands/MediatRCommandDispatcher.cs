@@ -23,7 +23,7 @@
         }
 
         public Task Dispatch<TCommand>(Envelope<TCommand> envelope)
-            where TCommand : ICommand => _mediator.Send(new MediatREnvelope<TCommand>(envelope));
+            where TCommand : class => _mediator.Send(new MediatREnvelope<TCommand>(envelope));
 
         Task ICommandDispatcher.Dispatch(IEnvelope envelope)
         {

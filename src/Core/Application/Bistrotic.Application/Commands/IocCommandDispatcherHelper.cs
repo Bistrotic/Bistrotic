@@ -7,7 +7,7 @@
     public static class IocCommandDispatcherHelper
     {
         public static void AddCommandHandler<TCommand>(this IServiceCollection services, Func<IServiceProvider, ICommandHandler<TCommand>> handler)
-                    where TCommand : ICommand
+                    where TCommand : class
         {
             services.AddTransient(handler);
         }

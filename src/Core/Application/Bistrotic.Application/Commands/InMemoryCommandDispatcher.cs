@@ -23,7 +23,7 @@
         }
 
         public Task Dispatch<TCommand>(Envelope<TCommand> envelope)
-            where TCommand : ICommand
+            where TCommand : class
         {
             if (!_handlers.TryGetValue(envelope.Message.GetType(), out Func<ICommandHandler>? handlerFunc))
             {

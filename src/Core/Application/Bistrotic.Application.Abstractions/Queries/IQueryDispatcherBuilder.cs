@@ -5,7 +5,7 @@
     public interface IQueryDispatcherBuilder
     {
         IQueryDispatcherBuilder AddQueryHandler<TQuery, TResult>(Func<IQueryHandler<TQuery, TResult>> handler)
-            where TQuery : IQuery<TResult>;
+            where TQuery : class, IQuery<TResult>;
 
         IQueryDispatcher Build();
     }

@@ -15,11 +15,8 @@
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 	</ItemGroup>
 	<ItemGroup>
-		<Folder Include="Generators\MediatR\" />
-		<Folder Include="Generators\Dapr\" />
+		<AdditionalFiles Include="../Bistrotic.Infrastructure.CodeGeneration.Shared/AnalyzerReleases.Shipped.md" />
+		<AdditionalFiles Include="../Bistrotic.Infrastructure.CodeGeneration.Shared/AnalyzerReleases.Unshipped.md" />
 	</ItemGroup>
-	<ItemGroup>
-		<AdditionalFiles Include="AnalyzerReleases.Shipped.md" />
-		<AdditionalFiles Include="AnalyzerReleases.Unshipped.md" />
-	</ItemGroup>
+	<Import Project="..\Bistrotic.Infrastructure.CodeGeneration.Shared\Bistrotic.Infrastructure.CodeGeneration.Shared.projitems" Label="Shared" />
 </Project>

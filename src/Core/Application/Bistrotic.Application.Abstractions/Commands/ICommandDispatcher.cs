@@ -9,6 +9,6 @@ namespace Bistrotic.Application.Commands
         Task Dispatch(IEnvelope envelope);
 
         Task Dispatch<TCommand>(Envelope<TCommand> envelope)
-            where TCommand : ICommand;
+            where TCommand : class;
     }
 }

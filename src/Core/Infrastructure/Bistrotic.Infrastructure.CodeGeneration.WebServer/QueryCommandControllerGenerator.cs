@@ -4,6 +4,8 @@
     using System.Linq;
     using System.Text;
 
+    using Bistrotic.Infrastructure.CodeGeneration.Messages;
+
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.Text;
 
@@ -20,7 +22,7 @@
 
         protected override void Execute(GeneratorExecutionContext context, string moduleName, string namespaceName)
         {
-            if (context.SyntaxReceiver is QueryCommandSyntaxReceiver receiver)
+            if (context.SyntaxReceiver is QueryCommandSyntaxReceiver receiver && receiver.Messages.Count > 0)
             {
                 var usings = new List<string>()
                 {
@@ -30,6 +32,7 @@
                     "Microsoft.AspNetCore.Authorization",
                     "Microsoft.AspNetCore.Mvc",
                     "Microsoft.Extensions.Logging",
+                    "System",
                     "System.Threading.Tasks"
                 };
                 usings.AddRange(receiver.Messages

@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.Infrastructure.CodeGeneration.Generators
+﻿namespace Bistrotic.Infrastructure.CodeGeneration.Messages
 {
     public class QueryDefinition : MessageDefinition
     {

@@ -2,19 +2,20 @@
 
 using Bistrotic.Application.Messages;
 using Bistrotic.Domain.Messages;
+using Bistrotic.Domain.ValueTypes;
 
 using MediatR;
 
 namespace Bistrotic.Application.Queries
 {
     public sealed class MediatREnvelope<TMessage> : Envelope<TMessage>, INotification, IEquatable<MediatREnvelope<TMessage>>
-        where TMessage : IMessage
+        where TMessage : class
     {
-        public MediatREnvelope(TMessage message, Domain.ValueTypes.UserName userName, Domain.ValueTypes.MessageId? correlationId = null) : base(message, userName, correlationId)
+        public MediatREnvelope(TMessage message, MessageId messageId, UserName userName, MessageId? correlationId = null) : base(message, messageId, userName, correlationId)
         {
         }
 
-        public MediatREnvelope(TMessage message, IEnvelope parent) : base(message, parent)
+        public MediatREnvelope(TMessage message, MessageId messageId, IEnvelope parent) : base(message, messageId, parent)
         {
         }
 
@@ -23,7 +24,7 @@ namespace Bistrotic.Application.Queries
         }
 
         public bool Equals(MediatREnvelope<TMessage>? other)
-            => other != null && other.Message.MessageId == Message.MessageId;
+            => other != null && other.MessageId == MessageId;
 
         public override bool Equals(object? obj)
         {

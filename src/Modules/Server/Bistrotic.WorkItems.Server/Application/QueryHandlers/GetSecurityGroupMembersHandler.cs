@@ -6,6 +6,7 @@
 
     using Bistrotic.Application.Messages;
     using Bistrotic.Application.Queries;
+    using Bistrotic.Domain.ValueTypes;
     using Bistrotic.WorkItems.Application.Exceptions;
     using Bistrotic.WorkItems.Application.ModelViews;
     using Bistrotic.WorkItems.Application.Queries;
@@ -23,7 +24,7 @@
         public override async Task<IEnumerable<SecurityGroupMember>> Handle(Envelope<GetSecurityGroupMembers> envelope)
         {
             var settings = await _queryDispatcher
-                 .Dispatch<GetWorkItemModuleSettings, WorkItemModuleSettings>(new Envelope<GetWorkItemModuleSettings>(new GetWorkItemModuleSettings(), envelope));
+                 .Dispatch<GetWorkItemModuleSettings, WorkItemModuleSettings>(new Envelope<GetWorkItemModuleSettings>(new GetWorkItemModuleSettings(), new MessageId(), envelope));
             if (string.IsNullOrWhiteSpace(settings.AzureDevOpsServerUrl) || string.IsNullOrWhiteSpace(settings.PersonalAccessToken))
             {
                 throw new DevOpsServerConfigurationMissingException();

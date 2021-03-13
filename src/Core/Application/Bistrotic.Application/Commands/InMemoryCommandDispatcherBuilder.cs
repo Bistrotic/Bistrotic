@@ -8,7 +8,7 @@
         private readonly Dictionary<Type, Func<ICommandHandler>> _handlers = new Dictionary<Type, Func<ICommandHandler>>();
 
         public ICommandDispatcherBuilder AddCommandHandler<TCommand>(Func<ICommandHandler<TCommand>> handler)
-            where TCommand : ICommand
+            where TCommand : class
         {
             _handlers.Add(typeof(TCommand), handler);
             return this;

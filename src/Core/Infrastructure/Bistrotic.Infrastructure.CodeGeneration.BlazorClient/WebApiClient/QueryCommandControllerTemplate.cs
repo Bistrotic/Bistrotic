@@ -11,6 +11,7 @@ namespace {{namespace}}
 
     [ApiController]
     [Authorize]
+    [Route(""api/{{ modulename | string.downcase }}/[action]"")]
     public sealed class {{ modulename }}ApiController : QueryCommandControllerBase
     {
          public {{ modulename }}ApiController(
@@ -21,12 +22,18 @@ namespace {{namespace}}
         {
         }
 {{ for command in commands }}
-        [HttpPost(""api/{{ modulename | string.downcase }}/{{ command.name | string.downcase }}"")]
-        public Task<IActionResult> {{ command.name }}([FromBody] {{ command.name }} command)
+        [HttpPost]
+        public Task<IActionResult> {{ command.name }}(string messageId, [FromBody] {{ command.name }} command)
         {
-            return base.Tell(command);
+            return base.Tell(messageId, command);
         }
 {{ end }}
+
+        [HttpGet]
+        public IActionResult Test()
+        {
+            return Ok(""hello you, from {{ modulename }}."");
+        }
     }
 }
 ";

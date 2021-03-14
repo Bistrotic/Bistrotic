@@ -6,11 +6,13 @@
     using Bistrotic.Infrastructure.Modules.Definitions;
     using Bistrotic.Infrastructure.WebServer.Modules;
 
-    using Microsoft.AspNetCore.Authentication.Cookies;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Mvc.Authorization;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Identity.Web;
+    using Microsoft.Identity.Web.UI;
 
     public class MicrosoftIdentityModule : ServerModule
     {
@@ -32,29 +34,9 @@
             if (!string.IsNullOrWhiteSpace(_settings.AzureAd.ClientId))
             {
                 services
-                    .AddAuthentication(o =>
-                        o.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme
-                    )
-                    .AddMicrosoftIdentityWebApp(o =>
-                    {
-                        o.ClientId = _settings.AzureAd.ClientId;
-                        if (!string.IsNullOrWhiteSpace(_settings.AzureAd.Instance))
-                        {
-                            o.Instance = _settings.AzureAd.Instance;
-                        }
-                        if (!string.IsNullOrWhiteSpace(_settings.AzureAd.TenantId))
-                        {
-                            o.TenantId = _settings.AzureAd.TenantId;
-                        }
-                        if (!string.IsNullOrWhiteSpace(_settings.AzureAd.CallbackPath))
-                        {
-                            o.CallbackPath = _settings.AzureAd.CallbackPath;
-                        }
-                        if (!string.IsNullOrWhiteSpace(_settings.AzureAd.SignedOutCallbackPath))
-                        {
-                            o.SignedOutCallbackPath = _settings.AzureAd.SignedOutCallbackPath;
-                        }
-                    });
+                    .AddMicrosoftIdentityWebAppAuthentication(
+                            Configuration,
+                            nameof(MicrosoftIdentitySettings) + ":" + nameof(MicrosoftIdentitySettings.AzureAd));
             }
         }
     }

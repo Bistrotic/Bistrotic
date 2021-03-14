@@ -112,10 +112,13 @@
 
                     // Note: the sample uses the code and refresh token flows but you can enable the
                     // other flows if you need to support implicit, password or client credentials.
-                    options.AllowAuthorizationCodeFlow()
-                            .AllowClientCredentialsFlow()
-                            .RequireProofKeyForCodeExchange()
-                            .AllowRefreshTokenFlow();
+                    options
+                        .AllowAuthorizationCodeFlow()
+                        .AllowHybridFlow()
+                        .AllowImplicitFlow()
+                        .AllowClientCredentialsFlow()
+                        .RequireProofKeyForCodeExchange()
+                        .AllowRefreshTokenFlow();
                     AddCertificates(options);
                     options.UseAspNetCore()
                            .EnableAuthorizationEndpointPassthrough()
@@ -134,8 +137,7 @@
                     }
                     if (_settings.AllowMicrosoftAuthentication)
                     {
-                        options.AllowCustomFlow("urn:ietf:params:oauth:grant-type:microsoft_access_token");
-                        options.AllowCustomFlow("urn:ietf:params:oauth:grant-type:microsoft_identity_token");
+                        options.AllowCustomFlow("urn:ietf:params:oauth:grant-type:jwt-bearer");
                     }
                 })
                 // Register the OpenIddict validation components.

@@ -6,8 +6,12 @@
     using Bistrotic.Users.Domain.ValueTypes;
 
     [ApiCommand]
-    public record ChangeUserIdentity
+    public sealed record ChangeUserIdentity
     {
+        public ChangeUserIdentity()
+        {
+            UserId = string.Empty;
+        }
         public ChangeUserIdentity(
             UserId userId,
             string? oldFirstName = null,

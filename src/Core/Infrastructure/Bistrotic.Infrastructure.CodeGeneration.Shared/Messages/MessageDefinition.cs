@@ -1,14 +1,17 @@
 ﻿namespace Bistrotic.Infrastructure.CodeGeneration.Messages
 {
-    public class MessageDefinition
+    using System.Collections.Generic;
+    internal abstract class MessageDefinition
     {
-        public MessageDefinition(string name, string namespaceName)
+        protected MessageDefinition(string name, string namespaceName, IEnumerable<PropertyDefinition> properties)
         {
-            this.Name = name;
-            this.Namespace = namespaceName;
+            Name = name;
+            Namespace = namespaceName;
+            Properties = properties;
         }
 
         public string Name { get; }
         public string Namespace { get; set; }
+        public IEnumerable<PropertyDefinition> Properties { get; }
     }
 }

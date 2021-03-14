@@ -12,7 +12,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Application\Commands\ChangeUserIdentity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Application\Commands\RegisterNewUser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Application\Commands\RenameUser.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Application\Commands\UserIdCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Application\ModelViews\UserDetailedInformations.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Application\ModelViews\UserSummaryInformations.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Application\Queries\GetAllUserIds.cs" />

@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\GeneratorExecutionContextExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Messages\CommandDefinition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Messages\MessageDefinition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\PropertyDefinition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Messages\QueryDefinition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)QueryCommandSyntaxReceiver.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SourceGeneratorBase.cs" />

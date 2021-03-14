@@ -10,7 +10,6 @@
     using Bistrotic.Application.Queries;
     using Bistrotic.Domain.ValueTypes;
 
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
 

@@ -16,10 +16,20 @@ namespace {{namespace}}
         }
 
 {{ for command in commands }}
-        public Task {{ command.name }}({{ command.name }} command, string? messageId = null)
+        public Task {{ command.name }}(
+    {{ for property in command.properties }}
+            {{ property.type }} {{ property.name }},
+    {{ end }}
+            string? MessageId = null)
         {
-            return Tell(command, messageId);
-        }
+            return Tell(new {{ command.name }}
+                {
+    {{ for property in command.properties }}
+                    {{ property.name }} = {{ property.name }}{{if for.last != true}},{{end}}
+    {{ end }}
+                },
+                MessageId);
+       }
 {{ end }}
     }
 }

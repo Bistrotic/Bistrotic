@@ -4,8 +4,12 @@ using Bistrotic.Application.Queries;
 
 namespace Bistrotic.Users.Application.Queries
 {
-    public sealed class GetAllUserIds : QueryBase<List<int>>
+    [ApiQuery(typeof(List<int>))]
+    public sealed record GetAllUserIds
     {
+        public GetAllUserIds()
+        {
+        }
         public GetAllUserIds(int take, int skip)
         {
             Take = take;

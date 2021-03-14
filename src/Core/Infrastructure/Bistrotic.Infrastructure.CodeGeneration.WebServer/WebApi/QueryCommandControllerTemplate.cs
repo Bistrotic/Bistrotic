@@ -17,9 +17,8 @@ namespace {{namespace}}
          public {{ modulename }}ApiController(
             IServiceProvider serviceProvider,
             IQueryDispatcher queryDispatcher,
-            IMessageFactory messageFactory,
             ILogger<{{ modulename }}ApiController> logger)
-            : base(queryDispatcher, messageFactory, logger)
+            : base(queryDispatcher, logger)
         {
             ServiceProvider = serviceProvider;
         }
@@ -47,7 +46,7 @@ namespace {{namespace}}
 {{ for property in query.properties }}
             {{ property.name }} = {{ property.name }}{{if for.last != true}},{{end}}
 {{ end }}
-            ), messageId);
+            ), MessageId);
         }
 
 {{ end }}

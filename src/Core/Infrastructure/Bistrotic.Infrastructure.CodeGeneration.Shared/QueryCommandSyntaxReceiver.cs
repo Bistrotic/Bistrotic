@@ -8,7 +8,7 @@
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-    public sealed class QueryCommandSyntaxReceiver : ISyntaxReceiver
+    internal sealed class QueryCommandSyntaxReceiver : ISyntaxReceiver
     {
         private const string ApiCommand = nameof(ApiCommand);
         private const string ApiQuery = nameof(ApiQuery);
@@ -39,8 +39,8 @@
                     }
                     Messages.Add(attribute.Name.ToString() switch
                     {
-                        ApiQuery => new QueryDefinition(typeSyntax.Identifier.ValueText, namespaceName),
-                        _ => new CommandDefinition(typeSyntax.Identifier.ValueText, namespaceName)
+                        ApiQuery => new QueryDefinition(typeSyntax.Identifier.ValueText, namespaceName, new List<PropertyDefinition>()),
+                        _ => new CommandDefinition(typeSyntax.Identifier.ValueText, namespaceName, new List<PropertyDefinition>())
                     });
                 }
             }

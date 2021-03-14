@@ -14,18 +14,16 @@
     public abstract class QueryCommandControllerBase : ControllerBase
     {
         private readonly ILogger _logger;
-        private readonly IMessageFactory _messageFactory;
         private readonly IQueryDispatcher _queryDispatcher;
 
-        public QueryCommandControllerBase(IQueryDispatcher queryDispatcher, IMessageFactory messageFactory, ILogger logger)
+        protected QueryCommandControllerBase(IQueryDispatcher queryDispatcher, ILogger logger)
         {
             _queryDispatcher = queryDispatcher ?? throw new ArgumentNullException(nameof(queryDispatcher));
-            _messageFactory = messageFactory;
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         protected async Task<IActionResult> Ask<TQuery>(TQuery query, string? messageId = null)
-            where TQuery : class, IQuery
+            where TQuery : class
         {
             MessageId msgId = string.IsNullOrWhiteSpace(messageId) ? new MessageId() : new MessageId(messageId);
             if (string.IsNullOrWhiteSpace(User?.Identity?.Name))

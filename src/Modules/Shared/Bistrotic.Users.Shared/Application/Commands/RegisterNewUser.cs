@@ -4,13 +4,19 @@
     using Bistrotic.Users.Domain.ValueTypes;
 
     [ApiCommand]
-    public sealed class RegisterNewUser : UserIdCommand
+    public sealed class RegisterNewUser
     {
-        public RegisterNewUser(UserId UserId, string name) : base(UserId)
+        public RegisterNewUser()
+        {
+            UserId = Name = string.Empty;
+        }
+        public RegisterNewUser(UserId userId, string name)
         {
             Name = name;
+            UserId = userId;
         }
 
-        public string Name { get; }
+        public string Name { get; init; }
+        public string UserId { get; init; }
     }
 }

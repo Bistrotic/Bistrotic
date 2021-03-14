@@ -1,8 +1,13 @@
 ﻿namespace Bistrotic.Infrastructure.CodeGeneration.Messages
 {
-    public class QueryDefinition : MessageDefinition
+    using System.Collections.Generic;
+    internal sealed class QueryDefinition : MessageDefinition
     {
-        public QueryDefinition(string name, string namespaceName) : base(name, namespaceName)
+        public QueryDefinition(
+            string name,
+            string namespaceName,
+            IEnumerable<PropertyDefinition> properties)
+            : base(name, namespaceName, properties)
         {
         }
     }

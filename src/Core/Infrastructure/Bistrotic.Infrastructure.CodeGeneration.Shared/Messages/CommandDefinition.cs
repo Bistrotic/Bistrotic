@@ -1,8 +1,13 @@
 ﻿namespace Bistrotic.Infrastructure.CodeGeneration.Messages
 {
-    public class CommandDefinition : MessageDefinition
+    using System.Collections.Generic;
+    internal sealed class CommandDefinition : MessageDefinition
     {
-        public CommandDefinition(string name, string namespaceName) : base(name, namespaceName)
+        public CommandDefinition(
+            string name,
+            string namespaceName,
+            IEnumerable<PropertyDefinition> properties)
+            : base(name, namespaceName, properties)
         {
         }
     }

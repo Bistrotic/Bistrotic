@@ -1,6 +1,6 @@
 <Project>
 	<PropertyGroup>
-		<AspNetCoreVersion>5.0.3</AspNetCoreVersion>
+		<AspNetCoreVersion>5.0.4</AspNetCoreVersion>
 		<MicrosoftAspNetCoreComponentsWebAssemblyVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreComponentsWebAssemblyVersion>
 		<MicrosoftAspNetCoreComponentsWebAssemblyServerVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreComponentsWebAssemblyServerVersion>
 		<MicrosoftAspNetCoreComponentsWebAssemblyAuthenticationVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreComponentsWebAssemblyAuthenticationVersion>
@@ -10,6 +10,7 @@
 		<MicrosoftAspNetCoreApiAuthorizationIdentityServerVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreApiAuthorizationIdentityServerVersion>
 		<MicrosoftAspNetCoreAuthenticationJwtBearerVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreAuthenticationJwtBearerVersion>
 		<MicrosoftAspNetCoreAuthenticationOpenIdConnectVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreAuthenticationOpenIdConnectVersion>
+		<MicrosoftAspNetCoreAuthenticationGoogleVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreAuthenticationGoogleVersion>
 		<MicrosoftAspNetCoreIdentityUIVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreIdentityUIVersion>
 		<MicrosoftAspNetCoreAppVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreAppVersion>
 		<MicrosoftAspNetCoreWebUtilitiesVersion>2.2.0</MicrosoftAspNetCoreWebUtilitiesVersion>

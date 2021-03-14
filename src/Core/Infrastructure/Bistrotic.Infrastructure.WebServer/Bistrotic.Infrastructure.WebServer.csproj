@@ -12,13 +12,6 @@
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="$(MicrosoftVisualStudioAzureContainersToolsTargetsVersion)" />
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Kubernetes.Tools.Targets" Version="$(MicrosoftVisualStudioAzureKubernetesToolsTargetsVersion)" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="$(SwashbuckleAspNetCoreVersion)" />
-		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="$(MicrosoftAspNetCoreIdentityUIVersion)" />
-		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="$(MicrosoftAspNetCoreIdentityEntityFrameworkCoreVersion)" />
-		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="$(MicrosoftAspNetCoreDiagnosticsEntityFrameworkCoreVersion)" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(MicrosoftEntityFrameworkCoreSqlServerVersion)" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="$(MicrosoftEntityFrameworkCoreToolsVersion)" />
-		<PackageReference Include="OpenIddict.AspNetCore" Version="$(OpenIddictAspNetCoreVersion)" />
-		<PackageReference Include="OpenIddict.EntityFrameworkCore" Version="$(OpenIddictEntityFrameworkCoreVersion)" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\Application\Bistrotic.Application\Bistrotic.Application.csproj" />

@@ -8,9 +8,10 @@
 		<DaprAspNetCoreVersion>1.0.0</DaprAspNetCoreVersion>
 		<SwashbuckleAspNetCoreVersion>6.0.7</SwashbuckleAspNetCoreVersion>
 		<MinVerVersion>2.4.0</MinVerVersion>
-		<OpenIddictVersion>3.0.1</OpenIddictVersion>
-		<OpenIddictAspNetCoreVersion>3.0.1</OpenIddictAspNetCoreVersion>
-		<OpenIddictEntityFrameworkCoreVersion>3.0.1</OpenIddictEntityFrameworkCoreVersion>
+		<OpenIddictVersion>3.0.2</OpenIddictVersion>
+		<OpenIddictAspNetCoreVersion>$(OpenIddictVersion)</OpenIddictAspNetCoreVersion>
+		<OpenIddictEntityFrameworkCoreVersion>$(OpenIddictVersion)</OpenIddictEntityFrameworkCoreVersion>
+		<OpenIddictQuartzVersion>$(OpenIddictVersion)</OpenIddictQuartzVersion>
 		<SystemLinqAsyncVersion>5.0.0</SystemLinqAsyncVersion>
 		<MediatRExtensionsMicrosoftDependencyInjectionVersion>9.0.0</MediatRExtensionsMicrosoftDependencyInjectionVersion>
 		<MicrosoftExtensionsLoggingAzureAppServicesVersion>5.0.3</MicrosoftExtensionsLoggingAzureAppServicesVersion>

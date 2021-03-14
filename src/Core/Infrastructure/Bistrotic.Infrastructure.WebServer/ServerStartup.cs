@@ -46,7 +46,6 @@ namespace Bistrotic.Infrastructure.WebServer
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseMigrationsEndPoint();
                 app.UseWebAssemblyDebugging();
             }
             else
@@ -69,9 +68,7 @@ namespace Bistrotic.Infrastructure.WebServer
 
         public virtual void ConfigureServices(IServiceCollection services)
         {
-            services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddTransient<IQueryDispatcher, IocQueryDispatcher>();
-            services.AddDatabaseDeveloperPageExceptionFilter();
             services
                 .AddMvc()
                 .AddDapr();

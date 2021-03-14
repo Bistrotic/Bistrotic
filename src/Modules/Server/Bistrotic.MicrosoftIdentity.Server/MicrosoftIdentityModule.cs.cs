@@ -6,7 +6,7 @@
     using Bistrotic.Infrastructure.Modules.Definitions;
     using Bistrotic.Infrastructure.WebServer.Modules;
 
-    using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+    using Microsoft.AspNetCore.Authentication.Cookies;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -31,8 +31,30 @@
 
             if (!string.IsNullOrWhiteSpace(_settings.AzureAd.ClientId))
             {
-                services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
-                   .AddMicrosoftIdentityWebApp(Configuration.GetSection($"{nameof(MicrosoftIdentitySettings)}:{nameof(MicrosoftIdentitySettings.AzureAd)}"));
+                services
+                    .AddAuthentication(o =>
+                        o.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme
+                    )
+                    .AddMicrosoftIdentityWebApp(o =>
+                    {
+                        o.ClientId = _settings.AzureAd.ClientId;
+                        if (!string.IsNullOrWhiteSpace(_settings.AzureAd.Instance))
+                        {
+                            o.Instance = _settings.AzureAd.Instance;
+                        }
+                        if (!string.IsNullOrWhiteSpace(_settings.AzureAd.TenantId))
+                        {
+                            o.TenantId = _settings.AzureAd.TenantId;
+                        }
+                        if (!string.IsNullOrWhiteSpace(_settings.AzureAd.CallbackPath))
+                        {
+                            o.CallbackPath = _settings.AzureAd.CallbackPath;
+                        }
+                        if (!string.IsNullOrWhiteSpace(_settings.AzureAd.SignedOutCallbackPath))
+                        {
+                            o.SignedOutCallbackPath = _settings.AzureAd.SignedOutCallbackPath;
+                        }
+                    });
             }
         }
     }

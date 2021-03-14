@@ -18,6 +18,7 @@
     using Bistrotic.OpenIdDict.Settings;
     using Bistrotic.OpenIdDict.Workers;
 
+    using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
@@ -35,6 +36,15 @@
             : base(moduleDefinition, configuration, environment, clientMode)
         {
             _settings = configuration.GetSettings<OpenIdSettings>();
+        }
+
+        public override void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            base.Configure(app, env);
+            if (env.IsDevelopment())
+            {
+                app.UseMigrationsEndPoint();
+            }
         }
 
         public override void ConfigureMessages(IMessageFactoryBuilder messageBuilder)
@@ -56,6 +66,11 @@
                 // Note: use the generic overload if you need to replace the default OpenIddict entities.
                 options.UseOpenIddict();
             });
+
+            if (Environment.IsDevelopment())
+            {
+                services.AddDatabaseDeveloperPageExceptionFilter();
+            }
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<SecurityDbContext>()
@@ -80,6 +95,7 @@
                     // Note: call ReplaceDefaultEntities() to replace the default OpenIddict entities.
                     options.UseEntityFrameworkCore()
                            .UseDbContext<SecurityDbContext>();
+                    options.UseQuartz();
                 })
 
                 // Register the OpenIddict server components.
@@ -92,11 +108,12 @@
                            .SetUserinfoEndpointUris("/connect/userinfo");
 
                     // Mark the "email", "profile" and "roles" scopes as supported scopes.
-                    options.RegisterScopes(Scopes.Email, Scopes.Profile, Scopes.Roles);
+                    options.RegisterScopes(Scopes.Email, Scopes.Profile, Scopes.Roles, Scopes.OpenId);
 
                     // Note: the sample uses the code and refresh token flows but you can enable the
                     // other flows if you need to support implicit, password or client credentials.
                     options.AllowAuthorizationCodeFlow()
+                            .AllowClientCredentialsFlow()
                             .RequireProofKeyForCodeExchange()
                             .AllowRefreshTokenFlow();
                     AddCertificates(options);

@@ -11,17 +11,11 @@ namespace Bistrotic.Users.Domain.ValueTypes
     [JsonConverter(typeof(StringValueJsonConverter<UserId>))]
     public sealed class UserId : BusinessId
     {
-        public UserId()
-        {
-        }
+        public UserId() { }
 
-        public UserId(UserId UserId) : base(UserId)
-        {
-        }
+        public UserId(UserId UserId) : base(UserId) { }
 
-        public UserId(string value) : base(value)
-        {
-        }
+        public UserId(string value) : base(value) { }
 
         public static implicit operator UserId(string value) => new UserId(value);
     }

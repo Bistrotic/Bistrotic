@@ -11,27 +11,27 @@
 
     public class User : IEntity, IAggregateRoot
     {
-        private readonly UserId _UserId;
+        private readonly UserId _userId;
 
-        public User(UserId UserId, Userstate state)
-        {
-            State = state ?? throw new ArgumentNullException(nameof(state));
-            _UserId = UserId ?? throw new ArgumentNullException(nameof(UserId));
-        }
+        public User(UserId userId, Userstate state)
+        => (_userId, State) = (
+            userId ?? throw new ArgumentNullException(nameof(userId)),
+            state ?? throw new ArgumentNullException(nameof(state))
+            );
 
-        public string AggregateId => _UserId.Value;
+        public string AggregateId => _userId.Value;
 
         public string AggregateName => nameof(User);
 
         public Userstate State { get; }
 
         public static IEnumerable<IEvent> RegisterNewUser(
-            UserId UserId,
+            UserId userId,
             string name,
             out User User)
         {
-            User = new User(UserId, new Userstate() { Name = name });
-            var e = new NewUserRegistered(UserId, name);
+            User = new User(userId, new Userstate() { Name = name });
+            var e = new NewUserRegistered(userId, name);
             User.State.Apply(e);
             return new IEvent[] { e };
         }

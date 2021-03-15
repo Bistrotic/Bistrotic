@@ -5,13 +5,9 @@
 
     public abstract class UserIdQuery<TResult> : QueryBase<UserId, TResult>
     {
-        protected UserIdQuery()
-        {
-        }
+        protected UserIdQuery() { }
 
         protected UserIdQuery(UserId UserId)
-            : base(UserId)
-        {
-        }
+            : base(UserId) { }
     }
 }

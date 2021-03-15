@@ -21,15 +21,8 @@
             string? newLastName = null,
             DateTime? newBirthDate = null
             )
-        {
-            UserId = userId;
-            OldFirstName = oldFirstName;
-            OldLastName = oldLastName;
-            OldBirthDate = oldBirthDate;
-            NewFirstName = newFirstName;
-            NewLastName = newLastName;
-            NewBirthDate = newBirthDate;
-        }
+            => (UserId, OldFirstName, OldLastName, OldBirthDate, NewFirstName, NewLastName, NewBirthDate) =
+               (userId, oldFirstName, oldLastName, oldBirthDate, newFirstName, newLastName, newBirthDate);
 
         public string UserId { get; init; }
         public string? OldFirstName { get; init; }

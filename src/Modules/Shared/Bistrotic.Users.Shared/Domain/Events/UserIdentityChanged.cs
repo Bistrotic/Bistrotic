@@ -16,14 +16,8 @@
             string? newLastName,
             DateTime? newBirthDate
             ) : base(UserId)
-        {
-            NewFirstName = newFirstName;
-            NewLastName = newLastName;
-            NewBirthDate = newBirthDate;
-            OldFirstName = oldFirstName;
-            OldLastName = oldLastName;
-            OldBirthDate = oldBirthDate;
-        }
+             => (OldFirstName, OldLastName, OldBirthDate, NewFirstName, NewLastName, NewBirthDate) =
+               (oldFirstName, oldLastName, oldBirthDate, newFirstName, newLastName, newBirthDate);
 
         public DateTime? NewBirthDate { get; init; }
         public string? NewFirstName { get; init; }

@@ -6,8 +6,6 @@
     public abstract class UserIdEvent : EventBase<UserId>
     {
         protected UserIdEvent(UserId UserId)
-            : base(UserId)
-        {
-        }
+            : base(UserId) { }
     }
 }

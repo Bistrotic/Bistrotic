@@ -6,15 +6,10 @@
     [ApiCommand]
     public sealed class RegisterNewUser
     {
-        public RegisterNewUser()
-        {
-            UserId = Name = string.Empty;
-        }
+        public RegisterNewUser() => UserId = Name = string.Empty;
+
         public RegisterNewUser(UserId userId, string name)
-        {
-            Name = name;
-            UserId = userId;
-        }
+            => (Name, UserId) = (name, userId);
 
         public string Name { get; init; }
         public string UserId { get; init; }

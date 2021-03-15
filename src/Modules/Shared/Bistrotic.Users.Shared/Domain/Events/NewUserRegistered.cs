@@ -6,9 +6,7 @@
         : UserIdEvent
     {
         public NewUserRegistered(UserId UserId, string name) : base(UserId)
-        {
-            Name = name;
-        }
+            => Name = name;
 
         public string Name { get; }
     }

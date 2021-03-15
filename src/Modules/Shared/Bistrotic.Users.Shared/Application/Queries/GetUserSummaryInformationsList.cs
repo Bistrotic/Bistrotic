@@ -7,10 +7,7 @@ namespace Bistrotic.Users.Application.Queries
         : QueryBase<UsersummaryInformations[]>
     {
         public GetUsersummaryInformationsList(int take = 0, int skip = 0)
-        {
-            Take = take;
-            Skip = skip;
-        }
+            => (Take, Skip) = (take, skip);
 
         public int Skip { get; }
         public int Take { get; }

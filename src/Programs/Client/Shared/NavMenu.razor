@@ -4,37 +4,37 @@
 		<span class="navbar-toggler-icon"></span>
 	</button>
 </div>
-
+<fast-divider></fast-divider>
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-	<ul class="nav flex-column">
-		<li class="nav-item px-3">
+	<fast-menu>
+		<fast-menu-item>
 			<NavLink class="nav-link" href="" Match="NavLinkMatch.All">
 				<span class="oi oi-home" aria-hidden="true"></span> Home
 			</NavLink>
-		</li>
-		<li class="nav-item px-3">
+		</fast-menu-item>
+		<fast-menu-item>
 			<NavLink class="nav-link" href="counter">
 				<span class="oi oi-plus" aria-hidden="true"></span> Counter
 			</NavLink>
-		</li>
-		<li class="nav-item px-3">
+		</fast-menu-item>
+		<fast-menu-item>
 			<NavLink class="nav-link" href="fetchdata">
 				<span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
 			</NavLink>
-		</li>
-		<li class="nav-item px-3">
+		</fast-menu-item>
+		<fast-menu-item>
 			<NavLink class="nav-link" href="issues/sla/waitingaction">
 				<span class="oi oi-list-rich" aria-hidden="true"></span> Issues
 			</NavLink>
-		</li>
-		<li class="nav-item px-3">
+		</fast-menu-item>
+		<fast-divider></fast-divider>
+		<fast-menu-item>
 			<NavLink class="nav-link" href="swagger">
 				<span class="oi oi-list-rich" aria-hidden="true"></span> Swagger
 			</NavLink>
-		</li>
-	</ul>
+		</fast-menu-item>
+	</fast-menu>
 </div>
-
 @code {
 	private bool collapseNavMenu = true;
 

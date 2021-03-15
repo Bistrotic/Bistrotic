@@ -6,16 +6,10 @@
     [ApiCommand]
     public sealed class RenameUser
     {
-        public RenameUser()
-        {
-            UserId = OldName = NewName = string.Empty;
-        }
+        public RenameUser() => UserId = OldName = NewName = string.Empty;
+
         public RenameUser(UserId userId, string oldName, string newName)
-        {
-            OldName = oldName;
-            NewName = newName;
-            UserId = userId;
-        }
+            => (UserId, OldName, NewName) = (userId, oldName, newName);
 
         public string OldName { get; init; }
         public string NewName { get; init; }

@@ -21,17 +21,8 @@
             DateTime? newBirthDate
             )
             : base(UserId)
-        {
-            FirstName = firstName;
-            LastName = lastName;
-            BirthDate = birthDate;
-            ExpectedFirstName = expectedFirstName;
-            ExpectedLastName = expectedLastName;
-            ExpectedBirthDate = expectedBirthDate;
-            NewFirstName = newFirstName;
-            NewLastName = newLastName;
-            NewBirthDate = newBirthDate;
-        }
+            => (FirstName, LastName, BirthDate, ExpectedFirstName, ExpectedLastName, ExpectedBirthDate, NewFirstName, NewLastName, NewBirthDate) =
+               (firstName, lastName, birthDate, expectedFirstName, expectedLastName, expectedBirthDate, newFirstName, newLastName, newBirthDate);
 
         public DateTime? BirthDate { get; }
 

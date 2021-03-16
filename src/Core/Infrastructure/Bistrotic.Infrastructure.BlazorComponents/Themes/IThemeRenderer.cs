@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 
-namespace Bistrotic.Infrastructure.BlazorClient.Components
+namespace Bistrotic.Infrastructure.BlazorComponents.Themes
 {
-    public interface IThemeRendererer
+    public interface IThemeRenderer
     {
         IEnumerable<KeyValuePair<string, object?>> ThemeAttributes { get; }
 
         string ThemeScript { get; }
         string ThemeTagName { get; }
 
-        string RenderComponentTagName(BlazorComponent component);
+        string RenderTagName(BlazorComponent component);
     }
 }

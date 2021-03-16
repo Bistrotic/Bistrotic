@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace Bistrotic.Infrastructure.BlazorClient.Components
+namespace Bistrotic.Infrastructure.BlazorComponents.Themes
 {
-    public class FluentThemeRenderer : IThemeRendererer
+    public class FluentThemeRenderer : IThemeRenderer
     {
         public IEnumerable<KeyValuePair<string, object?>> ThemeAttributes
             => new KeyValuePair<string, object?>[]
@@ -11,13 +11,13 @@ namespace Bistrotic.Infrastructure.BlazorClient.Components
                 };
 
         public string ThemeScript
-            => "https://unpkg.com/@microsoft/fluent-components";
+            => "https://unpkg.com/@fluentui/web-components";
 
         public string ThemeTagName => "fluent-design-system-provider";
 
-        public string RenderComponentTagName(BlazorComponent component)
+        public string RenderTagName(BlazorComponent component)
         {
-            return "fluent-" + component.Name;
+            return "fluent-" + component.DefaultTagName;
         }
     }
 }

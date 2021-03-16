@@ -1,5 +1,7 @@
-﻿namespace Bistrotic.Infrastructure.BlazorClient.Components
+﻿namespace Bistrotic.Infrastructure.BlazorComponents
 {
+    using Bistrotic.Infrastructure.BlazorComponents.Themes;
+
     using Microsoft.AspNetCore.Components;
     using Microsoft.AspNetCore.Components.Forms;
 
@@ -9,6 +11,6 @@
         public RenderFragment? ChildContent { get; set; }
 
         [CascadingParameter]
-        protected Theme? ThemeProvider { get; set; }
+        protected IThemeRenderer? ThemeRenderer { get; set; }
     }
 }

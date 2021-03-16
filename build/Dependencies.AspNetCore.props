@@ -2,6 +2,7 @@
 	<PropertyGroup>
 		<AspNetCoreVersion>5.0.4</AspNetCoreVersion>
 		<MicrosoftAspNetCoreComponentsWebAssemblyVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreComponentsWebAssemblyVersion>
+		<MicrosoftAspNetCoreComponentsWebVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreComponentsWebVersion>
 		<MicrosoftAspNetCoreComponentsWebAssemblyServerVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreComponentsWebAssemblyServerVersion>
 		<MicrosoftAspNetCoreComponentsWebAssemblyAuthenticationVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreComponentsWebAssemblyAuthenticationVersion>
 		<MicrosoftAspNetCoreComponentsWebAssemblyDevServerVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreComponentsWebAssemblyDevServerVersion>

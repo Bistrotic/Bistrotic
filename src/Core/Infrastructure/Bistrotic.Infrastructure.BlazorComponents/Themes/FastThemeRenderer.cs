@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace Bistrotic.Infrastructure.BlazorClient.Components
+namespace Bistrotic.Infrastructure.BlazorComponents.Themes
 {
-    public class FastThemeRenderer : IThemeRendererer
+    public class FastThemeRenderer : IThemeRenderer
     {
         public IEnumerable<KeyValuePair<string, object?>> ThemeAttributes
                  => new KeyValuePair<string, object?>[]
@@ -15,9 +15,9 @@ namespace Bistrotic.Infrastructure.BlazorClient.Components
 
         public string ThemeTagName => "fast-design-system-provider";
 
-        public string RenderComponentTagName(BlazorComponent component)
+        public string RenderTagName(BlazorComponent component)
         {
-            return "fast-" + component.Name;
+            return "fast-" + component.DefaultTagName;
         }
     }
 }

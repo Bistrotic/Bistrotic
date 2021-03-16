@@ -15,6 +15,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\Application\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj" />
 		<ProjectReference Include="..\Bistrotic.Infrastructure.Abstractions\Bistrotic.Infrastructure.Abstractions.csproj" />
+		<ProjectReference Include="..\Bistrotic.Infrastructure.BlazorComponents\Bistrotic.Infrastructure.BlazorComponents.csproj" />
 		<ProjectReference Include="..\Bistrotic.Infrastructure.Modules\Bistrotic.Infrastructure.Modules.csproj" />
 	</ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 ﻿namespace Bistrotic.Users
 {
-    public class UsersBlazorComponentsModule
+    public class UsersVisualComponentsModule
     {
     }
 }

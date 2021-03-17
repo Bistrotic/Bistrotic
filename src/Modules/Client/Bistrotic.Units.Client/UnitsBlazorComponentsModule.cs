@@ -1,6 +1,6 @@
 ﻿namespace Bistrotic.Units
 {
-    public class UnitsBlazorComponentsModule
+    public class UnitsVisualComponentsModule
     {
     }
 }

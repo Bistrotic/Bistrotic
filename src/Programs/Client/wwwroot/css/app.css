@@ -30,7 +30,11 @@ html, body {
 	top: 0.5rem;
 }
 
-@media (max-width: 900px) {
+@media (min-width: 1331px) {
+	.wrapper
+	{
+		max-width: 1200px;
+	}
 }
 
 @media (min-width: 900px) {

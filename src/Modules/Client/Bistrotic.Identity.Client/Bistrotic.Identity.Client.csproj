@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<RootNamespace>Bistrotic.Identity</RootNamespace>
+		<ModuleName>Identity</ModuleName>
+	</PropertyGroup>
+	<Import Project="..\..\Shared\Bistrotic.Identity.Shared\Bistrotic.Identity.Shared.projitems" Label="Shared" />
+</Project>

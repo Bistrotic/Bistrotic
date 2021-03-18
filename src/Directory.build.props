@@ -1,7 +1,7 @@
 <Project>
 	<Import Project="../build/Dependencies.props" />
 	<PropertyGroup>
-		<LangVersion>preview</LangVersion>
+		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
@@ -10,7 +10,7 @@
 		<AnalysisLevel>latest</AnalysisLevel>
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
 		<Deterministic>true</Deterministic>
-		<NoWarn>$(NoWarn);CA1014</NoWarn>
+		<NoWarn>$(NoWarn);CA1014;CS3001;CS3003;CS3009</NoWarn>
 		<MinVerTagPrefix>v</MinVerTagPrefix>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>

@@ -3,5 +3,6 @@
 	<PropertyGroup>
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<OutputType>Library</OutputType>
 	</PropertyGroup>
 </Project>

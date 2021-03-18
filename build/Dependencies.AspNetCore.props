@@ -1,6 +1,8 @@
 <Project>
 	<PropertyGroup>
 		<AspNetCoreVersion>5.0.4</AspNetCoreVersion>
+		<MicrosoftAspNetCoreComponentsVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreComponentsVersion>
+		<MicrosoftAspNetCoreComponentsFormsVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreComponentsFormsVersion>
 		<MicrosoftAspNetCoreComponentsWebAssemblyVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreComponentsWebAssemblyVersion>
 		<MicrosoftAspNetCoreComponentsWebVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreComponentsWebVersion>
 		<MicrosoftAspNetCoreComponentsWebAssemblyServerVersion>$(AspNetCoreVersion)</MicrosoftAspNetCoreComponentsWebAssemblyServerVersion>

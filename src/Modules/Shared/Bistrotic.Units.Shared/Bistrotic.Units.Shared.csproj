@@ -4,6 +4,8 @@
 		<RootNamespace>Bistrotic.Units</RootNamespace>
 	</PropertyGroup>
 	<ItemGroup>
-		<Folder Include="Infrastructure\" />
+	  <Compile Remove="Infrastructure\**" />
+	  <EmbeddedResource Remove="Infrastructure\**" />
+	  <None Remove="Infrastructure\**" />
 	</ItemGroup>
 </Project>

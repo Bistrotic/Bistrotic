@@ -1,8 +1,8 @@
-﻿namespace Bistrotic.Identity
+﻿namespace Bistrotic.Roles
 {
     using System;
 
-    public class IdentitySettings
+    public class RolesSettings
     {
         public string? ConnectionString { get; init; }
     }

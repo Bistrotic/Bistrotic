@@ -1,5 +1,28 @@
-﻿<h3>BottomContent</h3>
+﻿<div class="notification-panel">
+	<div class="content-panel-header">
+		<slot name="notification-panel-header"></slot>
+		@HeaderContent
+	</div>
+	<div class="notification-panel-content">
+		<slot name="notification-panel-header"></slot>
+		@ChildContent
+	</div>
+	<div class="notification-panel-footer">
+		<slot name="notification-panel-footer"></slot>
+		@FooterContent
+	</div>
+</div>
+@ChildContent
 
 @code {
+
+
+	[Parameter]
+	public RenderFragment? ChildContent { get; set; }
+	[Parameter]
+	public RenderFragment? FooterContent { get; set; }
+
+	[Parameter]
+	public RenderFragment? HeaderContent { get; set; }
 
 }

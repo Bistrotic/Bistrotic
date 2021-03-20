@@ -5,8 +5,10 @@ namespace Bistrotic.Client
 
     using Bistrotic.Infrastructure;
     using Bistrotic.Infrastructure.BlazorClient;
+    using Bistrotic.Infrastructure.Client;
 
     using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+    using Microsoft.Extensions.DependencyInjection;
 
     public static class Program
     {
@@ -24,8 +26,10 @@ namespace Bistrotic.Client
             builder.RootComponents.Add<App>("#app");
 
             builder.Services.AddBistroticClient(builder.HostEnvironment, typeof(Program).Namespace ?? string.Empty, BistroticConstants.ServerApiName);
-
             builder.Logging.AddBistroticClient();
+
+            builder.Services.AddScoped<IMenuService, MenuService>();
+
             await builder.Build().RunAsync();
             Console.WriteLine("Main ended");
         }

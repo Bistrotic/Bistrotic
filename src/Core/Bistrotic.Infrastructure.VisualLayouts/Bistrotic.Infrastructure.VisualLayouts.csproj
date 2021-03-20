@@ -1,8 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
-  <PropertyGroup>
-	<TargetFramework>net5.0</TargetFramework>
-  </PropertyGroup>
-  <ItemGroup>
-	  <PackageReference Include="Microsoft.AspNetCore.Components" Version="$(MicrosoftAspNetCoreComponentsVersion)" />  
-  </ItemGroup>
-  </Project>
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="$(MicrosoftAspNetCoreComponentsVersion)" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Infrastructure\Bistrotic.Infrastructure.Abstractions\Bistrotic.Infrastructure.Abstractions.csproj" />
+		<ProjectReference Include="..\Infrastructure\Bistrotic.Infrastructure.VisualComponents\Bistrotic.Infrastructure.VisualComponents.csproj" />
+	</ItemGroup>
+</Project>

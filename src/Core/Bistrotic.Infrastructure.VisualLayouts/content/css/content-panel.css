@@ -1,0 +1,4 @@
+﻿.content-panel {
+	display: flex;
+	flex-direction: row;
+}

@@ -21,7 +21,7 @@
 		<ProjectReference Include="..\..\Core\Bistrotic.Infrastructure.VisualLayouts\Bistrotic.Infrastructure.VisualLayouts.csproj" />
 		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.BlazorClient\Bistrotic.Infrastructure.BlazorClient.csproj" />
 		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.VisualComponents\Bistrotic.Infrastructure.VisualComponents.csproj" />
-		<ProjectReference Include="..\..\Modules\Client\Bistrotic.Identity.Client\Bistrotic.Identity.Client.csproj" />
+		<ProjectReference Include="..\..\Modules\Client\Bistrotic.Roles.Client\Bistrotic.Roles.Client.csproj" />
 		<ProjectReference Include="..\..\Modules\Client\Bistrotic.OpenIdDict.Client\Bistrotic.OpenIdDict.Client.csproj" />
 		<ProjectReference Include="..\..\Modules\Client\Bistrotic.Units.Client\Bistrotic.Units.Client.csproj" />
 		<ProjectReference Include="..\..\Modules\Client\Bistrotic.WorkItems.Client\Bistrotic.WorkItems.Client.csproj" />

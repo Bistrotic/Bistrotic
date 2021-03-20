@@ -1,5 +1,28 @@
-﻿<h3>BottomContent</h3>
+﻿<div class="content-panel">
+	<div class="content-panel-header">
+		<slot name="content-panel-header"></slot>
+		@HeaderContent
+	</div>
+	<div class="content-panel-content">
+		<slot name="content-panel-content"></slot>
+		@ChildContent
+	</div>
+	<div class="content-panel-footer">
+		<slot name="content-panel-footer"></slot>
+		@FooterContent
+	</div>
+</div>
+@ChildContent
 
 @code {
+
+
+	[Parameter]
+	public RenderFragment? ChildContent { get; set; }
+	[Parameter]
+	public RenderFragment? FooterContent { get; set; }
+
+	[Parameter]
+	public RenderFragment? HeaderContent { get; set; }
 
 }

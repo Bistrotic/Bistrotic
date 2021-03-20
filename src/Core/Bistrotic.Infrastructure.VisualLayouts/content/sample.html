@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>sample</title>
+	<link rel="stylesheet" href="css/visual-layouts.css">
+	<script type="module" src="https://unpkg.com/@microsoft/fast-components"></script>
+</head>
+<body>
+	<fast-design-system-provider use-defaults>
+		<div class="application-panel">
+			<div class="header-panel">
+				<div class="header-panel-header">
+					<slot name="header-panel-header"></slot>
+					<span class="fa-bank"></span>
+					<div>My Application</div>
+				</div>
+				<div class="header-panel-content">
+					<slot name="header-panel-content"></slot>
+					<fast-anchor>News</fast-anchor>
+					<fast-anchor>Wiki</fast-anchor>
+					<fast-anchor>Blog</fast-anchor>
+					<fast-anchor>Contact</fast-anchor>
+				</div>
+				<div class="header-panel-footer">
+					<slot name="header-panel-footer"></slot>
+					<fast-anchor>Account</fast-anchor>
+					<fast-anchor><span class="fa-user-circle-o">Login</span></fast-anchor>
+				</div>
+			</div>
+			<div class="center-panel">
+				<div class="menu-panel">
+					<div class="menu-panel-header">
+						<slot class="menu-panel-header"></slot>
+						<span class="fa-angle-double-left"></span>
+					</div>
+					<div class="menu-panel-content">
+						<slot class="menu-panel-content"></slot>
+						<fast-menu>
+							<fast-menu-item>Weather</fast-menu-item>
+							<fast-menu-item>Food</fast-menu-item>
+							<fast-menu-item>Fun</fast-menu-item>
+							<fast-menu-item>Movies</fast-menu-item>
+							<fast-menu-item>Life</fast-menu-item>
+						</fast-menu>
+					</div>
+					<div class="menu-panel-footer">
+						<slot class="menu-panel-footer"></slot>
+					</div>
+				</div>
+				<div class="content-panel">
+					<div class="content-panel-header">
+						<slot name="content-panel-header"></slot>
+						<h1>Hello this is the content header</h1>
+					</div>
+					<div class="content-panel-content">
+						<slot name="content-panel-content"></slot>
+						<h3>This is my application content</h3>
+					</div>
+					<div class="content-panel-footer">
+						<slot name="content-panel-footer"></slot>
+						<h4>Hello this is the content footer</h4>
+					</div>
+				</div>
+				<div class="notification-panel">
+					<div class="content-panel-header">
+						<slot name="notification-panel-header"></slot>
+					</div>
+					<div class="notification-panel-content">
+						<slot name="notification-panel-header"></slot>
+					</div>
+					<div class="notification-panel-footer">
+						<slot name="notification-panel-footer"></slot>
+					</div>
+				</div>
+			</div>
+			<div class="footer-panel">
+			</div>
+		</div>
+	</fast-design-system-provider>
+</body>
+</html>

@@ -1,16 +1,10 @@
 ﻿@inherits LayoutComponentBase
 <Theme Name="ThemeName.Fluent" class="site-provider">
-	<div class="site-content">
-		<NavigationBar />
-		<div>
-			<NavMenu />
-		</div>
-
-		<div class="main">
-			<div class="content px-4">
-				@Body
-			</div>
-			<Button>My first button</Button>
-		</div>
-	</div>
+	<HeaderPanel>
+	</HeaderPanel>
+	<MenuPanel>
+	</MenuPanel>
+	<ContentPanel>
+		@Body
+	</ContentPanel>
 </Theme>

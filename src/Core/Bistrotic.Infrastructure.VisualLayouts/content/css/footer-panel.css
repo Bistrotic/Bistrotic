@@ -1,0 +1,4 @@
+﻿.footer-panel {
+	display: flex;
+	flex-direction: column;
+}

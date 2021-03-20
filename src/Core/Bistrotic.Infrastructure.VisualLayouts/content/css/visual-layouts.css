@@ -1,0 +1,20 @@
+﻿@import url('application-panel.css');
+@import url('header-panel.css');
+@import url('center-panel.css');
+@import url('footer-panel.css');
+@import url('content-panel.css');
+@import url('menu-panel.css');
+@import url('notification-panel.css');
+
+
+body {
+	display: block;
+	margin: 0px;
+	height: 100%;
+	width: 100%;
+}
+:host
+{
+	height:100%;
+	width:100%;
+}

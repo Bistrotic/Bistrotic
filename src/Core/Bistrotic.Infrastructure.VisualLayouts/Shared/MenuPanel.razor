@@ -1,5 +1,56 @@
-﻿<h3>Component1</h3>
+﻿@inject IMenuService MenuService
 
+<div class="menu-panel">
+	<div class="menu-panel-header">
+		<slot name="menu-panel-header"></slot>
+		@if (HeaderContent == null)
+		{
+			<Anchor>&lt;&lt;</Anchor>
+		}
+		else
+		{
+			@HeaderContent
+		}
+	</div>
+	<div class="menu-panel-content">
+		<slot name="menu-panel-content"></slot>
+		@if (@ChildContent == null)
+		{
+			<Menu>
+				@if (MenuService.MenuItems != null)
+				{
+					if (MenuItemTemplate == null)
+					{
+						@foreach (var item in MenuService.MenuItems)
+						{
+							<MenuItem name="@item.Name" href="@item.Link" icon="@item.Icon" description="@item.Description">
+							</MenuItem>
+						}
+					}
+					else
+					{
+						@MenuItemTemplate
+					}
+				}
+			</Menu>
+		}
+	</div>
+
+	<div class="menu-panel-footer">
+		<slot name="menu-panel-footer"></slot>
+		@FooterContent
+	</div>
+</div>
 @code {
+
+	[Parameter]
+	public RenderFragment? FooterContent { get; set; }
+	[Parameter]
+	public RenderFragment? HeaderContent { get; set; }
+	[Parameter]
+	public RenderFragment? ChildContent { get; set; }
+
+	[Parameter]
+	public RenderFragment<MenuItemDefinition>? MenuItemTemplate { get; set; }
 
 }

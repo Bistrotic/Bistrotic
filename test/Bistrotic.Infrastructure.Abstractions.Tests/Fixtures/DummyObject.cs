@@ -10,7 +10,6 @@ namespace Bistrotic.Infrastructure.Abstractions.Tests.Fixtures
 {
     using System;
 
-    using Bistrotic.Domain.ValueTypes;
 
     public class DummyObject
     {
@@ -24,7 +23,6 @@ namespace Bistrotic.Infrastructure.Abstractions.Tests.Fixtures
         public string? ANullString { get; set; } = null;
         public string AString { get; set; } = string.Empty;
         public string[] AStringArray { get; set; } = Array.Empty<string>();
-        public MessageId AMessageId { get; set; } = new MessageId();
         private string APrivateString { get; } = "a private string value.";
 
         public void SetValues1()
@@ -36,7 +34,6 @@ namespace Bistrotic.Infrastructure.Abstractions.Tests.Fixtures
             AnInteger = 125;
             AString = "a string value";
             AStringArray = new[] { "String 1", "String 2", "String 3" };
-            AMessageId = new MessageId("My ID 1");
         }
 
         public void SetValues2()
@@ -48,7 +45,6 @@ namespace Bistrotic.Infrastructure.Abstractions.Tests.Fixtures
             AnInteger = 3247;
             AString = "a string value 2";
             AStringArray = new[] { "String 2-1", "String 2-2", "String 2-3" };
-            AMessageId = new MessageId("My id 2");
         }
     }
 

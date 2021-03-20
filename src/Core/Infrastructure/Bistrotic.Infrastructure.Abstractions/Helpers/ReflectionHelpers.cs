@@ -135,12 +135,12 @@ namespace Bistrotic.Infrastructure.Helpers
                     .Where(p => p.Value != null)
                     .ToDictionary(k => k.Key, v => v.Value ?? throw new ArgumentException("only to remove nullability check error",nameof(obj)));
 
-        public static IDictionary<string, object?> GetPropertyValues(this object obj) => obj
+        public static IEnumerable<KeyValuePair<string, object?>> GetPropertyValues(this object obj) => obj
             .GetType()
             .GetProperties()
             .Where(x => x.CanRead)
-            .ToDictionary(x => x.Name, x => x.GetValue(obj, null));
-
+            .Select(x => new KeyValuePair<string, object?>(x.Name, x.GetValue(obj, null)));
+ 
         /// <summary>
         /// Determines whether the specified interface type has interface.
         /// </summary>

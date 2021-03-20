@@ -3,7 +3,6 @@ namespace Bistrotic.Infrastructure.Abstractions.Tests
     using System;
     using System.Text.Json;
 
-    using Bistrotic.Domain.ValueTypes;
     using Bistrotic.Infrastructure.Abstractions.Tests.Fixtures;
     using Bistrotic.Infrastructure.Helpers;
 
@@ -60,7 +59,6 @@ namespace Bistrotic.Infrastructure.Abstractions.Tests
             query.Should().Contain(nameof(obj.AnInteger));
             query.Should().Contain(nameof(obj.AString));
             query.Should().Contain(nameof(obj.AStringArray));
-            query.Should().Contain(nameof(obj.AMessageId));
             query.Should().Contain(nameof(obj.ASubObject));
             var parameters = QueryHelpers.ParseQuery(query);
             parameters.Should().ContainKey(nameof(obj.ADateTime));
@@ -70,7 +68,6 @@ namespace Bistrotic.Infrastructure.Abstractions.Tests
             parameters.Should().ContainKey(nameof(obj.AnInteger));
             parameters.Should().ContainKey(nameof(obj.AString));
             parameters.Should().ContainKey(nameof(obj.AStringArray));
-            parameters.Should().ContainKey(nameof(obj.AMessageId));
             parameters.Should().ContainKey(nameof(obj.ASubObject));
             JsonSerializer.Deserialize<DateTime>(parameters[nameof(obj.ADateTime)]).Should().Be(obj.ADateTime);
             JsonSerializer.Deserialize<DateTimeOffset>(parameters[nameof(obj.ADateTimeOffset)]).Should().Be(obj.ADateTimeOffset);
@@ -79,7 +76,6 @@ namespace Bistrotic.Infrastructure.Abstractions.Tests
             JsonSerializer.Deserialize<int>(parameters[nameof(obj.AnInteger)]).Should().Be(obj.AnInteger);
             JsonSerializer.Deserialize<string>(parameters[nameof(obj.AString)]).Should().Be(obj.AString);
             JsonSerializer.Deserialize<string[]>(parameters[nameof(obj.AStringArray)]).Should().BeEquivalentTo(obj.AStringArray);
-            JsonSerializer.Deserialize<MessageId>(parameters[nameof(obj.AMessageId)]).Should().Be(obj.AMessageId);
             var subObject = JsonSerializer.Deserialize<DummyObject>(parameters[nameof(obj.ASubObject)]);
             Assert.NotNull(subObject);
             subObject?.Should().BeEquivalentTo(obj.ASubObject);

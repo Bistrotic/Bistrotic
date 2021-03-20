@@ -1,7 +1,7 @@
 ﻿@inject IMenuService MenuService
 
 <div class="menu-panel">
-	<div class="menu-panel-header">
+	<header class="menu-panel-header">
 		<slot name="menu-panel-header"></slot>
 		@if (HeaderContent == null)
 		{
@@ -11,8 +11,8 @@
 		{
 			@HeaderContent
 		}
-	</div>
-	<div class="menu-panel-content">
+	</header>
+	<section class="menu-panel-content">
 		<slot name="menu-panel-content"></slot>
 		@if (@ChildContent == null)
 		{
@@ -34,12 +34,12 @@
 				}
 			</Menu>
 		}
-	</div>
+	</section>
 
-	<div class="menu-panel-footer">
+	<footer class="menu-panel-footer">
 		<slot name="menu-panel-footer"></slot>
 		@FooterContent
-	</div>
+	</footer>
 </div>
 @code {
 

@@ -2,40 +2,51 @@
 {
     using System.Collections.Generic;
 
-    using Bistrotic.Infrastructure.VisualComponents.Exceptions;
-
     using Microsoft.AspNetCore.Components;
     using Microsoft.AspNetCore.Components.Rendering;
 
     public class Theme : ComponentBase
     {
-        private IThemeRenderer? _themeRenderer;
-
         [Parameter(CaptureUnmatchedValues = true)]
         public IReadOnlyDictionary<string, object>? AdditionalAttributes { get; set; }
 
         [Parameter]
         public RenderFragment? ChildContent { get; set; }
 
-        [Parameter]
-        public ThemeName Name { get; set; }
+        #region Dependencies
 
-        private IThemeRenderer ThemeRenderer
-        {
-            get => _themeRenderer
-              ?? throw new MissingMandatoryParamaterException<Theme>(nameof(Name));
-            set => _themeRenderer = value;
-        }
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
-        public string RenderTagName(BlazorComponent component)
-            => ThemeRenderer.RenderTagName(component);
+        [Inject]
+        private IComponentRenderer ComponentRenderer { get; init; }
+
+        [Inject]
+        private IIconRenderer IconRenderer { get; init; }
+
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+
+        #endregion Dependencies
 
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
-            builder.OpenElement(0, ThemeRenderer.ThemeTagName);
-            builder.AddMultipleAttributes(1, AdditionalAttributes);
-            int i = 2;
-            foreach (var pair in ThemeRenderer.ThemeAttributes)
+            int i = 0;
+            foreach (string stylesheet in ComponentRenderer.Stylesheets)
+            {
+                builder.OpenElement(i++, "link");
+                builder.AddAttribute(i++, "rel", "stylesheet");
+                builder.AddAttribute(i++, "href", stylesheet);
+                builder.CloseElement();
+            }
+            foreach (string stylesheet in IconRenderer.Stylesheets)
+            {
+                builder.OpenElement(i++, "link");
+                builder.AddAttribute(i++, "rel", "stylesheet");
+                builder.AddAttribute(i++, "href", stylesheet);
+                builder.CloseElement();
+            }
+            builder.OpenElement(i++, ComponentRenderer.ThemeTagName);
+            builder.AddMultipleAttributes(i++, AdditionalAttributes);
+            foreach (var pair in ComponentRenderer.ThemeAttributes)
             {
                 if (pair.Value == null)
                     builder.AddAttribute(i++, pair.Key);
@@ -49,21 +60,20 @@
             builder.CloseComponent();
             builder.CloseElement();
             i++;
-            builder.OpenElement(i++, "script");
-            builder.AddAttribute(i++, "type", "module");
-            builder.AddAttribute(i++, "src", ThemeRenderer.ThemeScript);
-            builder.CloseElement();
-        }
-
-        protected override void OnParametersSet()
-        {
-            _themeRenderer = Name switch
+            foreach (string script in ComponentRenderer.Scripts)
             {
-                ThemeName.Fluent => new FluentThemeRenderer(),
-                ThemeName.Fast => new FluentThemeRenderer(),
-                _ => throw new MissingMandatoryParamaterException<Theme>(nameof(Name))
-            };
-            base.OnParametersSet();
+                builder.OpenElement(i++, "script");
+                builder.AddAttribute(i++, "type", "module");
+                builder.AddAttribute(i++, "src", script);
+                builder.CloseElement();
+            }
+            foreach (string script in IconRenderer.Scripts)
+            {
+                builder.OpenElement(i++, "script");
+                builder.AddAttribute(i++, "type", "module");
+                builder.AddAttribute(i++, "src", script);
+                builder.CloseElement();
+            }
         }
     }
 }

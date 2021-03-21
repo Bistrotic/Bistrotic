@@ -170,8 +170,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.GoogleIdentity.Se
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Infrastructure.VisualComponents", "src\Core\Infrastructure\Bistrotic.Infrastructure.VisualComponents\Bistrotic.Infrastructure.VisualComponents.csproj", "{3C6ABB83-51ED-498A-9632-E1E8A71273CA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Infrastructure.VisualLayouts", "src\Core\Bistrotic.Infrastructure.VisualLayouts\Bistrotic.Infrastructure.VisualLayouts.csproj", "{20E53344-2816-48D2-AF31-91B50F13AB8C}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Roles", "Roles", "{30DDA64B-16E0-4FDB-9B43-87C2CF00EC51}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Bistrotic.Roles.Shared", "src\Modules\Shared\Bistrotic.Roles.Shared\Bistrotic.Roles.Shared.shproj", "{2B1B4DB0-AA14-41CD-9FA4-4B82FCF33D9B}"
@@ -179,6 +177,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Roles.Client", "src\Modules\Client\Bistrotic.Roles.Client\Bistrotic.Roles.Client.csproj", "{A3BF6A86-8D87-43B3-B93E-15031B25C117}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Roles.Server", "src\Modules\Server\Bistrotic.Roles.Server\Bistrotic.Roles.Server.csproj", "{BAD19726-5BB5-41ED-94F8-C9E7B445BE04}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Infrastructure.VisualLayouts", "src\Core\Infrastructure\Bistrotic.Infrastructure.VisualLayouts\Bistrotic.Infrastructure.VisualLayouts.csproj", "{0F71807D-FC6F-432B-8121-51562920AFD6}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -361,10 +361,6 @@ Global
 		{3C6ABB83-51ED-498A-9632-E1E8A71273CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C6ABB83-51ED-498A-9632-E1E8A71273CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C6ABB83-51ED-498A-9632-E1E8A71273CA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{20E53344-2816-48D2-AF31-91B50F13AB8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{20E53344-2816-48D2-AF31-91B50F13AB8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{20E53344-2816-48D2-AF31-91B50F13AB8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{20E53344-2816-48D2-AF31-91B50F13AB8C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A3BF6A86-8D87-43B3-B93E-15031B25C117}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A3BF6A86-8D87-43B3-B93E-15031B25C117}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3BF6A86-8D87-43B3-B93E-15031B25C117}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -373,6 +369,10 @@ Global
 		{BAD19726-5BB5-41ED-94F8-C9E7B445BE04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BAD19726-5BB5-41ED-94F8-C9E7B445BE04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BAD19726-5BB5-41ED-94F8-C9E7B445BE04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F71807D-FC6F-432B-8121-51562920AFD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F71807D-FC6F-432B-8121-51562920AFD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F71807D-FC6F-432B-8121-51562920AFD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F71807D-FC6F-432B-8121-51562920AFD6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -434,11 +434,11 @@ Global
 		{FD4C23BD-17A2-4A93-9453-0213C50939FD} = {5DEBE9B8-E56C-4E95-A592-9CB0194A8221}
 		{75853847-6596-4F6D-A3CD-8B31D3D8C013} = {FD4C23BD-17A2-4A93-9453-0213C50939FD}
 		{3C6ABB83-51ED-498A-9632-E1E8A71273CA} = {17634B5D-1BCA-4A1D-BA37-4293453A5CEC}
-		{20E53344-2816-48D2-AF31-91B50F13AB8C} = {17634B5D-1BCA-4A1D-BA37-4293453A5CEC}
 		{30DDA64B-16E0-4FDB-9B43-87C2CF00EC51} = {5DEBE9B8-E56C-4E95-A592-9CB0194A8221}
 		{2B1B4DB0-AA14-41CD-9FA4-4B82FCF33D9B} = {30DDA64B-16E0-4FDB-9B43-87C2CF00EC51}
 		{A3BF6A86-8D87-43B3-B93E-15031B25C117} = {30DDA64B-16E0-4FDB-9B43-87C2CF00EC51}
 		{BAD19726-5BB5-41ED-94F8-C9E7B445BE04} = {30DDA64B-16E0-4FDB-9B43-87C2CF00EC51}
+		{0F71807D-FC6F-432B-8121-51562920AFD6} = {17634B5D-1BCA-4A1D-BA37-4293453A5CEC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA165E9D-6B6A-49BD-9879-44123F389ACD}

@@ -11,6 +11,6 @@
         public RenderFragment? ChildContent { get; set; }
 
         [CascadingParameter]
-        protected IThemeRenderer? ThemeRenderer { get; set; }
+        protected IComponentRenderer? ThemeRenderer { get; set; }
     }
 }

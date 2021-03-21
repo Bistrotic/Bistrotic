@@ -6,6 +6,7 @@ namespace Bistrotic.Client
     using Bistrotic.Infrastructure;
     using Bistrotic.Infrastructure.BlazorClient;
     using Bistrotic.Infrastructure.Client;
+    using Bistrotic.Infrastructure.VisualComponents.Themes;
 
     using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
     using Microsoft.Extensions.DependencyInjection;
@@ -28,7 +29,9 @@ namespace Bistrotic.Client
             builder.Services.AddBistroticClient(builder.HostEnvironment, typeof(Program).Namespace ?? string.Empty, BistroticConstants.ServerApiName);
             builder.Logging.AddBistroticClient();
 
-            builder.Services.AddScoped<IMenuService, MenuService>();
+            builder.Services.AddSingleton<IMenuService, MenuService>();
+            builder.Services.AddSingleton<IIconRenderer, LineAwesomeIconRenderer>();
+            builder.Services.AddSingleton<IComponentRenderer, FastComponentRenderer>();
 
             await builder.Build().RunAsync();
             Console.WriteLine("Main ended");

@@ -1,26 +1,24 @@
 ﻿.header-panel {
 	display: flex;
-	flex-direction:column;
+	flex-direction: row;
+	justify-content: space-between;
 }
 
 .header-panel-header {
 	display: flex;
 	justify-content: flex-start;
 	justify-self: start;
-	grid-column-start: 1;
-	grid-column-end: 1;
+	align-items: center;
 }
+
 .header-panel-content {
 	display: flex;
 	justify-content: center;
 	justify-self: center;
-	grid-column-start: 2;
-	grid-column-end: 2;
 }
+
 .header-panel-footer {
 	display: flex;
 	justify-content: flex-end;
 	justify-self: end;
-	grid-column-start: 3;
-	grid-column-end: 3;
 }

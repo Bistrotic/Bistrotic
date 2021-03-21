@@ -2,11 +2,12 @@
 
 namespace Bistrotic.Infrastructure.VisualComponents.Themes
 {
-    public interface IThemeRenderer
+    public interface IComponentRenderer
     {
+        IEnumerable<string> Scripts { get; }
+        IEnumerable<string> Stylesheets { get; }
         IEnumerable<KeyValuePair<string, object?>> ThemeAttributes { get; }
 
-        string ThemeScript { get; }
         string ThemeTagName { get; }
 
         string RenderTagName(BlazorComponent component);

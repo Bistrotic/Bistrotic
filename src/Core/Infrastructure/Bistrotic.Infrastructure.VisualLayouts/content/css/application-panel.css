@@ -1,4 +1,4 @@
 ﻿.application-panel {
 	display: flex;
-	flex-direction:row;
+	flex-direction: column;
 }

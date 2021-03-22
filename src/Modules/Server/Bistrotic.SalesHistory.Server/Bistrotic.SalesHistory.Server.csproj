@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<OutputType>Library</OutputType>
+		<RootNamespace>Bistrotic.SalesHistory</RootNamespace>
+		<ModuleName>SalesHistory</ModuleName>
+	</PropertyGroup>
+	<Import Project="..\..\Shared\Bistrotic.SalesHistory.Shared\Bistrotic.SalesHistory.Shared.projitems" Label="Shared" />
+</Project>

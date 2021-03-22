@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<RootNamespace>Bistrotic.Emails</RootNamespace>
+		<ModuleName>Emails</ModuleName>
+	</PropertyGroup>
+	<Import Project="..\..\Shared\Bistrotic.Emails.Shared\Bistrotic.Emails.Shared.projitems" Label="Shared" />
+</Project>

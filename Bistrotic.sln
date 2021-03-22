@@ -180,17 +180,54 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Roles.Server", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Infrastructure.VisualLayouts", "src\Core\Infrastructure\Bistrotic.Infrastructure.VisualLayouts\Bistrotic.Infrastructure.VisualLayouts.csproj", "{0F71807D-FC6F-432B-8121-51562920AFD6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SalesHistory", "SalesHistory", "{39477B0B-3F23-452C-8489-698A4169E581}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataIntegration", "DataIntegration", "{D19917D4-5221-49AE-AD28-0F50AA936D0A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Emails", "Emails", "{20D902FB-E15F-4159-A65B-2DC5F409C870}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.SalesHistory.Server", "src\Modules\Server\Bistrotic.SalesHistory.Server\Bistrotic.SalesHistory.Server.csproj", "{A5089C05-C8CC-4A90-A08D-7FFEDD3A9F01}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Bistrotic.SalesHistory.Shared", "src\Modules\Shared\Bistrotic.SalesHistory.Shared\Bistrotic.SalesHistory.Shared.shproj", "{A118B8E4-E34F-4140-A4BD-0EF624F2426F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.SalesHistory.Client", "src\Modules\Client\Bistrotic.SalesHistory.Client\Bistrotic.SalesHistory.Client.csproj", "{E053BF00-12D0-48F2-A99F-9B2E8946D005}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Bistrotic.Emails.Shared", "src\Modules\Shared\Bistrotic.Emails.Shared\Bistrotic.Emails.Shared.shproj", "{A119B8E4-E34F-4140-A4BD-0EF624F2426F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Emails.Client", "src\Modules\Client\Bistrotic.Emails.Client\Bistrotic.Emails.Client.csproj", "{9EA5126E-E781-4639-B33F-B4330B64EA13}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Emails.Server", "src\Modules\Server\Bistrotic.Emails.Server\Bistrotic.Emails.Server.csproj", "{8DBE8E8B-1877-4637-B768-E8037419A955}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Infrastructure.MicrosoftGraph", "src\Core\Infrastructure\Bistrotic.Infrastructure.MicrosoftGraph\Bistrotic.Infrastructure.MicrosoftGraph.csproj", "{8D7DA3A3-5429-4DA6-8AE9-647D809D1742}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Infrastructure.MicrosoftGraph.Tests", "test\Bistrotic.Infrastructure.MicrosoftGraph.Tests\Bistrotic.Infrastructure.MicrosoftGraph.Tests.csproj", "{F860CF4A-4FD0-4240-B2DC-0C76EDA90BA6}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Bistrotic.DataIntegrations.Shared", "src\Modules\Shared\Bistrotic.DataIntegrations.Shared\Bistrotic.DataIntegrations.Shared.shproj", "{A118B8E4-E34F-4240-A4BD-0EF624F2426F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.DataIntegrations.Client", "src\Modules\Client\Bistrotic.DataIntegrations.Client\Bistrotic.DataIntegrations.Client.csproj", "{7AC3120B-B929-416A-A920-F60F57ABB378}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.DataIntegrations.Server", "src\Modules\Server\Bistrotic.DataIntegrations.Server\Bistrotic.DataIntegrations.Server.csproj", "{3DE0CD2D-3261-4EF4-942C-99AF305EB206}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		src\Core\Infrastructure\Bistrotic.Infrastructure.CodeGeneration.Shared\Bistrotic.Infrastructure.CodeGeneration.Shared.projitems*{06beda32-e705-4093-90b0-c61e81c646c2}*SharedItemsImports = 5
 		src\Core\Infrastructure\Bistrotic.Infrastructure.CodeGeneration.Shared\Bistrotic.Infrastructure.CodeGeneration.Shared.projitems*{0a1be2c0-37c6-428d-8bf5-c2dddf7a0e4a}*SharedItemsImports = 13
 		src\Modules\Shared\Bistrotic.Roles.Shared\Bistrotic.Roles.Shared.projitems*{2b1b4db0-aa14-41cd-9fa4-4b82fcf33d9b}*SharedItemsImports = 13
+		src\Modules\Shared\Bistrotic.DataIntegrations.Shared\Bistrotic.DataIntegrations.Shared.projitems*{3de0cd2d-3261-4ef4-942c-99af305eb206}*SharedItemsImports = 5
+		src\Modules\Shared\Bistrotic.DataIntegrations.Shared\Bistrotic.DataIntegrations.Shared.projitems*{7ac3120b-b929-416a-a920-f60f57abb378}*SharedItemsImports = 5
 		src\Core\Infrastructure\Bistrotic.Infrastructure.CodeGeneration.Shared\Bistrotic.Infrastructure.CodeGeneration.Shared.projitems*{7ecfc9d7-9d45-46ad-b6df-1393d98505c4}*SharedItemsImports = 5
+		src\Modules\Shared\Bistrotic.Emails.Shared\Bistrotic.Emails.Shared.projitems*{8dbe8e8b-1877-4637-b768-e8037419a955}*SharedItemsImports = 5
+		src\Modules\Shared\Bistrotic.Emails.Shared\Bistrotic.Emails.Shared.projitems*{9ea5126e-e781-4639-b33f-b4330b64ea13}*SharedItemsImports = 5
+		src\Modules\Shared\Bistrotic.SalesHistory.Shared\Bistrotic.SalesHistory.Shared.projitems*{a118b8e4-e34f-4140-a4bd-0ef624f2426f}*SharedItemsImports = 13
+		src\Modules\Shared\Bistrotic.DataIntegrations.Shared\Bistrotic.DataIntegrations.Shared.projitems*{a118b8e4-e34f-4240-a4bd-0ef624f2426f}*SharedItemsImports = 13
+		src\Modules\Shared\Bistrotic.Emails.Shared\Bistrotic.Emails.Shared.projitems*{a119b8e4-e34f-4140-a4bd-0ef624f2426f}*SharedItemsImports = 13
 		src\Modules\Shared\Bistrotic.Roles.Shared\Bistrotic.Roles.Shared.projitems*{a3bf6a86-8d87-43b3-b93e-15031b25c117}*SharedItemsImports = 5
+		src\Modules\Shared\Bistrotic.SalesHistory.Shared\Bistrotic.SalesHistory.Shared.projitems*{a5089c05-c8cc-4a90-a08d-7ffedd3a9f01}*SharedItemsImports = 5
 		src\Modules\Shared\Bistrotic.Users.Shared\Bistrotic.Users.Shared.projitems*{a9fdf1b7-cdab-46e6-8fb5-88ad3cace806}*SharedItemsImports = 13
 		src\Modules\Shared\Bistrotic.Roles.Shared\Bistrotic.Roles.Shared.projitems*{bad19726-5bb5-41ed-94f8-c9e7b445be04}*SharedItemsImports = 5
 		src\Modules\Shared\Bistrotic.Users.Shared\Bistrotic.Users.Shared.projitems*{cd1fd4b3-0d27-483b-af9a-7f5acaf87ae4}*SharedItemsImports = 5
 		src\Modules\Shared\Bistrotic.Users.Shared\Bistrotic.Users.Shared.projitems*{cde53363-1d51-411c-8493-073acbd78146}*SharedItemsImports = 5
+		src\Modules\Shared\Bistrotic.SalesHistory.Shared\Bistrotic.SalesHistory.Shared.projitems*{e053bf00-12d0-48f2-a99f-9b2e8946d005}*SharedItemsImports = 5
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -373,6 +410,38 @@ Global
 		{0F71807D-FC6F-432B-8121-51562920AFD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F71807D-FC6F-432B-8121-51562920AFD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F71807D-FC6F-432B-8121-51562920AFD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5089C05-C8CC-4A90-A08D-7FFEDD3A9F01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5089C05-C8CC-4A90-A08D-7FFEDD3A9F01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5089C05-C8CC-4A90-A08D-7FFEDD3A9F01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5089C05-C8CC-4A90-A08D-7FFEDD3A9F01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E053BF00-12D0-48F2-A99F-9B2E8946D005}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E053BF00-12D0-48F2-A99F-9B2E8946D005}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E053BF00-12D0-48F2-A99F-9B2E8946D005}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E053BF00-12D0-48F2-A99F-9B2E8946D005}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EA5126E-E781-4639-B33F-B4330B64EA13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EA5126E-E781-4639-B33F-B4330B64EA13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EA5126E-E781-4639-B33F-B4330B64EA13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EA5126E-E781-4639-B33F-B4330B64EA13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DBE8E8B-1877-4637-B768-E8037419A955}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DBE8E8B-1877-4637-B768-E8037419A955}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DBE8E8B-1877-4637-B768-E8037419A955}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DBE8E8B-1877-4637-B768-E8037419A955}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D7DA3A3-5429-4DA6-8AE9-647D809D1742}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D7DA3A3-5429-4DA6-8AE9-647D809D1742}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D7DA3A3-5429-4DA6-8AE9-647D809D1742}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D7DA3A3-5429-4DA6-8AE9-647D809D1742}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F860CF4A-4FD0-4240-B2DC-0C76EDA90BA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F860CF4A-4FD0-4240-B2DC-0C76EDA90BA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F860CF4A-4FD0-4240-B2DC-0C76EDA90BA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F860CF4A-4FD0-4240-B2DC-0C76EDA90BA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AC3120B-B929-416A-A920-F60F57ABB378}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AC3120B-B929-416A-A920-F60F57ABB378}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AC3120B-B929-416A-A920-F60F57ABB378}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AC3120B-B929-416A-A920-F60F57ABB378}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DE0CD2D-3261-4EF4-942C-99AF305EB206}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DE0CD2D-3261-4EF4-942C-99AF305EB206}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DE0CD2D-3261-4EF4-942C-99AF305EB206}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DE0CD2D-3261-4EF4-942C-99AF305EB206}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -439,6 +508,20 @@ Global
 		{A3BF6A86-8D87-43B3-B93E-15031B25C117} = {30DDA64B-16E0-4FDB-9B43-87C2CF00EC51}
 		{BAD19726-5BB5-41ED-94F8-C9E7B445BE04} = {30DDA64B-16E0-4FDB-9B43-87C2CF00EC51}
 		{0F71807D-FC6F-432B-8121-51562920AFD6} = {17634B5D-1BCA-4A1D-BA37-4293453A5CEC}
+		{39477B0B-3F23-452C-8489-698A4169E581} = {5DEBE9B8-E56C-4E95-A592-9CB0194A8221}
+		{D19917D4-5221-49AE-AD28-0F50AA936D0A} = {5DEBE9B8-E56C-4E95-A592-9CB0194A8221}
+		{20D902FB-E15F-4159-A65B-2DC5F409C870} = {5DEBE9B8-E56C-4E95-A592-9CB0194A8221}
+		{A5089C05-C8CC-4A90-A08D-7FFEDD3A9F01} = {39477B0B-3F23-452C-8489-698A4169E581}
+		{A118B8E4-E34F-4140-A4BD-0EF624F2426F} = {39477B0B-3F23-452C-8489-698A4169E581}
+		{E053BF00-12D0-48F2-A99F-9B2E8946D005} = {39477B0B-3F23-452C-8489-698A4169E581}
+		{A119B8E4-E34F-4140-A4BD-0EF624F2426F} = {20D902FB-E15F-4159-A65B-2DC5F409C870}
+		{9EA5126E-E781-4639-B33F-B4330B64EA13} = {20D902FB-E15F-4159-A65B-2DC5F409C870}
+		{8DBE8E8B-1877-4637-B768-E8037419A955} = {20D902FB-E15F-4159-A65B-2DC5F409C870}
+		{8D7DA3A3-5429-4DA6-8AE9-647D809D1742} = {17634B5D-1BCA-4A1D-BA37-4293453A5CEC}
+		{F860CF4A-4FD0-4240-B2DC-0C76EDA90BA6} = {1299CE2B-441E-4AB4-97E3-E439F145E9F9}
+		{A118B8E4-E34F-4240-A4BD-0EF624F2426F} = {D19917D4-5221-49AE-AD28-0F50AA936D0A}
+		{7AC3120B-B929-416A-A920-F60F57ABB378} = {D19917D4-5221-49AE-AD28-0F50AA936D0A}
+		{3DE0CD2D-3261-4EF4-942C-99AF305EB206} = {D19917D4-5221-49AE-AD28-0F50AA936D0A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA165E9D-6B6A-49BD-9879-44123F389ACD}

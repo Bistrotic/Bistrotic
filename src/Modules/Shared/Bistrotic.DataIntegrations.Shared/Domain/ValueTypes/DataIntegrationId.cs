@@ -1,0 +1,28 @@
+﻿namespace Bistrotic.DataIntegrations.Domain.ValueTypes
+{
+    using System.ComponentModel;
+    using System.Diagnostics;
+    using System.Text.Json.Serialization;
+
+    using Bistrotic.Domain.ValueTypes;
+
+    [DebuggerDisplay("{Value}")]
+    [TypeConverter(typeof(StringValueConverter<DataIntegrationId>))]
+    [JsonConverter(typeof(StringValueJsonConverter<DataIntegrationId>))]
+    internal sealed class DataIntegrationId : BusinessId
+    {
+        public DataIntegrationId()
+        {
+        }
+
+        public DataIntegrationId(DataIntegrationId dataIntegrationId) : base(dataIntegrationId)
+        {
+        }
+
+        public DataIntegrationId(string value) : base(value)
+        {
+        }
+
+        public static implicit operator DataIntegrationId(string value) => new(value);
+    }
+}

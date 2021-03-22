@@ -7,7 +7,7 @@
 		<MicrosoftTyeExtensionsConfigurationVersion>0.7.0-alpha.21070.7</MicrosoftTyeExtensionsConfigurationVersion>
 		<DaprAspNetCoreVersion>1.0.0</DaprAspNetCoreVersion>
 		<SwashbuckleAspNetCoreVersion>6.0.7</SwashbuckleAspNetCoreVersion>
-		<MinVerVersion>2.4.0</MinVerVersion>
+		<MinVerVersion>2.5.0</MinVerVersion>
 		<OpenIddictVersion>3.0.2</OpenIddictVersion>
 		<OpenIddictAspNetCoreVersion>$(OpenIddictVersion)</OpenIddictAspNetCoreVersion>
 		<OpenIddictEntityFrameworkCoreVersion>$(OpenIddictVersion)</OpenIddictEntityFrameworkCoreVersion>
@@ -17,5 +17,8 @@
 		<MicrosoftExtensionsLoggingAzureAppServicesVersion>5.0.3</MicrosoftExtensionsLoggingAzureAppServicesVersion>
 		<QuartzAspNetCoreVersion>3.2.4</QuartzAspNetCoreVersion>
 		<ScribanVersion>3.5.0</ScribanVersion>
+		<MicrosoftGraphVersion>3.27.0</MicrosoftGraphVersion>
+		<MicrosoftGraphAuthVersion>1.0.0-preview.6</MicrosoftGraphAuthVersion>
+		<MicrosoftIdentityClientVersion>4.28.0</MicrosoftIdentityClientVersion>
 	</PropertyGroup>
 </Project>

@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<OutputType>Library</OutputType>
+		<RootNamespace>Bistrotic.Emails</RootNamespace>
+		<ModuleName>Emails</ModuleName>
+	</PropertyGroup>
+	<Import Project="..\..\Shared\Bistrotic.Emails.Shared\Bistrotic.Emails.Shared.projitems" Label="Shared" />
+	<ItemGroup>
+		<ProjectReference Include="..\..\Client\Bistrotic.Emails.Client\Bistrotic.Emails.Client.csproj" />
+	</ItemGroup>
+</Project>

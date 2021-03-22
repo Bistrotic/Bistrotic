@@ -20,6 +20,7 @@
             {
                 HideMenuIcon => "chevron-circle-left",
                 ShowMenuIcon => "chevron-circle-right",
+                LoginIcon => "user",
                 _ => icon.GetType().Name.DashCase()
             };
 

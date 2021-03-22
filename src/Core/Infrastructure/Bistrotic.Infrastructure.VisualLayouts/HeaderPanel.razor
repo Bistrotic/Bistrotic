@@ -1,23 +1,26 @@
-﻿<header class="header-panel">
-	<section class="header-panel-header">
+﻿<section class="header-panel">
+	<header class="header-panel-header">
+		<Logo />
+		<p class="application-name">@ApplicationName</p>
 		@HeaderContent
 		<slot name="header-panel-header"></slot>
-	</section>
+	</header>
 	<section class="header-panel-content">
 		@ChildContent
 		<slot name="header-panel-content"></slot>
 	</section>
-	<section class="header-panel-footer">
+	<footer class="header-panel-footer">
 		@FooterContent
 		<slot name="header-panel-footer"></slot>
-	</section>
-</header>
+		<LoginIcon />
+	</footer>
+</section>
 
 
 
 @code {
-
-
+	[Parameter]
+	public string? ApplicationName { get; set; }
 	[Parameter]
 	public RenderFragment? ChildContent { get; set; }
 	[Parameter]

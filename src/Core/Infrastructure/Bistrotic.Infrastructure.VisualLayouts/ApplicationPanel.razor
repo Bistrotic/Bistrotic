@@ -1,0 +1,16 @@
+﻿<link rel="stylesheet" href="_content/Bistrotic.Infrastructure.VisualLayouts/css/styles.css" />
+<Theme>
+	<div class="application-panel-panel">
+		<HeaderPanel ApplicationName="@ApplicationName"></HeaderPanel>
+		<CenterPanel>@ChildContent</CenterPanel>
+		<FooterPanel></FooterPanel>
+	</div>
+</Theme>
+@code {
+	[Parameter]
+	public string? ApplicationName { get; set; }
+
+	[Parameter]
+	public RenderFragment? ChildContent { get; set; }
+
+}

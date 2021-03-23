@@ -18,7 +18,7 @@ namespace Bistrotic.Infrastructure.MicrosoftGraph.Tests
         }
 
         [Fact]
-        public async Task aquire_token()
+        public async Task Aquire_token()
         {
             var app = _graphFixture
                 .AuthenticationService
@@ -32,7 +32,7 @@ namespace Bistrotic.Infrastructure.MicrosoftGraph.Tests
         }
 
         [Fact]
-        public void check_client_initialization()
+        public void Check_client_initialization()
         {
             _graphFixture
                 .AuthenticationService

@@ -1,5 +1,6 @@
 namespace Bistrotic.Infrastructure.MicrosoftGraph.Tests
 {
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Bistrotic.Infrastructure.MicrosoftGraph.Tests.Fixture;
@@ -18,13 +19,24 @@ namespace Bistrotic.Infrastructure.MicrosoftGraph.Tests
         }
 
         [Fact]
-        public async Task get_user_ids_should_not_be_empty()
+        public async Task Get_user_ids_should_not_be_empty()
         {
             var userIds = await _graphFixture
                 .GraphService
                 .GetUserIds();
             userIds.Should().NotBeNull();
             userIds.Should().NotBeEmpty();
+        }
+
+        [Fact]
+        public async Task Get_user_mails_should_not_be_empty()
+        {
+            var mails = await _graphFixture
+                .GraphService
+                .GetUserMails(GraphFixture.GetTestEmail());
+            mails.Should().NotBeNull();
+            mails.Should().NotBeEmpty();
+            mails.First().Attachments.Should().NotBeEmpty();
         }
     }
 }

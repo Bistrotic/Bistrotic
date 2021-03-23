@@ -17,8 +17,14 @@
         internal GraphAuthenticationService AuthenticationService => _authenticationService ??= InitializeService();
         internal GraphService GraphService => _graphService ??= InitializeGraphService();
 
+        public static string GetTestEmail()
+                    => new ConfigurationBuilder()
+                .AddUserSecrets<GraphAutenticationServiceTest>()
+                .Build()
+                .GetValue<string>("TestEmail");
+
         public GraphService InitializeGraphService()
-            => new(AuthenticationService);
+                    => new(AuthenticationService);
 
         private static MicrosoftGraphAuthenticationSettings GetSettings()
                     => new ConfigurationBuilder()

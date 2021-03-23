@@ -62,10 +62,7 @@
             return ids;
         }
 
-        private GraphServiceClient InitializeGraphClient()
-              => new(AuthenticationService.AuthenticationProvider);
-
-        private Email Map(Message message)
+        private static Email Map(Message message)
         {
             return new Email
             {
@@ -78,24 +75,40 @@
             };
         }
 
-        private IReadOnlyList<EmailAttachment> Map(IMessageAttachmentsCollectionPage? attachments)
+        private static IReadOnlyList<EmailAttachment> Map(IMessageAttachmentsCollectionPage? attachments)
         {
             if (attachments == null || attachments.Count == 0)
             {
                 return Array.Empty<EmailAttachment>();
             }
-            List<EmailAttachment> files = new List<EmailAttachment>(attachments.Select(p => Map(p)));
+            List<EmailAttachment> files = new(attachments.Select(p => Map(p)));
             while (attachments.NextPageRequest != null)
             {
-                attachments = attachments.NextPageRequest.GetAsync().GetAwaiter().GetResult();
+                attachments = attachments
+                    .NextPageRequest
+                    .GetAsync()
+                    .GetAwaiter()
+                    .GetResult();
                 files.AddRange(attachments.Select(p => Map(p)));
             }
             return files;
         }
 
-        private EmailAttachment Map(Attachment attachment)
-        {
-            return new EmailAttachment { Name = attachment.Name };
-        }
+        private static EmailAttachment Map(Attachment attachment)
+            => attachment switch
+            {
+                FileAttachment file =>
+                    new EmailAttachment
+                    {
+                        Name = file.Name,
+                        Size = file.Size ?? 0,
+                        Content = file.ContentBytes
+                    },
+                _ =>
+                    new EmailAttachment { Name = attachment.Name, Size = attachment.Size ?? 0 }
+            };
+
+        private GraphServiceClient InitializeGraphClient()
+            => new(AuthenticationService.AuthenticationProvider);
     }
 }

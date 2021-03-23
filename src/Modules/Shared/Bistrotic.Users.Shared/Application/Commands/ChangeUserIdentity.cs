@@ -5,7 +5,7 @@
     using Bistrotic.Application.Commands;
     using Bistrotic.Users.Domain.ValueTypes;
 
-    [ApiCommand]
+    [Command]
     public sealed record ChangeUserIdentity
     {
         public ChangeUserIdentity()

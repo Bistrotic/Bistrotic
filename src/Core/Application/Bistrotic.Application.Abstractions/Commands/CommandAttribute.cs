@@ -5,8 +5,8 @@ namespace Bistrotic.Application.Commands
 {
     [DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-    public class ApiCommandAttribute : Attribute
+    public class CommandAttribute : Attribute
     {
-        private static string GetDebuggerDisplay() => "ApiCommand";
+        private static string GetDebuggerDisplay() => "Command";
     }
 }

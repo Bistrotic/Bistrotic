@@ -3,7 +3,7 @@
     using Bistrotic.Application.Commands;
     using Bistrotic.Domain.ValueTypes;
 
-    [ApiCommand]
+    [Command]
     public class TestCommand : ICommand
     {
         public string? Id { get; }

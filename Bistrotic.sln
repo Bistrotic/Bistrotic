@@ -132,12 +132,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Infrastructure.Ho
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Infrastructure.Abstractions.Tests", "test\Bistrotic.Infrastructure.Abstractions.Tests\Bistrotic.Infrastructure.Abstractions.Tests.csproj", "{88F02AB7-2CB4-4486-91AD-D5128803249B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "QuartzScheduler", "QuartzScheduler", "{C9B912AC-CF84-412C-9ED5-DE7054622C05}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.QuartzScheduler.Shared", "src\Modules\Shared\Bistrotic.QuartzScheduler.Shared\Bistrotic.QuartzScheduler.Shared.csproj", "{C6C5A5B7-FE04-4BC1-98FE-B2EDE25FA027}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.QuartzScheduler.Server", "src\Modules\Server\Bistrotic.QuartzScheduler.Server\Bistrotic.QuartzScheduler.Server.csproj", "{9F80AAB6-0AEE-4473-96E0-C869BA80E092}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Tools", "src\Programs\Bistrotic.Tools\Bistrotic.Tools.csproj", "{B057DA7D-5B1F-47C7-8490-9F436DF9BC01}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Users", "Users", "{EACE1F1E-9916-483A-A747-67B7A4138153}"
@@ -198,15 +192,29 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Emails.Client", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Emails.Server", "src\Modules\Server\Bistrotic.Emails.Server\Bistrotic.Emails.Server.csproj", "{8DBE8E8B-1877-4637-B768-E8037419A955}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Infrastructure.MicrosoftGraph", "src\Core\Infrastructure\Bistrotic.Infrastructure.MicrosoftGraph\Bistrotic.Infrastructure.MicrosoftGraph.csproj", "{8D7DA3A3-5429-4DA6-8AE9-647D809D1742}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Infrastructure.MicrosoftGraph", "src\Core\Infrastructure\Bistrotic.Infrastructure.MicrosoftGraph\Bistrotic.Infrastructure.MicrosoftGraph.csproj", "{8D7DA3A3-5429-4DA6-8AE9-647D809D1742}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Infrastructure.MicrosoftGraph.Tests", "test\Bistrotic.Infrastructure.MicrosoftGraph.Tests\Bistrotic.Infrastructure.MicrosoftGraph.Tests.csproj", "{F860CF4A-4FD0-4240-B2DC-0C76EDA90BA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Infrastructure.MicrosoftGraph.Tests", "test\Bistrotic.Infrastructure.MicrosoftGraph.Tests\Bistrotic.Infrastructure.MicrosoftGraph.Tests.csproj", "{F860CF4A-4FD0-4240-B2DC-0C76EDA90BA6}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Bistrotic.DataIntegrations.Shared", "src\Modules\Shared\Bistrotic.DataIntegrations.Shared\Bistrotic.DataIntegrations.Shared.shproj", "{A118B8E4-E34F-4240-A4BD-0EF624F2426F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.DataIntegrations.Client", "src\Modules\Client\Bistrotic.DataIntegrations.Client\Bistrotic.DataIntegrations.Client.csproj", "{7AC3120B-B929-416A-A920-F60F57ABB378}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.DataIntegrations.Server", "src\Modules\Server\Bistrotic.DataIntegrations.Server\Bistrotic.DataIntegrations.Server.csproj", "{3DE0CD2D-3261-4EF4-942C-99AF305EB206}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "QuartzScheduler", "QuartzScheduler", "{BA6F7550-2C5B-47CE-9FE2-307FB27E0E93}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.QuartzScheduler.Shared", "src\Modules\Shared\Bistrotic.QuartzScheduler.Shared\Bistrotic.QuartzScheduler.Shared.csproj", "{BB51BE42-1055-416D-8966-5FA00C2C60D9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.QuartzScheduler.Server", "src\Modules\Server\Bistrotic.QuartzScheduler.Server\Bistrotic.QuartzScheduler.Server.csproj", "{14B39B21-54A2-4361-BAB7-7AF7F166B6C7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Infrastructure.QuartzScheduler", "src\Core\Infrastructure\Bistrotic.Infrastructure.QuartzScheduler\Bistrotic.Infrastructure.QuartzScheduler.csproj", "{499CA0E0-739B-4FA6-8E9A-2DFDBCEA8200}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Infrastructure.InMemory", "src\Core\Infrastructure\Bistrotic.Infrastructure.InMemory\Bistrotic.Infrastructure.InMemory.csproj", "{14D584E0-39F4-468C-98FE-3998DD609E32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Infrastructure.EfCore", "src\Core\Infrastructure\Bistrotic.Infrastructure.EfCore\Bistrotic.Infrastructure.EfCore.csproj", "{D339C810-A0A2-4898-90A5-4E9413BAAB81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Infrastructure.InMemory.Tests", "test\Bistrotic.Infrastructure.InMemory.Tests\Bistrotic.Infrastructure.InMemory.Tests.csproj", "{70926989-02C1-413C-92AF-46C80FF2154A}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -346,14 +354,6 @@ Global
 		{88F02AB7-2CB4-4486-91AD-D5128803249B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88F02AB7-2CB4-4486-91AD-D5128803249B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88F02AB7-2CB4-4486-91AD-D5128803249B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C6C5A5B7-FE04-4BC1-98FE-B2EDE25FA027}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C6C5A5B7-FE04-4BC1-98FE-B2EDE25FA027}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C6C5A5B7-FE04-4BC1-98FE-B2EDE25FA027}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C6C5A5B7-FE04-4BC1-98FE-B2EDE25FA027}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9F80AAB6-0AEE-4473-96E0-C869BA80E092}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9F80AAB6-0AEE-4473-96E0-C869BA80E092}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9F80AAB6-0AEE-4473-96E0-C869BA80E092}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9F80AAB6-0AEE-4473-96E0-C869BA80E092}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B057DA7D-5B1F-47C7-8490-9F436DF9BC01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B057DA7D-5B1F-47C7-8490-9F436DF9BC01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B057DA7D-5B1F-47C7-8490-9F436DF9BC01}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -442,6 +442,30 @@ Global
 		{3DE0CD2D-3261-4EF4-942C-99AF305EB206}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DE0CD2D-3261-4EF4-942C-99AF305EB206}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DE0CD2D-3261-4EF4-942C-99AF305EB206}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB51BE42-1055-416D-8966-5FA00C2C60D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB51BE42-1055-416D-8966-5FA00C2C60D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB51BE42-1055-416D-8966-5FA00C2C60D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB51BE42-1055-416D-8966-5FA00C2C60D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14B39B21-54A2-4361-BAB7-7AF7F166B6C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14B39B21-54A2-4361-BAB7-7AF7F166B6C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14B39B21-54A2-4361-BAB7-7AF7F166B6C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14B39B21-54A2-4361-BAB7-7AF7F166B6C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{499CA0E0-739B-4FA6-8E9A-2DFDBCEA8200}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{499CA0E0-739B-4FA6-8E9A-2DFDBCEA8200}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{499CA0E0-739B-4FA6-8E9A-2DFDBCEA8200}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{499CA0E0-739B-4FA6-8E9A-2DFDBCEA8200}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14D584E0-39F4-468C-98FE-3998DD609E32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14D584E0-39F4-468C-98FE-3998DD609E32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14D584E0-39F4-468C-98FE-3998DD609E32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14D584E0-39F4-468C-98FE-3998DD609E32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D339C810-A0A2-4898-90A5-4E9413BAAB81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D339C810-A0A2-4898-90A5-4E9413BAAB81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D339C810-A0A2-4898-90A5-4E9413BAAB81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D339C810-A0A2-4898-90A5-4E9413BAAB81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70926989-02C1-413C-92AF-46C80FF2154A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70926989-02C1-413C-92AF-46C80FF2154A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70926989-02C1-413C-92AF-46C80FF2154A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70926989-02C1-413C-92AF-46C80FF2154A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -484,9 +508,6 @@ Global
 		{A3B9FF34-A8C9-41CE-B062-E0FA77EC3BCB} = {80839ADC-FF5C-4830-8E88-B6E8FCD16E3A}
 		{F62AE002-3766-4AD2-8F6F-14810F347709} = {17634B5D-1BCA-4A1D-BA37-4293453A5CEC}
 		{88F02AB7-2CB4-4486-91AD-D5128803249B} = {1299CE2B-441E-4AB4-97E3-E439F145E9F9}
-		{C9B912AC-CF84-412C-9ED5-DE7054622C05} = {5DEBE9B8-E56C-4E95-A592-9CB0194A8221}
-		{C6C5A5B7-FE04-4BC1-98FE-B2EDE25FA027} = {C9B912AC-CF84-412C-9ED5-DE7054622C05}
-		{9F80AAB6-0AEE-4473-96E0-C869BA80E092} = {C9B912AC-CF84-412C-9ED5-DE7054622C05}
 		{B057DA7D-5B1F-47C7-8490-9F436DF9BC01} = {9AD0F4D0-F052-4D81-A2C9-F9A301DC8807}
 		{EACE1F1E-9916-483A-A747-67B7A4138153} = {5DEBE9B8-E56C-4E95-A592-9CB0194A8221}
 		{CDE53363-1D51-411C-8493-073ACBD78146} = {EACE1F1E-9916-483A-A747-67B7A4138153}
@@ -522,6 +543,13 @@ Global
 		{A118B8E4-E34F-4240-A4BD-0EF624F2426F} = {D19917D4-5221-49AE-AD28-0F50AA936D0A}
 		{7AC3120B-B929-416A-A920-F60F57ABB378} = {D19917D4-5221-49AE-AD28-0F50AA936D0A}
 		{3DE0CD2D-3261-4EF4-942C-99AF305EB206} = {D19917D4-5221-49AE-AD28-0F50AA936D0A}
+		{BA6F7550-2C5B-47CE-9FE2-307FB27E0E93} = {5DEBE9B8-E56C-4E95-A592-9CB0194A8221}
+		{BB51BE42-1055-416D-8966-5FA00C2C60D9} = {BA6F7550-2C5B-47CE-9FE2-307FB27E0E93}
+		{14B39B21-54A2-4361-BAB7-7AF7F166B6C7} = {BA6F7550-2C5B-47CE-9FE2-307FB27E0E93}
+		{499CA0E0-739B-4FA6-8E9A-2DFDBCEA8200} = {17634B5D-1BCA-4A1D-BA37-4293453A5CEC}
+		{14D584E0-39F4-468C-98FE-3998DD609E32} = {17634B5D-1BCA-4A1D-BA37-4293453A5CEC}
+		{D339C810-A0A2-4898-90A5-4E9413BAAB81} = {17634B5D-1BCA-4A1D-BA37-4293453A5CEC}
+		{70926989-02C1-413C-92AF-46C80FF2154A} = {1299CE2B-441E-4AB4-97E3-E439F145E9F9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA165E9D-6B6A-49BD-9879-44123F389ACD}

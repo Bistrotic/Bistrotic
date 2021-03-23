@@ -6,12 +6,8 @@
 		<RootNamespace>Bistrotic.QuartzScheduler</RootNamespace>
 		<ModuleName>QuartzScheduler</ModuleName>
 	</PropertyGroup>
-
 	<ItemGroup>
-		<PackageReference Include="Quartz.AspNetCore" Version="$(QuartzAspNetCoreVersion)" />
-	</ItemGroup>
-
-	<ItemGroup>
+		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.QuartzScheduler\Bistrotic.Infrastructure.QuartzScheduler.csproj" />
 		<ProjectReference Include="..\..\Shared\Bistrotic.QuartzScheduler.Shared\Bistrotic.QuartzScheduler.Shared.csproj" />
 	</ItemGroup>
 </Project>

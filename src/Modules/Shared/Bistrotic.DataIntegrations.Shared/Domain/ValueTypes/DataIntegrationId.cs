@@ -22,6 +22,9 @@
         public DataIntegrationId(string value) : base(value)
         {
         }
+        public DataIntegrationId(string name, string documentName) : base($"{name}-{documentName}")
+        {
+        }
 
         public static implicit operator DataIntegrationId(string value) => new(value);
     }

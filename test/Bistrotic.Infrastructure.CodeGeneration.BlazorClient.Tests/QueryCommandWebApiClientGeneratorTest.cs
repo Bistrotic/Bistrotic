@@ -98,7 +98,7 @@ namespace MyCode.Commands
                 AssemblyMetadata.CreateFromImage(netstandard).GetReference(display: "netstandard (netstandard20)"),
                 MetadataReference.CreateFromFile(typeof(Object).GetTypeInfo().Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(Attribute).GetTypeInfo().Assembly.Location),
-                MetadataReference.CreateFromFile(typeof(ApiCommandAttribute).GetTypeInfo().Assembly.Location),
+                MetadataReference.CreateFromFile(typeof(CommandAttribute).GetTypeInfo().Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(ApiQueryAttribute).GetTypeInfo().Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(MessageId).GetTypeInfo().Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(QueryCommandWebApiClientBase).GetTypeInfo().Assembly.Location),

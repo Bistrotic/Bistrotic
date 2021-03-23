@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.DataIntegration.Application.ModelViews
+﻿namespace Bistrotic.DataIntegrations.Application.ModelViews
 {
     internal record DataIntegrationDetails(string DataIntegrationId, string Name, string Description = "")
     {

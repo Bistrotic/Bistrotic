@@ -89,7 +89,7 @@ namespace MyCode.Commands
                 MetadataReference.CreateFromFile(typeof(Object).GetTypeInfo().Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(Attribute).GetTypeInfo().Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(Binder).GetTypeInfo().Assembly.Location),
-                MetadataReference.CreateFromFile(typeof(ApiCommandAttribute).GetTypeInfo().Assembly.Location),
+                MetadataReference.CreateFromFile(typeof(CommandAttribute).GetTypeInfo().Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(MessageId).GetTypeInfo().Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(IQuery).GetTypeInfo().Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(QueryCommandControllerBase).GetTypeInfo().Assembly.Location),

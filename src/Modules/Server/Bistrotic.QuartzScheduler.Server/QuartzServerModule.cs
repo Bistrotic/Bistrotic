@@ -4,13 +4,12 @@
     using Bistrotic.Infrastructure;
     using Bistrotic.Infrastructure.Modules.Definitions;
     using Bistrotic.Infrastructure.WebServer.Modules;
+    using Bistrotic.Infrastucture.QuartzScheduler.Helpers;
     using Bistrotic.QuartzScheduler.Application.Queries;
 
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-
-    using Quartz;
 
     public sealed class QuartzServerModule : ServerModule
     {
@@ -26,34 +25,7 @@
 
         public override void ConfigureServices(IServiceCollection services)
         {
-            services.AddQuartz(q =>
-            {
-                // base quartz scheduler, job and trigger configuration handy when part of cluster
-                // or you want to otherwise identify multiple schedulers
-                q.SchedulerId = nameof(Bistrotic);
-
-                // Scoped service support like EF Core DbContext
-                q.UseMicrosoftDependencyInjectionScopedJobFactory(p =>
-                {
-                    p.CreateScope = true;
-                    p.AllowDefaultConstructor = true;
-                });
-
-                // these are the defaults
-                q.UseSimpleTypeLoader();
-                q.UseInMemoryStore();
-                q.UseDefaultThreadPool(tp =>
-                {
-                    tp.MaxConcurrency = 10;
-                });
-            });
-
-            // ASP.NET Core hosting
-            services.AddQuartzServer(options =>
-            {
-                // when shutting down we want jobs to complete gracefully
-                options.WaitForJobsToComplete = true;
-            });
+            services.AddQuartzScheduler(nameof(Bistrotic));
         }
     }
 }

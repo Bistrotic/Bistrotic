@@ -3,7 +3,7 @@
     using Bistrotic.Application.Commands;
     using Bistrotic.Users.Domain.ValueTypes;
 
-    [ApiCommand]
+    [Command]
     public sealed class RenameUser
     {
         public RenameUser() => UserId = OldName = NewName = string.Empty;

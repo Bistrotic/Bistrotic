@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.Infrastructure
+﻿namespace Bistrotic.Application.Repositories
 {
     using System;
     using System.Collections.Generic;

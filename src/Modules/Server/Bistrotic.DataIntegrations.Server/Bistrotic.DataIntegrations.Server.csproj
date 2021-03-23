@@ -8,6 +8,7 @@
 	</PropertyGroup>
 	<Import Project="..\..\Shared\Bistrotic.DataIntegrations.Shared\Bistrotic.DataIntegrations.Shared.projitems" Label="Shared" />
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.QuartzScheduler\Bistrotic.Infrastructure.QuartzScheduler.csproj" />
 		<ProjectReference Include="..\..\Client\Bistrotic.DataIntegrations.Client\Bistrotic.DataIntegrations.Client.csproj" />
 	</ItemGroup>
 </Project>

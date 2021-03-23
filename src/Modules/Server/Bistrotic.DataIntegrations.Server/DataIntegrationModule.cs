@@ -6,6 +6,7 @@
     using Bistrotic.Infrastructure.Helpers;
     using Bistrotic.Infrastructure.Modules.Definitions;
     using Bistrotic.Infrastructure.WebServer.Modules;
+    using Bistrotic.Infrastucture.QuartzScheduler.Helpers;
 
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
@@ -28,6 +29,7 @@
 
         public override void ConfigureServices(IServiceCollection services)
         {
+            services.AddQuartzScheduler(nameof(DataIntegration));
         }
     }
 }

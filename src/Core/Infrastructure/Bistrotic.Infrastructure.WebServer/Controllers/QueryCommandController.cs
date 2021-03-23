@@ -46,7 +46,8 @@
                     .Dispatch(new Envelope<IQuery>(
                         query,
                         new MessageId(),
-                        userName
+                        userName,
+                        DateTimeOffset.Now
                         ))
                     .ConfigureAwait(false));
             }
@@ -81,7 +82,8 @@
                     .Dispatch(new Envelope<ICommand>(
                         command,
                         new MessageId(),
-                        User.Identity.Name
+                        User.Identity.Name,
+                        DateTimeOffset.Now
                         ))
                     .ConfigureAwait(false));
             }

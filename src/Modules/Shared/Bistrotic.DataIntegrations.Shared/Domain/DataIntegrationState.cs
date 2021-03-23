@@ -5,7 +5,7 @@
     using Bistrotic.DataIntegrations.Domain.Events;
     using Bistrotic.Domain;
     using System;
-    public sealed class DataIntegrationState : EntityState
+    internal sealed class DataIntegrationState : EntityState
     {
         public string Name { get; set; } = string.Empty;
         public string? Description { get; set; }

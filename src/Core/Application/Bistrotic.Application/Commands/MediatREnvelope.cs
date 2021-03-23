@@ -11,7 +11,8 @@ namespace Bistrotic.Application.Queries
     public sealed class MediatREnvelope<TMessage> : Envelope<TMessage>, INotification, IEquatable<MediatREnvelope<TMessage>>
         where TMessage : class
     {
-        public MediatREnvelope(TMessage message, MessageId messageId, UserName userName, MessageId? correlationId = null) : base(message, messageId, userName, correlationId)
+        public MediatREnvelope(TMessage message, MessageId messageId, UserName userName, DateTimeOffset userDateTime, MessageId? correlationId = null)
+            : base(message, messageId, userName, userDateTime, correlationId)
         {
         }
 

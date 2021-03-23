@@ -44,6 +44,23 @@
         {
         }
 
+        public RepositoryData(
+            string correlationId,
+            string causationId,
+            string userName,
+            DateTimeOffset userDateTime,
+            TState state)
+            : this(
+                 correlationId,
+                 causationId,
+                 userName,
+                 userDateTime,
+                 state,
+                 Array.Empty<object>()
+                 )
+        {
+        }
+
         public RepositoryData(IEnvelope enveloppe, TState state, IEnumerable<object> events)
             : this(
                 enveloppe.CorrelationId ?? enveloppe.MessageId,

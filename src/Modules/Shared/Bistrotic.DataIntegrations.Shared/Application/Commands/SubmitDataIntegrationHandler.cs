@@ -2,9 +2,9 @@
 {
     using System.Threading.Tasks;
 
-    using Bistrotic.Application;
     using Bistrotic.Application.Commands;
     using Bistrotic.Application.Messages;
+    using Bistrotic.Application.Repositories;
     using Bistrotic.DataIntegrations.Domain;
 
     internal class SubmitDataIntegrationHandler : CommandHandler<SubmitDataIntegration>
@@ -15,6 +15,7 @@
         {
             _repository = repository;
         }
+
         public override Task Handle(Envelope<SubmitDataIntegration> envelope)
         {
             var command = envelope.Message;

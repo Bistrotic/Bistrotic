@@ -6,6 +6,7 @@
     {
         string CausationId { get; }
         string CorrelationId { get; }
+        DateTime SystemUtcDateTime { get; }
         DateTimeOffset UserDateTime { get; }
         string UserName { get; }
     }

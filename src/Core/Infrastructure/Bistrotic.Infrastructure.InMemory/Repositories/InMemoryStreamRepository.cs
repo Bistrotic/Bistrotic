@@ -9,51 +9,61 @@ namespace Bistrotic.Infrastructure.InMemory.Repositories
     public class InMemoryStreamRepository<TState> : RepositoryBase<TState>
         where TState : IEventDrivenState, new()
     {
-        private readonly Dictionary<string, Dictionary<long, IRepositoryMetadata<TState>>> _data = new();
+        private readonly Dictionary<string, IRepositoryStream> _data = new();
 
         public override Task<bool> Exists(string id) => Task.FromResult(_data.ContainsKey(id));
 
-        public override Task<IRepositoryMetadata<TState>> GetData(string id)
+        public override Task<IRepositoryStateMetadata> GetMetadata(string id)
         {
-            var data = _data[id];
-            if (data == null)
+            var data = GetById(id);
+            var creator = data.First();
+            var metadata = new RepositoryStateMetadata()
             {
-                throw new KeyNotFoundException($"The storage object (Type='{typeof(TState)}';Id='{id}')");
-            }
-            TState state = new();
-            foreach (var stateData in data.Values)
+                CreatedByUser = creator.Value.metadata.UserName,
+                CreatedUtcDateTime = creator.Value.metadata.SystemUtcDateTime
+            };
+            if (data.Count > 1)
             {
-                state.Apply(stateData.Events);
+                var last = data.Last();
+                metadata.LastModifiedByUser = last.Value.metadata.UserName;
+                metadata.LastModifiedUtcDateTime = last.Value.metadata.SystemUtcDateTime;
             }
-            return Task.FromResult(state);
+            return Task.FromResult<IRepositoryStateMetadata>(metadata);
         }
 
         public override Task<TState> GetState(string id)
         {
-            var data = _data[id];
-            if (data == null)
-            {
-                throw new KeyNotFoundException($"The storage object (Type='{typeof(TState)}';Id='{id}')");
-            }
             TState state = new();
-            foreach (var stateData in data.Values)
+            foreach (var stateData in GetById(id))
             {
-                state.Apply(stateData.Events);
+                state.Apply(stateData.Value.events);
             }
             return Task.FromResult(state);
         }
 
-        public override Task Save(string id, IRepositoryMetadata<TState> stateData)
+        public override Task<IRepositoryStream> GetStream(string id)
+            => Task.FromResult(GetById(id));
+
+        public override Task Save(string id, IRepositoryData<TState> stateData)
         {
             if (!stateData.Events.Any())
             {
                 throw new MissingEventsException<InMemoryStreamRepository<TState>>(id);
             }
-            Dictionary<long, IRepositoryMetadata<TState>>? stream
-                = _data[id] ??= new Dictionary<long, IRepositoryMetadata<TState>>();
+            IRepositoryStream? stream
+                = _data[id] ??= new RepositoryStream();
             stream.Add(stream.Keys.Max() + 1, stateData);
             _data[id] = stream;
             return Task.CompletedTask;
+        }
+
+        private IRepositoryStream GetById(string id)
+        {
+            if (!_data.TryGetValue(id, out IRepositoryStream? data))
+            {
+                throw new KeyNotFoundException($"The storage object (Type='{typeof(TState)}';Id='{id}') not found.");
+            }
+            return data;
         }
     }
 }

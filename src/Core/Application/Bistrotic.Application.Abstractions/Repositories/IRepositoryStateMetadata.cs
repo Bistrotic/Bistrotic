@@ -4,9 +4,9 @@
 
     public interface IRepositoryStateMetadata
     {
-        string CreatedByUser { get; }
-        DateTime CreatedUtcDateTime { get; }
-        string? LastModifiedByUser { get; }
-        DateTime? LastModifiedUtcDateTime { get; }
+        string CreatedByUser { get; set; }
+        DateTime CreatedUtcDateTime { get; set; }
+        string? LastModifiedByUser { get; set; }
+        DateTime? LastModifiedUtcDateTime { get; set; }
     }
 }

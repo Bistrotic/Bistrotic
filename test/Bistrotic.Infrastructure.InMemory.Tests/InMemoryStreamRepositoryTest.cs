@@ -11,7 +11,7 @@ namespace Bistrotic.Infrastructure.InMemory.Tests
 
     using Xunit;
 
-    public class InMemoryRepositoryTest
+    public class InMemoryStreamRepositoryTest
     {
         [Fact]
         public async Task Save_then_getdata_should_retreive_equal_values()
@@ -20,7 +20,7 @@ namespace Bistrotic.Infrastructure.InMemory.Tests
             var state2 = new DummyState() { Value1 = false, Value2 = 99, Value3 = "Cake" };
             var state3 = new DummyState() { Value1 = true, Value2 = 1010, Value3 = "Sunday" };
             var state4 = new DummyState() { Value1 = false, Value2 = 10900, Value3 = "June" };
-            var repository = new InMemoryRepository<DummyState>();
+            var repository = new InMemoryStreamRepository<DummyState>();
             await repository.Save(
                 nameof(state1),
                 new RepositoryData<DummyState>("cor1", "cause1", "harold", DateTimeOffset.Now, state1)

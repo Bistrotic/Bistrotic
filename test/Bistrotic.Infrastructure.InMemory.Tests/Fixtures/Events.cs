@@ -1,26 +1,33 @@
 ﻿namespace Bistrotic.Infrastructure.InMemory.Tests.Fixtures
 {
-    public sealed class DummyFellASleep
+    public sealed class DummyDisabled
     {
+        public string DummyId { get; init; } = string.Empty;
     }
 
-    public sealed class DummyMoved
+    public sealed class DummyValue1Changed
     {
+        public string DummyId { get; init; } = string.Empty;
+        public bool Value { get; init; }
     }
 
-    public sealed class DummySitOnAChair
+    public sealed class DummyValue2Changed
     {
+        public string DummyId { get; init; } = string.Empty;
+        public int Value { get; init; }
     }
 
-    public sealed class DummyWakened
+    public sealed class DummyValue3Changed
     {
+        public string DummyId { get; init; } = string.Empty;
+        public string? Value { get; init; }
     }
 
-    public sealed class DummyWalkedToTheTown
+    public sealed class NewDummyAdded
     {
-    }
-
-    public sealed class NewDummyCreated
-    {
+        public string DummyId { get; init; } = string.Empty;
+        public bool Value1 { get; init; }
+        public int Value2 { get; init; }
+        public string? Value3 { get; init; }
     }
 }

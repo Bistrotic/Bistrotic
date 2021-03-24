@@ -4,7 +4,6 @@
     using System.Collections.Generic;
 
     using Bistrotic.Application.Messages;
-    using Bistrotic.Domain.ValueTypes;
 
     public class RepositoryData<TState>
         : IRepositoryData<TState>
@@ -17,10 +16,13 @@
             TState state,
             IEnumerable<object> events)
         {
-            CorrelationId = correlationId;
-            CausationId = causationId;
-            UserName = userName;
-            UserDateTime = userDateTime;
+            Metadata = new()
+            {
+                CorrelationId = correlationId,
+                CausationId = causationId,
+                UserName = userName,
+                UserDateTime = userDateTime
+            };
             State = state;
             Events = events;
         }
@@ -96,11 +98,9 @@
         {
         }
 
-        public MessageId CausationId { get; }
-        public string CorrelationId { get; }
         public IEnumerable<object> Events { get; }
+        public RepositoryMetadata Metadata { get; }
         public TState State { get; }
-        public DateTimeOffset UserDateTime { get; }
-        public string UserName { get; }
+        IRepositoryMetadata IRepositoryData<TState>.Metadata => Metadata;
     }
 }

@@ -37,19 +37,19 @@ namespace Bistrotic.Infrastructure.InMemory.Tests
                 nameof(state4),
                 new RepositoryData<DummyState>("cor4", "cause4", "pierre", DateTimeOffset.Now, state4)
                 );
-            var state = await repository.GetData(nameof(state1));
+            var state = await repository.GetState(nameof(state1));
             state.Value1.Should().Be(state1.Value1);
             state.Value2.Should().Be(state1.Value2);
             state.Value3.Should().Be(state1.Value3);
-            state = await repository.GetData(nameof(state2));
+            state = await repository.GetState(nameof(state2));
             state.Value1.Should().Be(state2.Value1);
             state.Value2.Should().Be(state2.Value2);
             state.Value3.Should().Be(state2.Value3);
-            state = await repository.GetData(nameof(state3));
+            state = await repository.GetState(nameof(state3));
             state.Value1.Should().Be(state3.Value1);
             state.Value2.Should().Be(state3.Value2);
             state.Value3.Should().Be(state3.Value3);
-            state = await repository.GetData(nameof(state4));
+            state = await repository.GetState(nameof(state4));
             state.Value1.Should().Be(state4.Value1);
             state.Value2.Should().Be(state4.Value2);
             state.Value3.Should().Be(state4.Value3);

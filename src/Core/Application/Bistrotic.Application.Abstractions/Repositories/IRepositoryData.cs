@@ -1,14 +1,11 @@
 ﻿namespace Bistrotic.Application.Repositories
 {
-    using System;
     using System.Collections.Generic;
 
-    public interface IRepositoryData<TState>
+    public interface IRepositoryData<out TState>
     {
-        string CorrelationId { get; }
         IEnumerable<object> Events { get; }
+        IRepositoryMetadata Metadata { get; }
         TState State { get; }
-        DateTimeOffset UserDateTime { get; }
-        string UserName { get; }
     }
 }

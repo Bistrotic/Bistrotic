@@ -29,6 +29,14 @@ namespace Bistrotic.Infrastructure.InMemory.Repositories
 
         public override Task Save(string id, IRepositoryData<TState> stateData)
         {
+            if (stateData.State == null)
+            {
+                if (stateData.Events != null)
+                {
+                    throw new NotSupportedException($"You must give a state to save. This repository ({GetType().Name}) does not support streams.");
+                }
+                throw new ArgumentNullException(nameof(stateData), $"You must give a state to save. Repository : '{GetType().Name}'.");
+            }
             if (!_data.ContainsKey(id))
             {
                 _data[id] = (stateData.State, new RepositoryStateMetadata()

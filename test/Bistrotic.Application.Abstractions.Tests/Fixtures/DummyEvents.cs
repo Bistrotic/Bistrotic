@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.Infrastructure.InMemory.Tests.Fixtures
+﻿namespace Bistrotic.Application.Abstractions.Tests.Fixtures
 {
     public sealed class DummyDisabled
     {

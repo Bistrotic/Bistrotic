@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,18 +16,18 @@ namespace Bistrotic.Infrastructure.InMemory.Repositories
 
         public override Task<IRepositoryStateMetadata> GetMetadata(string id)
         {
-            var data = GetById(id);
-            var creator = data.First();
+            var stream = GetById(id);
+            var creator = stream.Read(1);
             var metadata = new RepositoryStateMetadata()
             {
-                CreatedByUser = creator.Value.metadata.UserName,
-                CreatedUtcDateTime = creator.Value.metadata.SystemUtcDateTime
+                CreatedByUser = creator.metadata.UserName,
+                CreatedUtcDateTime = creator.metadata.SystemUtcDateTime
             };
-            if (data.Count > 1)
+            if (stream.Position > 1)
             {
-                var last = data.Last();
-                metadata.LastModifiedByUser = last.Value.metadata.UserName;
-                metadata.LastModifiedUtcDateTime = last.Value.metadata.SystemUtcDateTime;
+                var last = stream.Read(stream.Position);
+                metadata.LastModifiedByUser = last.metadata.UserName;
+                metadata.LastModifiedUtcDateTime = last.metadata.SystemUtcDateTime;
             }
             return Task.FromResult<IRepositoryStateMetadata>(metadata);
         }
@@ -34,9 +35,10 @@ namespace Bistrotic.Infrastructure.InMemory.Repositories
         public override Task<TState> GetState(string id)
         {
             TState state = new();
-            foreach (var stateData in GetById(id))
+            var stream = GetById(id);
+            for (int i = 1; i <= stream.Position; i++)
             {
-                state.Apply(stateData.Value.events);
+                state.Apply(stream.Read(i).events);
             }
             return Task.FromResult(state);
         }
@@ -48,12 +50,18 @@ namespace Bistrotic.Infrastructure.InMemory.Repositories
         {
             if (!stateData.Events.Any())
             {
+                if (stateData.State != null)
+                {
+                    throw new NotSupportedException($"The '{GetType().Name}' repository only supports streams of events. It cannot save states.");
+                }
                 throw new MissingEventsException<InMemoryStreamRepository<TState>>(id);
             }
-            IRepositoryStream? stream
-                = _data[id] ??= new RepositoryStream();
-            stream.Add(stream.Keys.Max() + 1, stateData);
-            _data[id] = stream;
+            if (!_data.TryGetValue(id, out IRepositoryStream? stream))
+            {
+                stream = new InMemoryRepositoryStream();
+                _data[id] = stream;
+            }
+            stream.Add(stateData.Metadata, stateData.Events);
             return Task.CompletedTask;
         }
 

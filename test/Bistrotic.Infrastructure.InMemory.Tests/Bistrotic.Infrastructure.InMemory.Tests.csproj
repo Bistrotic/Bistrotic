@@ -4,5 +4,6 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\Core\Infrastructure\Bistrotic.Infrastructure.InMemory\Bistrotic.Infrastructure.InMemory.csproj" />
+		<ProjectReference Include="..\Bistrotic.Application.Abstractions.Tests\Bistrotic.Application.Abstractions.Tests.csproj" />
 	</ItemGroup>
 </Project>

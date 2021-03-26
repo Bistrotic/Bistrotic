@@ -1,11 +1,13 @@
 ﻿#pragma warning disable CA1711 // Identifiers should not have incorrect suffix
 
-namespace Bistrotic.Application.Repositories
+namespace Bistrotic.Infrastructure.InMemory.Repositories
 {
     using System.Collections.Generic;
     using System.Linq;
 
-    public sealed class RepositoryStream : IRepositoryStream
+    using Bistrotic.Application.Repositories;
+
+    public sealed class InMemoryRepositoryStream : IRepositoryStream
     {
         private readonly Dictionary<long, (IRepositoryMetadata metadata, IEnumerable<object> events)> _stream = new();
 

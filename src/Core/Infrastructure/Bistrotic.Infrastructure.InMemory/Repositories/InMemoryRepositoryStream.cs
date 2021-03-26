@@ -2,25 +2,25 @@
 
 namespace Bistrotic.Infrastructure.InMemory.Repositories
 {
+    using System;
     using System.Collections.Generic;
-    using System.Linq;
 
     using Bistrotic.Application.Repositories;
 
     public sealed class InMemoryRepositoryStream : IRepositoryStream
     {
-        private readonly Dictionary<long, (IRepositoryMetadata metadata, IEnumerable<object> events)> _stream = new();
+        private readonly List<(IRepositoryMetadata metadata, IEnumerable<object> events)> _stream = new();
 
-        public long Position => _stream.Last().Key;
+        public int Position => _stream.Count;
 
-        public long Add(IRepositoryMetadata metadata, IEnumerable<object> events)
+        public int Add(IRepositoryMetadata metadata, IEnumerable<object> events)
         {
-            var index = Position + 1;
-            _stream.Add(index, (metadata, events));
-            return index;
+            _stream.Add((metadata, events));
+            return Position;
         }
 
-        public (IRepositoryMetadata metadata, IEnumerable<object> events) Read(long position)
-            => _stream[position];
+        public (IRepositoryMetadata metadata, IEnumerable<object> events) Read(int position)
+            => (position >= 1) ? _stream[position - 1] :
+                throw new ArgumentException($"The position must be higher or equal than one. Position={position}.", nameof(position));
     }
 }

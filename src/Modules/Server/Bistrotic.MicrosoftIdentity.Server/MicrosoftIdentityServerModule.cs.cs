@@ -14,8 +14,8 @@
     {
         private readonly MicrosoftIdentitySettings _settings;
 
-        public MicrosoftIdentityServerModule(IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode)
-            : base(configuration, environment, clientMode)
+        public MicrosoftIdentityServerModule(IConfiguration configuration, IWebHostEnvironment environment)
+            : base(configuration, environment)
         {
             _settings = Configuration.GetSettings<MicrosoftIdentitySettings>();
         }

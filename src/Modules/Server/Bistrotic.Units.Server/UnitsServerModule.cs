@@ -11,8 +11,8 @@
 
     public sealed class UnitsServerModule : ServerModule
     {
-        public UnitsServerModule(IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode)
-            : base(configuration, environment, clientMode)
+        public UnitsServerModule(IConfiguration configuration, IWebHostEnvironment environment)
+            : base(configuration, environment)
         {
         }
 

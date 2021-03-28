@@ -15,8 +15,8 @@
     {
         private readonly EmailsSettings _settings;
 
-        public EmailsServerModule(IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode)
-            : base(configuration, environment, clientMode)
+        public EmailsServerModule(IConfiguration configuration, IWebHostEnvironment environment)
+            : base(configuration, environment)
         {
             _settings = configuration.GetSettings<EmailsSettings>();
         }

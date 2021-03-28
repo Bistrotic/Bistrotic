@@ -7,37 +7,43 @@
     using Bistrotic.EventStores;
     using Bistrotic.GoogleIdentity;
     using Bistrotic.Infrastructure.WebServer;
-    using Bistrotic.Infrastructure.WebServer.Modules;
     using Bistrotic.MicrosoftIdentity;
     using Bistrotic.OpenIdDict;
     using Bistrotic.QuartzScheduler;
     using Bistrotic.Roles;
     using Bistrotic.Units;
     using Bistrotic.Users;
-    using Bistrotic.WorkItems.Server;
+    using Bistrotic.WorkItems;
 
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
 
-    public static class Program
+    public class Program : ServerProgram<Startup>
     {
+        public Program(string[] args) : base(args)
+        {
+        }
+
+        // EF Core uses this method at design time to access the DbContext
+        public static IHostBuilder CreateHostBuilder(string[] args)
+            => new Program(args).HostBuilder;
+
         public static Task Main(string[] args)
-            => ServerProgram
-                .CreateHostBuilder<Startup>(args)
-                .ConfigureServices(p =>
-                {
-                    p.AddSingleton<IServerModule, DataIntegrationsServerModule>();
-                    p.AddSingleton<IServerModule, EmailsServerModule>();
-                    p.AddSingleton<IServerModule, EventStoresServerModule>();
-                    p.AddSingleton<IServerModule, GoogleIdentityServerModule>();
-                    p.AddSingleton<IServerModule, MicrosoftIdentityServerModule>();
-                    p.AddSingleton<IServerModule, OpenIdDictServerModule>();
-                    p.AddSingleton<IServerModule, QuartzSchedulerServerModule>();
-                    p.AddSingleton<IServerModule, RolesServerModule>();
-                    p.AddSingleton<IServerModule, UsersServerModule>();
-                    p.AddSingleton<IServerModule, UnitsServerModule>();
-                    p.AddSingleton<IServerModule, WorkItemsServerModule>();
-                })
-                .Build()
-                .StartAsync();
+            => new Program(args).Host.RunAsync();
+
+        public override void AddModules(IServiceCollection services)
+        {
+            AddModule<DataIntegrationsServerModule>(services);
+            AddModule<EmailsServerModule>(services);
+            AddModule<EventStoresServerModule>(services);
+            AddModule<GoogleIdentityServerModule>(services);
+            AddModule<MicrosoftIdentityServerModule>(services);
+            AddModule<OpenIdDictServerModule>(services);
+            AddModule<QuartzSchedulerServerModule>(services);
+            AddModule<RolesServerModule>(services);
+            AddModule<UsersServerModule>(services);
+            AddModule<UnitsServerModule>(services);
+            AddModule<WorkItemsServerModule>(services);
+        }
     }
 }

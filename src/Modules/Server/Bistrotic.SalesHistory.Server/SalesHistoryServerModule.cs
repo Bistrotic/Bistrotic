@@ -14,8 +14,8 @@
     {
         private readonly SalesHistorySettings _settings;
 
-        public SalesHistoryServerModule(IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode)
-            : base(configuration, environment, clientMode)
+        public SalesHistoryServerModule(IConfiguration configuration, IWebHostEnvironment environment)
+            : base(configuration, environment)
         {
             _settings = configuration.GetSettings<SalesHistorySettings>();
         }

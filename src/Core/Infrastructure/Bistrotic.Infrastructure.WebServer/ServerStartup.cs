@@ -1,10 +1,10 @@
 namespace Bistrotic.Infrastructure.WebServer
 {
+    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using Bistrotic.Application.Queries;
-    using Bistrotic.Infrastructure.WebServer.Controllers;
     using Bistrotic.Infrastructure.WebServer.Modules;
 
     using Microsoft.AspNetCore.Builder;
@@ -16,26 +16,28 @@ namespace Bistrotic.Infrastructure.WebServer
     using Microsoft.Extensions.Logging;
     using Microsoft.OpenApi.Models;
 
+#pragma warning disable CA2201 // Do not raise reserved exception types
+
     public abstract class ServerStartup
     {
         private readonly IWebHostEnvironment _environment;
-        private readonly IEnumerable<IServerModule> _modules;
+        private IEnumerable<IServerModule>? _modules;
 
-        protected ServerStartup(IWebHostEnvironment environment, IConfiguration configuration, IEnumerable<IServerModule> modules)
+        protected ServerStartup(IWebHostEnvironment environment, IConfiguration configuration)
         {
             _environment = environment;
             Configuration = configuration;
-            _modules = modules;
             ClientMode = configuration.GetSection(nameof(ClientMode)).Get<ClientMode>();
         }
 
         public ClientMode ClientMode { get; }
-
         public IConfiguration Configuration { get; }
+        protected IEnumerable<IServerModule> Modules => _modules ?? throw new NullReferenceException("Modules are not initialized.");
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env, IEnumerable<IServerModule> modules)
         {
+            _modules = modules;
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -65,7 +67,6 @@ namespace Bistrotic.Infrastructure.WebServer
 
         public virtual void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton(_modules);
             services.AddTransient<IQueryDispatcher, IocQueryDispatcher>();
             services
                 .AddMvc()
@@ -77,19 +78,11 @@ namespace Bistrotic.Infrastructure.WebServer
                 p.AddConsole();
             });
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Bistrotic", Version = "v1" }));
-
-            IMvcBuilder mvcBuilder = services.AddControllers();
-            mvcBuilder.AddApplicationPart(typeof(QueryCommandController).Assembly);
-            foreach (IServerModule module in _modules)
-            {
-                module.ConfigureServices(services);
-                mvcBuilder.AddApplicationPart(module.GetType().Assembly);
-            }
         }
 
         public virtual void OnStarted()
         {
-            foreach (IServerModule module in _modules)
+            foreach (IServerModule module in Modules)
             {
                 module.OnStarted();
             }
@@ -117,7 +110,7 @@ namespace Bistrotic.Infrastructure.WebServer
 
         public virtual void OnStopped()
         {
-            foreach (IServerModule module in _modules)
+            foreach (IServerModule module in Modules)
             {
                 module.OnStopped();
             }
@@ -125,7 +118,7 @@ namespace Bistrotic.Infrastructure.WebServer
 
         public virtual void OnStopping()
         {
-            foreach (IServerModule module in _modules)
+            foreach (IServerModule module in Modules)
             {
                 module.OnStopping();
             }

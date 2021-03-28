@@ -18,9 +18,8 @@
     {
         public WorkItemsServerModule(
             IConfiguration configuration,
-            IWebHostEnvironment environment,
-            ClientMode clientMode)
-            : base(configuration, environment, clientMode)
+            IWebHostEnvironment environment)
+            : base(configuration, environment)
         {
         }
 

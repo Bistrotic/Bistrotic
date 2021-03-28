@@ -12,8 +12,8 @@
 
     public sealed class QuartzSchedulerServerModule : ServerModule
     {
-        public QuartzSchedulerServerModule(IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode)
-            : base(configuration, environment, clientMode)
+        public QuartzSchedulerServerModule(IConfiguration configuration, IWebHostEnvironment environment)
+            : base(configuration, environment)
         {
         }
 

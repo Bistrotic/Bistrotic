@@ -4,14 +4,19 @@ namespace Bistrotic.Infrastructure.EfCore.Repositories
 {
     using Microsoft.EntityFrameworkCore;
 
-    public class EventStoreDbContext : DbContext
+    public sealed class EventStoreDbContext : DbContext
     {
-        public DbSet<EventStreamItem> EventStream { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public EventStoreDbContext(DbContextOptions<EventStoreDbContext> options)
+               : base(options)
         {
-            base.OnConfiguring(optionsBuilder);
         }
+
+        public EventStoreDbContext(DbContextOptions options)
+        : base(options)
+        {
+        }
+
+        public DbSet<EventStreamItem> EventStream { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

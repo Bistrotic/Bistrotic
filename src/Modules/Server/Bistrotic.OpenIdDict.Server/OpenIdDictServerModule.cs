@@ -31,8 +31,8 @@
     {
         private readonly OpenIdSettings _settings;
 
-        public OpenIdDictServerModule(IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode)
-            : base(configuration, environment, clientMode)
+        public OpenIdDictServerModule(IConfiguration configuration, IWebHostEnvironment environment)
+            : base(configuration, environment)
         {
             _settings = configuration.GetSettings<OpenIdSettings>();
         }

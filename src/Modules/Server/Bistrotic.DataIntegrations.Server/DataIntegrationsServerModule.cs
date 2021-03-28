@@ -16,8 +16,8 @@
     {
         private readonly DataIntegrationsSettings _settings;
 
-        public DataIntegrationsServerModule(IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode)
-            : base(configuration, environment, clientMode)
+        public DataIntegrationsServerModule(IConfiguration configuration, IWebHostEnvironment environment)
+            : base(configuration, environment)
         {
             _settings = configuration.GetSettings<DataIntegrationsSettings>();
         }

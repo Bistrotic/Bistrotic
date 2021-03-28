@@ -10,7 +10,6 @@
     using Bistrotic.Application.Messages;
     using Bistrotic.Infrastructure;
     using Bistrotic.Infrastructure.Helpers;
-    using Bistrotic.Infrastructure.Modules.Definitions;
     using Bistrotic.Infrastructure.WebServer.Modules;
     using Bistrotic.OpenIdDict.Application.Queries;
     using Bistrotic.OpenIdDict.Data;
@@ -32,8 +31,8 @@
     {
         private readonly OpenIdSettings _settings;
 
-        public OpenIdDictServerModule(ModuleDefinition moduleDefinition, IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode)
-            : base(moduleDefinition, configuration, environment, clientMode)
+        public OpenIdDictServerModule(IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode)
+            : base(configuration, environment, clientMode)
         {
             _settings = configuration.GetSettings<OpenIdSettings>();
         }

@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.Infrastructure.EfCore
+﻿namespace Bistrotic.EventStores.Client
 {
     using System;
 

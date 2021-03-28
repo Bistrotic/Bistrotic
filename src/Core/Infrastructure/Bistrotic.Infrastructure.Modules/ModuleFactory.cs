@@ -78,7 +78,7 @@
         private List<ModuleDefinition> GetModuleDefinitionsByName(IEnumerable<string> names)
         {
             _ = _moduleDefinitionsByName ??= GetModuleDefinitionsByName().GetAwaiter().GetResult();
-            List<ModuleDefinition> list = new List<ModuleDefinition>(names.Count());
+            List<ModuleDefinition> list = new(names.Count());
             foreach (string name in names)
             {
                 if (!_moduleDefinitionsByName.TryGetValue(name, out ModuleDefinition? moduleDefinition))

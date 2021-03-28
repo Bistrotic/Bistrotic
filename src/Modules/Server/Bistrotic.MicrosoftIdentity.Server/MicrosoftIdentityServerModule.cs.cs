@@ -3,7 +3,6 @@
     using Bistrotic.Application.Messages;
     using Bistrotic.Infrastructure;
     using Bistrotic.Infrastructure.Helpers;
-    using Bistrotic.Infrastructure.Modules.Definitions;
     using Bistrotic.Infrastructure.WebServer.Modules;
 
     using Microsoft.AspNetCore.Hosting;
@@ -11,11 +10,12 @@
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Identity.Web;
 
-    public class MicrosoftIdentityModule : ServerModule
+    public class MicrosoftIdentityServerModule : ServerModule
     {
         private readonly MicrosoftIdentitySettings _settings;
 
-        public MicrosoftIdentityModule(ModuleDefinition moduleDefinition, IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode) : base(moduleDefinition, configuration, environment, clientMode)
+        public MicrosoftIdentityServerModule(IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode)
+            : base(configuration, environment, clientMode)
         {
             _settings = Configuration.GetSettings<MicrosoftIdentitySettings>();
         }

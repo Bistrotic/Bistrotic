@@ -1,7 +1,7 @@
 <Project>
 	<Import Project="../build/Dependencies.props" />
 	<PropertyGroup>
-		<LangVersion>latest</LangVersion>
+		<LangVersion>preview</LangVersion>
 		<Nullable>enable</Nullable>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>

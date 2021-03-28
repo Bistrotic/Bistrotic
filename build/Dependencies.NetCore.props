@@ -27,5 +27,8 @@
 		<MicrosoftCodeAnalysisCSharpVersion>3.9.0</MicrosoftCodeAnalysisCSharpVersion>
 		<MicrosoftCodeAnalysisCommonVersion>3.9.0</MicrosoftCodeAnalysisCommonVersion>
 		<MicrosoftCodeAnalysisWorkspacesVersion>3.9.0</MicrosoftCodeAnalysisWorkspacesVersion>
+		<MicrosoftEntityFrameworkCoreVersion>5.0.4</MicrosoftEntityFrameworkCoreVersion>
+		<MicrosoftEntityFrameworkCoreSqlServerVersion>$(MicrosoftEntityFrameworkCoreVersion)</MicrosoftEntityFrameworkCoreSqlServerVersion>
+		<MicrosoftEntityFrameworkCoreDesignVersion>$(MicrosoftEntityFrameworkCoreVersion)</MicrosoftEntityFrameworkCoreDesignVersion>
 	</PropertyGroup>
 </Project>

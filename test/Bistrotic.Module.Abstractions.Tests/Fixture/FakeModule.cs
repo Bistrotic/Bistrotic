@@ -5,44 +5,44 @@
 
     using Microsoft.Extensions.Configuration;
 
-    public class FakeModule1 : ServiceModule
+    public class Fake1ServiceModule : ServiceModule
     {
-        public FakeModule1(ModuleDefinition definition, IConfiguration configuration) : base(definition, configuration)
+        public Fake1ServiceModule(IConfiguration configuration) : base(configuration)
         {
         }
     }
 
-    public class FakeModule2 : ServiceModule
+    public class Fake2ServiceModule : ServiceModule
     {
-        public FakeModule2(ModuleDefinition definition, IConfiguration configuration) : base(definition, configuration)
+        public Fake2ServiceModule(IConfiguration configuration) : base(configuration)
         {
         }
     }
 
-    public class FakeModule3 : ServiceModule
+    public class Fake3ServiceModule : ServiceModule
     {
-        public FakeModule3(ModuleDefinition definition, IConfiguration configuration) : base(definition, configuration)
+        public Fake3ServiceModule(IConfiguration configuration) : base(configuration)
         {
         }
     }
 
-    public class FakeModule4 : ServiceModule
+    public class Fake4ServiceModule : ServiceModule
     {
-        public FakeModule4(ModuleDefinition definition, IConfiguration configuration) : base(definition, configuration)
+        public Fake4ServiceModule(IConfiguration configuration) : base(configuration)
         {
         }
     }
 
-    public class FakeModule5 : ServiceModule
+    public class Fake5ServiceModule : ServiceModule
     {
-        public FakeModule5(ModuleDefinition definition, IConfiguration configuration) : base(definition, configuration)
+        public Fake5ServiceModule(IConfiguration configuration) : base(configuration)
         {
         }
     }
 
-    public class FakeModule6 : ServiceModule
+    public class Fake6ServiceModule : ServiceModule
     {
-        public FakeModule6(ModuleDefinition definition, IConfiguration configuration) : base(definition, configuration)
+        public Fake6ServiceModule(IConfiguration configuration) : base(configuration)
         {
         }
     }

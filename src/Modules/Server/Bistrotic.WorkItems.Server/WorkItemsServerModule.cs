@@ -1,11 +1,10 @@
-﻿namespace Bistrotic.WorkItems.Server
+﻿namespace Bistrotic.WorkItems
 {
     using System.Collections.Generic;
 
     using Bistrotic.Application.Messages;
     using Bistrotic.Application.Queries;
     using Bistrotic.Infrastructure;
-    using Bistrotic.Infrastructure.Modules.Definitions;
     using Bistrotic.Infrastructure.WebServer.Modules;
     using Bistrotic.WorkItems.Application.ModelViews;
     using Bistrotic.WorkItems.Application.Queries;
@@ -17,8 +16,11 @@
 
     public sealed class WorkItemsServerModule : ServerModule
     {
-        public WorkItemsServerModule(ModuleDefinition moduleDefinition, IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode)
-            : base(moduleDefinition, configuration, environment, clientMode)
+        public WorkItemsServerModule(
+            IConfiguration configuration,
+            IWebHostEnvironment environment,
+            ClientMode clientMode)
+            : base(configuration, environment, clientMode)
         {
         }
 

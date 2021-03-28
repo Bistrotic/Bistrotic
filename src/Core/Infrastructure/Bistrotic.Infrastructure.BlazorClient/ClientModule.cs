@@ -8,8 +8,8 @@
 
     public abstract class ClientModule : ModuleBase, IClientModule
     {
-        protected ClientModule(ModuleDefinition moduleDefinition, IWebAssemblyHostEnvironment hostEnvironment, string clientName, string serverApiName, ClientMode clientMode)
-                    : base(ModuleType.Client, moduleDefinition)
+        protected ClientModule(IWebAssemblyHostEnvironment hostEnvironment, string clientName, string serverApiName, ClientMode clientMode)
+                    : base(ModuleType.Client)
         {
             Environment = hostEnvironment;
             ClientName = clientName;

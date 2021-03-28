@@ -1,14 +1,19 @@
 namespace Bistrotic.Server
 {
+    using System.Collections.Generic;
+
     using Bistrotic.Infrastructure.WebServer;
+    using Bistrotic.Infrastructure.WebServer.Modules;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
 
     public class Startup : ServerStartup
     {
-        public Startup(IWebHostEnvironment environment, IConfiguration configuration) : base(environment, configuration)
+        public Startup(IWebHostEnvironment environment, IConfiguration configuration, IEnumerable<IServerModule> modules)
+            : base(environment, configuration, modules)
         {
         }
 
@@ -24,6 +29,11 @@ namespace Bistrotic.Server
                     endpoints.MapControllers();
                     endpoints.MapFallbackToFile("index.html");
                 });
+        }
+
+        public override void ConfigureServices(IServiceCollection services)
+        {
+            base.ConfigureServices(services);
         }
     }
 }

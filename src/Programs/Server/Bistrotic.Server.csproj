@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
 		<UserSecretsId>Bistrotic.Server-1FC1BD61-13EC-45BE-BAC1-DDBF55AE4137</UserSecretsId>
@@ -8,9 +7,12 @@
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 		<DockerfileContext>..\..\..</DockerfileContext>
 	</PropertyGroup>
-
 	<ItemGroup>
+		<ProjectReference Include="..\..\Modules\Server\Bistrotic.DataIntegrations.Server\Bistrotic.DataIntegrations.Server.csproj" />
+		<ProjectReference Include="..\..\Modules\Server\Bistrotic.Emails.Server\Bistrotic.Emails.Server.csproj" />
+		<ProjectReference Include="..\..\Modules\Server\Bistrotic.EventStores.Server\Bistrotic.EventStores.Server.csproj" />
 		<ProjectReference Include="..\..\Modules\Server\Bistrotic.GoogleIdentity.Server\Bistrotic.GoogleIdentity.Server.csproj" />
+		<ProjectReference Include="..\..\Modules\Server\Bistrotic.QuartzScheduler.Server\Bistrotic.QuartzScheduler.Server.csproj" />
 		<ProjectReference Include="..\..\Modules\Server\Bistrotic.Roles.Server\Bistrotic.Roles.Server.csproj" />
 		<ProjectReference Include="..\..\Modules\Server\Bistrotic.MicrosoftIdentity.Server\Bistrotic.MicrosoftIdentity.Server.csproj" />
 		<ProjectReference Include="..\..\Modules\Server\Bistrotic.Units.Server\Bistrotic.Units.Server.csproj" />
@@ -18,11 +20,9 @@
 		<ProjectReference Include="..\..\Modules\Server\Bistrotic.WorkItems.Server\Bistrotic.WorkItems.Server.csproj" />
 		<ProjectReference Include="..\..\Modules\Server\Bistrotic.OpenIdDict.Server\Bistrotic.OpenIdDict.Server.csproj" />
 	</ItemGroup>
-
 	<ItemGroup>
 		<ProjectReference Include="..\Client\Bistrotic.Client.csproj" />
 	</ItemGroup>
-
 	<ItemGroup>
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.13" />
 	</ItemGroup>

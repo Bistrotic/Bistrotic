@@ -12,14 +12,14 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
-    public sealed class DataIntegrationModule : ServerModule
+    public sealed class DataIntegrationsServerModule : ServerModule
     {
-        private readonly DataIntegrationSettings _settings;
+        private readonly DataIntegrationsSettings _settings;
 
-        public DataIntegrationModule(ModuleDefinition moduleDefinition, IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode)
-            : base(moduleDefinition, configuration, environment, clientMode)
+        public DataIntegrationsServerModule(IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode)
+            : base(configuration, environment, clientMode)
         {
-            _settings = configuration.GetSettings<DataIntegrationSettings>();
+            _settings = configuration.GetSettings<DataIntegrationsSettings>();
         }
 
         public override void ConfigureMessages(IMessageFactoryBuilder messageBuilder)

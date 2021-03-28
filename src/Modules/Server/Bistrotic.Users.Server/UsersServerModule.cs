@@ -2,7 +2,6 @@
 {
     using Bistrotic.Application.Messages;
     using Bistrotic.Infrastructure;
-    using Bistrotic.Infrastructure.Modules.Definitions;
     using Bistrotic.Infrastructure.WebServer.Modules;
     using Bistrotic.Users.Application.Queries;
 
@@ -12,8 +11,8 @@
 
     public sealed class UsersServerModule : ServerModule
     {
-        public UsersServerModule(ModuleDefinition moduleDefinition, IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode)
-            : base(moduleDefinition, configuration, environment, clientMode)
+        public UsersServerModule(IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode)
+            : base(configuration, environment, clientMode)
         {
         }
 

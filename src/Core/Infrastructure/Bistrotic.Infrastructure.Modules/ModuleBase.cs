@@ -3,16 +3,34 @@
     using System;
 
     using Bistrotic.Infrastructure.Modules.Definitions;
+    using Bistrotic.Infrastructure.Modules.Exceptions;
 
     public abstract class ModuleBase : IModule
     {
-        protected ModuleBase(ModuleType moduleType, ModuleDefinition moduleDefinition)
+        private ModuleDefinition? _moduleDefinition;
+
+        protected ModuleBase(ModuleType moduleType)
         {
             ModuleType = moduleType;
-            ModuleDefinition = moduleDefinition ?? throw new ArgumentNullException(nameof(moduleDefinition));
         }
 
-        public ModuleDefinition ModuleDefinition { get; }
+        public ModuleDefinition ModuleDefinition => _moduleDefinition ??= InitializeModuleDefinition();
         public ModuleType ModuleType { get; }
+
+        protected virtual ModuleDefinition InitializeModuleDefinition()
+        {
+            var type = GetType();
+            var name = type.Name;
+            var moduleTypeName = $"{ModuleType}Module";
+            if (!name.EndsWith(moduleTypeName, StringComparison.InvariantCulture))
+            {
+                throw new InvalidModuleDefinitionException($"The module name should end with '{moduleTypeName}'.");
+            }
+            return new ModuleDefinition
+            (
+                name.Substring(0, name.Length - moduleTypeName.Length), // Remove the word "Server" from the name
+                type.FullName ?? throw new InvalidModuleDefinitionException($"The Full name of '{name}' is undefined.")
+            );
+        }
     }
 }

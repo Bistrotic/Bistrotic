@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<OutputType>Library</OutputType>
+		<RootNamespace>Bistrotic.EventStores</RootNamespace>
+		<ModuleName>EventStores</ModuleName>
+	</PropertyGroup>
+	<Import Project="..\..\Shared\Bistrotic.EventStores.Shared\Bistrotic.EventStores.Shared.projitems" Label="Shared" />
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="$(MicrosoftAspNetCoreDiagnosticsEntityFrameworkCoreVersion)" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.EfCore\Bistrotic.Infrastructure.EfCore.csproj" />
+		<ProjectReference Include="..\..\Client\Bistrotic.EventStores.Client\Bistrotic.EventStores.Client.csproj" />
+	</ItemGroup>
+</Project>

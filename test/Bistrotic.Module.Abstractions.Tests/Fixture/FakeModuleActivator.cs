@@ -21,23 +21,23 @@
         {
             switch (definition.TypeName)
             {
-                case "FakeModule1":
-                    return Task.FromResult<IModule?>(new FakeModule1(definition, _configuration));
+                case "Fake1":
+                    return Task.FromResult<IModule?>(new Fake1ServiceModule(_configuration));
 
-                case "FakeModule2":
-                    return Task.FromResult<IModule?>(new FakeModule2(definition, _configuration));
+                case "Fake2":
+                    return Task.FromResult<IModule?>(new Fake2ServiceModule(_configuration));
 
-                case "FakeModule3":
-                    return Task.FromResult<IModule?>(new FakeModule3(definition, _configuration));
+                case "Fake3":
+                    return Task.FromResult<IModule?>(new Fake3ServiceModule(_configuration));
 
-                case "FakeModule4":
-                    return Task.FromResult<IModule?>(new FakeModule4(definition, _configuration));
+                case "Fake4":
+                    return Task.FromResult<IModule?>(new Fake4ServiceModule(_configuration));
 
-                case "FakeModule5":
-                    return Task.FromResult<IModule?>(new FakeModule5(definition, _configuration));
+                case "Fake5":
+                    return Task.FromResult<IModule?>(new Fake5ServiceModule(_configuration));
 
-                case "FakeModule6":
-                    return Task.FromResult<IModule?>(new FakeModule6(definition, _configuration));
+                case "Fake6":
+                    return Task.FromResult<IModule?>(new Fake6ServiceModule(_configuration));
 
                 default:
                     break;
@@ -64,14 +64,14 @@
         {
             switch (definition.TypeName)
             {
-                case "FakeModule1":
-                    return Task.FromResult<IModule?>(new FakeModule1(definition, _configuration));
+                case "Fake1":
+                    return Task.FromResult<IModule?>(new Fake1ServiceModule(_configuration));
 
-                case "FakeModule2":
-                    return Task.FromResult<IModule?>(new FakeModule2(definition, _configuration));
+                case "Fake2":
+                    return Task.FromResult<IModule?>(new Fake2ServiceModule(_configuration));
 
-                case "FakeModule3":
-                    return Task.FromResult<IModule?>(new FakeModule3(definition, _configuration));
+                case "Fake3":
+                    return Task.FromResult<IModule?>(new Fake3ServiceModule(_configuration));
 
                 default:
                     break;
@@ -98,14 +98,14 @@
         {
             switch (definition.TypeName)
             {
-                case "FakeModule4":
-                    return Task.FromResult<IModule?>(new FakeModule4(definition, _configuration));
+                case "Fake4":
+                    return Task.FromResult<IModule?>(new Fake4ServiceModule(_configuration));
 
-                case "FakeModule5":
-                    return Task.FromResult<IModule?>(new FakeModule5(definition, _configuration));
+                case "Fake5":
+                    return Task.FromResult<IModule?>(new Fake5ServiceModule(_configuration));
 
-                case "FakeModule6":
-                    return Task.FromResult<IModule?>(new FakeModule6(definition, _configuration));
+                case "Fake6":
+                    return Task.FromResult<IModule?>(new Fake6ServiceModule(_configuration));
 
                 default:
                     break;

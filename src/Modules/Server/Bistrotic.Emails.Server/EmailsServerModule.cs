@@ -11,12 +11,12 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
-    public sealed class EmailsModule : ServerModule
+    public sealed class EmailsServerModule : ServerModule
     {
         private readonly EmailsSettings _settings;
 
-        public EmailsModule(ModuleDefinition moduleDefinition, IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode)
-            : base(moduleDefinition, configuration, environment, clientMode)
+        public EmailsServerModule(IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode)
+            : base(configuration, environment, clientMode)
         {
             _settings = configuration.GetSettings<EmailsSettings>();
         }

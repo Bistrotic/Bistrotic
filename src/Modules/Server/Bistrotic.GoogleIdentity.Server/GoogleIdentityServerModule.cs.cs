@@ -3,7 +3,6 @@
     using Bistrotic.Application.Messages;
     using Bistrotic.Infrastructure;
     using Bistrotic.Infrastructure.Helpers;
-    using Bistrotic.Infrastructure.Modules.Definitions;
     using Bistrotic.Infrastructure.WebServer.Modules;
 
     using Microsoft.AspNetCore.Authentication.Cookies;
@@ -11,11 +10,12 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
-    public class GoogleIdentityModule : ServerModule
+    public class GoogleIdentityServerModule : ServerModule
     {
         private readonly GoogleIdentitySettings _settings;
 
-        public GoogleIdentityModule(ModuleDefinition moduleDefinition, IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode) : base(moduleDefinition, configuration, environment, clientMode)
+        public GoogleIdentityServerModule(IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode)
+            : base(configuration, environment, clientMode)
         {
             _settings = Configuration.GetSettings<GoogleIdentitySettings>();
         }

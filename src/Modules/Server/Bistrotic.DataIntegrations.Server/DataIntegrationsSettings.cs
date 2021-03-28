@@ -1,6 +1,6 @@
 ﻿namespace Bistrotic.DataIntegrations
 {
-    public class DataIntegrationSettings
+    public class DataIntegrationsSettings
     {
         public string? ConnectionString { get; init; }
     }

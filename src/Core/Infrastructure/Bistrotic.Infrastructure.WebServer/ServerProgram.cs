@@ -5,12 +5,17 @@
 
     public static class ServerProgram
     {
-        public static IWebHost CreateHostBuilder<TStartup>(string[] args)
+        public static IWebHost CreateHost<TStartup>(string[] args)
             where TStartup : class
-            =>
-             WebHost
-                .CreateDefaultBuilder<TStartup>(args)
-                .CaptureStartupErrors(true)
-                .Build();
+        {
+            return CreateHostBuilder<TStartup>(args).Build();
+        }
+
+        public static IWebHostBuilder CreateHostBuilder<TStartup>(string[] args)
+                    where TStartup : class
+            => WebHost
+               .CreateDefaultBuilder(args)
+               .UseStartup<TStartup>()
+               .CaptureStartupErrors(true);
     }
 }

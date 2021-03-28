@@ -2,7 +2,6 @@
 {
     using Bistrotic.Application.Messages;
     using Bistrotic.Infrastructure;
-    using Bistrotic.Infrastructure.Modules.Definitions;
     using Bistrotic.Infrastructure.WebServer.Modules;
     using Bistrotic.Infrastucture.QuartzScheduler.Helpers;
     using Bistrotic.QuartzScheduler.Application.Queries;
@@ -11,10 +10,10 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
-    public sealed class QuartzServerModule : ServerModule
+    public sealed class QuartzSchedulerServerModule : ServerModule
     {
-        public QuartzServerModule(ModuleDefinition moduleDefinition, IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode)
-            : base(moduleDefinition, configuration, environment, clientMode)
+        public QuartzSchedulerServerModule(IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode)
+            : base(configuration, environment, clientMode)
         {
         }
 

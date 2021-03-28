@@ -14,5 +14,11 @@
         void ConfigureMessages(IMessageFactoryBuilder messageBuilder);
 
         void ConfigureServices(IServiceCollection services);
+
+        void OnStarted();
+
+        void OnStopped();
+
+        void OnStopping();
     }
 }

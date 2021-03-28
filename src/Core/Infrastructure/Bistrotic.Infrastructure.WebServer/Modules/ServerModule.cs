@@ -2,7 +2,6 @@
 {
     using Bistrotic.Application.Messages;
     using Bistrotic.Infrastructure.Modules;
-    using Bistrotic.Infrastructure.Modules.Definitions;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -11,7 +10,8 @@
 
     public abstract class ServerModule : ModuleBase, IServerModule
     {
-        protected ServerModule(ModuleDefinition moduleDefinition, IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode) : base(ModuleType.Server, moduleDefinition)
+        protected ServerModule(IConfiguration configuration, IWebHostEnvironment environment, ClientMode clientMode)
+            : base(ModuleType.Server)
         {
             Configuration = configuration;
             Environment = environment;
@@ -19,7 +19,9 @@
         }
 
         public ClientMode ClientMode { get; }
+
         public IConfiguration Configuration { get; }
+
         public IWebHostEnvironment Environment { get; }
 
         public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -29,5 +31,17 @@
         public abstract void ConfigureMessages(IMessageFactoryBuilder messageBuilder);
 
         public abstract void ConfigureServices(IServiceCollection services);
+
+        public virtual void OnStarted()
+        {
+        }
+
+        public virtual void OnStopped()
+        {
+        }
+
+        public virtual void OnStopping()
+        {
+        }
     }
 }

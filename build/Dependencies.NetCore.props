@@ -1,5 +1,6 @@
 <Project>
 	<PropertyGroup>
+		<MicrosoftExtensionsHostingVersion>5.0.0</MicrosoftExtensionsHostingVersion>
 		<MicrosoftExtensionsDependencyInjectionVersion>5.0.1</MicrosoftExtensionsDependencyInjectionVersion>
 		<MicrosoftExtensionsLoggingAbstractionsVersion>5.0.0</MicrosoftExtensionsLoggingAbstractionsVersion>
 		<MicrosoftExtensionsLoggingConsoleVersion>5.0.0</MicrosoftExtensionsLoggingConsoleVersion>

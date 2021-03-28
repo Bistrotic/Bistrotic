@@ -71,12 +71,7 @@ namespace Bistrotic.Infrastructure.WebServer
             services
                 .AddMvc()
                 .AddDapr();
-            services.AddLogging(p =>
-            {
-                p.AddDebug();
-                p.AddAzureWebAppDiagnostics();
-                p.AddConsole();
-            });
+
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Bistrotic", Version = "v1" }));
         }
 

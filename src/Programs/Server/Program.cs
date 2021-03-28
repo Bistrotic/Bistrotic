@@ -28,11 +28,12 @@
         public static IHostBuilder CreateHostBuilder(string[] args)
             => new Program(args).HostBuilder;
 
-        public static Task Main(string[] args)
-            => new Program(args).Host.RunAsync();
+        public static void Main(string[] args)
+            => CreateHostBuilder(args).Build().Run();
 
         public override void AddModules(IServiceCollection services)
         {
+            /*
             AddModule<DataIntegrationsServerModule>(services);
             AddModule<EmailsServerModule>(services);
             AddModule<EventStoresServerModule>(services);
@@ -44,6 +45,7 @@
             AddModule<UsersServerModule>(services);
             AddModule<UnitsServerModule>(services);
             AddModule<WorkItemsServerModule>(services);
+            */
         }
     }
 }

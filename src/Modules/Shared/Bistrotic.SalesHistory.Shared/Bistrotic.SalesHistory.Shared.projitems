@@ -6,7 +6,7 @@
     <SharedGUID>a118b8e4-e34f-4140-a4bd-0ef624f2426f</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>Bistrotic.OutlookFileImport.Shared</Import_RootNamespace>
+    <Import_RootNamespace>Bistrotic.SalesHistory</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Application\ModelViews\SalesDetails.cs" />

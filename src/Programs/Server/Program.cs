@@ -1,7 +1,5 @@
 ﻿namespace Bistrotic.Server
 {
-    using System.Threading.Tasks;
-
     using Bistrotic.DataIntegrations;
     using Bistrotic.Emails;
     using Bistrotic.EventStores;
@@ -33,7 +31,6 @@
 
         public override void AddModules(IServiceCollection services)
         {
-            /*
             AddModule<DataIntegrationsServerModule>(services);
             AddModule<EmailsServerModule>(services);
             AddModule<EventStoresServerModule>(services);
@@ -45,7 +42,6 @@
             AddModule<UsersServerModule>(services);
             AddModule<UnitsServerModule>(services);
             AddModule<WorkItemsServerModule>(services);
-            */
         }
     }
 }

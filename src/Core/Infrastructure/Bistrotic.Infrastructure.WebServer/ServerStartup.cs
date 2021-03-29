@@ -5,6 +5,7 @@ namespace Bistrotic.Infrastructure.WebServer
     using System.Threading.Tasks;
 
     using Bistrotic.Application.Queries;
+    using Bistrotic.Infrastructure.WebServer.Controllers;
     using Bistrotic.Infrastructure.WebServer.Modules;
 
     using Microsoft.AspNetCore.Builder;
@@ -13,7 +14,6 @@ namespace Bistrotic.Infrastructure.WebServer
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    using Microsoft.Extensions.Logging;
     using Microsoft.OpenApi.Models;
 
 #pragma warning disable CA2201 // Do not raise reserved exception types
@@ -70,6 +70,7 @@ namespace Bistrotic.Infrastructure.WebServer
             services.AddTransient<IQueryDispatcher, IocQueryDispatcher>();
             services
                 .AddMvc()
+                .AddApplicationPart(typeof(QueryCommandController).Assembly)
                 .AddDapr();
 
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Bistrotic", Version = "v1" }));

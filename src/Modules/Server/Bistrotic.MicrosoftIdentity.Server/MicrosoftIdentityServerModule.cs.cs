@@ -1,7 +1,5 @@
 ﻿namespace Bistrotic.MicrosoftIdentity
 {
-    using Bistrotic.Application.Messages;
-    using Bistrotic.Infrastructure;
     using Bistrotic.Infrastructure.Helpers;
     using Bistrotic.Infrastructure.WebServer.Modules;
 
@@ -12,23 +10,19 @@
 
     public class MicrosoftIdentityServerModule : ServerModule
     {
-        private readonly MicrosoftIdentitySettings _settings;
+        private MicrosoftIdentitySettings? _settings;
 
-        public MicrosoftIdentityServerModule(IConfiguration configuration, IWebHostEnvironment environment)
-            : base(configuration, environment)
-        {
-            _settings = Configuration.GetSettings<MicrosoftIdentitySettings>();
-        }
-
-        public override void ConfigureMessages(IMessageFactoryBuilder messageBuilder)
+        public MicrosoftIdentityServerModule(IConfiguration configuration, IWebHostEnvironment environment) : base(configuration, environment)
         {
         }
+
+        public MicrosoftIdentitySettings Settings => _settings ??= Configuration.GetSettings<MicrosoftIdentitySettings>();
 
         public override void ConfigureServices(IServiceCollection services)
         {
             services.ConfigureSettings<MicrosoftIdentitySettings>(Configuration);
 
-            if (!string.IsNullOrWhiteSpace(_settings.AzureAd.ClientId))
+            if (!string.IsNullOrWhiteSpace(Settings.AzureAd.ClientId))
             {
                 services
                     .AddMicrosoftIdentityWebAppAuthentication(

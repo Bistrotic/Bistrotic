@@ -10,24 +10,40 @@
 
     public abstract class ServerModule : ModuleBase, IServerModule
     {
+        private IConfiguration? _configuration;
+
+        private IWebHostEnvironment? _environment;
+
         protected ServerModule(IConfiguration configuration, IWebHostEnvironment environment)
             : base(ModuleType.Server)
         {
-            Configuration = configuration;
-            Environment = environment;
+            _configuration = configuration;
+            _environment = environment;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration
+        {
+            get => _configuration ?? throw new ModuleNotInitializedException(nameof(_configuration));
+            internal set => _configuration = value;
+        }
 
-        public IWebHostEnvironment Environment { get; }
+        public IWebHostEnvironment Environment
+        {
+            get => _environment ?? throw new ModuleNotInitializedException(nameof(_environment));
+            internal set => _environment = value;
+        }
 
         public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
         }
 
-        public abstract void ConfigureMessages(IMessageFactoryBuilder messageBuilder);
+        public virtual void ConfigureMessages(IMessageFactoryBuilder messageBuilder)
+        {
+        }
 
-        public abstract void ConfigureServices(IServiceCollection services);
+        public virtual void ConfigureServices(IServiceCollection services)
+        {
+        }
 
         public virtual void OnStarted()
         {

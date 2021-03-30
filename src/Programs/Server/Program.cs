@@ -1,10 +1,14 @@
 ﻿namespace Bistrotic.Server
 {
+    using System;
+    using System.Collections.Generic;
+
     using Bistrotic.DataIntegrations;
     using Bistrotic.Emails;
     using Bistrotic.EventStores;
     using Bistrotic.GoogleIdentity;
     using Bistrotic.Infrastructure.WebServer;
+    using Bistrotic.Infrastructure.WebServer.Modules;
     using Bistrotic.MicrosoftIdentity;
     using Bistrotic.OpenIdDict;
     using Bistrotic.QuartzScheduler;
@@ -13,10 +17,13 @@
     using Bistrotic.Users;
     using Bistrotic.WorkItems;
 
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
 
-    public class Program : ServerProgram<Startup>
+    public class Program : ServerProgram
     {
         public Program(string[] args) : base(args)
         {
@@ -29,19 +36,21 @@
         public static void Main(string[] args)
             => CreateHostBuilder(args).Build().Run();
 
-        public override void AddModules(IServiceCollection services)
+        public override Dictionary<Type, Func<IConfiguration, IWebHostEnvironment, IServerModule>> InitializeModules()
         {
-            AddModule<DataIntegrationsServerModule>(services);
-            AddModule<EmailsServerModule>(services);
-            AddModule<EventStoresServerModule>(services);
-            AddModule<GoogleIdentityServerModule>(services);
-            AddModule<MicrosoftIdentityServerModule>(services);
-            AddModule<OpenIdDictServerModule>(services);
-            AddModule<QuartzSchedulerServerModule>(services);
-            AddModule<RolesServerModule>(services);
-            AddModule<UsersServerModule>(services);
-            AddModule<UnitsServerModule>(services);
-            AddModule<WorkItemsServerModule>(services);
+            var modules = base.InitializeModules();
+            modules.Add(typeof(DataIntegrationsServerModule), (config, env) => new DataIntegrationsServerModule(config, env));
+            modules.Add(typeof(EmailsServerModule), (config, env) => new EmailsServerModule(config, env));
+            modules.Add(typeof(EventStoresServerModule), (config, env) => new EventStoresServerModule(config, env));
+            modules.Add(typeof(GoogleIdentityServerModule), (config, env) => new GoogleIdentityServerModule(config, env));
+            modules.Add(typeof(MicrosoftIdentityServerModule), (config, env) => new MicrosoftIdentityServerModule(config, env));
+            modules.Add(typeof(OpenIdDictServerModule), (config, env) => new OpenIdDictServerModule(config, env));
+            //modules.Add(typeof(QuartzSchedulerServerModule), (config, env) => new QuartzSchedulerServerModule(config, env));
+            modules.Add(typeof(RolesServerModule), (config, env) => new RolesServerModule(config, env));
+            modules.Add(typeof(UsersServerModule), (config, env) => new UsersServerModule(config, env));
+            modules.Add(typeof(UnitsServerModule), (config, env) => new UnitsServerModule(config, env));
+            modules.Add(typeof(WorkItemsServerModule), (config, env) => new WorkItemsServerModule(config, env));
+            return modules;
         }
     }
 }

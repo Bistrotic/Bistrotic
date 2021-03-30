@@ -11,19 +11,13 @@ namespace Bistrotic.Infrastructure.EfCore.Repositories
         {
         }
 
-        public EventStoreDbContext(DbContextOptions options)
-        : base(options)
-        {
-        }
-
         public DbSet<EventStreamItem> EventStream { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<EventStreamItem>(b =>
             {
-                b.HasIndex(p => p.Hash);
-                b.HasIndex(p => p.PartitionId);
+                b.HasKey(p => new { p.StreamIdHash, p.Version, p.StreamId });
                 b.Property(p => p.SystemUtcDateTime).HasDefaultValueSql("getdate()");
             });
         }

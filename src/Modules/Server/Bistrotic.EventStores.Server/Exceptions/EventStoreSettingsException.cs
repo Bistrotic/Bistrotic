@@ -17,7 +17,7 @@
         }
 
         public EventStoreSettingsException(string settingName, string? message, Exception? innerException = null)
-            : base($"{message}\nFix the event store settings value '{nameof(EventStoresSettings)}:{nameof(EventStoresSettings.ConnectionString)}'.", innerException)
+            : base($"{message}\nFix the event store settings value of '{nameof(EventStoresSettings)}:{nameof(EventStoresSettings.ConnectionString)}'.", innerException)
         {
         }
 

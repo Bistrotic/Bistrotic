@@ -1,9 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Dapr.AspNetCore" Version="$(DaprAspNetCoreVersion)" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="$(MicrosoftExensionsConfigurationUserSecretsVersion)" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="$(MicrosoftAspNetCoreComponentsWebAssemblyServerVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="$(MicrosoftExtensionsConfigurationAbstractionsVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.AzureAppServices" Version="$(MicrosoftExtensionsLoggingAzureAppServicesVersion)" />

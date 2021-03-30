@@ -24,7 +24,6 @@ namespace Bistrotic.Client
             {
                 Console.WriteLine("Blazor client strating in production mode.");
             }
-            builder.RootComponents.Add<App>("#app");
 
             builder.Services.AddBistroticClient(builder.HostEnvironment, typeof(Program).Namespace ?? string.Empty, BistroticConstants.ServerApiName);
             builder.Logging.AddBistroticClient();

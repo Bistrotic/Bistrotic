@@ -8,7 +8,6 @@
     using System.Security.Cryptography.X509Certificates;
 
     using Bistrotic.Application.Messages;
-    using Bistrotic.Infrastructure;
     using Bistrotic.Infrastructure.Helpers;
     using Bistrotic.Infrastructure.WebServer.Modules;
     using Bistrotic.OpenIdDict.Application.Queries;
@@ -29,13 +28,13 @@
 
     public sealed class OpenIdDictServerModule : ServerModule
     {
-        private readonly OpenIdSettings _settings;
+        private OpenIdSettings? _settings;
 
-        public OpenIdDictServerModule(IConfiguration configuration, IWebHostEnvironment environment)
-            : base(configuration, environment)
+        public OpenIdDictServerModule(IConfiguration configuration, IWebHostEnvironment environment) : base(configuration, environment)
         {
-            _settings = configuration.GetSettings<OpenIdSettings>();
         }
+
+        public OpenIdSettings Settings => _settings ??= Configuration.GetSettings<OpenIdSettings>();
 
         public override void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -124,17 +123,17 @@
                            .EnableLogoutEndpointPassthrough()
                            .EnableStatusCodePagesIntegration()
                            .EnableTokenEndpointPassthrough();
-                    if (_settings.AllowGoogleAuthentication)
+                    if (Settings.AllowGoogleAuthentication)
                     {
                         options.AllowCustomFlow("urn:ietf:params:oauth:grant-type:google_identity_token");
                         options.AllowCustomFlow("urn:ietf:params:oauth:grant-type:google_access_token");
                     }
-                    if (_settings.AllowFacebookAuthentication)
+                    if (Settings.AllowFacebookAuthentication)
                     {
                         options.AllowCustomFlow("urn:ietf:params:oauth:grant-type:facebook_access_token");
                         options.AllowCustomFlow("urn:ietf:params:oauth:grant-type:facebook_identity_token");
                     }
-                    if (_settings.AllowMicrosoftAuthentication)
+                    if (Settings.AllowMicrosoftAuthentication)
                     {
                         options.AllowCustomFlow("urn:ietf:params:oauth:grant-type:jwt-bearer");
                     }
@@ -219,7 +218,7 @@
             else
             {
                 Console.WriteLine($"Encryption certificate : Thumbprint='{thumbprint}', FileName='{fileName}'.");
-                options.AddEncryptionCertificate(GetCertificate(thumbprint, fileName, _settings.EncryptionCertificateFilePassword));
+                options.AddEncryptionCertificate(GetCertificate(thumbprint, fileName, Settings.EncryptionCertificateFilePassword));
             }
             thumbprint = Configuration.GetSection(nameof(OpenIdSettings)).GetValue<string>(nameof(OpenIdSettings.SigningCertificateThumbprint));
             fileName = Configuration.GetSection(nameof(OpenIdSettings)).GetValue<string>(nameof(OpenIdSettings.SigningCertificateFile));
@@ -238,7 +237,7 @@
             else
             {
                 Console.WriteLine($"Signing certificate : Thumbprint='{thumbprint}', FileName='{fileName}'.");
-                options.AddSigningCertificate(GetCertificate(thumbprint, fileName, _settings.SigningCertificateFilePassword));
+                options.AddSigningCertificate(GetCertificate(thumbprint, fileName, Settings.SigningCertificateFilePassword));
             }
         }
 

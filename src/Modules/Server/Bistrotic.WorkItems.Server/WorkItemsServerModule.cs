@@ -16,10 +16,7 @@
 
     public sealed class WorkItemsServerModule : ServerModule
     {
-        public WorkItemsServerModule(
-            IConfiguration configuration,
-            IWebHostEnvironment environment)
-            : base(configuration, environment)
+        public WorkItemsServerModule(IConfiguration configuration, IWebHostEnvironment environment) : base(configuration, environment)
         {
         }
 

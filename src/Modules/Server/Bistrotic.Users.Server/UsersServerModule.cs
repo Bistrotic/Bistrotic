@@ -11,18 +11,13 @@
 
     public sealed class UsersServerModule : ServerModule
     {
-        public UsersServerModule(IConfiguration configuration, IWebHostEnvironment environment)
-            : base(configuration, environment)
+        public UsersServerModule(IConfiguration configuration, IWebHostEnvironment environment) : base(configuration, environment)
         {
         }
 
         public override void ConfigureMessages(IMessageFactoryBuilder messageBuilder)
         {
             messageBuilder.AddAssemblyMessages(typeof(GetAllUserIds).Assembly);
-        }
-
-        public override void ConfigureServices(IServiceCollection services)
-        {
         }
     }
 }

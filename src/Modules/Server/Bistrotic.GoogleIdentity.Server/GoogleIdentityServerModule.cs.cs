@@ -1,7 +1,5 @@
 ﻿namespace Bistrotic.GoogleIdentity
 {
-    using Bistrotic.Application.Messages;
-    using Bistrotic.Infrastructure;
     using Bistrotic.Infrastructure.Helpers;
     using Bistrotic.Infrastructure.WebServer.Modules;
 
@@ -12,23 +10,19 @@
 
     public class GoogleIdentityServerModule : ServerModule
     {
-        private readonly GoogleIdentitySettings _settings;
+        private GoogleIdentitySettings? _settings;
 
-        public GoogleIdentityServerModule(IConfiguration configuration, IWebHostEnvironment environment)
-            : base(configuration, environment)
-        {
-            _settings = Configuration.GetSettings<GoogleIdentitySettings>();
-        }
-
-        public override void ConfigureMessages(IMessageFactoryBuilder messageBuilder)
+        public GoogleIdentityServerModule(IConfiguration configuration, IWebHostEnvironment environment) : base(configuration, environment)
         {
         }
+
+        public GoogleIdentitySettings Settings => _settings ??= Configuration.GetSettings<GoogleIdentitySettings>();
 
         public override void ConfigureServices(IServiceCollection services)
         {
             services.ConfigureSettings<GoogleIdentitySettings>(Configuration);
 
-            if (!string.IsNullOrWhiteSpace(_settings.ClientId))
+            if (!string.IsNullOrWhiteSpace(Settings.ClientId))
             {
                 services
                     .AddAuthentication(o =>
@@ -36,8 +30,8 @@
                     )
                     .AddGoogle(o =>
                     {
-                        o.ClientId = _settings.ClientId;
-                        o.ClientSecret = _settings.ClientSecret;
+                        o.ClientId = Settings.ClientId;
+                        o.ClientSecret = Settings.ClientSecret;
                     });
             }
         }

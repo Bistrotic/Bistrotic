@@ -2,9 +2,7 @@
 {
     using Bistrotic.Application.Messages;
     using Bistrotic.DataIntegrations.Application.Queries;
-    using Bistrotic.Infrastructure;
     using Bistrotic.Infrastructure.Helpers;
-    using Bistrotic.Infrastructure.Modules.Definitions;
     using Bistrotic.Infrastructure.WebServer.Modules;
     using Bistrotic.Infrastucture.QuartzScheduler.Helpers;
 
@@ -14,13 +12,15 @@
 
     public sealed class DataIntegrationsServerModule : ServerModule
     {
-        private readonly DataIntegrationsSettings _settings;
+        private DataIntegrationsSettings? _settings;
 
         public DataIntegrationsServerModule(IConfiguration configuration, IWebHostEnvironment environment)
             : base(configuration, environment)
         {
-            _settings = configuration.GetSettings<DataIntegrationsSettings>();
         }
+
+        public DataIntegrationsSettings Settings
+                            => _settings ??= Configuration.GetSettings<DataIntegrationsSettings>();
 
         public override void ConfigureMessages(IMessageFactoryBuilder messageBuilder)
         {

@@ -1,7 +1,6 @@
 ﻿namespace Bistrotic.QuartzScheduler
 {
     using Bistrotic.Application.Messages;
-    using Bistrotic.Infrastructure;
     using Bistrotic.Infrastructure.WebServer.Modules;
     using Bistrotic.Infrastucture.QuartzScheduler.Helpers;
     using Bistrotic.QuartzScheduler.Application.Queries;
@@ -12,8 +11,7 @@
 
     public sealed class QuartzSchedulerServerModule : ServerModule
     {
-        public QuartzSchedulerServerModule(IConfiguration configuration, IWebHostEnvironment environment)
-            : base(configuration, environment)
+        public QuartzSchedulerServerModule(IConfiguration configuration, IWebHostEnvironment environment) : base(configuration, environment)
         {
         }
 

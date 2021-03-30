@@ -5,11 +5,9 @@
     using Bistrotic.Infrastructure.Helpers;
     using Bistrotic.Infrastructure.WebServer.Modules;
 
-    using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Hosting;
 
     public sealed class EventStoresServerModule : ServerModule
     {
@@ -21,18 +19,8 @@
 
         public EventStoresSettings Settings => _settings ??= Configuration.GetSettings<EventStoresSettings>();
 
-        public override void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            base.Configure(app, env);
-            if (env.IsDevelopment())
-            {
-                app.UseMigrationsEndPoint();
-            }
-        }
-
         public override void ConfigureServices(IServiceCollection services)
         {
-            services.AddDatabaseDeveloperPageExceptionFilter();
             services.ConfigureSettings<EventStoresSettings>(Configuration);
 
             if (string.IsNullOrWhiteSpace(Settings.ConnectionString))
@@ -40,11 +28,6 @@
                 throw new EventStoreSettingsException(nameof(EventStoresSettings.ConnectionString), "The database connection string is not defined.");
             }
             services.AddSqlServerEventStore(Settings.ConnectionString);
-
-            if (Environment.IsDevelopment())
-            {
-                services.AddDatabaseDeveloperPageExceptionFilter();
-            }
         }
     }
 }

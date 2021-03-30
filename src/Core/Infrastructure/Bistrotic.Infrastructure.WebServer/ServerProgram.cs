@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Threading.Tasks;
 
     using Bistrotic.Application.Queries;
@@ -32,14 +33,20 @@
         public IHostBuilder HostBuilder => _hostBuilder ??= CreateHostBuilder();
         private Dictionary<Type, Func<IConfiguration, IWebHostEnvironment, IServerModule>> Modules => _modules ??= InitializeModules();
 
+        public virtual void Configure(IApplicationBuilder app, WebHostBuilderContext context)
+        {
+        }
+
         public IHostBuilder CreateHostBuilder()
-            => Host
+                    => Host
                 .CreateDefaultBuilder(_args)
                 .ConfigureWebHostDefaults(builder =>
                 {
                     builder.ConfigureAppConfiguration(config => config.AddUserSecrets(GetType().Assembly));
                     builder.ConfigureServices((context, services) =>
                     {
+                        context.HostingEnvironment.ApplicationName = GetType().Assembly.GetName().Name;
+                        ConfigureServices(services);
                         services.AddTransient<IQueryDispatcher, IocQueryDispatcher>();
                         services.AddControllersWithViews();
                         var mvc = services
@@ -47,7 +54,7 @@
                             .AddApplicationPart(typeof(QueryCommandController).Assembly)
                             .AddApplicationPart(GetType().Assembly)
                             .AddDapr();
-
+                        services.AddServerSideBlazor();
                         services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Bistrotic", Version = "v1" }));
                         foreach (var modulePair in Modules)
                         {
@@ -61,6 +68,8 @@
                     builder.ConfigureLogging(l => l.AddAzureWebAppDiagnostics());
                     builder.Configure((context, app) =>
                     {
+                        context.HostingEnvironment.ApplicationName = GetType().Assembly.GetName().Name;
+                        Configure(app, context);
                         foreach (var module in Modules)
                         {
                             module
@@ -91,13 +100,14 @@
                         app.UseEndpoints(endpoints =>
                         {
                             endpoints.MapControllers();
-                            endpoints.MapRazorPages();
                             endpoints.Map("api/{**slug}", HandleApiFallback);
+                            endpoints.MapRazorPages();
                             endpoints.MapFallbackToPage("/_Host");
                         });
                     });
                     builder.CaptureStartupErrors(true);
                     builder.UseSetting(WebHostDefaults.DetailedErrorsKey, "true");
+                    builder.UseContentRoot(Directory.GetCurrentDirectory());
                 });
 
         public virtual Dictionary<Type, Func<IConfiguration, IWebHostEnvironment, IServerModule>> InitializeModules()
@@ -108,6 +118,10 @@
             // Calling an API that does not exist.
             context.Response.StatusCode = StatusCodes.Status404NotFound;
             return Task.CompletedTask;
+        }
+
+        protected virtual void ConfigureServices(IServiceCollection services)
+        {
         }
     }
 }

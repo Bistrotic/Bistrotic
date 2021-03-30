@@ -16,7 +16,6 @@
     using Bistrotic.OpenIdDict.Settings;
     using Bistrotic.OpenIdDict.Workers;
 
-    using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
@@ -35,15 +34,6 @@
         }
 
         public OpenIdSettings Settings => _settings ??= Configuration.GetSettings<OpenIdSettings>();
-
-        public override void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            base.Configure(app, env);
-            if (env.IsDevelopment())
-            {
-                app.UseMigrationsEndPoint();
-            }
-        }
 
         public override void ConfigureMessages(IMessageFactoryBuilder messageBuilder)
         {
@@ -64,11 +54,6 @@
                 // Note: use the generic overload if you need to replace the default OpenIddict entities.
                 options.UseOpenIddict();
             });
-
-            if (Environment.IsDevelopment())
-            {
-                services.AddDatabaseDeveloperPageExceptionFilter();
-            }
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<SecurityDbContext>()

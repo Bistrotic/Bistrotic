@@ -9,9 +9,7 @@
     using Bistrotic.GoogleIdentity;
     using Bistrotic.Infrastructure.WebServer;
     using Bistrotic.Infrastructure.WebServer.Modules;
-    using Bistrotic.MicrosoftIdentity;
     using Bistrotic.OpenIdDict;
-    using Bistrotic.QuartzScheduler;
     using Bistrotic.Roles;
     using Bistrotic.Units;
     using Bistrotic.Users;
@@ -36,6 +34,15 @@
         public static void Main(string[] args)
             => CreateHostBuilder(args).Build().Run();
 
+        public override void Configure(IApplicationBuilder app, WebHostBuilderContext context)
+        {
+            base.Configure(app, context);
+            if (context.HostingEnvironment.IsDevelopment())
+            {
+                app.UseMigrationsEndPoint();
+            }
+        }
+
         public override Dictionary<Type, Func<IConfiguration, IWebHostEnvironment, IServerModule>> InitializeModules()
         {
             var modules = base.InitializeModules();
@@ -43,7 +50,7 @@
             modules.Add(typeof(EmailsServerModule), (config, env) => new EmailsServerModule(config, env));
             modules.Add(typeof(EventStoresServerModule), (config, env) => new EventStoresServerModule(config, env));
             modules.Add(typeof(GoogleIdentityServerModule), (config, env) => new GoogleIdentityServerModule(config, env));
-            modules.Add(typeof(MicrosoftIdentityServerModule), (config, env) => new MicrosoftIdentityServerModule(config, env));
+            //modules.Add(typeof(MicrosoftIdentityServerModule), (config, env) => new MicrosoftIdentityServerModule(config, env));
             modules.Add(typeof(OpenIdDictServerModule), (config, env) => new OpenIdDictServerModule(config, env));
             //modules.Add(typeof(QuartzSchedulerServerModule), (config, env) => new QuartzSchedulerServerModule(config, env));
             modules.Add(typeof(RolesServerModule), (config, env) => new RolesServerModule(config, env));
@@ -51,6 +58,12 @@
             modules.Add(typeof(UnitsServerModule), (config, env) => new UnitsServerModule(config, env));
             modules.Add(typeof(WorkItemsServerModule), (config, env) => new WorkItemsServerModule(config, env));
             return modules;
+        }
+
+        protected override void ConfigureServices(IServiceCollection services)
+        {
+            base.ConfigureServices(services);
+            //services.AddDatabaseDeveloperPageExceptionFilter();
         }
     }
 }

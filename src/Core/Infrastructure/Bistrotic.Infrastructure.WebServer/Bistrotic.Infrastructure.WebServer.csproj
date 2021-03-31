@@ -13,6 +13,7 @@
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="$(MicrosoftVisualStudioAzureContainersToolsTargetsVersion)" />
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Kubernetes.Tools.Targets" Version="$(MicrosoftVisualStudioAzureKubernetesToolsTargetsVersion)" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="$(SwashbuckleAspNetCoreVersion)" />
+		<PackageReference Include="Microsoft.Identity.Web.UI" Version="$(MicrosoftIdentityWebUIVersion)" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\Application\Bistrotic.Application\Bistrotic.Application.csproj" />

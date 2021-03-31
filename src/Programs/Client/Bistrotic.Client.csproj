@@ -2,40 +2,28 @@
 
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
-		<ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
 		<NoWarn>$(NoWarn);IDE0005;RCS1090</NoWarn>
+		<OutputType>Exe</OutputType>
+		<Configurations>Debug;Release</Configurations>
+		<IsPackable>true</IsPackable>
+		<BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
-		<MonoRuntimeDebuggerEnabled>true</MonoRuntimeDebuggerEnabled>
-		<DefineConstants>$(DefineConstants);TRACE;DEBUG</DefineConstants>
-	</PropertyGroup>
-	<ItemGroup>
-		<Content Remove="wwwroot\logo.svg" />
-	</ItemGroup>
-	<ItemGroup>
-		<None Include="wwwroot\logo.svg" />
-	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="$(MicrosoftAspNetCoreComponentsWebAssemblyVersion)" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="$(MicrosoftAspNetCoreComponentsWebAssemblyDevServerVersion)" PrivateAssets="all" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="$(MicrosoftAspNetCoreComponentsWebAssemblyAuthenticationVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Http" Version="$(MicrosoftExtensionsHttpVersion)" />
+		<PackageReference Include="Microsoft.Extensions.Localization" Version="$(MicrosoftExtensionsLocalizationVersion)" />
 		<PackageReference Include="System.Net.Http.Json" Version="$(SystemNetHttpJsonVersion)" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.VisualLayouts\Bistrotic.Infrastructure.VisualLayouts.csproj" />
-		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.BlazorClient\Bistrotic.Infrastructure.BlazorClient.csproj" />
 		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.VisualComponents\Bistrotic.Infrastructure.VisualComponents.csproj" />
-		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.VisualLayouts\Bistrotic.Infrastructure.VisualLayouts.csproj" />
+		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.BlazorClient\Bistrotic.Infrastructure.BlazorClient.csproj" />
 		<ProjectReference Include="..\..\Modules\Client\Bistrotic.Roles.Client\Bistrotic.Roles.Client.csproj" />
 		<ProjectReference Include="..\..\Modules\Client\Bistrotic.OpenIdDict.Client\Bistrotic.OpenIdDict.Client.csproj" />
 		<ProjectReference Include="..\..\Modules\Client\Bistrotic.Units.Client\Bistrotic.Units.Client.csproj" />
 		<ProjectReference Include="..\..\Modules\Client\Bistrotic.WorkItems.Client\Bistrotic.WorkItems.Client.csproj" />
-		<ProjectReference Include="..\..\Modules\Shared\Bistrotic.WorkItems.Shared\Bistrotic.WorkItems.Shared.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
 	</ItemGroup>
 </Project>

@@ -9,16 +9,8 @@
 		<CodeAnalysisTreatWarningsAsErrors>false</CodeAnalysisTreatWarningsAsErrors>
 		<AnalysisLevel>latest</AnalysisLevel>
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
-		<Deterministic>true</Deterministic>
 		<NoWarn>$(NoWarn);CA1014;CS3001;CS3003;CS3009</NoWarn>
 		<MinVerTagPrefix>v</MinVerTagPrefix>
-		<PublishRepositoryUrl>true</PublishRepositoryUrl>
-		<EmbedUntrackedSources>true</EmbedUntrackedSources>
-		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
-		<DebugType>portable</DebugType>
-		<DebugSymbols>true</DebugSymbols>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="$(MicrosoftSourceLinkGitHubVersion)" PrivateAssets="All" />

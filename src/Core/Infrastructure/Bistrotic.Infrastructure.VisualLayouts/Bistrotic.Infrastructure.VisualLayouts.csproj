@@ -1,17 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
+		<NoWarn>$(NoWarn);CS3008</NoWarn>
+		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+		<GenerateMvcApplicationPartsAssemblyAttributes>true</GenerateMvcApplicationPartsAssemblyAttributes>
+		<RazorCompileOnBuild>true</RazorCompileOnBuild>
+		<IncludeRazorContentInPack>false</IncludeRazorContentInPack>
+		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+		<EnableDefaultRazorGenerateItems>true</EnableDefaultRazorGenerateItems>
 	</PropertyGroup>
 	<ItemGroup>
-		<None Include="wwwroot\css\application-panel.css" />
-		<None Include="wwwroot\css\center-panel.css" />
-		<None Include="wwwroot\css\content-panel.css" />
-		<None Include="wwwroot\css\footer-panel.css" />
-		<None Include="wwwroot\css\header-panel.css" />
-		<None Include="wwwroot\css\menu-panel.css" />
-		<None Include="wwwroot\css\notification-panel.css" />
-		<None Include="wwwroot\css\styles.css" />
-		<None Include="wwwroot\sample.html" />
+		<SupportedPlatform Include="browser" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Components" Version="$(MicrosoftAspNetCoreComponentsVersion)" />

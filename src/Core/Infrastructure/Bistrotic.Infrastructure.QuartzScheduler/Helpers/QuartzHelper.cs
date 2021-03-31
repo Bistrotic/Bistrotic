@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.Infrastucture.QuartzScheduler.Helpers
+﻿namespace Bistrotic.Infrastructure.QuartzScheduler.Helpers
 {
     using Microsoft.Extensions.DependencyInjection;
 

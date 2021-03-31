@@ -31,7 +31,6 @@ namespace Bistrotic.Client
             builder.Services.AddSingleton<IMenuService, MenuService>();
             builder.Services.AddSingleton<IIconRenderer, LineAwesomeIconRenderer>();
             builder.Services.AddSingleton<IComponentRenderer, FastComponentRenderer>();
-
             await builder.Build().RunAsync();
             Console.WriteLine("Main ended");
         }

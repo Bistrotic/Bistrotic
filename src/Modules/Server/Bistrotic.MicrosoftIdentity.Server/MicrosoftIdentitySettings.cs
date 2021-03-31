@@ -1,4 +1,8 @@
-﻿namespace Bistrotic.MicrosoftIdentity
+﻿using System;
+
+using Microsoft.Identity.Client;
+
+namespace Bistrotic.MicrosoftIdentity
 {
     public class AzureAdSettings
     {

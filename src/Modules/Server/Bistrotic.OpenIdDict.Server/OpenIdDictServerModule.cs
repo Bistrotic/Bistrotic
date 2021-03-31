@@ -80,7 +80,6 @@
                            .UseDbContext<SecurityDbContext>();
                     options.UseQuartz();
                 })
-
                 // Register the OpenIddict server components.
                 .AddServer(options =>
                 {
@@ -134,6 +133,7 @@
                 });
             // Register the worker responsible of seeding the database with the sample clients if in
             // development environment.
+
             services.AddHostedService<OpenIdDevelopmentWorker>();
         }
 

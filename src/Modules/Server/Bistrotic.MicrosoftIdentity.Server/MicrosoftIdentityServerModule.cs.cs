@@ -27,7 +27,11 @@
                 services
                     .AddMicrosoftIdentityWebAppAuthentication(
                             Configuration,
-                            nameof(MicrosoftIdentitySettings) + ":" + nameof(MicrosoftIdentitySettings.AzureAd));
+                            nameof(MicrosoftIdentitySettings) + ":" + nameof(MicrosoftIdentitySettings.AzureAd))
+                    .EnableTokenAcquisitionToCallDownstreamApi(Settings.MicrosoftGraph?.Scopes?.Split(';'))
+                    .AddMicrosoftGraph("https://graph.microsoft.com/beta",
+                        "User.ReadBasic.All user.read")
+                    .AddInMemoryTokenCaches();
             }
         }
     }

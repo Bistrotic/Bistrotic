@@ -7,5 +7,6 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\Core\Application\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj" />
 	  <ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.BlazorClient\Bistrotic.Infrastructure.BlazorClient.csproj" />
+	  <ProjectReference Include="..\..\Shared\Bistrotic.WorkItems.Shared\Bistrotic.WorkItems.Shared.csproj" />
 	</ItemGroup>
 </Project>

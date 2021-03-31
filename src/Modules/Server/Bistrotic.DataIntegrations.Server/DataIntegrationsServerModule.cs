@@ -3,8 +3,8 @@
     using Bistrotic.Application.Messages;
     using Bistrotic.DataIntegrations.Application.Queries;
     using Bistrotic.Infrastructure.Helpers;
+    using Bistrotic.Infrastructure.QuartzScheduler.Helpers;
     using Bistrotic.Infrastructure.WebServer.Modules;
-    using Bistrotic.Infrastucture.QuartzScheduler.Helpers;
 
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;

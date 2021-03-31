@@ -1,8 +1,8 @@
 ﻿namespace Bistrotic.QuartzScheduler
 {
     using Bistrotic.Application.Messages;
+    using Bistrotic.Infrastructure.QuartzScheduler.Helpers;
     using Bistrotic.Infrastructure.WebServer.Modules;
-    using Bistrotic.Infrastucture.QuartzScheduler.Helpers;
     using Bistrotic.QuartzScheduler.Application.Queries;
 
     using Microsoft.AspNetCore.Hosting;

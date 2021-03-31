@@ -1,44 +1,64 @@
 ﻿@page
-@namespace Bistrotic.Server.Pages
+@inject IOptions<WebServerSettings> settings
+@using Bistrotic.Server
 @using Bistrotic.Client
+@using Bistrotic.Infrastructure
+@using Bistrotic.Infrastructure.WebServer.Settings
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.Extensions.Options
+@using Microsoft.AspNetCore.Components.Authorization
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 <!DOCTYPE html>
+<base href="~/" />
+<link href="css/app.css" rel="stylesheet" />
+<style>
+	.loader {
+		border: 16px solid #f3f3f3; /* Light grey */
+		border-top: 16px solid #3498db; /* Blue */
+		border-radius: 50%;
+		width: 120px;
+		height: 120px;
+		animation: spin 2s linear infinite;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 100px;
+		margin-bottom: auto;
+	}
+</style>
 <html>
 
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<title>Bistrotic</title>
-	<base href="~/" />
-	<link href="css/app.css" rel="stylesheet" />
-	<link href="Bistrotic.Client.styles.css" rel="stylesheet" />
-	<link href="manifest.json" rel="manifest" />
-	<link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
-	<style>
-		.loader {
-			border: 16px solid #f3f3f3; /* Light grey */
-			border-top: 16px solid #3498db; /* Blue */
-			border-radius: 50%;
-			width: 120px;
-			height: 120px;
-			animation: spin 2s linear infinite;
-			margin-left: auto;
-			margin-right: auto;
-			margin-top: 100px;
-			margin-bottom: auto;
-		}
-	</style>
+	<link rel="stylesheet" href="_content/Bistrotic.Infrastructure.VisualLayouts/css/styles.css" />
 </head>
 
 <body>
-	<component type="typeof(App)" render-mode="WebAssemblyPrerendered" />
+	@(Html.AntiForgeryToken())
+	<component type="typeof(App)" render-mode="Server" />
 	<div id="blazor-error-ui">
-		An unhandled error has occurred.
+		<environment include="Staging,Production">
+			An error has occurred. This application may no longer respond until reloaded.
+		</environment>
+		<environment include="Development">
+			An unhandled exception has occurred. See browser dev tools for details.
+		</environment>
 		<a href="" class="reload">Reload</a>
 		<a class="dismiss">🗙</a>
 	</div>
-	<script src="_content/Microsoft.AspNetCore.Components.WebAssembly.Authentication/AuthenticationService.js"></script>
-	<script src="_framework/blazor.webassembly.js"></script>
-	<script>navigator.serviceWorker.register('service-worker.js')</script>
+
+	@if (settings?.Value?.ClientMode == ClientMode.WebAssembly)
+	{
+	 <script src="_framework/blazor.webassembly.js"></script>
+	 <script src="_content/Microsoft.AspNetCore.Components.WebAssembly.Authentication/AuthenticationService.js"></script>
+	}
+	else
+	{
+	 <script src="_framework/blazor.server.js"></script>
+	}
 </body>
 </html>
+
+

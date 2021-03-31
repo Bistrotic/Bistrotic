@@ -28,6 +28,8 @@ namespace Bistrotic.Infrastructure.BlazorClient
             // server project
             services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient(serverApiName));
 
+            services.AddOptions();
+            services.AddAuthorizationCore();
             services.AddOidcAuthentication(options =>
             {
                 options.ProviderOptions.ClientId = serverApiName;

@@ -5,8 +5,6 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Bistrotic.Domain.Communication;
-
     using Microsoft.Graph;
 
     public class GraphService
@@ -20,6 +18,45 @@
 
         protected GraphAuthenticationService AuthenticationService { get; }
         protected GraphServiceClient GraphClient => _graphClient ??= InitializeGraphClient();
+
+        public static IReadOnlyList<Attachment> GetAttachments(IMessageAttachmentsCollectionPage? attachments)
+        {
+            if (attachments == null || attachments.Count == 0)
+            {
+                return Array.Empty<Attachment>();
+            }
+            List<Attachment> files = new(attachments.ToArray());
+            while (attachments.NextPageRequest != null)
+            {
+                attachments = attachments
+                    .NextPageRequest
+                    .GetAsync()
+                    .GetAwaiter()
+
+                    .GetResult();
+                files.AddRange(attachments.ToList());
+            }
+            return files;
+        }
+
+        public static IReadOnlyList<FileAttachment> GetFileAttachments(IMessageAttachmentsCollectionPage? attachments)
+        {
+            if (attachments == null || attachments.Count == 0)
+            {
+                return Array.Empty<FileAttachment>();
+            }
+            List<FileAttachment> files = new(attachments.OfType<FileAttachment>().ToArray());
+            while (attachments.NextPageRequest != null)
+            {
+                attachments = attachments
+                    .NextPageRequest
+                    .GetAsync()
+                    .GetAwaiter()
+                    .GetResult();
+                files.AddRange(attachments.OfType<FileAttachment>().ToList());
+            }
+            return files;
+        }
 
         public async Task<IEnumerable<string>> GetUserIds()
         {
@@ -40,7 +77,7 @@
             return ids;
         }
 
-        public async Task<IEnumerable<Email>> GetUserMails(string userPrincipalName)
+        public async Task<IEnumerable<Message>> GetUserMails(string userPrincipalName)
         {
             var messages = await GraphClient
                 .Users[userPrincipalName]
@@ -50,63 +87,17 @@
                 .GetAsync()
                 .ConfigureAwait(false);
 
-            List<Email> ids = new(messages.Select(p => Map(p)));
+            List<Message> ids = new(messages.ToList());
             while (messages.NextPageRequest != null)
             {
                 messages = await messages
                     .NextPageRequest
                     .GetAsync()
                     .ConfigureAwait(false);
-                ids.AddRange(messages.Select(p => Map(p)));
+                ids.AddRange(messages.ToList());
             }
             return ids;
         }
-
-        private static Email Map(Message message)
-        {
-            return new Email
-            {
-                Subject = message.Subject ?? string.Empty,
-                Body = message.Body.Content ?? string.Empty,
-                Sender = message.Sender.EmailAddress.Address ?? string.Empty,
-                ToRecipients = message.ToRecipients?.Select(p => p.EmailAddress.Address)?.ToArray() ?? Array.Empty<string>(),
-                CopyToRecipients = message.CcRecipients?.Select(p => p.EmailAddress.Address)?.ToArray() ?? Array.Empty<string>(),
-                Attachments = Map(message.Attachments)
-            };
-        }
-
-        private static IReadOnlyList<EmailAttachment> Map(IMessageAttachmentsCollectionPage? attachments)
-        {
-            if (attachments == null || attachments.Count == 0)
-            {
-                return Array.Empty<EmailAttachment>();
-            }
-            List<EmailAttachment> files = new(attachments.Select(p => Map(p)));
-            while (attachments.NextPageRequest != null)
-            {
-                attachments = attachments
-                    .NextPageRequest
-                    .GetAsync()
-                    .GetAwaiter()
-                    .GetResult();
-                files.AddRange(attachments.Select(p => Map(p)));
-            }
-            return files;
-        }
-
-        private static EmailAttachment Map(Attachment attachment)
-            => attachment switch
-            {
-                FileAttachment file =>
-                    new EmailAttachment
-                    {
-                        Name = file.Name,
-                        Size = file.Size ?? 0,
-                        Content = file.ContentBytes
-                    },
-                _ =>
-                    new EmailAttachment { Name = attachment.Name, Size = attachment.Size ?? 0 }
-            };
 
         private GraphServiceClient InitializeGraphClient()
             => new(AuthenticationService.AuthenticationProvider);

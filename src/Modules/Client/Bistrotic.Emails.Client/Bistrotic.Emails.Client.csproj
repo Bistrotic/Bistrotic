@@ -5,4 +5,7 @@
 		<ModuleName>Emails</ModuleName>
 	</PropertyGroup>
 	<Import Project="..\..\Shared\Bistrotic.Emails.Shared\Bistrotic.Emails.Shared.projitems" Label="Shared" />
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.MicrosoftGraph\Bistrotic.Infrastructure.MicrosoftGraph.csproj" />
+	</ItemGroup>
 </Project>

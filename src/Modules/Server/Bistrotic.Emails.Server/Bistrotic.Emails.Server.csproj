@@ -8,6 +8,7 @@
 	</PropertyGroup>
 	<Import Project="..\..\Shared\Bistrotic.Emails.Shared\Bistrotic.Emails.Shared.projitems" Label="Shared" />
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.MicrosoftGraph\Bistrotic.Infrastructure.MicrosoftGraph.csproj" />
 		<ProjectReference Include="..\..\Client\Bistrotic.Emails.Client\Bistrotic.Emails.Client.csproj" />
 	</ItemGroup>
 </Project>

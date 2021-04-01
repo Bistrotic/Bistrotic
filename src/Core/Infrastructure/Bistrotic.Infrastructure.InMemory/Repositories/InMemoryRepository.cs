@@ -18,10 +18,10 @@ namespace Bistrotic.Infrastructure.InMemory.Repositories
             return Task.FromResult(metadata);
         }
 
-        public override Task<TState> GetState(string id)
+        public override Task<TState?> GetState(string id)
         {
             (TState state, _) = GetById(id);
-            return Task.FromResult(state);
+            return Task.FromResult<TState?>(state);
         }
 
         public override Task<IRepositoryStream> GetStream(string id)

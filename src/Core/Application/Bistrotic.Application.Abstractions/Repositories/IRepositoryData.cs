@@ -6,6 +6,6 @@
     {
         IEnumerable<object> Events { get; }
         IRepositoryMetadata Metadata { get; }
-        TState State { get; }
+        TState? State { get; }
     }
 }

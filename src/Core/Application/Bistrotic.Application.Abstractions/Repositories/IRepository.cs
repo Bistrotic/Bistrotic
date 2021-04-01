@@ -18,7 +18,7 @@
 
     public interface IRepository<TState> : IRepository
     {
-        Task<TState> GetState(string id);
+        Task<TState?> GetState(string id);
 
         Task Save(string id, IRepositoryData<TState> stateData);
     }

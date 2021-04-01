@@ -31,16 +31,14 @@
             EmailId = emailId;
             ToRecipients = new List<string>(toRecipients.Select(p => p.Value));
             CopyToRecipients = new List<string>(copyToRecipients.Select(p => p.Value));
-            AttachmentNames = new List<string>(attachements.Select(p => p.Name));
-            AttachmentContents = new List<string?>(attachements.Select(p => p.Content));
+            Attachments = new List<Attachment>(attachements);
         }
         public string Subject { get; init; } = string.Empty;
         public string Body { get; init; } = string.Empty;
         public string Sender { get; init; } = string.Empty;
         public IEnumerable<string> ToRecipients { get; init; } = Array.Empty<string>();
         public IEnumerable<string> CopyToRecipients { get; init; } = Array.Empty<string>();
-        public IEnumerable<string> AttachmentNames { get; init; } = Array.Empty<string>();
-        public IEnumerable<string?> AttachmentContents { get; init; } = Array.Empty<string?>();
+        public IEnumerable<Attachment> Attachments { get; init; } = Array.Empty<Attachment>();
         public string Recipient { get; init; } = string.Empty;
         public string EmailId { get; init; } = string.Empty;
     }

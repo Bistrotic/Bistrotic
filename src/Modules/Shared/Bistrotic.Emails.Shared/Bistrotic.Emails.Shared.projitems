@@ -10,14 +10,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Application\Commands\ReceiveEmail.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Domain\IEmailAttachementState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Application\Commands\ReceiveEmailHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Application\Mappers\GraphMessageMapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Application\ModelViews\EmailDetails.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Application\ModelViews\EmailSummary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Application\Queries\GetEmailDetails.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Domain\Email.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Domain\Events\EmailReceived.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Domain\IEmailState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\EmailState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\Exceptions\DuplicateEmailException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\Exceptions\EmailStateNotInitializedException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Domain\ValueTypes\Attachment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Domain\ValueTypes\EmailAddress.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Domain\ValueTypes\EmailId.cs" />

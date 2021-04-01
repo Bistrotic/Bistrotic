@@ -20,8 +20,7 @@ namespace Bistrotic.Emails.Application.Mappers
                 Sender = message.Sender.EmailAddress.Address ?? string.Empty,
                 ToRecipients = message.ToRecipients?.Select(p => p.EmailAddress.Address)?.ToArray() ?? Array.Empty<string>(),
                 CopyToRecipients = message.CcRecipients?.Select(p => p.EmailAddress.Address)?.ToArray() ?? Array.Empty<string>(),
-                AttachmentNames = attachments.Select(p => p.Name),
-                AttachmentContents = attachments.Select(p => Convert.ToBase64String(p.ContentBytes))
+                Attachments = attachments.Select(p => new Domain.ValueTypes.Attachment(p.Name, p.ContentBytes)),
             };
         }
     }

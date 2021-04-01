@@ -13,7 +13,7 @@
             string causationId,
             string userName,
             DateTimeOffset userDateTime,
-            TState state,
+            TState? state,
             IEnumerable<object> events)
         {
             Metadata = new()
@@ -38,9 +38,7 @@
                  causationId,
                  userName,
                  userDateTime,
-#pragma warning disable CS8604 // Possible null reference argument.
                  default,
-#pragma warning restore CS8604 // Possible null reference argument.
                  events
                  )
         {
@@ -51,7 +49,7 @@
             string causationId,
             string userName,
             DateTimeOffset userDateTime,
-            TState state)
+            TState? state)
             : this(
                  correlationId,
                  causationId,
@@ -63,7 +61,7 @@
         {
         }
 
-        public RepositoryData(IEnvelope enveloppe, TState state, IEnumerable<object> events)
+        public RepositoryData(IEnvelope enveloppe, TState? state, IEnumerable<object> events)
             : this(
                 enveloppe.CorrelationId ?? enveloppe.MessageId,
                 enveloppe.MessageId,
@@ -86,7 +84,7 @@
         {
         }
 
-        public RepositoryData(IEnvelope enveloppe, TState state)
+        public RepositoryData(IEnvelope enveloppe, TState? state)
             : this(
                 enveloppe.CorrelationId ?? enveloppe.MessageId,
                 enveloppe.MessageId,
@@ -100,7 +98,7 @@
 
         public IEnumerable<object> Events { get; }
         public RepositoryMetadata Metadata { get; }
-        public TState State { get; }
+        public TState? State { get; init; }
         IRepositoryMetadata IRepositoryData<TState>.Metadata => Metadata;
     }
 }

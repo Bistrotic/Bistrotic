@@ -32,7 +32,7 @@ namespace Bistrotic.Infrastructure.InMemory.Repositories
             return Task.FromResult<IRepositoryStateMetadata>(metadata);
         }
 
-        public override Task<TState> GetState(string id)
+        public override Task<TState?> GetState(string id)
         {
             TState state = new();
             var stream = GetById(id);
@@ -40,7 +40,7 @@ namespace Bistrotic.Infrastructure.InMemory.Repositories
             {
                 state.Apply(stream.Read(i).events);
             }
-            return Task.FromResult(state);
+            return Task.FromResult<TState?>(state);
         }
 
         public override Task<IRepositoryStream> GetStream(string id)

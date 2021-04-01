@@ -11,7 +11,7 @@ namespace Bistrotic.Application.Repositories
 
         public abstract Task<IRepositoryStateMetadata> GetMetadata(string id);
 
-        public abstract Task<TState> GetState(string id);
+        public abstract Task<TState?> GetState(string id);
 
         public abstract Task<IRepositoryStream> GetStream(string id);
 

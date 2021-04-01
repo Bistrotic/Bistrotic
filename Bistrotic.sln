@@ -218,11 +218,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Infrastructure.In
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EventStores", "EventStores", "{F8463412-6A01-4D71-8BB0-54228F42AF02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.EventStores.Client", "src\Modules\Client\Bistrotic.EventStores.Client\Bistrotic.EventStores.Client.csproj", "{44C38F03-F873-408A-B37E-41C4DFE85086}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.EventStores.Client", "src\Modules\Client\Bistrotic.EventStores.Client\Bistrotic.EventStores.Client.csproj", "{44C38F03-F873-408A-B37E-41C4DFE85086}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.EventStores.Server", "src\Modules\Server\Bistrotic.EventStores.Server\Bistrotic.EventStores.Server.csproj", "{BCFD1B9B-6827-4039-AE08-FEBBA6EB1043}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.EventStores.Server", "src\Modules\Server\Bistrotic.EventStores.Server\Bistrotic.EventStores.Server.csproj", "{BCFD1B9B-6827-4039-AE08-FEBBA6EB1043}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Bistrotic.EventStores.Shared", "src\Modules\Shared\Bistrotic.EventStores.Shared\Bistrotic.EventStores.Shared.shproj", "{127F4851-823F-4E30-8870-0B66557198C6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Emails", "Emails", "{728D7196-5993-4DA9-B924-1F172E506DE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Emails.Server.Tests", "test\Modules\Emails\Bistrotic.Emails.Server.Tests\Bistrotic.Emails.Server.Tests.csproj", "{1AC5B11A-ED8A-4A7D-BE8A-3BBF0B74A183}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -485,6 +489,10 @@ Global
 		{BCFD1B9B-6827-4039-AE08-FEBBA6EB1043}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCFD1B9B-6827-4039-AE08-FEBBA6EB1043}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCFD1B9B-6827-4039-AE08-FEBBA6EB1043}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AC5B11A-ED8A-4A7D-BE8A-3BBF0B74A183}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AC5B11A-ED8A-4A7D-BE8A-3BBF0B74A183}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AC5B11A-ED8A-4A7D-BE8A-3BBF0B74A183}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AC5B11A-ED8A-4A7D-BE8A-3BBF0B74A183}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -573,6 +581,8 @@ Global
 		{44C38F03-F873-408A-B37E-41C4DFE85086} = {F8463412-6A01-4D71-8BB0-54228F42AF02}
 		{BCFD1B9B-6827-4039-AE08-FEBBA6EB1043} = {F8463412-6A01-4D71-8BB0-54228F42AF02}
 		{127F4851-823F-4E30-8870-0B66557198C6} = {F8463412-6A01-4D71-8BB0-54228F42AF02}
+		{728D7196-5993-4DA9-B924-1F172E506DE5} = {7FC87AE8-D1DA-4306-81B0-29C270E7E104}
+		{1AC5B11A-ED8A-4A7D-BE8A-3BBF0B74A183} = {728D7196-5993-4DA9-B924-1F172E506DE5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA165E9D-6B6A-49BD-9879-44123F389ACD}

@@ -18,7 +18,7 @@ namespace Bistrotic.Infrastructure.InMemory.Tests
         }
 
         protected override IRepository CreateNewRepository()
-                    => new InMemoryRepository<DummyState>();
+                    => new InMemoryRepository<IDummyState, DummyState>();
 
         [Fact]
         protected override Task Save_stream_throws_not_supported()

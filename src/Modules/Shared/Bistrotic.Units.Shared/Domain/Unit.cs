@@ -24,14 +24,14 @@
 
         public UnitState State { get; }
 
-        public static IEnumerable<IEvent> AddNew(
+        public static IEnumerable<object> AddNew(
             UnitId unitId,
             string name,
             string? description,
             out Unit unit)
         {
             unit = new Unit(unitId, new UnitState() { Name = name, Description = description });
-            return new IEvent[] { new NewUnitAdded(unitId, name, description) };
+            return new object[] { new NewUnitAdded(unitId, name, description) };
         }
     }
 }

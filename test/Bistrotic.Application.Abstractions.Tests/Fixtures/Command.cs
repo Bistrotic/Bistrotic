@@ -1,11 +1,6 @@
 ﻿namespace Bistrotic.Application.Abstractions.Tests.Fixture
 {
-    using Bistrotic.Application.Commands;
     using Bistrotic.Domain.ValueTypes;
-
-    public class TestCommandNoId : CommandBase
-    {
-    }
 
     public sealed class TestId : BusinessId
     {
@@ -24,14 +19,17 @@
         public static implicit operator TestId(string value) => new TestId(value);
     }
 
-    public class TestIdCommand : Command<TestId>
+    public class TestIdCommand
     {
         public TestIdCommand()
         {
         }
 
-        public TestIdCommand(TestId id) : base(id)
+        public TestIdCommand(TestId testId)
         {
+            TestId = testId;
         }
+
+        public string TestId { get; }
     }
 }

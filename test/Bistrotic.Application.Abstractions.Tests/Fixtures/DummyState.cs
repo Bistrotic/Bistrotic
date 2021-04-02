@@ -4,7 +4,7 @@
 
     using Bistrotic.Application.Repositories;
 
-    public class DummyState : IEventDrivenState
+    public class DummyState : IEventDrivenState, IDummyState
     {
         public bool Disabled { get; set; }
         public bool Value1 { get; set; }

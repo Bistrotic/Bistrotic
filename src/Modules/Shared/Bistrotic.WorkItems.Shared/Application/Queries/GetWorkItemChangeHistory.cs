@@ -1,18 +1,14 @@
 ﻿namespace Bistrotic.WorkItems.Application.Queries
 {
-    using System.Collections.Generic;
-
-    using Bistrotic.WorkItems.Application.ModelViews;
     using Bistrotic.WorkItems.Domain;
 
-    public class GetWorkItemChangeHistory : WorkItemQuery<IEnumerable<WorkItemChange>>
+    public class GetWorkItemChangeHistory
     {
-        public GetWorkItemChangeHistory()
+        public GetWorkItemChangeHistory(WorkItemId workItemId)
         {
+            WorkItemId = workItemId;
         }
 
-        public GetWorkItemChangeHistory(WorkItemId id) : base(id)
-        {
-        }
+        public string WorkItemId { get; }
     }
 }

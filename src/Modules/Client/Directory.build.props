@@ -9,6 +9,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.BlazorClient\Bistrotic.Infrastructure.BlazorClient.csproj" />
+		<ProjectReference Include="..\..\..\Core\Domain\Bistrotic.Domain.Contracts\Bistrotic.Domain.Contracts.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.CodeGeneration.BlazorClient\Bistrotic.Infrastructure.CodeGeneration.BlazorClient.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />

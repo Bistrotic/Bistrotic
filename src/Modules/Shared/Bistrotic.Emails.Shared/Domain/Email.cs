@@ -12,9 +12,9 @@
     internal class Email
     {
         private readonly string _id;
-        private EmailState _state;
+        private readonly IEmailState _state;
 
-        public Email(string id, EmailState state)
+        public Email(string id, IEmailState state)
         {
             _state = state ?? throw new EmailStateNotInitializedException("Email Id: " + _id);
             _id = id;

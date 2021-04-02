@@ -1,6 +1,6 @@
 ﻿namespace Bistrotic.DataIntegrations.Application.Commands
 {
-    using Bistrotic.Application.Commands;
+    using Bistrotic.Domain.Contracts.Commands;
     using Bistrotic.DataIntegrations.Domain.ValueTypes;
 
     [Command]

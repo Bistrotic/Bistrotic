@@ -100,19 +100,23 @@
         }
     }
 
-    public abstract class TestCommand<TId> : Command<TId>
+    public abstract class TestCommand<TId>
         where TId : BusinessId, new()
     {
-        protected TestCommand() : base()
+        protected TestCommand()
         {
+            Id = new TId();
         }
 
-        protected TestCommand(TId id) : base(id)
+        protected TestCommand(TId id)
         {
+            Id = id;
         }
+
+        public string Id { get; }
     }
 
-    public abstract class TestCommand : CommandBase
+    public abstract class TestCommand
     {
     }
 

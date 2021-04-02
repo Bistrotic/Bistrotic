@@ -20,6 +20,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\Core\Application\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj" />
+		<ProjectReference Include="..\..\src\Core\Domain\Bistrotic.Domain.Contracts\Bistrotic.Domain.Contracts.csproj" />
 		<ProjectReference Include="..\..\src\Core\Infrastructure\Bistrotic.Infrastructure.CodeGeneration.BlazorClient\Bistrotic.Infrastructure.CodeGeneration.BlazorClient.csproj" />
 		<ProjectReference Include="..\..\src\Core\Infrastructure\Bistrotic.Infrastructure.BlazorClient\Bistrotic.Infrastructure.BlazorClient.csproj" />
 	</ItemGroup>

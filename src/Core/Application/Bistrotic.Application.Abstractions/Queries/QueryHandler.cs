@@ -6,7 +6,7 @@ using Bistrotic.Application.Messages;
 namespace Bistrotic.Application.Queries
 {
     public abstract class QueryHandler<TQuery, TResult> : IQueryHandler<TQuery, TResult>
-        where TQuery : class, IQuery<TResult>
+        where TQuery : class
     {
         public bool CanHandle(Type queryType)
         {

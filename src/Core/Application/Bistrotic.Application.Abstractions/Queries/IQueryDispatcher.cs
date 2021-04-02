@@ -9,6 +9,6 @@
         Task<object?> Dispatch(IEnvelope envelope);
 
         Task<TResult> Dispatch<TQuery, TResult>(Envelope<TQuery> envelope)
-            where TQuery : class, IQuery<TResult>;
+            where TQuery : class;
     }
 }

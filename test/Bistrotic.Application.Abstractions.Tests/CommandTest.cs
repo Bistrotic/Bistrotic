@@ -8,15 +8,6 @@ namespace Bistrotic.Application.Abstractions.Tests
 
     public class CommandTest
     {
-        [Fact]
-        public void Command_default_constructor()
-        {
-            var message = new TestCommandNoId();
-            message.MessageId.Should().NotBeNullOrWhiteSpace();
-            message.MessageId.Should().HaveLength(22);
-            message.Id?.Should().BeNull();
-        }
-
         [Theory]
         [InlineData("L")]
         [InlineData("M@fd1523çççç\\\\èé")]
@@ -26,9 +17,7 @@ namespace Bistrotic.Application.Abstractions.Tests
         public void CommandId_string_constructor(string value)
         {
             var message = new TestIdCommand(new TestId(value));
-            message.MessageId.Should().NotBeNullOrWhiteSpace();
-            message.MessageId.Should().HaveLength(22);
-            message.Id.Should().Be(value.Trim());
+            message.TestId.Should().Be(value.Trim());
         }
     }
 }

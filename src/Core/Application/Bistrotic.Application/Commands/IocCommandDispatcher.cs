@@ -31,12 +31,6 @@
 
         public async Task Dispatch(IEnvelope envelope)
         {
-            Type? genericCommandType = Array.Find(envelope.Message.GetType().GetInterfaces(), p => p.IsGenericType && p.GetGenericTypeDefinition() == typeof(ICommand));
-            if (genericCommandType == null)
-            {
-                throw new InvalidCommandTypeException(envelope.Message.GetType(), $"Does not implement type {typeof(ICommand).Name}");
-            }
-
             Type handlerType = MakeCommandHandlerInterface(envelope.Message.GetType());
             object? service = _serviceProvider.GetService(handlerType);
             if (service == null)

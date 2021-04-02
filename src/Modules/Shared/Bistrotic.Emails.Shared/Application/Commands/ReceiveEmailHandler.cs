@@ -10,9 +10,9 @@ namespace Bistrotic.Emails.Application.Commands
     [CommandHandler(Command = typeof(ReceiveEmail))]
     internal class ReceiveEmailHandler
     {
-        private readonly IRepository<EmailState> _repository;
+        private readonly IRepository<IEmailState> _repository;
 
-        public ReceiveEmailHandler(IRepository<EmailState> repository)
+        public ReceiveEmailHandler(IRepository<IEmailState> repository)
         {
             _repository = repository;
         }
@@ -24,7 +24,7 @@ namespace Bistrotic.Emails.Application.Commands
             var email = new Email(id, state);
             var command = envelope.Message;
             await _repository.Save(id,
-                new RepositoryData<EmailState>(
+                new RepositoryData<IEmailState>(
                     envelope,
                     state,
                     await email.Receive(

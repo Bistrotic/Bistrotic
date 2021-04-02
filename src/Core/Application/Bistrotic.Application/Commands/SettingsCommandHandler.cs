@@ -8,8 +8,8 @@
 
     public abstract class SettingsCommandHandler<TCommand, TSettings>
         : CommandHandler<TCommand>
-        where TCommand : CommandBase
         where TSettings : class
+        where TCommand : class
     {
         private readonly IOptions<TSettings> _options;
 

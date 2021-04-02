@@ -3,14 +3,15 @@
     using Bistrotic.Roles.Application.Commands;
     using Bistrotic.Roles.Domain.ValueTypes;
 
-    public sealed class RenameRole :
-        RoleIdCommand
+    public sealed class RenameRole
     {
-        public RenameRole(RoleId unitId, string newName) : base(unitId)
+        public RenameRole(RoleId unitId, string newName)
         {
+            UnitId = unitId;
             NewName = newName;
         }
 
+        public RoleId UnitId { get; }
         public string NewName { get; }
     }
 }

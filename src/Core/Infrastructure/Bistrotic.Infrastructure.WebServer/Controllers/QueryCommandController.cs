@@ -4,7 +4,6 @@
     using System.Threading.Tasks;
     using System.Web;
 
-    using Bistrotic.Application.Commands;
     using Bistrotic.Application.Exceptions;
     using Bistrotic.Application.Messages;
     using Bistrotic.Application.Queries;
@@ -73,13 +72,13 @@
         {
             if (string.IsNullOrWhiteSpace(User?.Identity?.Name))
                 return Unauthorized("User name is not defined");
-            ICommand command = (ICommand)_messageFactory.GetMessage(commandName, HttpUtility.HtmlDecode(jsonValue));
+            var command = _messageFactory.GetMessage(commandName, HttpUtility.HtmlDecode(jsonValue));
             var commandType = command.GetType();
             _logger.LogDebug($"User '{User.Identity.Name}' told to execute command : {commandType.Name}");
             try
             {
                 return Ok(await _queryDispatcher
-                    .Dispatch(new Envelope<ICommand>(
+                    .Dispatch(new Envelope<object>(
                         command,
                         new MessageId(),
                         User.Identity.Name,

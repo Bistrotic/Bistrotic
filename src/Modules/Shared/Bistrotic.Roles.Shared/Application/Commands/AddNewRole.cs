@@ -2,15 +2,17 @@
 {
     using Bistrotic.Roles.Domain.ValueTypes;
 
-    public sealed class AddNewRole : RoleIdCommand
+    public sealed class AddNewRole
     {
-        public AddNewRole(RoleId unitId, string name, string? description) : base(unitId)
+        public AddNewRole(RoleId unitId, string name, string? description)
         {
             Name = name;
             Description = description;
+            UnitId = unitId;
         }
 
         public string? Description { get; }
         public string Name { get; }
+        public string UnitId { get; }
     }
 }

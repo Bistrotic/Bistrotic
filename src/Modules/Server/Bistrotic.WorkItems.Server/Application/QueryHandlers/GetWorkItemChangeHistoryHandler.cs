@@ -39,7 +39,7 @@
             server.Connect();
 
             var wiCollection = new WorkItemCollection(server);
-            int id = Convert.ToInt32(envelope.Message.Id, CultureInfo.InvariantCulture);
+            int id = Convert.ToInt32(envelope.Message.WorkItemId, CultureInfo.InvariantCulture);
             return (await wiCollection.GetWorkItemHistory(id))
                 .Select(p => new WorkItemChange
                 {

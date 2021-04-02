@@ -6,7 +6,7 @@ using Bistrotic.Emails.Domain.ValueTypes;
 
 namespace Bistrotic.Emails.Domain
 {
-    internal class EmailState
+    internal class EmailState : IEmailState
     {
         public List<Attachment> Attachments { get; set; } = new();
 

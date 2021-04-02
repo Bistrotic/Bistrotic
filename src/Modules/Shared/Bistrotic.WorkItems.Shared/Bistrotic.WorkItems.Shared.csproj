@@ -10,4 +10,9 @@
 		<Folder Include="Domain\Entities\" />
 		<Folder Include="Infrastructure\" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\Core\Application\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj" />
+	  <ProjectReference Include="..\..\..\Core\Domain\Bistrotic.Domain.Abstractions\Bistrotic.Domain.Abstractions.csproj" />
+	</ItemGroup>
 </Project>

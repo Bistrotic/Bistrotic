@@ -13,7 +13,6 @@
     using Bistrotic.Application.Client.Exceptions;
     using Bistrotic.Application.Commands;
     using Bistrotic.Application.Queries;
-    using Bistrotic.Domain.ValueTypes;
     using Bistrotic.Infrastructure.Helpers;
 
     using Microsoft.AspNetCore.Components;
@@ -61,12 +60,12 @@
             }
         }
 
-        public async Task Tell<TCommand>(string? messageId, TCommand command) where TCommand : ICommand
+        public async Task Tell<TCommand>(string? messageId, TCommand command)
         {
             var commandType = typeof(TCommand);
             try
             {
-                await HttpClient.PostAsJsonAsync($"api/tell/{commandType.Name.ToLowerInvariant()}/?MessageId={messageId}", command.Json());
+                await HttpClient.PostAsJsonAsync($"api/tell/{commandType.Name.ToLowerInvariant()}/?MessageId={messageId}", command?.Json());
             }
             catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
             {

@@ -5,6 +5,7 @@
     using System.Linq;
 
     using Bistrotic.Application.Commands;
+    using Bistrotic.Domain.Contracts.Commands;
     using Bistrotic.Emails.Domain.ValueTypes;
 
     [Command]
@@ -21,7 +22,7 @@
             string sender,
             IEnumerable<EmailAddress> toRecipients,
             IEnumerable<EmailAddress> copyToRecipients,
-            IEnumerable<Attachment> attachements
+            IEnumerable<Attachment> attachments
             )
         {
             Recipient = recipient;
@@ -31,7 +32,7 @@
             EmailId = emailId;
             ToRecipients = new List<string>(toRecipients.Select(p => p.Value));
             CopyToRecipients = new List<string>(copyToRecipients.Select(p => p.Value));
-            Attachments = new List<Attachment>(attachements);
+            Attachments = new List<Attachment>(attachments);
         }
         public string Subject { get; init; } = string.Empty;
         public string Body { get; init; } = string.Empty;

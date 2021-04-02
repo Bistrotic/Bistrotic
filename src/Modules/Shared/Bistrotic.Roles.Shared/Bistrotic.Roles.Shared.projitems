@@ -12,7 +12,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Application\Commands\AddNewRole.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Application\Commands\ChangeRoleDescription.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Application\Commands\RenameRole.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Application\Commands\RoleIdCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Application\ModelViews\RoleDetailedInformations.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Application\ModelViews\RoleSummaryInformations.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Application\Queries\GetAllRoleIds.cs" />

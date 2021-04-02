@@ -28,7 +28,7 @@ namespace Bistrotic.Module.Units.Domain.Tests
             var newUnitAdded = (NewUnitAdded)@event;
             newUnitAdded.Name.Should().Be(name);
             newUnitAdded.Description.Should().Be(description);
-            newUnitAdded.Id.Should().Be(new UnitId(id));
+            newUnitAdded.UnitId.Should().Be(new UnitId(id));
         }
     }
 }

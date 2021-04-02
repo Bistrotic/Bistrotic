@@ -14,7 +14,7 @@
         public static IMessage CreateMessageFromJson(this Type messageType, string json)
             => (JsonSerializer.Deserialize(json, messageType) as IMessage) ?? throw new InvalidMessageException(messageType, json);
 
-        public static string Json(this IMessage message)
+        public static string Json(this object message)
             => JsonSerializer.Serialize(message, message.GetType());
     }
 }

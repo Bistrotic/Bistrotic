@@ -1,6 +1,7 @@
 ﻿namespace Bistrotic.Users.Application.Domain.Commands
 {
     using Bistrotic.Application.Commands;
+    using Bistrotic.Domain.Contracts.Commands;
     using Bistrotic.Users.Domain.ValueTypes;
 
     [Command]

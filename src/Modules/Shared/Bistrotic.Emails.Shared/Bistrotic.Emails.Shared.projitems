@@ -20,6 +20,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Domain\EmailState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Domain\Exceptions\DuplicateEmailException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Domain\Exceptions\EmailStateNotInitializedException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\IEmailState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Domain\ValueTypes\Attachment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Domain\ValueTypes\EmailAddress.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Domain\ValueTypes\EmailId.cs" />

@@ -23,7 +23,7 @@
         }
 
         public Task<TResult> Dispatch<TQuery, TResult>(Envelope<TQuery> envelope)
-            where TQuery : class, IQuery<TResult>
+            where TQuery : class
         {
             if (!_handlers.TryGetValue(envelope.Message.GetType(), out Func<IQueryHandler>? handlerFunc))
             {

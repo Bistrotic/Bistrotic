@@ -7,14 +7,14 @@ using Bistrotic.Application.Repositories;
 
 namespace Bistrotic.Infrastructure.InMemory.Repositories
 {
-    public class InMemoryRepository<TState> : RepositoryBase<TState>
-        where TState : new()
+    public class InMemoryRepository<TIState, TState> : RepositoryBase<TIState>
+        where TState : TIState, new()
     {
-        private readonly Dictionary<string, (TState, IRepositoryStateMetadata)> _data = new();
+        private readonly Dictionary<string, (TIState, IRepositoryStateMetadata)> _data = new();
 
-        public override async Task<TState> CreateNew(string id)
+        public override async Task<TIState> CreateNew(string id)
         {
-            if (await Exists(id))
+            if (await Exists(id).ConfigureAwait(false))
             {
                 throw new DuplicateRepositoryStateException(this, id);
             }
@@ -29,16 +29,16 @@ namespace Bistrotic.Infrastructure.InMemory.Repositories
             return Task.FromResult(metadata);
         }
 
-        public override Task<TState> GetState(string id)
+        public override Task<TIState> GetState(string id)
         {
-            (TState state, _) = GetById(id);
+            (TIState state, _) = GetById(id);
             return Task.FromResult(state);
         }
 
         public override Task<IRepositoryStream> GetStream(string id)
             => Task.FromException<IRepositoryStream>(new NotSupportedException($"The '{GetType().Name}' repository does not support streams."));
 
-        public override Task Save(string id, IRepositoryData<TState> stateData)
+        public override Task Save(string id, IRepositoryData<TIState> stateData)
         {
             if (stateData.State == null)
             {
@@ -66,11 +66,11 @@ namespace Bistrotic.Infrastructure.InMemory.Repositories
             return Task.CompletedTask;
         }
 
-        private (TState state, IRepositoryStateMetadata metadata) GetById(string id)
+        private (TIState state, IRepositoryStateMetadata metadata) GetById(string id)
         {
-            if (!_data.TryGetValue(id, out (TState, IRepositoryStateMetadata) data))
+            if (!_data.TryGetValue(id, out (TIState, IRepositoryStateMetadata) data))
             {
-                throw new KeyNotFoundException($"The storage object (Type='{typeof(TState)}';Id='{id}') not found.");
+                throw new KeyNotFoundException($"The storage object (Type='{typeof(TIState)}';Id='{id}') not found.");
             }
             return data;
         }

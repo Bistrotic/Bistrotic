@@ -1,21 +1,20 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-
-using Bistrotic.Emails.Domain.Events;
-using Bistrotic.Emails.Domain.ValueTypes;
-
-namespace Bistrotic.Emails.Domain
+﻿namespace Bistrotic.Emails.Domain.States
 {
-    internal class EmailState : IEmailState
+    using System.Collections.Generic;
+
+    using Bistrotic.Emails.Contracts.Events;
+    using Bistrotic.Emails.Contracts.ValueTypes;
+
+    public class EmailState : IEmailState
     {
         public List<Attachment> Attachments { get; set; } = new();
 
-        public string Subject { get; set; } = string.Empty;
         public string Body { get; set; } = string.Empty;
-        public string Sender { get; set; } = string.Empty;
-        public List<string> ToRecipients { get; set; } = new();
         public List<string> CopyToRecipients { get; set; } = new();
         public string Recipient { get; set; } = string.Empty;
+        public string Sender { get; set; } = string.Empty;
+        public string Subject { get; set; } = string.Empty;
+        public List<string> ToRecipients { get; set; } = new();
 
         public void Apply(EmailReceived @event)
         {

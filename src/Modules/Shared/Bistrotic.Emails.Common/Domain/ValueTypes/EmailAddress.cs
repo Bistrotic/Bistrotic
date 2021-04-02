@@ -9,7 +9,7 @@
     [DebuggerDisplay("{Value}")]
     [TypeConverter(typeof(StringValueConverter<EmailAddress>))]
     [JsonConverter(typeof(StringValueJsonConverter<EmailAddress>))]
-    internal sealed class EmailAddress : StringValue
+    public sealed class EmailAddress : StringValue
     {
         public EmailAddress()
         {

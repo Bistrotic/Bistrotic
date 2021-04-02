@@ -5,13 +5,14 @@ namespace Bistrotic.Emails.Server.Tests
     using System.Threading.Tasks;
 
     using Bistrotic.Emails.Domain;
-    using Bistrotic.Emails.Domain.Events;
+    using Bistrotic.Emails.Contracts.Events;
     using Bistrotic.Emails.Domain.Exceptions;
-    using Bistrotic.Emails.Domain.ValueTypes;
+    using Bistrotic.Emails.Contracts.ValueTypes;
 
     using FluentAssertions;
 
     using Xunit;
+    using Bistrotic.Emails.Domain.States;
 
     public class EmailTests
     {
@@ -32,9 +33,9 @@ namespace Bistrotic.Emails.Server.Tests
         {
             var attachments = new Attachment[]
             {
-                    new ("File1", "ABCD==" ),
-                    new ("File2", "FFEE==" ),
-                    new ("File3", "123456789==")
+                    new (){ Name = "File1", Content = "ABCD==" },
+                    new (){Name ="File2", Content ="FFEE==" },
+                    new (){ Name = "File3", Content = "123456789==" }
             };
             var emailState = new EmailState();
             var email = new Email("123456", emailState);

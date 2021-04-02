@@ -2,14 +2,14 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
-    using Bistrotic.Emails.Domain.Events;
+    using Bistrotic.Emails.Contracts.Events;
+    using Bistrotic.Emails.Contracts.ValueTypes;
     using Bistrotic.Emails.Domain.Exceptions;
-    using Bistrotic.Emails.Domain.ValueTypes;
+    using Bistrotic.Emails.Domain.States;
 
-    internal class Email
+    public class Email
     {
         private readonly string _id;
         private readonly IEmailState _state;
@@ -32,16 +32,17 @@
         {
             List<object> events = new()
             {
-                new EmailReceived(
-                    recipient: recipient,
-                    emailId: _id,
-                    subject: subject,
-                    body: body,
-                    sender: sender,
-                    toRecipients: toRecipients.Select(p => new EmailAddress(p)),
-                    copyToRecipients: copyToRecipients.Select(p => new EmailAddress(p)),
-                    attachements: attachments
-            )
+                new EmailReceived
+                {
+                    Recipient = recipient,
+                    EmailId = _id,
+                    Subject = subject,
+                    Body = body,
+                    Sender = sender,
+                    ToRecipients = toRecipients,
+                    CopyToRecipients = copyToRecipients,
+                    Attachments = attachments
+                }
             };
             return Apply(events);
         }

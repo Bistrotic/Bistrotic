@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<RootNamespace>Bistrotic.Emails</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Core\Application\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj" />
+		<ProjectReference Include="..\..\..\Core\Domain\Bistrotic.Domain.Abstractions\Bistrotic.Domain.Abstractions.csproj" />
+		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.MicrosoftGraph\Bistrotic.Infrastructure.MicrosoftGraph.csproj" />
+		<ProjectReference Include="..\Bistrotic.Emails.Contracts\Bistrotic.Emails.Contracts.csproj" />
+		<ProjectReference Include="..\Bistrotic.Emails.Projections\Bistrotic.Emails.Projections.csproj" />
+	</ItemGroup>
+</Project>

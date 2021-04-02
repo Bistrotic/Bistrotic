@@ -1,14 +1,14 @@
-﻿using System;
-using System.Linq;
-
-using Bistrotic.Emails.Application.Commands;
-using Bistrotic.Infrastructure.MicrosoftGraph;
-
-using Microsoft.Graph;
-
-namespace Bistrotic.Emails.Application.Mappers
+﻿namespace Bistrotic.Emails.Application.Mappers
 {
-    internal static class GraphMessageMapper
+    using System;
+    using System.Linq;
+
+    using Bistrotic.Emails.Application.Commands;
+    using Bistrotic.Infrastructure.MicrosoftGraph;
+
+    using Microsoft.Graph;
+
+    public static class GraphMessageMapper
     {
         public static ReceiveEmail MapToReceiveEmail(this Message message)
         {
@@ -20,7 +20,11 @@ namespace Bistrotic.Emails.Application.Mappers
                 Sender = message.Sender.EmailAddress.Address ?? string.Empty,
                 ToRecipients = message.ToRecipients?.Select(p => p.EmailAddress.Address)?.ToArray() ?? Array.Empty<string>(),
                 CopyToRecipients = message.CcRecipients?.Select(p => p.EmailAddress.Address)?.ToArray() ?? Array.Empty<string>(),
-                Attachments = attachments.Select(p => new Domain.ValueTypes.Attachment(p.Name, p.ContentBytes)),
+                Attachments = attachments.Select(p => new Bistrotic.Emails.Contracts.ValueTypes.Attachment
+                {
+                    Name = p.Name,
+                    Content = Convert.ToBase64String(p.ContentBytes)
+                }),
             };
         }
     }

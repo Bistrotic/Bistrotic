@@ -1,10 +1,10 @@
-﻿using System;
-using System.Runtime.Serialization;
-
-namespace Bistrotic.Emails.Domain.Exceptions
+﻿namespace Bistrotic.Emails.Domain.Exceptions
 {
+    using System;
+    using System.Runtime.Serialization;
+
     [Serializable]
-    internal class DuplicateEmailException : Exception
+    public class DuplicateEmailException : Exception
     {
         public DuplicateEmailException()
         {

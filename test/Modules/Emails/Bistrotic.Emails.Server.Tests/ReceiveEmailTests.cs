@@ -1,7 +1,7 @@
 namespace Bistrotic.Emails.Server.Tests
 {
     using Bistrotic.Emails.Application.Commands;
-    using Bistrotic.Emails.Domain.ValueTypes;
+    using Bistrotic.Emails.Contracts.ValueTypes;
 
     using FluentAssertions;
 
@@ -14,9 +14,9 @@ namespace Bistrotic.Emails.Server.Tests
         {
             var attachments = new Attachment[]
             {
-                    new ("File1", "ABCD==" ),
-                    new ("File2", "FFEE==" ),
-                    new ("File3", "123456789==")
+                new (){Name = "File1", Content = "ABCD==" },
+                new (){Name = "File2", Content = "FFEE==" },
+                new (){Name = "File3", Content = "123456789==" }
             };
             ReceiveEmail command = new()
             {

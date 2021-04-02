@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-
-using Bistrotic.Emails.Domain.Events;
-using Bistrotic.Emails.Domain.ValueTypes;
-
-namespace Bistrotic.Emails.Domain
+﻿namespace Bistrotic.Emails.Domain.States
 {
-    internal interface IEmailState
+    using System.Collections.Generic;
+
+    using Bistrotic.Emails.Contracts.Events;
+    using Bistrotic.Emails.Contracts.ValueTypes;
+
+    public interface IEmailState
     {
         List<Attachment> Attachments { get; set; }
         string Body { get; set; }

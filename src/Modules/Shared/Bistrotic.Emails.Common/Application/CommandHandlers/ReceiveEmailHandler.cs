@@ -1,14 +1,16 @@
-﻿using System.Threading.Tasks;
-
-using Bistrotic.Application.Commands;
-using Bistrotic.Application.Messages;
-using Bistrotic.Application.Repositories;
-using Bistrotic.Emails.Domain;
-
-namespace Bistrotic.Emails.Application.Commands
+﻿namespace Bistrotic.Emails.Application.CommandHandlers
 {
+    using System.Threading.Tasks;
+
+    using Bistrotic.Application.Commands;
+    using Bistrotic.Application.Messages;
+    using Bistrotic.Application.Repositories;
+    using Bistrotic.Emails.Application.Commands;
+    using Bistrotic.Emails.Domain;
+    using Bistrotic.Emails.Domain.States;
+
     [CommandHandler(Command = typeof(ReceiveEmail))]
-    internal class ReceiveEmailHandler
+    public class ReceiveEmailHandler
     {
         private readonly IRepository<IEmailState> _repository;
 

@@ -6,8 +6,10 @@ namespace Bistrotic.Emails.Server.Tests
 
     using Bistrotic.Application.Messages;
     using Bistrotic.Application.Repositories;
+    using Bistrotic.Emails.Application.CommandHandlers;
     using Bistrotic.Emails.Application.Commands;
-    using Bistrotic.Emails.Domain;
+    using Bistrotic.Emails.Contracts.ValueTypes;
+    using Bistrotic.Emails.Domain.States;
     using Bistrotic.Emails.Domain.ValueTypes;
 
     using Moq;
@@ -54,21 +56,21 @@ namespace Bistrotic.Emails.Server.Tests
         {
             var attachments = new Attachment[]
             {
-                    new ("File1", "ABCD==" ),
-                    new ("File2", "FFEE==" ),
-                    new ("File3", "123456789==")
+                new (){Name = "File1", Content = "ABCD==" },
+                new (){Name = "File2", Content = "FFEE==" },
+                new (){Name = "File3", Content = "123456789==" }
             };
             return new ReceiveEmail
-            (
-                emailId: "Email123",
-                sender: "toto@titi.net",
-                attachments: attachments,
-                body: "Hello world!",
-                copyToRecipients: new EmailAddress[] { "mail1@tot.com", "mail2@titi.com" },
-                recipient: "reci@dada.com",
-                subject: "I am testing",
-                toRecipients: new EmailAddress[] { "ggg@hello.com", "ggghh@nan.info", "reci@dada.com" }
-            );
+            {
+                EmailId = "Email123",
+                Sender = "toto@titi.net",
+                Attachments = attachments,
+                Body = "Hello world!",
+                CopyToRecipients = new[] { "mail1@tot.com", "mail2@titi.com" },
+                Recipient = "reci@dada.com",
+                Subject = "I am testing",
+                ToRecipients = new[] { "ggg@hello.com", "ggghh@nan.info", "reci@dada.com" }
+            };
         }
     }
 }

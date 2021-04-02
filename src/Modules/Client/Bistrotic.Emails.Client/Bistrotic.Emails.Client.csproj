@@ -4,8 +4,10 @@
 		<RootNamespace>Bistrotic.Emails</RootNamespace>
 		<ModuleName>Emails</ModuleName>
 	</PropertyGroup>
-	<Import Project="..\..\Shared\Bistrotic.Emails.Shared\Bistrotic.Emails.Shared.projitems" Label="Shared" />
 	<ItemGroup>
-	  <ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.MicrosoftGraph\Bistrotic.Infrastructure.MicrosoftGraph.csproj" />
+		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.MicrosoftGraph\Bistrotic.Infrastructure.MicrosoftGraph.csproj" />
+		<ProjectReference Include="..\..\Shared\Bistrotic.Emails.Common\Bistrotic.Emails.Common.csproj" />
+		<ProjectReference Include="..\..\Shared\Bistrotic.Emails.Contracts\Bistrotic.Emails.Contracts.csproj" />
+		<ProjectReference Include="..\..\Shared\Bistrotic.Emails.Projections\Bistrotic.Emails.Projections.csproj" />
 	</ItemGroup>
 </Project>

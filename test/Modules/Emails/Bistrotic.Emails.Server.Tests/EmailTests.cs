@@ -4,15 +4,15 @@ namespace Bistrotic.Emails.Server.Tests
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Bistrotic.Emails.Domain;
     using Bistrotic.Emails.Contracts.Events;
-    using Bistrotic.Emails.Domain.Exceptions;
     using Bistrotic.Emails.Contracts.ValueTypes;
+    using Bistrotic.Emails.Domain;
+    using Bistrotic.Emails.Domain.Exceptions;
+    using Bistrotic.Emails.Domain.States;
 
     using FluentAssertions;
 
     using Xunit;
-    using Bistrotic.Emails.Domain.States;
 
     public class EmailTests
     {
@@ -25,7 +25,7 @@ namespace Bistrotic.Emails.Server.Tests
 #pragma warning disable CA1806 // Do not ignore method results
             Action newEmail = () => new Email(id, new EmailState());
 #pragma warning restore CA1806 // Do not ignore method results
-            newEmail.Should().Throw<EmailStateNotInitializedException>();
+            newEmail.Should().Throw<UndefinedEmailIdException>();
         }
 
         [Fact]
@@ -41,14 +41,14 @@ namespace Bistrotic.Emails.Server.Tests
             var email = new Email("123456", emailState);
             var events = await email.Receive
             (
-                sender: "toto@titi.net",
-                attachments: attachments,
-                body: "Hello world!",
-                copyToRecipients: new[] { "mail1@tot.com", "mail2@titi.com" },
                 recipient: "reci@dada.com",
                 subject: "I am testing",
+                body: "Hello world!",
+                sender: "toto@titi.net",
                 toRecipients: new[] { "ggg@hello.com", "ggghh@nan.info", "reci@dada.com" }
-            );
+,
+                copyToRecipients: new[] { "mail1@tot.com", "mail2@titi.com" },
+                attachments: attachments);
             events.Should().HaveCount(1);
             var @event = events.FirstOrDefault();
             @event.Should().BeOfType<EmailReceived>();
@@ -56,7 +56,7 @@ namespace Bistrotic.Emails.Server.Tests
             received.Attachments.Should().BeEquivalentTo(attachments);
             received.Body.Should().Be("Hello world!");
             received.CopyToRecipients.Should().BeEquivalentTo(new[] { "mail1@tot.com", "mail2@titi.com" });
-            received.EmailId.Should().Be("kllhh544");
+            received.EmailId.Should().Be("123456");
             received.Recipient.Should().Be("reci@dada.com");
             received.Subject.Should().Be("I am testing");
             received.ToRecipients.Should().BeEquivalentTo(new[] { "ggg@hello.com", "ggghh@nan.info", "reci@dada.com" });

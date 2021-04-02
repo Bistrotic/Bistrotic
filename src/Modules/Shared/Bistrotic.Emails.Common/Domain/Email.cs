@@ -17,6 +17,10 @@
         public Email(string id, IEmailState state)
         {
             _state = state ?? throw new EmailStateNotInitializedException("Email Id: " + _id);
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                throw new UndefinedEmailIdException();
+            }
             _id = id;
         }
 

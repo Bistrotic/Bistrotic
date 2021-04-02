@@ -2,13 +2,24 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using Bistrotic.Application.Exceptions;
 using Bistrotic.Application.Repositories;
 
 namespace Bistrotic.Infrastructure.InMemory.Repositories
 {
     public class InMemoryRepository<TState> : RepositoryBase<TState>
+        where TState : new()
     {
         private readonly Dictionary<string, (TState, IRepositoryStateMetadata)> _data = new();
+
+        public override async Task<TState> CreateNew(string id)
+        {
+            if (await Exists(id))
+            {
+                throw new DuplicateRepositoryStateException(this, id);
+            }
+            return new TState();
+        }
 
         public override Task<bool> Exists(string id) => Task.FromResult(_data.ContainsKey(id));
 
@@ -18,10 +29,10 @@ namespace Bistrotic.Infrastructure.InMemory.Repositories
             return Task.FromResult(metadata);
         }
 
-        public override Task<TState?> GetState(string id)
+        public override Task<TState> GetState(string id)
         {
             (TState state, _) = GetById(id);
-            return Task.FromResult<TState?>(state);
+            return Task.FromResult(state);
         }
 
         public override Task<IRepositoryStream> GetStream(string id)

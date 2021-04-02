@@ -20,21 +20,21 @@ namespace Bistrotic.Emails.Application.Commands
         public async Task Handle(Envelope<ReceiveEmail> envelope)
         {
             var id = envelope.Message.EmailId;
-            var state = await _repository.GetState(id);
+            var state = await _repository.CreateNew(id);
             var email = new Email(id, state);
             var command = envelope.Message;
             await _repository.Save(id,
                 new RepositoryData<EmailState>(
                     envelope,
                     state,
-                    await email.ReceiveEmail(
+                    await email.Receive(
                             recipient: command.Recipient,
                             subject: command.Subject,
                             body: command.Body,
                             sender: command.Sender,
                             toRecipients: command.ToRecipients,
                             copyToRecipients: command.CopyToRecipients,
-                            attachements: command.Attachments
+                            attachments: command.Attachments
                 )));
         }
     }

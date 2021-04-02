@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using Bistrotic.Application.Exceptions;
 using Bistrotic.Application.Repositories;
 
 namespace Bistrotic.Infrastructure.EfCore.Repositories
@@ -11,6 +12,15 @@ namespace Bistrotic.Infrastructure.EfCore.Repositories
         where TState : IEventDrivenState, new()
     {
         private readonly Dictionary<string, IRepositoryStream> _data = new();
+
+        public override async Task<TState> CreateNew(string id)
+        {
+            if (await Exists(id).ConfigureAwait(false))
+            {
+                throw new DuplicateRepositoryStateException(this, id);
+            }
+            return new TState();
+        }
 
         public override Task<bool> Exists(string id) => Task.FromResult(_data.ContainsKey(id));
 
@@ -32,7 +42,7 @@ namespace Bistrotic.Infrastructure.EfCore.Repositories
             return Task.FromResult<IRepositoryStateMetadata>(metadata);
         }
 
-        public override Task<TState?> GetState(string id)
+        public override Task<TState> GetState(string id)
         {
             TState state = new();
             var stream = GetById(id);
@@ -40,7 +50,7 @@ namespace Bistrotic.Infrastructure.EfCore.Repositories
             {
                 state.Apply(stream.Read(i).events);
             }
-            return Task.FromResult<TState?>(state);
+            return Task.FromResult(state);
         }
 
         public override Task<IRepositoryStream> GetStream(string id)

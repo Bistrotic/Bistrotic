@@ -11,32 +11,25 @@
 
     internal class Email
     {
-        private EmailState? _state;
         private readonly string _id;
+        private EmailState _state;
 
-        public Email(string id, EmailState? state)
+        public Email(string id, EmailState state)
         {
-            _state = state;
+            _state = state ?? throw new EmailStateNotInitializedException("Email Id: " + _id);
             _id = id;
         }
 
-        internal EmailState State => _state ?? throw new EmailStateNotInitializedException("Email Id: " + _id);
-
-        public Task<IEnumerable<object>> ReceiveEmail(
+        public Task<IEnumerable<object>> Receive(
             string recipient,
             string subject,
             string body,
             string sender,
             IEnumerable<string> toRecipients,
             IEnumerable<string> copyToRecipients,
-            IEnumerable<Attachment> attachements
+            IEnumerable<Attachment> attachments
             )
         {
-            if (_state == null)
-            {
-                throw new DuplicateEmailException($"Duplicate email : Id = '{_id}'");
-            }
-            _state = new EmailState();
             List<object> events = new()
             {
                 new EmailReceived(
@@ -47,7 +40,7 @@
                     sender: sender,
                     toRecipients: toRecipients.Select(p => new EmailAddress(p)),
                     copyToRecipients: copyToRecipients.Select(p => new EmailAddress(p)),
-                    attachements: attachements
+                    attachements: attachments
             )
             };
             return Apply(events);
@@ -60,11 +53,11 @@
                 switch (e)
                 {
                     case EmailReceived @event:
-                        State.Apply(@event);
+                        _state.Apply(@event);
                         break;
 
                     default:
-                        throw new NotSupportedException($"The event type '{e.GetType().Name}' is not supported by '{State.GetType().Name}'.");
+                        throw new NotSupportedException($"The event type '{e.GetType().Name}' is not supported by '{_state.GetType().Name}'.");
                 }
             }
             return Task.FromResult(events);

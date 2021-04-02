@@ -2,7 +2,7 @@
 	<Import Project="../build/Dependencies.props" />
 	<PropertyGroup>
 		<LangVersion>latest</LangVersion>
-		<Nullable>enable</Nullable>
+		<Nullable>disable</Nullable>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<Deterministic>true</Deterministic>
 		<IsPackable>false</IsPackable>

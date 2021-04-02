@@ -2,7 +2,7 @@
 {
     public class DummySettings
     {
-        public string? InitOnlyString { get; init; }
-        public string? String { get; init; }
+        public string InitOnlyString { get; init; }
+        public string String { get; init; }
     }
 }

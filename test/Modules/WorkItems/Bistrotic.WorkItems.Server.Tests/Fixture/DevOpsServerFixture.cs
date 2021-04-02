@@ -10,8 +10,8 @@
     public class DevOpsServerFixture : IDisposable
     {
         private bool _disposedValue;
-        private DevOpsServer? _server;
-        private WorkItemModuleSettings? _settings;
+        private DevOpsServer _server;
+        private WorkItemModuleSettings _settings;
 
         public WorkItemModuleSettings Settings => _settings ??= GetSettings();
 

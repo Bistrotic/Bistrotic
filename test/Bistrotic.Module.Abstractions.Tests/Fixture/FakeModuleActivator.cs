@@ -17,32 +17,32 @@
             _configuration = configuration;
         }
 
-        public Task<IModule?> FindModule(ModuleDefinition definition)
+        public Task<IModule> FindModule(ModuleDefinition definition)
         {
             switch (definition.TypeName)
             {
                 case "Fake1":
-                    return Task.FromResult<IModule?>(new Fake1ServiceModule(_configuration));
+                    return Task.FromResult<IModule>(new Fake1ServiceModule(_configuration));
 
                 case "Fake2":
-                    return Task.FromResult<IModule?>(new Fake2ServiceModule(_configuration));
+                    return Task.FromResult<IModule>(new Fake2ServiceModule(_configuration));
 
                 case "Fake3":
-                    return Task.FromResult<IModule?>(new Fake3ServiceModule(_configuration));
+                    return Task.FromResult<IModule>(new Fake3ServiceModule(_configuration));
 
                 case "Fake4":
-                    return Task.FromResult<IModule?>(new Fake4ServiceModule(_configuration));
+                    return Task.FromResult<IModule>(new Fake4ServiceModule(_configuration));
 
                 case "Fake5":
-                    return Task.FromResult<IModule?>(new Fake5ServiceModule(_configuration));
+                    return Task.FromResult<IModule>(new Fake5ServiceModule(_configuration));
 
                 case "Fake6":
-                    return Task.FromResult<IModule?>(new Fake6ServiceModule(_configuration));
+                    return Task.FromResult<IModule>(new Fake6ServiceModule(_configuration));
 
                 default:
                     break;
             }
-            return Task.FromResult<IModule?>(null);
+            return Task.FromResult<IModule>(null);
         }
 
         public async Task<IModule> GetRequiredModule(ModuleDefinition definition)
@@ -60,23 +60,23 @@
             _configuration = configuration;
         }
 
-        public Task<IModule?> FindModule(ModuleDefinition definition)
+        public Task<IModule> FindModule(ModuleDefinition definition)
         {
             switch (definition.TypeName)
             {
                 case "Fake1":
-                    return Task.FromResult<IModule?>(new Fake1ServiceModule(_configuration));
+                    return Task.FromResult<IModule>(new Fake1ServiceModule(_configuration));
 
                 case "Fake2":
-                    return Task.FromResult<IModule?>(new Fake2ServiceModule(_configuration));
+                    return Task.FromResult<IModule>(new Fake2ServiceModule(_configuration));
 
                 case "Fake3":
-                    return Task.FromResult<IModule?>(new Fake3ServiceModule(_configuration));
+                    return Task.FromResult<IModule>(new Fake3ServiceModule(_configuration));
 
                 default:
                     break;
             }
-            return Task.FromResult<IModule?>(null);
+            return Task.FromResult<IModule>(null);
         }
 
         public async Task<IModule> GetRequiredModule(ModuleDefinition definition)
@@ -94,23 +94,23 @@
             _configuration = configuration;
         }
 
-        public Task<IModule?> FindModule(ModuleDefinition definition)
+        public Task<IModule> FindModule(ModuleDefinition definition)
         {
             switch (definition.TypeName)
             {
                 case "Fake4":
-                    return Task.FromResult<IModule?>(new Fake4ServiceModule(_configuration));
+                    return Task.FromResult<IModule>(new Fake4ServiceModule(_configuration));
 
                 case "Fake5":
-                    return Task.FromResult<IModule?>(new Fake5ServiceModule(_configuration));
+                    return Task.FromResult<IModule>(new Fake5ServiceModule(_configuration));
 
                 case "Fake6":
-                    return Task.FromResult<IModule?>(new Fake6ServiceModule(_configuration));
+                    return Task.FromResult<IModule>(new Fake6ServiceModule(_configuration));
 
                 default:
                     break;
             }
-            return Task.FromResult<IModule?>(null);
+            return Task.FromResult<IModule>(null);
         }
 
         public async Task<IModule> GetRequiredModule(ModuleDefinition definition)

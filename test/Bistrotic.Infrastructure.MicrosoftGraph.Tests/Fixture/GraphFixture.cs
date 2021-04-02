@@ -9,9 +9,9 @@
 
     public class GraphFixture
     {
-        private GraphAuthenticationService? _authenticationService;
-        private GraphService? _graphService;
-        private MicrosoftGraphAuthenticationSettings? _settings;
+        private GraphAuthenticationService _authenticationService;
+        private GraphService _graphService;
+        private MicrosoftGraphAuthenticationSettings _settings;
         public MicrosoftGraphAuthenticationSettings Settings => _settings ??= GetSettings();
 
         internal GraphAuthenticationService AuthenticationService => _authenticationService ??= InitializeService();

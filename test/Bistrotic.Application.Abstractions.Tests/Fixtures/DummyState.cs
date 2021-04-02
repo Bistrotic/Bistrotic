@@ -9,7 +9,7 @@
         public bool Disabled { get; set; }
         public bool Value1 { get; set; }
         public int Value2 { get; set; }
-        public string? Value3 { get; set; }
+        public string Value3 { get; set; }
 
         public void Apply(IEnumerable<object> events)
         {

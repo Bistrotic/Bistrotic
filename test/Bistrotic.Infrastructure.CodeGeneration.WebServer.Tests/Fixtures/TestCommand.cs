@@ -6,7 +6,7 @@
     [Command]
     public class TestCommand : ICommand
     {
-        public string? Id { get; }
+        public string Id { get; }
         public string MessageId { get; } = new MessageId();
     }
 }

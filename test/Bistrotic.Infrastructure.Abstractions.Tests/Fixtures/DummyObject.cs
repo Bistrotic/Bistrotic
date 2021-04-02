@@ -10,17 +10,16 @@ namespace Bistrotic.Infrastructure.Abstractions.Tests.Fixtures
 {
     using System;
 
-
     public class DummyObject
     {
-        private string? _aPrivateFieldNullString = null;
+        private string _aPrivateFieldNullString = null;
         private string _aPrivateFieldString = "a private field string value 1";
         public DateTime ADateTime { get; set; } = DateTime.MinValue;
         public DateTimeOffset ADateTimeOffset { get; set; } = DateTimeOffset.MinValue;
         public decimal ADecimal { get; set; }
         public double ADouble { get; set; }
         public int AnInteger { get; set; }
-        public string? ANullString { get; set; } = null;
+        public string ANullString { get; set; } = null;
         public string AString { get; set; } = string.Empty;
         public string[] AStringArray { get; set; } = Array.Empty<string>();
         private string APrivateString { get; } = "a private string value.";

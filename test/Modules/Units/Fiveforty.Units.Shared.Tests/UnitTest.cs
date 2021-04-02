@@ -15,7 +15,7 @@ namespace Bistrotic.Module.Units.Domain.Tests
         [Theory]
         [InlineData("L", "Liter", "Metric unit of capacity equal to one cubic decimeter.")]
         [InlineData("M", "Meter", null)]
-        public void AddNewUnit(string id, string name, string? description)
+        public void AddNewUnit(string id, string name, string description)
         {
             var events = Unit.AddNew(new UnitId(id), name, description, out Unit unit);
             unit.Should().NotBeNull();

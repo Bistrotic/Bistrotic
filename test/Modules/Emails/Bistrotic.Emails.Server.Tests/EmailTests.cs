@@ -4,10 +4,9 @@ namespace Bistrotic.Emails.Server.Tests
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Bistrotic.Emails.Application.Commands;
     using Bistrotic.Emails.Domain;
-    using Bistrotic.Emails.Domain.Exceptions;
     using Bistrotic.Emails.Domain.Events;
+    using Bistrotic.Emails.Domain.Exceptions;
     using Bistrotic.Emails.Domain.ValueTypes;
 
     using FluentAssertions;
@@ -16,6 +15,18 @@ namespace Bistrotic.Emails.Server.Tests
 
     public class EmailTests
     {
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("                          ")]
+        public void Id_undefined_should_throw_invalid_email_id_exception(string id)
+        {
+#pragma warning disable CA1806 // Do not ignore method results
+            Action newEmail = () => new Email(id, new EmailState());
+#pragma warning restore CA1806 // Do not ignore method results
+            newEmail.Should().Throw<EmailStateNotInitializedException>();
+        }
+
         [Fact]
         public async Task ReceiveEmail_publishes_MailReceived_event()
         {
@@ -38,8 +49,9 @@ namespace Bistrotic.Emails.Server.Tests
                 toRecipients: new[] { "ggg@hello.com", "ggghh@nan.info", "reci@dada.com" }
             );
             events.Should().HaveCount(1);
-            events.FirstOrDefault().Should().BeOfType<EmailReceived>();
-            var received = events.OfType<EmailReceived>().First();
+            var @event = events.FirstOrDefault();
+            @event.Should().BeOfType<EmailReceived>();
+            EmailReceived received = (EmailReceived)@event;
             received.Attachments.Should().BeEquivalentTo(attachments);
             received.Body.Should().Be("Hello world!");
             received.CopyToRecipients.Should().BeEquivalentTo(new[] { "mail1@tot.com", "mail2@titi.com" });
@@ -52,9 +64,9 @@ namespace Bistrotic.Emails.Server.Tests
         [Fact]
         public void State_null_should_throw_not_initialized_exception()
         {
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+#pragma warning disable CA1806 // Do not ignore method results
             Action newEmail = () => new Email("id123", null);
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+#pragma warning restore CA1806 // Do not ignore method results
             newEmail.Should().Throw<EmailStateNotInitializedException>();
         }
     }

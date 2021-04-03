@@ -7,7 +7,7 @@
 
     using Microsoft.Graph;
 
-    public class GraphService
+    public class GraphService : IGraphService
     {
         private GraphServiceClient? _graphClient;
 
@@ -99,7 +99,31 @@
             return ids;
         }
 
+        public async Task SetEmailAsRead(string recipient, string emailId)
+        {
+            var msg = await GraphClient
+                   .Users[recipient]
+                   .Messages[emailId]
+                   .Request()
+                   .Select(nameof(Message.IsRead))
+                   .GetAsync()
+                   .ConfigureAwait(false);
+
+            if (msg.IsRead != true)
+            {
+                await GraphClient
+                    .Users[recipient]
+                    .Messages[emailId]
+                    .Request()
+                    .UpdateAsync(new Message()
+                    {
+                        IsRead = true
+                    })
+                    .ConfigureAwait(false);
+            }
+        }
+
         private GraphServiceClient InitializeGraphClient()
-            => new(AuthenticationService.AuthenticationProvider);
+                    => new(AuthenticationService.AuthenticationProvider);
     }
 }

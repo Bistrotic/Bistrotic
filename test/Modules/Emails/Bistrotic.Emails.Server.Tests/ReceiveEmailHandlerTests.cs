@@ -8,9 +8,9 @@ namespace Bistrotic.Emails.Server.Tests
     using Bistrotic.Application.Repositories;
     using Bistrotic.Emails.Application.CommandHandlers;
     using Bistrotic.Emails.Application.Commands;
+    using Bistrotic.Emails.Contracts.Events;
     using Bistrotic.Emails.Contracts.ValueTypes;
     using Bistrotic.Emails.Domain.States;
-    using Bistrotic.Emails.Domain.ValueTypes;
 
     using Moq;
 
@@ -41,15 +41,28 @@ namespace Bistrotic.Emails.Server.Tests
                 DateTimeOffset.Now
                 ));
             mockRepository.Verify(x => x.CreateNew(receive.EmailId), Times.Once);
-            mockRepository.Verify(x => x.Save(receive.EmailId, It.Is<IRepositoryData<IEmailState>>(p =>
-                        p.State.Attachments.Count == receive.Attachments.Count() &&
-                        p.State.Body == receive.Body &&
-                        p.State.Recipient == receive.Recipient &&
-                        p.State.Subject == receive.Subject &&
-                        p.Events.Count() == 1 &&
-                        p.Events.First().GetType() == typeof(ReceiveEmail)
-
-                )), Times.Once);
+            mockRepository.Verify(x => x.Save(
+                receive.EmailId,
+                It.Is<IRepositoryData<IEmailState>>(p =>
+                    p.State.CopyToRecipients.Count == receive.CopyToRecipients.Count() &&
+                    p.State.ToRecipients.Count == receive.ToRecipients.Count() &&
+                    p.State.Attachments.Count == receive.Attachments.Count() &&
+                    p.State.Body == receive.Body &&
+                    p.State.Recipient == receive.Recipient &&
+                    p.State.Subject == receive.Subject &&
+                    p.State.Sender == receive.Sender &&
+                    p.Events.Count() == 1 &&
+                    p.Events.First().GetType() == typeof(EmailReceived) &&
+                    ((EmailReceived)p.Events.First()).EmailId == receive.EmailId &&
+                    ((EmailReceived)p.Events.First()).Body == receive.Body &&
+                    ((EmailReceived)p.Events.First()).Sender == receive.Sender &&
+                    ((EmailReceived)p.Events.First()).Recipient == receive.Recipient &&
+                    ((EmailReceived)p.Events.First()).Subject == receive.Subject &&
+                    ((EmailReceived)p.Events.First()).CopyToRecipients.Count() == receive.CopyToRecipients.Count() &&
+                    ((EmailReceived)p.Events.First()).ToRecipients.Count() == receive.ToRecipients.Count() &&
+                    ((EmailReceived)p.Events.First()).Attachments.Count() == receive.Attachments.Count()
+                )),
+                Times.Once);
         }
 
         private static ReceiveEmail CreateReceiveEmail()

@@ -7,8 +7,9 @@
 		<PackageReference Include="Microsoft.Identity.Client" Version="$(MicrosoftIdentityClientVersion)" />
 		<PackageReference Include="Microsoft.Graph" Version="$(MicrosoftGraphVersion)" />
 		<PackageReference Include="Microsoft.Graph.Auth" Version="$(MicrosoftGraphAuthVersion)" />
+		<PackageReference Include="Quartz.AspNetCore" Version="$(QuartzAspNetCoreVersion)" />
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Domain\Bistrotic.Domain.Abstractions\Bistrotic.Domain.Abstractions.csproj" />
+		<ProjectReference Include="..\..\Domain\Bistrotic.Domain.Abstractions\Bistrotic.Domain.Abstractions.csproj" />
 	</ItemGroup>
 </Project>

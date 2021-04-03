@@ -5,7 +5,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\src\Core\Application\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj" />
 		<ProjectReference Include="..\..\src\Core\Application\Bistrotic.Application\Bistrotic.Application.csproj" />
 	</ItemGroup>
 </Project>

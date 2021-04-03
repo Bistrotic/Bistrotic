@@ -9,6 +9,6 @@
     public sealed class GetEmailDetails
     {
         [ProtoMember(1)]
-        public string EmailId { get; set; }
+        public string EmailId { get; set; } = string.Empty;
     }
 }

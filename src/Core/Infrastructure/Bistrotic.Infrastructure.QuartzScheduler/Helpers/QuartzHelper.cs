@@ -13,6 +13,7 @@
                 // base quartz scheduler, job and trigger configuration handy when part of cluster
                 // or you want to otherwise identify multiple schedulers
                 q.SchedulerId = name;
+                q.SchedulerName = "Scheduler " + name;
 
                 // Scoped service support like EF Core DbContext
                 q.UseMicrosoftDependencyInjectionScopedJobFactory(p =>

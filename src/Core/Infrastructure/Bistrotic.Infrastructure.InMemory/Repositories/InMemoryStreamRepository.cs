@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 using Bistrotic.Application.Exceptions;
 using Bistrotic.Application.Repositories;
+using Bistrotic.Infrastructure.InMemory.Exceptions;
 
 namespace Bistrotic.Infrastructure.InMemory.Repositories
 {

@@ -6,15 +6,15 @@ namespace Bistrotic.Emails.Application.ModelViews
     public sealed class EmailSummaryInformations
     {
         [ProtoMember(1)]
-        public string EmailId { get; set; }
+        public string EmailId { get; set; } = string.Empty;
 
         [ProtoMember(2)]
-        public string Recipient { get; set; }
+        public string Recipient { get; set; } = string.Empty;
 
         [ProtoMember(3)]
-        public string Sender { get; set; }
+        public string Sender { get; set; } = string.Empty;
 
         [ProtoMember(4)]
-        public string Subject { get; set; }
+        public string Subject { get; set; } = string.Empty;
     }
 }

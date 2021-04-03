@@ -14,12 +14,14 @@
     using Bistrotic.GoogleIdentity;
     using Bistrotic.Infrastructure.Client;
     using Bistrotic.Infrastructure.Helpers;
+    using Bistrotic.Infrastructure.Ioc.Queries;
     using Bistrotic.Infrastructure.VisualComponents.Themes;
     using Bistrotic.Infrastructure.WebServer.Controllers;
     using Bistrotic.Infrastructure.WebServer.Exceptions;
     using Bistrotic.Infrastructure.WebServer.Modules;
     using Bistrotic.Infrastructure.WebServer.Settings;
     using Bistrotic.OpenIdDict;
+    using Bistrotic.QuartzScheduler;
     using Bistrotic.Roles;
     using Bistrotic.Units;
     using Bistrotic.Users;
@@ -168,13 +170,13 @@
         {
             return new Dictionary<Type, Func<IConfiguration, IWebHostEnvironment, IServerModule>>
             {
+                { typeof(QuartzSchedulerServerModule), (config, env) => new QuartzSchedulerServerModule(config, env) },
                 { typeof(DataIntegrationsServerModule), (config, env) => new DataIntegrationsServerModule(config, env) },
                 { typeof(EmailsServerModule), (config, env) => new EmailsServerModule(config, env) },
                 { typeof(EventStoresServerModule), (config, env) => new EventStoresServerModule(config, env) },
                 { typeof(GoogleIdentityServerModule), (config, env) => new GoogleIdentityServerModule(config, env) },
                 //modules.Add(typeof(MicrosoftIdentityServerModule), (config, env) => new MicrosoftIdentityServerModule(config, env));
                 { typeof(OpenIdDictServerModule), (config, env) => new OpenIdDictServerModule(config, env) },
-                //modules.Add(typeof(QuartzSchedulerServerModule), (config, env) => new QuartzSchedulerServerModule(config, env));
                 { typeof(RolesServerModule), (config, env) => new RolesServerModule(config, env) },
                 { typeof(UsersServerModule), (config, env) => new UsersServerModule(config, env) },
                 { typeof(UnitsServerModule), (config, env) => new UnitsServerModule(config, env) },

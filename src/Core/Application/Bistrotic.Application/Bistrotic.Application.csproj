@@ -3,15 +3,8 @@
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
 	</PropertyGroup>
-	<ItemGroup>
-		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="$(MediatRExtensionsMicrosoftDependencyInjectionVersion)" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="$(MicrosoftExtensionsDependencyInjectionVersion)" />
-		<PackageReference Include="Microsoft.Extensions.Options" Version="$(MicrosoftExtensionsOptionsVersion)" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="$(MicrosoftExtensionsLoggingAbstractionsVersion)" />
-	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Infrastructure\Bistrotic.Infrastructure.Abstractions\Bistrotic.Infrastructure.Abstractions.csproj" />
 		<ProjectReference Include="..\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj" />
 	</ItemGroup>
 </Project>

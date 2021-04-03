@@ -5,7 +5,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\..\src\Core\Infrastructure\Bistrotic.Infrastructure.InMemory\Bistrotic.Infrastructure.InMemory.csproj" />
 		<ProjectReference Include="..\..\..\..\src\Modules\Server\Bistrotic.Emails.Server\Bistrotic.Emails.Server.csproj" />
 		<ProjectReference Include="..\..\..\..\src\Modules\Shared\Bistrotic.Emails.Common\Bistrotic.Emails.Common.csproj" />
 	</ItemGroup>

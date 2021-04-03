@@ -226,13 +226,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Emails", "Emails", "{728D71
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Emails.Server.Tests", "test\Modules\Emails\Bistrotic.Emails.Server.Tests\Bistrotic.Emails.Server.Tests.csproj", "{1AC5B11A-ED8A-4A7D-BE8A-3BBF0B74A183}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Emails.Contracts", "src\Modules\Shared\Bistrotic.Emails.Contracts\Bistrotic.Emails.Contracts.csproj", "{1493CE58-F263-430C-9A01-9D7E71ED76D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Emails.Contracts", "src\Modules\Shared\Bistrotic.Emails.Contracts\Bistrotic.Emails.Contracts.csproj", "{1493CE58-F263-430C-9A01-9D7E71ED76D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Domain.Contracts", "src\Core\Domain\Bistrotic.Domain.Contracts\Bistrotic.Domain.Contracts.csproj", "{0B91983C-4E59-46FB-986A-D293F06AFB9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Domain.Contracts", "src\Core\Domain\Bistrotic.Domain.Contracts\Bistrotic.Domain.Contracts.csproj", "{0B91983C-4E59-46FB-986A-D293F06AFB9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Emails.Projections", "src\Modules\Shared\Bistrotic.Emails.Projections\Bistrotic.Emails.Projections.csproj", "{2AF0E484-B637-4523-8424-E0BBDDFBA0D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Emails.Projections", "src\Modules\Shared\Bistrotic.Emails.Projections\Bistrotic.Emails.Projections.csproj", "{2AF0E484-B637-4523-8424-E0BBDDFBA0D3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Emails.Common", "src\Modules\Shared\Bistrotic.Emails.Common\Bistrotic.Emails.Common.csproj", "{391DDAA5-EEEC-4FF9-9B71-0CE123E53E1F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Emails.Contracts.Tests", "test\Modules\Bistrotic.Emails.Contracts.Tests\Bistrotic.Emails.Contracts.Tests.csproj", "{3C449228-A426-4892-820D-7E1A607AB3C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Infrastructure.Ioc", "src\Core\Infrastructure\Bistrotic.Infrastructure.Ioc\Bistrotic.Infrastructure.Ioc.csproj", "{C7CAF2EF-90E1-4D43-BDEB-52906F83A252}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Infrastructure.MediatR", "src\Core\Infrastructure\Bistrotic.Infrastructure.MediatR\Bistrotic.Infrastructure.MediatR.csproj", "{15705791-F4C5-4822-A2EE-1F095C92D7CB}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -512,6 +518,18 @@ Global
 		{391DDAA5-EEEC-4FF9-9B71-0CE123E53E1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{391DDAA5-EEEC-4FF9-9B71-0CE123E53E1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{391DDAA5-EEEC-4FF9-9B71-0CE123E53E1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C449228-A426-4892-820D-7E1A607AB3C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C449228-A426-4892-820D-7E1A607AB3C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C449228-A426-4892-820D-7E1A607AB3C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C449228-A426-4892-820D-7E1A607AB3C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7CAF2EF-90E1-4D43-BDEB-52906F83A252}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7CAF2EF-90E1-4D43-BDEB-52906F83A252}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7CAF2EF-90E1-4D43-BDEB-52906F83A252}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7CAF2EF-90E1-4D43-BDEB-52906F83A252}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15705791-F4C5-4822-A2EE-1F095C92D7CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15705791-F4C5-4822-A2EE-1F095C92D7CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15705791-F4C5-4822-A2EE-1F095C92D7CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15705791-F4C5-4822-A2EE-1F095C92D7CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -605,6 +623,9 @@ Global
 		{0B91983C-4E59-46FB-986A-D293F06AFB9E} = {AA61F54B-167D-4249-975C-FA3CAA08399E}
 		{2AF0E484-B637-4523-8424-E0BBDDFBA0D3} = {20D902FB-E15F-4159-A65B-2DC5F409C870}
 		{391DDAA5-EEEC-4FF9-9B71-0CE123E53E1F} = {20D902FB-E15F-4159-A65B-2DC5F409C870}
+		{3C449228-A426-4892-820D-7E1A607AB3C0} = {728D7196-5993-4DA9-B924-1F172E506DE5}
+		{C7CAF2EF-90E1-4D43-BDEB-52906F83A252} = {17634B5D-1BCA-4A1D-BA37-4293453A5CEC}
+		{15705791-F4C5-4822-A2EE-1F095C92D7CB} = {17634B5D-1BCA-4A1D-BA37-4293453A5CEC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA165E9D-6B6A-49BD-9879-44123F389ACD}

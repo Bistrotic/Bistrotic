@@ -6,7 +6,7 @@
 
     [Command]
     [ProtoContract(SkipConstructor = true)]
-    public sealed class ReadMailbox
+    public sealed class ReceiveUnreadEmails
     {
         [ProtoMember(2)]
         public string Recipient { get; set; } = string.Empty;

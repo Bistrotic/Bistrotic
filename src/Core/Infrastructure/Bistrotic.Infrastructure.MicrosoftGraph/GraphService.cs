@@ -58,6 +58,18 @@
             return files;
         }
 
+        public async Task<IEnumerable<string>> GetIdFromInternetMessageId(string recipient, string emailId)
+            => (await GraphClient
+                .Users[recipient]
+                .Messages
+                .Request()
+                .Filter($"{nameof(Message.InternetMessageId)} eq '{emailId}'")
+                .Select(nameof(Message.Id))
+                .GetAsync()
+                .ConfigureAwait(false))
+                    .Select(p => p.Id)
+                    .ToList();
+
         public async Task<IEnumerable<string>> GetUserIds()
         {
             var users = await GraphClient
@@ -101,19 +113,11 @@
 
         public async Task SetEmailAsRead(string recipient, string emailId)
         {
-            var msg = await GraphClient
-                   .Users[recipient]
-                   .Messages[emailId]
-                   .Request()
-                   .Select(nameof(Message.IsRead))
-                   .GetAsync()
-                   .ConfigureAwait(false);
-
-            if (msg.IsRead != true)
+            foreach (var id in await GetIdFromInternetMessageId(recipient, emailId).ConfigureAwait(false))
             {
                 await GraphClient
                     .Users[recipient]
-                    .Messages[emailId]
+                    .Messages[id]
                     .Request()
                     .UpdateAsync(new Message()
                     {

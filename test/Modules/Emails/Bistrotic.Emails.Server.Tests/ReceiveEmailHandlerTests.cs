@@ -12,6 +12,8 @@ namespace Bistrotic.Emails.Server.Tests
     using Bistrotic.Emails.Contracts.ValueTypes;
     using Bistrotic.Emails.Domain.States;
 
+    using Microsoft.Extensions.Logging;
+
     using Moq;
 
     using Xunit;
@@ -21,6 +23,7 @@ namespace Bistrotic.Emails.Server.Tests
         [Fact]
         public async Task Handle_publishes_EmailReceived_event()
         {
+            var mockLogger = new Mock<ILogger<ReceiveEmailHandler>>();
             var receive = CreateReceiveEmail();
             var mockRepository = new Mock<IRepository<IEmailState>>();
             mockRepository
@@ -33,7 +36,7 @@ namespace Bistrotic.Emails.Server.Tests
                 ))
                 .Returns(Task.FromResult<IEmailState>(new EmailState()));
             var repository = mockRepository.Object;
-            var handler = new ReceiveEmailHandler(repository);
+            var handler = new ReceiveEmailHandler(repository, mockLogger.Object);
             await handler.Handle(new Envelope<ReceiveEmail>(
                 receive,
                 "msgid123",

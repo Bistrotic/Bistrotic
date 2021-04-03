@@ -15,6 +15,7 @@
             var attachments = GraphService.GetFileAttachments(message.Attachments);
             return new()
             {
+                EmailId = message.InternetMessageId,
                 Subject = message.Subject ?? string.Empty,
                 Body = message.Body.Content ?? string.Empty,
                 Sender = message.Sender.EmailAddress.Address ?? string.Empty,

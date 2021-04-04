@@ -6,6 +6,7 @@
 		<ModuleName>Emails</ModuleName>
 	</PropertyGroup>
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.EfCore\Bistrotic.Infrastructure.EfCore.csproj" />
 		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.MicrosoftGraph\Bistrotic.Infrastructure.MicrosoftGraph.csproj" />
 		<ProjectReference Include="..\..\Client\Bistrotic.Emails.Client\Bistrotic.Emails.Client.csproj" />
 		<ProjectReference Include="..\..\Shared\Bistrotic.Emails.Common\Bistrotic.Emails.Common.csproj" />

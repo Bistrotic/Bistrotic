@@ -2,6 +2,7 @@ namespace Bistrotic.Emails.Server.Tests
 {
     using System;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using Bistrotic.Application.Messages;
@@ -27,12 +28,13 @@ namespace Bistrotic.Emails.Server.Tests
             var receive = CreateReceiveEmail();
             var mockRepository = new Mock<IRepository<IEmailState>>();
             mockRepository
-                .Setup(x => x.CreateNew(It.IsAny<string>()))
+                .Setup(x => x.CreateNew(It.IsAny<string>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult<IEmailState>(new EmailState()));
             mockRepository
                 .Setup(x => x.Save(
                     It.IsAny<string>(),
-                    It.IsAny<IRepositoryData<IEmailState>>()
+                    It.IsAny<IRepositoryData<IEmailState>>(),
+                    It.IsAny<CancellationToken>()
                 ))
                 .Returns(Task.FromResult<IEmailState>(new EmailState()));
             var repository = mockRepository.Object;
@@ -43,7 +45,7 @@ namespace Bistrotic.Emails.Server.Tests
                 "test user",
                 DateTimeOffset.Now
                 ));
-            mockRepository.Verify(x => x.CreateNew(receive.EmailId), Times.Once);
+            mockRepository.Verify(x => x.CreateNew(receive.EmailId, It.IsAny<CancellationToken>()), Times.Once);
             mockRepository.Verify(x => x.Save(
                 receive.EmailId,
                 It.Is<IRepositoryData<IEmailState>>(p =>
@@ -64,7 +66,7 @@ namespace Bistrotic.Emails.Server.Tests
                     ((EmailReceived)p.Events.First()).CopyToRecipients.Count() == receive.CopyToRecipients.Count() &&
                     ((EmailReceived)p.Events.First()).ToRecipients.Count() == receive.ToRecipients.Count() &&
                     ((EmailReceived)p.Events.First()).Attachments.Count() == receive.Attachments.Count()
-                )),
+                ), It.IsAny<CancellationToken>()),
                 Times.Once);
         }
 

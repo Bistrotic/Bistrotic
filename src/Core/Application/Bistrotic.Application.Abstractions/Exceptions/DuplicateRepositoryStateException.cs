@@ -20,7 +20,7 @@
         }
 
         public DuplicateRepositoryStateException(object? repository, string? id, string? message = null, Exception? innerException = null)
-            : base($"Id='{id}'; Repository:'{repository?.GetType()?.FullName}'.{message}", innerException)
+            : base($"Duplicate state key. Id='{id}'; Repository:'{repository?.GetType()?.FullName}'.{message}", innerException)
         {
         }
 

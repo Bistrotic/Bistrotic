@@ -1,5 +1,6 @@
 ﻿namespace Bistrotic.Application.Commands
 {
+    using System.Threading;
     using System.Threading.Tasks;
 
     using Bistrotic.Application.Messages;
@@ -9,7 +10,7 @@
     /// </summary>
     public interface ICommandHandler
     {
-        Task Handle(IEnvelope envelope);
+        Task Handle(IEnvelope envelope, CancellationToken cancellationToken = default);
     }
 
     /// <summary>
@@ -19,6 +20,6 @@
     public interface ICommandHandler<TCommand> : ICommandHandler
         where TCommand : class
     {
-        Task Handle(Envelope<TCommand> envelope);
+        Task Handle(Envelope<TCommand> envelope, CancellationToken cancellationToken = default);
     }
 }

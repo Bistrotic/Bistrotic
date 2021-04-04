@@ -1,6 +1,7 @@
 ﻿namespace Bistrotic.Infrastructure.MediatR.Queries
 {
     using System;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using Bistrotic.Application.Commands;
@@ -22,12 +23,12 @@
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
-        public Task Send<TCommand>(Envelope<TCommand> envelope)
-            where TCommand : class => _mediator.Send(new MediatREnvelope<TCommand>(envelope));
+        public Task Send<TCommand>(Envelope<TCommand> envelope, CancellationToken cancellationToken = default)
+            where TCommand : class => _mediator.Send(new MediatREnvelope<TCommand>(envelope), cancellationToken);
 
-        Task ICommandBus.Send(IEnvelope envelope)
+        Task ICommandBus.Send(IEnvelope envelope, CancellationToken cancellationToken)
         {
-            return _mediator.Send(envelope);
+            return _mediator.Send(envelope, cancellationToken);
         }
     }
 }

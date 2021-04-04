@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.Immutable;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using Bistrotic.Application.Commands;
@@ -23,7 +24,7 @@
             _handlers = handlers?.ToImmutableDictionary() ?? throw new ArgumentNullException(nameof(handlers));
         }
 
-        public Task Send<TCommand>(Envelope<TCommand> envelope)
+        public Task Send<TCommand>(Envelope<TCommand> envelope, CancellationToken cancellationToken = default)
             where TCommand : class
         {
             if (!_handlers.TryGetValue(envelope.Message.GetType(), out Func<ICommandHandler>? handlerFunc))
@@ -31,18 +32,18 @@
                 return Task.FromException(new CommandHandlerNotFoundException(envelope.Message.GetType()));
             }
             ICommandHandler<TCommand>? handler = handlerFunc() as ICommandHandler<TCommand>;
-            return handler?.Handle(envelope)
+            return handler?.Handle(envelope, cancellationToken)
                 ?? Task.FromException(new InvalidCommandHandlerTypeException(handlerFunc().GetType(), typeof(ICommandHandler<TCommand>)));
         }
 
-        public Task Send(IEnvelope envelope)
+        public Task Send(IEnvelope envelope, CancellationToken cancellationToken = default)
         {
             if (!_handlers.TryGetValue(envelope.Message.GetType(), out Func<ICommandHandler>? handlerFunc))
             {
                 return Task.FromException<object?>(new CommandHandlerNotFoundException(envelope.Message.GetType()));
             }
             ICommandHandler? handler = handlerFunc();
-            return handler?.Handle(envelope)
+            return handler?.Handle(envelope, cancellationToken)
                 ?? Task.FromException<object?>(new InvalidCommandHandlerTypeException(handlerFunc().GetType(), typeof(ICommandHandler)));
         }
     }

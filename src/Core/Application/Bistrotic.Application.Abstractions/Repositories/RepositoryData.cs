@@ -1,4 +1,7 @@
-﻿namespace Bistrotic.Application.Repositories
+﻿#pragma warning disable CS8603 // Possible null reference return.
+#pragma warning disable CS8604 // Possible null reference argument.
+
+namespace Bistrotic.Application.Repositories
 {
     using System;
     using System.Collections.Generic;
@@ -13,10 +16,10 @@
             string causationId,
             string userName,
             DateTimeOffset userDateTime,
-            TState? state,
+            TState state,
             IEnumerable<object> events)
         {
-            Metadata = new()
+            Metadata = new RepositoryMetadata()
             {
                 CorrelationId = correlationId,
                 CausationId = causationId,
@@ -49,7 +52,7 @@
             string causationId,
             string userName,
             DateTimeOffset userDateTime,
-            TState? state)
+            TState state)
             : this(
                  correlationId,
                  causationId,
@@ -61,7 +64,7 @@
         {
         }
 
-        public RepositoryData(IEnvelope enveloppe, TState? state, IEnumerable<object> events)
+        public RepositoryData(IEnvelope enveloppe, TState state, IEnumerable<object> events)
             : this(
                 enveloppe.CorrelationId ?? enveloppe.MessageId,
                 enveloppe.MessageId,
@@ -84,7 +87,7 @@
         {
         }
 
-        public RepositoryData(IEnvelope enveloppe, TState? state)
+        public RepositoryData(IEnvelope enveloppe, TState state)
             : this(
                 enveloppe.CorrelationId ?? enveloppe.MessageId,
                 enveloppe.MessageId,
@@ -96,9 +99,16 @@
         {
         }
 
+        public RepositoryData(IRepositoryData state)
+        {
+            Events = state.Events;
+            Metadata = state.Metadata;
+            State = (TState)state.State;
+        }
+
         public IEnumerable<object> Events { get; }
-        public RepositoryMetadata Metadata { get; }
-        public TState? State { get; init; }
-        IRepositoryMetadata IRepositoryData<TState>.Metadata => Metadata;
+        public IRepositoryMetadata Metadata { get; }
+        public TState State { get; init; }
+        object IRepositoryData.State => State;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Bistrotic.Application.Exceptions;
@@ -14,18 +15,18 @@ namespace Bistrotic.Infrastructure.InMemory.Repositories
     {
         private readonly Dictionary<string, IRepositoryStream> _data = new();
 
-        public override async Task<TState> CreateNew(string id)
+        public override async Task<TState> CreateNew(string id, CancellationToken cancellationToken = default)
         {
-            if (await Exists(id))
+            if (await Exists(id, cancellationToken).ConfigureAwait(false))
             {
                 throw new DuplicateRepositoryStateException(this, id);
             }
             return new TState();
         }
 
-        public override Task<bool> Exists(string id) => Task.FromResult(_data.ContainsKey(id));
+        public override Task<bool> Exists(string id, CancellationToken cancellationToken = default) => Task.FromResult(_data.ContainsKey(id));
 
-        public override Task<IRepositoryStateMetadata> GetMetadata(string id)
+        public override Task<IRepositoryStateMetadata> GetMetadata(string id, CancellationToken cancellationToken = default)
         {
             var stream = GetById(id);
             var creator = stream.Read(1);
@@ -43,7 +44,7 @@ namespace Bistrotic.Infrastructure.InMemory.Repositories
             return Task.FromResult<IRepositoryStateMetadata>(metadata);
         }
 
-        public override Task<TState> GetState(string id)
+        public override Task<TState> GetState(string id, CancellationToken cancellationToken = default)
         {
             TState state = new();
             var stream = GetById(id);
@@ -54,10 +55,10 @@ namespace Bistrotic.Infrastructure.InMemory.Repositories
             return Task.FromResult(state);
         }
 
-        public override Task<IRepositoryStream> GetStream(string id)
+        public override Task<IRepositoryStream> GetStream(string id, CancellationToken cancellationToken = default)
             => Task.FromResult(GetById(id));
 
-        public override Task Save(string id, IRepositoryData<TState> stateData)
+        public override Task Save(string id, IRepositoryData<TState> stateData, CancellationToken cancellationToken = default)
         {
             if (!stateData.Events.Any())
             {

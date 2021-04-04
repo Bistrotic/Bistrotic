@@ -1,5 +1,6 @@
 ﻿namespace Bistrotic.DataIntegrations.Application.Commands
 {
+    using System.Threading;
     using System.Threading.Tasks;
 
     using Bistrotic.Application.Commands;
@@ -16,7 +17,7 @@
             _repository = repository;
         }
 
-        public override Task Handle(Envelope<SubmitDataIntegration> envelope)
+        public override Task Handle(Envelope<SubmitDataIntegration> envelope, CancellationToken cancellationToken = default)
         {
             var command = envelope.Message;
             var events = DataIntegration.SubmitDataIntegration(
@@ -29,7 +30,8 @@
                 );
             return _repository.Save(
                 command.DataIntegrationId,
-                new RepositoryData<DataIntegrationState>(envelope, integration, events)
+                new RepositoryData<DataIntegrationState>(envelope, integration, events),
+                cancellationToken
                 );
         }
     }

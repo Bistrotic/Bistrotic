@@ -27,7 +27,6 @@
             {
                 throw new EventStoreSettingsException(nameof(EventStoresSettings.ConnectionString), "The database connection string is not defined.");
             }
-            services.AddSqlServerEventStore(Settings.ConnectionString);
         }
     }
 }

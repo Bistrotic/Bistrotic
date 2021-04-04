@@ -1,6 +1,7 @@
 ﻿namespace Bistrotic.Infrastructure.Ioc.Commands
 {
     using System;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using Bistrotic.Application.Commands;
@@ -16,7 +17,7 @@
             _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
         }
 
-        public Task Send<TCommand>(Envelope<TCommand> envelope)
+        public Task Send<TCommand>(Envelope<TCommand> envelope, CancellationToken cancellationToken = default)
             where TCommand : class
         {
             Type handlerType = MakeCommandHandlerInterface(typeof(TCommand));
@@ -26,11 +27,11 @@
                 return Task.FromException(new CommandHandlerNotFoundException(envelope.Message.GetType()));
             }
             ICommandHandler<TCommand>? handler = service as ICommandHandler<TCommand>;
-            return handler?.Handle(envelope)
+            return handler?.Handle(envelope, cancellationToken)
                 ?? Task.FromException(new InvalidCommandHandlerTypeException(service.GetType(), typeof(ICommandHandler<TCommand>)));
         }
 
-        public async Task Send(IEnvelope envelope)
+        public async Task Send(IEnvelope envelope, CancellationToken cancellationToken = default)
         {
             Type handlerType = MakeCommandHandlerInterface(envelope.Message.GetType());
             object? service = _serviceProvider.GetService(handlerType);
@@ -43,7 +44,7 @@
             {
                 throw new InvalidCommandHandlerTypeException($"Handle method not found on handler '{service.GetType().FullName}'.");
             }
-            if (handleMethod.Invoke(service, new[] { envelope }) is Task resultTask)
+            if (handleMethod.Invoke(service, new object[] { envelope, cancellationToken }) is Task resultTask)
             {
                 await resultTask.ConfigureAwait(false);
             }

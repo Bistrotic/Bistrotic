@@ -1,6 +1,7 @@
 ﻿namespace Bistrotic.Application.Commands
 {
     using System;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using Bistrotic.Application.Messages;
@@ -13,9 +14,9 @@
             return CommandType == typeof(TCommand);
         }
 
-        public abstract Task Handle(Envelope<TCommand> envelope);
+        public abstract Task Handle(Envelope<TCommand> envelope, CancellationToken cancellationToken = default);
 
-        public Task Handle(IEnvelope envelope)
-           => Handle(new Envelope<TCommand>(envelope));
+        public Task Handle(IEnvelope envelope, CancellationToken cancellationToken = default)
+           => Handle(new Envelope<TCommand>(envelope), cancellationToken);
     }
 }

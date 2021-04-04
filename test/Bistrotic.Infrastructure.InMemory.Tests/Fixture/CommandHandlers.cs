@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using Bistrotic.Application.Commands;
@@ -125,7 +126,7 @@
     {
         public int CallCount { get; private set; }
 
-        public override Task Handle(Envelope<TCommand> envelope)
+        public override Task Handle(Envelope<TCommand> envelope, CancellationToken cancellationToken = default)
         {
             CallCount++;
             return Task.CompletedTask;

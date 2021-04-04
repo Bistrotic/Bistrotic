@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Bistrotic.Application.Exceptions;
@@ -12,33 +13,33 @@ namespace Bistrotic.Infrastructure.InMemory.Repositories
     {
         private readonly Dictionary<string, (TIState, IRepositoryStateMetadata)> _data = new();
 
-        public override async Task<TIState> CreateNew(string id)
+        public override async Task<TIState> CreateNew(string id, CancellationToken cancellationToken = default)
         {
-            if (await Exists(id).ConfigureAwait(false))
+            if (await Exists(id, cancellationToken).ConfigureAwait(false))
             {
                 throw new DuplicateRepositoryStateException(this, id);
             }
             return new TState();
         }
 
-        public override Task<bool> Exists(string id) => Task.FromResult(_data.ContainsKey(id));
+        public override Task<bool> Exists(string id, CancellationToken cancellationToken = default) => Task.FromResult(_data.ContainsKey(id));
 
-        public override Task<IRepositoryStateMetadata> GetMetadata(string id)
+        public override Task<IRepositoryStateMetadata> GetMetadata(string id, CancellationToken cancellationToken = default)
         {
             (_, IRepositoryStateMetadata metadata) = GetById(id);
             return Task.FromResult(metadata);
         }
 
-        public override Task<TIState> GetState(string id)
+        public override Task<TIState> GetState(string id, CancellationToken cancellationToken = default)
         {
             (TIState state, _) = GetById(id);
             return Task.FromResult(state);
         }
 
-        public override Task<IRepositoryStream> GetStream(string id)
+        public override Task<IRepositoryStream> GetStream(string id, CancellationToken cancellationToken = default)
             => Task.FromException<IRepositoryStream>(new NotSupportedException($"The '{GetType().Name}' repository does not support streams."));
 
-        public override Task Save(string id, IRepositoryData<TIState> stateData)
+        public override Task Save(string id, IRepositoryData<TIState> stateData, CancellationToken cancellationToken = default)
         {
             if (stateData.State == null)
             {

@@ -1,5 +1,7 @@
 ﻿namespace Bistrotic.Server
 {
+    using System;
+
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
@@ -19,6 +21,7 @@
                     builder.CaptureStartupErrors(true);
                     builder.UseSetting(WebHostDefaults.DetailedErrorsKey, "true");
                     builder.UseStartup<Startup>();
+                    builder.UseShutdownTimeout(TimeSpan.FromSeconds(60));
                 });
 
         public static void Main(string[] args)

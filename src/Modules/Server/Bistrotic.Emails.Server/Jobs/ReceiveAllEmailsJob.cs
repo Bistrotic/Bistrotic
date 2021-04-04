@@ -2,6 +2,7 @@
 
 using Bistrotic.Application.Commands;
 using Bistrotic.Emails.Application.Commands;
+using Bistrotic.Emails.Application.Settings;
 
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;

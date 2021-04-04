@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Bistrotic.Application.Commands;
 using Bistrotic.Application.Messages;
 using Bistrotic.Domain.ValueTypes;
+using Bistrotic.Emails.Application.Settings;
 using Bistrotic.Emails.Exceptions;
 
 using Microsoft.Extensions.Hosting;

@@ -3,6 +3,7 @@
 namespace Bistrotic.Application.Events
 {
     using System;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using Bistrotic.Application.Messages;
@@ -15,9 +16,9 @@ namespace Bistrotic.Application.Events
             return EventType == typeof(TEvent);
         }
 
-        public abstract Task Handle(Envelope<TEvent> envelope);
+        public abstract Task Handle(Envelope<TEvent> envelope, CancellationToken cancellationToken = default);
 
-        public Task Handle(IEnvelope envelope)
-           => Handle(new Envelope<TEvent>(envelope));
+        public Task Handle(IEnvelope envelope, CancellationToken cancellationToken = default)
+           => Handle(new Envelope<TEvent>(envelope), cancellationToken);
     }
 }

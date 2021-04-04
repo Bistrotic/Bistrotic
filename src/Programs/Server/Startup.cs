@@ -6,6 +6,8 @@
     using System.Net.Http;
     using System.Threading.Tasks;
 
+    using Bistrotic.Application.Commands;
+    using Bistrotic.Application.Events;
     using Bistrotic.Application.Queries;
     using Bistrotic.Client;
     using Bistrotic.DataIntegrations;
@@ -14,6 +16,8 @@
     using Bistrotic.GoogleIdentity;
     using Bistrotic.Infrastructure.Client;
     using Bistrotic.Infrastructure.Helpers;
+    using Bistrotic.Infrastructure.Ioc.Commands;
+    using Bistrotic.Infrastructure.Ioc.Events;
     using Bistrotic.Infrastructure.Ioc.Queries;
     using Bistrotic.Infrastructure.VisualComponents.Themes;
     using Bistrotic.Infrastructure.WebServer.Controllers;
@@ -159,7 +163,8 @@
                 services.AddSingleton(module);
                 mvc.AddApplicationPart(modulePair.Key.Assembly);
             }
-
+            services.AddTransient<ICommandBus, IocCommandBus>();
+            services.AddTransient<IEventBus, IocEventBus>();
             services.AddSingleton<IMenuService, MenuService>();
             services.AddSingleton<IIconRenderer, LineAwesomeIconRenderer>();
             services.AddSingleton<IComponentRenderer, FastComponentRenderer>();

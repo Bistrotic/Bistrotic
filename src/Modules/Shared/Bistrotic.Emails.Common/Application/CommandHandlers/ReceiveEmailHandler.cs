@@ -1,5 +1,6 @@
 ﻿namespace Bistrotic.Emails.Application.CommandHandlers
 {
+    using System.Threading;
     using System.Threading.Tasks;
 
     using Bistrotic.Application.Commands;
@@ -13,7 +14,7 @@
     using Microsoft.Extensions.Logging;
 
     [CommandHandler(Command = typeof(ReceiveEmail))]
-    public class ReceiveEmailHandler
+    public class ReceiveEmailHandler : ICommandHandler<ReceiveEmail>
     {
         private readonly ILogger<ReceiveEmailHandler> _logger;
         private readonly IRepository<IEmailState> _repository;
@@ -24,12 +25,15 @@
             _logger = logger;
         }
 
-        public async Task Handle(Envelope<ReceiveEmail> envelope)
+        public Task Handle(IEnvelope envelope, CancellationToken cancellationToken = default)
+           => Handle(new Envelope<ReceiveEmail>(envelope), cancellationToken);
+
+        public async Task Handle(Envelope<ReceiveEmail> envelope, CancellationToken cancellationToken = default)
         {
             var id = envelope.Message.EmailId;
             try
             {
-                var state = await _repository.CreateNew(id);
+                var state = await _repository.CreateNew(id, cancellationToken);
                 var email = new Email(id, state);
                 var command = envelope.Message;
                 await _repository.Save(id,
@@ -44,7 +48,7 @@
                                 toRecipients: command.ToRecipients,
                                 copyToRecipients: command.CopyToRecipients,
                                 attachments: command.Attachments
-                    )));
+                    )), cancellationToken);
             }
             catch (DuplicateRepositoryStateException)
             {

@@ -2,6 +2,7 @@
 
 namespace Bistrotic.Application.Events
 {
+    using System.Threading;
     using System.Threading.Tasks;
 
     using Bistrotic.Application.Messages;
@@ -9,11 +10,11 @@ namespace Bistrotic.Application.Events
     public interface IEventHandler<TEvent> : IEventHandler
         where TEvent : class
     {
-        Task Handle(Envelope<TEvent> envelope);
+        Task Handle(Envelope<TEvent> envelope, CancellationToken cancellationToken = default);
     }
 
     public interface IEventHandler
     {
-        Task Handle(IEnvelope envelope);
+        Task Handle(IEnvelope envelope, CancellationToken cancellationToken = default);
     }
 }

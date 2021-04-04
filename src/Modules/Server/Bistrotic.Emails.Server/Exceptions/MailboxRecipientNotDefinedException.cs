@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
+using Bistrotic.Emails.Application.Settings;
+
 namespace Bistrotic.Emails.Exceptions
 {
     [Serializable]

@@ -3,11 +3,12 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using Microsoft.Graph;
 
-    public class GraphService : IGraphService
+    public class GraphService
     {
         private GraphServiceClient? _graphClient;
 
@@ -19,7 +20,7 @@
         protected GraphAuthenticationService AuthenticationService { get; }
         protected GraphServiceClient GraphClient => _graphClient ??= InitializeGraphClient();
 
-        public static IReadOnlyList<Attachment> GetAttachments(IMessageAttachmentsCollectionPage? attachments)
+        public static IReadOnlyList<Attachment> GetAttachments(IMessageAttachmentsCollectionPage? attachments, CancellationToken cancellationToken = default)
         {
             if (attachments == null || attachments.Count == 0)
             {
@@ -28,9 +29,10 @@
             List<Attachment> files = new(attachments.ToArray());
             while (attachments.NextPageRequest != null)
             {
+                cancellationToken.ThrowIfCancellationRequested();
                 attachments = attachments
                     .NextPageRequest
-                    .GetAsync()
+                    .GetAsync(cancellationToken)
                     .GetAwaiter()
 
                     .GetResult();
@@ -39,7 +41,7 @@
             return files;
         }
 
-        public static IReadOnlyList<FileAttachment> GetFileAttachments(IMessageAttachmentsCollectionPage? attachments)
+        public static IReadOnlyList<FileAttachment> GetFileAttachments(IMessageAttachmentsCollectionPage? attachments, CancellationToken cancellationToken = default)
         {
             if (attachments == null || attachments.Count == 0)
             {
@@ -48,9 +50,10 @@
             List<FileAttachment> files = new(attachments.OfType<FileAttachment>().ToArray());
             while (attachments.NextPageRequest != null)
             {
+                cancellationToken.ThrowIfCancellationRequested();
                 attachments = attachments
                     .NextPageRequest
-                    .GetAsync()
+                    .GetAsync(cancellationToken)
                     .GetAwaiter()
                     .GetResult();
                 files.AddRange(attachments.OfType<FileAttachment>().ToList());
@@ -58,71 +61,74 @@
             return files;
         }
 
-        public async Task<IEnumerable<string>> GetIdFromInternetMessageId(string recipient, string emailId)
+        public async Task<IEnumerable<string>> GetIdFromInternetMessageId(string recipient, string emailId, CancellationToken cancellationToken = default)
             => (await GraphClient
                 .Users[recipient]
                 .Messages
                 .Request()
                 .Filter($"{nameof(Message.InternetMessageId)} eq '{emailId}'")
                 .Select(nameof(Message.Id))
-                .GetAsync()
+                .GetAsync(cancellationToken)
                 .ConfigureAwait(false))
                     .Select(p => p.Id)
                     .ToList();
 
-        public async Task<IEnumerable<string>> GetUserIds()
+        public async Task<IEnumerable<string>> GetUserIds(CancellationToken cancellationToken = default)
         {
             var users = await GraphClient
                 .Users
                 .Request()
-                .GetAsync()
+                .GetAsync(cancellationToken)
                 .ConfigureAwait(false);
             List<string> ids = new(users.Select(p => p.UserPrincipalName));
             while (users.NextPageRequest != null)
             {
+                cancellationToken.ThrowIfCancellationRequested();
                 users = await users
                     .NextPageRequest
-                    .GetAsync()
+                    .GetAsync(cancellationToken)
                     .ConfigureAwait(false);
                 ids.AddRange(users.Select(p => p.UserPrincipalName).ToArray());
             }
             return ids;
         }
 
-        public async Task<IEnumerable<Message>> GetUserMails(string userPrincipalName)
+        public async Task<IEnumerable<Message>> GetUserMails(string userPrincipalName, CancellationToken cancellationToken = default)
         {
             var messages = await GraphClient
                 .Users[userPrincipalName]
                 .Messages
                 .Request()
                 .Expand(p => p.Attachments)
-                .GetAsync()
+                .GetAsync(cancellationToken)
                 .ConfigureAwait(false);
 
             List<Message> ids = new(messages.ToList());
             while (messages.NextPageRequest != null)
             {
+                cancellationToken.ThrowIfCancellationRequested();
                 messages = await messages
                     .NextPageRequest
-                    .GetAsync()
+                    .GetAsync(cancellationToken)
                     .ConfigureAwait(false);
                 ids.AddRange(messages.ToList());
             }
             return ids;
         }
 
-        public async Task SetEmailAsRead(string recipient, string emailId)
+        public async Task SetEmailAsRead(string userPrincipalName, string emailId, CancellationToken cancellationToken = default)
         {
-            foreach (var id in await GetIdFromInternetMessageId(recipient, emailId).ConfigureAwait(false))
+            foreach (var id in await GetIdFromInternetMessageId(userPrincipalName, emailId, cancellationToken).ConfigureAwait(false))
             {
+                cancellationToken.ThrowIfCancellationRequested();
                 await GraphClient
-                    .Users[recipient]
+                    .Users[userPrincipalName]
                     .Messages[id]
                     .Request()
                     .UpdateAsync(new Message()
                     {
                         IsRead = true
-                    })
+                    }, cancellationToken)
                     .ConfigureAwait(false);
             }
         }

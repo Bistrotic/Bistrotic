@@ -182,8 +182,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Emails", "Emails", "{20D902
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.SalesHistory.Server", "src\Modules\Server\Bistrotic.SalesHistory.Server\Bistrotic.SalesHistory.Server.csproj", "{A5089C05-C8CC-4A90-A08D-7FFEDD3A9F01}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Bistrotic.SalesHistory.Shared", "src\Modules\Shared\Bistrotic.SalesHistory.Shared\Bistrotic.SalesHistory.Shared.shproj", "{A118B8E4-E34F-4140-A4BD-0EF624F2426F}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.SalesHistory.Client", "src\Modules\Client\Bistrotic.SalesHistory.Client\Bistrotic.SalesHistory.Client.csproj", "{E053BF00-12D0-48F2-A99F-9B2E8946D005}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Emails.Client", "src\Modules\Client\Bistrotic.Emails.Client\Bistrotic.Emails.Client.csproj", "{9EA5126E-E781-4639-B33F-B4330B64EA13}"
@@ -242,6 +240,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.DataIntegrations.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.DataIntegrations.Common", "src\Modules\Shared\Bistrotic.DataIntegrations.Common\Bistrotic.DataIntegrations.Common.csproj", "{AA6AD599-8E39-4929-B5F7-3F8D6A26E312}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.SalesHistory.Common", "src\Modules\Shared\Bistrotic.SalesHistory.Common\Bistrotic.SalesHistory.Common.csproj", "{C8B49767-9482-467C-A78A-66098F9ED868}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.SalesHistory.Contracts", "src\Modules\Shared\Bistrotic.SalesHistory.Contracts\Bistrotic.SalesHistory.Contracts.csproj", "{6DE8E6AA-9843-47DD-B941-2B7A14615A16}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		src\Core\Infrastructure\Bistrotic.Infrastructure.CodeGeneration.Shared\Bistrotic.Infrastructure.CodeGeneration.Shared.projitems*{06beda32-e705-4093-90b0-c61e81c646c2}*SharedItemsImports = 5
@@ -250,15 +252,12 @@ Global
 		src\Modules\Shared\Bistrotic.Roles.Shared\Bistrotic.Roles.Shared.projitems*{2b1b4db0-aa14-41cd-9fa4-4b82fcf33d9b}*SharedItemsImports = 13
 		src\Modules\Shared\Bistrotic.EventStores.Shared\Bistrotic.EventStores.Shared.projitems*{44c38f03-f873-408a-b37e-41c4dfe85086}*SharedItemsImports = 5
 		src\Core\Infrastructure\Bistrotic.Infrastructure.CodeGeneration.Shared\Bistrotic.Infrastructure.CodeGeneration.Shared.projitems*{7ecfc9d7-9d45-46ad-b6df-1393d98505c4}*SharedItemsImports = 5
-		src\Modules\Shared\Bistrotic.SalesHistory.Shared\Bistrotic.SalesHistory.Shared.projitems*{a118b8e4-e34f-4140-a4bd-0ef624f2426f}*SharedItemsImports = 13
 		src\Modules\Shared\Bistrotic.Roles.Shared\Bistrotic.Roles.Shared.projitems*{a3bf6a86-8d87-43b3-b93e-15031b25c117}*SharedItemsImports = 5
-		src\Modules\Shared\Bistrotic.SalesHistory.Shared\Bistrotic.SalesHistory.Shared.projitems*{a5089c05-c8cc-4a90-a08d-7ffedd3a9f01}*SharedItemsImports = 5
 		src\Modules\Shared\Bistrotic.Users.Shared\Bistrotic.Users.Shared.projitems*{a9fdf1b7-cdab-46e6-8fb5-88ad3cace806}*SharedItemsImports = 13
 		src\Modules\Shared\Bistrotic.Roles.Shared\Bistrotic.Roles.Shared.projitems*{bad19726-5bb5-41ed-94f8-c9e7b445be04}*SharedItemsImports = 5
 		src\Modules\Shared\Bistrotic.EventStores.Shared\Bistrotic.EventStores.Shared.projitems*{bcfd1b9b-6827-4039-ae08-febba6eb1043}*SharedItemsImports = 5
 		src\Modules\Shared\Bistrotic.Users.Shared\Bistrotic.Users.Shared.projitems*{cd1fd4b3-0d27-483b-af9a-7f5acaf87ae4}*SharedItemsImports = 5
 		src\Modules\Shared\Bistrotic.Users.Shared\Bistrotic.Users.Shared.projitems*{cde53363-1d51-411c-8493-073acbd78146}*SharedItemsImports = 5
-		src\Modules\Shared\Bistrotic.SalesHistory.Shared\Bistrotic.SalesHistory.Shared.projitems*{e053bf00-12d0-48f2-a99f-9b2e8946d005}*SharedItemsImports = 5
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -537,6 +536,14 @@ Global
 		{AA6AD599-8E39-4929-B5F7-3F8D6A26E312}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA6AD599-8E39-4929-B5F7-3F8D6A26E312}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA6AD599-8E39-4929-B5F7-3F8D6A26E312}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8B49767-9482-467C-A78A-66098F9ED868}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8B49767-9482-467C-A78A-66098F9ED868}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8B49767-9482-467C-A78A-66098F9ED868}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8B49767-9482-467C-A78A-66098F9ED868}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DE8E6AA-9843-47DD-B941-2B7A14615A16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DE8E6AA-9843-47DD-B941-2B7A14615A16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DE8E6AA-9843-47DD-B941-2B7A14615A16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DE8E6AA-9843-47DD-B941-2B7A14615A16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -604,7 +611,6 @@ Global
 		{D19917D4-5221-49AE-AD28-0F50AA936D0A} = {5DEBE9B8-E56C-4E95-A592-9CB0194A8221}
 		{20D902FB-E15F-4159-A65B-2DC5F409C870} = {5DEBE9B8-E56C-4E95-A592-9CB0194A8221}
 		{A5089C05-C8CC-4A90-A08D-7FFEDD3A9F01} = {39477B0B-3F23-452C-8489-698A4169E581}
-		{A118B8E4-E34F-4140-A4BD-0EF624F2426F} = {39477B0B-3F23-452C-8489-698A4169E581}
 		{E053BF00-12D0-48F2-A99F-9B2E8946D005} = {39477B0B-3F23-452C-8489-698A4169E581}
 		{9EA5126E-E781-4639-B33F-B4330B64EA13} = {20D902FB-E15F-4159-A65B-2DC5F409C870}
 		{8DBE8E8B-1877-4637-B768-E8037419A955} = {20D902FB-E15F-4159-A65B-2DC5F409C870}
@@ -634,6 +640,8 @@ Global
 		{15705791-F4C5-4822-A2EE-1F095C92D7CB} = {17634B5D-1BCA-4A1D-BA37-4293453A5CEC}
 		{283CB128-3AC8-476E-98F1-7BF9C2AA479B} = {D19917D4-5221-49AE-AD28-0F50AA936D0A}
 		{AA6AD599-8E39-4929-B5F7-3F8D6A26E312} = {D19917D4-5221-49AE-AD28-0F50AA936D0A}
+		{C8B49767-9482-467C-A78A-66098F9ED868} = {39477B0B-3F23-452C-8489-698A4169E581}
+		{6DE8E6AA-9843-47DD-B941-2B7A14615A16} = {39477B0B-3F23-452C-8489-698A4169E581}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA165E9D-6B6A-49BD-9879-44123F389ACD}

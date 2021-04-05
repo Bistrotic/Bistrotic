@@ -4,5 +4,4 @@
 		<RootNamespace>Bistrotic.SalesHistory</RootNamespace>
 		<ModuleName>SalesHistory</ModuleName>
 	</PropertyGroup>
-	<Import Project="..\..\Shared\Bistrotic.SalesHistory.Shared\Bistrotic.SalesHistory.Shared.projitems" Label="Shared" />
 </Project>

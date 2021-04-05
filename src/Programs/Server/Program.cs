@@ -4,6 +4,9 @@
 
     using Bistrotic.Infrastructure.EfCore.Repositories;
 
+    using Bistrotic.SalesHistory.Repositories;
+
+
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.EntityFrameworkCore;
@@ -34,7 +37,9 @@
                 .Build();
             using (var scope = host.Services.CreateScope())
             {
-                var db = scope.ServiceProvider.GetRequiredService<StateStoreDbContext>();
+                DbContext db = scope.ServiceProvider.GetRequiredService<StateStoreDbContext>();
+                db.Database.Migrate();
+                db = scope.ServiceProvider.GetRequiredService<SalesHistoryDbContext>();
                 db.Database.Migrate();
             }
             host

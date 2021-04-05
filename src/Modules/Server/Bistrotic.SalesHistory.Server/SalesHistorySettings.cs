@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.Roles
+﻿namespace Bistrotic.SalesHistory
 {
     using System;
 

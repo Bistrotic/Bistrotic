@@ -28,6 +28,7 @@
     using Bistrotic.OpenIdDict;
     using Bistrotic.QuartzScheduler;
     using Bistrotic.Roles;
+    using Bistrotic.SalesHistory;
     using Bistrotic.Units;
     using Bistrotic.Users;
     using Bistrotic.WorkItems;
@@ -188,7 +189,8 @@
                 { typeof(RolesServerModule), (config, env) => new RolesServerModule(config, env) },
                 { typeof(UsersServerModule), (config, env) => new UsersServerModule(config, env) },
                 { typeof(UnitsServerModule), (config, env) => new UnitsServerModule(config, env) },
-                { typeof(WorkItemsServerModule), (config, env) => new WorkItemsServerModule(config, env) }
+                { typeof(WorkItemsServerModule), (config, env) => new WorkItemsServerModule(config, env) },
+                { typeof(SalesHistoryServerModule), (config, env) => new SalesHistoryServerModule(config, env) }
             };
         }
 

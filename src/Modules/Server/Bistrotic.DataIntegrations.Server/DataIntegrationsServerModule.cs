@@ -26,7 +26,7 @@
         }
 
         public DataIntegrationsSettings Settings
-                            => _settings ??= Configuration.GetSettings<DataIntegrationsSettings>();
+            => _settings ??= Configuration.GetSettings<DataIntegrationsSettings>();
 
         public override void ConfigureMessages(IMessageFactoryBuilder messageBuilder)
         {

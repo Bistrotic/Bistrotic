@@ -7,7 +7,7 @@
 
     public class SecurityDbContext : IdentityDbContext<ApplicationUser>
     {
-        public SecurityDbContext(DbContextOptions options)
+        public SecurityDbContext(DbContextOptions<SecurityDbContext> options)
             : base(options)
         {
         }

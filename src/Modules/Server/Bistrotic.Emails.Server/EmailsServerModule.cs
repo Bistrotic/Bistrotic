@@ -12,12 +12,11 @@
     using Bistrotic.Emails.Application.Settings;
     using Bistrotic.Emails.Contracts.Events;
     using Bistrotic.Emails.Domain.States;
-    using Bistrotic.Emails.Repositories;
+    using Bistrotic.Infrastructure.EfCore.Repositories;
     using Bistrotic.Infrastructure.Helpers;
     using Bistrotic.Infrastructure.WebServer.Modules;
 
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -40,8 +39,7 @@
         {
             base.ConfigureServices(services);
             services.ConfigureSettings<EmailsSettings>(Configuration);
-            services.AddDbContext<EmailsDbContext>(options => options.UseSqlServer(Settings.ConnectionString));
-            services.AddTransient<IRepository<IEmailState>>(p => p.GetRequiredService<EmailsDbContext>());
+            services.AddTransient<IRepository<IEmailState>, StateStoreRepository<IEmailState, EmailState>>();
             services.AddHostedService<ReceiveAllEmailsJob>();
             services.AddHostedService<ReceiveUnreadEmailsJob>();
             services.AddTransient<ICommandHandler<ReceiveEmail>, ReceiveEmailHandler>();

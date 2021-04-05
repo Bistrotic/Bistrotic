@@ -15,6 +15,6 @@
         string Subject { get; set; }
         List<string> ToRecipients { get; set; }
 
-        void Apply(EmailReceived @event);
+        void Apply(EmailReceived received);
     }
 }

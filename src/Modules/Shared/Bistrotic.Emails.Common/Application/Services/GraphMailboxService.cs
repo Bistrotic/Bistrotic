@@ -27,15 +27,15 @@ namespace Bistrotic.Emails.Application.Services
         private GraphService GraphService => _graphService ??= InitializeGraphService();
 
         public Task<IEnumerable<string>> GetUserIds(CancellationToken cancellationToken = default)
-            => GraphService.GetUserIds();
+            => GraphService.GetUserIds(cancellationToken);
 
         public async Task<IEnumerable<ReceiveEmail>> GetUserMails(string userPrincipalName, CancellationToken cancellationToken = default)
-            => (await GraphService.GetUserMails(userPrincipalName))
-                .Select(p => p.MapToReceiveEmail())
+            => (await GraphService.GetUserMails(userPrincipalName, cancellationToken))
+                .Select(p => p.MapToReceiveEmail(userPrincipalName))
                 .ToList();
 
         public Task SetEmailAsRead(string userPrincipalName, string emailId, CancellationToken cancellationToken = default)
-            => GraphService.SetEmailAsRead(userPrincipalName, emailId);
+            => GraphService.SetEmailAsRead(userPrincipalName, emailId, cancellationToken);
 
         private GraphService InitializeGraphService()
            => new(new GraphAuthenticationService(

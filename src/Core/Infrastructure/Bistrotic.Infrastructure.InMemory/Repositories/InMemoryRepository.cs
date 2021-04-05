@@ -13,15 +13,6 @@ namespace Bistrotic.Infrastructure.InMemory.Repositories
     {
         private readonly Dictionary<string, (TIState, IRepositoryStateMetadata)> _data = new();
 
-        public override async Task<TIState> CreateNew(string id, CancellationToken cancellationToken = default)
-        {
-            if (await Exists(id, cancellationToken).ConfigureAwait(false))
-            {
-                throw new DuplicateRepositoryStateException(this, id);
-            }
-            return new TState();
-        }
-
         public override Task<bool> Exists(string id, CancellationToken cancellationToken = default) => Task.FromResult(_data.ContainsKey(id));
 
         public override Task<IRepositoryStateMetadata> GetMetadata(string id, CancellationToken cancellationToken = default)

@@ -28,9 +28,6 @@ namespace Bistrotic.Emails.Server.Tests
             var receive = CreateReceiveEmail();
             var mockRepository = new Mock<IRepository<IEmailState>>();
             mockRepository
-                .Setup(x => x.CreateNew(It.IsAny<string>(), It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult<IEmailState>(new EmailState()));
-            mockRepository
                 .Setup(x => x.Save(
                     It.IsAny<string>(),
                     It.IsAny<IRepositoryData<IEmailState>>(),
@@ -45,13 +42,12 @@ namespace Bistrotic.Emails.Server.Tests
                 "test user",
                 DateTimeOffset.Now
                 ));
-            mockRepository.Verify(x => x.CreateNew(receive.EmailId, It.IsAny<CancellationToken>()), Times.Once);
             mockRepository.Verify(x => x.Save(
                 receive.EmailId,
                 It.Is<IRepositoryData<IEmailState>>(p =>
-                    p.State.CopyToRecipients.Count == receive.CopyToRecipients.Count() &&
-                    p.State.ToRecipients.Count == receive.ToRecipients.Count() &&
-                    p.State.Attachments.Count == receive.Attachments.Count() &&
+                    p.State.CopyToRecipients.Count() == receive.CopyToRecipients.Count() &&
+                    p.State.ToRecipients.Count() == receive.ToRecipients.Count() &&
+                    p.State.Attachments.Count() == receive.Attachments.Count() &&
                     p.State.Body == receive.Body &&
                     p.State.Recipient == receive.Recipient &&
                     p.State.Subject == receive.Subject &&

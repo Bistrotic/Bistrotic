@@ -1,6 +1,5 @@
 ﻿using System;
 
-using Bistrotic.Application.Commands;
 using Bistrotic.Emails.Application.Commands;
 using Bistrotic.Emails.Application.Settings;
 
@@ -12,10 +11,10 @@ namespace Bistrotic.Emails
     public sealed class ReceiveAllEmailsJob : EmailsJob<ReceiveAllEmails>
     {
         public ReceiveAllEmailsJob(
-            ICommandBus commandBus,
+            IServiceProvider serviceProvider,
             IOptions<EmailsSettings> settings,
             ILogger<ReceiveAllEmailsJob> logger)
-            : base(commandBus, settings, logger)
+            : base(serviceProvider, settings, logger)
         {
         }
 

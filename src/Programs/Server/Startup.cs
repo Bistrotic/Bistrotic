@@ -15,6 +15,7 @@
     using Bistrotic.EventStores;
     using Bistrotic.GoogleIdentity;
     using Bistrotic.Infrastructure.Client;
+    using Bistrotic.Infrastructure.EfCore.Repositories;
     using Bistrotic.Infrastructure.Helpers;
     using Bistrotic.Infrastructure.Ioc.Commands;
     using Bistrotic.Infrastructure.Ioc.Events;
@@ -35,6 +36,7 @@
     using Microsoft.AspNetCore.Components;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.FileProviders;
@@ -104,6 +106,7 @@
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<StateStoreDbContext>(o => o.UseSqlServer(_configuration.GetConnectionString("StateStore")));
             services.AddDirectoryBrowser();
             services.ConfigureSettings<WebServerSettings>(_configuration);
             services.AddServerSideBlazor().AddCircuitOptions(options =>

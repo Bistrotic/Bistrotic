@@ -33,7 +33,11 @@
             var id = envelope.Message.EmailId;
             try
             {
-                var state = await _repository.CreateNew(id, cancellationToken);
+                if (await _repository.Exists(id, cancellationToken))
+                {
+                    throw new DuplicateRepositoryStateException(_repository, id);
+                }
+                var state = new EmailState();
                 var email = new Email(id, state);
                 var command = envelope.Message;
                 await _repository.Save(id,

@@ -7,6 +7,7 @@
 		<MicrosoftExtensionsLoggingConfigurationVersion>5.0.0</MicrosoftExtensionsLoggingConfigurationVersion>
 		<MicrosoftExtensionsConfigurationAbstractionsVersion>5.0.0</MicrosoftExtensionsConfigurationAbstractionsVersion>
 		<MicrosoftExtensionsConfigurationVersion>5.0.0</MicrosoftExtensionsConfigurationVersion>
+		<MicrosoftExtensionsConfigurationJsonVersion>5.0.0</MicrosoftExtensionsConfigurationJsonVersion>
 		<MicrosoftExtensionsConfigurationBinderVersion>5.0.0</MicrosoftExtensionsConfigurationBinderVersion>
 		<MicrosoftExensionsConfigurationUserSecretsVersion>5.0.0</MicrosoftExensionsConfigurationUserSecretsVersion>
 		<MicrosoftExtensionsSecretManagerToolsVersion>2.0.2</MicrosoftExtensionsSecretManagerToolsVersion>

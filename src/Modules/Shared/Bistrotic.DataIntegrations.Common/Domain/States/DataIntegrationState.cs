@@ -1,18 +1,19 @@
-﻿namespace Bistrotic.DataIntegrations.Domain
+﻿namespace Bistrotic.DataIntegrations.Domain.States
 {
+    using System;
     using System.Collections.Generic;
 
     using Bistrotic.DataIntegrations.Domain.Events;
-    using Bistrotic.Domain;
-    using System;
-    internal sealed class DataIntegrationState : EntityState
-    {
-        public string Name { get; set; } = string.Empty;
-        public string? Description { get; set; }
-        public string DocumentName { get; set; } = string.Empty;
-        public string Document { get; set; } = string.Empty;
 
-        public void Apply(IReadOnlyList<object> events)
+    public sealed class DataIntegrationState : IDataIntegrationState
+    {
+        public string Description { get; set; } = string.Empty;
+        public string Document { get; set; } = string.Empty;
+        public string DocumentName { get; set; } = string.Empty;
+        public string DocumentType { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+
+        public void Apply(IEnumerable<object> events)
         {
             foreach (var @event in events)
             {

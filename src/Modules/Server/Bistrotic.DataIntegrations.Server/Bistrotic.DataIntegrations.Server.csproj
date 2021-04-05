@@ -6,10 +6,10 @@
 		<RootNamespace>Bistrotic.DataIntegrations</RootNamespace>
 		<ModuleName>DataIntegrations</ModuleName>
 	</PropertyGroup>
-	<Import Project="..\..\Shared\Bistrotic.DataIntegrations.Shared\Bistrotic.DataIntegrations.Shared.projitems" Label="Shared" />
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\Core\Domain\Bistrotic.Domain.Contracts\Bistrotic.Domain.Contracts.csproj" />
-		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.QuartzScheduler\Bistrotic.Infrastructure.QuartzScheduler.csproj" />
+		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.EfCore\Bistrotic.Infrastructure.EfCore.csproj" />
 		<ProjectReference Include="..\..\Client\Bistrotic.DataIntegrations.Client\Bistrotic.DataIntegrations.Client.csproj" />
+		<ProjectReference Include="..\..\Shared\Bistrotic.DataIntegrations.Common\Bistrotic.DataIntegrations.Common.csproj" />
 	</ItemGroup>
 </Project>

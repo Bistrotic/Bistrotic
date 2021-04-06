@@ -62,7 +62,7 @@ namespace Bistrotic.Infrastructure.EfCore.Repositories
                 }
                 else
                 {
-                    JsonType = value.GetType().FullName;
+                    JsonType = value.GetType().AssemblyQualifiedName;
                     Json = JsonSerializer.Serialize(value);
                 }
             }

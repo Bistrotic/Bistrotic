@@ -11,7 +11,6 @@
     using Bistrotic.DataIntegrations.Application.Commands;
     using Bistrotic.DataIntegrations.Common.Domain.ValueTypes;
     using Bistrotic.Domain.ValueTypes;
-    using Bistrotic.Emails.Application.Commands;
     using Bistrotic.Emails.Contracts.Events;
 
     using Microsoft.Extensions.Logging;
@@ -38,16 +37,17 @@
                 var description = $"Mailbox : {envelope.Message.Recipient}\nFrom : {envelope.Message.Sender}\nBody :\n{envelope.Message.Body}";
                 foreach (var attachment in envelope.Message.Attachments)
                 {
-                    var fileType = Path.GetExtension(attachment.Name.ToUpperInvariant()) switch
+                    FileType? fileType = Path.GetExtension(attachment.Name.ToUpperInvariant())
+                        switch
                     {
                         ".CSV" => FileType.Csv,
                         ".TXT" => FileType.Csv,
                         ".XML" => FileType.Xml,
                         ".XLS" => FileType.Xls,
                         ".XLSX" => FileType.Xlsx,
-                        _ => FileType.Undefined
+                        _ => null
                     };
-                    if (fileType == FileType.Undefined)
+                    if (fileType == null)
                     {
                         continue;
                     }
@@ -58,7 +58,7 @@
                             Name = envelope.Message.Subject + " - " + attachment.Name,
                             Description = description,
                             DocumentName = attachment.Name,
-                            DocumentType = fileType.ToString(),
+                            DocumentType = fileType?.ToString() ?? string.Empty,
                             Document = attachment.Content
                         }, new MessageId(), envelope), cancellationToken);
                 }

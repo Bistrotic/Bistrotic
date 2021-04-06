@@ -5,8 +5,8 @@
 		<MicrosoftVisualStudioServicesClientVersion>$(MicrosoftTeamFoundationVersion)</MicrosoftVisualStudioServicesClientVersion>
 		<MicrosoftVisualStudioServicesMemberEntitlementManagementWebApiVersion>$(MicrosoftTeamFoundationVersion)</MicrosoftVisualStudioServicesMemberEntitlementManagementWebApiVersion>
 		<MicrosoftTyeExtensionsConfigurationVersion>0.7.0-alpha.21070.7</MicrosoftTyeExtensionsConfigurationVersion>
-		<DaprAspNetCoreVersion>1.0.0</DaprAspNetCoreVersion>
-		<SwashbuckleAspNetCoreVersion>6.0.7</SwashbuckleAspNetCoreVersion>
+		<DaprAspNetCoreVersion>1.1.0</DaprAspNetCoreVersion>
+		<SwashbuckleAspNetCoreVersion>6.1.1</SwashbuckleAspNetCoreVersion>
 		<MinVerVersion>2.5.0</MinVerVersion>
 		<OpenIddictVersion>3.0.2</OpenIddictVersion>
 		<OpenIddictAspNetCoreVersion>$(OpenIddictVersion)</OpenIddictAspNetCoreVersion>
@@ -14,15 +14,17 @@
 		<OpenIddictQuartzVersion>$(OpenIddictVersion)</OpenIddictQuartzVersion>
 		<SystemLinqAsyncVersion>5.0.0</SystemLinqAsyncVersion>
 		<MediatRExtensionsMicrosoftDependencyInjectionVersion>9.0.0</MediatRExtensionsMicrosoftDependencyInjectionVersion>
-		<MicrosoftExtensionsLoggingAzureAppServicesVersion>5.0.3</MicrosoftExtensionsLoggingAzureAppServicesVersion>
+		<MicrosoftExtensionsLoggingAzureAppServicesVersion>5.0.4</MicrosoftExtensionsLoggingAzureAppServicesVersion>
 		<QuartzAspNetCoreVersion>3.2.4</QuartzAspNetCoreVersion>
-		<ScribanVersion>3.5.0</ScribanVersion>
-		<MicrosoftGraphVersion>3.27.0</MicrosoftGraphVersion>
+		<ScribanVersion>3.6.0</ScribanVersion>
+		<MicrosoftGraphVersion>3.29.0</MicrosoftGraphVersion>
 		<MicrosoftGraphAuthVersion>1.0.0-preview.6</MicrosoftGraphAuthVersion>
-		<MicrosoftIdentityClientVersion>4.28.0</MicrosoftIdentityClientVersion>
+		<MicrosoftIdentityClientVersion>4.29.0</MicrosoftIdentityClientVersion>
 		<GrpcToolsVersion>2.36.4</GrpcToolsVersion>
 		<ProtobufNetVersion>3.0.101</ProtobufNetVersion>
 		<GoogleProtobufVersion>3.15.6</GoogleProtobufVersion>
 		<JsonFlattenVersion>1.0.1</JsonFlattenVersion>
+		<ExcelDataReaderVersion>3.6.0</ExcelDataReaderVersion>
+		<ExcelDataReaderDataSetVersion>$(ExcelDataReaderVersion)</ExcelDataReaderDataSetVersion>
 	</PropertyGroup>
 </Project>

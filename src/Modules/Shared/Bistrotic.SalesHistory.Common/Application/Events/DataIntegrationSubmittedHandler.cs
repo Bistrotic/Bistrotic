@@ -6,7 +6,7 @@
 
     using Bistrotic.Application.Events;
     using Bistrotic.Application.Messages;
-    using Bistrotic.DataIntegrations.Domain.Events;
+    using Bistrotic.DataIntegrations.Contracts.Events;
     using Bistrotic.SalesHistory.Common.Application.Services;
 
     using Microsoft.Extensions.Logging;

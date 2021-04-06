@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
 
-    using Bistrotic.DataIntegrations.Common.Domain.ValueTypes;
+    using Bistrotic.DataIntegrations.Contracts.ValueTypes;
 
     public class DataIntegrationSourceState
     {

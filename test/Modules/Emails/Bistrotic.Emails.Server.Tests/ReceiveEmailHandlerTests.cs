@@ -5,6 +5,7 @@ namespace Bistrotic.Emails.Server.Tests
     using System.Threading;
     using System.Threading.Tasks;
 
+    using Bistrotic.Application.Events;
     using Bistrotic.Application.Messages;
     using Bistrotic.Application.Repositories;
     using Bistrotic.Emails.Application.CommandHandlers;
@@ -24,7 +25,12 @@ namespace Bistrotic.Emails.Server.Tests
         [Fact]
         public async Task Handle_publishes_EmailReceived_event()
         {
-            var mockLogger = new Mock<ILogger<ReceiveEmailHandler>>();
+            var loggerMock = new Mock<ILogger<ReceiveEmailHandler>>();
+            var eventBusMock = new Mock<IEventBus>();
+            eventBusMock.Setup(x => x.Publish(
+                    It.IsAny<IEnvelope>(),
+                    It.IsAny<CancellationToken>()
+                ));
             var receive = CreateReceiveEmail();
             var mockRepository = new Mock<IRepository<IEmailState>>();
             mockRepository
@@ -35,12 +41,16 @@ namespace Bistrotic.Emails.Server.Tests
                 ))
                 .Returns(Task.FromResult<IEmailState>(new EmailState()));
             var repository = mockRepository.Object;
-            var handler = new ReceiveEmailHandler(repository, mockLogger.Object);
+            var handler = new ReceiveEmailHandler(eventBusMock.Object, repository, loggerMock.Object);
             await handler.Handle(new Envelope<ReceiveEmail>(
                 receive,
                 "msgid123",
                 "test user",
                 DateTimeOffset.Now
+                ));
+            eventBusMock.Verify(x => x.Publish(
+                    It.Is<IEnvelope>(p => p.Message.GetType() == typeof(EmailReceived)),
+                    It.IsAny<CancellationToken>()
                 ));
             mockRepository.Verify(x => x.Save(
                 receive.EmailId,

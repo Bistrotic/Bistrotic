@@ -4,9 +4,11 @@
     using System.Threading.Tasks;
 
     using Bistrotic.Application.Commands;
+    using Bistrotic.Application.Events;
     using Bistrotic.Application.Exceptions;
     using Bistrotic.Application.Messages;
     using Bistrotic.Application.Repositories;
+    using Bistrotic.Domain.ValueTypes;
     using Bistrotic.Emails.Application.Commands;
     using Bistrotic.Emails.Domain;
     using Bistrotic.Emails.Domain.States;
@@ -16,11 +18,13 @@
     [CommandHandler(Command = typeof(ReceiveEmail))]
     public class ReceiveEmailHandler : ICommandHandler<ReceiveEmail>
     {
+        private readonly IEventBus _eventBus;
         private readonly ILogger<ReceiveEmailHandler> _logger;
         private readonly IRepository<IEmailState> _repository;
 
-        public ReceiveEmailHandler(IRepository<IEmailState> repository, ILogger<ReceiveEmailHandler> logger)
+        public ReceiveEmailHandler(IEventBus eventBus, IRepository<IEmailState> repository, ILogger<ReceiveEmailHandler> logger)
         {
+            _eventBus = eventBus;
             _repository = repository;
             _logger = logger;
         }
@@ -40,19 +44,23 @@
                 var state = new EmailState();
                 var email = new Email(id, state);
                 var command = envelope.Message;
-                await _repository.Save(id,
-                    new RepositoryData<IEmailState>(
-                        envelope,
-                        state,
-                        await email.Receive(
+                var events = await email.Receive(
                                 recipient: command.Recipient,
                                 subject: command.Subject,
                                 body: command.Body,
                                 sender: command.Sender,
                                 toRecipients: command.ToRecipients,
                                 copyToRecipients: command.CopyToRecipients,
-                                attachments: command.Attachments
-                    )), cancellationToken);
+                                attachments: command.Attachments);
+                await _repository.Save(id,
+                    new RepositoryData<IEmailState>(
+                        envelope,
+                        state,
+                        events), cancellationToken);
+                foreach (var e in events)
+                {
+                    await _eventBus.Publish(new Envelope(e, new MessageId(), envelope), cancellationToken);
+                }
             }
             catch (DuplicateRepositoryStateException)
             {

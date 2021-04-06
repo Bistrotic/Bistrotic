@@ -6,7 +6,7 @@ namespace Bistrotic.DataIntegrations.Contracts.Events
 {
     [Event]
     [ProtoContract]
-    public sealed class DataIntegrationSubmitted
+    public sealed class DataIntegrationNormalized
     {
         [ProtoMember(7)]
         public string Data { get; set; } = string.Empty;
@@ -16,15 +16,6 @@ namespace Bistrotic.DataIntegrations.Contracts.Events
 
         [ProtoMember(5)]
         public string Description { get; set; } = string.Empty;
-
-        [ProtoMember(6)]
-        public string Document { get; set; } = string.Empty;
-
-        [ProtoMember(3)]
-        public string DocumentName { get; set; } = string.Empty;
-
-        [ProtoMember(4)]
-        public string DocumentType { get; set; } = string.Empty;
 
         [ProtoMember(2)]
         public string Name { get; set; } = string.Empty;

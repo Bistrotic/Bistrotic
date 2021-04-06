@@ -1,6 +1,6 @@
 ﻿using ProtoBuf;
 
-namespace Bistrotic.DataIntegrations.Application.ModelViews
+namespace Bistrotic.DataIntegrations.Contracts.ModelViews
 {
     [ProtoContract]
     public sealed class DataIntegrationDetails

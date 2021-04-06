@@ -43,7 +43,7 @@
             List<Task> tasks = new();
             foreach (var handler in services)
             {
-                var handleMethod = handler.GetType().GetMethod("Handle", new[] { envelope.GetType() });
+                var handleMethod = handler.GetType().GetMethod("Handle", new[] { typeof(IEnvelope), typeof(CancellationToken) });
                 if (handleMethod == null)
                 {
                     throw new InvalidEventHandlerTypeException($"Handle method not found on handler '{handler.GetType().FullName}'.");

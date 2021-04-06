@@ -4,22 +4,26 @@
     using System.Threading.Tasks;
 
     using Bistrotic.Application.Commands;
+    using Bistrotic.Application.Events;
     using Bistrotic.Application.Exceptions;
     using Bistrotic.Application.Messages;
     using Bistrotic.Application.Repositories;
     using Bistrotic.DataIntegrations.Domain;
     using Bistrotic.DataIntegrations.Domain.States;
+    using Bistrotic.Domain.ValueTypes;
 
     using Microsoft.Extensions.Logging;
 
     [CommandHandler(Command = typeof(SubmitDataIntegration))]
     public class SubmitDataIntegrationHandler : ICommandHandler<SubmitDataIntegration>
     {
-        private readonly ILogger<SubmitDataIntegrationHandler> _logger;
+        private readonly IEventBus _eventBus;
+        private readonly ILogger<NormalizeDataIntegrationHandler> _logger;
         private readonly IRepository<IDataIntegrationState> _repository;
 
-        public SubmitDataIntegrationHandler(IRepository<IDataIntegrationState> repository, ILogger<SubmitDataIntegrationHandler> logger)
+        public SubmitDataIntegrationHandler(IEventBus eventBus, IRepository<IDataIntegrationState> repository, ILogger<NormalizeDataIntegrationHandler> logger)
         {
+            _eventBus = eventBus;
             _repository = repository;
             _logger = logger;
         }
@@ -32,18 +36,22 @@
                 var state = new DataIntegrationState();
                 var integration = new DataIntegration(id, state);
                 var command = envelope.Message;
-                await _repository.Save(id,
-                    new RepositoryData<IDataIntegrationState>(
-                        envelope,
-                        state,
-                        await integration.Submit(
+                var events = await integration.Submit(
                             name: envelope.Message.Name,
                             description: envelope.Message.Description,
                             documentName: envelope.Message.DocumentName,
                             documentType: envelope.Message.DocumentType,
-                            document: envelope.Message.Document
-
-                    )), cancellationToken);
+                            document: envelope.Message.Document);
+                await _repository.Save(id,
+                    new RepositoryData<IDataIntegrationState>(
+                        envelope,
+                        state,
+                        events
+                    ), cancellationToken);
+                foreach (var e in events)
+                {
+                    await _eventBus.Publish(new Envelope(e, new MessageId(), envelope), cancellationToken);
+                }
             }
             catch (DuplicateRepositoryStateException)
             {

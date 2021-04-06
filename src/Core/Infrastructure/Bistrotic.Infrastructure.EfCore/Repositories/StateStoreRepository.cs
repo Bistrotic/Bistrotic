@@ -87,10 +87,14 @@
                     => typeof(TIState).Name + "@" + id;
 
         private async Task<State> GetRecord(string id, CancellationToken cancellationToken)
-            => await _context
+        {
+            State? state = await _context
                 .States
                 .FindAsync(GetKey(id), cancellationToken)
-                .ConfigureAwait(false)
-                    ?? throw new RepositoryStateNotFoundException(this, id);
+                .ConfigureAwait(false);
+            if (state == null)
+                throw new RepositoryStateNotFoundException(this, id);
+            return state;
+        }
     }
 }

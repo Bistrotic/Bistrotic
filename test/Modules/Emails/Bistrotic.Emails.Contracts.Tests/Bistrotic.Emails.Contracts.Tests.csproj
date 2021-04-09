@@ -5,6 +5,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\src\Modules\Shared\Bistrotic.Emails.Contracts\Bistrotic.Emails.Contracts.csproj" />
+		<ProjectReference Include="..\..\..\..\src\Modules\Shared\Bistrotic.Emails.Contracts\Bistrotic.Emails.Contracts.csproj" />
 	</ItemGroup>
 </Project>

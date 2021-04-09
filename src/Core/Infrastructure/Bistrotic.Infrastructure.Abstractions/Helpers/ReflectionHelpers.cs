@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Reflection;
 using System.Text.Json;
@@ -133,14 +135,14 @@ namespace Bistrotic.Infrastructure.Helpers
         public static IDictionary<string, object> GetPropertyNotNullValues(this object obj)
             => GetPropertyValues(obj)
                     .Where(p => p.Value != null)
-                    .ToDictionary(k => k.Key, v => v.Value ?? throw new ArgumentException("only to remove nullability check error",nameof(obj)));
+                    .ToDictionary(k => k.Key, v => v.Value ?? throw new ArgumentException("only to remove nullability check error", nameof(obj)));
 
         public static IEnumerable<KeyValuePair<string, object?>> GetPropertyValues(this object obj) => obj
             .GetType()
             .GetProperties()
             .Where(x => x.CanRead)
             .Select(x => new KeyValuePair<string, object?>(x.Name, x.GetValue(obj, null)));
- 
+
         /// <summary>
         /// Determines whether the specified interface type has interface.
         /// </summary>
@@ -173,6 +175,39 @@ namespace Bistrotic.Infrastructure.Helpers
                 return true;
             }
             return false;
+        }
+
+        public static ExpandoObject ToDynamic(this IDictionary<string, object?> dictionary)
+        {
+            var expando = new ExpandoObject();
+            var expandoDict = (IDictionary<string, object?>)expando;
+
+            var dict = dictionary.Select(
+                p => new KeyValuePair<string, object?>(
+                    p.Key,
+                    p.Value switch
+                    {
+                        IDictionary<string, object?> dict
+                            => dict.ToDynamic(),
+                        ICollection col
+                            => getCollection(col),
+                        _ => p.Value
+                    }));
+            foreach (var pair in dict)
+            {
+                expandoDict.Add(pair);
+            }
+            return expando;
+
+            static object? getCollection(ICollection collection)
+            {
+                List<object?> list = new();
+                foreach (var item in collection)
+                {
+                    list.Add(item switch { IDictionary<string, object?> subDict => subDict.ToDynamic(), _ => item });
+                }
+                return list;
+            }
         }
 
         public static object ToObject(this IEnumerable<KeyValuePair<string, StringValues>> values, Type type)

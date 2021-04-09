@@ -3,6 +3,7 @@
 		<SystemNetHttpJsonVersion>5.0.0</SystemNetHttpJsonVersion>
 		<SystemTextJsonVersion>5.0.1</SystemTextJsonVersion>
 		<SystemNetHttpVersion>5.0.0</SystemNetHttpVersion>
+		<SystemTextEncodingCodePagesVersion>5.0.0</SystemTextEncodingCodePagesVersion>
 		<MicrosoftExtensionsHttpVersion>5.0.0</MicrosoftExtensionsHttpVersion>
 		<MicrosoftExtensionsHostingVersion>5.0.0</MicrosoftExtensionsHostingVersion>
 		<MicrosoftExtensionsHostingAbstractionsVersion>5.0.0</MicrosoftExtensionsHostingAbstractionsVersion>

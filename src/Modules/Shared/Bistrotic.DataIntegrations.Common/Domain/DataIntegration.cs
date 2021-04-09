@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Dynamic;
-using System.IO;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-
-using Bistrotic.DataIntegrations.Common.Domain.ValueTypes;
-using Bistrotic.DataIntegrations.Contracts.Events;
-using Bistrotic.DataIntegrations.Domain.States;
-
-using ExcelDataReader;
-
-namespace Bistrotic.DataIntegrations.Domain
+﻿namespace Bistrotic.DataIntegrations.Domain
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Threading.Tasks;
+
+    using Bistrotic.DataIntegrations.Common.Domain.ValueTypes;
+    using Bistrotic.DataIntegrations.Contracts.Events;
+    using Bistrotic.DataIntegrations.Domain.States;
+    using Bistrotic.Infrastructure.Dataset;
+
+    using ExcelDataReader;
+
     internal class DataIntegration
     {
         private readonly string _id;
@@ -29,7 +26,7 @@ namespace Bistrotic.DataIntegrations.Domain
         public Task<IEnumerable<object>> Normalize()
         {
             FileType.TryParse(typeof(FileType), _state.DocumentType, true, out object? fileType);
-            string? data = null;
+            dynamic data;
             var content = Convert.FromBase64String(_state.Document);
             switch (fileType)
             {
@@ -38,16 +35,17 @@ namespace Bistrotic.DataIntegrations.Domain
                         using IExcelDataReader reader = ExcelReaderFactory.CreateCsvReader(new MemoryStream(content),
                             new ExcelReaderConfiguration
                             {
-                                AutodetectSeparators = new char[] { ',', ';', '\t', '|', '#' }
+                                AutodetectSeparators = new char[] { ',', ';', '\t', '|', '#' },
+                                AnalyzeInitialCsvRows = 10000
                             });
-                        DataSet dataset = reader.AsDataSet(new ExcelDataSetConfiguration()
+                        var dataSet = new DynamicDataSet(reader.AsDataSet(new ExcelDataSetConfiguration()
                         {
                             ConfigureDataTable = (_) => new ExcelDataTableConfiguration()
                             {
-                                UseHeaderRow = true,
+                                UseHeaderRow = true
                             }
-                        }); ;
-                        data = ConverToJson(dataset);
+                        }));
+                        data = dataSet.Value;
                         break;
                     }
                 case FileType.Xls:
@@ -55,20 +53,14 @@ namespace Bistrotic.DataIntegrations.Domain
                 case FileType.Xlsb:
                     {
                         using IExcelDataReader reader = ExcelReaderFactory.CreateReader(new MemoryStream(content));
-                        DataSet dataset = reader.AsDataSet(new ExcelDataSetConfiguration()
+                        var dataSet = new DynamicDataSet(reader.AsDataSet(new ExcelDataSetConfiguration()
                         {
                             ConfigureDataTable = (_) => new ExcelDataTableConfiguration()
                             {
                                 UseHeaderRow = true
                             }
-                        });
-                        List<dynamic> recs = new();
-                        dynamic rec;
-                        while ((rec = reader.Read()) != null)
-                        {
-                            recs.Add(rec);
-                        }
-                        data = ConverToJson(dataset);
+                        }));
+                        data = dataSet.Value;
                         break;
                     }
                 default:
@@ -80,14 +72,14 @@ namespace Bistrotic.DataIntegrations.Domain
                 DataIntegrationId = _id,
                 Name = _state.Name,
                 Description = _state.Description,
-                Data = data ?? string.Empty
+                Data = data,
             });
             _state.Apply(events);
             return Task.FromResult<IEnumerable<object>>(events);
         }
 
         public Task<IEnumerable<object>> Submit(
-                    string name,
+            string name,
             string description,
             string documentName,
             string documentType,
@@ -97,11 +89,12 @@ namespace Bistrotic.DataIntegrations.Domain
             {
                 documentType = Path.GetExtension(documentName) switch
                 {
-                    ".CSV" => FileType.Csv.ToString(),
-                    ".TXT" => FileType.Csv.ToString(),
-                    ".XML" => FileType.Xml.ToString(),
-                    ".XLS" => FileType.Xls.ToString(),
-                    ".XLSX" => FileType.Xlsx.ToString(),
+                    ".CSV" => nameof(FileType.Csv),
+                    ".TXT" => nameof(FileType.Csv),
+                    ".XML" => nameof(FileType.Xml),
+                    ".XLS" => nameof(FileType.Xls),
+                    ".XLSX" => nameof(FileType.Xlsx),
+                    ".XLSB" => nameof(FileType.Xlsb),
                     _ => string.Empty
                 };
             }
@@ -117,23 +110,6 @@ namespace Bistrotic.DataIntegrations.Domain
             });
             _state.Apply(events);
             return Task.FromResult<IEnumerable<object>>(events);
-        }
-
-        private static string ConverToJson(DataSet dataSet)
-        {
-            using var stream = new MemoryStream();
-            using var jsonWriter = new Utf8JsonWriter(stream);
-            for (int i = 0; i < dataSet.Tables.Count; i++)
-            {
-                jsonWriter.WriteStartArray();
-                var table = dataSet.Tables[i];
-                for (int j = 0; j < table.Rows.Count; j++)
-                {
-                    dynamic rec = new ExpandoObject();
-                }
-                jsonWriter.WriteEndArray();
-            }
-            return Encoding.UTF8.GetString(stream.GetBuffer());
         }
     }
 }

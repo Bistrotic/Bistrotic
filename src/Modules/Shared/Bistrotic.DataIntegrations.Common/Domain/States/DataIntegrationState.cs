@@ -7,7 +7,7 @@
 
     public sealed class DataIntegrationState : IDataIntegrationState
     {
-        public string Data { get; set; } = string.Empty;
+        public IDictionary<string, object?>? Data { get; set; }
         public string Description { get; set; } = string.Empty;
         public string Document { get; set; } = string.Empty;
         public string DocumentName { get; set; } = string.Empty;

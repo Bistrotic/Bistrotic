@@ -2,10 +2,10 @@
 
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
-		<RootNamespace>Bistrotic.UblInvoices</RootNamespace>
+		<RootNamespace>Bistrotic.UblDocuments</RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Folder Include="Events\" />
+		<PackageReference Include="LiquidTechnologies.XmlObjects.Runtime" Version="19.0.6" />
 	</ItemGroup>
 </Project>

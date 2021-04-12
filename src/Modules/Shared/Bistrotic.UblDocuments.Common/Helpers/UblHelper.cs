@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.Application.UblDocument
+﻿namespace Bistrotic.UblDocuments
 {
     using System.Collections.Generic;
     using System.Dynamic;

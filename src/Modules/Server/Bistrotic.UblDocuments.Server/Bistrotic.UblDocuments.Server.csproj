@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
 		<OutputType>Library</OutputType>
-		<RootNamespace>Bistrotic.UblInvoices</RootNamespace>
-		<ModuleName>UblInvoices</ModuleName>
+		<RootNamespace>Bistrotic.UblDocuments</RootNamespace>
+		<ModuleName>UblDocuments</ModuleName>
 	</PropertyGroup>
 </Project>

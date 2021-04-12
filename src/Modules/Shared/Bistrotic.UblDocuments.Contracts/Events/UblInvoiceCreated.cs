@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.UblInvoice.Contracts.Events
+﻿namespace Bistrotic.UblDocuments.Events
 {
     using System;
 

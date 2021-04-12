@@ -4,8 +4,4 @@
 		<TargetFramework>net5.0</TargetFramework>
 		<RootNamespace>Bistrotic.UblInvoices</RootNamespace>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<PackageReference Include="LiquidTechnologies.XmlObjects.Runtime" Version="19.0.6" />
-	</ItemGroup>
 </Project>

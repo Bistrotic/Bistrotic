@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.UblInvoices.Types
+﻿namespace Bistrotic.UblDocuments.Types
 {
     using System;
     using System.Collections.Generic;

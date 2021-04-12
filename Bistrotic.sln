@@ -248,9 +248,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Infrastructure.Da
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataIntegration", "DataIntegration", "{7C55B214-2D42-4942-9980-15CFDD6A70FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.DataIntegrations.Common.Tests", "test\Modules\DataIntegrations\Bistrotic.DataIntegrations.Common.Tests\Bistrotic.DataIntegrations.Common.Tests.csproj", "{4FCCAD63-0BF1-4E13-87B6-2FE322B329A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.DataIntegrations.Common.Tests", "test\Modules\DataIntegrations\Bistrotic.DataIntegrations.Common.Tests\Bistrotic.DataIntegrations.Common.Tests.csproj", "{4FCCAD63-0BF1-4E13-87B6-2FE322B329A2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Emails.Contracts.Tests", "test\Modules\Emails\Bistrotic.Emails.Contracts.Tests\Bistrotic.Emails.Contracts.Tests.csproj", "{5A6B73DE-5005-4DCF-8BA1-73BF47CB2D7D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Application.UblDocument", "src\Core\Application\Bistrotic.Application.UblDocument\Bistrotic.Application.UblDocument.csproj", "{5EF5AE93-D6CD-49AB-8EFA-7C96931F2117}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Application.UblDocument.Tests", "test\Bistrotic.Application.UblDocument.Tests\Bistrotic.Application.UblDocument.Tests.csproj", "{A5E370E7-5F26-4623-8F2F-05E6455D399A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UblInvoices", "UblInvoices", "{83AFC735-7E5A-45A9-8D9C-3578E0D29A70}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.UblInvoices.Common", "src\Modules\Shared\Bistrotic.UblInvoices.Common\Bistrotic.UblInvoices.Common.csproj", "{57563344-6C32-4F33-9BF4-75D229676464}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.UblInvoices.Contracts", "src\Modules\Shared\Bistrotic.UblInvoices.Contracts\Bistrotic.UblInvoices.Contracts.csproj", "{667AEAB8-16EB-465F-83BC-7AFB580596FD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.UblInvoices.Server", "src\Modules\Server\Bistrotic.UblInvoices.Server\Bistrotic.UblInvoices.Server.csproj", "{53152063-177D-4954-8F78-26A0CD1A3CE7}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -564,6 +576,26 @@ Global
 		{5A6B73DE-5005-4DCF-8BA1-73BF47CB2D7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A6B73DE-5005-4DCF-8BA1-73BF47CB2D7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A6B73DE-5005-4DCF-8BA1-73BF47CB2D7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EF5AE93-D6CD-49AB-8EFA-7C96931F2117}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EF5AE93-D6CD-49AB-8EFA-7C96931F2117}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EF5AE93-D6CD-49AB-8EFA-7C96931F2117}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EF5AE93-D6CD-49AB-8EFA-7C96931F2117}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5E370E7-5F26-4623-8F2F-05E6455D399A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5E370E7-5F26-4623-8F2F-05E6455D399A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5E370E7-5F26-4623-8F2F-05E6455D399A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5E370E7-5F26-4623-8F2F-05E6455D399A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57563344-6C32-4F33-9BF4-75D229676464}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57563344-6C32-4F33-9BF4-75D229676464}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57563344-6C32-4F33-9BF4-75D229676464}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57563344-6C32-4F33-9BF4-75D229676464}.Release|Any CPU.Build.0 = Release|Any CPU
+		{667AEAB8-16EB-465F-83BC-7AFB580596FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{667AEAB8-16EB-465F-83BC-7AFB580596FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{667AEAB8-16EB-465F-83BC-7AFB580596FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{667AEAB8-16EB-465F-83BC-7AFB580596FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53152063-177D-4954-8F78-26A0CD1A3CE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53152063-177D-4954-8F78-26A0CD1A3CE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53152063-177D-4954-8F78-26A0CD1A3CE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53152063-177D-4954-8F78-26A0CD1A3CE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -666,6 +698,12 @@ Global
 		{7C55B214-2D42-4942-9980-15CFDD6A70FB} = {7FC87AE8-D1DA-4306-81B0-29C270E7E104}
 		{4FCCAD63-0BF1-4E13-87B6-2FE322B329A2} = {7C55B214-2D42-4942-9980-15CFDD6A70FB}
 		{5A6B73DE-5005-4DCF-8BA1-73BF47CB2D7D} = {728D7196-5993-4DA9-B924-1F172E506DE5}
+		{5EF5AE93-D6CD-49AB-8EFA-7C96931F2117} = {C74D717A-F4C0-4C99-B367-117E51415AF5}
+		{A5E370E7-5F26-4623-8F2F-05E6455D399A} = {1299CE2B-441E-4AB4-97E3-E439F145E9F9}
+		{83AFC735-7E5A-45A9-8D9C-3578E0D29A70} = {5DEBE9B8-E56C-4E95-A592-9CB0194A8221}
+		{57563344-6C32-4F33-9BF4-75D229676464} = {83AFC735-7E5A-45A9-8D9C-3578E0D29A70}
+		{667AEAB8-16EB-465F-83BC-7AFB580596FD} = {83AFC735-7E5A-45A9-8D9C-3578E0D29A70}
+		{53152063-177D-4954-8F78-26A0CD1A3CE7} = {83AFC735-7E5A-45A9-8D9C-3578E0D29A70}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA165E9D-6B6A-49BD-9879-44123F389ACD}

@@ -4,4 +4,8 @@
 		<TargetFramework>net5.0</TargetFramework>
 		<RootNamespace>Bistrotic.UblInvoices</RootNamespace>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Bistrotic.UblDocuments.Contracts\Bistrotic.UblDocuments.Contracts.csproj" />
+	</ItemGroup>
 </Project>

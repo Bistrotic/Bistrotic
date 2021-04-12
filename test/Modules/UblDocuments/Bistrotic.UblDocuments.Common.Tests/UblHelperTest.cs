@@ -1,13 +1,15 @@
-﻿namespace Bistrotic.Application.UblDocument.Tests
+﻿namespace Bistrotic.UblDocuments.Tests
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     using Bistrotic.Application.UblDocument.Tests.Fixtures;
+    using Bistrotic.UblDocuments;
+    using Bistrotic.UblDocuments.Types;
 
     using FluentAssertions;
 
     using Xunit;
-    using System.Linq;
-    using System.Collections.Generic;
-    using UblSharp;
 
     public class UblHelperTest
     {
@@ -15,10 +17,10 @@
         public void GetEmbeddedUblInvoices()
         {
             var doc = UblTextDocument.GetDocument();
-            IEnumerable<InvoiceType> invoices = doc.GetEmbeddedUblInvoices();
+            IEnumerable<Invoice> invoices = doc.GetEmbeddedUblInvoices();
             invoices.Should().HaveCount(1);
             var invoice = invoices.First();
-            invoice.LineCountNumeric.Value.Should().Be(1);
+            invoice.LineCountNumeric.Should().Be(1);
         }
 
         [Fact]

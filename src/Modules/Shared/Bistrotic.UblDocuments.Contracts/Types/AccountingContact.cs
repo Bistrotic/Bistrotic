@@ -2,54 +2,31 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Xml.Serialization;
+    using System.Runtime.Serialization;
 
     [Serializable]
-    [DebuggerStepThrough]
-    [XmlType(nameof(AccountingContact), Namespace = UblNamespaces.CommonAggregateComponents2)]
-    [XmlRoot(nameof(AccountingContact), Namespace = UblNamespaces.CommonAggregateComponents2, IsNullable = false)]
+    [DataContract(Name = nameof(AccountingContact), Namespace = UblNamespaces.CommonAggregateComponents2)]
     public class AccountingContact
     {
-        [XmlElement(
-            "ElectronicMail",
-            Namespace = UblNamespaces.CommonBasicComponents2,
-            Order = 4)]
+        [DataMember(Order = 4)]
         public string ElectronicMail { get; set; } = string.Empty;
 
-        [XmlElement(
-            "ID",
-            Namespace = UblNamespaces.CommonBasicComponents2,
-            Order = 0)]
+        [DataMember(Order = 0)]
         public string ID { get; set; } = string.Empty;
 
-        [XmlElement(
-            "Name",
-            Namespace = UblNamespaces.CommonBasicComponents2,
-            Order = 1)]
+        [DataMember(Order = 1)]
         public string Name { get; set; } = string.Empty;
 
-        [XmlElement(
-            "Note",
-            Namespace = UblNamespaces.CommonBasicComponents2,
-            Order = 5)]
+        [DataMember(Order = 5)]
         public string Note { get; set; } = string.Empty;
 
-        [XmlElement(
-            "OtherCommunication",
-            Order = 6)]
+        [DataMember(Order = 6)]
         public IEnumerable<Communication> OtherCommunication { get; set; } = Array.Empty<Communication>();
 
-        [XmlElement(
-            "Telefax",
-            Namespace = UblNamespaces.CommonBasicComponents2,
-            Order = 3)]
+        [DataMember(Order = 3)]
         public string Telefax { get; set; } = string.Empty;
 
-        [XmlElement(
-            "Telephone",
-            Namespace = UblNamespaces.CommonBasicComponents2,
-            Order = 2)]
+        [DataMember(Order = 2)]
         public string Telephone { get; set; } = string.Empty;
     }
 }

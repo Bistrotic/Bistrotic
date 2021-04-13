@@ -2,56 +2,31 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Xml.Serialization;
+    using System.Runtime.Serialization;
 
     [Serializable]
-    [DebuggerStepThrough]
-    [XmlType(
-    "AccountingCustomerParty",
-    Namespace = UblNamespaces.CommonAggregateComponents2)]
-    [XmlRoot(
-    "AccountingCustomerParty",
-    Namespace = UblNamespaces.CommonAggregateComponents2,
-    IsNullable = false)]
+    [DataContract(Namespace = UblNamespaces.CommonAggregateComponents2)]
     public class CustomerParty
     {
-        [XmlElement(
-            "AccountingContact",
-            Order = 5)]
+        [DataMember(Order = 5)]
         public string AccountingContact { get; set; } = string.Empty;
 
-        [XmlElement(
-            "AdditionalAccountID",
-            Namespace = UblNamespaces.CommonBasicComponents2,
-            Order = 2)]
+        [DataMember(Order = 2)]
         public IEnumerable<string> AdditionalAccountID { get; set; } = Array.Empty<string>();
 
-        [XmlElement(
-            "BuyerContact",
-            Order = 6)]
+        [DataMember(Order = 6)]
         public string BuyerContact { get; set; } = string.Empty;
 
-        [XmlElement(
-            "CustomerAssignedAccountID",
-            Namespace = UblNamespaces.CommonBasicComponents2,
-            Order = 0)]
+        [DataMember(Order = 0)]
         public string CustomerAssignedAccountID { get; set; } = string.Empty;
 
-        [XmlElement(
-            "DeliveryContact",
-            Order = 4)]
+        [DataMember(Order = 4)]
         public string DeliveryContact { get; set; } = string.Empty;
 
-        [XmlElement(
-            "Party",
-            Order = 3)]
+        [DataMember(Order = 3)]
         public string Party { get; set; } = string.Empty;
 
-        [XmlElement(
-            "SupplierAssignedAccountID",
-            Namespace = UblNamespaces.CommonBasicComponents2,
-            Order = 1)]
+        [DataMember(Order = 1)]
         public string SupplierAssignedAccountID { get; set; } = string.Empty;
     }
 }

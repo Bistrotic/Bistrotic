@@ -1,9 +1,10 @@
 ﻿namespace Bistrotic.UblDocuments.Types
 {
     using System;
+    using System.Runtime.Serialization;
     using System.Xml;
     using System.Xml.Serialization;
-
+    [DataContract]
     public class TimeType
     {
         [XmlIgnore]

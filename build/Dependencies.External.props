@@ -26,6 +26,6 @@
 		<JsonFlattenVersion>1.0.1</JsonFlattenVersion>
 		<ExcelDataReaderVersion>3.6.0</ExcelDataReaderVersion>
 		<ExcelDataReaderDataSetVersion>$(ExcelDataReaderVersion)</ExcelDataReaderDataSetVersion>
-		<UblSharpVersion>1.1.1</UblSharpVersion>
+		<ExtendedXmlSerializerVersion>3.7.0</ExtendedXmlSerializerVersion>
 	</PropertyGroup>
 </Project>

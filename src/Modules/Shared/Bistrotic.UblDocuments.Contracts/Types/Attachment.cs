@@ -1,19 +1,16 @@
 ﻿namespace Bistrotic.UblDocuments.Types
 {
     using System;
-    using System.Diagnostics;
-    using System.Xml.Serialization;
+    using System.Runtime.Serialization;
 
     [Serializable]
-    [DebuggerStepThrough]
-    [XmlType(nameof(Attachment), Namespace = UblNamespaces.CommonAggregateComponents2)]
-    [XmlRoot(nameof(Attachment), Namespace = UblNamespaces.CommonAggregateComponents2, IsNullable = false)]
+    [DataContract(Name = nameof(Attachment), Namespace = UblNamespaces.CommonAggregateComponents2)]
     public class Attachment
     {
-        [XmlElement(nameof(EmbeddedDocumentBinaryObject), Namespace = UblNamespaces.CommonBasicComponents2, Order = 0)]
+        [DataMember(Order = 0)]
         public string EmbeddedDocumentBinaryObject { get; set; } = string.Empty;
 
-        [XmlElement(nameof(ExternalReference), Order = 1)]
+        [DataMember(Order = 1)]
         public ExternalReference ExternalReference { get; set; } = new();
     }
 }

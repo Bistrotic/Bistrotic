@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0"?>
 <Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"
 	xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
 	xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
@@ -275,8 +275,10 @@
 			<cbc:TaxAmount currencyID="EUR">254.6</cbc:TaxAmount>
 		</cac:TaxTotal>
 		<cac:Item>
-			<cbc:Description languageID="EN">Processor: Intel Core 2 Duo SU9400 LV (1.4GHz). RAM:
-				3MB. Screen 1440x900</cbc:Description>
+			<cbc:Description languageID="EN">
+				Processor: Intel Core 2 Duo SU9400 LV (1.4GHz). RAM:
+				3MB. Screen 1440x900
+			</cbc:Description>
 			<cbc:Name>Labtop computer</cbc:Name>
 			<cac:SellersItemIdentification>
 				<cbc:ID>JB007</cbc:ID>
@@ -491,3 +493,4 @@
 		</cac:Price>
 	</cac:InvoiceLine>
 </Invoice>
+

@@ -1,15 +1,16 @@
 ﻿namespace Bistrotic.UblDocuments.Types
 {
     using System;
+    using System.Runtime.Serialization;
     using System.Xml;
-    using System.Xml.Serialization;
     [Serializable]
+    [DataContract]
     public class DateType
     {
-        [XmlIgnore]
+        [IgnoreDataMember]
         private DateTimeOffset? _value;
 
-        [XmlText]
+        [IgnoreDataMember]
         public string ValueString
         {
             get => (_value == null) ? string.Empty : XmlConvert.ToString(_value.Value, "yyyy-MM-dd");

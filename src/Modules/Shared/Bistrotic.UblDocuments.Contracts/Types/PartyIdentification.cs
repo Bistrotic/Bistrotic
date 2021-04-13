@@ -1,24 +1,13 @@
 ﻿namespace Bistrotic.UblDocuments.Types
 {
     using System;
-    using System.Diagnostics;
-    using System.Xml.Serialization;
+    using System.Runtime.Serialization;
 
     [Serializable]
-    [DebuggerStepThrough]
-    [XmlType(
-        "PartyIdentification",
-        Namespace = UblNamespaces.CommonAggregateComponents2)]
-    [XmlRoot(
-        "PartyIdentification",
-        Namespace = UblNamespaces.CommonAggregateComponents2,
-        IsNullable = false)]
+    [DataContract(Namespace = UblNamespaces.CommonAggregateComponents2]
     public class PartyIdentification
     {
-        [XmlElement(
-            "ID",
-            Namespace = UblNamespaces.CommonBasicComponents2,
-            Order = 0)]
+        [DataMember(Order = 0)]
         public string ID { get; set; } = string.Empty;
     }
 }

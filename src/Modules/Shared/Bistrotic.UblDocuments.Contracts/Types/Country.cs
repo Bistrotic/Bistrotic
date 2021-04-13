@@ -1,25 +1,16 @@
 ﻿namespace Bistrotic.UblDocuments.Types
 {
     using System;
-    using System.Diagnostics;
-    using System.Xml.Serialization;
+    using System.Runtime.Serialization;
 
     [Serializable]
-    [DebuggerStepThrough]
-    [XmlType(nameof(Country), Namespace = UblNamespaces.CommonAggregateComponents2)]
-    [XmlRoot(nameof(Country), Namespace = UblNamespaces.CommonAggregateComponents2, IsNullable = false)]
+    [DataContract(Namespace = UblNamespaces.CommonAggregateComponents2)]
     public class Country
     {
-        [XmlElement(
-            "IdentificationCode",
-            Namespace = UblNamespaces.CommonBasicComponents2,
-            Order = 0)]
+        [DataMember(Order = 0)]
         public string IdentificationCode { get; set; } = string.Empty;
 
-        [XmlElement(
-            "Name",
-            Namespace = UblNamespaces.CommonBasicComponents2,
-            Order = 1)]
+        [DataMember(Order = 1)]
         public string Name { get; set; } = string.Empty;
     }
 }

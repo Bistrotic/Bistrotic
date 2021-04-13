@@ -6,14 +6,14 @@
 
     [Serializable]
     [DebuggerStepThrough]
-    [XmlType("Attachment", Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2")]
-    [XmlRoot("Attachment", Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2", IsNullable = false)]
+    [XmlType(nameof(Attachment), Namespace = UblNamespaces.CommonAggregateComponents2)]
+    [XmlRoot(nameof(Attachment), Namespace = UblNamespaces.CommonAggregateComponents2, IsNullable = false)]
     public class Attachment
     {
-        [XmlElement("EmbeddedDocumentBinaryObject", Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", Order = 0)]
-        public BinaryObjectType @__EmbeddedDocumentBinaryObject;
+        [XmlElement(nameof(EmbeddedDocumentBinaryObject), Namespace = UblNamespaces.CommonBasicComponents2, Order = 0)]
+        public string EmbeddedDocumentBinaryObject { get; set; } = string.Empty;
 
-        [XmlElement("ExternalReference", Order = 1)]
-        public ExternalReferenceType @__ExternalReference;
+        [XmlElement(nameof(ExternalReference), Order = 1)]
+        public ExternalReference ExternalReference { get; set; } = new();
     }
 }

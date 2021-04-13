@@ -5,6 +5,16 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="TestFiles\UBL-Invoice-2.1-Example-Trivial.xml" />
+	  <None Remove="TestFiles\UBL-Invoice-2.1-Example.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="TestFiles\UBL-Invoice-2.1-Example-Trivial.xml" />
+	  <Content Include="TestFiles\UBL-Invoice-2.1-Example.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\..\..\..\src\Modules\Shared\Bistrotic.UblDocuments.Common\Bistrotic.UblDocuments.Common.csproj" />
 	</ItemGroup>
 </Project>

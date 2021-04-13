@@ -26,7 +26,7 @@
         [Fact]
         public void IsUblInvoiceDocument_is_true()
         {
-            var doc = UblTextDocument.GetString();
+            var doc = UblTextDocument.GetInvoice2_1TrivialExampleString();
             doc.IsUblInvoiceDocument().Should().BeTrue();
         }
     }

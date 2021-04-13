@@ -9,10 +9,10 @@
     [DebuggerStepThrough]
     [XmlType(
     "AccountingCustomerParty",
-    Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2")]
+    Namespace = UblNamespaces.CommonAggregateComponents2)]
     [XmlRoot(
     "AccountingCustomerParty",
-    Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2",
+    Namespace = UblNamespaces.CommonAggregateComponents2,
     IsNullable = false)]
     public class CustomerParty
     {
@@ -23,7 +23,7 @@
 
         [XmlElement(
             "AdditionalAccountID",
-            Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2",
+            Namespace = UblNamespaces.CommonBasicComponents2,
             Order = 2)]
         public IEnumerable<string> AdditionalAccountID { get; set; } = Array.Empty<string>();
 
@@ -34,7 +34,7 @@
 
         [XmlElement(
             "CustomerAssignedAccountID",
-            Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2",
+            Namespace = UblNamespaces.CommonBasicComponents2,
             Order = 0)]
         public string CustomerAssignedAccountID { get; set; } = string.Empty;
 
@@ -50,7 +50,7 @@
 
         [XmlElement(
             "SupplierAssignedAccountID",
-            Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2",
+            Namespace = UblNamespaces.CommonBasicComponents2,
             Order = 1)]
         public string SupplierAssignedAccountID { get; set; } = string.Empty;
     }

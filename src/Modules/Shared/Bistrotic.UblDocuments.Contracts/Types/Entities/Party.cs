@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.UblDocuments.Types
+﻿namespace Bistrotic.UblDocuments.Types.Entities
 {
     using System;
     using System.Collections.Generic;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Bistrotic.UblDocuments.Types
+namespace Bistrotic.UblDocuments.Types.Entities
 {
     [Serializable]
     [DataContract(Name = nameof(AdditionalDocumentReference), Namespace = UblNamespaces.CommonAggregateComponents2)]

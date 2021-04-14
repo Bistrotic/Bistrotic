@@ -6,12 +6,27 @@
     using System.Xml.Linq;
 
     using Bistrotic.UblDocuments.Types;
+    using Bistrotic.UblDocuments.Types.Aggregates;
 
     using ExtendedXmlSerializer;
     using ExtendedXmlSerializer.Configuration;
 
     public static class UblHelper
     {
+        public static XElement RemoveAllNamespaces(this XElement xElement)
+        {
+            var content = xElement.HasElements ?
+                xElement.Elements().Select(RemoveAllNamespaces) :
+                (object)xElement.Value;
+            return xElement.HasAttributes ?
+                new XElement(
+                    xElement.Name.LocalName,
+                    content,
+                    xElement.Attributes().Where(p => !p.IsNamespaceDeclaration)) :
+                new XElement(xElement.Name.LocalName, content)
+                ;
+        }
+
         public static IEnumerable<Invoice> GetEmbeddedUblInvoices(this XDocument document)
         {
             List<string> xDocs = document

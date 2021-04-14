@@ -1,13 +1,29 @@
-﻿namespace Bistrotic.UblDocuments.Types
+﻿namespace Bistrotic.UblDocuments.Types.Aggregates
 {
     using System;
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
+    using Bistrotic.UblDocuments.Types.Entities;
+    using Bistrotic.UblDocuments.Types.ValueTypes;
+
     [Serializable]
-    [DataContract(Name = nameof(Invoice), Namespace = UblNamespaces.Invoice2)]
+    [DataContract(Namespace = "")]
     public class Invoice
     {
+        [DataMember(Order = 5, IsRequired = true)]
+        public string ID { get; set; } = string.Empty;
+        [DataMember(Name = nameof(DueDate), Order = 10)]
+        public DateType? DueDate { get; set; }
+        [DataMember(Order = 8, IsRequired = true)]
+        public DateType IssueDate { get; set; } = new();
+
+        [DataMember(Order = 23, IsRequired = true)]
+        public Period? InvoicePeriod { get; set; } = new();
+
+        [DataMember(Order = 9)]
+        public TimeType? IssueTime { get; set; }
+
         [DataMember(Order = 20)]
         public string AccountingCost { get; set; } = string.Empty;
 
@@ -50,23 +66,11 @@
         [DataMember(Order = 14)]
         public string DocumentCurrencyCode { get; set; } = string.Empty;
 
-        [DataMember(Order = 10)]
-        public DateTimeOffset DueDate { get; set; }
-
-        [DataMember(Order = 5)]
-        public string ID { get; set; } = string.Empty;
-
         [DataMember(Order = 53)]
         public IEnumerable<InvoiceLine> InvoiceLine { get; set; } = Array.Empty<InvoiceLine>();
 
         [DataMember(Order = 11)]
         public string InvoiceTypeCode { get; set; } = string.Empty;
-
-        [DataMember(Order = 8)]
-        public DateTimeOffset IssueDate { get; set; }
-
-        [DataMember(Order = 9)]
-        public DateTimeOffset IssueTime { get; set; }
 
         [DataMember(Order = 52)]
         public decimal LegalMonetaryTotal { get; set; }
@@ -136,5 +140,6 @@
 
         [DataMember(Order = 7)]
         public string UUID { get; set; } = string.Empty;
+
     }
 }

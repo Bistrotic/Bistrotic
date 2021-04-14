@@ -1,7 +1,10 @@
-﻿namespace Bistrotic.UblDocuments.Types
+﻿namespace Bistrotic.UblDocuments.Types.Entities
 {
     using System;
     using System.Runtime.Serialization;
+
+    using Bistrotic.UblDocuments.Types.ValueTypes;
+
     [Serializable]
     [DataContract(Namespace = UblNamespaces.CommonAggregateComponents2)]
     public class PartyLegalEntity

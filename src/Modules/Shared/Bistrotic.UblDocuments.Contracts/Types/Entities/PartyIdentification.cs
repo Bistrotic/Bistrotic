@@ -1,10 +1,10 @@
-﻿namespace Bistrotic.UblDocuments.Types
+﻿namespace Bistrotic.UblDocuments.Types.Entities
 {
     using System;
     using System.Runtime.Serialization;
 
     [Serializable]
-    [DataContract(Namespace = UblNamespaces.CommonAggregateComponents2]
+    [DataContract(Namespace = UblNamespaces.CommonAggregateComponents2)]
     public class PartyIdentification
     {
         [DataMember(Order = 0)]

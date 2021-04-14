@@ -5,16 +5,18 @@
 
     public static class UblTextDocument
     {
+        public const string Invoice2File = "./TestFiles/UBL-Invoice-2.1-Example.xml";
+        public const string Invoice2TrivialFile = "./TestFiles/UBL-Invoice-2.1-Example-Trivial.xml";
         public static XDocument GetInvoice2_1ExampleDocument()
-            => XDocument.Load("./TestFiles/UBL-Invoice-2.1-Example.xml");
+            => XDocument.Load(Invoice2File);
 
         public static string GetInvoice2_1ExampleString()
-            => File.ReadAllText("./TestFiles/UBL-Invoice-2.1-Example.xml");
+            => File.ReadAllText(Invoice2File);
 
         public static XDocument GetInvoice2_1TrivialExampleDocument()
-            => XDocument.Load("./TestFiles/UBL-Invoice-2.1-Example-Trivial.xml");
+            => XDocument.Load(Invoice2TrivialFile);
 
         public static string GetInvoice2_1TrivialExampleString()
-            => File.ReadAllText("./TestFiles/UBL-Invoice-2.1-Example-Trivial.xml");
+            => File.ReadAllText(Invoice2TrivialFile);
     }
 }

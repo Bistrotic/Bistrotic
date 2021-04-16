@@ -8,18 +8,18 @@
     [Serializable]
     [DataContract]
     [XmlType(Namespace = UblNamespaces.CommonBasicComponents2)]
-    public class DateType
+    public class Date
     {
         private DateTimeOffset _value;
-        public DateType() => _value = DateTimeOffset.MinValue;
-        public DateType(string? value)
+        public Date() => _value = DateTimeOffset.MinValue;
+        public Date(string? value)
         {
             if (string.IsNullOrWhiteSpace(value))
                 throw new ArgumentNullException(nameof(value));
             ValueString = value;
         }
-        public DateType(DateTimeOffset value) => _value = value;
-        public DateType(DateTime value) => _value = value;
+        public Date(DateTimeOffset value) => _value = value;
+        public Date(DateTime value) => _value = value;
 
         [XmlText]
         public string ValueString
@@ -33,10 +33,10 @@
             }
         }
 
-        public static implicit operator DateTime(DateType value) => value._value.LocalDateTime;
-        public static implicit operator string(DateType value) => value.ValueString;
-        public static implicit operator DateType(DateTime value) => new(value);
-        public static implicit operator DateType(string value) => new(value);
+        public static implicit operator DateTime(Date value) => value._value.LocalDateTime;
+        public static implicit operator string(Date value) => value.ValueString;
+        public static implicit operator Date(DateTime value) => new(value);
+        public static implicit operator Date(string value) => new(value);
     }
 }
 

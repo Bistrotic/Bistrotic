@@ -22,11 +22,11 @@
 
         [DataMember(Order = 2)]
         [XmlElement(Order = 2, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public DateType RegistrationDate { get; set; } = new();
+        public Date RegistrationDate { get; set; } = new();
 
         [DataMember(Order = 3)]
         [XmlElement(Order = 3, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public DateType RegistrationExpirationDate { get; set; } = new();
+        public Date RegistrationExpirationDate { get; set; } = new();
 
         [DataMember(Order = 4)]
         [XmlElement(Order = 4, Namespace = UblNamespaces.CommonBasicComponents2)]

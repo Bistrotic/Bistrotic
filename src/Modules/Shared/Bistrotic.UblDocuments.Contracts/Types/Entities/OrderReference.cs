@@ -9,7 +9,7 @@
     [Serializable]
     [DataContract]
     [XmlRoot(Namespace = UblNamespaces.CommonAggregateComponents2)]
-    [XmlType(nameof(OrderReference) + "Type", Namespace = UblNamespaces.CommonAggregateComponents2)]
+    [XmlType(Namespace = UblNamespaces.CommonAggregateComponents2)]
     public class OrderReference
     {
         [DataMember(Order = 0, IsRequired = true)]
@@ -30,11 +30,11 @@
 
         [DataMember(Order = 4, IsRequired = true)]
         [XmlElement(Order = 4, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public DateType? IssueDate { get; set; }
+        public Date? IssueDate { get; set; }
 
         [DataMember(Order = 5, IsRequired = true)]
         [XmlElement(Order = 5, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public TimeType? IssueTime { get; set; }
+        public Time? IssueTime { get; set; }
 
         [DataMember(Order = 6, IsRequired = true)]
         [XmlElement(Order = 6, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
@@ -45,8 +45,8 @@
         public OrderTypeCode? OrderTypeCode { get; set; }
 
         [DataMember(Order = 8, IsRequired = true)]
-        [XmlElement(Order = 8, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public string? DocumentReference { get; set; }
+        [XmlElement(Order = 8, IsNullable = false, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public DocumentReference? DocumentReference { get; set; }
 
     }
 }

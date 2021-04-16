@@ -7,8 +7,8 @@ namespace Bistrotic.UblDocuments.Types.ValueTypes
 
     [Serializable]
     [DataContract]
-    [XmlType(nameof(OrderTypeCode) + "Type", Namespace = UblNamespaces.CommonBasicComponents2)]
-    public class OrderTypeCode : CodeType
+    [XmlType(Namespace = UblNamespaces.CommonBasicComponents2)]
+    public class OrderTypeCode : Code
     {
 
     }

@@ -10,7 +10,7 @@
 
     [Serializable]
     [DataContract]
-    [XmlType(nameof(Invoice) + "Type", Namespace = UblNamespaces.Invoice2)]
+    [XmlType(Namespace = UblNamespaces.Invoice2)]
     [XmlRoot(Namespace = UblNamespaces.Invoice2)]
     [KnownType(typeof(List<>))]
     public class Invoice
@@ -25,31 +25,31 @@
 
         [DataMember(Order = 8, IsRequired = true)]
         [XmlElement(Order = 8, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public DateType IssueDate { get; set; } = new();
+        public Date IssueDate { get; set; } = new();
 
         [DataMember(Order = 9)]
         [XmlElement(Order = 9, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public TimeType? IssueTime { get; set; }
+        public Time? IssueTime { get; set; }
 
         [DataMember(Order = 10, Name = nameof(DueDate))]
         [XmlElement(Order = 10, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public DateType? DueDate { get; set; }
+        public Date? DueDate { get; set; }
 
         [DataMember(Order = 11)]
         [XmlElement(Order = 11, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public InvoiceTypeCodeType InvoiceTypeCode { get; set; } = new();
+        public InvoiceTypeCode InvoiceTypeCode { get; set; } = new();
 
         [DataMember(Order = 12)]
         [XmlElement(Order = 12, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public NoteType? Note { get; set; }
+        public Note? Note { get; set; }
 
         [DataMember(Order = 13, IsRequired = true)]
         [XmlElement(Order = 13, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public DateType TaxPointDate { get; set; } = new();
+        public Date TaxPointDate { get; set; } = new();
 
         [DataMember(Order = 14)]
         [XmlElement(Order = 14, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public CodeType? DocumentCurrencyCode { get; set; } = new();
+        public Code? DocumentCurrencyCode { get; set; } = new();
 
         [DataMember(Order = 23, IsRequired = true)]
         [XmlElement(Order = 23, Namespace = UblNamespaces.CommonAggregateComponents2)]

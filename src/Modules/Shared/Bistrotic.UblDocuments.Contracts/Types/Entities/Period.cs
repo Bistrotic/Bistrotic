@@ -14,19 +14,19 @@
     {
         [DataMember(Order = 0)]
         [XmlElement(Order = 0, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public DateType? StartDate { get; set; }
+        public Date? StartDate { get; set; }
 
         [DataMember(Order = 1)]
         [XmlElement(Order = 1, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public TimeType? StartTime { get; set; }
+        public Time? StartTime { get; set; }
 
         [DataMember(Order = 2)]
         [XmlElement(Order = 2, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public DateType? EndDate { get; set; }
+        public Date? EndDate { get; set; }
 
         [DataMember(Order = 3)]
         [XmlElement(Order = 3, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public TimeType? EndTime { get; set; }
+        public Time? EndTime { get; set; }
 
         [DataMember(Order = 4)]
         [XmlElement(Order = 4, Namespace = UblNamespaces.CommonBasicComponents2)]

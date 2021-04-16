@@ -8,7 +8,7 @@ namespace Bistrotic.UblDocuments.Types.ValueTypes
     [Serializable]
     [DataContract]
     [XmlType(Namespace = UblNamespaces.CommonBasicComponents2)]
-    public class AccountingCostCodeType : Code
+    public class InvoiceTypeCode : Code
     {
 
     }

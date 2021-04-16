@@ -1,14 +1,14 @@
 ﻿namespace Bistrotic.UblDocuments.Types.ValueTypes
 {
     using System;
+    using System.Runtime.Serialization;
     using System.Xml;
-    using System.Xml.Schema;
     using System.Xml.Serialization;
 
-    using Bistrotic.UblDocuments.Exceptions;
-
     [Serializable]
-    public class TimeType : IXmlSerializable
+    [DataContract]
+    [XmlType(Namespace = UblNamespaces.CommonBasicComponents2)]
+    public class TimeType
     {
         public TimeType(string value) => ValueString = value;
         public TimeType(DateTimeOffset value) => _value = value;
@@ -28,26 +28,7 @@
         public static implicit operator TimeType(DateTime value) => new(value);
         public static implicit operator TimeType(DateTimeOffset value) => new(value);
         public static implicit operator TimeType(string value) => new(value);
-        public XmlSchema? GetSchema()
-        {
-            return null;
-        }
 
-        public void ReadXml(XmlReader reader)
-        {
-            try
-            {
-                ValueString = reader.ReadElementContentAsString();
-            }
-            catch (Exception e)
-            {
-                throw new ReadDateTypeException(reader.LocalName, e);
-            }
-        }
-        public void WriteXml(XmlWriter writer)
-        {
-            writer.WriteString(ValueString);
-        }
     }
 }
 

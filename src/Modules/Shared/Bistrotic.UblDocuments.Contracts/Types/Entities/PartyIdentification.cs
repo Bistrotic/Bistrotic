@@ -5,11 +5,13 @@
     using System.Xml.Serialization;
 
     [Serializable]
-    [DataContract(Namespace = "")]
+    [DataContract]
     [XmlRoot(Namespace = UblNamespaces.CommonAggregateComponents2)]
+    [XmlType(Namespace = UblNamespaces.CommonAggregateComponents2)]
     public class PartyIdentification
     {
         [DataMember(Order = 0)]
+        [XmlElement(Order = 0, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string ID { get; set; } = string.Empty;
     }
 }

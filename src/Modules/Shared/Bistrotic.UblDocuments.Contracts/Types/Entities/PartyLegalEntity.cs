@@ -2,11 +2,13 @@
 {
     using System;
     using System.Runtime.Serialization;
+    using System.Xml.Serialization;
 
     using Bistrotic.UblDocuments.Types.ValueTypes;
 
     [Serializable]
-    [DataContract(Namespace = UblNamespaces.CommonAggregateComponents2)]
+    [DataContract(Namespace = "")]
+    [XmlRoot(Namespace = UblNamespaces.CommonAggregateComponents2)]
     public class PartyLegalEntity
     {
         [DataMember(Order = 0)]

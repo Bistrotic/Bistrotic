@@ -1,11 +1,12 @@
 ﻿namespace Bistrotic.UblDocuments.Types.Entities
 {
     using System;
-    using System.Collections.Generic;
     using System.Runtime.Serialization;
+    using System.Xml.Serialization;
 
     [Serializable]
-    [DataContract(Namespace = UblNamespaces.CommonAggregateComponents2)]
+    [DataContract(Namespace = "")]
+    [XmlRoot(Namespace = UblNamespaces.CommonAggregateComponents2)]
     public class Party
     {
         [DataMember(Order = 15)]
@@ -34,18 +35,18 @@
 
         [DataMember(Order = 0)]
         public string MarkCareIndicator { get; set; } = string.Empty;
+        /*
+                [DataMember(Order = 6)]
+                public IEnumerable<PartyIdentification> PartyIdentification { get; set; } = Array.Empty<PartyIdentification>();
 
-        [DataMember(Order = 6)]
-        public IEnumerable<PartyIdentification> PartyIdentification { get; set; } = Array.Empty<PartyIdentification>();
+                [DataMember(Order = 12)]
+                public IEnumerable<PartyLegalEntity> PartyLegalEntity { get; set; } = Array.Empty<PartyLegalEntity>();
 
-        [DataMember(Order = 12)]
-        public IEnumerable<PartyLegalEntity> PartyLegalEntity { get; set; } = Array.Empty<PartyLegalEntity>();
-
-        [DataMember(Order = 7)]
-        public IEnumerable<string> PartyName { get; set; } = Array.Empty<string>();
-
-        [DataMember(Order = 14)]
-        public IEnumerable<CrewMemberPerson> Person { get; set; } = Array.Empty<CrewMemberPerson>();
+                [DataMember(Order = 14)]
+                public IEnumerable<CrewMemberPerson> Person { get; set; } = Array.Empty<CrewMemberPerson>();
+        */
+        [DataMember(Order = 7, IsRequired = true)]
+        public PartyName PartyName { get; set; } = new();
 
         [DataMember(Order = 10)]
         public string PhysicalLocation { get; set; } = string.Empty;

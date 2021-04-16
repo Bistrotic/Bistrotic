@@ -5,6 +5,8 @@
     using System.Xml.Schema;
     using System.Xml.Serialization;
 
+    using Bistrotic.UblDocuments.Exceptions;
+
     [Serializable]
     public class DateType : IXmlSerializable
     {
@@ -43,7 +45,14 @@
 
         public void ReadXml(XmlReader reader)
         {
-            ValueString = reader.ReadElementContentAsString();
+            try
+            {
+                ValueString = reader.ReadElementContentAsString();
+            }
+            catch (Exception e)
+            {
+                throw new ReadDateTypeException(reader.LocalName, e);
+            }
         }
 
         public void WriteXml(XmlWriter writer)

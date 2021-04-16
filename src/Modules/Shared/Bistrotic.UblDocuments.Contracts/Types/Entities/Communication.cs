@@ -2,9 +2,11 @@
 {
     using System;
     using System.Runtime.Serialization;
+    using System.Xml.Serialization;
 
     [Serializable]
-    [DataContract(Name = nameof(Communication), Namespace = UblNamespaces.CommonAggregateComponents2)]
+    [DataContract(Name = nameof(Communication), Namespace = "")]
+    [XmlRoot(Namespace = UblNamespaces.CommonAggregateComponents2)]
     public class Communication
     {
         [DataMember(Order = 1)]

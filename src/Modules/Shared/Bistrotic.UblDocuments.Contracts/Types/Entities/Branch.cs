@@ -2,9 +2,11 @@
 {
     using System;
     using System.Runtime.Serialization;
+    using System.Xml.Serialization;
 
     [Serializable]
-    [DataContract(Namespace = UblNamespaces.CommonAggregateComponents2)]
+    [DataContract(Namespace = "")]
+    [XmlRoot(Namespace = UblNamespaces.CommonAggregateComponents2)]
     public class Branch
     {
         [DataMember(Order = 3)]

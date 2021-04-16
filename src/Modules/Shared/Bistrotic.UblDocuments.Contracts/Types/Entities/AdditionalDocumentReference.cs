@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace Bistrotic.UblDocuments.Types.Entities
 {
     [Serializable]
-    [DataContract(Name = nameof(AdditionalDocumentReference), Namespace = UblNamespaces.CommonAggregateComponents2)]
+    [DataContract(Name = nameof(AdditionalDocumentReference), Namespace = "")]
+    [XmlRoot(Namespace = UblNamespaces.CommonAggregateComponents2)]
     public class AdditionalDocumentReference
     {
         [DataMember(Order = 12)]

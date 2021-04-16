@@ -7,12 +7,9 @@
     [Serializable]
     [DataContract(Namespace = "")]
     [XmlRoot(Namespace = UblNamespaces.CommonAggregateComponents2)]
-    public class Country
+    public class PartyName
     {
-        [DataMember(Order = 0)]
-        public string IdentificationCode { get; set; } = string.Empty;
-
-        [DataMember(Order = 1)]
+        [DataMember(Order = 0, IsRequired = true)]
         public string Name { get; set; } = string.Empty;
     }
 }

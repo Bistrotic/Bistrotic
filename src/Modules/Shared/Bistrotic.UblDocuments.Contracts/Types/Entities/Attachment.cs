@@ -2,9 +2,11 @@
 {
     using System;
     using System.Runtime.Serialization;
+    using System.Xml.Serialization;
 
     [Serializable]
-    [DataContract(Name = nameof(Attachment), Namespace = UblNamespaces.CommonAggregateComponents2)]
+    [DataContract(Name = nameof(Attachment), Namespace = "")]
+    [XmlRoot(Namespace = UblNamespaces.CommonAggregateComponents2)]
     public class Attachment
     {
         [DataMember(Order = 0)]

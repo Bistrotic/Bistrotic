@@ -1,11 +1,13 @@
 ﻿namespace Bistrotic.UblDocuments.Types.Entities
 {
     using System;
-    using System.Collections.Generic;
     using System.Runtime.Serialization;
+    using System.Xml.Serialization;
 
     [Serializable]
-    [DataContract(Namespace = UblNamespaces.CommonAggregateComponents2)]
+    [DataContract(Namespace = "")]
+    [XmlType(Namespace = UblNamespaces.CommonAggregateComponents2)]
+    [XmlRoot(Namespace = UblNamespaces.CommonAggregateComponents2)]
     public class InvoiceLine
     {
         [DataMember(Order = 7)]
@@ -13,6 +15,28 @@
 
         [DataMember(Order = 6)]
         public string AccountingCostCode { get; set; } = string.Empty;
+
+        [DataMember(Order = 15)]
+        public string[] DocumentReference { get; set; } = Array.Empty<string>();
+
+        [DataMember(Order = 9)]
+        public string FreeOfChargeIndicator { get; set; } = string.Empty;
+
+        [DataMember(Order = 0, IsRequired = true)]
+        public string ID { get; set; } = string.Empty;
+
+        [DataMember(Order = 3)]
+        public decimal InvoicedQuantity { get; set; }
+
+        [DataMember(Order = 4)]
+        public decimal LineExtensionAmount { get; set; }
+        /*
+                 
+        [DataMember(Order = 10)]
+        public Period InvoicePeriod { get; set; } = new();
+
+        [DataMember(Order = 23, IsRequired = true)]
+        public Item Item { get; set; } = new();
 
         [DataMember(Order = 20)]
         public IEnumerable<string> AllowanceCharge { get; set; } = Array.Empty<string>();
@@ -28,27 +52,6 @@
 
         [DataMember(Order = 12)]
         public IEnumerable<string> DespatchLineReference { get; set; } = Array.Empty<string>();
-
-        [DataMember(Order = 15)]
-        public string[] DocumentReference { get; set; } = Array.Empty<string>();
-
-        [DataMember(Order = 9)]
-        public string FreeOfChargeIndicator { get; set; } = string.Empty;
-
-        [DataMember(Order = 0)]
-        public string ID { get; set; } = string.Empty;
-
-        [DataMember(Order = 3)]
-        public decimal InvoicedQuantity { get; set; }
-
-        [DataMember(Order = 10)]
-        public IEnumerable<string> InvoicePeriod { get; set; } = Array.Empty<string>();
-
-        [DataMember(Order = 23)]
-        public string Item { get; set; } = string.Empty;
-
-        [DataMember(Order = 4)]
-        public decimal LineExtensionAmount { get; set; }
 
         [DataMember(Order = 2)]
         public IEnumerable<string> Note { get; set; } = Array.Empty<string>();
@@ -85,5 +88,6 @@
 
         [DataMember(Order = 22)]
         public IEnumerable<decimal> WithholdingTaxTotal { get; set; } = Array.Empty<decimal>();
+    */
     }
 }

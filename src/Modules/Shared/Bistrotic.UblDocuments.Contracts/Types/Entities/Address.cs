@@ -3,9 +3,11 @@
     using System;
     using System.Collections.Generic;
     using System.Runtime.Serialization;
+    using System.Xml.Serialization;
 
     [Serializable]
-    [DataContract(Name = nameof(Address), Namespace = UblNamespaces.CommonAggregateComponents2)]
+    [DataContract(Name = nameof(Address), Namespace = "")]
+    [XmlRoot(Namespace = UblNamespaces.CommonAggregateComponents2)]
     public class Address
     {
         [DataMember(Order = 7)]

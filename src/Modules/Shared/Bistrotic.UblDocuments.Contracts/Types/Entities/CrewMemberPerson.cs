@@ -44,8 +44,8 @@
         public string ID { get; set; } = string.Empty;
 
         [DataMember(Order = 15)]
-        [XmlElement(Order = 15, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public IEnumerable<AdditionalDocumentReference> IdentityDocumentReference { get; set; } = Array.Empty<AdditionalDocumentReference>();
+        [XmlElement(Order = 15, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public List<DocumentReference> IdentityDocumentReference { get; set; } = new();
 
         [DataMember(Order = 7)]
         [XmlElement(Order = 7, Namespace = UblNamespaces.CommonBasicComponents2)]
@@ -72,7 +72,7 @@
         public string OtherName { get; set; } = string.Empty;
 
         [DataMember(Order = 16)]
-        [XmlElement(Order = 16, Namespace = UblNamespaces.CommonBasicComponents2)]
+        [XmlElement(Order = 16, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public Address ResidenceAddress { get; set; } = new();
 
         [DataMember(Order = 3)]

@@ -21,7 +21,7 @@
 
         [DataMember(Order = 24)]
         [XmlElement(Order = 24, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public IEnumerable<AddressLine> AddressLine { get; set; } = Array.Empty<AddressLine>();
+        public List<AddressLine> AddressLine { get; set; } = new();
 
         [DataMember(Order = 1)]
         [XmlElement(Order = 1, Namespace = UblNamespaces.CommonBasicComponents2)]
@@ -81,7 +81,7 @@
 
         [DataMember(Order = 26)]
         [XmlElement(Order = 26, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public IEnumerable<LocationCoordinate> LocationCoordinate { get; set; } = Array.Empty<LocationCoordinate>();
+        public List<LocationCoordinate> LocationCoordinate { get; set; } = new();
 
         [DataMember(Order = 13)]
         [XmlElement(Order = 13, Namespace = UblNamespaces.CommonBasicComponents2)]

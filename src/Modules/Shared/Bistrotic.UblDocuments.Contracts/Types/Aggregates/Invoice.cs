@@ -55,9 +55,41 @@
         [XmlElement(Order = 23, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public Period? InvoicePeriod { get; set; } = new();
 
+        [DataMember(Order = 20)]
+        [XmlElement(Order = 20, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public string? AccountingCost { get; set; } = string.Empty;
+
+        [DataMember(Order = 24)]
+        [XmlElement(Order = 24, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public OrderReference OrderReference { get; set; } = new();
+
+        [DataMember(Order = 26)]
+        [XmlElement(Order = 26, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public DocumentReference? DespatchDocumentReference { get; set; } = new();
+
+        [DataMember(Order = 27)]
+        [XmlElement(Order = 27, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public List<DocumentReference> ReceiptDocumentReference { get; set; } = new();
+
+        [DataMember(Order = 28)]
+        [XmlElement(Order = 28, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public List<DocumentReference> StatementDocumentReference { get; set; } = new();
+
+        [DataMember(Order = 29)]
+        [XmlElement(Order = 29, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public List<DocumentReference> OriginatorDocumentReference { get; set; } = new();
+
+        [DataMember(Order = 30)]
+        [XmlElement(Order = 30, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public List<DocumentReference> ContractDocumentReference { get; set; } = new();
+
+        [DataMember(Order = 31)]
+        [XmlElement(Order = 31, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public List<DocumentReference> AdditionalDocumentReference { get; set; } = new();
+
         [DataMember(Order = 34, IsRequired = true)]
         [XmlElement(Order = 34, Namespace = UblNamespaces.CommonAggregateComponents2)]
-        public AccountingSupplierParty AccountingSupplierParty { get; set; } = new();
+        public SupplierParty AccountingSupplierParty { get; set; } = new();
 
         [DataMember(Order = 35, IsRequired = true)]
         [XmlElement(Order = 35, Namespace = UblNamespaces.CommonAggregateComponents2)]
@@ -71,115 +103,101 @@
         [XmlElement(Order = 53, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<InvoiceLine> InvoiceLine { get; set; } = new();
 
-        [DataMember(Order = 20)]
-        [XmlElement(Order = 20, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public string? AccountingCost { get; set; } = string.Empty;
+        [DataMember(Order = 36)]
+        [XmlElement(Order = 36, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public Party? PayeeParty { get; set; }
 
-        [DataMember(Order = 24)]
-        [XmlElement(Order = 24, Namespace = UblNamespaces.CommonAggregateComponents2)]
-        public OrderReference OrderReference { get; set; } = new();
-
-
-        /*
         [DataMember(Order = 19)]
-        [XmlElement(Order = 19, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public AccountingCostCodeType AccountingCostCode { get; set; } = new();
+        [XmlElement(Order = 19, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public AccountingCostCodeType? AccountingCostCode { get; set; }
 
-                         [DataMember(Order = 25)]
-                         public IEnumerable<string> BillingReference { get; set; } = Array.Empty<string>();
+        [DataMember(Order = 25)]
+        [XmlElement(Order = 25, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public List<string> BillingReference { get; set; } = new();
 
-                         [DataMember(Order = 37)]
-                         public CustomerParty BuyerCustomerParty { get; set; } = new();
+        [DataMember(Order = 37)]
+        [XmlElement(Order = 37, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public Party? BuyerCustomerParty { get; set; }
 
-                         [DataMember(Order = 22)]
-                         public string BuyerReference { get; set; } = string.Empty;
+        [DataMember(Order = 22)]
+        [XmlElement(Order = 22, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public string? BuyerReference { get; set; } = string.Empty;
 
-                         [DataMember(Order = 30)]
-                         public IEnumerable<string> ContractDocumentReference { get; set; } = Array.Empty<string>();
+        [DataMember(Order = 6)]
+        [XmlElement(Order = 6, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public bool CopyIndicator { get; set; }
 
-                         [DataMember(Order = 6)]
-                         public string CopyIndicator { get; set; } = string.Empty;
+        [DataMember(Order = 2)]
+        [XmlElement(Order = 2, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public string? CustomizationID { get; set; } = string.Empty;
 
-                         [DataMember(Order = 2)]
-                         public string CustomizationID { get; set; } = string.Empty;
+        [DataMember(Order = 40)]
+        [XmlElement(Order = 40, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public List<Delivery> Delivery { get; set; } = new();
 
-                         [DataMember(Order = 40)]
-                         public IEnumerable<string> Delivery { get; set; } = Array.Empty<string>();
+        [DataMember(Order = 41)]
+        [XmlElement(Order = 41, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public DeliveryTerms? DeliveryTerms { get; set; } = new();
 
-                         [DataMember(Order = 41)]
-                         public DeliveryTerms DeliveryTerms { get; set; } = new();
+        [DataMember(Order = 21)]
+        [XmlElement(Order = 21, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public int LineCountNumeric { get; set; }
 
-                         [DataMember(Order = 26)]
-                         public IEnumerable<string> DespatchDocumentReference { get; set; } = Array.Empty<string>();
+        [DataMember(Order = 18)]
+        [XmlElement(Order = 18, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public Code? PaymentAlternativeCurrencyCode { get; set; }
+
+        [DataMember(Order = 49)]
+        [XmlElement(Order = 49, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public decimal PaymentAlternativeExchangeRate { get; set; }
+
+        [DataMember(Order = 17)]
+        [XmlElement(Order = 17, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public Code? PaymentCurrencyCode { get; set; }
+
+        [DataMember(Order = 48)]
+        [XmlElement(Order = 48, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public decimal PaymentExchangeRate { get; set; }
+
+        [DataMember(Order = 16)]
+        [XmlElement(Order = 16, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public Code? PricingCurrencyCode { get; set; }
+
+        [DataMember(Order = 47)]
+        [XmlElement(Order = 47, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public decimal PricingExchangeRate { get; set; }
+
+        [DataMember(Order = 4)]
+        [XmlElement(Order = 4, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public string? ProfileExecutionID { get; set; } = string.Empty;
+
+        [DataMember(Order = 3)]
+        [XmlElement(Order = 3, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public string? ProfileID { get; set; } = string.Empty;
+
+        [DataMember(Order = 32)]
+        [XmlElement(Order = 32, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public List<ProjectReference> ProjectReference { get; set; } = new();
 
 
+        [DataMember(Order = 38)]
+        [XmlElement(Order = 38, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public SupplierParty? SellerSupplierParty { get; set; } = new();
 
+        [DataMember(Order = 15)]
+        [XmlElement(Order = 15, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public Code? TaxCurrencyCode { get; set; }
 
-                         [DataMember(Order = 11)]
-                         public string InvoiceTypeCode { get; set; } = string.Empty;
+        [DataMember(Order = 46)]
+        [XmlElement(Order = 46, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public decimal TaxExchangeRate { get; set; }
 
-                           [DataMember(Order = 21)]
-                         public int LineCountNumeric { get; set; }
+        [DataMember(Order = 39)]
+        [XmlElement(Order = 39, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public Party? TaxRepresentativeParty { get; set; }
 
-                         [DataMember(Order = 24)]
-                         public string OrderReference { get; set; } = string.Empty;
-
-                         [DataMember(Order = 29)]
-                         public IEnumerable<string> OriginatorDocumentReference { get; set; } = Array.Empty<string>();
-
-                         [DataMember(Order = 36)]
-                         public string PayeeParty { get; set; } = string.Empty;
-
-                         [DataMember(Order = 18)]
-                         public string PaymentAlternativeCurrencyCode { get; set; } = string.Empty;
-
-                         [DataMember(Order = 49)]
-                         public decimal PaymentAlternativeExchangeRate { get; set; }
-
-                         [DataMember(Order = 17)]
-                         public string PaymentCurrencyCode { get; set; } = string.Empty;
-
-                         [DataMember(Order = 48)]
-                         public decimal PaymentExchangeRate { get; set; }
-
-                         [DataMember(Order = 16)]
-                         public string PricingCurrencyCode { get; set; } = string.Empty;
-
-                         [DataMember(Order = 47)]
-                         public decimal PricingExchangeRate { get; set; }
-
-                         [DataMember(Order = 4)]
-                         public string ProfileExecutionID { get; set; } = string.Empty;
-
-                         [DataMember(Order = 3)]
-                         public string ProfileID { get; set; } = string.Empty;
-
-                         [DataMember(Order = 32)]
-                         public IEnumerable<string> ProjectReference { get; set; } = Array.Empty<string>();
-
-                         [DataMember(Order = 27)]
-                         public IEnumerable<string> ReceiptDocumentReference { get; set; } = Array.Empty<string>();
-
-                         [DataMember(Order = 38)]
-                         public AccountingSupplierParty SellerSupplierParty { get; set; } = new();
-
-                         [DataMember(Order = 15)]
-                         public string TaxCurrencyCode { get; set; } = string.Empty;
-
-                         [DataMember(Order = 46)]
-                         public decimal TaxExchangeRate { get; set; }
-
-                         [DataMember(Order = 13)]
-                         public DateTimeOffset TaxPointDate { get; set; }
-
-                         [DataMember(Order = 39)]
-                         public string TaxRepresentativeParty { get; set; } = string.Empty;
-
-                         [DataMember(Order = 1)]
-                         public string UBLVersionID { get; set; } = string.Empty;
-
-                         [DataMember(Order = 7)]
-                         public string UUID { get; set; } = string.Empty;
-                 */
+        [DataMember(Order = 7)]
+        [XmlElement(Order = 7, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public string? UUID { get; set; }
     }
 }

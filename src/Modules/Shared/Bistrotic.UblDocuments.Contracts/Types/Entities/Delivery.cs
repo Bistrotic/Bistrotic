@@ -10,54 +10,55 @@
     [DataContract]
     [XmlRoot(Namespace = UblNamespaces.CommonAggregateComponents2)]
     [XmlType(Namespace = UblNamespaces.CommonAggregateComponents2)]
-    public class PartyLegalEntity
+    public class Delivery
     {
         [DataMember(Order = 0)]
         [XmlElement(Order = 0, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public string RegistrationName { get; set; } = string.Empty;
+        public string? ID { get; set; } = string.Empty;
+
 
         [DataMember(Order = 1)]
         [XmlElement(Order = 1, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public string CompanyID { get; set; } = string.Empty;
+        public decimal Quantity { get; set; }
 
         [DataMember(Order = 2)]
         [XmlElement(Order = 2, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date RegistrationDate { get; set; } = new();
+        public decimal MinimumQuantity { get; set; }
 
         [DataMember(Order = 3)]
         [XmlElement(Order = 3, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date RegistrationExpirationDate { get; set; } = new();
+        public decimal MaximumQuantity { get; set; }
 
         [DataMember(Order = 4)]
         [XmlElement(Order = 4, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public string CompanyLegalFormCode { get; set; } = string.Empty;
+        public Date? ActualDeliveryDate { get; set; }
 
         [DataMember(Order = 5)]
         [XmlElement(Order = 5, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public string CompanyLegalForm { get; set; } = string.Empty;
+        public Time? ActualDeliveryTime { get; set; }
 
         [DataMember(Order = 6)]
         [XmlElement(Order = 6, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public string SoleProprietorshipIndicator { get; set; } = string.Empty;
+        public Date? LatestDeliveryDate { get; set; }
 
         [DataMember(Order = 7)]
         [XmlElement(Order = 7, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public string CompanyLiquidationStatusCode { get; set; } = string.Empty;
+        public Time? LatestDeliveryTime { get; set; }
 
         [DataMember(Order = 8)]
         [XmlElement(Order = 8, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public decimal CorporateStockAmount { get; set; }
+        public string? ReleaseID { get; set; } = string.Empty;
 
         [DataMember(Order = 9)]
         [XmlElement(Order = 9, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public bool FullyPaidSharesIndicator { get; set; }
+        public string? TrackingID { get; set; } = string.Empty;
 
         [DataMember(Order = 10)]
         [XmlElement(Order = 10, Namespace = UblNamespaces.CommonAggregateComponents2)]
-        public Address RegistrationAddress { get; set; } = new();
+        public Address? DeliveryAddress { get; set; }
 
-        [DataMember(Order = 12)]
-        [XmlElement(Order = 12, Namespace = UblNamespaces.CommonAggregateComponents2)]
-        public Party HeadOfficeParty { get; set; } = new();
+        [DataMember(Order = 11)]
+        [XmlElement(Order = 11, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public Location? DeliveryLocation { get; set; }
     }
 }

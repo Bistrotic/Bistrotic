@@ -91,8 +91,20 @@
         [XmlElement(Order = 19, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<CommodityClassification> CommodityClassification { get; set; } = new();
 
+        [DataMember(Order = 20)]
+        [XmlElement(Order = 20, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public List<TransactionConditions> TransactionConditions { get; set; } = new();
 
+        [DataMember(Order = 22)]
+        [XmlElement(Order = 22, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public List<TaxCategory> ClassifiedTaxCategory { get; set; } = new();
 
+        [DataMember(Order = 23)]
+        [XmlElement(Order = 23, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public List<ItemProperty> AdditionalItemProperty { get; set; } = new();
 
+        [DataMember(Order = 24)]
+        [XmlElement(Order = 24, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public List<Party> ManufacturerParty { get; set; } = new();
     }
 }

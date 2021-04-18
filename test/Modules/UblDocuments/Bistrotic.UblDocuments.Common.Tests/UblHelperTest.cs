@@ -298,9 +298,24 @@
             lines[0].Item.CommodityClassification.Should().HaveCount(2);
             lines[0].Item.CommodityClassification[0].ItemClassificationCode.Should().Be("12344321");
             lines[0].Item.CommodityClassification[1].ItemClassificationCode.Should().Be("65434568");
-            lines[0].Item.ClassifiedTaxCategory.Should().HaveCount(2);
-            lines[0].Item.ClassifiedTaxCategory[0].ItemClassificationCode.Should().Be("12344321");
-            lines[0].Item.ClassifiedTaxCategory[1].ItemClassificationCode.Should().Be("65434568");
+            lines[0].Item.ClassifiedTaxCategory.Should().HaveCount(1);
+            lines[0].Item.ClassifiedTaxCategory[0].ID.Should().Be("S");
+            lines[0].Item.ClassifiedTaxCategory[0].Percent.Should().Be(20);
+            lines[0].Item.ClassifiedTaxCategory[0].TaxScheme.Should().NotBeNull();
+            lines[0].Item.ClassifiedTaxCategory[0].TaxScheme.ID.Should().Be("VAT");
+            lines[0].Item.AdditionalItemProperty.Should().HaveCount(1);
+            lines[0].Item.AdditionalItemProperty[0].Name.Should().Be("Color");
+            lines[0].Item.AdditionalItemProperty[0].Value.Should().Be("black");
+            lines[0].Price.Should().NotBeNull();
+            lines[0].Price.PriceAmount.Should().Be(1273);
+            lines[0].Price.BaseQuantity.Should().Be(1);
+            lines[0].Price.AllowanceCharge.Should().HaveCount(1);
+            lines[0].Price.AllowanceCharge[0].ChargeIndicator.Should().Be(false);
+            lines[0].Price.AllowanceCharge[0].AllowanceChargeReason.Should().Be("Contract");
+            lines[0].Price.AllowanceCharge[0].MultiplierFactorNumeric.Should().Be(0.15m);
+            lines[0].Price.AllowanceCharge[0].Amount.Should().Be(225m);
+            lines[0].Price.AllowanceCharge[0].BaseAmount.Should().Be(1500m);
+            lines[0].Price.BaseQuantity.Should().Be(1);
             #endregion Lines
         }
 

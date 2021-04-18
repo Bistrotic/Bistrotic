@@ -109,8 +109,8 @@
         public Item Item { get; set; } = new();
 
         [DataMember(Order = 24)]
-        [XmlElement(Order = 24, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public decimal Price { get; set; }
+        [XmlElement(Order = 24, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public Price Price { get; set; } = new();
 
         [DataMember(Order = 25)]
         [XmlElement(Order = 25, Namespace = UblNamespaces.CommonBasicComponents2)]

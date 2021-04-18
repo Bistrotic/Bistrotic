@@ -187,6 +187,10 @@
         [XmlElement(Order = 43, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<PaymentTerms> PaymentTerms { get; set; } = new();
 
+        [DataMember(Order = 45)]
+        [XmlElement(Order = 45, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public List<AllowanceCharge> AllowanceCharge { get; set; } = new();
+
         [DataMember(Order = 46)]
         [XmlElement(Order = 46, Namespace = UblNamespaces.CommonBasicComponents2)]
         public decimal TaxExchangeRate { get; set; }
@@ -203,8 +207,12 @@
         [XmlElement(Order = 49, Namespace = UblNamespaces.CommonBasicComponents2)]
         public decimal PaymentAlternativeExchangeRate { get; set; }
 
+        [DataMember(Order = 51)]
+        [XmlElement(Order = 51, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public TaxTotal? TaxTotal { get; set; }
+
         [DataMember(Order = 52, IsRequired = true)]
-        [XmlElement(Order = 52, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        [XmlElement(Order = 52, IsNullable = false, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public LegalMonetaryTotal LegalMonetaryTotal { get; set; } = new();
 
         [DataMember(Order = 53, IsRequired = true, Name = nameof(InvoiceLine))]

@@ -66,6 +66,7 @@
         {
             using FileStream fs = new(UblTextDocument.Invoice2File, FileMode.Open);
             XmlSerializer xs = new(typeof(Invoice));
+            #region Invoice
             var invoice = (Invoice)xs.Deserialize(fs);
             invoice.Should().NotBeNull();
             invoice.UBLVersionID.Should().Be("2.1");
@@ -223,19 +224,84 @@
             paymentMeans.PayeeFinancialAccount.Should().NotBeNull();
             paymentMeans.PayeeFinancialAccount.ID.Should().Be("DK1212341234123412");
             paymentMeans.PayeeFinancialAccount.FinancialInstitutionBranch.FinancialInstitution.ID.Should().Be("DKDKABCD");
-
-
+            invoice.PaymentTerms.Should().HaveCount(1);
+            invoice.PaymentTerms[0].Note.Should().HaveCount(1);
+            invoice.PaymentTerms[0].Note[0].Value.Should().Be("Penalty percentage 10% from due date");
+            invoice.AllowanceCharge.Should().HaveCount(2);
+            invoice.AllowanceCharge[0].ChargeIndicator.Should().Be(true);
+            invoice.AllowanceCharge[0].AllowanceChargeReason.Should().Be("Packing cost");
+            invoice.AllowanceCharge[0].Amount.Should().Be(100);
+            invoice.AllowanceCharge[1].ChargeIndicator.Should().Be(false);
+            invoice.AllowanceCharge[1].AllowanceChargeReason.Should().Be("Promotion discount");
+            invoice.AllowanceCharge[1].Amount.Should().Be(100);
+            invoice.TaxTotal.Should().NotBeNull();
+            invoice.TaxTotal.TaxAmount.Should().Be(292.20m);
+            invoice.TaxTotal.TaxSubtotal.Should().HaveCount(3);
+            invoice.TaxTotal.TaxSubtotal[0].TaxableAmount.Should().Be(1460.5m);
+            invoice.TaxTotal.TaxSubtotal[0].TaxAmount.Should().Be(292.1m);
+            invoice.TaxTotal.TaxSubtotal[0].TaxCategory.ID.Should().Be("S");
+            invoice.TaxTotal.TaxSubtotal[0].TaxCategory.Percent.Should().Be(20m);
+            invoice.TaxTotal.TaxSubtotal[0].TaxCategory.TaxScheme.Should().NotBeNull();
+            invoice.TaxTotal.TaxSubtotal[0].TaxCategory.TaxScheme.ID.Should().Be("VAT");
+            invoice.TaxTotal.TaxSubtotal[1].TaxableAmount.Should().Be(1m);
+            invoice.TaxTotal.TaxSubtotal[1].TaxAmount.Should().Be(0.1m);
+            invoice.TaxTotal.TaxSubtotal[1].TaxCategory.ID.Should().Be("AA");
+            invoice.TaxTotal.TaxSubtotal[1].TaxCategory.Percent.Should().Be(10m);
+            invoice.TaxTotal.TaxSubtotal[1].TaxCategory.TaxScheme.Should().NotBeNull();
+            invoice.TaxTotal.TaxSubtotal[1].TaxCategory.TaxScheme.ID.Should().Be("VAT");
+            invoice.TaxTotal.TaxSubtotal[2].TaxableAmount.Should().Be(-25m);
+            invoice.TaxTotal.TaxSubtotal[2].TaxAmount.Should().Be(0m);
+            invoice.TaxTotal.TaxSubtotal[2].TaxCategory.ID.Should().Be("E");
+            invoice.TaxTotal.TaxSubtotal[2].TaxCategory.Percent.Should().Be(0m);
+            invoice.TaxTotal.TaxSubtotal[2].TaxCategory.TaxScheme.Should().NotBeNull();
+            invoice.TaxTotal.TaxSubtotal[2].TaxCategory.TaxScheme.ID.Should().Be("VAT");
 
             invoice.LegalMonetaryTotal.Should().NotBeNull();
-            invoice.LegalMonetaryTotal.PayableAmount.Should().Be(100.25m);
+            invoice.LegalMonetaryTotal.LineExtensionAmount.Should().Be(1436.5m);
+            invoice.LegalMonetaryTotal.TaxExclusiveAmount.Should().Be(1436.5m);
+            invoice.LegalMonetaryTotal.TaxInclusiveAmount.Should().Be(1729m);
+            invoice.LegalMonetaryTotal.AllowanceTotalAmount.Should().Be(100m);
+            invoice.LegalMonetaryTotal.ChargeTotalAmount.Should().Be(100m);
+            invoice.LegalMonetaryTotal.PrepaidAmount.Should().Be(1000m);
+            invoice.LegalMonetaryTotal.PayableRoundingAmount.Should().Be(0.30m);
+            invoice.LegalMonetaryTotal.PayableAmount.Should().Be(729m);
+            #endregion Invoice
+            #region Lines
             var lines = invoice.InvoiceLine;
             lines.Should().NotBeNull();
-            lines.Should().HaveCount(1);
-            var line = lines.First();
-            line.ID.Should().Be("1");
-            line.LineExtensionAmount.Should().Be(101.36m);
-            line.Item.Should().NotBeNull();
-            line.Item.Description.Should().Be("Cotter pin, MIL-SPEC");
+            lines.Should().HaveCount(5);
+            lines[0].ID.Should().Be("1");
+            lines[0].Note.Should().HaveCount(1);
+            lines[0].Note[0].Value.Should().Be("Scratch on box");
+            lines[0].InvoicedQuantity.Should().Be(1m);
+            lines[0].LineExtensionAmount.Should().Be(1273m);
+            lines[0].AccountingCost.Should().Be("BookingCode001");
+            lines[0].OrderLineReference.Should().HaveCount(1);
+            lines[0].OrderLineReference[0].LineID.Should().Be("1");
+            lines[0].AllowanceCharge.Should().HaveCount(2);
+            lines[0].AllowanceCharge[0].ChargeIndicator.Should().Be(false);
+            lines[0].AllowanceCharge[0].AllowanceChargeReason.Should().Be("Damage");
+            lines[0].AllowanceCharge[0].Amount.Should().Be(12);
+            lines[0].AllowanceCharge[1].ChargeIndicator.Should().Be(true);
+            lines[0].AllowanceCharge[1].AllowanceChargeReason.Should().Be("Testing");
+            lines[0].AllowanceCharge[1].Amount.Should().Be(10);
+            lines[0].TaxTotal.Should().HaveCount(1);
+            lines[0].TaxTotal[0].TaxAmount.Should().Be(254.6m);
+
+            lines[0].Item.Should().NotBeNull();
+            lines[0].Item.Description.Should().Be("\n\t\t\t\tProcessor: Intel Core 2 Duo SU9400 LV (1.4GHz). RAM:\n\t\t\t\t3MB. Screen 1440x900\n\t\t\t");
+            lines[0].Item.Name.Should().Be("Labtop computer");
+            lines[0].Item.SellersItemIdentification.Should().NotBeNull();
+            lines[0].Item.SellersItemIdentification.ID.Should().Be("JB007");
+            lines[0].Item.StandardItemIdentification.Should().NotBeNull();
+            lines[0].Item.StandardItemIdentification.ID.Should().Be("1234567890124");
+            lines[0].Item.CommodityClassification.Should().HaveCount(2);
+            lines[0].Item.CommodityClassification[0].ItemClassificationCode.Should().Be("12344321");
+            lines[0].Item.CommodityClassification[1].ItemClassificationCode.Should().Be("65434568");
+            lines[0].Item.ClassifiedTaxCategory.Should().HaveCount(2);
+            lines[0].Item.ClassifiedTaxCategory[0].ItemClassificationCode.Should().Be("12344321");
+            lines[0].Item.ClassifiedTaxCategory[1].ItemClassificationCode.Should().Be("65434568");
+            #endregion Lines
         }
 
         [Fact]

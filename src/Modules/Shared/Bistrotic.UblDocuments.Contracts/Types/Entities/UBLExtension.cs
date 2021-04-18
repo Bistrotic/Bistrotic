@@ -1,66 +1,53 @@
 ﻿namespace Bistrotic.UblDocuments.Types.Entities
 {
     using System;
-    using System.Collections.Generic;
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
-
-    using Bistrotic.UblDocuments.Types.ValueTypes;
 
     [Serializable]
     [DataContract]
     [XmlRoot(Namespace = UblNamespaces.CommonAggregateComponents2)]
     [XmlType(Namespace = UblNamespaces.CommonAggregateComponents2)]
-    public class Location
+    public class UBLExtension
     {
         [DataMember(Order = 0)]
         [XmlElement(Order = 0, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public string? ID { get; set; }
+        public string ID { get; set; } = string.Empty;
 
         [DataMember(Order = 1)]
         [XmlElement(Order = 1, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public List<string> Description { get; set; } = new();
+        public string Name { get; set; } = string.Empty;
 
         [DataMember(Order = 2)]
         [XmlElement(Order = 2, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public List<string> Conditions { get; set; } = new();
+        public string? ExtensionAgencyID { get; set; }
 
         [DataMember(Order = 3)]
         [XmlElement(Order = 3, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public string? CountrySubentity { get; set; }
+        public string? ExtensionAgencyName { get; set; } = string.Empty;
 
         [DataMember(Order = 4)]
         [XmlElement(Order = 4, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public string? CountrySubentityCode { get; set; }
+        public string? ExtensionVersionID { get; set; }
 
         [DataMember(Order = 5)]
         [XmlElement(Order = 5, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Code? LocationTypeCode { get; set; }
+        public string? ExtensionAgencyURI { get; set; } = string.Empty;
 
         [DataMember(Order = 6)]
         [XmlElement(Order = 6, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public string? InformationURI { get; set; }
+        public string? ExtensionURI { get; set; } = string.Empty;
 
         [DataMember(Order = 7)]
         [XmlElement(Order = 7, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public string? Name { get; set; }
+        public string? ExtensionReasonCode { get; set; } = string.Empty;
 
         [DataMember(Order = 8)]
-        [XmlElement(Order = 8, Namespace = UblNamespaces.CommonAggregateComponents2)]
-        public List<Period> ValidityPeriod { get; set; } = new();
+        [XmlElement(Order = 8, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public string? ExtensionReason { get; set; } = string.Empty;
 
-        [DataMember(Order = 9)]
-        [XmlElement(Order = 9, Namespace = UblNamespaces.CommonAggregateComponents2)]
-        public Address? Address { get; set; } = new();
-
-        [DataMember(Order = 10)]
-        [XmlElement(Order = 10, Namespace = UblNamespaces.CommonAggregateComponents2)]
-        public List<Location> SubsidiaryLocation { get; set; } = new();
-
-        [DataMember(Order = 11)]
-        [XmlElement(Order = 11, Namespace = UblNamespaces.CommonAggregateComponents2)]
-        public List<LocationCoordinate> LocationCoordinate { get; set; } = new();
-
-
+        [DataMember(Order = 9, IsRequired = true)]
+        [XmlElement(Order = 9, IsNullable = false, Namespace = UblNamespaces.CommonExtensionComponents2)]
+        public object ExtensionContent { get; set; } = string.Empty;
     }
 }

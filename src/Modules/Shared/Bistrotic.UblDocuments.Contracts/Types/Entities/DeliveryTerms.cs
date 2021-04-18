@@ -29,7 +29,7 @@
 
         [DataMember(Order = 3)]
         [XmlElement(Order = 3, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public IEnumerable<string> LossRisk { get; set; } = Array.Empty<string>();
+        public List<string> LossRisk { get; set; } = new();
 
         [DataMember(Order = 2)]
         [XmlElement(Order = 2, Namespace = UblNamespaces.CommonBasicComponents2)]
@@ -37,6 +37,6 @@
 
         [DataMember(Order = 1)]
         [XmlElement(Order = 1, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public IEnumerable<string> SpecialTerms { get; set; } = Array.Empty<string>();
+        public List<string> SpecialTerms { get; set; } = new();
     }
 }

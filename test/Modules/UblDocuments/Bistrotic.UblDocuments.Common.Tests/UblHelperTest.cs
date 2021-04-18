@@ -149,7 +149,7 @@
             supplier.Party.Person[0].MiddleName.Should().Be("Salemacher");
             supplier.Party.Person[0].JobTitle.Should().Be("Sales manager");
 
-            var customer = invoice.AccountingSupplierParty;
+            var customer = invoice.AccountingCustomerParty;
             customer.Should().NotBeNull();
             customer.Party.Should().NotBeNull();
             customer.Party.PartyName.Should().NotBeNull();
@@ -165,7 +165,7 @@
             customer.Party.PostalAddress.Department.Should().Be("Accounting department");
             customer.Party.PostalAddress.CityName.Should().Be("Anytown");
             customer.Party.PostalAddress.PostalZone.Should().Be("101");
-            customer.Party.PostalAddress.CountrySubentityCode.Should().Be("RegionB");
+            customer.Party.PostalAddress.CountrySubentity.Should().Be("RegionB");
             customer.Party.PostalAddress.Country.IdentificationCode.Should().Be("BE");
             customer.Party.PartyTaxScheme.Should().HaveCount(1);
             customer.Party.PartyTaxScheme[0].CompanyID.Should().Be("BE54321");
@@ -177,9 +177,9 @@
             customer.Party.PartyLegalEntity[0].RegistrationAddress.CountrySubentity.Should().Be("RegionB");
             customer.Party.PartyLegalEntity[0].RegistrationAddress.Country.IdentificationCode.Should().Be("BE");
             customer.Party.Contact.Should().HaveCount(1);
-            customer.Party.Contact[0].Telephone.Should().Be("4621230");
-            customer.Party.Contact[0].Telefax.Should().Be("4621231");
-            customer.Party.Contact[0].ElectronicMail.Should().Be("antonio@salescompany.dk");
+            customer.Party.Contact[0].Telephone.Should().Be("5121230");
+            customer.Party.Contact[0].Telefax.Should().Be("5121231");
+            customer.Party.Contact[0].ElectronicMail.Should().Be("john@buyercompany.eu");
             customer.Party.Person.Should().HaveCount(1);
             customer.Party.Person[0].FirstName.Should().Be("John");
             customer.Party.Person[0].FamilyName.Should().Be("X");
@@ -210,8 +210,19 @@
             deliveryLocation.Address.PostalZone.Should().Be("523427");
             deliveryLocation.Address.CountrySubentity.Should().Be("RegionC");
             deliveryLocation.Address.Country.IdentificationCode.Should().Be("BE");
-
-
+            invoice.PaymentMeans.Should().HaveCount(1);
+            var paymentMeans = invoice.PaymentMeans[0];
+            paymentMeans.PaymentMeansCode.Value.Should().Be("31");
+            paymentMeans.PaymentDueDate.Should().NotBeNull();
+            DateTime paymentDueDate = paymentMeans.PaymentDueDate;
+            paymentDueDate.Year.Should().Be(2009);
+            paymentDueDate.Month.Should().Be(12);
+            paymentDueDate.Day.Should().Be(31);
+            paymentMeans.PaymentChannelCode.Value.Should().Be("IBAN");
+            paymentMeans.PaymentID.Should().Be("Payref1");
+            paymentMeans.PayeeFinancialAccount.Should().NotBeNull();
+            paymentMeans.PayeeFinancialAccount.ID.Should().Be("DK1212341234123412");
+            paymentMeans.PayeeFinancialAccount.FinancialInstitutionBranch.FinancialInstitution.ID.Should().Be("DKDKABCD");
 
 
 

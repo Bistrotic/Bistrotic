@@ -29,6 +29,7 @@
     using Bistrotic.QuartzScheduler;
     using Bistrotic.Roles;
     using Bistrotic.SalesHistory;
+    using Bistrotic.UblDocuments;
     using Bistrotic.Units;
     using Bistrotic.Users;
     using Bistrotic.WorkItems;
@@ -187,6 +188,7 @@
                 //modules.Add(typeof(MicrosoftIdentityServerModule), (config, env) => new MicrosoftIdentityServerModule(config, env));
                 { typeof(OpenIdDictServerModule), (config, env) => new OpenIdDictServerModule(config, env) },
                 { typeof(RolesServerModule), (config, env) => new RolesServerModule(config, env) },
+                { typeof(UblDocumentsServerModule), (config, env) => new UblDocumentsServerModule(config, env) },
                 { typeof(UsersServerModule), (config, env) => new UsersServerModule(config, env) },
                 { typeof(UnitsServerModule), (config, env) => new UnitsServerModule(config, env) },
                 { typeof(WorkItemsServerModule), (config, env) => new WorkItemsServerModule(config, env) },

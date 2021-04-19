@@ -30,6 +30,9 @@
             var content = Convert.FromBase64String(_state.Document);
             switch (fileType)
             {
+                case FileType.Xml:
+                    data = _state.Document;
+                    break;
                 case FileType.Csv:
                     {
                         using IExcelDataReader reader = ExcelReaderFactory.CreateCsvReader(new MemoryStream(content),

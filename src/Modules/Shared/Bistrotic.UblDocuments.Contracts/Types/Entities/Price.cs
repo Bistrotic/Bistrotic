@@ -14,7 +14,7 @@
     public class Price
     {
         [DataMember(Order = 0, IsRequired = true)]
-        [XmlElement(Order = 0, IsNullable = true, Namespace = UblNamespaces.CommonBasicComponents2)]
+        [XmlElement(Order = 0, Namespace = UblNamespaces.CommonBasicComponents2)]
         public decimal PriceAmount { get; set; }
 
         [DataMember(Order = 1)]
@@ -42,15 +42,15 @@
         public List<Period> ValidityPeriod { get; set; } = new();
 
         [DataMember(Order = 7)]
-        [XmlElement(Order = 7, Namespace = UblNamespaces.CommonBasicComponents2)]
+        [XmlElement(Order = 7, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public PriceList? PriceList { get; set; }
 
         [DataMember(Order = 8)]
-        [XmlElement(Order = 8, Namespace = UblNamespaces.CommonBasicComponents2)]
+        [XmlElement(Order = 8, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<AllowanceCharge> AllowanceCharge { get; set; } = new();
 
         [DataMember(Order = 9)]
-        [XmlElement(Order = 9, Namespace = UblNamespaces.CommonBasicComponents2)]
+        [XmlElement(Order = 9, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public ExchangeRate? PricingExchangeRate { get; set; }
 
     }

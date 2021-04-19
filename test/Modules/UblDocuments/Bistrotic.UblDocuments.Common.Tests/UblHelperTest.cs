@@ -55,11 +55,10 @@
             var lines = invoice.InvoiceLine;
             lines.Should().NotBeNull();
             lines.Should().HaveCount(1);
-            var line = lines.First();
-            line.ID.Should().Be("1");
-            line.LineExtensionAmount.Should().Be(101.36m);
-            line.Item.Should().NotBeNull();
-            line.Item.Description.Should().Be("Cotter pin, MIL-SPEC");
+            lines[0].ID.Should().Be("1");
+            lines[0].LineExtensionAmount.Should().Be(101.36m);
+            lines[0].Item.Should().NotBeNull();
+            lines[0].Item.Description.Should().Be("Cotter pin, MIL-SPEC");
         }
         [Fact]
         public void UblInvoice_2_1_example_check_all_values()
@@ -84,9 +83,7 @@
             taxDate.Year.Should().Be(2009);
             taxDate.Month.Should().Be(11);
             taxDate.Day.Should().Be(30);
-            invoice.DocumentCurrencyCode.Value.Should().Be("EUR");
-            invoice.DocumentCurrencyCode.ListID.Should().Be("ISO 4217 Alpha");
-            invoice.DocumentCurrencyCode.ListAgencyID.Should().Be("6");
+            invoice.DocumentCurrencyCode.Should().Be("EUR");
             invoice.AccountingCost.Should().Be("Project cost code 123");
             invoice.InvoicePeriod.Should().NotBeNull();
             invoice.InvoicePeriod.EndDate.Should().NotBeNull();
@@ -101,9 +98,8 @@
             endDate.Day.Should().Be(30);
             invoice.OrderReference.ID.Should().Be("123");
             invoice.ContractDocumentReference.Should().HaveCount(1);
-            var contract = invoice.ContractDocumentReference.First();
-            contract.ID.Should().Be("Contract321");
-            contract.DocumentType.Should().Be("Framework agreement");
+            invoice.ContractDocumentReference[0].ID.Should().Be("Contract321");
+            invoice.ContractDocumentReference[0].DocumentType.Should().Be("Framework agreement");
             invoice.AdditionalDocumentReference.Should().HaveCount(2);
             var additionalDocument1 = invoice.AdditionalDocumentReference[0];
             additionalDocument1.ID.Should().Be("Doc1");

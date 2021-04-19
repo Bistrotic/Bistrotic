@@ -1,6 +1,7 @@
 ﻿namespace Bistrotic.DataIntegrations.Common.Tests
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
@@ -41,8 +42,8 @@
             var e = (DataIntegrationNormalized)events.First();
             e.Name.Should().Be("test normalize");
             e.Description.Should().Be("my normalization test");
-            e.Data.Should().HaveCount(1);
-            e.Data.Should().ContainKey("Table");
+            ((IDictionary)e.Data).Should().HaveCount(1);
+            ((IDictionary<string, object>)e.Data).Should().ContainKey("Table");
             var table = (IEnumerable<dynamic>)e.Data["Table"];
             table.Should().HaveCount(2);
             dynamic row1 = (IDictionary<string, object>)table.First();

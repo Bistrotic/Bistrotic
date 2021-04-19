@@ -1,0 +1,96 @@
+﻿namespace Bistrotic.UblDocuments.Types.Aggregates
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Runtime.Serialization;
+    using System.Xml.Serialization;
+
+    using Bistrotic.UblDocuments.Types.Entities;
+    using Bistrotic.UblDocuments.Types.ValueTypes;
+
+    [Serializable]
+    [DataContract]
+    [XmlType(Namespace = UblNamespaces.Invoice2)]
+    [XmlRoot(Namespace = UblNamespaces.Invoice2)]
+    public class AttachedDocument
+    {
+        [DataMember(Order = 0)]
+        [XmlElement(Order = 0, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public string? UBLExtensions { get; set; } = string.Empty;
+
+        [DataMember(Order = 1)]
+        [XmlElement(Order = 1, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public string? UBLVersionID { get; set; } = string.Empty;
+
+        [DataMember(Order = 2)]
+        [XmlElement(Order = 2, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public string? CustomizationID { get; set; } = string.Empty;
+
+        [DataMember(Order = 3)]
+        [XmlElement(Order = 3, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public string? ProfileID { get; set; } = string.Empty;
+
+        [DataMember(Order = 4)]
+        [XmlElement(Order = 4, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public string? ProfileExecutionID { get; set; } = string.Empty;
+
+        [DataMember(Order = 5, IsRequired = true)]
+        [XmlElement(Order = 5, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public string ID { get; set; } = string.Empty;
+
+        [DataMember(Order = 6, IsRequired = true)]
+        [XmlElement(Order = 6, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public string? UUID { get; set; } = string.Empty;
+
+        [DataMember(Order = 7, IsRequired = true)]
+        [XmlElement(Order = 7, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public Date IssueDate { get; set; } = new();
+
+        [DataMember(Order = 8)]
+        [XmlElement(Order = 8, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public Time? IssueTime { get; set; }
+
+        [DataMember(Order = 9)]
+        [XmlElement(Order = 9, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public List<string> Note { get; set; } = new();
+
+        [DataMember(Order = 10)]
+        [XmlElement(Order = 10, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public string? DocumentTypeCode { get; set; } = string.Empty;
+
+        [DataMember(Order = 11)]
+        [XmlElement(Order = 11, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public string? DocumentType { get; set; } = string.Empty;
+
+        [DataMember(Order = 12)]
+        [XmlElement(Order = 12, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public string? ParentDocumentID { get; set; } = string.Empty;
+
+        [DataMember(Order = 13)]
+        [XmlElement(Order = 13, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public string? ParentDocumentTypeCode { get; set; } = string.Empty;
+
+        [DataMember(Order = 14)]
+        [XmlElement(Order = 14, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public string? ParentDocumentVersionID { get; set; } = string.Empty;
+
+        [DataMember(Order = 16, IsRequired = true)]
+        [XmlElement(Order = 16, IsNullable = false, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public Party SenderParty { get; set; } = new();
+
+        [DataMember(Order = 17, IsRequired = true)]
+        [XmlElement(Order = 17, IsNullable = false, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public Party ReceiverParty { get; set; } = new();
+
+        [DataMember(Order = 18, IsRequired = true)]
+        [XmlElement(Order = 18, IsNullable = false, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public Attachment Attachment { get; set; } = new();
+
+        [DataMember(Order = 19)]
+        [XmlElement(Order = 19, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public LineReference? ParentDocumentLineReference { get; set; }
+
+
+
+    }
+}

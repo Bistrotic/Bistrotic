@@ -4,7 +4,7 @@
 		<RootNamespace>Bistrotic.UblInvoices</RootNamespace>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="ExtendedXmlSerializer" Version="$(ExtendedXmlSerializerVersion)" 		/>
+		<PackageReference Include="ExtendedXmlSerializer" Version="$(ExtendedXmlSerializerVersion)" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Bistrotic.UblDocuments.Contracts\Bistrotic.UblDocuments.Contracts.csproj" />

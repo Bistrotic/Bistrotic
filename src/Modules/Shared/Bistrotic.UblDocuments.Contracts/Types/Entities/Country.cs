@@ -1,6 +1,7 @@
 ﻿namespace Bistrotic.UblDocuments.Types.Entities
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
 
@@ -8,8 +9,9 @@
     [DataContract]
     [XmlRoot(Namespace = UblNamespaces.CommonAggregateComponents2)]
     [XmlType(Namespace = UblNamespaces.CommonAggregateComponents2)]
-    public class Country
+    public class Country : EntityBase
     {
+        [Key]
         [DataMember(Order = 0)]
         [XmlElement(Order = 0, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string IdentificationCode { get; set; } = string.Empty;

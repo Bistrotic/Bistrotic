@@ -5,7 +5,7 @@
     using Bistrotic.Infrastructure.EfCore.Repositories;
 
     using Bistrotic.SalesHistory.Repositories;
-
+    using Bistrotic.UblDocuments.Infrastructure;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -40,6 +40,8 @@
                 DbContext db = scope.ServiceProvider.GetRequiredService<StateStoreDbContext>();
                 db.Database.Migrate();
                 db = scope.ServiceProvider.GetRequiredService<SalesHistoryDbContext>();
+                db.Database.Migrate();
+                db = scope.ServiceProvider.GetRequiredService<UblDocumentsDbContext>();
                 db.Database.Migrate();
             }
             host

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-
+﻿
 using Bistrotic.Domain.Contracts.Events;
 
 using ProtoBuf;
@@ -10,10 +9,10 @@ namespace Bistrotic.DataIntegrations.Contracts.Events
     [ProtoContract]
     public sealed class DataIntegrationNormalized
     {
-        [ProtoMember(5)]
-        public IDictionary<string, object?> Data { get; set; } = new Dictionary<string, object?>();
+        [ProtoMember(4, IsRequired = true)]
+        public dynamic Data { get; set; } = string.Empty;
 
-        [ProtoMember(1)]
+        [ProtoMember(1, IsRequired = true)]
         public string DataIntegrationId { get; set; } = string.Empty;
 
         [ProtoMember(3)]

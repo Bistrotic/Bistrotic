@@ -74,9 +74,7 @@
             issueDate.Year.Should().Be(2009);
             issueDate.Month.Should().Be(12);
             issueDate.Day.Should().Be(15);
-            invoice.InvoiceTypeCode.Value.Should().Be("380");
-            invoice.InvoiceTypeCode.ListID.Should().Be("UN/ECE 1001 Subset");
-            invoice.InvoiceTypeCode.ListAgencyID.Should().Be("6");
+            invoice.InvoiceTypeCode.Should().Be("380");
             invoice.Note.LanguageID.Should().Be("en");
             invoice.Note.Value.Should().Be("Ordered in our booth at the convention.");
             DateTime taxDate = invoice.TaxPointDate;
@@ -209,13 +207,13 @@
             deliveryLocation.Address.Country.IdentificationCode.Should().Be("BE");
             invoice.PaymentMeans.Should().HaveCount(1);
             var paymentMeans = invoice.PaymentMeans[0];
-            paymentMeans.PaymentMeansCode.Value.Should().Be("31");
+            paymentMeans.PaymentMeansCode.Should().Be("31");
             paymentMeans.PaymentDueDate.Should().NotBeNull();
             DateTime paymentDueDate = paymentMeans.PaymentDueDate;
             paymentDueDate.Year.Should().Be(2009);
             paymentDueDate.Month.Should().Be(12);
             paymentDueDate.Day.Should().Be(31);
-            paymentMeans.PaymentChannelCode.Value.Should().Be("IBAN");
+            paymentMeans.PaymentChannelCode.Should().Be("IBAN");
             paymentMeans.PaymentID.Should().Be("Payref1");
             paymentMeans.PayeeFinancialAccount.Should().NotBeNull();
             paymentMeans.PayeeFinancialAccount.ID.Should().Be("DK1212341234123412");

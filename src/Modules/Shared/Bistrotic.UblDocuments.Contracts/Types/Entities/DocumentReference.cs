@@ -35,7 +35,7 @@ namespace Bistrotic.UblDocuments.Types.Entities
 
         [DataMember(Order = 5)]
         [XmlElement(Order = 5, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public DocumentTypeCode? DocumentTypeCode { get; set; }
+        public string? DocumentTypeCode { get; set; }
 
         [DataMember(Order = 6)]
         [XmlElement(Order = 6, Namespace = UblNamespaces.CommonBasicComponents2)]
@@ -51,7 +51,7 @@ namespace Bistrotic.UblDocuments.Types.Entities
 
         [DataMember(Order = 9)]
         [XmlElement(Order = 9, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Code? LocaleCode { get; set; }
+        public string? LocaleCode { get; set; }
 
         [DataMember(Order = 10)]
         [XmlElement(Order = 10, Namespace = UblNamespaces.CommonBasicComponents2)]
@@ -59,7 +59,7 @@ namespace Bistrotic.UblDocuments.Types.Entities
 
         [DataMember(Order = 11)]
         [XmlElement(Order = 11, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Code? DocumentStatusCode { get; set; }
+        public string? DocumentStatusCode { get; set; }
 
         [DataMember(Order = 12)]
         [XmlElement(Order = 12, Namespace = UblNamespaces.CommonBasicComponents2)]

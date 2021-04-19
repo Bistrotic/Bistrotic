@@ -38,13 +38,14 @@ namespace Bistrotic.UblDocuments.Migrations
                 name: "Invoices",
                 columns: table => new
                 {
-                    ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Key = table.Column<int>(type: "int", nullable: false),
+                    Key = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UBLExtensions = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UBLVersionID = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CustomizationID = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProfileID = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProfileExecutionID = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ID = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CopyIndicator = table.Column<bool>(type: "bit", nullable: false),
                     UUID = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DocumentCurrencyCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -64,8 +65,40 @@ namespace Bistrotic.UblDocuments.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Invoices", x => x.ID);
+                    table.PrimaryKey("PK_Invoices", x => x.Key);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "InvoiceLines",
+                columns: table => new
+                {
+                    Key = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    InvoiceKey = table.Column<int>(type: "int", nullable: false),
+                    ID = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UUID = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InvoicedQuantity = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    LineExtensionAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    AccountingCostCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AccountingCost = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PaymentPurposeCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FreeOfChargeIndicator = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_InvoiceLines", x => x.Key);
+                    table.ForeignKey(
+                        name: "FK_InvoiceLines_Invoices_InvoiceKey",
+                        column: x => x.InvoiceKey,
+                        principalTable: "Invoices",
+                        principalColumn: "Key",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_InvoiceLines_InvoiceKey",
+                table: "InvoiceLines",
+                column: "InvoiceKey");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -75,6 +108,9 @@ namespace Bistrotic.UblDocuments.Migrations
 
             migrationBuilder.DropTable(
                 name: "Integrations");
+
+            migrationBuilder.DropTable(
+                name: "InvoiceLines");
 
             migrationBuilder.DropTable(
                 name: "Invoices");

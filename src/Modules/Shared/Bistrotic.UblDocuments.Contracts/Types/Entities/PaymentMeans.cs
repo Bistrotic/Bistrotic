@@ -19,7 +19,7 @@
 
         [DataMember(Order = 1, IsRequired = true)]
         [XmlElement(Order = 1, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Code PaymentMeansCode { get; set; } = new();
+        public string PaymentMeansCode { get; set; } = string.Empty;
 
         [DataMember(Order = 2)]
         [XmlElement(Order = 2, Namespace = UblNamespaces.CommonBasicComponents2)]
@@ -27,7 +27,7 @@
 
         [DataMember(Order = 3)]
         [XmlElement(Order = 3, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Code? PaymentChannelCode { get; set; }
+        public string? PaymentChannelCode { get; set; }
 
         [DataMember(Order = 4)]
         [XmlElement(Order = 4, Namespace = UblNamespaces.CommonBasicComponents2)]

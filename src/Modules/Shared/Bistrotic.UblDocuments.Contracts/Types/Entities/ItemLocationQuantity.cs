@@ -9,36 +9,35 @@
     [DataContract]
     [XmlRoot(Namespace = UblNamespaces.CommonAggregateComponents2)]
     [XmlType(Namespace = UblNamespaces.CommonAggregateComponents2)]
-    public class PartyTaxScheme
+    public class ItemLocationQuantity
     {
         [DataMember(Order = 0)]
         [XmlElement(Order = 0, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public string? RegistrationName { get; set; }
+        public decimal LeadTimeMeasure { get; set; }
 
         [DataMember(Order = 1)]
         [XmlElement(Order = 1, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public string? CompanyID { get; set; }
+        public decimal MinimumQuantity { get; set; }
 
         [DataMember(Order = 2)]
         [XmlElement(Order = 2, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public string? TaxLevelCode { get; set; }
+        public decimal MaximumQuantity { get; set; }
 
         [DataMember(Order = 3)]
         [XmlElement(Order = 3, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public string? ExemptionReasonCode { get; set; }
-
-        [DataMember(Order = 4)]
-        [XmlElement(Order = 4, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public List<string> ExemptionReason { get; set; } = new();
+        public bool HazardousRiskIndicator { get; set; }
 
         [DataMember(Order = 5)]
-        [XmlElement(Order = 5, Namespace = UblNamespaces.CommonAggregateComponents2)]
-        public Address? RegistrationAddress { get; set; }
+        [XmlElement(Order = 5, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public Price? Price { get; set; }
 
-        [DataMember(Order = 6, IsRequired = true)]
-        [XmlElement(Order = 6, IsNullable = false, Namespace = UblNamespaces.CommonAggregateComponents2)]
-        public TaxScheme TaxScheme { get; set; } = new();
+        [DataMember(Order = 8)]
+        [XmlElement(Order = 8, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public List<TaxCategory> ApplicableTaxCategory { get; set; } = new();
 
+        [DataMember(Order = 10)]
+        [XmlElement(Order = 10, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public List<AllowanceCharge> AllowanceCharge { get; set; } = new();
 
     }
 }

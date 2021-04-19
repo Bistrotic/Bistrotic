@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bistrotic.UblDocuments.Migrations
 {
     [DbContext(typeof(UblDocumentsDbContext))]
-    [Migration("20210419123728_Initial")]
+    [Migration("20210419170628_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,8 +22,10 @@ namespace Bistrotic.UblDocuments.Migrations
 
             modelBuilder.Entity("Bistrotic.UblDocuments.Types.Aggregates.Invoice", b =>
                 {
-                    b.Property<string>("ID")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Key")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AccountingCost")
                         .HasColumnType("nvarchar(max)");
@@ -43,8 +45,8 @@ namespace Bistrotic.UblDocuments.Migrations
                     b.Property<string>("DocumentCurrencyCode")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Key")
-                        .HasColumnType("int");
+                    b.Property<string>("ID")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("LineCountNumeric")
                         .HasColumnType("int");
@@ -91,7 +93,7 @@ namespace Bistrotic.UblDocuments.Migrations
                     b.Property<string>("UUID")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Key");
 
                     b.ToTable("Invoices");
                 });
@@ -111,6 +113,48 @@ namespace Bistrotic.UblDocuments.Migrations
                     b.HasKey("IdentificationCode");
 
                     b.ToTable("Countries");
+                });
+
+            modelBuilder.Entity("Bistrotic.UblDocuments.Types.Entities.InvoiceLine", b =>
+                {
+                    b.Property<int>("Key")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AccountingCost")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AccountingCostCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FreeOfChargeIndicator")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("InvoiceKey")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("InvoicedQuantity")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("LineExtensionAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("PaymentPurposeCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UUID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Key");
+
+                    b.HasIndex("InvoiceKey");
+
+                    b.ToTable("InvoiceLines");
                 });
 
             modelBuilder.Entity("Bistrotic.UblInvoices.Application.UblIntegration", b =>
@@ -135,6 +179,20 @@ namespace Bistrotic.UblDocuments.Migrations
                     b.HasKey("MessageId");
 
                     b.ToTable("Integrations");
+                });
+
+            modelBuilder.Entity("Bistrotic.UblDocuments.Types.Entities.InvoiceLine", b =>
+                {
+                    b.HasOne("Bistrotic.UblDocuments.Types.Aggregates.Invoice", null)
+                        .WithMany("InvoiceLine")
+                        .HasForeignKey("InvoiceKey")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Bistrotic.UblDocuments.Types.Aggregates.Invoice", b =>
+                {
+                    b.Navigation("InvoiceLine");
                 });
 #pragma warning restore 612, 618
         }

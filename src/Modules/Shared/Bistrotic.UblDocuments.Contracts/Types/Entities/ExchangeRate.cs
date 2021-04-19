@@ -14,7 +14,7 @@
     {
         [DataMember(Order = 0, IsRequired = true)]
         [XmlElement(Order = 0, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Code SourceCurrencyCode { get; set; } = new();
+        public string SourceCurrencyCode { get; set; } = string.Empty;
 
         [DataMember(Order = 1)]
         [XmlElement(Order = 1, Namespace = UblNamespaces.CommonBasicComponents2)]
@@ -22,7 +22,7 @@
 
         [DataMember(Order = 2)]
         [XmlElement(Order = 2, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Code? TargetCurrencyCode { get; set; }
+        public string? TargetCurrencyCode { get; set; }
 
         [DataMember(Order = 3)]
         [XmlElement(Order = 3, Namespace = UblNamespaces.CommonBasicComponents2)]
@@ -38,7 +38,7 @@
 
         [DataMember(Order = 6)]
         [XmlElement(Order = 6, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Code? MathematicOperatorCode { get; set; }
+        public string? MathematicOperatorCode { get; set; }
 
         [DataMember(Order = 7)]
         [XmlElement(Order = 7, Namespace = UblNamespaces.CommonBasicComponents2)]

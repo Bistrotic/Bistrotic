@@ -20,7 +20,7 @@ namespace Bistrotic.UblDocuments.Types.Entities
 
         [DataMember(Order = 1)]
         [XmlElement(Order = 1, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Code? WorkPhaseCode { get; set; }
+        public string? WorkPhaseCode { get; set; }
 
         [DataMember(Order = 2)]
         [XmlElement(Order = 2, Namespace = UblNamespaces.CommonBasicComponents2)]

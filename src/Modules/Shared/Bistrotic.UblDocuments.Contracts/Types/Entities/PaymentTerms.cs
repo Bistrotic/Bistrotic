@@ -31,7 +31,7 @@
 
         [DataMember(Order = 4)]
         [XmlElement(Order = 4, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Code? ReferenceEventCode { get; set; }
+        public string? ReferenceEventCode { get; set; }
 
         [DataMember(Order = 5)]
         [XmlElement(Order = 5, Namespace = UblNamespaces.CommonBasicComponents2)]

@@ -26,9 +26,13 @@ namespace Bistrotic.UblDocuments.Application.Events
         }
         public Task Handle(Envelope<DataIntegrationSubmitted> envelope, CancellationToken cancellationToken = default)
         {
-            if (envelope.Message.DocumentType != "Xml")
+            if (envelope.Message.DocumentType == "Xml")
             {
-                var data = Convert.FromBase64String(envelope.Message.Data);
+                if (string.IsNullOrWhiteSpace(envelope.Message.Document))
+                {
+                    throw new UblXmlDeserilizationException($"Message document is empty. It should contain an XML document. Message Id='{envelope.MessageId}'.");
+                }
+                var data = Convert.FromBase64String(envelope.Message.Document);
                 using MemoryStream stream = new(data);
                 XDocument xml = XDocument.Load(stream);
                 if (xml.Root?.Name?.LocalName == nameof(AttachedDocument) && xml.Root?.Name?.Namespace == UblNamespaces.AttachedDocument2)
@@ -56,6 +60,7 @@ namespace Bistrotic.UblDocuments.Application.Events
                         MessageId = envelope.MessageId,
                         Data = xml.ToString(),
                     });
+                    _repository.Save();
                 }
             }
             return Task.CompletedTask;

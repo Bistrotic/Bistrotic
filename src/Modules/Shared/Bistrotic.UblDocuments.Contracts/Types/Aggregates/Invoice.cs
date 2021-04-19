@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
@@ -15,6 +16,7 @@
     [XmlRoot(Namespace = UblNamespaces.Invoice2)]
     public class Invoice : EntityBase
     {
+        [Key]
         [XmlIgnore]
         [IgnoreDataMember]
         public int Key { get; set; }
@@ -69,7 +71,7 @@
         [NotMapped]
         [DataMember(Order = 11)]
         [XmlElement(Order = 11, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public InvoiceTypeCode InvoiceTypeCode { get; set; } = new();
+        public string? InvoiceTypeCode { get; set; }
 
         [NotMapped]
         [DataMember(Order = 12)]

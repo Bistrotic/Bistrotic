@@ -10,8 +10,8 @@
 
     [Serializable]
     [DataContract]
-    [XmlType(Namespace = UblNamespaces.Invoice2)]
-    [XmlRoot(Namespace = UblNamespaces.Invoice2)]
+    [XmlType(Namespace = UblNamespaces.AttachedDocument2)]
+    [XmlRoot(Namespace = UblNamespaces.AttachedDocument2)]
     public class AttachedDocument
     {
         [DataMember(Order = 0)]

@@ -9,35 +9,40 @@
     [DataContract]
     [XmlRoot(Namespace = UblNamespaces.CommonAggregateComponents2)]
     [XmlType(Namespace = UblNamespaces.CommonAggregateComponents2)]
-    public class PartyTaxScheme
+    public class BillingReference
     {
         [DataMember(Order = 0)]
         [XmlElement(Order = 0, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public string? RegistrationName { get; set; }
+        public DocumentReference? InvoiceDocumentReference { get; set; }
 
         [DataMember(Order = 1)]
         [XmlElement(Order = 1, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public string? CompanyID { get; set; }
+        public DocumentReference? SelfBilledInvoiceDocumentReference { get; set; }
 
         [DataMember(Order = 2)]
         [XmlElement(Order = 2, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public string? TaxLevelCode { get; set; }
+        public DocumentReference? CreditNoteDocumentReference { get; set; }
 
         [DataMember(Order = 3)]
         [XmlElement(Order = 3, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public string? ExemptionReasonCode { get; set; }
+        public DocumentReference? SelfBilledCreditNoteDocumentReference { get; set; }
 
         [DataMember(Order = 4)]
         [XmlElement(Order = 4, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public List<string> ExemptionReason { get; set; } = new();
+        public DocumentReference? DebitNoteDocumentReference { get; set; }
 
         [DataMember(Order = 5)]
-        [XmlElement(Order = 5, Namespace = UblNamespaces.CommonAggregateComponents2)]
-        public Address? RegistrationAddress { get; set; }
+        [XmlElement(Order = 5, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public DocumentReference? ReminderDocumentReference { get; set; }
 
-        [DataMember(Order = 6, IsRequired = true)]
-        [XmlElement(Order = 6, IsNullable = false, Namespace = UblNamespaces.CommonAggregateComponents2)]
-        public TaxScheme TaxScheme { get; set; } = new();
+        [DataMember(Order = 5)]
+        [XmlElement(Order = 5, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public DocumentReference? AdditionalDocumentReference { get; set; }
+
+        [DataMember(Order = 6)]
+        [XmlElement(Order = 6, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public List<BillingReferenceLine> BillingReferenceLine { get; set; } = new();
+
 
 
     }

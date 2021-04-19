@@ -8,9 +8,6 @@ namespace Bistrotic.DataIntegrations.Contracts.Events
     [ProtoContract]
     public sealed class DataIntegrationSubmitted
     {
-        [ProtoMember(7)]
-        public string Data { get; set; } = string.Empty;
-
         [ProtoMember(1)]
         public string DataIntegrationId { get; set; } = string.Empty;
 

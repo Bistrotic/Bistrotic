@@ -5,8 +5,6 @@
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
 
-    using Bistrotic.UblDocuments.Types.ValueTypes;
-
     [Serializable]
     [DataContract]
     [XmlRoot(Namespace = UblNamespaces.CommonAggregateComponents2)]
@@ -31,7 +29,7 @@
 
         [DataMember(Order = 5)]
         [XmlElement(Order = 5, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Code? CurrencyCode { get; set; }
+        public string? CurrencyCode { get; set; }
 
         [DataMember(Order = 7)]
         [XmlElement(Order = 7, Namespace = UblNamespaces.CommonAggregateComponents2)]

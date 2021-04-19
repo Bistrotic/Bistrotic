@@ -42,7 +42,7 @@
 
         [DataMember(Order = 7, IsRequired = true)]
         [XmlElement(Order = 7, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public OrderTypeCode? OrderTypeCode { get; set; }
+        public string? OrderTypeCode { get; set; }
 
         [DataMember(Order = 8, IsRequired = true)]
         [XmlElement(Order = 8, IsNullable = false, Namespace = UblNamespaces.CommonAggregateComponents2)]

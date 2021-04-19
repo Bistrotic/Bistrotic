@@ -22,7 +22,7 @@
 
         [DataMember(Order = 2)]
         [XmlElement(Order = 2, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Code? CardTypeCode { get; set; } = new();
+        public string? CardTypeCode { get; set; }
 
         [DataMember(Order = 3)]
         [XmlElement(Order = 3, Namespace = UblNamespaces.CommonBasicComponents2)]

@@ -4,8 +4,6 @@
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
 
-    using Bistrotic.UblDocuments.Types.ValueTypes;
-
     [Serializable]
     [DataContract]
     [XmlRoot(Namespace = UblNamespaces.CommonAggregateComponents2)]
@@ -26,7 +24,7 @@
 
         [DataMember(Order = 3)]
         [XmlElement(Order = 3, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Code? LineStatusCode { get; set; }
+        public string? LineStatusCode { get; set; }
 
         [DataMember(Order = 4)]
         [XmlElement(Order = 4, Namespace = UblNamespaces.CommonBasicComponents2)]

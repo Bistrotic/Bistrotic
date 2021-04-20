@@ -10,8 +10,8 @@
     [XmlType(Namespace = UblNamespaces.CommonAggregateComponents2)]
     public class PartyIdentification
     {
-        [DataMember(Order = 0)]
-        [XmlElement(Order = 0, Namespace = UblNamespaces.CommonBasicComponents2)]
+        [DataMember(Order = 0, IsRequired = true)]
+        [XmlElement(Order = 0, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string ID { get; set; } = string.Empty;
     }
 }

@@ -22,8 +22,8 @@
         public int Key { get; set; }
 
         [DataMember(Order = 0)]
-        [XmlElement(Order = 0, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public string? UBLExtensions { get; set; } = string.Empty;
+        [XmlElement(Order = 0, Namespace = UblNamespaces.CommonExtensionComponents2)]
+        public UBLExtensions? UBLExtensions { get; set; }
 
         [DataMember(Order = 1)]
         [XmlElement(Order = 1, Namespace = UblNamespaces.CommonBasicComponents2)]
@@ -76,7 +76,7 @@
         [NotMapped]
         [DataMember(Order = 12)]
         [XmlElement(Order = 12, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Note? Note { get; set; }
+        public string? Note { get; set; }
 
         [NotMapped]
         [DataMember(Order = 13, IsRequired = true)]
@@ -131,7 +131,7 @@
 
         [NotMapped]
         [DataMember(Order = 25)]
-        [XmlElement(Order = 25, Namespace = UblNamespaces.CommonBasicComponents2)]
+        [XmlElement(Order = 25, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<string> BillingReference { get; set; } = new();
 
         [NotMapped]
@@ -220,6 +220,11 @@
         public List<PaymentTerms> PaymentTerms { get; set; } = new();
 
         [NotMapped]
+        [DataMember(Order = 44)]
+        [XmlElement(Order = 44, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public List<PrepaidPayment> PrepaidPayment { get; set; } = new();
+
+        [NotMapped]
         [DataMember(Order = 45)]
         [XmlElement(Order = 45, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<AllowanceCharge> AllowanceCharge { get; set; } = new();
@@ -243,7 +248,7 @@
         [NotMapped]
         [DataMember(Order = 51)]
         [XmlElement(Order = 51, Namespace = UblNamespaces.CommonAggregateComponents2)]
-        public TaxTotal? TaxTotal { get; set; }
+        public List<TaxTotal> TaxTotal { get; set; } = new();
 
         [NotMapped]
         [DataMember(Order = 52, IsRequired = true)]

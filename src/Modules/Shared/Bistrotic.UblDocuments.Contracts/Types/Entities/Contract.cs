@@ -43,7 +43,7 @@
 
         [DataMember(Order = 7)]
         [XmlElement(Order = 7, Namespace = UblNamespaces.CommonAggregateComponents2)]
-        public List<Note> Note { get; set; } = new();
+        public List<string> Note { get; set; } = new();
 
         [DataMember(Order = 8)]
         [XmlElement(Order = 8, Namespace = UblNamespaces.CommonBasicComponents2)]

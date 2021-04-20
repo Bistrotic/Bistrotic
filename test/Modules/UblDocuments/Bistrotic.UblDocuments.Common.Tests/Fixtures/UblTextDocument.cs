@@ -5,6 +5,8 @@
 
     public static class UblTextDocument
     {
+        public const string Invoice2EmbeddedFile = "./TestFiles/UBL-Invoice-2.1-Example-Embedded.xml";
+        public const string Invoice2FromEmbeddedFile = "./TestFiles/UBL-Invoice-2.1-From-Embedded.xml";
         public const string Invoice2File = "./TestFiles/UBL-Invoice-2.1-Example.xml";
         public const string Invoice2TrivialFile = "./TestFiles/UBL-Invoice-2.1-Example-Trivial.xml";
         public static XDocument GetInvoice2_1ExampleDocument()

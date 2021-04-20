@@ -5,7 +5,7 @@
     using Bistrotic.Infrastructure.EfCore.Repositories;
 
     using Bistrotic.SalesHistory.Repositories;
-    using Bistrotic.UblDocuments.Infrastructure;
+    using Bistrotic.UblDocuments.Infrastructure.Ef;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;

@@ -5,10 +5,11 @@
     using Bistrotic.DataIntegrations.Contracts.Events;
     using Bistrotic.Infrastructure.Helpers;
     using Bistrotic.Infrastructure.WebServer.Modules;
+    using Bistrotic.UblDocuments.Application;
     using Bistrotic.UblDocuments.Application.Events;
     using Bistrotic.UblDocuments.Events;
     using Bistrotic.UblDocuments.Infrastructure;
-    using Bistrotic.UblInvoices.Application;
+    using Bistrotic.UblDocuments.Infrastructure.Ef;
 
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.EntityFrameworkCore;
@@ -34,8 +35,7 @@
         {
             services.AddDbContext<UblDocumentsDbContext>(o => o.UseSqlServer(_settings.ConnectionString));
             services.AddTransient<IEventHandler<DataIntegrationSubmitted>, DataIntegrationSubmittedHandler>();
-            services.AddTransient<IUblIntegrationRepository, UblDocumentsDbContext>();
-            services.AddTransient<IInvoiceRepository, UblDocumentsDbContext>();
+            services.AddTransient<IRepository, UblDocumentsDbContext>();
         }
     }
 }

@@ -1,13 +1,12 @@
-﻿using System.IO;
-
-using Bistrotic.Infrastructure.Helpers;
-
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.Extensions.Configuration;
-
-namespace Bistrotic.UblDocuments.Infrastructure
+﻿namespace Bistrotic.UblDocuments.Infrastructure.Ef
 {
+    using System.IO;
+
+    using Bistrotic.Infrastructure.Helpers;
+
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Design;
+    using Microsoft.Extensions.Configuration;
     public class UblDocumentsDbContextFactory : IDesignTimeDbContextFactory<UblDocumentsDbContext>
     {
         public UblDocumentsDbContext CreateDbContext(string[] args)

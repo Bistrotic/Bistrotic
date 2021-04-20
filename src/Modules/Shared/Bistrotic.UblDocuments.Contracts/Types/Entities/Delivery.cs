@@ -60,5 +60,38 @@
         [DataMember(Order = 11)]
         [XmlElement(Order = 11, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public Location? DeliveryLocation { get; set; }
+
+        [DataMember(Order = 12)]
+        [XmlElement(Order = 12, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public Location? AlternativeDeliveryLocation { get; set; }
+
+        [DataMember(Order = 13)]
+        [XmlElement(Order = 13, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public Period? RequestedDeliveryPeriod { get; set; }
+
+        [DataMember(Order = 14)]
+        [XmlElement(Order = 14, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public Period? PromisedDeliveryPeriod { get; set; }
+
+        [DataMember(Order = 15)]
+        [XmlElement(Order = 15, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public Period? EstimatedDeliveryPeriod { get; set; }
+
+        [DataMember(Order = 16)]
+        [XmlElement(Order = 16, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public Party? CarrierParty { get; set; }
+
+        [DataMember(Order = 17)]
+        [XmlElement(Order = 17, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public Party? DeliveryParty { get; set; }
+
+        [DataMember(Order = 18)]
+        [XmlElement(Order = 18, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public Party? NotifyParty { get; set; }
+
+        [DataMember(Order = 20)]
+        [XmlElement(Order = 20, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public DeliveryTerms? DeliveryTerms { get; set; }
+
     }
 }

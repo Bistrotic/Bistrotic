@@ -37,7 +37,7 @@
         [NotMapped]
         [DataMember(Order = 2)]
         [XmlElement(Order = 2, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public List<Note> Note { get; set; } = new();
+        public List<string> Note { get; set; } = new();
 
         [DataMember(Order = 3)]
         [XmlElement(Order = 3, Namespace = UblNamespaces.CommonBasicComponents2)]
@@ -66,7 +66,7 @@
 
         [DataMember(Order = 9)]
         [XmlElement(Order = 9, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public string? FreeOfChargeIndicator { get; set; }
+        public bool FreeOfChargeIndicator { get; set; }
 
         [NotMapped]
         [DataMember(Order = 10)]
@@ -90,12 +90,12 @@
 
         [NotMapped]
         [DataMember(Order = 14)]
-        [XmlElement(Order = 14, Namespace = UblNamespaces.CommonBasicComponents2)]
+        [XmlElement(Order = 14, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<BillingReference> BillingReference { get; set; } = new();
 
         [NotMapped]
         [DataMember(Order = 15)]
-        [XmlElement(Order = 15, Namespace = UblNamespaces.CommonBasicComponents2)]
+        [XmlElement(Order = 15, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<DocumentReference> DocumentReference { get; set; } = new();
 
         [NotMapped]

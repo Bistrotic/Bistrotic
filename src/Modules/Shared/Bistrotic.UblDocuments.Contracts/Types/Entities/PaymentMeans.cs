@@ -35,7 +35,7 @@
 
         [DataMember(Order = 5)]
         [XmlElement(Order = 5, Namespace = UblNamespaces.CommonAggregateComponents2)]
-        public List<Note> InstructionNote { get; set; } = new();
+        public List<string> InstructionNote { get; set; } = new();
 
         [DataMember(Order = 6, IsRequired = true)]
         [XmlElement(Order = 6, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]

@@ -52,8 +52,8 @@
         public Address? PostalAddress { get; set; }
 
         [DataMember(Order = 10)]
-        [XmlElement(Order = 10, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public string PhysicalLocation { get; set; } = string.Empty;
+        [XmlElement(Order = 10, Namespace = UblNamespaces.CommonAggregateComponents2)]
+        public Location? PhysicalLocation { get; set; }
 
         [DataMember(Order = 11)]
         [XmlElement(Order = 11, Namespace = UblNamespaces.CommonAggregateComponents2)]

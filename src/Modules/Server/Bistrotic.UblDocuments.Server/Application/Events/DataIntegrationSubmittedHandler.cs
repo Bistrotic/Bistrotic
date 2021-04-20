@@ -13,14 +13,13 @@ namespace Bistrotic.UblDocuments.Application.Events
     using Bistrotic.DataIntegrations.Contracts.Events;
     using Bistrotic.UblDocuments.Types;
     using Bistrotic.UblDocuments.Types.Aggregates;
-    using Bistrotic.UblInvoices.Application;
 
     [EventHandler(Event = typeof(DataIntegrationSubmitted))]
     public class DataIntegrationSubmittedHandler : IEventHandler<DataIntegrationSubmitted>
     {
-        private readonly IUblIntegrationRepository _repository;
+        private readonly IRepository _repository;
 
-        public DataIntegrationSubmittedHandler(IUblIntegrationRepository repository)
+        public DataIntegrationSubmittedHandler(IRepository repository)
         {
             _repository = repository;
         }
@@ -52,14 +51,27 @@ namespace Bistrotic.UblDocuments.Application.Events
                 }
                 if (xml.Root?.Name?.LocalName == nameof(Invoice) && xml.Root?.Name?.Namespace == UblNamespaces.Invoice2)
                 {
-                    _repository.Add(new UblIntegration
+                    var integration = new Integration
                     {
                         Name = envelope.Message.Name,
                         Description = envelope.Message.Description,
                         IntegrationId = envelope.Message.DataIntegrationId,
                         MessageId = envelope.MessageId,
+                        ReceivedDate = DateTimeOffset.Now,
                         Data = xml.ToString(),
-                    });
+                    };
+                    _repository.Add(integration);
+                    _repository.Save();
+                    XmlSerializer serializer = new(typeof(Invoice));
+                    var reader = xml.CreateReader();
+                    reader.MoveToContent();
+                    var invoice = (Invoice?)serializer.Deserialize(reader);
+                    if (invoice == null)
+                    {
+                        throw new UblXmlDeserilizationException($"Error while deserializing UBL Invoice in {nameof(DataIntegrationSubmitted)} message '{envelope.MessageId}' :\n" + xml.ToString());
+                    }
+                    _repository.Add(invoice);
+                    integration.IntegrationDate = DateTimeOffset.Now;
                     _repository.Save();
                 }
             }

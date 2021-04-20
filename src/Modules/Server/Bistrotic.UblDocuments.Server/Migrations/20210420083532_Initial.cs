@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Bistrotic.UblDocuments.Migrations
 {
@@ -27,7 +28,9 @@ namespace Bistrotic.UblDocuments.Migrations
                     IntegrationId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Data = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Data = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IntegrationDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    ReceivedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -94,6 +97,22 @@ namespace Bistrotic.UblDocuments.Migrations
                         principalColumn: "Key",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Integrations_IntegrationDate",
+                table: "Integrations",
+                column: "IntegrationDate");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Integrations_MessageId",
+                table: "Integrations",
+                column: "MessageId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Integrations_ReceivedDate",
+                table: "Integrations",
+                column: "ReceivedDate");
 
             migrationBuilder.CreateIndex(
                 name: "IX_InvoiceLines_InvoiceKey",

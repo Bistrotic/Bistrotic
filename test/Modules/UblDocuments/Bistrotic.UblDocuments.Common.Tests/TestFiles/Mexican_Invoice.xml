@@ -61,7 +61,6 @@
 		<tfd:TimbreFiscalDigital xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd" Version="1.1" UUID="c29b0db4-0083-4fc4-a962-6246ba10844e" FechaTimbrado="2021-03-09T11:30:14" RfcProvCertif="MSE255205D9A" SelloCFD="+17y8Q==" NoCertificadoSAT="00001000000506109151" SelloSAT="KCvjhn/P7+==" xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" />
 	</cfdi:Complemento>
 	<cfdi:Addenda>
-		<cfdi:Test>1</cfdi:Test>
 		<fx:FactDocMX xsi:schemaLocation="http://www.fact.com.mx/schema/fx   http://www.mysuitemex.com/fact/schema/fx_2010_f.xsd" xmlns:fx="http://www.fact.com.mx/schema/fx">
 			<fx:Version>7</fx:Version>
 			<fx:Identificacion>

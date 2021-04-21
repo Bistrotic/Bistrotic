@@ -10,8 +10,8 @@
     [XmlRoot("Addenda", Namespace = MxNamespaces.Cfdi)]
     public class Addendum
     {
-        [DataMember(Order = 1)]
-        [XmlElement("FactDocMX", Order = 1, Namespace = MxNamespaces.Fx)]
+        [DataMember(Order = 0)]
+        [XmlElement("FactDocMX", Order = 0, Namespace = MxNamespaces.Fx)]
         public Invoice? Invoice { get; set; }
     }
 }

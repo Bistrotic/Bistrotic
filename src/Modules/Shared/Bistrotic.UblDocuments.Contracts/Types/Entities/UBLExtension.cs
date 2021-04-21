@@ -1,6 +1,7 @@
 ﻿namespace Bistrotic.UblDocuments.Types.Entities
 {
     using System;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
 
@@ -46,6 +47,7 @@
         [XmlElement(Order = 8, Namespace = UblNamespaces.CommonExtensionComponents2)]
         public string? ExtensionReason { get; set; } = string.Empty;
 
+        [NotMapped]
         [DataMember(Order = 9, IsRequired = true)]
         [XmlAnyElement(Order = 9, Namespace = UblNamespaces.CommonExtensionComponents2)]
         public object[] ExtensionContent { get; set; } = Array.Empty<object>();

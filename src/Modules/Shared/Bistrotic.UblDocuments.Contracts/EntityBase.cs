@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.UblDocuments.Types
+﻿namespace Bistrotic.UblDocuments
 {
     using System.Runtime.Serialization;
     using System.Xml.Serialization;

@@ -37,6 +37,8 @@
         public static implicit operator string(Date value) => value.ValueString;
         public static implicit operator Date(DateTime value) => new(value);
         public static implicit operator Date(string value) => new(value);
+
+
     }
 }
 

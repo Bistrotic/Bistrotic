@@ -21,6 +21,7 @@
         [IgnoreDataMember]
         public int Key { get; set; }
 
+        [NotMapped]
         [DataMember(Order = 0)]
         [XmlElement(Order = 0, Namespace = UblNamespaces.CommonExtensionComponents2)]
         public UBLExtensions? UBLExtensions { get; set; }
@@ -53,20 +54,40 @@
         [XmlElement(Order = 7, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? UUID { get; set; }
 
-        [NotMapped]
         [DataMember(Order = 8, IsRequired = true)]
+        [XmlIgnore]
+        public DateTimeOffset? IssueDateTime { get; set; }
+
+        [NotMapped]
+        [IgnoreDataMember]
         [XmlElement(Order = 8, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date IssueDate { get; set; } = new();
+        public Date? IssueDate
+        {
+            get => (IssueDateTime == null) ? null : new(IssueDateTime.Value);
+            set => IssueDateTime = (value == null) ? null : (DateTime)value;
+        }
 
         [NotMapped]
-        [DataMember(Order = 9)]
+        [IgnoreDataMember]
         [XmlElement(Order = 9, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Time? IssueTime { get; set; }
+        public Time? IssueTime
+        {
+            get => (IssueDateTime == null) ? null : new(IssueDateTime.Value.ToLocalTime());
+            set => Time.SetTime(IssueDateTime, value);
+        }
 
         [NotMapped]
-        [DataMember(Order = 10, Name = nameof(DueDate))]
+        [IgnoreDataMember]
         [XmlElement(Order = 10, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? DueDate { get; set; }
+        public Date? DueDate
+        {
+            get => (DueDateTime == null) ? null : new(DueDateTime.Value);
+            set => DueDateTime = (value == null) ? null : (DateTime)value;
+        }
+
+        [DataMember(Order = 10)]
+        [XmlIgnore]
+        public DateTimeOffset? DueDateTime { get; set; }
 
         [NotMapped]
         [DataMember(Order = 11)]
@@ -78,10 +99,18 @@
         [XmlElement(Order = 12, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? Note { get; set; }
 
-        [NotMapped]
         [DataMember(Order = 13, IsRequired = true)]
+        [XmlIgnore]
+        public DateTimeOffset? TaxPointDateTime { get; set; }
+
+        [NotMapped]
+        [IgnoreDataMember]
         [XmlElement(Order = 13, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date TaxPointDate { get; set; } = new();
+        public Date? TaxPointDate
+        {
+            get => (TaxPointDateTime == null) ? null : new(TaxPointDateTime.Value);
+            set => TaxPointDateTime = (value == null) ? null : (DateTime)value;
+        }
 
         [DataMember(Order = 14)]
         [XmlElement(Order = 14, Namespace = UblNamespaces.CommonBasicComponents2)]
@@ -259,6 +288,5 @@
         [DataMember(Order = 53, IsRequired = true, Name = nameof(InvoiceLine))]
         [XmlElement(Order = 53, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<InvoiceLine> InvoiceLine { get; set; } = new();
-
     }
 }

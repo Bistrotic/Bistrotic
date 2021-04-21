@@ -29,6 +29,27 @@
         public static implicit operator Time(DateTimeOffset value) => new(value);
         public static implicit operator Time(string value) => new(value);
 
+        internal static DateTimeOffset? SetTime(DateTimeOffset? issueDateTime, Time? value)
+        {
+            if (value == null)
+            {
+                return issueDateTime;
+            }
+            if (issueDateTime == null)
+            {
+                return value._value;
+            }
+            return new DateTimeOffset(
+                issueDateTime.Value.Year,
+                issueDateTime.Value.Month,
+                issueDateTime.Value.Day,
+                value._value.Hour,
+                value._value.Minute,
+                value._value.Second,
+                0,
+                value._value.Offset
+            );
+        }
     }
 }
 

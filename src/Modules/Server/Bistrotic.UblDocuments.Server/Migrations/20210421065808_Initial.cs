@@ -43,7 +43,6 @@ namespace Bistrotic.UblDocuments.Migrations
                 {
                     Key = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UBLExtensions = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UBLVersionID = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CustomizationID = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProfileID = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -51,6 +50,9 @@ namespace Bistrotic.UblDocuments.Migrations
                     ID = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CopyIndicator = table.Column<bool>(type: "bit", nullable: false),
                     UUID = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IssueDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    DueDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    TaxPointDateTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     DocumentCurrencyCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TaxCurrencyCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PricingCurrencyCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -85,7 +87,7 @@ namespace Bistrotic.UblDocuments.Migrations
                     AccountingCostCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AccountingCost = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PaymentPurposeCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FreeOfChargeIndicator = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    FreeOfChargeIndicator = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

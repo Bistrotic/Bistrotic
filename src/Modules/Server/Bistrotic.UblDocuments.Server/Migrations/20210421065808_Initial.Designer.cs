@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bistrotic.UblDocuments.Migrations
 {
     [DbContext(typeof(UblDocumentsDbContext))]
-    [Migration("20210420083532_Initial")]
+    [Migration("20210421065808_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -83,8 +83,14 @@ namespace Bistrotic.UblDocuments.Migrations
                     b.Property<string>("DocumentCurrencyCode")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTimeOffset?>("DueDateTime")
+                        .HasColumnType("datetimeoffset");
+
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset?>("IssueDateTime")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<int>("LineCountNumeric")
                         .HasColumnType("int");
@@ -122,8 +128,8 @@ namespace Bistrotic.UblDocuments.Migrations
                     b.Property<decimal>("TaxExchangeRate")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("UBLExtensions")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset?>("TaxPointDateTime")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("UBLVersionID")
                         .HasColumnType("nvarchar(max)");
@@ -166,8 +172,8 @@ namespace Bistrotic.UblDocuments.Migrations
                     b.Property<string>("AccountingCostCode")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FreeOfChargeIndicator")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("FreeOfChargeIndicator")
+                        .HasColumnType("bit");
 
                     b.Property<string>("ID")
                         .IsRequired()

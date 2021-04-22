@@ -84,6 +84,15 @@
             invoice.Seller.TaxResidence.Country.Should().Be("MEXICO");
             invoice.Seller.TaxResidence.ZipCode.Should().Be("06500");
             invoice.Customer.Should().NotBeNull();
+            invoice.Customer.Residence.Should().NotBeNull();
+            invoice.Customer.Residence.TaxResidence.Should().NotBeNull();
+            invoice.Customer.Residence.TaxResidence.Street.Should().Be("CALLE ROBERTO ESTIA 256");
+            invoice.Customer.Residence.TaxResidence.AppartmentNumber.Should().Be("Piso 10");
+            invoice.Customer.Residence.TaxResidence.CityLocation.Should().Be("COL. PROVIDENCIA 1A 2A Y 3A SECCION");
+            invoice.Customer.Residence.TaxResidence.City.Should().Be("GUADALAJARA");
+            invoice.Customer.Residence.TaxResidence.CountryLocation.Should().Be("JALISCO");
+            invoice.Customer.Residence.TaxResidence.Country.Should().Be("MEXICO");
+            invoice.Customer.Residence.TaxResidence.ZipCode.Should().Be("44630");
         }
     }
 }

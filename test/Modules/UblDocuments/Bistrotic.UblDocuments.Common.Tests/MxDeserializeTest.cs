@@ -56,7 +56,6 @@
             var invoice = voucher.Addendum.Invoice;
             invoice.Should().NotBeNull();
             invoice.Version.Should().Be(7);
-            /*
             invoice.Identification.IssuerCountryCode.Should().Be("MX");
             invoice.Identification.DocumentType.Should().Be("FACTURA");
             invoice.Identification.IssuerCode.Should().Be("DIOR02525DXA");
@@ -64,7 +63,27 @@
             invoice.Identification.UserCode.Should().Be("DIOR02525DXAUser");
             invoice.Identification.DeliveryLocation.Should().Be("06500");
             invoice.Identification.Signature.Should().Be("3qe7qlscQY62tlnEM3JMsxA3WXSQ==");
-            */
+            invoice.Processing.Should().NotBeNull();
+            invoice.Processing.Dictionary.Should().NotBeNull();
+            invoice.Processing.Dictionary.Name.Should().Be("email");
+            invoice.Processing.Dictionary.Entry.Should().HaveCount(3);
+            invoice.Processing.Dictionary.Entry[0].Key.Should().Be("from");
+            invoice.Processing.Dictionary.Entry[1].Key.Should().Be("to");
+            invoice.Processing.Dictionary.Entry[2].Key.Should().Be("cc");
+            invoice.Processing.Dictionary.Entry[0].Value.Should().Be("ACCOUNT_OWNER");
+            invoice.Processing.Dictionary.Entry[1].Value.Should().Be("luis@gvi.com.mx; lupita@gvi.com.mx;eduardoz@esta.com");
+            invoice.Processing.Dictionary.Entry[2].Value.Should().Be("bernardo@gesta.com");
+            invoice.Seller.Should().NotBeNull();
+            invoice.Seller.TaxResidence.Should().NotBeNull();
+            invoice.Seller.TaxResidence.Street.Should().Be("AVE DE LA LIBERATION");
+            invoice.Seller.TaxResidence.StreetNumber.Should().Be("31");
+            invoice.Seller.TaxResidence.AppartmentNumber.Should().Be("PISO 21");
+            invoice.Seller.TaxResidence.CityLocation.Should().Be("CUAUTHEMOC");
+            invoice.Seller.TaxResidence.City.Should().Be("CUAUTHEMOC");
+            invoice.Seller.TaxResidence.CountryLocation.Should().Be("CIUDAD DE MEXICO");
+            invoice.Seller.TaxResidence.Country.Should().Be("MEXICO");
+            invoice.Seller.TaxResidence.ZipCode.Should().Be("06500");
+            invoice.Customer.Should().NotBeNull();
         }
     }
 }

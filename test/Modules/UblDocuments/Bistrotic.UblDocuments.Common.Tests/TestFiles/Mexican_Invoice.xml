@@ -75,8 +75,8 @@
 			<fx:Procesamiento>
 				<fx:Dictionary name="email">
 					<fx:Entry k="from" v="ACCOUNT_OWNER" />
-					<fx:Entry k="to" v="luisromero@gvi.com.mx; lupitajaime@gvi.com.mx;eduardogutierrez@gcaesthetics.com" />
-					<fx:Entry k="cc" v="bernardogarduno@gcaesthetics.com" />
+					<fx:Entry k="to" v="luis@gvi.com.mx; lupita@gvi.com.mx;eduardoz@esta.com" />
+					<fx:Entry k="cc" v="bernardo@gesta.com" />
 				</fx:Dictionary>
 			</fx:Procesamiento>
 			<fx:Emisor>

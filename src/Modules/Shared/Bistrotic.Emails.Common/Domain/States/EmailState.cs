@@ -16,15 +16,15 @@
         public string Subject { get; set; } = string.Empty;
         public List<string> ToRecipients { get; set; } = new();
 
-        public void Apply(EmailReceived @event)
+        public void Apply(EmailReceived received)
         {
-            Subject = @event.Subject;
-            Body = @event.Body;
-            Sender = @event.Sender;
-            ToRecipients = new List<string>(@event.ToRecipients);
-            CopyToRecipients = new List<string>(@event.CopyToRecipients);
-            Recipient = @event.Recipient;
-            Attachments = new List<Attachment>(@event.Attachments);
+            Subject = received.Subject;
+            Body = received.Body;
+            Sender = received.Sender;
+            ToRecipients = new List<string>(received.ToRecipients);
+            CopyToRecipients = new List<string>(received.CopyToRecipients);
+            Recipient = received.Recipient;
+            Attachments = new List<Attachment>(received.Attachments);
         }
     }
 }

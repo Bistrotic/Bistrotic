@@ -4,7 +4,10 @@
 		<TargetFramework>netstandard2.0</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Grpc.Tools" Version="$(GrpcToolsVersion)" />
+		<PackageReference Include="Grpc.Tools" Version="$(GrpcToolsVersion)">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 		<PackageReference Include="protobuf-net" Version="$(ProtobufNetVersion)" />
 	</ItemGroup>
 	<ItemGroup>

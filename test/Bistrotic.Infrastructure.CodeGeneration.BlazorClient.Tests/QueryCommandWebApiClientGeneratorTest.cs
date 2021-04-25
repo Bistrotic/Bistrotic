@@ -5,7 +5,6 @@ namespace Bistrotic.Infrastructure.CodeGeneration.Tests
     using System.Linq;
     using System.Reflection;
 
-    using Bistrotic.Application.Commands;
     using Bistrotic.Application.Queries;
     using Bistrotic.Domain.Contracts.Commands;
     using Bistrotic.Domain.ValueTypes;

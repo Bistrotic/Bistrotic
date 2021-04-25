@@ -7,7 +7,7 @@
 
     public class InMemoryCommandBusBuilder : ICommandBusBuilder
     {
-        private readonly Dictionary<Type, Func<ICommandHandler>> _handlers = new Dictionary<Type, Func<ICommandHandler>>();
+        private readonly Dictionary<Type, Func<ICommandHandler>> _handlers = new();
 
         public ICommandBusBuilder AddCommandHandler<TCommand>(Func<ICommandHandler<TCommand>> handler)
             where TCommand : class

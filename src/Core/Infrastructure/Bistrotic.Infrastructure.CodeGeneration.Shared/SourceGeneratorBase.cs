@@ -7,8 +7,6 @@
 
     using Microsoft.CodeAnalysis;
 
-#pragma warning disable CA1031 // Do not catch general exception types
-
     public abstract class SourceGeneratorBase : ISourceGenerator
     {
         public void Execute(GeneratorExecutionContext context)

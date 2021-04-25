@@ -17,14 +17,9 @@
         }
 
         public static string UrlDecode(this string text)
-                            => HttpUtility
-                .UrlDecode(text);
+            => HttpUtility.UrlDecode(text);
 
         public static string UrlEncode(this string text)
-                            => HttpUtility
-                .UrlEncode(text);
-
-#pragma warning disable S125 // Sections of code should not be commented out
-        // .Replace("/", "&#47;", StringComparison.InvariantCulture);
+            => HttpUtility.UrlEncode(text);
     }
 }

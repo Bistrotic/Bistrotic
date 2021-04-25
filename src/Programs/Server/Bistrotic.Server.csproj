@@ -27,7 +27,7 @@
 		<ProjectReference Include="..\Client\Bistrotic.Client.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Grpc.Tools" Version="2.36.4">
+		<PackageReference Include="Grpc.Tools" Version="$(GrpcToolsVersion)">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>

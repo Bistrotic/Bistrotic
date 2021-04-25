@@ -42,7 +42,7 @@
         {
             if (string.IsNullOrWhiteSpace(definition.TypeName))
             {
-                return Task.FromException<IModule>(new InvalidModuleDefinitionException(definition, $"{nameof(ModuleDefinition.TypeName)} is mandatory to be loaded by {this.GetType().Name}."));
+                return Task.FromException<IModule>(new InvalidModuleDefinitionException(definition, $"{nameof(ModuleDefinition.TypeName)} is mandatory to be loaded by {GetType().Name}."));
             }
             var type = Type.GetType(definition.TypeName);
             if (type == null)

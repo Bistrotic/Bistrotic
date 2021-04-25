@@ -7,7 +7,7 @@
 
     public class InMemoryQueryDispatcherBuilder : IQueryDispatcherBuilder
     {
-        private readonly Dictionary<Type, Func<IQueryHandler>> _handlers = new Dictionary<Type, Func<IQueryHandler>>();
+        private readonly Dictionary<Type, Func<IQueryHandler>> _handlers = new();
 
         public IQueryDispatcherBuilder AddQueryHandler<TQuery, TResult>(Func<IQueryHandler<TQuery, TResult>> handler)
             where TQuery : class, IQuery<TResult>

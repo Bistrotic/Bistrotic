@@ -18,7 +18,7 @@ namespace Bistrotic.Emails
         {
         }
 
-        public override ReceiveUnreadEmails Command => new ReceiveUnreadEmails
+        public override ReceiveUnreadEmails Command => new()
         {
             Recipient = Recipient
         };

@@ -19,9 +19,7 @@
                 );
 
         private static ModuleDefinition GetModuleDefinition(Type moduleType)
-            => new ModuleDefinition(
-                moduleType.Name,
-                moduleType.AssemblyQualifiedName
+            => new(moduleType.Name, moduleType.AssemblyQualifiedName
                     ?? throw new TypeInitializationException(moduleType.FullName, null)
                 );
     }

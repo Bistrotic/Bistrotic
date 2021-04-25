@@ -10,7 +10,7 @@
 
     public class InMemoryMessageFactoryBuilder : IMessageFactoryBuilder
     {
-        private readonly HashSet<Type> _messageTypes = new HashSet<Type>();
+        private readonly HashSet<Type> _messageTypes = new();
 
         public IMessageFactoryBuilder AddAssemblyMessages(Assembly assembly)
         {

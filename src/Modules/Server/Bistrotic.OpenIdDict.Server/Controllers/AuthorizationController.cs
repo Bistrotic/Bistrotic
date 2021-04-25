@@ -21,7 +21,6 @@
 
     using static OpenIddict.Abstractions.OpenIddictConstants;
 
-#pragma warning disable S125 // Sections of code should not be commented out
     public class AuthorizationController : Controller
     {
         private readonly IOpenIddictApplicationManager _applicationManager;

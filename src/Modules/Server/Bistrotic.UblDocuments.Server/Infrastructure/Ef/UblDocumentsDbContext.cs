@@ -1,15 +1,16 @@
 ﻿#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 namespace Bistrotic.UblDocuments.Infrastructure.Ef
 {
-    using System.Linq;
-    using System.Threading.Tasks;
-
     using Bistrotic.UblDocuments.Application;
     using Bistrotic.UblDocuments.Infrastructure.Ef.Entities;
     using Bistrotic.UblDocuments.Types.Aggregates;
     using Bistrotic.UblDocuments.Types.Entities;
 
     using Microsoft.EntityFrameworkCore;
+
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public class UblDocumentsDbContext :
         DbContext,
@@ -25,7 +26,8 @@ namespace Bistrotic.UblDocuments.Infrastructure.Ef
         public DbSet<Integration> Integrations { get; set; }
 
 
-        public Task Save() => SaveChangesAsync();
+        public Task Save(CancellationToken cancellationToken = default)
+            => SaveChangesAsync(cancellationToken);
 
 
         public IQueryable<T> GetSet<T>() where T : class => Set<T>();

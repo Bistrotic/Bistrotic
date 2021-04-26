@@ -5,6 +5,7 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="$(MicrosoftExtensionsLoggingAbstractionsVersion)" />
 		<PackageReference Include="JsonFlatten" Version="$(JsonFlattenVersion)" />
+		<PackageReference Include="SharpCompress" Version="$(SharpCompressVersion)" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\Core\Application\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj" />

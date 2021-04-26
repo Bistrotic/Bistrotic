@@ -1,13 +1,14 @@
 ﻿namespace Bistrotic.Infrastructure.MediatR.Queries
 {
-    using System;
-    using System.Threading;
-    using System.Threading.Tasks;
-
     using Bistrotic.Application.Commands;
     using Bistrotic.Application.Messages;
 
     using global::MediatR;
+
+    using System;
+    using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// Implements the <see cref="IQueryDispatcher"/>.
@@ -29,6 +30,12 @@
         Task ICommandBus.Send(IEnvelope envelope, CancellationToken cancellationToken)
         {
             return _mediator.Send(envelope, cancellationToken);
+        }
+
+        public async Task Send(IEnumerable<IEnvelope> list, CancellationToken cancellationToken = default)
+        {
+            foreach (var e in list)
+                await _mediator.Send(e, cancellationToken).ConfigureAwait(false);
         }
     }
 }

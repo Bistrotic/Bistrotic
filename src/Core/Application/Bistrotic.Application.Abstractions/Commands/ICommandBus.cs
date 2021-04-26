@@ -1,7 +1,8 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
+﻿using Bistrotic.Application.Messages;
 
-using Bistrotic.Application.Messages;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Bistrotic.Application.Commands
 {
@@ -11,5 +12,6 @@ namespace Bistrotic.Application.Commands
             where TCommand : class;
 
         Task Send(IEnvelope envelope, CancellationToken cancellationToken = default);
+        Task Send(IEnumerable<IEnvelope> list, CancellationToken cancellationToken = default);
     }
 }

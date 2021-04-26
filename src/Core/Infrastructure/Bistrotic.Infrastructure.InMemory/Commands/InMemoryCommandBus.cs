@@ -1,14 +1,14 @@
 ﻿namespace Bistrotic.Infrastructure.InMemory.Commands
 {
+    using Bistrotic.Application.Commands;
+    using Bistrotic.Application.Exceptions;
+    using Bistrotic.Application.Messages;
+
     using System;
     using System.Collections.Generic;
     using System.Collections.Immutable;
     using System.Threading;
     using System.Threading.Tasks;
-
-    using Bistrotic.Application.Commands;
-    using Bistrotic.Application.Exceptions;
-    using Bistrotic.Application.Messages;
 
     /// <summary>
     /// Implements the <see cref="ICommandBus"/>.
@@ -45,6 +45,14 @@
             ICommandHandler? handler = handlerFunc();
             return handler?.Handle(envelope, cancellationToken)
                 ?? Task.FromException<object?>(new InvalidCommandHandlerTypeException(handlerFunc().GetType(), typeof(ICommandHandler)));
+        }
+
+        public async Task Send(IEnumerable<IEnvelope> list, CancellationToken cancellationToken = default)
+        {
+            foreach (var e in list)
+            {
+                await Send(e, cancellationToken).ConfigureAwait(false);
+            }
         }
     }
 }

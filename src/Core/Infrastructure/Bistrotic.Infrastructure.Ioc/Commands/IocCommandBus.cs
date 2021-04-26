@@ -1,12 +1,13 @@
 ﻿namespace Bistrotic.Infrastructure.Ioc.Commands
 {
-    using System;
-    using System.Threading;
-    using System.Threading.Tasks;
-
     using Bistrotic.Application.Commands;
     using Bistrotic.Application.Exceptions;
     using Bistrotic.Application.Messages;
+
+    using System;
+    using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public class IocCommandBus : ICommandBus
     {
@@ -39,7 +40,7 @@
             {
                 throw new CommandHandlerNotFoundException(envelope.Message.GetType());
             }
-            var handleMethod = service.GetType().GetMethod("Handle", new[] { envelope.GetType() });
+            var handleMethod = service.GetType().GetMethod("Handle", new[] { envelope.GetType(), typeof(CancellationToken) });
             if (handleMethod == null)
             {
                 throw new InvalidCommandHandlerTypeException($"Handle method not found on handler '{service.GetType().FullName}'.");
@@ -62,6 +63,14 @@
                 throw new InvalidCommandHandlerTypeException($"Cannot create the type ICommandHandler<{CommandType.Name}>.");
             }
             return handlerType;
+        }
+
+        public async Task Send(IEnumerable<IEnvelope> list, CancellationToken cancellationToken = default)
+        {
+            foreach (var e in list)
+            {
+                await Send(e, cancellationToken).ConfigureAwait(false);
+            }
         }
     }
 }

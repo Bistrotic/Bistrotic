@@ -1,18 +1,18 @@
 ﻿
 namespace Bistrotic.UblDocuments.Application.Events
 {
+    using Bistrotic.Application.Events;
+    using Bistrotic.Application.Messages;
+    using Bistrotic.DataIntegrations.Contracts.Events;
+    using Bistrotic.UblDocuments.Types;
+    using Bistrotic.UblDocuments.Types.Aggregates;
+
     using System;
     using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Xml.Linq;
     using System.Xml.Serialization;
-
-    using Bistrotic.Application.Events;
-    using Bistrotic.Application.Messages;
-    using Bistrotic.DataIntegrations.Contracts.Events;
-    using Bistrotic.UblDocuments.Types;
-    using Bistrotic.UblDocuments.Types.Aggregates;
 
     [EventHandler(Event = typeof(DataIntegrationSubmitted))]
     public class DataIntegrationSubmittedHandler : IEventHandler<DataIntegrationSubmitted>
@@ -23,7 +23,7 @@ namespace Bistrotic.UblDocuments.Application.Events
         {
             _repository = repository;
         }
-        public Task Handle(Envelope<DataIntegrationSubmitted> envelope, CancellationToken cancellationToken = default)
+        public async Task Handle(Envelope<DataIntegrationSubmitted> envelope, CancellationToken cancellationToken = default)
         {
             if (envelope.Message.DocumentType == "Xml")
             {
@@ -51,17 +51,7 @@ namespace Bistrotic.UblDocuments.Application.Events
                 }
                 if (xml.Root?.Name?.LocalName == nameof(Invoice) && xml.Root?.Name?.Namespace == UblNamespaces.Invoice2)
                 {
-                    var integration = new Integration
-                    {
-                        Name = envelope.Message.Name,
-                        Description = envelope.Message.Description,
-                        IntegrationId = envelope.Message.DataIntegrationId,
-                        MessageId = envelope.MessageId,
-                        ReceivedDate = DateTimeOffset.Now,
-                        Data = xml.ToString(),
-                    };
-                    _repository.Add(integration);
-                    _repository.Save();
+                    Integration integration = await LogIntegration(envelope, xml, cancellationToken);
                     XmlSerializer serializer = new(typeof(Invoice));
                     var reader = xml.CreateReader();
                     reader.MoveToContent();
@@ -70,12 +60,32 @@ namespace Bistrotic.UblDocuments.Application.Events
                     {
                         throw new UblXmlDeserilizationException($"Error while deserializing UBL Invoice in {nameof(DataIntegrationSubmitted)} message '{envelope.MessageId}' :\n" + xml.ToString());
                     }
-                    _repository.Add(invoice);
-                    integration.IntegrationDate = DateTimeOffset.Now;
-                    _repository.Save();
+                    await IntegrationDone(integration, invoice, cancellationToken);
                 }
             }
-            return Task.CompletedTask;
+        }
+
+        private Task IntegrationDone(Integration integration, Invoice? invoice, CancellationToken cancellationToken)
+        {
+            _repository.Add(invoice);
+            integration.IntegrationDate = DateTimeOffset.Now;
+            return _repository.Save(cancellationToken);
+        }
+
+        private async Task<Integration> LogIntegration(Envelope<DataIntegrationSubmitted> envelope, XDocument xml, CancellationToken cancellationToken)
+        {
+            var integration = new Integration
+            {
+                Name = envelope.Message.Name,
+                Description = envelope.Message.Description,
+                IntegrationId = envelope.Message.DataIntegrationId,
+                MessageId = envelope.MessageId,
+                ReceivedDate = DateTimeOffset.Now,
+                Data = xml.ToString(),
+            };
+            _repository.Add(integration);
+            await _repository.Save(cancellationToken);
+            return integration;
         }
 
         public Task Handle(IEnvelope envelope, CancellationToken cancellationToken = default)

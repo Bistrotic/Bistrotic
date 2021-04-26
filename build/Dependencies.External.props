@@ -27,5 +27,6 @@
 		<ExcelDataReaderVersion>3.6.0</ExcelDataReaderVersion>
 		<ExcelDataReaderDataSetVersion>$(ExcelDataReaderVersion)</ExcelDataReaderDataSetVersion>
 		<ExtendedXmlSerializerVersion>3.7.0</ExtendedXmlSerializerVersion>
+		<SharpCompressVersion>0.28.2</SharpCompressVersion>
 	</PropertyGroup>
 </Project>

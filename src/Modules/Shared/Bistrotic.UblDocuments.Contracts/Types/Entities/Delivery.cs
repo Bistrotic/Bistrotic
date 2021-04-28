@@ -108,19 +108,19 @@
         [XmlElement(Order = 15, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public Period? EstimatedDeliveryPeriod { get; set; }
 
-        [DataMember(Order = 16)]
+        [DataMember(Order = 16), ProtoMember(16)]
         [XmlElement(Order = 16, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public Party? CarrierParty { get; set; }
 
-        [DataMember(Order = 17)]
+        [DataMember(Order = 17), ProtoMember(17)]
         [XmlElement(Order = 17, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public Party? DeliveryParty { get; set; }
 
-        [DataMember(Order = 18)]
+        [DataMember(Order = 18), ProtoMember(18)]
         [XmlElement(Order = 18, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public Party? NotifyParty { get; set; }
 
-        [DataMember(Order = 20)]
+        [DataMember(Order = 20), ProtoMember(20)]
         [XmlElement(Order = 20, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public DeliveryTerms? DeliveryTerms { get; set; }
 

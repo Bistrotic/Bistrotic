@@ -3,10 +3,15 @@ namespace Bistrotic.UblDocuments.Application.Events
 {
     using Bistrotic.Application.Events;
     using Bistrotic.Application.Messages;
+    using Bistrotic.Application.Repositories;
     using Bistrotic.DataIntegrations.Contracts.Events;
-    using Bistrotic.UblDocuments.External.MexicanDocuments.Helpers;
+    using Bistrotic.UblDocuments.Domain;
+    using Bistrotic.UblDocuments.Domain.States;
+    using Bistrotic.UblDocuments.Events;
     using Bistrotic.UblDocuments.Types;
     using Bistrotic.UblDocuments.Types.Aggregates;
+
+    using Microsoft.Extensions.Logging;
 
     using System;
     using System.IO;
@@ -18,11 +23,18 @@ namespace Bistrotic.UblDocuments.Application.Events
     [EventHandler(Event = typeof(DataIntegrationSubmitted))]
     public class DataIntegrationSubmittedHandler : IEventHandler<DataIntegrationSubmitted>
     {
-        private readonly IRepository _repository;
+        private readonly IRepository<IUblInvoiceState> _repository;
+        private readonly IEventBus _eventBus;
+        private readonly ILogger<DataIntegrationSubmittedHandler> _logger;
 
-        public DataIntegrationSubmittedHandler(IRepository repository)
+        public DataIntegrationSubmittedHandler(
+            IRepository<IUblInvoiceState> repository,
+            IEventBus eventBus,
+            ILogger<DataIntegrationSubmittedHandler> logger)
         {
             _repository = repository;
+            _eventBus = eventBus;
+            _logger = logger;
         }
         public async Task Handle(Envelope<DataIntegrationSubmitted> envelope, CancellationToken cancellationToken = default)
         {
@@ -41,7 +53,6 @@ namespace Bistrotic.UblDocuments.Application.Events
                 }
                 if (xml.Root?.Name?.LocalName == nameof(Invoice) && xml.Root?.Name?.Namespace == UblNamespaces.Invoice2)
                 {
-                    Integration integration = await LogIntegration(envelope, xml, cancellationToken);
                     XmlSerializer serializer = new(typeof(Invoice));
                     var reader = xml.CreateReader();
                     reader.MoveToContent();
@@ -50,25 +61,42 @@ namespace Bistrotic.UblDocuments.Application.Events
                     {
                         throw new UblXmlDeserilizationException($"Error while deserializing UBL Invoice in {nameof(DataIntegrationSubmitted)} message '{envelope.MessageId}' :\n" + xml.ToString());
                     }
-                    await IntegrationDone(integration, invoice, cancellationToken);
-                    return;
-                }
-                if (xml.Root?.Name?.LocalName == nameof(External.MexicanDocuments.Voucher) && xml.Root?.Name?.Namespace == External.MexicanDocuments.MxNamespaces.Cfdi)
-                {
-                    Integration integration = await LogIntegration(envelope, xml, cancellationToken);
-                    XmlSerializer serializer = new(typeof(External.MexicanDocuments.Voucher));
-                    var reader = xml.CreateReader();
-                    reader.MoveToContent();
-                    var voucher = (External.MexicanDocuments.Voucher?)serializer.Deserialize(reader);
-                    if (voucher == null)
+                    if (string.IsNullOrWhiteSpace(invoice.UUID))
                     {
-                        throw new UblXmlDeserilizationException($"Error while deserializing Mexican digital invoice voucher in {nameof(DataIntegrationSubmitted)} message '{envelope.MessageId}' :\n" + xml.ToString());
+                        throw new UblXmlDeserilizationException($"Error while deserializing UBL Invoice in {nameof(DataIntegrationSubmitted)}. The UUID field is empty. Message '{envelope.MessageId}' :\n" + xml.ToString());
                     }
-
-                    await IntegrationDone(integration, voucher.ToUblInvoice(), cancellationToken);
+                    if (await _repository.Exists(invoice.UUID, cancellationToken))
+                    {
+                        _logger.LogWarning($"Duplicate UBL Invoice. UUID='{invoice.UUID}',  ID='{invoice.ID}'. Message '{envelope.MessageId}'");
+                    }
+                    UblInvoiceState state = new();
+                    UblInvoice ublInvoice = new(invoice.UUID, state);
+                    var events = await ublInvoice.Submit(invoice);
+                    await _repository.Save(
+                        invoice.UUID,
+                        new RepositoryData<UblInvoiceState>(
+                            envelope,
+                            state,
+                            await ublInvoice.Submit(invoice)),
+                        cancellationToken);
+                    _eventBus.Publish(new Envelope<UblInvoiceSubmitted>(new() { }))
                     return;
-
                 }
+                //if (xml.Root?.Name?.LocalName == nameof(External.MexicanDocuments.Voucher) && xml.Root?.Name?.Namespace == External.MexicanDocuments.MxNamespaces.Cfdi)
+                //{
+                //    XmlSerializer serializer = new(typeof(External.MexicanDocuments.Voucher));
+                //    var reader = xml.CreateReader();
+                //    reader.MoveToContent();
+                //    var voucher = (External.MexicanDocuments.Voucher?)serializer.Deserialize(reader);
+                //    if (voucher == null)
+                //    {
+                //        throw new UblXmlDeserilizationException($"Error while deserializing Mexican digital invoice voucher in {nameof(DataIntegrationSubmitted)} message '{envelope.MessageId}' :\n" + xml.ToString());
+                //    }
+
+                //    await IntegrationDone(integration, voucher.ToUblInvoice(), cancellationToken);
+                //    return;
+
+                //}
             }
         }
 
@@ -88,28 +116,6 @@ namespace Bistrotic.UblDocuments.Application.Events
             return XDocument.Parse(content);
         }
 
-        private Task IntegrationDone(Integration integration, Invoice? invoice, CancellationToken cancellationToken)
-        {
-            _repository.Add(invoice);
-            integration.IntegrationDate = DateTimeOffset.Now;
-            return _repository.Save(cancellationToken);
-        }
-
-        private async Task<Integration> LogIntegration(Envelope<DataIntegrationSubmitted> envelope, XDocument xml, CancellationToken cancellationToken)
-        {
-            var integration = new Integration
-            {
-                Name = envelope.Message.Name,
-                Description = envelope.Message.Description,
-                IntegrationId = envelope.Message.DataIntegrationId,
-                MessageId = envelope.MessageId,
-                ReceivedDate = DateTimeOffset.Now,
-                Data = xml.ToString(),
-            };
-            _repository.Add(integration);
-            await _repository.Save(cancellationToken);
-            return integration;
-        }
 
         public Task Handle(IEnvelope envelope, CancellationToken cancellationToken = default)
             => Handle(new Envelope<DataIntegrationSubmitted>(envelope), cancellationToken);

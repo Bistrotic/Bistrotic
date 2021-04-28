@@ -95,42 +95,42 @@
         public List<ItemIdentification> AdditionalItemIdentification { get; set; } = new();
 
         [NotMapped]
-        [DataMember(Order = 16)]
+        [DataMember(Order = 16), ProtoMember(16)]
         [XmlElement(Order = 16, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public DocumentReference? CatalogueDocumentReference { get; set; }
 
         [NotMapped]
-        [DataMember(Order = 17)]
+        [DataMember(Order = 17), ProtoMember(17)]
         [XmlElement(Order = 17, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<DocumentReference> ItemSpecificationDocumentReference { get; set; } = new();
 
         [NotMapped]
-        [DataMember(Order = 18)]
+        [DataMember(Order = 18), ProtoMember(18)]
         [XmlElement(Order = 18, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public Country? OriginCountry { get; set; }
 
         [NotMapped]
-        [DataMember(Order = 19)]
+        [DataMember(Order = 19), ProtoMember(19)]
         [XmlElement(Order = 19, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<CommodityClassification> CommodityClassification { get; set; } = new();
 
         [NotMapped]
-        [DataMember(Order = 20)]
+        [DataMember(Order = 20), ProtoMember(20)]
         [XmlElement(Order = 20, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<TransactionConditions> TransactionConditions { get; set; } = new();
 
         [NotMapped]
-        [DataMember(Order = 22)]
+        [DataMember(Order = 22), ProtoMember(22)]
         [XmlElement(Order = 22, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<TaxCategory> ClassifiedTaxCategory { get; set; } = new();
 
         [NotMapped]
-        [DataMember(Order = 23)]
+        [DataMember(Order = 23), ProtoMember(23)]
         [XmlElement(Order = 23, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<ItemProperty> AdditionalItemProperty { get; set; } = new();
 
         [NotMapped]
-        [DataMember(Order = 24)]
+        [DataMember(Order = 24), ProtoMember(24)]
         [XmlElement(Order = 24, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<Party> ManufacturerParty { get; set; } = new();
     }

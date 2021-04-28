@@ -98,15 +98,15 @@
         [XmlElement(Order = 15, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public Period? SettlementPeriod { get; set; }
 
-        [DataMember(Order = 16)]
+        [DataMember(Order = 16), ProtoMember(16)]
         [XmlElement(Order = 16, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public Period? PenaltyPeriod { get; set; }
 
-        [DataMember(Order = 17)]
+        [DataMember(Order = 17), ProtoMember(17)]
         [XmlElement(Order = 17, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public ExchangeRate? ExchangeRate { get; set; }
 
-        [DataMember(Order = 18)]
+        [DataMember(Order = 18), ProtoMember(18)]
         [XmlElement(Order = 18, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public Period? ValidityPeriod { get; set; }
 

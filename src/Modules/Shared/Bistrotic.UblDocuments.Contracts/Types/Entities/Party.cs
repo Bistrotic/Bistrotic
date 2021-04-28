@@ -77,7 +77,7 @@
         [XmlElement(Order = 15, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string AgentParty { get; set; } = string.Empty;
 
-        [DataMember(Order = 18)]
+        [DataMember(Order = 18), ProtoMember(18)]
         [XmlElement(Order = 18, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public FinancialAccount? FinancialAccount { get; set; }
     }

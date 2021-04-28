@@ -103,7 +103,7 @@
         [XmlElement(Order = 18, IsNullable = false, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public Attachment Attachment { get; set; } = new();
 
-        [DataMember(Order = 19)]
+        [DataMember(Order = 19), ProtoMember(19)]
         [XmlElement(Order = 19, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public LineReference? ParentDocumentLineReference { get; set; }
 

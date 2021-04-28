@@ -119,37 +119,37 @@
         public List<DocumentReference> DocumentReference { get; set; } = new();
 
         [NotMapped]
-        [DataMember(Order = 16)]
+        [DataMember(Order = 16), ProtoMember(16)]
         [XmlElement(Order = 16, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public PricingReference PricingReference { get; set; } = new();
 
         [NotMapped]
-        [DataMember(Order = 17)]
+        [DataMember(Order = 17), ProtoMember(17)]
         [XmlElement(Order = 17, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public Party OriginatorParty { get; set; } = new();
 
         [NotMapped]
-        [DataMember(Order = 18)]
+        [DataMember(Order = 18), ProtoMember(18)]
         [XmlElement(Order = 18, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<Delivery> Delivery { get; set; } = new();
 
         [NotMapped]
-        [DataMember(Order = 19)]
+        [DataMember(Order = 19), ProtoMember(19)]
         [XmlElement(Order = 19, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<PaymentTerms> PaymentTerms { get; set; } = new();
 
         [NotMapped]
-        [DataMember(Order = 20)]
+        [DataMember(Order = 20), ProtoMember(20)]
         [XmlElement(Order = 20, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<AllowanceCharge> AllowanceCharge { get; set; } = new();
 
         [NotMapped]
-        [DataMember(Order = 21)]
+        [DataMember(Order = 21), ProtoMember(21)]
         [XmlElement(Order = 21, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<TaxTotal> TaxTotal { get; set; } = new();
 
         [NotMapped]
-        [DataMember(Order = 22)]
+        [DataMember(Order = 22), ProtoMember(22)]
         [XmlElement(Order = 22, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<TaxTotal> WithholdingTaxTotal { get; set; } = new();
 
@@ -162,7 +162,7 @@
         public Price Price { get; set; } = new();
 
         [NotMapped]
-        [DataMember(Order = 25)]
+        [DataMember(Order = 25), ProtoMember(25)]
         [XmlElement(Order = 25, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public DeliveryTerms DeliveryTerms { get; set; } = new();
     }

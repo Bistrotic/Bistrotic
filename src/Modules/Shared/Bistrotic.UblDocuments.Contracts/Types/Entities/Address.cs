@@ -78,45 +78,45 @@
         [XmlElement(Order = 15, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? PlotIdentification { get; set; }
 
-        [DataMember(Order = 16)]
+        [DataMember(Order = 16), ProtoMember(16)]
         [XmlElement(Order = 16, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? CitySubdivisionName { get; set; }
 
-        [DataMember(Order = 17)]
+        [DataMember(Order = 17), ProtoMember(17)]
         [XmlElement(Order = 17, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? CityName { get; set; }
 
-        [DataMember(Order = 18)]
+        [DataMember(Order = 18), ProtoMember(18)]
         [XmlElement(Order = 18, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? PostalZone { get; set; }
-        [DataMember(Order = 19)]
+        [DataMember(Order = 19), ProtoMember(19)]
         [XmlElement(Order = 19, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? CountrySubentity { get; set; }
 
-        [DataMember(Order = 20)]
+        [DataMember(Order = 20), ProtoMember(20)]
         [XmlElement(Order = 20, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? CountrySubentityCode { get; set; }
 
-        [DataMember(Order = 21)]
+        [DataMember(Order = 21), ProtoMember(21)]
         [XmlElement(Order = 21, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? Region { get; set; }
 
-        [DataMember(Order = 22)]
+        [DataMember(Order = 22), ProtoMember(22)]
         [XmlElement(Order = 22, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? District { get; set; }
 
-        [DataMember(Order = 23)]
+        [DataMember(Order = 23), ProtoMember(23)]
         [XmlElement(Order = 23, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? TimezoneOffset { get; set; }
-        [DataMember(Order = 24)]
+        [DataMember(Order = 24), ProtoMember(24)]
         [XmlElement(Order = 24, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<AddressLine> AddressLine { get; set; } = new();
 
-        [DataMember(Order = 25)]
+        [DataMember(Order = 25), ProtoMember(25)]
         [XmlElement(Order = 25, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public Country? Country { get; set; }
 
-        [DataMember(Order = 26)]
+        [DataMember(Order = 26), ProtoMember(26)]
         [XmlElement(Order = 26, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<LocationCoordinate> LocationCoordinate { get; set; } = new();
 

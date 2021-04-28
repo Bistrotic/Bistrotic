@@ -8,6 +8,7 @@
     using Bistrotic.Infrastructure.Helpers;
     using Bistrotic.Infrastructure.WebServer.Modules;
     using Bistrotic.UblDocuments.Application.Events;
+    using Bistrotic.UblDocuments.Domain.States;
     using Bistrotic.UblDocuments.Events;
     using Bistrotic.UblDocuments.Infrastructure;
     using Bistrotic.UblDocuments.Infrastructure.Ef;
@@ -37,7 +38,6 @@
             services.AddDbContext<UblDocumentsDbContext>(o => o.UseSqlServer(_settings.ConnectionString));
             services.AddTransient<IEventHandler<DataIntegrationSubmitted>, DataIntegrationSubmittedHandler>();
             services.AddTransient<IRepository<IUblInvoiceState>, StateStoreRepository<IUblInvoiceState, UblInvoiceState>>();
-
         }
     }
 }

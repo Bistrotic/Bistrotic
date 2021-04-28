@@ -9,4 +9,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Bistrotic.UblDocuments.Contracts\Bistrotic.UblDocuments.Contracts.csproj" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Application\" />
+	</ItemGroup>
 </Project>

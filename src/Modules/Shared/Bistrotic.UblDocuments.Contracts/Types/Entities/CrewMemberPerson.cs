@@ -73,7 +73,7 @@
         [XmlElement(Order = 5, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string OtherName { get; set; } = string.Empty;
 
-        [DataMember(Order = 16)]
+        [DataMember(Order = 16), ProtoMember(16)]
         [XmlElement(Order = 16, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public Address ResidenceAddress { get; set; } = new();
 

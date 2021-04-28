@@ -120,31 +120,31 @@
         [XmlElement(Order = 15, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? TaxCurrencyCode { get; set; }
 
-        [DataMember(Order = 16)]
+        [DataMember(Order = 16), ProtoMember(16)]
         [XmlElement(Order = 16, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? PricingCurrencyCode { get; set; }
 
-        [DataMember(Order = 17)]
+        [DataMember(Order = 17), ProtoMember(17)]
         [XmlElement(Order = 17, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? PaymentCurrencyCode { get; set; }
 
-        [DataMember(Order = 18)]
+        [DataMember(Order = 18), ProtoMember(18)]
         [XmlElement(Order = 18, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? PaymentAlternativeCurrencyCode { get; set; }
 
-        [DataMember(Order = 19)]
+        [DataMember(Order = 19), ProtoMember(19)]
         [XmlElement(Order = 19, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public string? AccountingCostCode { get; set; }
 
-        [DataMember(Order = 20)]
+        [DataMember(Order = 20), ProtoMember(20)]
         [XmlElement(Order = 20, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? AccountingCost { get; set; } = string.Empty;
 
-        [DataMember(Order = 21)]
+        [DataMember(Order = 21), ProtoMember(21)]
         [XmlElement(Order = 21, Namespace = UblNamespaces.CommonBasicComponents2)]
         public int LineCountNumeric { get; set; }
 
-        [DataMember(Order = 22)]
+        [DataMember(Order = 22), ProtoMember(22)]
         [XmlElement(Order = 22, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? BuyerReference { get; set; } = string.Empty;
 
@@ -152,40 +152,40 @@
         [XmlElement(Order = 23, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public Period InvoicePeriod { get; set; } = new();
 
-        [DataMember(Order = 24)]
+        [DataMember(Order = 24), ProtoMember(24)]
         [XmlElement(Order = 24, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public OrderReference OrderReference { get; set; } = new();
 
-        [DataMember(Order = 25)]
+        [DataMember(Order = 25), ProtoMember(25)]
         [XmlElement(Order = 25, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<BillingReference> BillingReference { get; set; } = new();
 
-        [DataMember(Order = 26)]
+        [DataMember(Order = 26), ProtoMember(26)]
         [XmlElement(Order = 26, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public DocumentReference DespatchDocumentReference { get; set; } = new();
 
-        [DataMember(Order = 27)]
+        [DataMember(Order = 27), ProtoMember(27)]
         [XmlElement(Order = 27, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<DocumentReference> ReceiptDocumentReference { get; set; } = new();
 
-        [DataMember(Order = 28)]
+        [DataMember(Order = 28), ProtoMember(28)]
         [XmlElement(Order = 28, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<DocumentReference> StatementDocumentReference { get; set; } = new();
 
-        [DataMember(Order = 29)]
+        [DataMember(Order = 29), ProtoMember(29)]
         [XmlElement(Order = 29, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<DocumentReference> OriginatorDocumentReference { get; set; } = new();
 
-        [DataMember(Order = 30)]
+        [DataMember(Order = 30), ProtoMember(30)]
         [XmlElement(Order = 30, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<DocumentReference> ContractDocumentReference { get; set; } = new();
 
-        [DataMember(Order = 31)]
+        [DataMember(Order = 31), ProtoMember(31)]
         [XmlElement(Order = 31, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<DocumentReference> AdditionalDocumentReference { get; set; } = new();
 
         [NotMapped]
-        [DataMember(Order = 32)]
+        [DataMember(Order = 32), ProtoMember(32)]
         [XmlElement(Order = 32, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<ProjectReference> ProjectReference { get; set; } = new();
 

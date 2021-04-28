@@ -1,11 +1,12 @@
 ﻿namespace Bistrotic.UblDocuments.Types.Entities
 {
+    using Bistrotic.UblDocuments.Types.ValueTypes;
+
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
-
-    using Bistrotic.UblDocuments.Types.ValueTypes;
 
     [Serializable]
     [DataContract]
@@ -21,9 +22,18 @@
         [XmlElement(Order = 1, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string PaymentMeansCode { get; set; } = string.Empty;
 
-        [DataMember(Order = 2)]
-        [XmlElement(Order = 2, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? PaymentDueDate { get; set; }
+        [DataMember(Order = 2, IsRequired = true)]
+        [XmlIgnore]
+        public DateTimeOffset? PaymentDueDateTime { get; set; }
+
+        [NotMapped]
+        [IgnoreDataMember]
+        [XmlElement(Order = 2, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public Date? PaymentDueDate
+        {
+            get => (PaymentDueDateTime == null) ? null : new(PaymentDueDateTime.Value);
+            set => PaymentDueDateTime = (value == null) ? null : (DateTime)value;
+        }
 
         [DataMember(Order = 3)]
         [XmlElement(Order = 3, Namespace = UblNamespaces.CommonBasicComponents2)]

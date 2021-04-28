@@ -1,14 +1,14 @@
 ﻿namespace Bistrotic.UblDocuments.Types.Aggregates
 {
+    using Bistrotic.UblDocuments.Types.Entities;
+    using Bistrotic.UblDocuments.Types.ValueTypes;
+
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
-
-    using Bistrotic.UblDocuments.Types.Entities;
-    using Bistrotic.UblDocuments.Types.ValueTypes;
 
     [Serializable]
     [DataContract]
@@ -89,12 +89,10 @@
         [XmlIgnore]
         public DateTimeOffset? DueDateTime { get; set; }
 
-        [NotMapped]
         [DataMember(Order = 11)]
         [XmlElement(Order = 11, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? InvoiceTypeCode { get; set; }
 
-        [NotMapped]
         [DataMember(Order = 12)]
         [XmlElement(Order = 12, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? Note { get; set; }
@@ -148,12 +146,10 @@
         [XmlElement(Order = 22, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? BuyerReference { get; set; } = string.Empty;
 
-        [NotMapped]
         [DataMember(Order = 23, IsRequired = true)]
         [XmlElement(Order = 23, Namespace = UblNamespaces.CommonAggregateComponents2)]
-        public Period? InvoicePeriod { get; set; } = new();
+        public Period InvoicePeriod { get; set; } = new();
 
-        [NotMapped]
         [DataMember(Order = 24)]
         [XmlElement(Order = 24, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public OrderReference OrderReference { get; set; } = new();
@@ -163,32 +159,27 @@
         [XmlElement(Order = 25, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<string> BillingReference { get; set; } = new();
 
-        [NotMapped]
         [DataMember(Order = 26)]
         [XmlElement(Order = 26, Namespace = UblNamespaces.CommonAggregateComponents2)]
-        public DocumentReference? DespatchDocumentReference { get; set; } = new();
+        [ForeignKey(nameof(Entities.DocumentReference.Key))]
+        public DocumentReference DespatchDocumentReference { get; set; } = new();
 
-        [NotMapped]
         [DataMember(Order = 27)]
         [XmlElement(Order = 27, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<DocumentReference> ReceiptDocumentReference { get; set; } = new();
 
-        [NotMapped]
         [DataMember(Order = 28)]
         [XmlElement(Order = 28, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<DocumentReference> StatementDocumentReference { get; set; } = new();
 
-        [NotMapped]
         [DataMember(Order = 29)]
         [XmlElement(Order = 29, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<DocumentReference> OriginatorDocumentReference { get; set; } = new();
 
-        [NotMapped]
         [DataMember(Order = 30)]
         [XmlElement(Order = 30, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<DocumentReference> ContractDocumentReference { get; set; } = new();
 
-        [NotMapped]
         [DataMember(Order = 31)]
         [XmlElement(Order = 31, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<DocumentReference> AdditionalDocumentReference { get; set; } = new();
@@ -211,22 +202,22 @@
         [NotMapped]
         [DataMember(Order = 36)]
         [XmlElement(Order = 36, Namespace = UblNamespaces.CommonAggregateComponents2)]
-        public Party? PayeeParty { get; set; }
+        public Party PayeeParty { get; set; } = new();
 
         [NotMapped]
         [DataMember(Order = 37)]
         [XmlElement(Order = 37, Namespace = UblNamespaces.CommonAggregateComponents2)]
-        public Party? BuyerCustomerParty { get; set; }
+        public Party BuyerCustomerParty { get; set; } = new();
 
         [NotMapped]
         [DataMember(Order = 38)]
         [XmlElement(Order = 38, Namespace = UblNamespaces.CommonAggregateComponents2)]
-        public SupplierParty? SellerSupplierParty { get; set; } = new();
+        public SupplierParty SellerSupplierParty { get; set; } = new();
 
         [NotMapped]
         [DataMember(Order = 39)]
         [XmlElement(Order = 39, Namespace = UblNamespaces.CommonAggregateComponents2)]
-        public Party? TaxRepresentativeParty { get; set; }
+        public Party TaxRepresentativeParty { get; set; } = new();
 
         [NotMapped]
         [DataMember(Order = 40)]
@@ -236,7 +227,7 @@
         [NotMapped]
         [DataMember(Order = 41)]
         [XmlElement(Order = 41, Namespace = UblNamespaces.CommonAggregateComponents2)]
-        public DeliveryTerms? DeliveryTerms { get; set; } = new();
+        public DeliveryTerms DeliveryTerms { get; set; } = new();
 
         [NotMapped]
         [DataMember(Order = 42)]
@@ -279,7 +270,6 @@
         [XmlElement(Order = 51, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<TaxTotal> TaxTotal { get; set; } = new();
 
-        [NotMapped]
         [DataMember(Order = 52, IsRequired = true)]
         [XmlElement(Order = 52, IsNullable = false, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public LegalMonetaryTotal LegalMonetaryTotal { get; set; } = new();

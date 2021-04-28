@@ -1,10 +1,11 @@
 ﻿namespace Bistrotic.UblDocuments.Types.Entities
 {
+    using Bistrotic.UblDocuments.Types.ValueTypes;
+
     using System;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
-
-    using Bistrotic.UblDocuments.Types.ValueTypes;
 
     [Serializable]
     [DataContract]
@@ -40,9 +41,19 @@
         [XmlElement(Order = 6, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? MathematicOperatorCode { get; set; }
 
-        [DataMember(Order = 7)]
-        [XmlElement(Order = 7, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? Date { get; set; }
+        [DataMember(Order = 7, IsRequired = true)]
+        [XmlIgnore]
+        public DateTimeOffset? DateTime { get; set; }
+
+        [NotMapped]
+        [IgnoreDataMember]
+        [XmlElement(Order = 7, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public Date? Date
+        {
+            get => (DateTime == null) ? null : new(DateTime.Value);
+            set => DateTime = (value == null) ? null : (DateTime)value;
+        }
+
 
         [DataMember(Order = 8)]
         [XmlElement(Order = 8, Namespace = UblNamespaces.CommonAggregateComponents2)]

@@ -1,10 +1,11 @@
 ﻿namespace Bistrotic.UblDocuments.Types.Entities
 {
+    using Bistrotic.UblDocuments.Types.ValueTypes;
+
     using System;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
-
-    using Bistrotic.UblDocuments.Types.ValueTypes;
 
     [Serializable]
     [DataContract]
@@ -12,21 +13,49 @@
     [XmlType(Namespace = UblNamespaces.CommonAggregateComponents2)]
     public class Period
     {
-        [DataMember(Order = 0)]
-        [XmlElement(Order = 0, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? StartDate { get; set; }
+        [DataMember(Order = 0, IsRequired = true)]
+        [XmlIgnore]
+        public DateTimeOffset? StartDateTime { get; set; }
 
-        [DataMember(Order = 1)]
+        [NotMapped]
+        [IgnoreDataMember]
+        [XmlElement(Order = 0, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public Date? StartDate
+        {
+            get => (StartDateTime == null) ? null : new(StartDateTime.Value);
+            set => StartDateTime = (value == null) ? null : (DateTime)value;
+        }
+
+        [NotMapped]
+        [IgnoreDataMember]
         [XmlElement(Order = 1, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Time? StartTime { get; set; }
+        public Time? StartTime
+        {
+            get => (StartDateTime == null) ? null : new(StartDateTime.Value.ToLocalTime());
+            set => Time.SetTime(StartDateTime, value);
+        }
 
-        [DataMember(Order = 2)]
-        [XmlElement(Order = 2, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? EndDate { get; set; }
+        [DataMember(Order = 2, IsRequired = true)]
+        [XmlIgnore]
+        public DateTimeOffset? EndDateTime { get; set; }
 
-        [DataMember(Order = 3)]
+        [NotMapped]
+        [IgnoreDataMember]
+        [XmlElement(Order = 2, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public Date? EndDate
+        {
+            get => (EndDateTime == null) ? null : new(EndDateTime.Value);
+            set => EndDateTime = (value == null) ? null : (DateTime)value;
+        }
+
+        [NotMapped]
+        [IgnoreDataMember]
         [XmlElement(Order = 3, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Time? EndTime { get; set; }
+        public Time? EndTime
+        {
+            get => (EndDateTime == null) ? null : new(EndDateTime.Value.ToLocalTime());
+            set => Time.SetTime(EndDateTime, value);
+        }
 
         [DataMember(Order = 4)]
         [XmlElement(Order = 4, Namespace = UblNamespaces.CommonBasicComponents2)]

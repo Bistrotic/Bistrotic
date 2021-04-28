@@ -1,10 +1,11 @@
 ﻿namespace Bistrotic.UblDocuments.Types.Entities
 {
+    using Bistrotic.UblDocuments.Types.ValueTypes;
+
     using System;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
-
-    using Bistrotic.UblDocuments.Types.ValueTypes;
 
     [Serializable]
     [DataContract]
@@ -20,17 +21,40 @@
         [XmlElement(Order = 1, Namespace = UblNamespaces.CommonBasicComponents2)]
         public decimal PaidAmount { get; set; }
 
-        [DataMember(Order = 2)]
-        [XmlElement(Order = 2, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? ReceivedDate { get; set; }
+        [DataMember(Order = 2, IsRequired = true)]
+        [XmlIgnore]
+        public DateTimeOffset? ReceivedDateTime { get; set; }
 
-        [DataMember(Order = 3)]
-        [XmlElement(Order = 3, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? PaidDate { get; set; }
+        [NotMapped]
+        [IgnoreDataMember]
+        [XmlElement(Order = 2, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public Date? ReceivedDate
+        {
+            get => (ReceivedDateTime == null) ? null : new(ReceivedDateTime.Value);
+            set => ReceivedDateTime = (value == null) ? null : (DateTime)value;
+        }
 
-        [DataMember(Order = 4)]
+        [DataMember(Order = 3, IsRequired = true)]
+        [XmlIgnore]
+        public DateTimeOffset? PaidDateTime { get; set; }
+
+        [NotMapped]
+        [IgnoreDataMember]
+        [XmlElement(Order = 3, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public Date? PaidDate
+        {
+            get => (PaidDateTime == null) ? null : new(PaidDateTime.Value);
+            set => PaidDateTime = (value == null) ? null : (DateTime)value;
+        }
+
+        [NotMapped]
+        [IgnoreDataMember]
         [XmlElement(Order = 4, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Time? PaidTime { get; set; }
+        public Time? PaidTime
+        {
+            get => (PaidDateTime == null) ? null : new(PaidDateTime.Value.ToLocalTime());
+            set => Time.SetTime(PaidDateTime, value);
+        }
 
         [DataMember(Order = 5)]
         [XmlElement(Order = 5, Namespace = UblNamespaces.CommonBasicComponents2)]

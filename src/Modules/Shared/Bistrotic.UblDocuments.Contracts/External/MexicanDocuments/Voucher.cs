@@ -33,5 +33,9 @@
         [DataMember(Order = 5)]
         [XmlElement("Addenda", Order = 5, Namespace = MxNamespaces.Cfdi)]
         public Addendum? Addendum { get; set; }
+
+        [DataMember(Order = 100)]
+        [XmlAttribute("Folio")]
+        public string? InvoiceId { get; set; }
     }
 }

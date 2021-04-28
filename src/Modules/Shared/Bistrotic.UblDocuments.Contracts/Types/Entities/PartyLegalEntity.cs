@@ -1,10 +1,11 @@
 ﻿namespace Bistrotic.UblDocuments.Types.Entities
 {
+    using Bistrotic.UblDocuments.Types.ValueTypes;
+
     using System;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
-
-    using Bistrotic.UblDocuments.Types.ValueTypes;
 
     [Serializable]
     [DataContract]
@@ -20,13 +21,31 @@
         [XmlElement(Order = 1, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string CompanyID { get; set; } = string.Empty;
 
-        [DataMember(Order = 2)]
-        [XmlElement(Order = 2, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date RegistrationDate { get; set; } = new();
+        [DataMember(Order = 2, IsRequired = true)]
+        [XmlIgnore]
+        public DateTimeOffset? RegistrationDateTime { get; set; }
 
-        [DataMember(Order = 3)]
-        [XmlElement(Order = 3, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date RegistrationExpirationDate { get; set; } = new();
+        [NotMapped]
+        [IgnoreDataMember]
+        [XmlElement(Order = 2, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public Date? RegistrationDate
+        {
+            get => (RegistrationDateTime == null) ? null : new(RegistrationDateTime.Value);
+            set => RegistrationDateTime = (value == null) ? null : (DateTime)value;
+        }
+
+        [DataMember(Order = 3, IsRequired = true)]
+        [XmlIgnore]
+        public DateTimeOffset? RegistrationExpirationDateTime { get; set; }
+
+        [NotMapped]
+        [IgnoreDataMember]
+        [XmlElement(Order = 3, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public Date? RegistrationExpirationDate
+        {
+            get => (RegistrationExpirationDateTime == null) ? null : new(RegistrationExpirationDateTime.Value);
+            set => RegistrationExpirationDateTime = (value == null) ? null : (DateTime)value;
+        }
 
         [DataMember(Order = 4)]
         [XmlElement(Order = 4, Namespace = UblNamespaces.CommonBasicComponents2)]

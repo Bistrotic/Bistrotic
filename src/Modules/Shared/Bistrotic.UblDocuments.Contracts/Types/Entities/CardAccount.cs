@@ -1,10 +1,11 @@
 ﻿namespace Bistrotic.UblDocuments.Types.Entities
 {
+    using Bistrotic.UblDocuments.Types.ValueTypes;
+
     using System;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
-
-    using Bistrotic.UblDocuments.Types.ValueTypes;
 
     [Serializable]
     [DataContract]
@@ -24,13 +25,31 @@
         [XmlElement(Order = 2, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? CardTypeCode { get; set; }
 
-        [DataMember(Order = 3)]
-        [XmlElement(Order = 3, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? ValidityStartDate { get; set; }
+        [DataMember(Order = 3, IsRequired = true)]
+        [XmlIgnore]
+        public DateTimeOffset? ValidityDateTime { get; set; }
 
-        [DataMember(Order = 4)]
-        [XmlElement(Order = 4, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? ExpiracyDate { get; set; }
+        [NotMapped]
+        [IgnoreDataMember]
+        [XmlElement(Order = 3, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public Date? ValidityDate
+        {
+            get => (ValidityDateTime == null) ? null : new(ValidityDateTime.Value);
+            set => ValidityDateTime = (value == null) ? null : (DateTime)value;
+        }
+
+        [DataMember(Order = 4, IsRequired = true)]
+        [XmlIgnore]
+        public DateTimeOffset? ExpiracyDateTime { get; set; }
+
+        [NotMapped]
+        [IgnoreDataMember]
+        [XmlElement(Order = 4, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public Date? ExpiracyDate
+        {
+            get => (ExpiracyDateTime == null) ? null : new(ExpiracyDateTime.Value);
+            set => ExpiracyDateTime = (value == null) ? null : (DateTime)value;
+        }
 
         [DataMember(Order = 5)]
         [XmlElement(Order = 5, Namespace = UblNamespaces.CommonBasicComponents2)]

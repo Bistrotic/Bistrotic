@@ -1,11 +1,12 @@
 ﻿namespace Bistrotic.UblDocuments.Types.Entities
 {
+    using Bistrotic.UblDocuments.Types.ValueTypes;
+
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
-
-    using Bistrotic.UblDocuments.Types.ValueTypes;
 
     [Serializable]
     [DataContract]
@@ -17,21 +18,49 @@
         [XmlElement(Order = 0, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? ID { get; set; }
 
-        [DataMember(Order = 1)]
-        [XmlElement(Order = 1, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? IssueDate { get; set; }
+        [DataMember(Order = 1, IsRequired = true)]
+        [XmlIgnore]
+        public DateTimeOffset? IssueDateTime { get; set; }
 
-        [DataMember(Order = 2)]
+        [NotMapped]
+        [IgnoreDataMember]
+        [XmlElement(Order = 1, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public Date? IssueDate
+        {
+            get => (IssueDateTime == null) ? null : new(IssueDateTime.Value);
+            set => IssueDateTime = (value == null) ? null : (DateTime)value;
+        }
+
+        [NotMapped]
+        [IgnoreDataMember]
         [XmlElement(Order = 2, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Time? IssueTime { get; set; }
+        public Time? IssueTime
+        {
+            get => (IssueDateTime == null) ? null : new(IssueDateTime.Value.ToLocalTime());
+            set => Time.SetTime(IssueDateTime, value);
+        }
 
-        [DataMember(Order = 3)]
-        [XmlElement(Order = 3, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? NominationDate { get; set; }
+        [DataMember(Order = 3, IsRequired = true)]
+        [XmlIgnore]
+        public DateTimeOffset? NominationDateTime { get; set; }
 
-        [DataMember(Order = 4)]
+        [NotMapped]
+        [IgnoreDataMember]
+        [XmlElement(Order = 3, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public Date? NominationDate
+        {
+            get => (NominationDateTime == null) ? null : new(NominationDateTime.Value);
+            set => NominationDateTime = (value == null) ? null : (DateTime)value;
+        }
+
+        [NotMapped]
+        [IgnoreDataMember]
         [XmlElement(Order = 4, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Time? NominationTime { get; set; }
+        public Time? NominationTime
+        {
+            get => (NominationDateTime == null) ? null : new(NominationDateTime.Value.ToLocalTime());
+            set => Time.SetTime(NominationDateTime, value);
+        }
 
         [DataMember(Order = 5)]
         [XmlElement(Order = 5, Namespace = UblNamespaces.CommonBasicComponents2)]

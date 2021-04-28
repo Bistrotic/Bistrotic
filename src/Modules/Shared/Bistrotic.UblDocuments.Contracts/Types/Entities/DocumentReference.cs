@@ -1,11 +1,13 @@
 ﻿
 namespace Bistrotic.UblDocuments.Types.Entities
 {
+    using Bistrotic.UblDocuments.Types.ValueTypes;
+
     using System;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
-
-    using Bistrotic.UblDocuments.Types.ValueTypes;
 
     [Serializable]
     [DataContract]
@@ -13,6 +15,13 @@ namespace Bistrotic.UblDocuments.Types.Entities
     [XmlType(Namespace = UblNamespaces.CommonAggregateComponents2)]
     public class DocumentReference
     {
+
+        [Key]
+        [XmlIgnore]
+        [IgnoreDataMember]
+        [Required]
+        public int Key { get; set; }
+
         [DataMember(Order = 0, IsRequired = true)]
         [XmlElement(Order = 0, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string ID { get; set; } = string.Empty;
@@ -25,13 +34,27 @@ namespace Bistrotic.UblDocuments.Types.Entities
         [XmlElement(Order = 2, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? UUID { get; set; }
 
-        [DataMember(Order = 3)]
-        [XmlElement(Order = 3, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? IssueDate { get; set; }
+        [DataMember(Order = 3, IsRequired = true)]
+        [XmlIgnore]
+        public DateTimeOffset? IssueDateTime { get; set; }
 
-        [DataMember(Order = 4)]
+        [NotMapped]
+        [IgnoreDataMember]
+        [XmlElement(Order = 3, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public Date? IssueDate
+        {
+            get => (IssueDateTime == null) ? null : new(IssueDateTime.Value);
+            set => IssueDateTime = (value == null) ? null : (DateTime)value;
+        }
+
+        [NotMapped]
+        [IgnoreDataMember]
         [XmlElement(Order = 4, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Time? IssueTime { get; set; }
+        public Time? IssueTime
+        {
+            get => (IssueDateTime == null) ? null : new(IssueDateTime.Value.ToLocalTime());
+            set => Time.SetTime(IssueDateTime, value);
+        }
 
         [DataMember(Order = 5)]
         [XmlElement(Order = 5, Namespace = UblNamespaces.CommonBasicComponents2)]
@@ -67,12 +90,13 @@ namespace Bistrotic.UblDocuments.Types.Entities
 
         [DataMember(Order = 13)]
         [XmlElement(Order = 13, Namespace = UblNamespaces.CommonAggregateComponents2)]
-        public Attachment? Attachment { get; set; }
+        public Attachment Attachment { get; set; } = new();
 
         [DataMember(Order = 14, IsRequired = true)]
         [XmlElement(Order = 14, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public Period? ValidityPeriod { get; set; }
 
+        [NotMapped]
         [DataMember(Order = 15, IsRequired = true)]
         [XmlElement(Order = 15, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public Party? IssuerParty { get; set; }

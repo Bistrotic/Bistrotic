@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
 
@@ -27,6 +28,7 @@
         [XmlElement(Order = 0, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string ID { get; set; } = string.Empty;
 
+        [NotMapped]
         [DataMember(Order = 3)]
         [XmlElement(Order = 3, Namespace = UblNamespaces.CommonBasicComponents2)]
         public List<string> LossRisk { get; set; } = new();
@@ -35,6 +37,7 @@
         [XmlElement(Order = 2, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string LossRiskResponsibilityCode { get; set; } = string.Empty;
 
+        [NotMapped]
         [DataMember(Order = 1)]
         [XmlElement(Order = 1, Namespace = UblNamespaces.CommonBasicComponents2)]
         public List<string> SpecialTerms { get; set; } = new();

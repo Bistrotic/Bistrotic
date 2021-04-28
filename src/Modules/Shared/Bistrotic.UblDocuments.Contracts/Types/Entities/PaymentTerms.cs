@@ -1,11 +1,12 @@
 ﻿namespace Bistrotic.UblDocuments.Types.Entities
 {
+    using Bistrotic.UblDocuments.Types.ValueTypes;
+
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
-
-    using Bistrotic.UblDocuments.Types.ValueTypes;
 
     [Serializable]
     [DataContract]
@@ -61,13 +62,31 @@
         [XmlElement(Order = 11, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? PaymentTermsDetailsURI { get; set; }
 
-        [DataMember(Order = 12)]
-        [XmlElement(Order = 12, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? PaymentDueDate { get; set; }
+        [DataMember(Order = 12, IsRequired = true)]
+        [XmlIgnore]
+        public DateTimeOffset? PaymentDueDateTime { get; set; }
 
-        [DataMember(Order = 13)]
-        [XmlElement(Order = 13, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? InstallmentDueDate { get; set; }
+        [NotMapped]
+        [IgnoreDataMember]
+        [XmlElement(Order = 12, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public Date? PaymentDueDate
+        {
+            get => (PaymentDueDateTime == null) ? null : new(PaymentDueDateTime.Value);
+            set => PaymentDueDateTime = (value == null) ? null : (DateTime)value;
+        }
+
+        [DataMember(Order = 13, IsRequired = true)]
+        [XmlIgnore]
+        public DateTimeOffset? InstallmentDueDateTime { get; set; }
+
+        [NotMapped]
+        [IgnoreDataMember]
+        [XmlElement(Order = 13, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public Date? InstallmentDueDate
+        {
+            get => (InstallmentDueDateTime == null) ? null : new(InstallmentDueDateTime.Value);
+            set => InstallmentDueDateTime = (value == null) ? null : (DateTime)value;
+        }
 
         [DataMember(Order = 14)]
         [XmlElement(Order = 14, Namespace = UblNamespaces.CommonBasicComponents2)]

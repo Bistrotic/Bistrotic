@@ -28,6 +28,6 @@
 
         [DataMember(Order = 4)]
         [XmlElement(Order = 4, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public OrderReference? OrderReference { get; set; }
+        public OrderReference OrderReference { get; set; } = new();
     }
 }

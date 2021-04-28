@@ -1,12 +1,13 @@
 ﻿namespace Bistrotic.UblDocuments.Types.Aggregates
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Runtime.Serialization;
-    using System.Xml.Serialization;
-
     using Bistrotic.UblDocuments.Types.Entities;
     using Bistrotic.UblDocuments.Types.ValueTypes;
+
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Runtime.Serialization;
+    using System.Xml.Serialization;
 
     [Serializable]
     [DataContract]
@@ -43,12 +44,26 @@
         public string? UUID { get; set; } = string.Empty;
 
         [DataMember(Order = 7, IsRequired = true)]
-        [XmlElement(Order = 7, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date IssueDate { get; set; } = new();
+        [XmlIgnore]
+        public DateTimeOffset? IssueDateTime { get; set; }
 
-        [DataMember(Order = 8)]
+        [NotMapped]
+        [IgnoreDataMember]
+        [XmlElement(Order = 7, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public Date? IssueDate
+        {
+            get => (IssueDateTime == null) ? null : new(IssueDateTime.Value);
+            set => IssueDateTime = (value == null) ? null : (DateTime)value;
+        }
+
+        [NotMapped]
+        [IgnoreDataMember]
         [XmlElement(Order = 8, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Time? IssueTime { get; set; }
+        public Time? IssueTime
+        {
+            get => (IssueDateTime == null) ? null : new(IssueDateTime.Value.ToLocalTime());
+            set => Time.SetTime(IssueDateTime, value);
+        }
 
         [DataMember(Order = 9)]
         [XmlElement(Order = 9, Namespace = UblNamespaces.CommonBasicComponents2)]

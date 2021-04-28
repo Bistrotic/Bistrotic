@@ -1,37 +1,39 @@
 ﻿namespace Bistrotic.UblDocuments.Types.Entities
 {
+    using ProtoBuf;
+
     using System;
     using System.Collections.Generic;
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
 
     [Serializable]
-    [DataContract]
+    [DataContract, ProtoContract]
     [XmlRoot(Namespace = UblNamespaces.CommonAggregateComponents2)]
     [XmlType(Namespace = UblNamespaces.CommonAggregateComponents2)]
     public class TradeFinancing
     {
-        [DataMember(Order = 0)]
+        [DataMember(Order = 0), ProtoMember(0)]
         [XmlElement(Order = 0, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? ID { get; set; }
 
-        [DataMember(Order = 1)]
+        [DataMember(Order = 1), ProtoMember(1)]
         [XmlElement(Order = 1, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? FinancingInstrumentTypeCode { get; set; }
 
-        [DataMember(Order = 2)]
+        [DataMember(Order = 2), ProtoMember(2)]
         [XmlElement(Order = 2, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public DocumentReference? ContractDocumentReference { get; set; }
 
-        [DataMember(Order = 3)]
+        [DataMember(Order = 3), ProtoMember(3)]
         [XmlElement(Order = 3, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<DocumentReference> DocumentReference { get; set; } = new();
 
-        [DataMember(Order = 4)]
+        [DataMember(Order = 4), ProtoMember(4)]
         [XmlElement(Order = 4, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public Party? FinancingParty { get; set; }
 
-        [DataMember(Order = 5)]
+        [DataMember(Order = 5), ProtoMember(5)]
         [XmlElement(Order = 5, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public FinancialAccount? FinancingFinancialAccount { get; set; }
 

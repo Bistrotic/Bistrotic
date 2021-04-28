@@ -1,11 +1,13 @@
 ﻿namespace Bistrotic.UblDocuments.Types.Entities
 {
+    using ProtoBuf;
+
     using System;
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
 
     [Serializable]
-    [DataContract]
+    [DataContract, ProtoContract]
     [XmlRoot(Namespace = UblNamespaces.CommonAggregateComponents2)]
     [XmlType(Namespace = UblNamespaces.CommonAggregateComponents2)]
     public class PartyName

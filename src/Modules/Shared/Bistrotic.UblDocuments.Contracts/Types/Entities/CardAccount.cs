@@ -2,13 +2,15 @@
 {
     using Bistrotic.UblDocuments.Types.ValueTypes;
 
+    using ProtoBuf;
+
     using System;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
 
     [Serializable]
-    [DataContract]
+    [DataContract, ProtoContract]
     [XmlRoot(Namespace = UblNamespaces.CommonAggregateComponents2)]
     [XmlType(Namespace = UblNamespaces.CommonAggregateComponents2)]
     public class CardAccount
@@ -21,7 +23,7 @@
         [XmlElement(Order = 1, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string NetworkID { get; set; } = string.Empty;
 
-        [DataMember(Order = 2)]
+        [DataMember(Order = 2), ProtoMember(2)]
         [XmlElement(Order = 2, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? CardTypeCode { get; set; }
 
@@ -51,11 +53,11 @@
             set => ExpiracyDateTime = (value == null) ? null : (DateTime)value;
         }
 
-        [DataMember(Order = 5)]
+        [DataMember(Order = 5), ProtoMember(5)]
         [XmlElement(Order = 5, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? IssuerID { get; set; }
 
-        [DataMember(Order = 6)]
+        [DataMember(Order = 6), ProtoMember(6)]
         [XmlElement(Order = 6, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? IssuerNumberID { get; set; }
 

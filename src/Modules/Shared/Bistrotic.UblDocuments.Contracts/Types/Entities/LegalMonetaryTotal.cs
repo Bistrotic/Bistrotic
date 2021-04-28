@@ -1,16 +1,18 @@
 ﻿namespace Bistrotic.UblDocuments.Types.Entities
 {
+    using ProtoBuf;
+
     using System;
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
 
     [Serializable]
-    [DataContract]
+    [DataContract, ProtoContract]
     [XmlRoot(Namespace = UblNamespaces.CommonAggregateComponents2)]
     [XmlType(Namespace = UblNamespaces.CommonAggregateComponents2)]
     public class LegalMonetaryTotal
     {
-        [DataMember(Order = 0)]
+        [DataMember(Order = 0), ProtoMember(0)]
         [XmlElement(Order = 0, Namespace = UblNamespaces.CommonBasicComponents2)]
         public decimal LineExtensionAmount { get; set; }
 

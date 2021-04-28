@@ -2,6 +2,8 @@
 {
     using Bistrotic.UblDocuments.Types.ValueTypes;
 
+    using ProtoBuf;
+
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -9,12 +11,12 @@
     using System.Xml.Serialization;
 
     [Serializable]
-    [DataContract]
+    [DataContract, ProtoContract]
     [XmlRoot(Namespace = UblNamespaces.CommonAggregateComponents2)]
     [XmlType(Namespace = UblNamespaces.CommonAggregateComponents2)]
     public class Contract
     {
-        [DataMember(Order = 0)]
+        [DataMember(Order = 0), ProtoMember(0)]
         [XmlElement(Order = 0, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? ID { get; set; }
 
@@ -62,39 +64,39 @@
             set => Time.SetTime(NominationDateTime, value);
         }
 
-        [DataMember(Order = 5)]
+        [DataMember(Order = 5), ProtoMember(5)]
         [XmlElement(Order = 5, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? ContractTypeCode { get; set; }
 
-        [DataMember(Order = 6)]
+        [DataMember(Order = 6), ProtoMember(6)]
         [XmlElement(Order = 6, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? ContractType { get; set; }
 
-        [DataMember(Order = 7)]
+        [DataMember(Order = 7), ProtoMember(7)]
         [XmlElement(Order = 7, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<string> Note { get; set; } = new();
 
-        [DataMember(Order = 8)]
+        [DataMember(Order = 8), ProtoMember(8)]
         [XmlElement(Order = 8, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? VersionID { get; set; }
 
-        [DataMember(Order = 9)]
+        [DataMember(Order = 9), ProtoMember(9)]
         [XmlElement(Order = 9, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? Description { get; set; }
 
-        [DataMember(Order = 10)]
+        [DataMember(Order = 10), ProtoMember(10)]
         [XmlElement(Order = 10, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public Period? ValidityPeriod { get; set; }
 
-        [DataMember(Order = 11)]
+        [DataMember(Order = 11), ProtoMember(11)]
         [XmlElement(Order = 11, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<DocumentReference> ContractDocumentReference { get; set; } = new();
 
-        [DataMember(Order = 12)]
+        [DataMember(Order = 12), ProtoMember(12)]
         [XmlElement(Order = 12, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public Period? NominationPeriod { get; set; }
 
-        [DataMember(Order = 13)]
+        [DataMember(Order = 13), ProtoMember(13)]
         [XmlElement(Order = 13, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public Delivery? ContractualDelivery { get; set; }
 

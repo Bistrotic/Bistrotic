@@ -22,9 +22,12 @@ namespace Bistrotic.UblDocuments.Infrastructure.Ef
         }
         public DbSet<Country> Countries { get; set; }
         public DbSet<DocumentReference> DocumentReferences { get; set; }
+        public DbSet<BillingReference> BillingReferences { get; set; }
+        public DbSet<BillingReferenceLine> BillingReferenceLines { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<InvoiceLine> InvoiceLines { get; set; }
         public DbSet<Integration> Integrations { get; set; }
+        public DbSet<Item> Items { get; set; }
 
         public Task Save(CancellationToken cancellationToken = default)
             => SaveChangesAsync(cancellationToken);

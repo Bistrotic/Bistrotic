@@ -11,6 +11,7 @@
         {
             builder.OwnsOne(i => i.OrderLineReference, o => o.WithOwner());
             builder.OwnsOne(i => i.InvoicePeriod);
+            builder.OwnsOne(i => i.Price);
         }
     }
 }

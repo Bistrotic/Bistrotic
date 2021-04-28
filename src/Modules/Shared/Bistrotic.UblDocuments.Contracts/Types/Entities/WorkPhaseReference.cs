@@ -3,6 +3,8 @@ namespace Bistrotic.UblDocuments.Types.Entities
 {
     using Bistrotic.UblDocuments.Types.ValueTypes;
 
+    using ProtoBuf;
+
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -10,7 +12,7 @@ namespace Bistrotic.UblDocuments.Types.Entities
     using System.Xml.Serialization;
 
     [Serializable]
-    [DataContract]
+    [DataContract, ProtoContract]
     [XmlRoot(Namespace = UblNamespaces.CommonAggregateComponents2)]
     [XmlType(Namespace = UblNamespaces.CommonAggregateComponents2)]
     public class WorkPhaseReference
@@ -19,15 +21,15 @@ namespace Bistrotic.UblDocuments.Types.Entities
         [XmlElement(Order = 0, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? ID { get; set; }
 
-        [DataMember(Order = 1)]
+        [DataMember(Order = 1), ProtoMember(1)]
         [XmlElement(Order = 1, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? WorkPhaseCode { get; set; }
 
-        [DataMember(Order = 2)]
+        [DataMember(Order = 2), ProtoMember(2)]
         [XmlElement(Order = 2, Namespace = UblNamespaces.CommonBasicComponents2)]
         public decimal? ProgressPercent { get; set; }
 
-        [DataMember(Order = 3)]
+        [DataMember(Order = 3), ProtoMember(3)]
         [XmlIgnore]
         public DateTimeOffset? StartDateTime { get; set; }
 
@@ -41,7 +43,7 @@ namespace Bistrotic.UblDocuments.Types.Entities
         }
 
 
-        [DataMember(Order = 4)]
+        [DataMember(Order = 4), ProtoMember(4)]
         [XmlIgnore]
         public DateTimeOffset? EndDateTime { get; set; }
 

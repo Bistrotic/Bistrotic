@@ -3,15 +3,18 @@
     using Bistrotic.UblDocuments.Types.Aggregates;
     using Bistrotic.UblDocuments.Types.ValueTypes;
 
+    using ProtoBuf;
+
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Runtime.Serialization;
+    using System.Text.Json;
     using System.Xml.Serialization;
 
     [Serializable]
-    [DataContract]
+    [DataContract, ProtoContract]
     [XmlRoot(Namespace = UblNamespaces.CommonAggregateComponents2)]
     [XmlType(Namespace = UblNamespaces.CommonAggregateComponents2)]
     public class InvoiceLine
@@ -19,27 +22,38 @@
         [Key]
         [IgnoreDataMember]
         [XmlIgnore]
-        public int Key { get; set; }
+        public int InvoiceLineId { get; set; }
 
         [IgnoreDataMember]
         [XmlIgnore]
-        [ForeignKey(nameof(Invoice.Key))]
-        public int InvoiceKey { get; set; }
+        public int InvoiceId { get; set; }
+
+        [IgnoreDataMember]
+        [XmlIgnore]
+        public Invoice Invoice { get; set; } = new();
 
         [DataMember(Order = 0, IsRequired = true)]
         [XmlElement(Order = 0, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string ID { get; set; } = string.Empty;
 
-        [DataMember(Order = 1)]
+        [DataMember(Order = 1), ProtoMember(1)]
         [XmlElement(Order = 1, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? UUID { get; set; }
 
+        [IgnoreDataMember]
+        [XmlIgnore]
+        public string NoteText
+        {
+            get => JsonSerializer.Serialize(Note);
+            set => Note = JsonSerializer.Deserialize<List<string>>(value) ?? new();
+        }
+
         [NotMapped]
-        [DataMember(Order = 2)]
+        [DataMember(Order = 2), ProtoMember(2)]
         [XmlElement(Order = 2, Namespace = UblNamespaces.CommonBasicComponents2)]
         public List<string> Note { get; set; } = new();
 
-        [DataMember(Order = 3)]
+        [DataMember(Order = 3), ProtoMember(3)]
         [XmlElement(Order = 3, Namespace = UblNamespaces.CommonBasicComponents2)]
         public decimal InvoicedQuantity { get; set; }
 
@@ -60,47 +74,47 @@
             set => TaxPointDateTime = (value == null) ? null : (DateTime)value;
         }
 
-        [DataMember(Order = 6)]
+        [DataMember(Order = 6), ProtoMember(6)]
         [XmlElement(Order = 6, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? AccountingCostCode { get; set; }
 
-        [DataMember(Order = 7)]
+        [DataMember(Order = 7), ProtoMember(7)]
         [XmlElement(Order = 7, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? AccountingCost { get; set; }
 
-        [DataMember(Order = 8)]
+        [DataMember(Order = 8), ProtoMember(8)]
         [XmlElement(Order = 8, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? PaymentPurposeCode { get; set; }
 
-        [DataMember(Order = 9)]
+        [DataMember(Order = 9), ProtoMember(9)]
         [XmlElement(Order = 9, Namespace = UblNamespaces.CommonBasicComponents2)]
         public bool FreeOfChargeIndicator { get; set; }
 
-        [DataMember(Order = 10)]
+        [DataMember(Order = 10), ProtoMember(10)]
         [XmlElement(Order = 10, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public Period InvoicePeriod { get; set; } = new();
 
-        [DataMember(Order = 11)]
+        [DataMember(Order = 11), ProtoMember(11)]
         [XmlElement(Order = 11, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<OrderLineReference> OrderLineReference { get; set; } = new();
 
         [NotMapped]
-        [DataMember(Order = 12)]
+        [DataMember(Order = 12), ProtoMember(12)]
         [XmlElement(Order = 12, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<LineReference> DespatchLineReference { get; set; } = new();
 
         [NotMapped]
-        [DataMember(Order = 13)]
+        [DataMember(Order = 13), ProtoMember(13)]
         [XmlElement(Order = 13, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<LineReference> ReceiptLineReference { get; set; } = new();
 
         [NotMapped]
-        [DataMember(Order = 14)]
+        [DataMember(Order = 14), ProtoMember(14)]
         [XmlElement(Order = 14, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<BillingReference> BillingReference { get; set; } = new();
 
         [NotMapped]
-        [DataMember(Order = 15)]
+        [DataMember(Order = 15), ProtoMember(15)]
         [XmlElement(Order = 15, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<DocumentReference> DocumentReference { get; set; } = new();
 
@@ -139,12 +153,10 @@
         [XmlElement(Order = 22, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<TaxTotal> WithholdingTaxTotal { get; set; } = new();
 
-        [NotMapped]
         [DataMember(Order = 23, IsRequired = true)]
         [XmlElement(Order = 23, IsNullable = false, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public Item Item { get; set; } = new();
 
-        [NotMapped]
         [DataMember(Order = 24, IsRequired = false)]
         [XmlElement(Order = 24, IsNullable = true, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public Price Price { get; set; } = new();

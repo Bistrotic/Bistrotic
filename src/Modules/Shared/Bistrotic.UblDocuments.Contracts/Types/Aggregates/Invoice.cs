@@ -3,6 +3,8 @@
     using Bistrotic.UblDocuments.Types.Entities;
     using Bistrotic.UblDocuments.Types.ValueTypes;
 
+    using ProtoBuf;
+
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -11,7 +13,7 @@
     using System.Xml.Serialization;
 
     [Serializable]
-    [DataContract]
+    [DataContract, ProtoContract]
     [XmlType(Namespace = UblNamespaces.Invoice2)]
     [XmlRoot(Namespace = UblNamespaces.Invoice2)]
     public class Invoice : EntityBase
@@ -19,26 +21,26 @@
         [Key]
         [XmlIgnore]
         [IgnoreDataMember]
-        public int Key { get; set; }
+        public int InvoiceId { get; set; }
 
         [NotMapped]
-        [DataMember(Order = 0)]
+        [DataMember(Order = 0), ProtoMember(0)]
         [XmlElement(Order = 0, Namespace = UblNamespaces.CommonExtensionComponents2)]
         public UBLExtensions? UBLExtensions { get; set; }
 
-        [DataMember(Order = 1)]
+        [DataMember(Order = 1), ProtoMember(1)]
         [XmlElement(Order = 1, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? UBLVersionID { get; set; } = string.Empty;
 
-        [DataMember(Order = 2)]
+        [DataMember(Order = 2), ProtoMember(2)]
         [XmlElement(Order = 2, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? CustomizationID { get; set; } = string.Empty;
 
-        [DataMember(Order = 3)]
+        [DataMember(Order = 3), ProtoMember(3)]
         [XmlElement(Order = 3, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? ProfileID { get; set; } = string.Empty;
 
-        [DataMember(Order = 4)]
+        [DataMember(Order = 4), ProtoMember(4)]
         [XmlElement(Order = 4, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? ProfileExecutionID { get; set; } = string.Empty;
 
@@ -46,11 +48,11 @@
         [XmlElement(Order = 5, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? ID { get; set; } = string.Empty;
 
-        [DataMember(Order = 6)]
+        [DataMember(Order = 6), ProtoMember(6)]
         [XmlElement(Order = 6, Namespace = UblNamespaces.CommonBasicComponents2)]
         public bool CopyIndicator { get; set; }
 
-        [DataMember(Order = 7)]
+        [DataMember(Order = 7), ProtoMember(7)]
         [XmlElement(Order = 7, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? UUID { get; set; }
 
@@ -85,15 +87,15 @@
             set => DueDateTime = (value == null) ? null : (DateTime)value;
         }
 
-        [DataMember(Order = 10)]
+        [DataMember(Order = 10), ProtoMember(10)]
         [XmlIgnore]
         public DateTimeOffset? DueDateTime { get; set; }
 
-        [DataMember(Order = 11)]
+        [DataMember(Order = 11), ProtoMember(11)]
         [XmlElement(Order = 11, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? InvoiceTypeCode { get; set; }
 
-        [DataMember(Order = 12)]
+        [DataMember(Order = 12), ProtoMember(12)]
         [XmlElement(Order = 12, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? Note { get; set; }
 
@@ -110,11 +112,11 @@
             set => TaxPointDateTime = (value == null) ? null : (DateTime)value;
         }
 
-        [DataMember(Order = 14)]
+        [DataMember(Order = 14), ProtoMember(14)]
         [XmlElement(Order = 14, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? DocumentCurrencyCode { get; set; }
 
-        [DataMember(Order = 15)]
+        [DataMember(Order = 15), ProtoMember(15)]
         [XmlElement(Order = 15, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? TaxCurrencyCode { get; set; }
 
@@ -154,14 +156,12 @@
         [XmlElement(Order = 24, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public OrderReference OrderReference { get; set; } = new();
 
-        [NotMapped]
         [DataMember(Order = 25)]
         [XmlElement(Order = 25, Namespace = UblNamespaces.CommonAggregateComponents2)]
-        public List<string> BillingReference { get; set; } = new();
+        public List<BillingReference> BillingReference { get; set; } = new();
 
         [DataMember(Order = 26)]
         [XmlElement(Order = 26, Namespace = UblNamespaces.CommonAggregateComponents2)]
-        [ForeignKey(nameof(Entities.DocumentReference.Key))]
         public DocumentReference DespatchDocumentReference { get; set; } = new();
 
         [DataMember(Order = 27)]
@@ -274,7 +274,6 @@
         [XmlElement(Order = 52, IsNullable = false, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public LegalMonetaryTotal LegalMonetaryTotal { get; set; } = new();
 
-        [ForeignKey(nameof(Entities.InvoiceLine.InvoiceKey))]
         [DataMember(Order = 53, IsRequired = true, Name = nameof(InvoiceLine))]
         [XmlElement(Order = 53, Namespace = UblNamespaces.CommonAggregateComponents2)]
         public List<InvoiceLine> InvoiceLine { get; set; } = new();

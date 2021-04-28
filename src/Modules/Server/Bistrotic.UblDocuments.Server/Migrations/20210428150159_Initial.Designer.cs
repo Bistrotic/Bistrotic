@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bistrotic.UblDocuments.Migrations
 {
     [DbContext(typeof(UblDocumentsDbContext))]
-    [Migration("20210427162024_Initial")]
+    [Migration("20210428150159_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,8 +60,10 @@ namespace Bistrotic.UblDocuments.Migrations
 
             modelBuilder.Entity("Bistrotic.UblDocuments.Types.Aggregates.Invoice", b =>
                 {
-                    b.Property<int>("Key")
-                        .HasColumnType("int");
+                    b.Property<int>("InvoiceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AccountingCost")
                         .HasColumnType("nvarchar(max)");
@@ -77,6 +79,9 @@ namespace Bistrotic.UblDocuments.Migrations
 
                     b.Property<string>("CustomizationID")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("DespatchDocumentReferenceDocumentReferenceId")
+                        .HasColumnType("int");
 
                     b.Property<string>("DocumentCurrencyCode")
                         .HasColumnType("nvarchar(max)");
@@ -141,9 +146,87 @@ namespace Bistrotic.UblDocuments.Migrations
                     b.Property<string>("UUID")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Key");
+                    b.HasKey("InvoiceId");
+
+                    b.HasIndex("DespatchDocumentReferenceDocumentReferenceId");
 
                     b.ToTable("Invoices");
+                });
+
+            modelBuilder.Entity("Bistrotic.UblDocuments.Types.Entities.BillingReference", b =>
+                {
+                    b.Property<int>("BillingReferenceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AdditionalDocumentReferenceDocumentReferenceId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CreditNoteDocumentReferenceDocumentReferenceId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DebitNoteDocumentReferenceDocumentReferenceId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("InvoiceDocumentReferenceDocumentReferenceId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("InvoiceId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ReminderDocumentReferenceDocumentReferenceId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SelfBilledCreditNoteDocumentReferenceDocumentReferenceId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SelfBilledInvoiceDocumentReferenceDocumentReferenceId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BillingReferenceId");
+
+                    b.HasIndex("AdditionalDocumentReferenceDocumentReferenceId");
+
+                    b.HasIndex("CreditNoteDocumentReferenceDocumentReferenceId");
+
+                    b.HasIndex("DebitNoteDocumentReferenceDocumentReferenceId");
+
+                    b.HasIndex("InvoiceDocumentReferenceDocumentReferenceId");
+
+                    b.HasIndex("InvoiceId");
+
+                    b.HasIndex("ReminderDocumentReferenceDocumentReferenceId");
+
+                    b.HasIndex("SelfBilledCreditNoteDocumentReferenceDocumentReferenceId");
+
+                    b.HasIndex("SelfBilledInvoiceDocumentReferenceDocumentReferenceId");
+
+                    b.ToTable("BillingReferences");
+                });
+
+            modelBuilder.Entity("Bistrotic.UblDocuments.Types.Entities.BillingReferenceLine", b =>
+                {
+                    b.Property<int>("BillingReferenceLineId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("BillingReferenceId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("BillingReferenceLineId");
+
+                    b.HasIndex("BillingReferenceId");
+
+                    b.ToTable("BillingReferenceLines");
                 });
 
             modelBuilder.Entity("Bistrotic.UblDocuments.Types.Entities.Country", b =>
@@ -165,7 +248,7 @@ namespace Bistrotic.UblDocuments.Migrations
 
             modelBuilder.Entity("Bistrotic.UblDocuments.Types.Entities.DocumentReference", b =>
                 {
-                    b.Property<int>("Key")
+                    b.Property<int>("DocumentReferenceId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -189,19 +272,19 @@ namespace Bistrotic.UblDocuments.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("InvoiceKey")
+                    b.Property<int?>("InvoiceId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("InvoiceKey1")
+                    b.Property<int?>("InvoiceId1")
                         .HasColumnType("int");
 
-                    b.Property<int?>("InvoiceKey2")
+                    b.Property<int?>("InvoiceId2")
                         .HasColumnType("int");
 
-                    b.Property<int?>("InvoiceKey3")
+                    b.Property<int?>("InvoiceId3")
                         .HasColumnType("int");
 
-                    b.Property<int?>("InvoiceKey4")
+                    b.Property<int?>("InvoiceId4")
                         .HasColumnType("int");
 
                     b.Property<DateTimeOffset?>("IssueDateTime")
@@ -222,24 +305,24 @@ namespace Bistrotic.UblDocuments.Migrations
                     b.Property<string>("XPath")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Key");
+                    b.HasKey("DocumentReferenceId");
 
-                    b.HasIndex("InvoiceKey");
+                    b.HasIndex("InvoiceId");
 
-                    b.HasIndex("InvoiceKey1");
+                    b.HasIndex("InvoiceId1");
 
-                    b.HasIndex("InvoiceKey2");
+                    b.HasIndex("InvoiceId2");
 
-                    b.HasIndex("InvoiceKey3");
+                    b.HasIndex("InvoiceId3");
 
-                    b.HasIndex("InvoiceKey4");
+                    b.HasIndex("InvoiceId4");
 
                     b.ToTable("DocumentReferences");
                 });
 
             modelBuilder.Entity("Bistrotic.UblDocuments.Types.Entities.InvoiceLine", b =>
                 {
-                    b.Property<int>("Key")
+                    b.Property<int>("InvoiceLineId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -257,14 +340,21 @@ namespace Bistrotic.UblDocuments.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("InvoiceKey")
+                    b.Property<int>("InvoiceId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("InvoicedQuantity")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int?>("ItemId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("LineExtensionAmount")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("NoteText")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PaymentPurposeCode")
                         .HasColumnType("nvarchar(max)");
@@ -275,25 +365,57 @@ namespace Bistrotic.UblDocuments.Migrations
                     b.Property<string>("UUID")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Key");
+                    b.HasKey("InvoiceLineId");
 
-                    b.HasIndex("InvoiceKey");
+                    b.HasIndex("InvoiceId");
+
+                    b.HasIndex("ItemId");
 
                     b.ToTable("InvoiceLines");
+                });
+
+            modelBuilder.Entity("Bistrotic.UblDocuments.Types.Entities.Item", b =>
+                {
+                    b.Property<int>("ItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("CatalogueIndicator")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("HazardousRiskIndicator")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("PackQuantity")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("PackSizeNumeric")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("ItemId");
+
+                    b.ToTable("Items");
                 });
 
             modelBuilder.Entity("Bistrotic.UblDocuments.Types.Aggregates.Invoice", b =>
                 {
                     b.HasOne("Bistrotic.UblDocuments.Types.Entities.DocumentReference", "DespatchDocumentReference")
                         .WithMany()
-                        .HasForeignKey("Key")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DespatchDocumentReferenceDocumentReferenceId");
 
                     b.OwnsOne("Bistrotic.UblDocuments.Types.Entities.DeliveryTerms", "DeliveryTerms", b1 =>
                         {
-                            b1.Property<int>("InvoiceKey")
-                                .HasColumnType("int");
+                            b1.Property<int>("InvoiceId")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int")
+                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                             b1.Property<string>("AllowanceCharge")
                                 .IsRequired()
@@ -314,18 +436,20 @@ namespace Bistrotic.UblDocuments.Migrations
                                 .IsRequired()
                                 .HasColumnType("nvarchar(max)");
 
-                            b1.HasKey("InvoiceKey");
+                            b1.HasKey("InvoiceId");
 
                             b1.ToTable("Invoices");
 
                             b1.WithOwner()
-                                .HasForeignKey("InvoiceKey");
+                                .HasForeignKey("InvoiceId");
                         });
 
                     b.OwnsOne("Bistrotic.UblDocuments.Types.Entities.LegalMonetaryTotal", "LegalMonetaryTotal", b1 =>
                         {
-                            b1.Property<int>("InvoiceKey")
-                                .HasColumnType("int");
+                            b1.Property<int>("InvoiceId")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int")
+                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                             b1.Property<decimal>("AllowanceTotalAmount")
                                 .HasColumnType("decimal(18,2)");
@@ -354,18 +478,20 @@ namespace Bistrotic.UblDocuments.Migrations
                             b1.Property<decimal>("TaxInclusiveAmount")
                                 .HasColumnType("decimal(18,2)");
 
-                            b1.HasKey("InvoiceKey");
+                            b1.HasKey("InvoiceId");
 
                             b1.ToTable("Invoices");
 
                             b1.WithOwner()
-                                .HasForeignKey("InvoiceKey");
+                                .HasForeignKey("InvoiceId");
                         });
 
                     b.OwnsOne("Bistrotic.UblDocuments.Types.Entities.OrderReference", "OrderReference", b1 =>
                         {
-                            b1.Property<int>("InvoiceKey")
-                                .HasColumnType("int");
+                            b1.Property<int>("InvoiceId")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int")
+                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                             b1.Property<bool>("CopyIndicator")
                                 .HasColumnType("bit");
@@ -373,14 +499,14 @@ namespace Bistrotic.UblDocuments.Migrations
                             b1.Property<string>("CustomerReference")
                                 .HasColumnType("nvarchar(max)");
 
+                            b1.Property<int?>("DocumentReferenceId")
+                                .HasColumnType("int");
+
                             b1.Property<string>("ID")
                                 .HasColumnType("nvarchar(max)");
 
                             b1.Property<DateTimeOffset?>("IssueDateTime")
                                 .HasColumnType("datetimeoffset");
-
-                            b1.Property<int?>("Key")
-                                .HasColumnType("int");
 
                             b1.Property<string>("OrderTypeCode")
                                 .HasColumnType("nvarchar(max)");
@@ -391,26 +517,28 @@ namespace Bistrotic.UblDocuments.Migrations
                             b1.Property<string>("UUID")
                                 .HasColumnType("nvarchar(max)");
 
-                            b1.HasKey("InvoiceKey");
+                            b1.HasKey("InvoiceId");
 
-                            b1.HasIndex("Key");
+                            b1.HasIndex("DocumentReferenceId");
 
                             b1.ToTable("Invoices");
 
-                            b1.WithOwner()
-                                .HasForeignKey("InvoiceKey");
-
                             b1.HasOne("Bistrotic.UblDocuments.Types.Entities.DocumentReference", "DocumentReference")
                                 .WithMany()
-                                .HasForeignKey("Key");
+                                .HasForeignKey("DocumentReferenceId");
+
+                            b1.WithOwner()
+                                .HasForeignKey("InvoiceId");
 
                             b1.Navigation("DocumentReference");
                         });
 
                     b.OwnsOne("Bistrotic.UblDocuments.Types.Entities.Period", "InvoicePeriod", b1 =>
                         {
-                            b1.Property<int>("InvoiceKey")
-                                .HasColumnType("int");
+                            b1.Property<int>("InvoiceId")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int")
+                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                             b1.Property<string>("Description")
                                 .HasColumnType("nvarchar(max)");
@@ -427,12 +555,12 @@ namespace Bistrotic.UblDocuments.Migrations
                             b1.Property<DateTimeOffset?>("StartDateTime")
                                 .HasColumnType("datetimeoffset");
 
-                            b1.HasKey("InvoiceKey");
+                            b1.HasKey("InvoiceId");
 
                             b1.ToTable("Invoices");
 
                             b1.WithOwner()
-                                .HasForeignKey("InvoiceKey");
+                                .HasForeignKey("InvoiceId");
                         });
 
                     b.Navigation("DeliveryTerms")
@@ -450,31 +578,91 @@ namespace Bistrotic.UblDocuments.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Bistrotic.UblDocuments.Types.Entities.BillingReference", b =>
+                {
+                    b.HasOne("Bistrotic.UblDocuments.Types.Entities.DocumentReference", "AdditionalDocumentReference")
+                        .WithMany()
+                        .HasForeignKey("AdditionalDocumentReferenceDocumentReferenceId");
+
+                    b.HasOne("Bistrotic.UblDocuments.Types.Entities.DocumentReference", "CreditNoteDocumentReference")
+                        .WithMany()
+                        .HasForeignKey("CreditNoteDocumentReferenceDocumentReferenceId");
+
+                    b.HasOne("Bistrotic.UblDocuments.Types.Entities.DocumentReference", "DebitNoteDocumentReference")
+                        .WithMany()
+                        .HasForeignKey("DebitNoteDocumentReferenceDocumentReferenceId");
+
+                    b.HasOne("Bistrotic.UblDocuments.Types.Entities.DocumentReference", "InvoiceDocumentReference")
+                        .WithMany()
+                        .HasForeignKey("InvoiceDocumentReferenceDocumentReferenceId");
+
+                    b.HasOne("Bistrotic.UblDocuments.Types.Aggregates.Invoice", null)
+                        .WithMany("BillingReference")
+                        .HasForeignKey("InvoiceId");
+
+                    b.HasOne("Bistrotic.UblDocuments.Types.Entities.DocumentReference", "ReminderDocumentReference")
+                        .WithMany()
+                        .HasForeignKey("ReminderDocumentReferenceDocumentReferenceId");
+
+                    b.HasOne("Bistrotic.UblDocuments.Types.Entities.DocumentReference", "SelfBilledCreditNoteDocumentReference")
+                        .WithMany()
+                        .HasForeignKey("SelfBilledCreditNoteDocumentReferenceDocumentReferenceId");
+
+                    b.HasOne("Bistrotic.UblDocuments.Types.Entities.DocumentReference", "SelfBilledInvoiceDocumentReference")
+                        .WithMany()
+                        .HasForeignKey("SelfBilledInvoiceDocumentReferenceDocumentReferenceId");
+
+                    b.Navigation("AdditionalDocumentReference");
+
+                    b.Navigation("CreditNoteDocumentReference");
+
+                    b.Navigation("DebitNoteDocumentReference");
+
+                    b.Navigation("InvoiceDocumentReference");
+
+                    b.Navigation("ReminderDocumentReference");
+
+                    b.Navigation("SelfBilledCreditNoteDocumentReference");
+
+                    b.Navigation("SelfBilledInvoiceDocumentReference");
+                });
+
+            modelBuilder.Entity("Bistrotic.UblDocuments.Types.Entities.BillingReferenceLine", b =>
+                {
+                    b.HasOne("Bistrotic.UblDocuments.Types.Entities.BillingReference", "BillingReference")
+                        .WithMany("BillingReferenceLine")
+                        .HasForeignKey("BillingReferenceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BillingReference");
+                });
+
             modelBuilder.Entity("Bistrotic.UblDocuments.Types.Entities.DocumentReference", b =>
                 {
                     b.HasOne("Bistrotic.UblDocuments.Types.Aggregates.Invoice", null)
                         .WithMany("AdditionalDocumentReference")
-                        .HasForeignKey("InvoiceKey");
+                        .HasForeignKey("InvoiceId");
 
                     b.HasOne("Bistrotic.UblDocuments.Types.Aggregates.Invoice", null)
                         .WithMany("ContractDocumentReference")
-                        .HasForeignKey("InvoiceKey1");
+                        .HasForeignKey("InvoiceId1");
 
                     b.HasOne("Bistrotic.UblDocuments.Types.Aggregates.Invoice", null)
                         .WithMany("OriginatorDocumentReference")
-                        .HasForeignKey("InvoiceKey2");
+                        .HasForeignKey("InvoiceId2");
 
                     b.HasOne("Bistrotic.UblDocuments.Types.Aggregates.Invoice", null)
                         .WithMany("ReceiptDocumentReference")
-                        .HasForeignKey("InvoiceKey3");
+                        .HasForeignKey("InvoiceId3");
 
                     b.HasOne("Bistrotic.UblDocuments.Types.Aggregates.Invoice", null)
                         .WithMany("StatementDocumentReference")
-                        .HasForeignKey("InvoiceKey4");
+                        .HasForeignKey("InvoiceId4");
 
                     b.OwnsOne("Bistrotic.UblDocuments.Types.Entities.Attachment", "Attachment", b1 =>
                         {
-                            b1.Property<int>("DocumentReferenceKey")
+                            b1.Property<int>("DocumentReferenceId")
                                 .ValueGeneratedOnAdd()
                                 .HasColumnType("int")
                                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -483,16 +671,16 @@ namespace Bistrotic.UblDocuments.Migrations
                                 .IsRequired()
                                 .HasColumnType("nvarchar(max)");
 
-                            b1.HasKey("DocumentReferenceKey");
+                            b1.HasKey("DocumentReferenceId");
 
                             b1.ToTable("DocumentReferences");
 
                             b1.WithOwner()
-                                .HasForeignKey("DocumentReferenceKey");
+                                .HasForeignKey("DocumentReferenceId");
 
                             b1.OwnsOne("Bistrotic.UblDocuments.Types.Entities.ExternalReference", "ExternalReference", b2 =>
                                 {
-                                    b2.Property<int>("AttachmentDocumentReferenceKey")
+                                    b2.Property<int>("AttachmentDocumentReferenceId")
                                         .ValueGeneratedOnAdd()
                                         .HasColumnType("int")
                                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -539,12 +727,12 @@ namespace Bistrotic.UblDocuments.Migrations
                                         .IsRequired()
                                         .HasColumnType("nvarchar(max)");
 
-                                    b2.HasKey("AttachmentDocumentReferenceKey");
+                                    b2.HasKey("AttachmentDocumentReferenceId");
 
                                     b2.ToTable("DocumentReferences");
 
                                     b2.WithOwner()
-                                        .HasForeignKey("AttachmentDocumentReferenceKey");
+                                        .HasForeignKey("AttachmentDocumentReferenceId");
                                 });
 
                             b1.Navigation("ExternalReference")
@@ -553,7 +741,7 @@ namespace Bistrotic.UblDocuments.Migrations
 
                     b.OwnsOne("Bistrotic.UblDocuments.Types.Entities.Period", "ValidityPeriod", b1 =>
                         {
-                            b1.Property<int>("DocumentReferenceKey")
+                            b1.Property<int>("DocumentReferenceId")
                                 .ValueGeneratedOnAdd()
                                 .HasColumnType("int")
                                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -573,12 +761,12 @@ namespace Bistrotic.UblDocuments.Migrations
                             b1.Property<DateTimeOffset?>("StartDateTime")
                                 .HasColumnType("datetimeoffset");
 
-                            b1.HasKey("DocumentReferenceKey");
+                            b1.HasKey("DocumentReferenceId");
 
                             b1.ToTable("DocumentReferences");
 
                             b1.WithOwner()
-                                .HasForeignKey("DocumentReferenceKey");
+                                .HasForeignKey("DocumentReferenceId");
                         });
 
                     b.Navigation("Attachment")
@@ -589,15 +777,19 @@ namespace Bistrotic.UblDocuments.Migrations
 
             modelBuilder.Entity("Bistrotic.UblDocuments.Types.Entities.InvoiceLine", b =>
                 {
-                    b.HasOne("Bistrotic.UblDocuments.Types.Aggregates.Invoice", null)
+                    b.HasOne("Bistrotic.UblDocuments.Types.Aggregates.Invoice", "Invoice")
                         .WithMany("InvoiceLine")
-                        .HasForeignKey("InvoiceKey")
+                        .HasForeignKey("InvoiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Bistrotic.UblDocuments.Types.Entities.Item", "Item")
+                        .WithMany()
+                        .HasForeignKey("ItemId");
+
                     b.OwnsOne("Bistrotic.UblDocuments.Types.Entities.Period", "InvoicePeriod", b1 =>
                         {
-                            b1.Property<int>("InvoiceLineKey")
+                            b1.Property<int>("InvoiceLineId")
                                 .ValueGeneratedOnAdd()
                                 .HasColumnType("int")
                                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -617,17 +809,47 @@ namespace Bistrotic.UblDocuments.Migrations
                             b1.Property<DateTimeOffset?>("StartDateTime")
                                 .HasColumnType("datetimeoffset");
 
-                            b1.HasKey("InvoiceLineKey");
+                            b1.HasKey("InvoiceLineId");
 
                             b1.ToTable("InvoiceLines");
 
                             b1.WithOwner()
-                                .HasForeignKey("InvoiceLineKey");
+                                .HasForeignKey("InvoiceLineId");
+                        });
+
+                    b.OwnsOne("Bistrotic.UblDocuments.Types.Entities.Price", "Price", b1 =>
+                        {
+                            b1.Property<int>("InvoiceLineId")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int")
+                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                            b1.Property<decimal>("BaseQuantity")
+                                .HasColumnType("decimal(18,2)");
+
+                            b1.Property<decimal>("OrderableUnitFactorRate")
+                                .HasColumnType("decimal(18,2)");
+
+                            b1.Property<decimal>("PriceAmount")
+                                .HasColumnType("decimal(18,2)");
+
+                            b1.Property<decimal?>("PriceType")
+                                .HasColumnType("decimal(18,2)");
+
+                            b1.Property<string>("PriceTypeCode")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("InvoiceLineId");
+
+                            b1.ToTable("InvoiceLines");
+
+                            b1.WithOwner()
+                                .HasForeignKey("InvoiceLineId");
                         });
 
                     b.OwnsOne("System.Collections.Generic.List<Bistrotic.UblDocuments.Types.Entities.OrderLineReference>", "OrderLineReference", b1 =>
                         {
-                            b1.Property<int>("InvoiceLineKey")
+                            b1.Property<int>("InvoiceLineId")
                                 .ValueGeneratedOnAdd()
                                 .HasColumnType("int")
                                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -635,24 +857,33 @@ namespace Bistrotic.UblDocuments.Migrations
                             b1.Property<int>("Capacity")
                                 .HasColumnType("int");
 
-                            b1.HasKey("InvoiceLineKey");
+                            b1.HasKey("InvoiceLineId");
 
                             b1.ToTable("InvoiceLines");
 
                             b1.WithOwner()
-                                .HasForeignKey("InvoiceLineKey");
+                                .HasForeignKey("InvoiceLineId");
                         });
+
+                    b.Navigation("Invoice");
 
                     b.Navigation("InvoicePeriod")
                         .IsRequired();
 
+                    b.Navigation("Item");
+
                     b.Navigation("OrderLineReference")
+                        .IsRequired();
+
+                    b.Navigation("Price")
                         .IsRequired();
                 });
 
             modelBuilder.Entity("Bistrotic.UblDocuments.Types.Aggregates.Invoice", b =>
                 {
                     b.Navigation("AdditionalDocumentReference");
+
+                    b.Navigation("BillingReference");
 
                     b.Navigation("ContractDocumentReference");
 
@@ -663,6 +894,11 @@ namespace Bistrotic.UblDocuments.Migrations
                     b.Navigation("ReceiptDocumentReference");
 
                     b.Navigation("StatementDocumentReference");
+                });
+
+            modelBuilder.Entity("Bistrotic.UblDocuments.Types.Entities.BillingReference", b =>
+                {
+                    b.Navigation("BillingReferenceLine");
                 });
 #pragma warning restore 612, 618
         }

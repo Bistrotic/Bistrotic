@@ -1,12 +1,14 @@
 ﻿namespace Bistrotic.UblDocuments.External.MexicanDocuments
 {
+    using ProtoBuf;
+
     using System;
     using System.Collections.Generic;
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
 
     [Serializable]
-    [DataContract]
+    [DataContract, ProtoContract]
     [XmlType("Dictionary", Namespace = MxNamespaces.Fx)]
     [XmlRoot("Dictionary", Namespace = MxNamespaces.Fx)]
     public class DictionarySet

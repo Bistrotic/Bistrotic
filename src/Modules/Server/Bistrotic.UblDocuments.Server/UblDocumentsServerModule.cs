@@ -2,10 +2,11 @@
 {
     using Bistrotic.Application.Events;
     using Bistrotic.Application.Messages;
+    using Bistrotic.Application.Repositories;
     using Bistrotic.DataIntegrations.Contracts.Events;
+    using Bistrotic.Infrastructure.EfCore.Repositories;
     using Bistrotic.Infrastructure.Helpers;
     using Bistrotic.Infrastructure.WebServer.Modules;
-    using Bistrotic.UblDocuments.Application;
     using Bistrotic.UblDocuments.Application.Events;
     using Bistrotic.UblDocuments.Events;
     using Bistrotic.UblDocuments.Infrastructure;
@@ -28,14 +29,15 @@
 
         public override void ConfigureMessages(IMessageFactoryBuilder messageBuilder)
         {
-            messageBuilder.AddAssemblyMessages(typeof(UblInvoiceCreated).Assembly);
+            messageBuilder.AddAssemblyMessages(typeof(UblInvoiceSubmitted).Assembly);
         }
 
         public override void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<UblDocumentsDbContext>(o => o.UseSqlServer(_settings.ConnectionString));
             services.AddTransient<IEventHandler<DataIntegrationSubmitted>, DataIntegrationSubmittedHandler>();
-            services.AddTransient<IRepository, UblDocumentsDbContext>();
+            services.AddTransient<IRepository<IUblInvoiceState>, StateStoreRepository<IUblInvoiceState, UblInvoiceState>>();
+
         }
     }
 }

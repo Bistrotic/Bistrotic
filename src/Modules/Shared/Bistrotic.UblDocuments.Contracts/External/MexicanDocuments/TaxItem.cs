@@ -1,20 +1,22 @@
 ﻿namespace Bistrotic.UblDocuments.External.MexicanDocuments
 {
+    using ProtoBuf;
+
     using System;
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
 
     [Serializable]
-    [DataContract]
+    [DataContract, ProtoContract]
     [XmlType("Concepto", Namespace = MxNamespaces.Cfdi)]
     [XmlRoot("Concepto", Namespace = MxNamespaces.Cfdi)]
     public class TaxItem
     {
-        [DataMember(Order = 0)]
+        [DataMember(Order = 0), ProtoMember(0)]
         [XmlElement("Impuestos", Order = 0)]
         public Tax? Tax { get; set; }
 
-        [DataMember(Order = 1)]
+        [DataMember(Order = 1), ProtoMember(1)]
         [XmlElement("InformacionAduanera", Order = 1)]
         public string? CustomsInformation { get; set; }
 

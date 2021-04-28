@@ -2,13 +2,15 @@
 {
     using Bistrotic.UblDocuments.Types.ValueTypes;
 
+    using ProtoBuf;
+
     using System;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
 
     [Serializable]
-    [DataContract]
+    [DataContract, ProtoContract]
     [XmlRoot(Namespace = UblNamespaces.CommonAggregateComponents2)]
     [XmlType(Namespace = UblNamespaces.CommonAggregateComponents2)]
     public class OrderReference
@@ -61,7 +63,6 @@
 
         [DataMember(Order = 8, IsRequired = true)]
         [XmlElement(Order = 8, IsNullable = false, Namespace = UblNamespaces.CommonAggregateComponents2)]
-        [ForeignKey(nameof(Entities.DocumentReference.Key))]
         public DocumentReference? DocumentReference { get; set; }
 
     }

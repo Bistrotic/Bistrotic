@@ -7,7 +7,6 @@ namespace Bistrotic.UblDocuments.Application.Events
     using Bistrotic.DataIntegrations.Contracts.Events;
     using Bistrotic.UblDocuments.Domain;
     using Bistrotic.UblDocuments.Domain.States;
-    using Bistrotic.UblDocuments.Events;
     using Bistrotic.UblDocuments.Types;
     using Bistrotic.UblDocuments.Types.Aggregates;
 
@@ -79,7 +78,6 @@ namespace Bistrotic.UblDocuments.Application.Events
                             state,
                             await ublInvoice.Submit(invoice)),
                         cancellationToken);
-                    _eventBus.Publish(new Envelope<UblInvoiceSubmitted>(new() { }))
                     return;
                 }
                 //if (xml.Root?.Name?.LocalName == nameof(External.MexicanDocuments.Voucher) && xml.Root?.Name?.Namespace == External.MexicanDocuments.MxNamespaces.Cfdi)

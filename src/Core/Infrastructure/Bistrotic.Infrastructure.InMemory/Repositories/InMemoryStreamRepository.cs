@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Bistrotic.Application.Messages;
+using Bistrotic.Application.Repositories;
+using Bistrotic.Infrastructure.InMemory.Exceptions;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-
-using Bistrotic.Application.Exceptions;
-using Bistrotic.Application.Repositories;
-using Bistrotic.Infrastructure.InMemory.Exceptions;
 
 namespace Bistrotic.Infrastructure.InMemory.Repositories
 {
@@ -75,6 +75,40 @@ namespace Bistrotic.Infrastructure.InMemory.Repositories
                 throw new KeyNotFoundException($"The storage object (Type='{typeof(TState)}';Id='{id}') not found.");
             }
             return data;
+        }
+
+        public override Task Save(CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Task SetState(string id, IRepositoryMetadata metadata, TState state, CancellationToken cancellationToken = default)
+        {            
+            return Task.CompletedTask;
+        }
+
+        public override Task AddStateLog(string id, IRepositoryMetadata metadata, IEnumerable<object> events, CancellationToken cancellationToken = default)
+        {
+            if (!stateData.Events.Any())
+            {
+                if (stateData.State != null)
+                {
+                    throw new NotSupportedException($"The '{GetType().Name}' repository only supports streams of events. It cannot save states.");
+                }
+                throw new MissingEventsException<InMemoryStreamRepository<TState>>(id);
+            }
+            if (!_data.TryGetValue(id, out IRepositoryStream? stream))
+            {
+                stream = new InMemoryRepositoryStream();
+                _data[id] = stream;
+            }
+            stream.Add(stateData.Metadata, stateData.Events);
+            return Task.CompletedTask;
+        }
+
+        public override Task Publish(IEnumerable<IEnvelope> events, CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
         }
     }
 }

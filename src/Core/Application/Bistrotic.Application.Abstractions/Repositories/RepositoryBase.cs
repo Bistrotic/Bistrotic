@@ -1,10 +1,12 @@
 ﻿namespace Bistrotic.Application.Repositories
 {
+    using Bistrotic.Application.Exceptions;
+    using Bistrotic.Application.Messages;
+
     using System;
+    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-
-    using Bistrotic.Application.Exceptions;
 
     public abstract class RepositoryBase<TState> : IRepository<TState>
     {
@@ -16,13 +18,20 @@
 
         public abstract Task<IRepositoryStream> GetStream(string id, CancellationToken cancellationToken = default);
 
-        public abstract Task Save(string id, IRepositoryData<TState> stateData, CancellationToken cancellationToken = default);
+        public abstract Task Save(CancellationToken cancellationToken = default);
 
         async Task<object> IRepository.GetState(Type dataType, string id, CancellationToken cancellationToken)
                     => await GetState(id, cancellationToken).ConfigureAwait(false) ??
                 throw new RepositoryStateNullException(this, id, GetType().Name);
 
-        Task IRepository.Save(string id, IRepositoryData stateData, CancellationToken cancellationToken)
-            => Save(id, (IRepositoryData<TState>)stateData, cancellationToken);
+        public abstract Task SetState(string id, IRepositoryMetadata metadata, TState state, CancellationToken cancellationToken = default);
+
+        public abstract Task AddStateLog(string id, IRepositoryMetadata metadata, IEnumerable<object> events, CancellationToken cancellationToken = default);
+
+        public abstract Task Publish(IEnumerable<IEnvelope> events, CancellationToken cancellationToken = default);
+
+        Task IRepository.SetState(string id, IRepositoryMetadata metadata, object state, CancellationToken cancellationToken)
+            => SetState(id, metadata, (TState)state, cancellationToken);
+
     }
 }

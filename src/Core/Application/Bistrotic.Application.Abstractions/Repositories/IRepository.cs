@@ -21,7 +21,7 @@
 
         Task Publish(IEnumerable<IEnvelope> events, CancellationToken cancellationToken = default);
 
-        Task AddState(string id, IRepositoryMetadata metadata, object state, CancellationToken cancellationToken = default);
+        Task SetState(string id, IRepositoryMetadata metadata, object state, CancellationToken cancellationToken = default);
 
         Task Save(CancellationToken cancellationToken = default);
     }
@@ -30,6 +30,6 @@
     {
         Task<TState> GetState(string id, CancellationToken cancellationToken = default);
 
-        Task AddState(string id, IRepositoryMetadata metadata, TState state, CancellationToken cancellationToken = default);
+        Task SetState(string id, IRepositoryMetadata metadata, TState state, CancellationToken cancellationToken = default);
     }
 }

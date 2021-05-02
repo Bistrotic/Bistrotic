@@ -12,17 +12,13 @@ namespace Bistrotic.Infrastructure.EfCore.Repositories
         {
         }
 
+        public DbSet<OutboxMessage> MessageOutbox { get; set; }
         public DbSet<State> States { get; set; }
-        public DbSet<OutboxMessage> Outbox { get; set; }
-        public DbSet<EventStreamItem> EventStore { get; set; }
+        public DbSet<StateStreamItem> StateStreams { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<State>(b =>
-            {
-                b.HasKey(p => new { p.IdHash, p.Id });
-                b.Property(p => p.Version).IsConcurrencyToken();
-            });
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(MessageOutboxTypeConfiguration).Assembly);
         }
     }
 }

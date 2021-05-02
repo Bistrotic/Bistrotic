@@ -1,5 +1,10 @@
 ﻿namespace Bistrotic.Emails.Application.CommandHandlers
 {
+    using System;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     using Bistrotic.Application.Commands;
     using Bistrotic.Application.Exceptions;
     using Bistrotic.Application.Helpers;
@@ -10,10 +15,6 @@
     using Bistrotic.Emails.Domain.States;
 
     using Microsoft.Extensions.Logging;
-
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     [CommandHandler(Command = typeof(ReceiveEmail))]
     public class ReceiveEmailHandler : ICommandHandler<ReceiveEmail>
@@ -50,7 +51,6 @@
                                 toRecipients: command.ToRecipients,
                                 copyToRecipients: command.CopyToRecipients,
                                 attachments: command.Attachments);
-                await _repository.AddStateLog(id, envelope.ToMetadata(), events, cancellationToken);
                 await _repository.SetState(id, envelope.ToMetadata(), state, cancellationToken);
                 await _repository.Publish(events.Select(p => new Envelope(p, new Bistrotic.Domain.ValueTypes.MessageId(), envelope)).ToList(), cancellationToken);
                 await _repository.Save(cancellationToken);
@@ -58,6 +58,11 @@
             catch (DuplicateRepositoryStateException)
             {
                 _logger.LogWarning($"Duplicate email found in mailbox '{envelope.Message.Recipient}' : Id='{envelope.Message.EmailId}', Subject='{envelope.Message.Subject}', MessageId='{envelope.MessageId}'.");
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"Error while handling receive email event. From '{envelope.Message.Recipient}' : Id='{envelope.Message.EmailId}', Subject='{envelope.Message.Subject}', MessageId='{envelope.MessageId}'.");
+                throw;
             }
         }
     }

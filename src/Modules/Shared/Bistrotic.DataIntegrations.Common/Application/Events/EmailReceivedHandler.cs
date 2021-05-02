@@ -1,17 +1,5 @@
 ﻿namespace Bistrotic.DataIntegrations.Application.CommandHandlers
 {
-    using Bistrotic.Application.Commands;
-    using Bistrotic.Application.Events;
-    using Bistrotic.Application.Messages;
-    using Bistrotic.DataIntegrations.Application.Commands;
-    using Bistrotic.DataIntegrations.Common.Domain.ValueTypes;
-    using Bistrotic.Domain.ValueTypes;
-    using Bistrotic.Emails.Contracts.Events;
-
-    using Microsoft.Extensions.Logging;
-
-    using SharpCompress.Archives.Zip;
-
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -19,15 +7,31 @@
     using System.Threading;
     using System.Threading.Tasks;
 
+    using Bistrotic.Application.Events;
+    using Bistrotic.Application.Exceptions;
+    using Bistrotic.Application.Helpers;
+    using Bistrotic.Application.Messages;
+    using Bistrotic.Application.Repositories;
+    using Bistrotic.DataIntegrations.Application.Commands;
+    using Bistrotic.DataIntegrations.Common.Domain.ValueTypes;
+    using Bistrotic.DataIntegrations.Domain;
+    using Bistrotic.DataIntegrations.Domain.States;
+    using Bistrotic.Domain.ValueTypes;
+    using Bistrotic.Emails.Contracts.Events;
+
+    using Microsoft.Extensions.Logging;
+
+    using SharpCompress.Archives.Zip;
+
     [EventHandler(Event = typeof(EmailReceived))]
     public class EmailReceivedHandler : IEventHandler<EmailReceived>
     {
-        private readonly ICommandBus _commandBus;
         private readonly ILogger<EmailReceivedHandler> _logger;
+        private readonly IRepository<IDataIntegrationState> _repository;
 
-        public EmailReceivedHandler(ICommandBus commandBus, ILogger<EmailReceivedHandler> logger)
+        public EmailReceivedHandler(IRepository<IDataIntegrationState> repository, ILogger<EmailReceivedHandler> logger)
         {
-            _commandBus = commandBus;
+            _repository = repository;
             _logger = logger;
         }
 
@@ -38,8 +42,27 @@
         {
             try
             {
-                await _commandBus.Send(GetAttachments(envelope), cancellationToken);
+                foreach (var submission in GetAttachments(envelope))
+                {
+                    var state = new DataIntegrationState();
+                    var integration = new DataIntegration(submission.DataIntegrationId, state);
+                    var events = await integration.Submit(
+                                name: submission.Name,
+                                description: submission.Description,
+                                documentName: submission.DocumentName,
+                                documentType: submission.DocumentType,
+                                document: submission.Document);
 
+                    await _repository.SetState(submission.DataIntegrationId, envelope.ToMetadata(), state, cancellationToken);
+                    await _repository.Publish(events
+                        .Select(p => new Envelope(p, new MessageId(), envelope))
+                        .ToList(), cancellationToken);
+                }
+                await _repository.Save(cancellationToken);
+            }
+            catch (DuplicateRepositoryStateException)
+            {
+                _logger.LogError($"Duplicate integration submission : Id='{envelope.Message.EmailId}', Name='{envelope.Message.Subject}', MessageId='{envelope.MessageId}'.");
             }
             catch (Exception e)
             {
@@ -47,31 +70,10 @@
                 throw;
             }
         }
-        private static Envelope<SubmitDataIntegration>? GetSubmitMessage(Envelope<EmailReceived> envelope, string name, string description, string content)
+
+        private static List<SubmitDataIntegration> GetAttachments(Envelope<EmailReceived> envelope)
         {
-            string? fileType = Path.GetExtension(name.ToUpperInvariant())
-            switch
-            {
-                ".CSV" => nameof(FileType.Csv),
-                ".TXT" => nameof(FileType.Csv),
-                ".XML" => nameof(FileType.Xml),
-                ".XLS" => nameof(FileType.Xls),
-                ".XLSX" => nameof(FileType.Xlsx),
-                _ => null
-            };
-            return (fileType == null) ? null : new(new SubmitDataIntegration
-            {
-                DataIntegrationId = envelope.Message.EmailId + "/" + name,
-                Name = envelope.Message.Subject + " - " + name,
-                Description = description,
-                DocumentName = name,
-                DocumentType = fileType,
-                Document = content
-            }, new MessageId(), envelope);
-        }
-        private static List<Envelope<SubmitDataIntegration>> GetAttachments(Envelope<EmailReceived> envelope)
-        {
-            List<Envelope<SubmitDataIntegration>> list = new();
+            List<SubmitDataIntegration> list = new();
             var description = $"Mailbox : {envelope.Message.Recipient}\nFrom : {envelope.Message.Sender}\nBody :\n{envelope.Message.Body}";
             foreach (var attachment in envelope.Message.Attachments)
             {
@@ -109,9 +111,31 @@
                     }
                     list.Add(message);
                 }
-
             }
             return list;
+        }
+
+        private static SubmitDataIntegration? GetSubmitMessage(Envelope<EmailReceived> envelope, string name, string description, string content)
+        {
+            string? fileType = Path.GetExtension(name.ToUpperInvariant())
+            switch
+            {
+                ".CSV" => nameof(FileType.Csv),
+                ".TXT" => nameof(FileType.Csv),
+                ".XML" => nameof(FileType.Xml),
+                ".XLS" => nameof(FileType.Xls),
+                ".XLSX" => nameof(FileType.Xlsx),
+                _ => null
+            };
+            return (fileType == null) ? null : new()
+            {
+                DataIntegrationId = envelope.Message.EmailId + "/" + name,
+                Name = envelope.Message.Subject + " - " + name,
+                Description = description,
+                DocumentName = name,
+                DocumentType = fileType,
+                Document = content
+            };
         }
     }
 }

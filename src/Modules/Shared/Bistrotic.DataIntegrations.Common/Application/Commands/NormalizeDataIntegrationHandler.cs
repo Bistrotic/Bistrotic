@@ -1,5 +1,10 @@
 ﻿namespace Bistrotic.DataIntegrations.Application.Commands
 {
+    using System;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     using Bistrotic.Application.Commands;
     using Bistrotic.Application.Helpers;
     using Bistrotic.Application.Messages;
@@ -9,11 +14,6 @@
     using Bistrotic.DataIntegrations.Domain.States;
 
     using Microsoft.Extensions.Logging;
-
-    using System;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     [CommandHandler(Command = typeof(NormalizeDataIntegration))]
     public class NormalizeDataIntegrationHandler : ICommandHandler<NormalizeDataIntegration>
@@ -36,7 +36,6 @@
                 var integration = new DataIntegration(id, state);
                 var command = envelope.Message;
                 var events = await integration.Normalize();
-                await _repository.AddStateLog(id, envelope.ToMetadata(), events, cancellationToken);
                 await _repository.SetState(id, envelope.ToMetadata(), state, cancellationToken);
                 await _repository.Publish(events.Select(p => new Envelope(p, new Bistrotic.Domain.ValueTypes.MessageId(), envelope)).ToList(), cancellationToken);
                 await _repository.Save(cancellationToken);

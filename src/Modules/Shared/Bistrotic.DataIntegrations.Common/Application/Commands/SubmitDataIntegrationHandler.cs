@@ -1,5 +1,9 @@
 ﻿namespace Bistrotic.DataIntegrations.Application.Commands
 {
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     using Bistrotic.Application.Commands;
     using Bistrotic.Application.Events;
     using Bistrotic.Application.Exceptions;
@@ -11,10 +15,6 @@
     using Bistrotic.Domain.ValueTypes;
 
     using Microsoft.Extensions.Logging;
-
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     [CommandHandler(Command = typeof(SubmitDataIntegration))]
     public class SubmitDataIntegrationHandler : ICommandHandler<SubmitDataIntegration>
@@ -45,7 +45,6 @@
                             documentType: envelope.Message.DocumentType,
                             document: envelope.Message.Document);
 
-                await _repository.AddStateLog(id, envelope.ToMetadata(), events, cancellationToken);
                 await _repository.SetState(id, envelope.ToMetadata(), state, cancellationToken);
                 await _repository.Publish(events.Select(p => new Envelope(p, new MessageId(), envelope)).ToList(), cancellationToken);
                 await _repository.Save(cancellationToken);

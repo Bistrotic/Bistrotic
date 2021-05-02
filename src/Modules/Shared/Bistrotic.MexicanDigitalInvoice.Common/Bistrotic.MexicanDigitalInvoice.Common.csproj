@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<RootNamespace>Bistrotic.MexicanDigitalInvoice</RootNamespace>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="ExtendedXmlSerializer" Version="$(ExtendedXmlSerializerVersion)" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Bistrotic.MexicanDigitalInvoice.Contracts\Bistrotic.MexicanDigitalInvoice.Contracts.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Application\" />
+	</ItemGroup>
+</Project>

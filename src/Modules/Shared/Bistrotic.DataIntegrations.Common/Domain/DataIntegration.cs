@@ -33,6 +33,7 @@
                 case FileType.Xml:
                     data = _state.Document;
                     break;
+
                 case FileType.Csv:
                     {
                         using IExcelDataReader reader = ExcelReaderFactory.CreateCsvReader(new MemoryStream(content),
@@ -69,14 +70,16 @@
                 default:
                     return Task.FromResult<IEnumerable<object>>(Array.Empty<object>());
             }
-            List<object> events = new();
-            events.Add(new DataIntegrationNormalized
+            List<object> events = new()
             {
-                DataIntegrationId = _id,
-                Name = _state.Name,
-                Description = _state.Description,
-                Data = data,
-            });
+                new DataIntegrationNormalized
+                {
+                    DataIntegrationId = _id,
+                    Name = _state.Name,
+                    Description = _state.Description,
+                    Data = data,
+                }
+            };
             _state.Apply(events);
             return Task.FromResult<IEnumerable<object>>(events);
         }
@@ -101,16 +104,18 @@
                     _ => string.Empty
                 };
             }
-            List<object> events = new();
-            events.Add(new DataIntegrationSubmitted
+            List<object> events = new()
             {
-                DataIntegrationId = _id,
-                Name = name,
-                Description = description,
-                DocumentName = documentName,
-                DocumentType = documentType,
-                Document = document
-            });
+                new DataIntegrationSubmitted
+                {
+                    DataIntegrationId = _id,
+                    Name = name,
+                    Description = description,
+                    DocumentName = documentName,
+                    DocumentType = documentType,
+                    Document = document
+                }
+            };
             _state.Apply(events);
             return Task.FromResult<IEnumerable<object>>(events);
         }

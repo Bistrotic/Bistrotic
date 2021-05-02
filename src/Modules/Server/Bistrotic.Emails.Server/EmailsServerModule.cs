@@ -40,7 +40,7 @@
             base.ConfigureServices(services);
             services.ConfigureSettings<EmailsSettings>(Configuration);
             services.AddTransient<IRepository<IEmailState>, EfRepository<IEmailState, EmailState>>();
-            services.AddHostedService<ReceiveAllEmailsJob>();
+            // services.AddHostedService<ReceiveAllEmailsJob>();
             services.AddHostedService<ReceiveUnreadEmailsJob>();
             services.AddTransient<ICommandHandler<ReceiveEmail>, ReceiveEmailHandler>();
             services.AddTransient<ICommandHandler<ReceiveAllEmails>, ReceiveAllEmailsHandler>();

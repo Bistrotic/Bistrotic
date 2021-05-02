@@ -25,6 +25,7 @@
     using Bistrotic.Infrastructure.WebServer.Exceptions;
     using Bistrotic.Infrastructure.WebServer.Modules;
     using Bistrotic.Infrastructure.WebServer.Settings;
+    using Bistrotic.MexicanDigitalInvoice;
     using Bistrotic.OpenIdDict;
     using Bistrotic.QuartzScheduler;
     using Bistrotic.Roles;
@@ -108,7 +109,9 @@
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<StateStoreDbContext>(o => o.UseSqlServer(_configuration.GetConnectionString("StateStore")));
+            services.AddDbContext<StateStoreDbContext>(
+                o => o.UseSqlServer(_configuration.GetConnectionString("StateStore")),
+                ServiceLifetime.Transient);
             services.AddDirectoryBrowser();
             services.ConfigureSettings<WebServerSettings>(_configuration);
             services.AddServerSideBlazor().AddCircuitOptions(options =>
@@ -189,6 +192,7 @@
                 { typeof(OpenIdDictServerModule), (config, env) => new OpenIdDictServerModule(config, env) },
                 { typeof(RolesServerModule), (config, env) => new RolesServerModule(config, env) },
                 { typeof(UblDocumentsServerModule), (config, env) => new UblDocumentsServerModule(config, env) },
+                { typeof(MexicanDigitalInvoiceServerModule), (config, env) => new MexicanDigitalInvoiceServerModule(config, env) },
                 { typeof(UsersServerModule), (config, env) => new UsersServerModule(config, env) },
                 { typeof(UnitsServerModule), (config, env) => new UnitsServerModule(config, env) },
                 { typeof(WorkItemsServerModule), (config, env) => new WorkItemsServerModule(config, env) },

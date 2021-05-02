@@ -3,8 +3,7 @@
     using System;
 
     using Bistrotic.Infrastructure.EfCore.Repositories;
-
-    using Bistrotic.SalesHistory.Repositories;
+    using Bistrotic.SalesHistory.Infrastructure.Repositories;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;

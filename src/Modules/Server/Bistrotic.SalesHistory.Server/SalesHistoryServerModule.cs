@@ -1,10 +1,15 @@
 ﻿namespace Bistrotic.SalesHistory
 {
+    using Bistrotic.Application.Events;
     using Bistrotic.Application.Messages;
     using Bistrotic.Infrastructure.Helpers;
     using Bistrotic.Infrastructure.WebServer.Modules;
+    using Bistrotic.SalesHistory.Application.Events;
+    using Bistrotic.SalesHistory.Common.Application.Services;
     using Bistrotic.SalesHistory.Contracts.Queries;
-    using Bistrotic.SalesHistory.Repositories;
+    using Bistrotic.SalesHistory.Infrastructure.Repositories;
+    using Bistrotic.SalesHistory.Settings;
+    using Bistrotic.UblDocuments.Events;
 
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.EntityFrameworkCore;
@@ -29,6 +34,8 @@
         public override void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<SalesHistoryDbContext>(o => o.UseSqlServer(_settings.ConnectionString));
+            services.AddTransient<IEventHandler<UblInvoiceSubmitted>, UblInvoiceSubmittedHandler>();
+            services.AddTransient<ISalesHistoryRepository>(p => p.GetRequiredService<SalesHistoryDbContext>());
         }
     }
 }

@@ -1,13 +1,13 @@
 ﻿namespace Bistrotic.UblDocuments.Types.Entities
 {
-    using Bistrotic.UblDocuments.Types.ValueTypes;
-
-    using ProtoBuf;
-
     using System;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
+
+    using Bistrotic.UblDocuments.Types.ValueTypes;
+
+    using ProtoBuf;
 
     [Serializable]
     [DataContract, ProtoContract]
@@ -15,30 +15,17 @@
     [XmlType(Namespace = UblNamespaces.CommonAggregateComponents2)]
     public class PrepaidPayment
     {
-        [DataMember(Order = 0), ProtoMember(0)]
+        [DataMember(Order = 0), ProtoMember(1)]
         [XmlElement(Order = 0, Namespace = UblNamespaces.CommonBasicComponents2)]
         public string? ID { get; set; }
 
-        [DataMember(Order = 1), ProtoMember(1)]
+        [DataMember(Order = 5), ProtoMember(6)]
+        [XmlElement(Order = 5, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public string? InstructionID { get; set; }
+
+        [DataMember(Order = 1), ProtoMember(2)]
         [XmlElement(Order = 1, Namespace = UblNamespaces.CommonBasicComponents2)]
         public decimal PaidAmount { get; set; }
-
-        [DataMember(Order = 2, IsRequired = true)]
-        [XmlIgnore]
-        public DateTimeOffset? ReceivedDateTime { get; set; }
-
-        [NotMapped]
-        [IgnoreDataMember]
-        [XmlElement(Order = 2, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? ReceivedDate
-        {
-            get => (ReceivedDateTime == null) ? null : new(ReceivedDateTime.Value);
-            set => ReceivedDateTime = (value == null) ? null : (DateTime)value;
-        }
-
-        [DataMember(Order = 3, IsRequired = true)]
-        [XmlIgnore]
-        public DateTimeOffset? PaidDateTime { get; set; }
 
         [NotMapped]
         [IgnoreDataMember]
@@ -49,6 +36,10 @@
             set => PaidDateTime = (value == null) ? null : (DateTime)value;
         }
 
+        [DataMember(Order = 3, IsRequired = true), ProtoMember(4, IsRequired = true)]
+        [XmlIgnore]
+        public DateTimeOffset? PaidDateTime { get; set; }
+
         [NotMapped]
         [IgnoreDataMember]
         [XmlElement(Order = 4, Namespace = UblNamespaces.CommonBasicComponents2)]
@@ -58,10 +49,17 @@
             set => Time.SetTime(PaidDateTime, value);
         }
 
-        [DataMember(Order = 5), ProtoMember(5)]
-        [XmlElement(Order = 5, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public string? InstructionID { get; set; }
+        [NotMapped]
+        [IgnoreDataMember]
+        [XmlElement(Order = 2, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
+        public Date? ReceivedDate
+        {
+            get => (ReceivedDateTime == null) ? null : new(ReceivedDateTime.Value);
+            set => ReceivedDateTime = (value == null) ? null : (DateTime)value;
+        }
 
-
+        [DataMember(Order = 2, IsRequired = true), ProtoMember(3, IsRequired = true)]
+        [XmlIgnore]
+        public DateTimeOffset? ReceivedDateTime { get; set; }
     }
 }

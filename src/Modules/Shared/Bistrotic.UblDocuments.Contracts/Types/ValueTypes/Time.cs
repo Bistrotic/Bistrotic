@@ -1,22 +1,29 @@
 ﻿namespace Bistrotic.UblDocuments.Types.ValueTypes
 {
-    using ProtoBuf;
-
     using System;
     using System.Runtime.Serialization;
     using System.Xml;
     using System.Xml.Serialization;
+
+    using ProtoBuf;
 
     [Serializable]
     [DataContract, ProtoContract]
     [XmlType(Namespace = UblNamespaces.CommonBasicComponents2)]
     public class Time
     {
-        public Time(string value) => ValueString = value;
-        public Time(DateTimeOffset value) => _value = value;
-        public Time(DateTime value) => _value = value;
-        public Time() { }
         private DateTimeOffset _value;
+
+        public Time(string value) => ValueString = value;
+
+        public Time(DateTimeOffset value) => _value = value;
+
+        public Time(DateTime value) => _value = value;
+
+        public Time()
+        {
+        }
+
         [XmlText]
         public string ValueString
         {
@@ -25,10 +32,15 @@
         }
 
         public static implicit operator DateTime(Time value) => value._value.LocalDateTime;
+
         public static implicit operator DateTimeOffset(Time value) => value._value;
+
         public static implicit operator string(Time value) => value.ValueString;
+
         public static implicit operator Time(DateTime value) => new(value);
+
         public static implicit operator Time(DateTimeOffset value) => new(value);
+
         public static implicit operator Time(string value) => new(value);
 
         internal static DateTimeOffset? SetTime(DateTimeOffset? issueDateTime, Time? value)
@@ -54,4 +66,3 @@
         }
     }
 }
-

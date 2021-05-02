@@ -5,7 +5,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="TestFiles\Mexican_Invoice.xml" />
 		<None Remove="TestFiles\UBL-Invoice-2.1-Example-Embedded.xml" />
 		<None Remove="TestFiles\UBL-Invoice-2.1-Example-Trivial.xml" />
 		<None Remove="TestFiles\UBL-Invoice-2.1-Example.xml" />
@@ -13,9 +12,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Include="TestFiles\Mexican_Invoice.xml">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
 		<Content Include="TestFiles\UBL-Invoice-2.1-Example-Embedded.xml">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>

@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.UblDocuments
+﻿namespace Bistrotic.MexicanDigitalInvoice
 {
     using Bistrotic.Application.Events;
     using Bistrotic.Application.Messages;
@@ -7,35 +7,35 @@
     using Bistrotic.Infrastructure.EfCore.Repositories;
     using Bistrotic.Infrastructure.Helpers;
     using Bistrotic.Infrastructure.WebServer.Modules;
-    using Bistrotic.UblDocuments.Application.Events;
-    using Bistrotic.UblDocuments.Domain.States;
-    using Bistrotic.UblDocuments.Events;
-    using Bistrotic.UblDocuments.Infrastructure;
+    using Bistrotic.MexicanDigitalInvoice.Application.Events;
+    using Bistrotic.MexicanDigitalInvoice.Domain.States;
+    using Bistrotic.MexicanDigitalInvoice.Events;
+    using Bistrotic.MexicanDigitalInvoice.Infrastructure;
 
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
-    public sealed class UblDocumentsServerModule : ServerModule
+    public sealed class MexicanDigitalInvoiceServerModule : ServerModule
     {
-        private readonly UblDocumentsSettings _settings;
+        private readonly MexicanDigitalInvoiceSettings _settings;
 
-        public UblDocumentsServerModule(IConfiguration configuration, IWebHostEnvironment environment)
+        public MexicanDigitalInvoiceServerModule(IConfiguration configuration, IWebHostEnvironment environment)
             : base(configuration, environment)
         {
-            _settings = configuration.GetSettings<UblDocumentsSettings>();
+            _settings = configuration.GetSettings<MexicanDigitalInvoiceSettings>();
         }
 
         public override void ConfigureMessages(IMessageFactoryBuilder messageBuilder)
         {
-            messageBuilder.AddAssemblyMessages(typeof(UblInvoiceSubmitted).Assembly);
+            messageBuilder.AddAssemblyMessages(typeof(MexicanDigitalInvoiceSubmitted).Assembly);
         }
 
         public override void ConfigureServices(IServiceCollection services)
         {
-            // services.AddDbContext<UblDocumentsDbContext>(o => o.UseSqlServer(_settings.ConnectionString));
+            // services.AddDbContext<MexicanDigitalInvoiceDbContext>(o => o.UseSqlServer(_settings.ConnectionString));
             services.AddTransient<IEventHandler<DataIntegrationSubmitted>, DataIntegrationSubmittedHandler>();
-            services.AddTransient<IRepository<IUblInvoiceState>, EfRepository<IUblInvoiceState, UblInvoiceState>>();
+            services.AddTransient<IRepository<IMexicanDigitalInvoiceState>, EfRepository<IMexicanDigitalInvoiceState, MexicanDigitalInvoiceState>>();
         }
     }
 }

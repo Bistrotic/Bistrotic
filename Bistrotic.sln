@@ -274,6 +274,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.MexicanDigitalInv
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.MexicanDigitalInvoice.Server", "src\Modules\Server\Bistrotic.MexicanDigitalInvoice.Server\Bistrotic.MexicanDigitalInvoice.Server.csproj", "{3CD9DBA1-C037-45E9-9292-B00A3B4EB6B8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MexicanDigitalInvoice", "MexicanDigitalInvoice", "{FE4DD31D-7767-4574-BB79-8CF20786B7E6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.MexicanDigitalInvoice.Common.Tests", "test\Modules\MexicanDigitalInvoice\Bistrotic.MexicanDigitalInvoice.Common.Tests\Bistrotic.MexicanDigitalInvoice.Common.Tests.csproj", "{F0DDA358-F9BE-45E8-84DE-C8594E5E6052}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		src\Core\Infrastructure\Bistrotic.Infrastructure.CodeGeneration.Shared\Bistrotic.Infrastructure.CodeGeneration.Shared.projitems*{06beda32-e705-4093-90b0-c61e81c646c2}*SharedItemsImports = 5
@@ -618,6 +622,10 @@ Global
 		{3CD9DBA1-C037-45E9-9292-B00A3B4EB6B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CD9DBA1-C037-45E9-9292-B00A3B4EB6B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CD9DBA1-C037-45E9-9292-B00A3B4EB6B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0DDA358-F9BE-45E8-84DE-C8594E5E6052}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0DDA358-F9BE-45E8-84DE-C8594E5E6052}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0DDA358-F9BE-45E8-84DE-C8594E5E6052}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0DDA358-F9BE-45E8-84DE-C8594E5E6052}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -731,6 +739,8 @@ Global
 		{33E79D87-B9DE-4D2F-A465-8664481F9ECE} = {C0C6224A-316A-439D-89F2-CA7FAB303C22}
 		{D634682F-3A2A-4B7C-8A92-F0440BF19D97} = {C0C6224A-316A-439D-89F2-CA7FAB303C22}
 		{3CD9DBA1-C037-45E9-9292-B00A3B4EB6B8} = {C0C6224A-316A-439D-89F2-CA7FAB303C22}
+		{FE4DD31D-7767-4574-BB79-8CF20786B7E6} = {7FC87AE8-D1DA-4306-81B0-29C270E7E104}
+		{F0DDA358-F9BE-45E8-84DE-C8594E5E6052} = {FE4DD31D-7767-4574-BB79-8CF20786B7E6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA165E9D-6B6A-49BD-9879-44123F389ACD}

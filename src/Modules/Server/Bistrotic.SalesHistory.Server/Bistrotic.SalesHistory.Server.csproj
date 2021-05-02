@@ -14,10 +14,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Infrastructure\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <ProjectReference Include="..\..\Shared\Bistrotic.SalesHistory.Common\Bistrotic.SalesHistory.Common.csproj" />
 	  <ProjectReference Include="..\..\Shared\Bistrotic.SalesHistory.Contracts\Bistrotic.SalesHistory.Contracts.csproj" />
 	</ItemGroup>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Bistrotic.UblDocuments.Infrastructure
+namespace Bistrotic.MexicanDigitalInvoice.Infrastructure
 {
     [Serializable]
     internal class SetTypeNotSupportedException<TSet> : Exception
@@ -18,10 +18,12 @@ namespace Bistrotic.UblDocuments.Infrastructure
             : base($"Set of type {typeof(TSet).Name} does not exist in repository {repository?.GetType().Name}. {message}", innerException)
         {
         }
+
         public SetTypeNotSupportedException(object repository)
             : this(repository, null, null)
         {
         }
+
         public SetTypeNotSupportedException(string? message, Exception? innerException)
              : this(null, message, innerException)
         {

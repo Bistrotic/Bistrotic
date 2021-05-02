@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
@@ -11,5 +11,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\Core\Application\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj" />
 		<ProjectReference Include="..\Bistrotic.DataIntegrations.Contracts\Bistrotic.DataIntegrations.Contracts.csproj" />
+		<ProjectReference Include="..\Bistrotic.UblDocuments.Contracts\Bistrotic.UblDocuments.Contracts.csproj" />
 	</ItemGroup>
 </Project>

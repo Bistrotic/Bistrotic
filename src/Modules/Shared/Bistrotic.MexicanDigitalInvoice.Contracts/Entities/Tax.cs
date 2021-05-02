@@ -12,11 +12,11 @@
     [XmlRoot("Impuestos", Namespace = MxNamespaces.Cfdi)]
     public class Tax
     {
-        [DataMember(Order = 100)]
+        [DataMember(Order = 100), ProtoMember(101)]
         [XmlAttribute("TotalImpuestosTrasladados")]
         public decimal Total { get; set; }
 
-        [DataMember(Order = 0), ProtoMember(0)]
+        [DataMember(Order = 0), ProtoMember(1)]
         [XmlElement("Traslados", Order = 0)]
         public TaxTransactions? Transactions { get; set; }
     }

@@ -12,11 +12,11 @@
     [XmlRoot("Entry", Namespace = MxNamespaces.Fx)]
     public class DictionaryEntry
     {
-        [DataMember(Order = 0), ProtoMember(0)]
+        [DataMember(Order = 0), ProtoMember(1)]
         [XmlAttribute("k")]
         public string Key { get; set; } = string.Empty;
 
-        [DataMember(Order = 1), ProtoMember(1)]
+        [DataMember(Order = 1), ProtoMember(2)]
         [XmlAttribute("v")]
         public string? Value { get; set; }
     }

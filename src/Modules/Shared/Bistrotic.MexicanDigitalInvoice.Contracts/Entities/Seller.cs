@@ -12,7 +12,7 @@
     [XmlRoot("Emisor", Namespace = MxNamespaces.Fx)]
     public class Seller
     {
-        [DataMember(Order = 0), ProtoMember(0)]
+        [DataMember(Order = 0), ProtoMember(1)]
         [XmlElement("DomicilioFiscal", Order = 0)]
         public Address? TaxResidence { get; set; }
     }

@@ -12,7 +12,7 @@
     [XmlRoot("Procesamiento", Namespace = MxNamespaces.Fx)]
     public class Processing
     {
-        [DataMember(Order = 0), ProtoMember(0)]
+        [DataMember(Order = 0), ProtoMember(1)]
         [XmlElement(Order = 0)]
         public DictionarySet? Dictionary { get; set; } = new();
     }

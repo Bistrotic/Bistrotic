@@ -13,10 +13,10 @@
     [XmlRoot("Dictionary", Namespace = MxNamespaces.Fx)]
     public class DictionarySet
     {
-        [XmlElement("Entry", Order = 0)]
+        [XmlElement("Entry", Order = 0), ProtoMember(1)]
         public List<DictionaryEntry> Entry { get; set; } = new();
 
-        [DataMember(Order = 100)]
+        [DataMember(Order = 100), ProtoMember(101)]
         [XmlAttribute("name")]
         public string? Name { get; set; } = string.Empty;
     }

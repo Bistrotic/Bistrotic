@@ -33,7 +33,6 @@
 
         public override void ConfigureServices(IServiceCollection services)
         {
-            // services.AddDbContext<MexicanDigitalInvoiceDbContext>(o => o.UseSqlServer(_settings.ConnectionString));
             services.AddTransient<IEventHandler<DataIntegrationSubmitted>, DataIntegrationSubmittedHandler>();
             services.AddTransient<IRepository<IMexicanDigitalInvoiceState>, EfRepository<IMexicanDigitalInvoiceState, MexicanDigitalInvoiceState>>();
         }

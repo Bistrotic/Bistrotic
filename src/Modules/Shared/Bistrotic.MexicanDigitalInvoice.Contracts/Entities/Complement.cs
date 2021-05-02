@@ -12,7 +12,7 @@
     [XmlRoot("Complemento", Namespace = MxNamespaces.Cfdi)]
     public class Complement
     {
-        [DataMember(Order = 0), ProtoMember(0)]
+        [DataMember(Order = 0), ProtoMember(1)]
         [XmlElement("TimbreFiscalDigital", Order = 0, Namespace = MxNamespaces.Tfd)]
         public RevenueStamp? RevenueStamp { get; set; }
     }

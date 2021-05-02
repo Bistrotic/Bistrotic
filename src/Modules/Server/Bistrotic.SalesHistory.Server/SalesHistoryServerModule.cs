@@ -4,6 +4,7 @@
     using Bistrotic.Application.Messages;
     using Bistrotic.Infrastructure.Helpers;
     using Bistrotic.Infrastructure.WebServer.Modules;
+    using Bistrotic.MexicanDigitalInvoice.Events;
     using Bistrotic.SalesHistory.Application.Events;
     using Bistrotic.SalesHistory.Common.Application.Services;
     using Bistrotic.SalesHistory.Contracts.Queries;
@@ -35,6 +36,7 @@
         {
             services.AddDbContext<SalesHistoryDbContext>(o => o.UseSqlServer(_settings.ConnectionString));
             services.AddTransient<IEventHandler<UblInvoiceSubmitted>, UblInvoiceSubmittedHandler>();
+            services.AddTransient<IEventHandler<MexicanDigitalInvoiceSubmitted>, MexicanDigitalInvoiceSubmittedHandler>();
             services.AddTransient<ISalesHistoryRepository>(p => p.GetRequiredService<SalesHistoryDbContext>());
         }
     }

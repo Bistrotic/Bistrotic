@@ -13,7 +13,7 @@
     [XmlRoot("Traslados", Namespace = MxNamespaces.Cfdi)]
     public class TaxTransactions
     {
-        [DataMember(Order = 0), ProtoMember(0)]
+        [DataMember(Order = 0), ProtoMember(1)]
         [XmlElement("Traslado", Order = 0)]
         public List<TaxTransaction> Transaction { get; set; } = new();
     }

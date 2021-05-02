@@ -3,6 +3,7 @@
     public interface IMessage
     {
         string? Id { get; }
+
         string MessageId { get; }
     }
 }

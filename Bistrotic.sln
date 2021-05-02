@@ -264,6 +264,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.UblDocuments.Comm
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.UblDocuments.Contracts", "src\Modules\Shared\Bistrotic.UblDocuments.Contracts\Bistrotic.UblDocuments.Contracts.csproj", "{ECCABDA2-5B66-4C96-97FF-771A7D852EF3}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Infrastructure.EfCore.Tests", "test\Bistrotic.Infrastructure.EfCore.Tests\Bistrotic.Infrastructure.EfCore.Tests.csproj", "{F740B815-C01B-4BEA-A029-F817ACC87730}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		src\Core\Infrastructure\Bistrotic.Infrastructure.CodeGeneration.Shared\Bistrotic.Infrastructure.CodeGeneration.Shared.projitems*{06beda32-e705-4093-90b0-c61e81c646c2}*SharedItemsImports = 5
@@ -592,6 +594,10 @@ Global
 		{ECCABDA2-5B66-4C96-97FF-771A7D852EF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECCABDA2-5B66-4C96-97FF-771A7D852EF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECCABDA2-5B66-4C96-97FF-771A7D852EF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F740B815-C01B-4BEA-A029-F817ACC87730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F740B815-C01B-4BEA-A029-F817ACC87730}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F740B815-C01B-4BEA-A029-F817ACC87730}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F740B815-C01B-4BEA-A029-F817ACC87730}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -700,6 +706,7 @@ Global
 		{1158C343-D7C6-4B98-AC96-1F9803F6B4F2} = {83AFC735-7E5A-45A9-8D9C-3578E0D29A70}
 		{0D8EB224-68CC-4FBA-8B2A-CE2E63062B39} = {83AFC735-7E5A-45A9-8D9C-3578E0D29A70}
 		{ECCABDA2-5B66-4C96-97FF-771A7D852EF3} = {83AFC735-7E5A-45A9-8D9C-3578E0D29A70}
+		{F740B815-C01B-4BEA-A029-F817ACC87730} = {1299CE2B-441E-4AB4-97E3-E439F145E9F9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA165E9D-6B6A-49BD-9879-44123F389ACD}

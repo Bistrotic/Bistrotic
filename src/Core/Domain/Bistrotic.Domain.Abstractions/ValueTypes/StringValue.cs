@@ -1,7 +1,7 @@
-﻿using System.Diagnostics;
-
-namespace Bistrotic.Domain.ValueTypes
+﻿namespace Bistrotic.Domain.ValueTypes
 {
+    using System.Diagnostics;
+
     [DebuggerDisplay("{Value}")]
     public abstract class StringValue : SingleValueType<string>
     {
@@ -9,11 +9,13 @@ namespace Bistrotic.Domain.ValueTypes
         {
         }
 
-        protected StringValue(StringValue value) : base(value)
+        protected StringValue(StringValue value)
+            : base(value)
         {
         }
 
-        protected StringValue(string value) : base(value)
+        protected StringValue(string value)
+            : base(value)
         {
         }
     }

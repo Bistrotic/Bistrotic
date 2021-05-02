@@ -1,10 +1,7 @@
 ﻿namespace Bistrotic.DataIntegrations.Application.Commands
 {
-    using System;
-    using System.Threading;
-    using System.Threading.Tasks;
-
     using Bistrotic.Application.Commands;
+    using Bistrotic.Application.Helpers;
     using Bistrotic.Application.Messages;
     using Bistrotic.Application.Repositories;
     using Bistrotic.DataIntegrations.Contracts.Commands;
@@ -12,6 +9,11 @@
     using Bistrotic.DataIntegrations.Domain.States;
 
     using Microsoft.Extensions.Logging;
+
+    using System;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     [CommandHandler(Command = typeof(NormalizeDataIntegration))]
     public class NormalizeDataIntegrationHandler : ICommandHandler<NormalizeDataIntegration>
@@ -33,11 +35,11 @@
                 var state = await _repository.GetState(id, cancellationToken);
                 var integration = new DataIntegration(id, state);
                 var command = envelope.Message;
-                await _repository.Save(id,
-                    new RepositoryData<IDataIntegrationState>(
-                        envelope,
-                        state,
-                        await integration.Normalize()), cancellationToken);
+                var events = await integration.Normalize();
+                await _repository.AddStateLog(id, envelope.ToMetadata(), events, cancellationToken);
+                await _repository.SetState(id, envelope.ToMetadata(), state, cancellationToken);
+                await _repository.Publish(events.Select(p => new Envelope(p, new Bistrotic.Domain.ValueTypes.MessageId(), envelope)).ToList(), cancellationToken);
+                await _repository.Save(cancellationToken);
             }
             catch (Exception)
             {

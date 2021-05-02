@@ -2,6 +2,7 @@
 namespace Bistrotic.UblDocuments.Application.Events
 {
     using Bistrotic.Application.Events;
+    using Bistrotic.Application.Helpers;
     using Bistrotic.Application.Messages;
     using Bistrotic.Application.Repositories;
     using Bistrotic.DataIntegrations.Contracts.Events;
@@ -14,6 +15,7 @@ namespace Bistrotic.UblDocuments.Application.Events
 
     using System;
     using System.IO;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Xml.Linq;
@@ -71,13 +73,10 @@ namespace Bistrotic.UblDocuments.Application.Events
                     UblInvoiceState state = new();
                     UblInvoice ublInvoice = new(invoice.UUID, state);
                     var events = await ublInvoice.Submit(invoice);
-                    await _repository.Save(
-                        invoice.UUID,
-                        new RepositoryData<UblInvoiceState>(
-                            envelope,
-                            state,
-                            await ublInvoice.Submit(invoice)),
-                        cancellationToken);
+                    await _repository.AddStateLog(invoice.UUID, envelope.ToMetadata(), events, cancellationToken);
+                    await _repository.SetState(invoice.UUID, envelope.ToMetadata(), state, cancellationToken);
+                    await _repository.Publish(events.Select(p => new Envelope(p, new Bistrotic.Domain.ValueTypes.MessageId(), envelope)).ToList(), cancellationToken);
+                    await _repository.Save(cancellationToken);
                     return;
                 }
                 //if (xml.Root?.Name?.LocalName == nameof(External.MexicanDocuments.Voucher) && xml.Root?.Name?.Namespace == External.MexicanDocuments.MxNamespaces.Cfdi)

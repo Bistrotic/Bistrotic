@@ -12,8 +12,7 @@
             return url + "?" + string.Join(
                 "&",
                 values
-                    .Select(p => p.Key + "=" + JsonSerializer.Serialize(p.Value).UrlEncode())
-                );
+                    .Select(p => p.Key + "=" + JsonSerializer.Serialize(p.Value).UrlEncode()));
         }
 
         public static string UrlDecode(this string text)

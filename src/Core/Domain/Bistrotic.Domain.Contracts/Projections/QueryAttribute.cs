@@ -1,8 +1,8 @@
-﻿using System;
-using System.Diagnostics;
-
-namespace Bistrotic.Domain.Contracts.Projections
+﻿namespace Bistrotic.Domain.Contracts.Projections
 {
+    using System;
+    using System.Diagnostics;
+
     [DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class QueryAttribute : Attribute

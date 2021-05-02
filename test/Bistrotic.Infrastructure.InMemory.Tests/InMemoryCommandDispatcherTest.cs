@@ -1,15 +1,14 @@
 namespace Bistrotic.Infrastructure.InMemory.Tests
 {
-    using System;
-    using System.Threading.Tasks;
-
-    using Bistrotic.Application.Commands;
     using Bistrotic.Application.Messages;
     using Bistrotic.Domain.ValueTypes;
     using Bistrotic.Infrastructure.InMemory.Commands;
-    using Bistrotic.Infrastructure.InMemory.Tests.Fixture;
+    using Bistrotic.Infrastructure.Tests.Fixture;
 
     using FluentAssertions;
+
+    using System;
+    using System.Threading.Tasks;
 
     using Xunit;
 

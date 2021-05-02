@@ -1,15 +1,17 @@
-namespace Bistrotic.Infrastructure.InMemory.Tests
+namespace Bistrotic.Infrastructure.EfCore.Tests
 {
     using Bistrotic.Application.Abstractions.Tests;
     using Bistrotic.Application.Abstractions.Tests.Fixtures;
     using Bistrotic.Application.Repositories;
-    using Bistrotic.Infrastructure.InMemory.Repositories;
+    using Bistrotic.Infrastructure.EfCore.Repositories;
 
     using System.Threading.Tasks;
 
+    using TestSupport.EfHelpers;
+
     using Xunit;
 
-    public class InMemoryRepositoryTest : RepositoryTestBase
+    public class EfRepositoryTest : RepositoryTestBase
     {
         [Fact]
         protected override Task Check_set_new_state()
@@ -24,7 +26,12 @@ namespace Bistrotic.Infrastructure.InMemory.Tests
         }
 
         protected override IRepository CreateNewRepository()
-                    => new InMemoryRepository<IDummyState, DummyState>();
+        {
+
+            StateStoreDbContext context = new StateStoreDbContext(SqliteInMemory.CreateOptions<StateStoreDbContext>());
+            context.Database.EnsureCreated();
+            return new EfRepository<IDummyState, DummyState>(context);
+        }
 
         [Fact]
         protected override Task Save_stream_throws_not_supported()

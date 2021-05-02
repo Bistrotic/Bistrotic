@@ -1,11 +1,5 @@
 namespace Bistrotic.Emails.Server.Tests
 {
-    using System;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
-
-    using Bistrotic.Application.Events;
     using Bistrotic.Application.Messages;
     using Bistrotic.Application.Repositories;
     using Bistrotic.Emails.Application.CommandHandlers;
@@ -18,6 +12,12 @@ namespace Bistrotic.Emails.Server.Tests
 
     using Moq;
 
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     using Xunit;
 
     public class ReceiveEmailHandlerTests
@@ -26,54 +26,85 @@ namespace Bistrotic.Emails.Server.Tests
         public async Task Handle_publishes_EmailReceived_event()
         {
             var loggerMock = new Mock<ILogger<ReceiveEmailHandler>>();
-            var eventBusMock = new Mock<IEventBus>();
-            eventBusMock.Setup(x => x.Publish(
-                    It.IsAny<IEnvelope>(),
-                    It.IsAny<CancellationToken>()
-                ));
             var receive = CreateReceiveEmail();
             var mockRepository = new Mock<IRepository<IEmailState>>();
             mockRepository
                 .Setup(x => x.Save(
-                    It.IsAny<string>(),
-                    It.IsAny<IRepositoryData<IEmailState>>(),
                     It.IsAny<CancellationToken>()
                 ))
-                .Returns(Task.FromResult<IEmailState>(new EmailState()));
+                .Returns(Task.CompletedTask);
+            mockRepository
+                .Setup(x => x.AddStateLog(
+                    It.IsAny<string>(),
+                    It.IsAny<IRepositoryMetadata>(),
+                    It.IsAny<IEnumerable<object>>(),
+                    It.IsAny<CancellationToken>()
+                ))
+                .Returns(Task.CompletedTask);
+            mockRepository
+                .Setup(x => x.Publish(
+                    It.IsAny<IEnumerable<IEnvelope>>(),
+                    It.IsAny<CancellationToken>()
+                ))
+                .Returns(Task.CompletedTask);
+            mockRepository
+                .Setup(x => x.SetState(
+                    It.IsAny<string>(),
+                    It.IsAny<IRepositoryMetadata>(),
+                    It.IsAny<IEmailState>(),
+                    It.IsAny<CancellationToken>()
+                ))
+                .Returns(Task.CompletedTask);
             var repository = mockRepository.Object;
-            var handler = new ReceiveEmailHandler(eventBusMock.Object, repository, loggerMock.Object);
+            var handler = new ReceiveEmailHandler(repository, loggerMock.Object);
             await handler.Handle(new Envelope<ReceiveEmail>(
                 receive,
                 "msgid123",
                 "test user",
                 DateTimeOffset.Now
                 ));
-            eventBusMock.Verify(x => x.Publish(
-                    It.Is<IEnvelope>(p => p.Message.GetType() == typeof(EmailReceived)),
+            mockRepository.Verify(x => x.Publish(
+                    It.Is<IEnumerable<IEnvelope>>(p =>
+                        p.Count() == 1 &&
+                        p.First().Message.GetType() == typeof(EmailReceived)
+                    ),
                     It.IsAny<CancellationToken>()
                 ));
-            mockRepository.Verify(x => x.Save(
-                receive.EmailId,
-                It.Is<IRepositoryData<IEmailState>>(p =>
-                    p.State.CopyToRecipients.Count() == receive.CopyToRecipients.Count() &&
-                    p.State.ToRecipients.Count() == receive.ToRecipients.Count() &&
-                    p.State.Attachments.Count() == receive.Attachments.Count() &&
-                    p.State.Body == receive.Body &&
-                    p.State.Recipient == receive.Recipient &&
-                    p.State.Subject == receive.Subject &&
-                    p.State.Sender == receive.Sender &&
-                    p.Events.Count() == 1 &&
-                    p.Events.First().GetType() == typeof(EmailReceived) &&
-                    ((EmailReceived)p.Events.First()).EmailId == receive.EmailId &&
-                    ((EmailReceived)p.Events.First()).Body == receive.Body &&
-                    ((EmailReceived)p.Events.First()).Sender == receive.Sender &&
-                    ((EmailReceived)p.Events.First()).Recipient == receive.Recipient &&
-                    ((EmailReceived)p.Events.First()).Subject == receive.Subject &&
-                    ((EmailReceived)p.Events.First()).CopyToRecipients.Count() == receive.CopyToRecipients.Count() &&
-                    ((EmailReceived)p.Events.First()).ToRecipients.Count() == receive.ToRecipients.Count() &&
-                    ((EmailReceived)p.Events.First()).Attachments.Count() == receive.Attachments.Count()
+            mockRepository.Verify(x => x.AddStateLog(
+                    It.Is<string>(p => p == receive.EmailId),
+                    It.Is<IRepositoryMetadata>(p => p.MessageId == "msgid123" && p.UserName == "test user"),
+                    It.Is<IEnumerable<IEnvelope>>(p =>
+                        p.Count() == 1 &&
+                        p.First().Message.GetType() == typeof(EmailReceived)
+                    ),
+                    It.IsAny<CancellationToken>()
+                ));
+            mockRepository.Verify(x => x.SetState(
+                    It.Is<string>(p => p == receive.EmailId),
+                    It.Is<IRepositoryMetadata>(p => p.MessageId == "msgid123" && p.UserName == "test user"),
+                    It.Is<IRepositoryData<IEmailState>>(p =>
+                        p.State.CopyToRecipients.Count() == receive.CopyToRecipients.Count() &&
+                        p.State.ToRecipients.Count() == receive.ToRecipients.Count() &&
+                        p.State.Attachments.Count() == receive.Attachments.Count() &&
+                        p.State.Body == receive.Body &&
+                        p.State.Recipient == receive.Recipient &&
+                        p.State.Subject == receive.Subject &&
+                        p.State.Sender == receive.Sender &&
+                        p.Events.Count() == 1 &&
+                        p.Events.First().GetType() == typeof(EmailReceived) &&
+                        ((EmailReceived)p.Events.First()).EmailId == receive.EmailId &&
+                        ((EmailReceived)p.Events.First()).Body == receive.Body &&
+                        ((EmailReceived)p.Events.First()).Sender == receive.Sender &&
+                        ((EmailReceived)p.Events.First()).Recipient == receive.Recipient &&
+                        ((EmailReceived)p.Events.First()).Subject == receive.Subject &&
+                        ((EmailReceived)p.Events.First()).CopyToRecipients.Count() == receive.CopyToRecipients.Count() &&
+                        ((EmailReceived)p.Events.First()).ToRecipients.Count() == receive.ToRecipients.Count() &&
+                        ((EmailReceived)p.Events.First()).Attachments.Count() == receive.Attachments.Count()
                 ), It.IsAny<CancellationToken>()),
                 Times.Once);
+            mockRepository.Verify(x => x.Save(
+                    It.IsAny<CancellationToken>()
+                ));
         }
 
         private static ReceiveEmail CreateReceiveEmail()

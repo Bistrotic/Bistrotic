@@ -1,8 +1,8 @@
-﻿using System;
-using System.Runtime.Serialization;
-
-namespace Bistrotic.Domain.Exceptions
+﻿namespace Bistrotic.Domain.Exceptions
 {
+    using System;
+    using System.Runtime.Serialization;
+
     [Serializable]
     public class EventNotSupportedException<TState> : Exception
     {
@@ -10,11 +10,13 @@ namespace Bistrotic.Domain.Exceptions
         {
         }
 
-        public EventNotSupportedException(string? message) : base(message)
+        public EventNotSupportedException(string? message)
+            : base(message)
         {
         }
 
-        public EventNotSupportedException(string? message, Exception? innerException) : base(message, innerException)
+        public EventNotSupportedException(string? message, Exception? innerException)
+            : base(message, innerException)
         {
         }
 
@@ -23,7 +25,8 @@ namespace Bistrotic.Domain.Exceptions
         {
         }
 
-        protected EventNotSupportedException(SerializationInfo info, StreamingContext context) : base(info, context)
+        protected EventNotSupportedException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
     }

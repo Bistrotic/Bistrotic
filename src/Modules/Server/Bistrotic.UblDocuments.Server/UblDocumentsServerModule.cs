@@ -37,7 +37,7 @@
         {
             services.AddDbContext<UblDocumentsDbContext>(o => o.UseSqlServer(_settings.ConnectionString));
             services.AddTransient<IEventHandler<DataIntegrationSubmitted>, DataIntegrationSubmittedHandler>();
-            services.AddTransient<IRepository<IUblInvoiceState>, StateStoreRepository<IUblInvoiceState, UblInvoiceState>>();
+            services.AddTransient<IRepository<IUblInvoiceState>, EfRepository<IUblInvoiceState, UblInvoiceState>>();
         }
     }
 }

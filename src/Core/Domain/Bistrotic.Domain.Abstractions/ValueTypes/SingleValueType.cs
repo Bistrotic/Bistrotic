@@ -39,15 +39,18 @@
             {
                 return false;
             }
+
             if (GetType() != obj.GetType())
             {
                 return false;
             }
+
             var objValue = ((SingleValueType<T>)obj).Value;
             if (Value == null)
             {
                 return objValue == null;
             }
+
             return Value.Equals(objValue);
         }
 

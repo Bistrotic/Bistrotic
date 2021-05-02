@@ -16,11 +16,7 @@
                 q.SchedulerName = "Scheduler " + name;
 
                 // Scoped service support like EF Core DbContext
-                q.UseMicrosoftDependencyInjectionScopedJobFactory(p =>
-                {
-                    p.CreateScope = true;
-                    p.AllowDefaultConstructor = true;
-                });
+                q.UseMicrosoftDependencyInjectionScopedJobFactory();
 
                 // these are the defaults
                 q.UseSimpleTypeLoader();

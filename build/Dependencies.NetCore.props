@@ -1,7 +1,7 @@
 <Project>
 	<PropertyGroup>
 		<SystemNetHttpJsonVersion>5.0.0</SystemNetHttpJsonVersion>
-		<SystemTextJsonVersion>5.0.1</SystemTextJsonVersion>
+		<SystemTextJsonVersion>5.0.2</SystemTextJsonVersion>
 		<SystemNetHttpVersion>5.0.0</SystemNetHttpVersion>
 		<SystemTextEncodingCodePagesVersion>5.0.0</SystemTextEncodingCodePagesVersion>
 		<MicrosoftExtensionsHttpVersion>5.0.0</MicrosoftExtensionsHttpVersion>
@@ -29,9 +29,10 @@
 		<MicrosoftCodeAnalysisCSharpVersion>3.9.0</MicrosoftCodeAnalysisCSharpVersion>
 		<MicrosoftCodeAnalysisCommonVersion>3.9.0</MicrosoftCodeAnalysisCommonVersion>
 		<MicrosoftCodeAnalysisWorkspacesVersion>3.9.0</MicrosoftCodeAnalysisWorkspacesVersion>
-		<MicrosoftEntityFrameworkCoreVersion>5.0.4</MicrosoftEntityFrameworkCoreVersion>
+		<MicrosoftEntityFrameworkCoreVersion>5.0.5</MicrosoftEntityFrameworkCoreVersion>
 		<MicrosoftEntityFrameworkCoreSqlServerVersion>$(MicrosoftEntityFrameworkCoreVersion)</MicrosoftEntityFrameworkCoreSqlServerVersion>
 		<MicrosoftEntityFrameworkCoreDesignVersion>$(MicrosoftEntityFrameworkCoreVersion)</MicrosoftEntityFrameworkCoreDesignVersion>
 		<MicrosoftEntityFrameworkCoreToolsVersion>$(MicrosoftEntityFrameworkCoreVersion)</MicrosoftEntityFrameworkCoreToolsVersion>
+		<MicrosoftEntityFrameworkCoreSqliteVersion>$(MicrosoftEntityFrameworkCoreVersion)</MicrosoftEntityFrameworkCoreSqliteVersion>
 	</PropertyGroup>
 </Project>

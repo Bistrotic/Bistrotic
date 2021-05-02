@@ -6,7 +6,7 @@ namespace Bistrotic.Infrastructure.InMemory.Tests
     using Bistrotic.Application.Messages;
     using Bistrotic.Domain.ValueTypes;
     using Bistrotic.Infrastructure.InMemory.Queries;
-    using Bistrotic.Infrastructure.InMemory.Tests.Fixture;
+    using Bistrotic.Infrastructure.Tests.Fixture;
 
     using FluentAssertions;
 

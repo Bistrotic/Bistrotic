@@ -9,7 +9,8 @@
         {
         }
 
-        protected EventBase(TId id) : base(id)
+        protected EventBase(TId id)
+            : base(id)
         {
         }
     }

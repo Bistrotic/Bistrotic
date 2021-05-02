@@ -1,8 +1,8 @@
-﻿using System.Diagnostics;
-using System.Text.Json;
-
-namespace Bistrotic.Domain.ValueTypes
+﻿namespace Bistrotic.Domain.ValueTypes
 {
+    using System.Diagnostics;
+    using System.Text.Json;
+
     [DebuggerDisplay("{Value}")]
     public abstract class JsonStringValue<T> : SingleValueType<string>
     {
@@ -10,15 +10,18 @@ namespace Bistrotic.Domain.ValueTypes
         {
         }
 
-        protected JsonStringValue(JsonStringValue<T> value) : base(value)
+        protected JsonStringValue(JsonStringValue<T> value)
+            : base(value)
         {
         }
 
-        protected JsonStringValue(T value) : base(JsonSerializer.Serialize(value))
+        protected JsonStringValue(T value)
+            : base(JsonSerializer.Serialize(value))
         {
         }
 
-        protected JsonStringValue(string value) : base(value)
+        protected JsonStringValue(string value)
+            : base(value)
         {
         }
 

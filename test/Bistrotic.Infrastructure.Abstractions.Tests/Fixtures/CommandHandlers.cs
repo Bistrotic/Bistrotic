@@ -1,13 +1,13 @@
-﻿namespace Bistrotic.Infrastructure.InMemory.Tests.Fixture
+﻿namespace Bistrotic.Infrastructure.Tests.Fixture
 {
+    using Bistrotic.Application.Commands;
+    using Bistrotic.Application.Messages;
+    using Bistrotic.Domain.ValueTypes;
+
     using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-
-    using Bistrotic.Application.Commands;
-    using Bistrotic.Application.Messages;
-    using Bistrotic.Domain.ValueTypes;
 
     public interface ITestCommandHandler : ICommandHandler
     {

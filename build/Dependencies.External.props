@@ -5,22 +5,22 @@
 		<MicrosoftVisualStudioServicesClientVersion>$(MicrosoftTeamFoundationVersion)</MicrosoftVisualStudioServicesClientVersion>
 		<MicrosoftVisualStudioServicesMemberEntitlementManagementWebApiVersion>$(MicrosoftTeamFoundationVersion)</MicrosoftVisualStudioServicesMemberEntitlementManagementWebApiVersion>
 		<MicrosoftTyeExtensionsConfigurationVersion>0.7.0-alpha.21070.7</MicrosoftTyeExtensionsConfigurationVersion>
-		<DaprAspNetCoreVersion>1.1.0</DaprAspNetCoreVersion>
-		<SwashbuckleAspNetCoreVersion>6.1.1</SwashbuckleAspNetCoreVersion>
+		<DaprAspNetCoreVersion>1.1.1</DaprAspNetCoreVersion>
+		<SwashbuckleAspNetCoreVersion>6.1.4</SwashbuckleAspNetCoreVersion>
 		<MinVerVersion>2.5.0</MinVerVersion>
-		<OpenIddictVersion>3.0.2</OpenIddictVersion>
+		<OpenIddictVersion>3.0.3</OpenIddictVersion>
 		<OpenIddictAspNetCoreVersion>$(OpenIddictVersion)</OpenIddictAspNetCoreVersion>
 		<OpenIddictEntityFrameworkCoreVersion>$(OpenIddictVersion)</OpenIddictEntityFrameworkCoreVersion>
 		<OpenIddictQuartzVersion>$(OpenIddictVersion)</OpenIddictQuartzVersion>
 		<SystemLinqAsyncVersion>5.0.0</SystemLinqAsyncVersion>
 		<MediatRExtensionsMicrosoftDependencyInjectionVersion>9.0.0</MediatRExtensionsMicrosoftDependencyInjectionVersion>
 		<MicrosoftExtensionsLoggingAzureAppServicesVersion>5.0.4</MicrosoftExtensionsLoggingAzureAppServicesVersion>
-		<QuartzAspNetCoreVersion>3.2.4</QuartzAspNetCoreVersion>
-		<ScribanVersion>3.6.0</ScribanVersion>
+		<QuartzAspNetCoreVersion>3.3.2</QuartzAspNetCoreVersion>
+		<ScribanVersion>3.7.0</ScribanVersion>
 		<MicrosoftGraphVersion>3.29.0</MicrosoftGraphVersion>
 		<MicrosoftGraphAuthVersion>1.0.0-preview.6</MicrosoftGraphAuthVersion>
 		<MicrosoftIdentityClientVersion>4.29.0</MicrosoftIdentityClientVersion>
-		<GrpcToolsVersion>2.37.0</GrpcToolsVersion>
+		<GrpcToolsVersion>2.37.1</GrpcToolsVersion>
 		<ProtobufNetVersion>3.0.101</ProtobufNetVersion>
 		<GoogleProtobufVersion>3.15.6</GoogleProtobufVersion>
 		<JsonFlattenVersion>1.0.1</JsonFlattenVersion>
@@ -28,5 +28,6 @@
 		<ExcelDataReaderDataSetVersion>$(ExcelDataReaderVersion)</ExcelDataReaderDataSetVersion>
 		<ExtendedXmlSerializerVersion>3.7.0</ExtendedXmlSerializerVersion>
 		<SharpCompressVersion>0.28.2</SharpCompressVersion>
+		<EfCoreTestSupportVersion>5.0.0</EfCoreTestSupportVersion>
 	</PropertyGroup>
 </Project>

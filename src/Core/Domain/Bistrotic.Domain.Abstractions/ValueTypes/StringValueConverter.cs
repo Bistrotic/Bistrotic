@@ -18,6 +18,7 @@
             {
                 return new T { Value = stringValue };
             }
+
             return base.ConvertFrom(context, culture, value);
         }
 
@@ -27,6 +28,7 @@
             {
                 return t.Value;
             }
+
             return base.ConvertTo(context, culture, value, destinationType);
         }
     }

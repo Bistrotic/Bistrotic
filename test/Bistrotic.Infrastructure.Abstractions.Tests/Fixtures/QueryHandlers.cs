@@ -1,11 +1,11 @@
-﻿namespace Bistrotic.Infrastructure.InMemory.Tests.Fixture
+﻿namespace Bistrotic.Infrastructure.Tests.Fixture
 {
+    using Bistrotic.Application.Messages;
+    using Bistrotic.Application.Queries;
+
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-
-    using Bistrotic.Application.Messages;
-    using Bistrotic.Application.Queries;
 
     public sealed class Query1 : TestQuery<int>
     {

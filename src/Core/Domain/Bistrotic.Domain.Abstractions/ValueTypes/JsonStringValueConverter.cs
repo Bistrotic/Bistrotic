@@ -20,6 +20,7 @@
                 return JsonSerializer.Deserialize<T>(stringValue);
 #pragma warning restore CS8603 // Possible null reference return.
             }
+
             return base.ConvertFrom(context, culture, value);
         }
 
@@ -29,6 +30,7 @@
             {
                 return JsonSerializer.Serialize(t);
             }
+
             return base.ConvertTo(context, culture, value, destinationType);
         }
     }

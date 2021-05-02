@@ -1,11 +1,9 @@
 ﻿namespace Bistrotic.DataIntegrations.Application.Commands
 {
-    using System.Threading;
-    using System.Threading.Tasks;
-
     using Bistrotic.Application.Commands;
     using Bistrotic.Application.Events;
     using Bistrotic.Application.Exceptions;
+    using Bistrotic.Application.Helpers;
     using Bistrotic.Application.Messages;
     using Bistrotic.Application.Repositories;
     using Bistrotic.DataIntegrations.Domain;
@@ -13,6 +11,10 @@
     using Bistrotic.Domain.ValueTypes;
 
     using Microsoft.Extensions.Logging;
+
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     [CommandHandler(Command = typeof(SubmitDataIntegration))]
     public class SubmitDataIntegrationHandler : ICommandHandler<SubmitDataIntegration>
@@ -42,16 +44,11 @@
                             documentName: envelope.Message.DocumentName,
                             documentType: envelope.Message.DocumentType,
                             document: envelope.Message.Document);
-                await _repository.Save(id,
-                    new RepositoryData<IDataIntegrationState>(
-                        envelope,
-                        state,
-                        events
-                    ), cancellationToken);
-                foreach (var e in events)
-                {
-                    await _eventBus.Publish(new Envelope(e, new MessageId(), envelope), cancellationToken);
-                }
+
+                await _repository.AddStateLog(id, envelope.ToMetadata(), events, cancellationToken);
+                await _repository.SetState(id, envelope.ToMetadata(), state, cancellationToken);
+                await _repository.Publish(events.Select(p => new Envelope(p, new MessageId(), envelope)).ToList(), cancellationToken);
+                await _repository.Save(cancellationToken);
             }
             catch (DuplicateRepositoryStateException)
             {

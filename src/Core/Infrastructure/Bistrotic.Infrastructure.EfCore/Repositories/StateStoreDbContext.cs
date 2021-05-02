@@ -13,6 +13,8 @@ namespace Bistrotic.Infrastructure.EfCore.Repositories
         }
 
         public DbSet<State> States { get; set; }
+        public DbSet<OutboxMessage> Outbox { get; set; }
+        public DbSet<EventStreamItem> EventStore { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

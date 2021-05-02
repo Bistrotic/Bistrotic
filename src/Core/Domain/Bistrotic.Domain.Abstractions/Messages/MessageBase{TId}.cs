@@ -1,9 +1,7 @@
-﻿using System.Text.Json.Serialization;
-
-using Bistrotic.Domain.ValueTypes;
-
-namespace Bistrotic.Domain.Messages
+﻿namespace Bistrotic.Domain.Messages
 {
+    using Bistrotic.Domain.ValueTypes;
+
     public abstract class MessageBase<TId> : IMessage
         where TId : BusinessId, new()
     {
@@ -22,14 +20,5 @@ namespace Bistrotic.Domain.Messages
         public string Id { get; init; }
 
         public string MessageId { get; }
-    }
-
-    public abstract class Message : IMessage
-
-    {
-        [JsonIgnore(Condition = JsonIgnoreCondition.Always)]
-        public string? Id => null;
-
-        public string MessageId { get; } = new MessageId();
     }
 }

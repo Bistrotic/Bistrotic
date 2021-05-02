@@ -1,16 +1,11 @@
-﻿using System;
-using System.Security.Cryptography;
-using System.Text;
-
-namespace Bistrotic.Infrastructure.Helpers
+﻿namespace Bistrotic.Infrastructure.Helpers
 {
+    using System;
+    using System.Security.Cryptography;
+    using System.Text;
+
     public static class CryptographyHelper
     {
-        /// <summary>
-        /// Convert to a 128 bit hash.
-        /// </summary>
-        /// <param name="text"></param>
-        /// <returns>The hash as a base 64 string</returns>
         public static string ToMD5Base64(this string text)
         {
 #pragma warning disable CA5351 // Do Not Use Broken Cryptographic Algorithms

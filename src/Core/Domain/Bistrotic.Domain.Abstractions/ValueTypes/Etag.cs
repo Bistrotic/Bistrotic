@@ -1,8 +1,8 @@
-﻿using System.ComponentModel;
-using System.Diagnostics;
-
-namespace Bistrotic.Domain.ValueTypes
+﻿namespace Bistrotic.Domain.ValueTypes
 {
+    using System.ComponentModel;
+    using System.Diagnostics;
+
     [DebuggerDisplay("{Value}")]
     [TypeConverter(typeof(StringValueConverter<Etag>))]
     public sealed class Etag : AutoIdentifier
@@ -11,11 +11,13 @@ namespace Bistrotic.Domain.ValueTypes
         {
         }
 
-        public Etag(Etag etag) : base(etag)
+        public Etag(Etag etag)
+            : base(etag)
         {
         }
 
-        public Etag(string etag) : base(etag)
+        public Etag(string etag)
+            : base(etag)
         {
         }
 

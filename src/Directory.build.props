@@ -9,7 +9,7 @@
 		<CodeAnalysisTreatWarningsAsErrors>false</CodeAnalysisTreatWarningsAsErrors>
 		<AnalysisLevel>latest</AnalysisLevel>
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
-		<NoWarn>$(NoWarn);CA1014;CS3001;CS3003;CS3009</NoWarn>
+		<NoWarn>$(NoWarn);CA1014;CS3001;CS3003;CS3009;SA1633;SA1600;SA1101</NoWarn>
 		<MinVerTagPrefix>v</MinVerTagPrefix>
 	</PropertyGroup>
 	<ItemGroup>

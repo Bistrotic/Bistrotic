@@ -1,30 +1,28 @@
 ﻿namespace Bistrotic.Emails.Application.CommandHandlers
 {
-    using System.Threading;
-    using System.Threading.Tasks;
-
     using Bistrotic.Application.Commands;
-    using Bistrotic.Application.Events;
     using Bistrotic.Application.Exceptions;
+    using Bistrotic.Application.Helpers;
     using Bistrotic.Application.Messages;
     using Bistrotic.Application.Repositories;
-    using Bistrotic.Domain.ValueTypes;
     using Bistrotic.Emails.Application.Commands;
     using Bistrotic.Emails.Domain;
     using Bistrotic.Emails.Domain.States;
 
     using Microsoft.Extensions.Logging;
 
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     [CommandHandler(Command = typeof(ReceiveEmail))]
     public class ReceiveEmailHandler : ICommandHandler<ReceiveEmail>
     {
-        private readonly IEventBus _eventBus;
         private readonly ILogger<ReceiveEmailHandler> _logger;
         private readonly IRepository<IEmailState> _repository;
 
-        public ReceiveEmailHandler(IEventBus eventBus, IRepository<IEmailState> repository, ILogger<ReceiveEmailHandler> logger)
+        public ReceiveEmailHandler(IRepository<IEmailState> repository, ILogger<ReceiveEmailHandler> logger)
         {
-            _eventBus = eventBus;
             _repository = repository;
             _logger = logger;
         }
@@ -52,15 +50,10 @@
                                 toRecipients: command.ToRecipients,
                                 copyToRecipients: command.CopyToRecipients,
                                 attachments: command.Attachments);
-                await _repository.Save(id,
-                    new RepositoryData<IEmailState>(
-                        envelope,
-                        state,
-                        events), cancellationToken);
-                foreach (var e in events)
-                {
-                    await _eventBus.Publish(new Envelope(e, new MessageId(), envelope), cancellationToken);
-                }
+                await _repository.AddStateLog(id, envelope.ToMetadata(), events, cancellationToken);
+                await _repository.SetState(id, envelope.ToMetadata(), state, cancellationToken);
+                await _repository.Publish(events.Select(p => new Envelope(p, new Bistrotic.Domain.ValueTypes.MessageId(), envelope)).ToList(), cancellationToken);
+                await _repository.Save(cancellationToken);
             }
             catch (DuplicateRepositoryStateException)
             {

@@ -46,7 +46,7 @@
         {
             base.ConfigureServices(services);
             services.ConfigureSettings<DataIntegrationsSettings>(Configuration);
-            services.AddTransient<IRepository<IDataIntegrationState>, StateStoreRepository<IDataIntegrationState, DataIntegrationState>>();
+            services.AddTransient<IRepository<IDataIntegrationState>, EfRepository<IDataIntegrationState, DataIntegrationState>>();
             services.AddTransient<IEventHandler<EmailReceived>, EmailReceivedHandler>();
             services.AddTransient<IEventHandler<DataIntegrationSubmitted>, DataIntegrationSubmittedHandler>();
             services.AddTransient<ICommandHandler<SubmitDataIntegration>, SubmitDataIntegrationHandler>();

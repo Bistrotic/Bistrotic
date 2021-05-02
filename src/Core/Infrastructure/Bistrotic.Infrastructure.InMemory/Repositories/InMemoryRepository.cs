@@ -12,7 +12,8 @@ namespace Bistrotic.Infrastructure.InMemory.Repositories
         where TState : TIState, new()
     {
         private readonly Dictionary<string, (TIState, IRepositoryStateMetadata)> _states = new();
-        private readonly Dictionary<string, (IEnumerable<object>, IRepositoryStateMetadata)> _streams = new();
+        private readonly Dictionary<string, List<(IEnumerable<object>, IRepositoryStateMetadata)>> _streams = new();
+        private readonly List<IEnvelope> _outbox = new();
 
         public override Task<bool> Exists(string id, CancellationToken cancellationToken = default) => Task.FromResult(_states.ContainsKey(id));
 
@@ -66,25 +67,29 @@ namespace Bistrotic.Infrastructure.InMemory.Repositories
         {
             if (!_streams.ContainsKey(id))
             {
-                _streams[id] = (events, new RepositoryStateMetadata()
+                _streams[id] = new()
                 {
-                    CreatedByUser = metadata.UserName,
-                    CreatedUtcDateTime = metadata.SystemUtcDateTime
-                });
+                    (events, new RepositoryStateMetadata()
+                    {
+                        CreatedByUser = metadata.UserName,
+                        CreatedUtcDateTime = metadata.SystemUtcDateTime
+                    })
+                };
             }
             else
             {
                 (_, IRepositoryStateMetadata m) = GetById(id);
                 m.LastModifiedByUser = metadata.UserName;
                 m.LastModifiedUtcDateTime = metadata.SystemUtcDateTime;
-                _streams[id] = (state, m);
+                _streams[id].Add((events, m));
             }
             return Task.CompletedTask;
         }
 
         public override Task Publish(IEnumerable<IEnvelope> events, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            _outbox.AddRange(events);
+            return Task.CompletedTask;
         }
     }
 }

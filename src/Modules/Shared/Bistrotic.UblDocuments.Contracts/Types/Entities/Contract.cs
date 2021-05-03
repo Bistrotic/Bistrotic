@@ -6,7 +6,7 @@
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
 
-    using Bistrotic.UblDocuments.Types.ValueTypes;
+    using Bistrotic.UblDocuments.Helpers;
 
     using ProtoBuf;
 
@@ -43,37 +43,33 @@
         [NotMapped]
         [IgnoreDataMember]
         [XmlElement(Order = 1, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? IssueDate
-        {
-            get => (IssueDateTime == null) ? null : new(IssueDateTime.Value);
-            set => IssueDateTime = (value == null) ? null : (DateTime)value;
-        }
+        public string? IssueDate { get; set; }
 
         [DataMember(Order = 1, IsRequired = true)]
         [XmlIgnore]
-        public DateTimeOffset? IssueDateTime { get; set; }
+        public DateTimeOffset? IssueDateTime
+        {
+            get => (IssueDate, IssueTime).ToNullableDateTime();
+            set => (IssueDate, IssueTime) = value.ToDateTimeStrings();
+        }
 
         [NotMapped]
         [IgnoreDataMember]
         [XmlElement(Order = 2, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Time? IssueTime
-        {
-            get => (IssueDateTime == null) ? null : new(IssueDateTime.Value.ToLocalTime());
-            set => IssueDateTime = Time.SetTime(IssueDateTime, value);
-        }
+        public string? IssueTime { get; set; }
 
         [NotMapped]
         [IgnoreDataMember]
         [XmlElement(Order = 3, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? NominationDate
-        {
-            get => (NominationDateTime == null) ? null : new(NominationDateTime.Value);
-            set => NominationDateTime = (value == null) ? null : (DateTime)value;
-        }
+        public string? NominationDate { get; set; }
 
         [DataMember(Order = 3, IsRequired = true), ProtoMember(4, IsRequired = true)]
         [XmlIgnore]
-        public DateTimeOffset? NominationDateTime { get; set; }
+        public DateTimeOffset? NominationDateTime
+        {
+            get => (NominationDate, NominationTime).ToNullableDateTime();
+            set => (NominationDate, NominationTime) = value.ToDateTimeStrings();
+        }
 
         [DataMember(Order = 12), ProtoMember(13)]
         [XmlElement(Order = 12, Namespace = UblNamespaces.CommonAggregateComponents2)]
@@ -82,11 +78,7 @@
         [NotMapped]
         [IgnoreDataMember]
         [XmlElement(Order = 4, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Time? NominationTime
-        {
-            get => (NominationDateTime == null) ? null : new(NominationDateTime.Value.ToLocalTime());
-            set => NominationDateTime = Time.SetTime(NominationDateTime, value);
-        }
+        public string? NominationTime { get; set; }
 
         [DataMember(Order = 7), ProtoMember(8)]
         [XmlElement(Order = 7, Namespace = UblNamespaces.CommonAggregateComponents2)]

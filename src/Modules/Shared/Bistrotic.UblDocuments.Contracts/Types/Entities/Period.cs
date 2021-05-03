@@ -5,7 +5,7 @@
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
 
-    using Bistrotic.UblDocuments.Types.ValueTypes;
+    using Bistrotic.UblDocuments.Helpers;
 
     using ProtoBuf;
 
@@ -30,45 +30,37 @@
         [NotMapped]
         [IgnoreDataMember]
         [XmlElement(Order = 2, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? EndDate
-        {
-            get => (EndDateTime == null) ? null : new(EndDateTime.Value);
-            set => EndDateTime = (value == null) ? null : (DateTime)value;
-        }
+        public string? EndDate { get; set; }
 
         [DataMember(Order = 2, IsRequired = true), ProtoMember(3, IsRequired = true)]
         [XmlIgnore]
-        public DateTimeOffset? EndDateTime { get; set; }
+        public DateTimeOffset? EndDateTime
+        {
+            get => (EndDate, EndTime).ToNullableDateTime();
+            set => (EndDate, EndTime) = value.ToDateTimeStrings();
+        }
 
         [NotMapped]
         [IgnoreDataMember]
         [XmlElement(Order = 3, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Time? EndTime
-        {
-            get => (EndDateTime == null) ? null : new(EndDateTime.Value.ToLocalTime());
-            set => EndDateTime = Time.SetTime(EndDateTime, value);
-        }
+        public string? EndTime { get; set; }
 
         [NotMapped]
         [IgnoreDataMember]
         [XmlElement(Order = 0, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? StartDate
-        {
-            get => (StartDateTime == null) ? null : new(StartDateTime.Value);
-            set => StartDateTime = (value == null) ? null : (DateTime)value;
-        }
+        public string? StartDate { get; set; }
 
         [DataMember(Order = 0, IsRequired = true), ProtoMember(1, IsRequired = true)]
         [XmlIgnore]
-        public DateTimeOffset? StartDateTime { get; set; }
+        public DateTimeOffset? StartDateTime
+        {
+            get => (StartDate, StartTime).ToNullableDateTime();
+            set => (StartDate, StartTime) = value.ToDateTimeStrings();
+        }
 
         [NotMapped]
         [IgnoreDataMember]
         [XmlElement(Order = 1, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Time? StartTime
-        {
-            get => (StartDateTime == null) ? null : new(StartDateTime.Value.ToLocalTime());
-            set => StartDateTime = Time.SetTime(StartDateTime, value);
-        }
+        public string? StartTime { get; set; }
     }
 }

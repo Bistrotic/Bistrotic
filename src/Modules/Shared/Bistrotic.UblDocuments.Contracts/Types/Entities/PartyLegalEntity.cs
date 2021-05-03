@@ -5,7 +5,7 @@
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
 
-    using Bistrotic.UblDocuments.Types.ValueTypes;
+    using Bistrotic.UblDocuments.Helpers;
 
     using ProtoBuf;
 
@@ -50,28 +50,28 @@
         [NotMapped]
         [IgnoreDataMember]
         [XmlElement(Order = 2, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? RegistrationDate
-        {
-            get => (RegistrationDateTime == null) ? null : new(RegistrationDateTime.Value);
-            set => RegistrationDateTime = (value == null) ? null : (DateTime)value;
-        }
+        public string? RegistrationDate { get; set; }
 
         [DataMember(Order = 2, IsRequired = true), ProtoMember(3, IsRequired = true)]
         [XmlIgnore]
-        public DateTimeOffset? RegistrationDateTime { get; set; }
+        public DateTimeOffset? RegistrationDateTime
+        {
+            get => RegistrationDate.ToDateTime();
+            set => RegistrationDate = value.ToDateString();
+        }
 
         [NotMapped]
         [IgnoreDataMember]
         [XmlElement(Order = 3, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? RegistrationExpirationDate
-        {
-            get => (RegistrationExpirationDateTime == null) ? null : new(RegistrationExpirationDateTime.Value);
-            set => RegistrationExpirationDateTime = (value == null) ? null : (DateTime)value;
-        }
+        public string? RegistrationExpirationDate { get; set; }
 
         [DataMember(Order = 3, IsRequired = true), ProtoMember(4, IsRequired = true)]
         [XmlIgnore]
-        public DateTimeOffset? RegistrationExpirationDateTime { get; set; }
+        public DateTimeOffset? RegistrationExpirationDateTime
+        {
+            get => RegistrationExpirationDate.ToDateTime();
+            set => RegistrationExpirationDate = value.ToDateString();
+        }
 
         [DataMember(Order = 0), ProtoMember(1)]
         [XmlElement(Order = 0, Namespace = UblNamespaces.CommonBasicComponents2)]

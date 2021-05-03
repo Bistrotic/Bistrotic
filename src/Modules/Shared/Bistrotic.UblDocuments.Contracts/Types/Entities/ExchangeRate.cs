@@ -5,7 +5,7 @@
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
 
-    using Bistrotic.UblDocuments.Types.ValueTypes;
+    using Bistrotic.UblDocuments.Helpers;
 
     using ProtoBuf;
 
@@ -22,15 +22,15 @@
         [NotMapped]
         [IgnoreDataMember]
         [XmlElement(Order = 7, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? Date
-        {
-            get => (DateTime == null) ? null : new(DateTime.Value);
-            set => DateTime = (value == null) ? null : (DateTime)value;
-        }
+        public string? Date { get; set; }
 
         [DataMember(Order = 7, IsRequired = true), ProtoMember(8, IsRequired = true)]
         [XmlIgnore]
-        public DateTimeOffset? DateTime { get; set; }
+        public DateTimeOffset? DateTime
+        {
+            get => Date.ToDateTime();
+            set => Date = value.ToDateString();
+        }
 
         [DataMember(Order = 4), ProtoMember(5)]
         [XmlElement(Order = 4, Namespace = UblNamespaces.CommonBasicComponents2)]

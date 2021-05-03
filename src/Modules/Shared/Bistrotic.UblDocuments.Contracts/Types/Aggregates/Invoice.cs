@@ -9,7 +9,6 @@
 
     using Bistrotic.UblDocuments.Helpers;
     using Bistrotic.UblDocuments.Types.Entities;
-    using Bistrotic.UblDocuments.Types.ValueTypes;
 
     using ProtoBuf;
 
@@ -92,15 +91,15 @@
         [NotMapped]
         [IgnoreDataMember]
         [XmlElement(Order = 10, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? DueDate
-        {
-            get => (DueDateTime == null) ? null : new(DueDateTime.Value);
-            set => DueDateTime = (value == null) ? null : (DateTime)value;
-        }
+        public string? DueDate { get; set; }
 
         [DataMember(Order = 10), ProtoMember(11)]
         [XmlIgnore]
-        public DateTimeOffset? DueDateTime { get; set; }
+        public DateTimeOffset? DueDateTime
+        {
+            get => DueDate.ToDateTime();
+            set => DueDate = value.ToDateString();
+        }
 
         [DataMember(Order = 5, IsRequired = true), ProtoMember(6, IsRequired = true)]
         [XmlElement(Order = 5, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
@@ -126,11 +125,11 @@
         [NotMapped]
         [IgnoreDataMember]
         [XmlElement(Order = 8, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public string? IssueDate { get; set; }
+        public string IssueDate { get; set; } = string.Empty;
 
         [DataMember(Order = 9, IsRequired = true), ProtoMember(10, IsRequired = true)]
         [XmlIgnore]
-        public DateTimeOffset? IssueDateTime
+        public DateTimeOffset IssueDateTime
         {
             get => (IssueDate, IssueTime).ToDateTime();
             set => (IssueDate, IssueTime) = value.ToDateTimeStrings();
@@ -242,15 +241,15 @@
         [NotMapped]
         [IgnoreDataMember]
         [XmlElement(Order = 13, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? TaxPointDate
-        {
-            get => (TaxPointDateTime == null) ? null : new(TaxPointDateTime.Value);
-            set => TaxPointDateTime = (value == null) ? null : (DateTime)value;
-        }
+        public string? TaxPointDate { get; set; }
 
         [DataMember(Order = 13, IsRequired = true), ProtoMember(14, IsRequired = true)]
         [XmlIgnore]
-        public DateTimeOffset? TaxPointDateTime { get; set; }
+        public DateTimeOffset? TaxPointDateTime
+        {
+            get => TaxPointDate.ToDateTime();
+            set => TaxPointDate = value.ToDateString();
+        }
 
         [NotMapped]
         [DataMember(Order = 39), ProtoMember(40)]

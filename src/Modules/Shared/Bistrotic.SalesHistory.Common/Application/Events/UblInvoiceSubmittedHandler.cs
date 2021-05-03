@@ -43,7 +43,7 @@
                             CustomerId = invoice.AccountingCustomerParty.Party?.PartyIdentification.FirstOrDefault()?.ID ?? string.Empty,
                             CustomerName = invoice.AccountingCustomerParty.Party?.PartyName.Name ?? string.Empty,
                             Currency = invoice.DocumentCurrencyCode ?? string.Empty,
-                            InvoiceDate = invoice.IssueDateTime ?? DateTimeOffset.MinValue,
+                            InvoiceDate = invoice.IssueDateTime,
                             InvoiceId = invoice.ID ?? string.Empty,
                             SalesId = string.Empty,
                             LineId = p.ID,

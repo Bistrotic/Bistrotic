@@ -5,7 +5,7 @@
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
 
-    using Bistrotic.UblDocuments.Types.ValueTypes;
+    using Bistrotic.UblDocuments.Helpers;
 
     using ProtoBuf;
 
@@ -18,24 +18,20 @@
         [NotMapped]
         [IgnoreDataMember]
         [XmlElement(Order = 4, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? ActualDeliveryDate
-        {
-            get => (ActualDeliveryDateTime == null) ? null : new(ActualDeliveryDateTime.Value);
-            set => ActualDeliveryDateTime = (value == null) ? null : (DateTime)value;
-        }
+        public string? ActualDeliveryDate { get; set; }
 
         [DataMember(Order = 4, IsRequired = true), ProtoMember(5, IsRequired = true)]
         [XmlIgnore]
-        public DateTimeOffset? ActualDeliveryDateTime { get; set; }
+        public DateTimeOffset? ActualDeliveryDateTime
+        {
+            get => (ActualDeliveryDate, ActualDeliveryTime).ToNullableDateTime();
+            set => (ActualDeliveryDate, ActualDeliveryTime) = value.ToDateTimeStrings();
+        }
 
         [NotMapped]
         [IgnoreDataMember]
         [XmlElement(Order = 5, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Time? ActualDeliveryTime
-        {
-            get => (ActualDeliveryDateTime == null) ? null : new(ActualDeliveryDateTime.Value.ToLocalTime());
-            set => ActualDeliveryDateTime = Time.SetTime(ActualDeliveryDateTime, value);
-        }
+        public string? ActualDeliveryTime { get; set; }
 
         [DataMember(Order = 12), ProtoMember(13)]
         [XmlElement(Order = 12, Namespace = UblNamespaces.CommonAggregateComponents2)]
@@ -72,24 +68,20 @@
         [NotMapped]
         [IgnoreDataMember]
         [XmlElement(Order = 6, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? LatestDeliveryDate
-        {
-            get => (LatestDeliveryDateTime == null) ? null : new(LatestDeliveryDateTime.Value);
-            set => LatestDeliveryDateTime = (value == null) ? null : (DateTime)value;
-        }
+        public string? LatestDeliveryDate { get; set; }
 
         [DataMember(Order = 6, IsRequired = true), ProtoMember(7, IsRequired = true)]
         [XmlIgnore]
-        public DateTimeOffset? LatestDeliveryDateTime { get; set; }
+        public DateTimeOffset? LatestDeliveryDateTime
+        {
+            get => (LatestDeliveryDate, LatestDeliveryTime).ToNullableDateTime();
+            set => (LatestDeliveryDate, LatestDeliveryTime) = value.ToDateTimeStrings();
+        }
 
         [NotMapped]
         [IgnoreDataMember]
         [XmlElement(Order = 7, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Time? LatestDeliveryTime
-        {
-            get => (LatestDeliveryDateTime == null) ? null : new(LatestDeliveryDateTime.Value.ToLocalTime());
-            set => LatestDeliveryDateTime = Time.SetTime(LatestDeliveryDateTime, value);
-        }
+        public string? LatestDeliveryTime { get; set; }
 
         [DataMember(Order = 3), ProtoMember(4)]
         [XmlElement(Order = 3, Namespace = UblNamespaces.CommonBasicComponents2)]

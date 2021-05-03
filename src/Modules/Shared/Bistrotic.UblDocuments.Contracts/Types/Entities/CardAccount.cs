@@ -5,7 +5,7 @@
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
 
-    using Bistrotic.UblDocuments.Types.ValueTypes;
+    using Bistrotic.UblDocuments.Helpers;
 
     using ProtoBuf;
 
@@ -34,15 +34,15 @@
         [NotMapped]
         [IgnoreDataMember]
         [XmlElement(Order = 4, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? ExpiracyDate
-        {
-            get => (ExpiracyDateTime == null) ? null : new(ExpiracyDateTime.Value);
-            set => ExpiracyDateTime = (value == null) ? null : (DateTime)value;
-        }
+        public string? ExpiracyDate { get; set; }
 
         [DataMember(Order = 4, IsRequired = true), ProtoMember(5, IsRequired = true)]
         [XmlIgnore]
-        public DateTimeOffset? ExpiracyDateTime { get; set; }
+        public DateTimeOffset? ExpiracyDateTime
+        {
+            get => ExpiracyDate.ToDateTime();
+            set => ExpiracyDate = value.ToDateString();
+        }
 
         [DataMember(Order = 10, IsRequired = true), ProtoMember(11, IsRequired = true)]
         [XmlElement(Order = 10, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
@@ -67,14 +67,14 @@
         [NotMapped]
         [IgnoreDataMember]
         [XmlElement(Order = 3, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? ValidityDate
-        {
-            get => (ValidityDateTime == null) ? null : new(ValidityDateTime.Value);
-            set => ValidityDateTime = (value == null) ? null : (DateTime)value;
-        }
+        public string? ValidityDate { get; set; }
 
         [DataMember(Order = 3, IsRequired = true), ProtoMember(4, IsRequired = true)]
         [XmlIgnore]
-        public DateTimeOffset? ValidityDateTime { get; set; }
+        public DateTimeOffset? ValidityDateTime
+        {
+            get => ValidityDate.ToDateTime();
+            set => ValidityDate = value.ToDateString();
+        }
     }
 }

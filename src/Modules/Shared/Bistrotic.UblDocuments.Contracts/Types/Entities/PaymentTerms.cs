@@ -6,7 +6,7 @@
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
 
-    using Bistrotic.UblDocuments.Types.ValueTypes;
+    using Bistrotic.UblDocuments.Helpers;
 
     using ProtoBuf;
 
@@ -31,15 +31,15 @@
         [NotMapped]
         [IgnoreDataMember]
         [XmlElement(Order = 13, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? InstallmentDueDate
-        {
-            get => (InstallmentDueDateTime == null) ? null : new(InstallmentDueDateTime.Value);
-            set => InstallmentDueDateTime = (value == null) ? null : (DateTime)value;
-        }
+        public string? InstallmentDueDate { get; set; }
 
         [DataMember(Order = 13, IsRequired = true), ProtoMember(14, IsRequired = true)]
         [XmlIgnore]
-        public DateTimeOffset? InstallmentDueDateTime { get; set; }
+        public DateTimeOffset? InstallmentDueDateTime
+        {
+            get => InstallmentDueDate.ToDateTime();
+            set => InstallmentDueDate = value.ToDateString();
+        }
 
         [DataMember(Order = 14), ProtoMember(15)]
         [XmlElement(Order = 14, Namespace = UblNamespaces.CommonBasicComponents2)]
@@ -52,15 +52,15 @@
         [NotMapped]
         [IgnoreDataMember]
         [XmlElement(Order = 12, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? PaymentDueDate
-        {
-            get => (PaymentDueDateTime == null) ? null : new(PaymentDueDateTime.Value);
-            set => PaymentDueDateTime = (value == null) ? null : (DateTime)value;
-        }
+        public string? PaymentDueDate { get; set; }
 
         [DataMember(Order = 12, IsRequired = true), ProtoMember(13, IsRequired = true)]
         [XmlIgnore]
-        public DateTimeOffset? PaymentDueDateTime { get; set; }
+        public DateTimeOffset? PaymentDueDateTime
+        {
+            get => PaymentDueDate.ToDateTime();
+            set => PaymentDueDate = value.ToDateString();
+        }
 
         [DataMember(Order = 1), ProtoMember(2)]
         [XmlElement(Order = 1, Namespace = UblNamespaces.CommonBasicComponents2)]

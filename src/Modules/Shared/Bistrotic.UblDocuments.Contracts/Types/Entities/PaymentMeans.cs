@@ -6,7 +6,7 @@
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
 
-    using Bistrotic.UblDocuments.Types.ValueTypes;
+    using Bistrotic.UblDocuments.Helpers;
 
     using ProtoBuf;
 
@@ -51,15 +51,15 @@
         [NotMapped]
         [IgnoreDataMember]
         [XmlElement(Order = 2, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? PaymentDueDate
-        {
-            get => (PaymentDueDateTime == null) ? null : new(PaymentDueDateTime.Value);
-            set => PaymentDueDateTime = (value == null) ? null : (DateTime)value;
-        }
+        public string? PaymentDueDate { get; set; }
 
         [DataMember(Order = 2, IsRequired = true), ProtoMember(3, IsRequired = true)]
         [XmlIgnore]
-        public DateTimeOffset? PaymentDueDateTime { get; set; }
+        public DateTimeOffset? PaymentDueDateTime
+        {
+            get => PaymentDueDate.ToDateTime();
+            set => PaymentDueDate = value.ToDateString();
+        }
 
         [DataMember(Order = 6, IsRequired = true), ProtoMember(7, IsRequired = true)]
         [XmlElement(Order = 6, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]

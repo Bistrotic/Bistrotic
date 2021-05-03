@@ -5,7 +5,7 @@
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
 
-    using Bistrotic.UblDocuments.Types.ValueTypes;
+    using Bistrotic.UblDocuments.Helpers;
 
     using ProtoBuf;
 
@@ -30,36 +30,32 @@
         [NotMapped]
         [IgnoreDataMember]
         [XmlElement(Order = 3, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? PaidDate
-        {
-            get => (PaidDateTime == null) ? null : new(PaidDateTime.Value);
-            set => PaidDateTime = (value == null) ? null : (DateTime)value;
-        }
+        public string? PaidDate { get; set; }
 
         [DataMember(Order = 3, IsRequired = true), ProtoMember(4, IsRequired = true)]
         [XmlIgnore]
-        public DateTimeOffset? PaidDateTime { get; set; }
+        public DateTimeOffset? PaidDateTime
+        {
+            get => (PaidDate, PaidTime).ToNullableDateTime();
+            set => (PaidDate, PaidTime) = value.ToDateTimeStrings();
+        }
 
         [NotMapped]
         [IgnoreDataMember]
         [XmlElement(Order = 4, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Time? PaidTime
-        {
-            get => (PaidDateTime == null) ? null : new(PaidDateTime.Value.ToLocalTime());
-            set => PaidDateTime = Time.SetTime(PaidDateTime, value);
-        }
+        public string? PaidTime { get; set; }
 
         [NotMapped]
         [IgnoreDataMember]
         [XmlElement(Order = 2, IsNullable = false, Namespace = UblNamespaces.CommonBasicComponents2)]
-        public Date? ReceivedDate
-        {
-            get => (ReceivedDateTime == null) ? null : new(ReceivedDateTime.Value);
-            set => ReceivedDateTime = (value == null) ? null : (DateTime)value;
-        }
+        public string? ReceivedDate { get; set; }
 
         [DataMember(Order = 2, IsRequired = true), ProtoMember(3, IsRequired = true)]
         [XmlIgnore]
-        public DateTimeOffset? ReceivedDateTime { get; set; }
+        public DateTimeOffset? ReceivedDateTime
+        {
+            get => ReceivedDate.ToDateTime();
+            set => ReceivedDate = value.ToDateString();
+        }
     }
 }

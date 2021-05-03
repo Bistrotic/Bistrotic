@@ -35,15 +35,19 @@
             {
                 if (string.IsNullOrWhiteSpace(value))
                     throw new ArgumentNullException(nameof(value));
-                _value = XmlConvert.ToDateTimeOffset(value);
+                _value = XmlConvert.ToDateTime(value, XmlDateTimeSerializationMode.Utc);
             }
         }
 
         public static implicit operator Date(DateTime value) => new(value);
 
+        public static implicit operator Date(DateTimeOffset value) => new(value);
+
         public static implicit operator Date(string value) => new(value);
 
-        public static implicit operator DateTime(Date value) => value._value.LocalDateTime;
+        public static implicit operator DateTime(Date value) => value._value.DateTime;
+
+        public static implicit operator DateTimeOffset(Date value) => value._value;
 
         public static implicit operator string(Date value) => value.ValueString;
     }

@@ -29,7 +29,5 @@
         public string SalesId { get; set; } = string.Empty;
 
         public decimal TotalAmount { get; set; }
-
-        public string UUID { get; set; } = string.Empty;
     }
 }

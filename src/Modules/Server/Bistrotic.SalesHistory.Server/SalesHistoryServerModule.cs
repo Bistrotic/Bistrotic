@@ -34,10 +34,10 @@
 
         public override void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<SalesHistoryDbContext>(o => o.UseSqlServer(_settings.ConnectionString));
+            services.AddDbContext<SalesHistoryDbContext>(o => o.UseSqlServer(_settings.ConnectionString), ServiceLifetime.Transient);
             services.AddTransient<IEventHandler<UblInvoiceSubmitted>, UblInvoiceSubmittedHandler>();
             services.AddTransient<IEventHandler<MexicanDigitalInvoiceSubmitted>, MexicanDigitalInvoiceSubmittedHandler>();
-            services.AddTransient<ISalesHistoryRepository>(p => p.GetRequiredService<SalesHistoryDbContext>());
+            services.AddTransient<ISalesHistoryRepository, SalesHistoryRepository>();
         }
     }
 }

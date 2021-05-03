@@ -23,6 +23,7 @@
         private readonly StateStoreDbContext _context;
         private readonly IEventBus _eventBus;
         private readonly ILogger<EfRepository<TIState, TState>> _logger;
+        private readonly string sessionId = new AutoIdentifier();
 
         public EfRepository(StateStoreDbContext context, IEventBus eventBus, ILogger<EfRepository<TIState, TState>> logger)
         {
@@ -66,7 +67,7 @@
         {
             foreach (var envelope in events)
             {
-                _context.Add(envelope.ToOutboxMessage(GetType()));
+                _context.Add(envelope.ToOutboxMessage(sessionId));
             }
             return Task.CompletedTask;
         }
@@ -148,8 +149,10 @@
             .Select(p => p.Version)
             .FirstOrDefaultAsync(cancellationToken);
 
-        private async Task PublishOutboxMessage(OutboxMessage outboxMessage, CancellationToken cancellationToken = default)
+        private async Task PublishOutboxMessage(int id, CancellationToken cancellationToken = default)
         {
+            OutboxMessage outboxMessage = await _context.MessageOutbox.FindAsync(new object[] { id }, cancellationToken)
+                ?? throw new KeyNotFoundException($"{nameof(OutboxMessage)} with Id={id} not found.");
             outboxMessage.InProgressSince = DateTime.UtcNow;
             await _context.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
             Type? messageType = Type.GetType(outboxMessage.EventType);
@@ -188,32 +191,15 @@
 
         private async Task PublishOutboxMessages(CancellationToken cancellationToken = default)
         {
-            var eventIds = await _context
+            foreach (var id in await _context
                     .MessageOutbox
-                    .Where(p => p.SentUtcDateTime == null && p.RepositoryType == GetType().AssemblyQualifiedName)
+                    .Where(p => p.SentUtcDateTime == null && p.SessionId == sessionId)
                     .OrderBy(p => p.Id)
                     .Select(p => p.Id)
                     .ToListAsync(cancellationToken)
-                    .ConfigureAwait(false);
-
-            foreach (var id in eventIds)
+                    .ConfigureAwait(false))
             {
-                OutboxMessage message = await _context
-                    .MessageOutbox
-                    .FindAsync(new object[] { id }, cancellationToken: cancellationToken)
-                    .ConfigureAwait(false);
-
-                if (message.InProgressSince != null)
-                {
-                    const double timeout = 3600d;
-                    double since = (DateTime.UtcNow - message.InProgressSince.Value).TotalSeconds;
-                    if (since < timeout)
-                    {
-                        continue;
-                    }
-                    _logger.LogWarning($"The sending operation for outbox message (MessageId='{message.MessageId}'), timed out. Retrying ...");
-                }
-                await PublishOutboxMessage(message, cancellationToken).ConfigureAwait(false);
+                await PublishOutboxMessage(id, cancellationToken).ConfigureAwait(false);
             }
         }
     }

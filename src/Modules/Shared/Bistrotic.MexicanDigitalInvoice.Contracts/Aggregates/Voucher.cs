@@ -1,7 +1,9 @@
 ﻿namespace Bistrotic.MexicanDigitalInvoice.Aggregates
 {
     using System;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Runtime.Serialization;
+    using System.Xml;
     using System.Xml.Serialization;
 
     using Bistrotic.MexicanDigitalInvoice.Entities;
@@ -26,9 +28,19 @@
         [XmlAttribute("Moneda")]
         public string? Currency { get; set; }
 
-        [DataMember(Order = 102), ProtoMember(103)]
         [XmlAttribute("Fecha")]
-        public DateTime? DocumentDate { get; set; }
+        [ProtoIgnore]
+        [IgnoreDataMember]
+        [NotMapped]
+        public string DocumentDate
+        {
+            get => XmlConvert.ToString(DocumentDateTime.LocalDateTime, XmlDateTimeSerializationMode.Local);
+            set => DocumentDateTime = new DateTimeOffset(XmlConvert.ToDateTime(value, XmlDateTimeSerializationMode.Unspecified), new TimeSpan(-6, 0, 0));
+        }
+
+        [DataMember(Order = 102), ProtoMember(103)]
+        [XmlIgnore]
+        public DateTimeOffset DocumentDateTime { get; set; }
 
         [DataMember(Order = 100), ProtoMember(101)]
         [XmlAttribute("Folio")]

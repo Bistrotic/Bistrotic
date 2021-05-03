@@ -9,6 +9,7 @@
         {
             builder.HasIndex(i => i.MessageId).IsUnique();
             builder.HasIndex(i => i.SentUtcDateTime);
+            builder.HasIndex(i => i.SessionId);
         }
     }
 }

@@ -8,11 +8,11 @@
 
     public static class EnvelopeHelpers
     {
-        public static OutboxMessage ToOutboxMessage(this IEnvelope envelope, Type repository)
+        public static OutboxMessage ToOutboxMessage(this IEnvelope envelope, string sessionId)
         {
             return new OutboxMessage()
             {
-                RepositoryType = repository.AssemblyQualifiedName ?? throw new TypeInitializationException(repository.FullName, null),
+                SessionId = sessionId,
                 MessageId = envelope.MessageId,
                 CausationId = envelope.CausationId?.Value,
                 CorrelationId = envelope.CorrelationId?.Value,

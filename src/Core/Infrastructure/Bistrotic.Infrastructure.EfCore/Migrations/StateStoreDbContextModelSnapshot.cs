@@ -47,12 +47,12 @@ namespace Bistrotic.Infrastructure.EfCore.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("RepositoryType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("SentUtcDateTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("SessionId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("SystemUtcDateTime")
                         .HasColumnType("datetime2");
@@ -67,6 +67,8 @@ namespace Bistrotic.Infrastructure.EfCore.Migrations
                         .IsUnique();
 
                     b.HasIndex("SentUtcDateTime");
+
+                    b.HasIndex("SessionId");
 
                     b.ToTable("MessageOutbox");
                 });

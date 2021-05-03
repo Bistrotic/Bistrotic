@@ -59,7 +59,7 @@
         public Time? IssueTime
         {
             get => (IssueDateTime == null) ? null : new(IssueDateTime.Value.ToLocalTime());
-            set => Time.SetTime(IssueDateTime, value);
+            set => IssueDateTime = Time.SetTime(IssueDateTime, value);
         }
 
         [NotMapped]
@@ -85,7 +85,7 @@
         public Time? NominationTime
         {
             get => (NominationDateTime == null) ? null : new(NominationDateTime.Value.ToLocalTime());
-            set => Time.SetTime(NominationDateTime, value);
+            set => NominationDateTime = Time.SetTime(NominationDateTime, value);
         }
 
         [DataMember(Order = 7), ProtoMember(8)]

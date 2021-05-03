@@ -19,6 +19,14 @@
             XmlSerializer xs = new(typeof(Voucher));
             var voucher = (Voucher)xs.Deserialize(fs);
             voucher.Should().NotBeNull();
+            voucher.InvoiceId.Should().Be("2929");
+            voucher.DocumentDateTime.Year.Should().Be(2021);
+            voucher.DocumentDateTime.Month.Should().Be(3);
+            voucher.DocumentDateTime.Day.Should().Be(9);
+            voucher.DocumentDateTime.Hour.Should().Be(11);
+            voucher.DocumentDateTime.Minute.Should().Be(30);
+            voucher.DocumentDateTime.Second.Should().Be(12);
+            voucher.DocumentDateTime.Offset.Hours.Should().Be(6);
             voucher.Issuer.Should().NotBeNull();
             voucher.Issuer.Code.Should().Be("DIOR02525DXA");
             voucher.Issuer.Name.Should().Be("GLOBAL CONSOLIDATED DIOR MEXICO S DE RL DE CV");
@@ -93,6 +101,14 @@
             invoice.Customer.Residence.TaxResidence.CountryLocation.Should().Be("JALISCO");
             invoice.Customer.Residence.TaxResidence.Country.Should().Be("MEXICO");
             invoice.Customer.Residence.TaxResidence.ZipCode.Should().Be("44630");
+            invoice.InvoiceLines.Should().HaveCount(6);
+            invoice.InvoiceLines[0].Quantity.Should().Be(24m);
+            invoice.InvoiceLines[0].KeyUnit.Should().Be("H87");
+            invoice.InvoiceLines[0].MesureUnit.Should().Be("Unidad");
+            invoice.InvoiceLines[0].ProductService.Should().Be("42295509");
+            invoice.InvoiceLines[0].Description.Should().Be("281300 Sphere Gel Cohesivo Suave, Redondo, Liso, Extra Proyectado, 300 cc");
+            invoice.InvoiceLines[0].Price.Should().Be(134.1m);
+            invoice.InvoiceLines[0].LineAmount.Should().Be(3218.40m);
         }
     }
 }

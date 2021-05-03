@@ -46,7 +46,7 @@
         public Time? PaidTime
         {
             get => (PaidDateTime == null) ? null : new(PaidDateTime.Value.ToLocalTime());
-            set => Time.SetTime(PaidDateTime, value);
+            set => PaidDateTime = Time.SetTime(PaidDateTime, value);
         }
 
         [NotMapped]

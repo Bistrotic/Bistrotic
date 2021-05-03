@@ -41,31 +41,38 @@
         {
             if (envelope.Message.DocumentType == "Xml")
             {
-                if (string.IsNullOrWhiteSpace(envelope.Message.Document))
+                try
                 {
-                    throw new MexicanDigitalInvoiceXmlDeserilizationException($"Message document is empty. It should contain an XML document. Message Id='{envelope.MessageId}'.");
-                }
-                var data = Convert.FromBase64String(envelope.Message.Document);
-                using MemoryStream stream = new(data);
-                XDocument xml = XDocument.Load(stream);
-                if (xml.Root?.Name?.LocalName == nameof(Voucher) && xml.Root?.Name?.Namespace == MxNamespaces.Cfdi)
-                {
-                    XmlSerializer serializer = new(typeof(Voucher));
-                    var reader = xml.CreateReader();
-                    reader.MoveToContent();
-                    var voucher = (Voucher?)serializer.Deserialize(reader);
-                    if (voucher == null)
+                    if (string.IsNullOrWhiteSpace(envelope.Message.Document))
                     {
-                        throw new MexicanDigitalInvoiceXmlDeserilizationException($"Error while deserializing Mexican digital invoice voucher in {nameof(DataIntegrationSubmitted)} message '{envelope.MessageId}' :\n" + xml.ToString());
+                        throw new MexicanDigitalInvoiceXmlDeserilizationException($"Message document is empty. It should contain an XML document. Message Id='{envelope.MessageId}'.");
                     }
-                    string uuid = voucher.Issuer?.Code + "-" + voucher.InvoiceId;
-                    MexicanDigitalInvoiceState state = new();
-                    MexicanDigitalInvoice mexicanInvoice = new(uuid, state);
-                    var events = await mexicanInvoice.Submit(voucher);
-                    await _repository.AddStateLog(uuid, envelope.ToMetadata(), events, cancellationToken);
-                    await _repository.SetState(uuid, envelope.ToMetadata(), state, cancellationToken);
-                    await _repository.Publish(events.Select(p => new Envelope(p, new Bistrotic.Domain.ValueTypes.MessageId(), envelope)).ToList(), cancellationToken);
-                    await _repository.Save(cancellationToken);
+                    var data = Convert.FromBase64String(envelope.Message.Document);
+                    using MemoryStream stream = new(data);
+                    XDocument xml = XDocument.Load(stream);
+                    if (xml.Root?.Name?.LocalName == "Comprobante" && xml.Root?.Name?.Namespace == MxNamespaces.Cfdi)
+                    {
+                        XmlSerializer serializer = new(typeof(Voucher));
+                        var reader = xml.CreateReader();
+                        reader.MoveToContent();
+                        var voucher = (Voucher?)serializer.Deserialize(reader);
+                        if (voucher == null)
+                        {
+                            throw new MexicanDigitalInvoiceXmlDeserilizationException($"Error while deserializing Mexican digital invoice voucher in {nameof(DataIntegrationSubmitted)} message '{envelope.MessageId}' :\n" + xml.ToString());
+                        }
+                        string uuid = voucher.Issuer?.Code + "-" + voucher.InvoiceId;
+                        MexicanDigitalInvoiceState state = new();
+                        MexicanDigitalInvoice mexicanInvoice = new(uuid, state);
+                        var events = await mexicanInvoice.Submit(voucher);
+                        await _repository.SetState(uuid, envelope.ToMetadata(), state, cancellationToken);
+                        await _repository.Publish(events.Select(p => new Envelope(p, new Bistrotic.Domain.ValueTypes.MessageId(), envelope)).ToList(), cancellationToken);
+                        await _repository.Save(cancellationToken);
+                    }
+                }
+                catch (Exception e)
+                {
+                    _logger.LogError(e, $"Error while handling mexican digital invoice integration. MessageId='{envelope.MessageId}'; Handler='{GetType().FullName}'.");
+                    throw;
                 }
             }
         }

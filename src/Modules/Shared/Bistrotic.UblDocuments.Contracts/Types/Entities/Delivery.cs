@@ -34,7 +34,7 @@
         public Time? ActualDeliveryTime
         {
             get => (ActualDeliveryDateTime == null) ? null : new(ActualDeliveryDateTime.Value.ToLocalTime());
-            set => Time.SetTime(ActualDeliveryDateTime, value);
+            set => ActualDeliveryDateTime = Time.SetTime(ActualDeliveryDateTime, value);
         }
 
         [DataMember(Order = 12), ProtoMember(13)]
@@ -88,7 +88,7 @@
         public Time? LatestDeliveryTime
         {
             get => (LatestDeliveryDateTime == null) ? null : new(LatestDeliveryDateTime.Value.ToLocalTime());
-            set => Time.SetTime(LatestDeliveryDateTime, value);
+            set => LatestDeliveryDateTime = Time.SetTime(LatestDeliveryDateTime, value);
         }
 
         [DataMember(Order = 3), ProtoMember(4)]

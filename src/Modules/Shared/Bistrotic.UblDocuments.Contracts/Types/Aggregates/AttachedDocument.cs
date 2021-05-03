@@ -56,7 +56,7 @@
         public Time? IssueTime
         {
             get => (IssueDateTime == null) ? null : new(IssueDateTime.Value.ToLocalTime());
-            set => Time.SetTime(IssueDateTime, value);
+            set => IssueDateTime = Time.SetTime(IssueDateTime, value);
         }
 
         [DataMember(Order = 9), ProtoMember(10)]

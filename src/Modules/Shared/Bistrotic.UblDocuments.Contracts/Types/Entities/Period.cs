@@ -46,7 +46,7 @@
         public Time? EndTime
         {
             get => (EndDateTime == null) ? null : new(EndDateTime.Value.ToLocalTime());
-            set => Time.SetTime(EndDateTime, value);
+            set => EndDateTime = Time.SetTime(EndDateTime, value);
         }
 
         [NotMapped]
@@ -68,7 +68,7 @@
         public Time? StartTime
         {
             get => (StartDateTime == null) ? null : new(StartDateTime.Value.ToLocalTime());
-            set => Time.SetTime(StartDateTime, value);
+            set => StartDateTime = Time.SetTime(StartDateTime, value);
         }
     }
 }

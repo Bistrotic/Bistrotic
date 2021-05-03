@@ -19,28 +19,25 @@
             _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
         }
 
-        public Task Publish<TEvent>(Envelope<TEvent> envelope, CancellationToken cancellationToken = default)
+        public async Task Publish<TEvent>(Envelope<TEvent> envelope, CancellationToken cancellationToken = default)
             where TEvent : class
         {
             Type handlerType = MakeEventHandlerInterface(typeof(TEvent));
             IEnumerable services = _serviceProvider
                 .GetService(MakeEventHandlerCollection(handlerType)) as IEnumerable
                     ?? throw new InvalidEventHandlerTypeException($"Cannot retreive a collection of '{handlerType.FullName}' ");
-            List<Task> tasks = new();
             foreach (var service in services)
             {
-                tasks.Add(((IEventHandler<TEvent>)service).Handle(envelope, cancellationToken));
+                await ((IEventHandler<TEvent>)service).Handle(envelope, cancellationToken);
             }
-            return Task.WhenAll(tasks);
         }
 
-        public Task Publish(IEnvelope envelope, CancellationToken cancellationToken = default)
+        public async Task Publish(IEnvelope envelope, CancellationToken cancellationToken = default)
         {
             Type handlerType = MakeEventHandlerInterface(envelope.Message.GetType());
             IEnumerable services = _serviceProvider
                 .GetService(MakeEventHandlerCollection(handlerType)) as IEnumerable
                     ?? throw new InvalidEventHandlerTypeException($"Cannot retreive a collection of '{handlerType.FullName}' ");
-            List<Task> tasks = new();
             foreach (var handler in services)
             {
                 var handleMethod = handler.GetType().GetMethod("Handle", new[] { typeof(IEnvelope), typeof(CancellationToken) });
@@ -50,14 +47,13 @@
                 }
                 if (handleMethod.Invoke(handler, new object[] { envelope, cancellationToken }) is Task resultTask)
                 {
-                    tasks.Add(resultTask);
+                    await resultTask.ConfigureAwait(false);
                 }
                 else
                 {
                     throw new InvalidEventHandlerTypeException($"Handle method returns null on handler '{handler.GetType().FullName}'.");
                 }
             }
-            return Task.WhenAll(tasks);
         }
 
         private static Type MakeEventHandlerCollection(Type handlerType)

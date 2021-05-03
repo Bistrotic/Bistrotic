@@ -19,8 +19,8 @@ namespace Bistrotic.Infrastructure.EfCore.Migrations
                     EventType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     InProgressSince = table.Column<DateTime>(type: "datetime2", nullable: true),
                     MessageId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    RepositoryType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SentUtcDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    SessionId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     SystemUtcDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -77,6 +77,11 @@ namespace Bistrotic.Infrastructure.EfCore.Migrations
                 name: "IX_MessageOutbox_SentUtcDateTime",
                 table: "MessageOutbox",
                 column: "SentUtcDateTime");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MessageOutbox_SessionId",
+                table: "MessageOutbox",
+                column: "SessionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StateStreams_IdHash",

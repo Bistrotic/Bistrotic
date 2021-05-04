@@ -10,7 +10,7 @@ namespace Bistrotic.Emails.Application.Services
     {
         Task<IEnumerable<string>> GetUserIds(CancellationToken cancellationToken = default);
 
-        Task<IEnumerable<ReceiveEmail>> GetUserMails(string userPrincipalName, CancellationToken cancellationToken = default);
+        Task<IEnumerable<ReceiveEmail>> GetUserMails(string userPrincipalName, bool unreadOnly = false, CancellationToken cancellationToken = default);
 
         Task SetEmailAsRead(string userPrincipalName, string emailId, CancellationToken cancellationToken = default);
     }

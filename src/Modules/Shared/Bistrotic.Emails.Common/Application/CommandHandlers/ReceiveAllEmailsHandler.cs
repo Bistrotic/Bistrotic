@@ -27,7 +27,7 @@
 
         public async Task Handle(Envelope<ReceiveAllEmails> envelope, CancellationToken cancellationToken = default)
         {
-            foreach (var message in await _mailService.GetUserMails(envelope.Message.Recipient, cancellationToken))
+            foreach (var message in await _mailService.GetUserMails(envelope.Message.Recipient, false, cancellationToken))
             {
                 if (!await _repository.Exists(message.EmailId, cancellationToken))
                 {

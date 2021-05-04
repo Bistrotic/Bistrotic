@@ -93,15 +93,30 @@
             return ids;
         }
 
-        public async Task<IEnumerable<Message>> GetUserMails(string userPrincipalName, CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<Message>> GetUserMails(string userPrincipalName, bool unreadOnly = false, CancellationToken cancellationToken = default)
         {
-            var messages = await GraphClient
-                .Users[userPrincipalName]
-                .Messages
-                .Request()
-                .Expand(p => p.Attachments)
-                .GetAsync(cancellationToken)
-                .ConfigureAwait(false);
+            IUserMessagesCollectionPage? messages;
+            if (unreadOnly)
+            {
+                messages = await GraphClient
+                    .Users[userPrincipalName]
+                    .Messages
+                    .Request()
+                    .Filter($"{nameof(Message.IsRead)} ne true")
+                    .Expand(p => p.Attachments)
+                    .GetAsync(cancellationToken)
+                    .ConfigureAwait(false);
+            }
+            else
+            {
+                messages = await GraphClient
+                    .Users[userPrincipalName]
+                    .Messages
+                    .Request()
+                    .Expand(p => p.Attachments)
+                    .GetAsync(cancellationToken)
+                    .ConfigureAwait(false);
+            }
 
             List<Message> ids = new(messages.ToList());
             while (messages.NextPageRequest != null)

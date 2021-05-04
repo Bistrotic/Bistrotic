@@ -13,7 +13,7 @@ namespace Bistrotic.Emails
         public ReceiveUnreadEmailsJob(
             IServiceProvider serviceProvider,
             IOptions<EmailsSettings> settings,
-            ILogger<ReceiveAllEmailsJob> logger)
+            ILogger<ReceiveUnreadEmailsJob> logger)
             : base(serviceProvider, settings, logger)
         {
         }

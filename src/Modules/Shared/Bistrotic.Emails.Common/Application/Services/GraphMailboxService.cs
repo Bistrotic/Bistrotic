@@ -29,8 +29,8 @@ namespace Bistrotic.Emails.Application.Services
         public Task<IEnumerable<string>> GetUserIds(CancellationToken cancellationToken = default)
             => GraphService.GetUserIds(cancellationToken);
 
-        public async Task<IEnumerable<ReceiveEmail>> GetUserMails(string userPrincipalName, CancellationToken cancellationToken = default)
-            => (await GraphService.GetUserMails(userPrincipalName, cancellationToken))
+        public async Task<IEnumerable<ReceiveEmail>> GetUserMails(string userPrincipalName, bool unreadOnly = false, CancellationToken cancellationToken = default)
+            => (await GraphService.GetUserMails(userPrincipalName, unreadOnly, cancellationToken))
                 .Select(p => p.MapToReceiveEmail(userPrincipalName))
                 .ToList();
 

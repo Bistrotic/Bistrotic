@@ -28,7 +28,7 @@
 
         public async Task Handle(Envelope<ReceiveUnreadEmails> envelope, CancellationToken cancellationToken = default)
         {
-            foreach (var message in await _mailService.GetUserMails(envelope.Message.Recipient, cancellationToken))
+            foreach (var message in await _mailService.GetUserMails(envelope.Message.Recipient, true, cancellationToken))
             {
                 await _commandBus.Send(new Envelope<ReceiveEmail>(message, new MessageId(), envelope), cancellationToken);
             }

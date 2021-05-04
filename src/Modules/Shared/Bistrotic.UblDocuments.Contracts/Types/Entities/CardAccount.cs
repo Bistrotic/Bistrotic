@@ -40,7 +40,7 @@
         [XmlIgnore]
         public DateTimeOffset? ExpiracyDateTime
         {
-            get => ExpiracyDate.ToDateTime();
+            get => ExpiracyDate.ToNullableDateTime();
             set => ExpiracyDate = value.ToDateString();
         }
 
@@ -73,7 +73,7 @@
         [XmlIgnore]
         public DateTimeOffset? ValidityDateTime
         {
-            get => ValidityDate.ToDateTime();
+            get => ValidityDate.ToNullableDateTime();
             set => ValidityDate = value.ToDateString();
         }
     }

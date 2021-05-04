@@ -54,7 +54,7 @@
         [XmlIgnore]
         public DateTimeOffset? ReceivedDateTime
         {
-            get => ReceivedDate.ToDateTime();
+            get => ReceivedDate.ToNullableDateTime();
             set => ReceivedDate = value.ToDateString();
         }
     }

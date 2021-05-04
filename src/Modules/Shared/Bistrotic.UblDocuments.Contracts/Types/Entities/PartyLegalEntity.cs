@@ -56,7 +56,7 @@
         [XmlIgnore]
         public DateTimeOffset? RegistrationDateTime
         {
-            get => RegistrationDate.ToDateTime();
+            get => RegistrationDate.ToNullableDateTime();
             set => RegistrationDate = value.ToDateString();
         }
 
@@ -69,7 +69,7 @@
         [XmlIgnore]
         public DateTimeOffset? RegistrationExpirationDateTime
         {
-            get => RegistrationExpirationDate.ToDateTime();
+            get => RegistrationExpirationDate.ToNullableDateTime();
             set => RegistrationExpirationDate = value.ToDateString();
         }
 

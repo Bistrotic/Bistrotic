@@ -148,7 +148,7 @@
         [XmlIgnore]
         public DateTimeOffset? TaxPointDateTime
         {
-            get => TaxPointDate.ToDateTime();
+            get => TaxPointDate.ToNullableDateTime();
             set => TaxPointDate = value.ToDateString();
         }
 

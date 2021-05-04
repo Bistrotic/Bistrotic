@@ -29,7 +29,7 @@
         [XmlIgnore]
         public DateTimeOffset? IssueDateTime
         {
-            get => IssueDate.ToDateTime();
+            get => IssueDate.ToNullableDateTime();
             set => IssueDate = value.ToDateString();
         }
 

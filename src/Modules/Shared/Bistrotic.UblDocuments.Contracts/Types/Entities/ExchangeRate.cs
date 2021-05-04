@@ -28,7 +28,7 @@
         [XmlIgnore]
         public DateTimeOffset? DateTime
         {
-            get => Date.ToDateTime();
+            get => Date.ToNullableDateTime();
             set => Date = value.ToDateString();
         }
 

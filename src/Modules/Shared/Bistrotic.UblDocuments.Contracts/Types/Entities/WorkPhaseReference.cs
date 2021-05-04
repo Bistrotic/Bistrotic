@@ -25,7 +25,7 @@
         [XmlIgnore]
         public DateTimeOffset? EndDateTime
         {
-            get => EndDate.ToDateTime();
+            get => EndDate.ToNullableDateTime();
             set => EndDate = value.ToDateString();
         }
 
@@ -46,7 +46,7 @@
         [XmlIgnore]
         public DateTimeOffset? StartDateTime
         {
-            get => StartDate.ToDateTime();
+            get => StartDate.ToNullableDateTime();
             set => StartDate = value.ToDateString();
         }
 

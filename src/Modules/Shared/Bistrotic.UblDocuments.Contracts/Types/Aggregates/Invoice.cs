@@ -97,7 +97,7 @@
         [XmlIgnore]
         public DateTimeOffset? DueDateTime
         {
-            get => DueDate.ToDateTime();
+            get => DueDate.ToNullableDateTime();
             set => DueDate = value.ToDateString();
         }
 
@@ -247,7 +247,7 @@
         [XmlIgnore]
         public DateTimeOffset? TaxPointDateTime
         {
-            get => TaxPointDate.ToDateTime();
+            get => TaxPointDate.ToNullableDateTime();
             set => TaxPointDate = value.ToDateString();
         }
 

@@ -37,7 +37,7 @@
         [XmlIgnore]
         public DateTimeOffset? InstallmentDueDateTime
         {
-            get => InstallmentDueDate.ToDateTime();
+            get => InstallmentDueDate.ToNullableDateTime();
             set => InstallmentDueDate = value.ToDateString();
         }
 
@@ -58,7 +58,7 @@
         [XmlIgnore]
         public DateTimeOffset? PaymentDueDateTime
         {
-            get => PaymentDueDate.ToDateTime();
+            get => PaymentDueDate.ToNullableDateTime();
             set => PaymentDueDate = value.ToDateString();
         }
 

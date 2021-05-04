@@ -10,15 +10,21 @@ namespace Bistrotic.UblDocuments.Helpers
 
         public static DateTimeOffset ToDateTime(this (string date, string? time) dateTime)
         {
+            DateTime d = new DateTime(1, 1, 1);
             if (string.IsNullOrWhiteSpace(dateTime.date))
             {
-                throw new ArgumentException("Date must be defined", nameof(dateTime));
+                if (string.IsNullOrWhiteSpace(dateTime.time))
+                {
+                    return DateTimeOffset.MinValue;
+                }
             }
-
-            DateTime d = XmlConvert.ToDateTime(dateTime.date, XmlDateTimeSerializationMode.Utc);
-            if (string.IsNullOrWhiteSpace(dateTime.time))
+            else
             {
-                return d;
+                d = XmlConvert.ToDateTime(dateTime.date, XmlDateTimeSerializationMode.Utc);
+                if (string.IsNullOrWhiteSpace(dateTime.time))
+                {
+                    return d;
+                }
             }
 
             DateTimeOffset t = XmlConvert.ToDateTimeOffset(dateTime.time);
@@ -28,14 +34,17 @@ namespace Bistrotic.UblDocuments.Helpers
                 );
         }
 
-        public static DateTimeOffset ToDateTime(this string? date)
-            => XmlConvert.ToDateTime(date ?? string.Empty, XmlDateTimeSerializationMode.Local);
+        public static DateTimeOffset ToDateTime(this string date)
+            => XmlConvert.ToDateTime(date, XmlDateTimeSerializationMode.Local);
 
         public static (string? date, string? time) ToDateTimeStrings(this DateTimeOffset? dateTime)
             => (dateTime == null) ? (null, null) : (XmlConvert.ToString(dateTime.Value, "yyyy-MM-dd"), XmlConvert.ToString(dateTime.Value).Split('T')[^1]);
 
         public static (string date, string time) ToDateTimeStrings(this DateTimeOffset dateTime)
             => (XmlConvert.ToString(dateTime, "yyyy-MM-dd"), XmlConvert.ToString(dateTime).Split('T')[^1]);
+
+        public static DateTimeOffset? ToNullableDateTime(this string? date)
+            => string.IsNullOrWhiteSpace(date) ? null : XmlConvert.ToDateTime(date, XmlDateTimeSerializationMode.Local);
 
         public static DateTimeOffset? ToNullableDateTime(this (string? date, string? time) dateTime)
         {

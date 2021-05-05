@@ -8,7 +8,7 @@
     using Bistrotic.Units.Domain.Events;
     using Bistrotic.Units.Domain.ValueTypes;
 
-    public class Unit : IEntity, IAggregateRoot
+    public class Unit : IAggregateRoot
     {
         private readonly UnitId _unitId;
 

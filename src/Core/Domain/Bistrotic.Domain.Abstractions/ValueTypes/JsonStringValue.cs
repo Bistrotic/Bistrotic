@@ -25,10 +25,8 @@
         {
         }
 
-        public static implicit operator T(JsonStringValue<T> value)
 #pragma warning disable CS8603 // Possible null reference return.
-            => JsonSerializer.Deserialize<T>(value.Value);
-
+        public static implicit operator T(JsonStringValue<T> value) => (value == null) ? default : JsonSerializer.Deserialize<T>(value.Value);
 #pragma warning restore CS8603 // Possible null reference return.
     }
 }

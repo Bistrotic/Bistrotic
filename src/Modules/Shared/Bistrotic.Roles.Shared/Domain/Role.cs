@@ -8,7 +8,7 @@
     using Bistrotic.Roles.Domain.Events;
     using Bistrotic.Roles.Domain.ValueTypes;
 
-    public class Role : IEntity, IAggregateRoot
+    public class Role : IAggregateRoot
     {
         private readonly RoleId _unitId;
 

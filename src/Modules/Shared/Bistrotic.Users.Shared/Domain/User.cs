@@ -9,7 +9,7 @@
     using Bistrotic.Users.Domain.Events;
     using Bistrotic.Users.Domain.ValueTypes;
 
-    public class User : IEntity, IAggregateRoot
+    public class User : IAggregateRoot
     {
         private readonly UserId _userId;
 

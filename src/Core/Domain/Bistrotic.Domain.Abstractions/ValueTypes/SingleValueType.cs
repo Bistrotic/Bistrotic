@@ -1,5 +1,6 @@
 ﻿namespace Bistrotic.Domain.ValueTypes
 {
+    using System;
     using System.Diagnostics;
     using System.Text.Json.Serialization;
 
@@ -8,6 +9,7 @@
     {
         protected SingleValueType(SingleValueType<T> value)
         {
+            _ = value ?? throw new ArgumentNullException(nameof(value));
             Value = value.Value;
         }
 

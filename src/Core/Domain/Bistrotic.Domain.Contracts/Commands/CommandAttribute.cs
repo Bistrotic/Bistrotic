@@ -5,7 +5,7 @@
 
     [DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-    public class CommandAttribute : Attribute
+    public sealed class CommandAttribute : Attribute
     {
         private static string GetDebuggerDisplay() => "Command";
     }

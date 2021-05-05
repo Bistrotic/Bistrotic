@@ -20,6 +20,8 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
+    using System;
+
     public sealed class EmailsServerModule : ServerModule
     {
         private EmailsSettings? _settings;
@@ -32,6 +34,7 @@
 
         public override void ConfigureMessages(IMessageFactoryBuilder messageBuilder)
         {
+            _ = messageBuilder ?? throw new ArgumentNullException(nameof(messageBuilder));
             messageBuilder.AddAssemblyMessages(typeof(GetEmailDetails).Assembly);
         }
 
@@ -40,7 +43,7 @@
             base.ConfigureServices(services);
             services.ConfigureSettings<EmailsSettings>(Configuration);
             services.AddTransient<IRepository<IEmailState>, EfRepository<IEmailState, EmailState>>();
-            // services.AddHostedService<ReceiveAllEmailsJob>();
+            services.AddHostedService<ReceiveAllEmailsJob>();
             services.AddHostedService<ReceiveUnreadEmailsJob>();
             services.AddTransient<ICommandHandler<ReceiveEmail>, ReceiveEmailHandler>();
             services.AddTransient<ICommandHandler<ReceiveAllEmails>, ReceiveAllEmailsHandler>();

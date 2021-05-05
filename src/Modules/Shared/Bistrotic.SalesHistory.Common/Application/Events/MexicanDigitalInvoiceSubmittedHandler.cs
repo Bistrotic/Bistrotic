@@ -46,7 +46,6 @@
                     {
                         var parts = p.Description?.Split(' ', 2);
                         var itemId = parts?.FirstOrDefault() ?? string.Empty;
-                        var itemName = parts?.FirstOrDefault() ?? string.Empty;
                         var lineId = Convert.ToString(++i, CultureInfo.InvariantCulture) ?? string.Empty;
                         return new SalesHistoryState()
                         {
@@ -60,7 +59,7 @@
                             SalesId = string.Empty,
                             LineId = lineId,
                             ItemId = itemId,
-                            ItemName = itemName,
+                            ItemName = p.Description,
                             Quantity = p.Quantity,
                             TotalAmount = p.LineAmount
                         };

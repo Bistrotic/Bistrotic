@@ -14,6 +14,7 @@
 
         public IMessageFactoryBuilder AddAssemblyMessages(Assembly assembly)
         {
+            _ = assembly ?? throw new ArgumentNullException(nameof(assembly));
             foreach (Type t in assembly
                 .GetTypes()
                 .Where(p => p.IsClass && !p.IsAbstract && typeof(IMessage).IsAssignableFrom(p)))

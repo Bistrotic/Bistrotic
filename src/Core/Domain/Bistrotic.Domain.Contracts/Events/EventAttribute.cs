@@ -5,7 +5,7 @@
 
     [DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-    public class EventAttribute : Attribute
+    public sealed class EventAttribute : Attribute
     {
         private static string GetDebuggerDisplay() => "Event";
     }

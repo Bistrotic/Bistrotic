@@ -28,7 +28,7 @@
         public async override Task<List<IssueWithSla>> Handle(Envelope<GetIssuesWithSla> envelope)
         {
             var settings = await _queryDispatcher
-                .Dispatch<GetWorkItemModuleSettings, WorkItemModuleSettings>(new Envelope<GetWorkItemModuleSettings>(new GetWorkItemModuleSettings(), new MessageId(), envelope));
+                .Dispatch<GetWorkItemModuleSettings, WorkItemModuleSettings>(new Envelope<GetWorkItemModuleSettings>(new GetWorkItemModuleSettings(), new MessageId(), envelope)).ConfigureAwait(false);
             if (string.IsNullOrWhiteSpace(settings.AzureDevOpsServerUrl) || string.IsNullOrWhiteSpace(settings.PersonalAccessToken))
             {
                 throw new DevOpsServerConfigurationMissingException();
@@ -40,7 +40,7 @@
             var slaMembers = await _queryDispatcher
                 .Dispatch<GetSecurityGroupMembers, IEnumerable<SecurityGroupMember>>(
                 new Envelope<GetSecurityGroupMembers>(new GetSecurityGroupMembers(settings.SlaGroupName), new MessageId(), envelope)
-                );
+                ).ConfigureAwait(false);
 
             var server = new DevOpsServer(settings.AzureDevOpsServerUrl, settings.PersonalAccessToken);
 
@@ -61,7 +61,7 @@
                 Fd.CreatedDate,
                 Fd.ClosedDate
             });
-            List<DevOpsWorkItem> wis = await query.GetQueryWorkItems();
+            List<DevOpsWorkItem> wis = await query.GetQueryWorkItems().ConfigureAwait(false);
             var issues = new List<IssueWithSla>(wis.Count);
             foreach (var wi in wis)
             {
@@ -70,7 +70,7 @@
                     new Envelope<GetWorkItemChangeHistory>(
                         new GetWorkItemChangeHistory(
                             new WorkItemId(wi.Id.ToString(CultureInfo.InvariantCulture))), new MessageId(), envelope)
-                    );
+                    ).ConfigureAwait(false);
                 var slaLog = new WorkItemSlaLog(wiHistory
                     .OrderBy(p => p.ChangeDate)
                     .Select(p => new WorkItemSlaLogItem

@@ -10,26 +10,26 @@
 
     public abstract class ServerModule : ModuleBase, IServerModule
     {
-        private IConfiguration? _configuration;
+        private IConfiguration _configuration;
 
-        private IWebHostEnvironment? _environment;
+        private IWebHostEnvironment _environment;
 
         protected ServerModule(IConfiguration configuration, IWebHostEnvironment environment)
             : base(ModuleType.Server)
         {
-            _configuration = configuration;
-            _environment = environment;
+            _configuration = configuration ?? throw new ModuleNotInitializedException(nameof(_configuration));
+            _environment = environment ?? throw new ModuleNotInitializedException(nameof(_environment));
         }
 
         public IConfiguration Configuration
         {
-            get => _configuration ?? throw new ModuleNotInitializedException(nameof(_configuration));
+            get => _configuration;
             internal set => _configuration = value;
         }
 
         public IWebHostEnvironment Environment
         {
-            get => _environment ?? throw new ModuleNotInitializedException(nameof(_environment));
+            get => _environment;
             internal set => _environment = value;
         }
 

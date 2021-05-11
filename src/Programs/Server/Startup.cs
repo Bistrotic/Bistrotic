@@ -17,6 +17,7 @@
     using Bistrotic.Infrastructure.Client;
     using Bistrotic.Infrastructure.EfCore.Repositories;
     using Bistrotic.Infrastructure.Helpers;
+    using Bistrotic.Infrastructure.InMemory.Messages;
     using Bistrotic.Infrastructure.Ioc.Commands;
     using Bistrotic.Infrastructure.Ioc.Events;
     using Bistrotic.Infrastructure.Ioc.Queries;
@@ -163,6 +164,7 @@
                 .AddMicrosoftIdentityUI();
             //services.AddServerSideBlazor();
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Bistrotic", Version = "v1" }));
+            var messageFactoryBuilder = new InMemoryMessageFactoryBuilder();
             foreach (var modulePair in GetModuleFactory())
             {
                 IServerModule module = modulePair
@@ -170,7 +172,9 @@
                 module.ConfigureServices(services);
                 services.AddSingleton(module);
                 mvc.AddApplicationPart(modulePair.Key.Assembly);
+                module.ConfigureMessages(messageFactoryBuilder);
             }
+            services.AddSingleton(messageFactoryBuilder.Build());
             services.AddTransient<ICommandBus, IocCommandBus>();
             services.AddTransient<IEventBus, IocEventBus>();
             services.AddSingleton<IMenuService, MenuService>();

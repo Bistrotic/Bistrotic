@@ -5,7 +5,7 @@
 
     [DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-    public class QueryAttribute : Attribute
+    public sealed class QueryAttribute : Attribute
     {
         private static string GetDebuggerDisplay() => "Query";
     }

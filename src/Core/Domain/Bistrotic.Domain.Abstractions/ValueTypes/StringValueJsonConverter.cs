@@ -14,7 +14,7 @@
 
         public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
         {
-            writer.WriteStringValue(string.IsNullOrEmpty(value?.Value) ? null : value?.Value);
+            writer?.WriteStringValue(string.IsNullOrEmpty(value?.Value) ? null : value?.Value);
         }
     }
 }

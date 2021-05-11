@@ -80,13 +80,20 @@
             {
                 return new List<DevOpsWorkItem>();
             }
-
+            List<DevOpsWorkItem> items = new(ids.Length);
+            for (int i = 0; i <= ids.Length / 200; i++)
+            {
+                var range = (i == 0) ? ids.Take(200) : ids.Skip(200 * i).Take(200);
+                items.AddRange(
+                    (await WitClient
+                        .GetWorkItemsAsync(range, _fieldNames, result.AsOf, WorkItemExpand.Links)
+                        .ConfigureAwait(false)
+                    )
+                    .ConvertAll(p => new DevOpsWorkItem(p)));
+            }
             // get work items for the ids found in query
-            return (await WitClient
-                .GetWorkItemsAsync(ids, _fieldNames, result.AsOf, WorkItemExpand.Links)
-                .ConfigureAwait(false))
-                    .ConvertAll(p => new DevOpsWorkItem(p))
-;
+            return items;
+            ;
         }
 
         /// <summary>

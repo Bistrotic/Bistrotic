@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8_Build", "8_Build", "{182A
 		build\Dependencies.Test.props = build\Dependencies.Test.props
 		src\Directory.build.props = src\Directory.build.props
 		src\Directory.build.targets = src\Directory.build.targets
+		global.json = global.json
 		Nuget.config = Nuget.config
 	EndProjectSection
 EndProject

@@ -16,8 +16,6 @@
 
         public static TSettings GetSettings<TSettings>(this IConfiguration configuration)
                     where TSettings : new()
-            => configuration
-                .GetSection(typeof(TSettings).Name)
-                .Get<TSettings>() ?? new TSettings();
+            => configuration == null ? new TSettings() : configuration.GetSection(typeof(TSettings).Name).Get<TSettings>() ?? new TSettings();
     }
 }

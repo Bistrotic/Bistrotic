@@ -14,7 +14,7 @@
 
         public override int RenderAttributes(int sequence)
         {
-            _builder.AddAttribute(sequence++, nameof(MudComponentBase.Class), _component.Classes);
+            _builder.AddAttribute(sequence++, nameof(MudComponentBase.Class), string.Join(' ', _component.Classes));
             _builder.AddAttribute(sequence++, nameof(MudComponentBase.Style), _component.AdditionalStyles);
             _builder.AddAttribute(sequence++, nameof(MudComponentBase.Tag), _component.Tag);
             return base.RenderAttributes(sequence++);

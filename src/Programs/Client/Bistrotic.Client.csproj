@@ -18,7 +18,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.VisualLayouts\Bistrotic.Infrastructure.VisualLayouts.csproj" />
+		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.VisualComponents.FastAndFluent\Bistrotic.Infrastructure.VisualComponents.FastAndFluent.csproj" />
+		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.VisualComponents.MudBlazor\Bistrotic.Infrastructure.VisualComponents.MudBlazor.csproj" />
 		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.VisualComponents\Bistrotic.Infrastructure.VisualComponents.csproj" />
 		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.BlazorClient\Bistrotic.Infrastructure.BlazorClient.csproj" />
 		<ProjectReference Include="..\..\Modules\Client\Bistrotic.Roles.Client\Bistrotic.Roles.Client.csproj" />

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Components.Rendering;
+
+using System.Collections.Generic;
 
 namespace Bistrotic.Infrastructure.VisualComponents.Themes
 {
@@ -10,6 +12,10 @@ namespace Bistrotic.Infrastructure.VisualComponents.Themes
 
         string ThemeTagName { get; }
 
-        string RenderTagName(BlazorComponent component);
+        int BuildRenderTree(int sequence, BlazorComponent component, RenderTreeBuilder builder);
+
+        int CloseTheme(int sequence, RenderTreeBuilder builder);
+
+        int OpenTheme(int sequence, RenderTreeBuilder builder);
     }
 }

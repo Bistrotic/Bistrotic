@@ -1,10 +1,10 @@
-﻿using System;
-
-using Bistrotic.Emails.Application.Commands;
+﻿using Bistrotic.Emails.Application.Commands;
 using Bistrotic.Emails.Application.Settings;
 
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+
+using System;
 
 namespace Bistrotic.Emails
 {
@@ -18,11 +18,11 @@ namespace Bistrotic.Emails
         {
         }
 
-        public override ReceiveAllEmails Command => new()
-        {
-            Recipient = Recipient
-        };
-
         public override int Recurrence => Math.Max(3600, Settings.ReceiveAllMailsRecurrenceSeconds);
+
+        public override ReceiveAllEmails GetCommand(string recipient) => new()
+        {
+            Recipient = recipient
+        };
     }
 }

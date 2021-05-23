@@ -1,9 +1,9 @@
 ﻿namespace Bistrotic.Infrastructure.VisualComponents.Themes
 {
-    using System.Collections.Generic;
-
     using Microsoft.AspNetCore.Components;
     using Microsoft.AspNetCore.Components.Rendering;
+
+    using System.Collections.Generic;
 
     public class Theme : ComponentBase
     {
@@ -44,7 +44,7 @@
                 builder.AddAttribute(i++, "href", stylesheet);
                 builder.CloseElement();
             }
-            builder.OpenElement(i++, ComponentRenderer.ThemeTagName);
+            i = ComponentRenderer.OpenTheme(i, builder);
             builder.AddMultipleAttributes(i++, AdditionalAttributes);
             foreach (var pair in ComponentRenderer.ThemeAttributes)
             {
@@ -58,8 +58,7 @@
             builder.AddAttribute(i++, nameof(CascadingValue<Theme>.Value), this);
             builder.AddAttribute(i++, nameof(CascadingValue<Theme>.ChildContent), ChildContent);
             builder.CloseComponent();
-            builder.CloseElement();
-            i++;
+            i = ComponentRenderer.CloseTheme(i, builder);
             foreach (string script in ComponentRenderer.Scripts)
             {
                 builder.OpenElement(i++, "script");

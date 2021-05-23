@@ -2,7 +2,7 @@
 
 namespace Bistrotic.Infrastructure.VisualComponents.Themes
 {
-    public class FastComponentRenderer : FastAndFluentThemeRenderer
+    public class FastComponentRenderer : FastAndFluentComponentRenderer
     {
         public FastComponentRenderer() : base("fast")
         {

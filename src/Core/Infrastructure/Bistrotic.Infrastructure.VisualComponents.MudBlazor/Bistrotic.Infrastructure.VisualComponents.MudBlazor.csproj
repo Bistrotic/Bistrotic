@@ -1,4 +1,5 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
 		<NoWarn>$(NoWarn);CS3008</NoWarn>
@@ -8,15 +9,17 @@
 		<IncludeRazorContentInPack>false</IncludeRazorContentInPack>
 		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
 		<EnableDefaultRazorGenerateItems>true</EnableDefaultRazorGenerateItems>
+		<RootNamespace>Bistrotic.Infrastructure.VisualComponents</RootNamespace>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="MudBlazor" Version="$(MudBlazorVersion)" />
+	</ItemGroup>
 	<ItemGroup>
 		<SupportedPlatform Include="browser" />
 	</ItemGroup>
+
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="$(MicrosoftAspNetCoreComponentsVersion)" />
-	</ItemGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\Bistrotic.Infrastructure.Abstractions\Bistrotic.Infrastructure.Abstractions.csproj" />
 		<ProjectReference Include="..\Bistrotic.Infrastructure.VisualComponents\Bistrotic.Infrastructure.VisualComponents.csproj" />
 	</ItemGroup>
 </Project>

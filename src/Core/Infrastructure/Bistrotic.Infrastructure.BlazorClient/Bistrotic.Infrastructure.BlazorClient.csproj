@@ -16,6 +16,5 @@
 		<ProjectReference Include="..\..\Application\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj" />
 		<ProjectReference Include="..\Bistrotic.Infrastructure.Abstractions\Bistrotic.Infrastructure.Abstractions.csproj" />
 		<ProjectReference Include="..\Bistrotic.Infrastructure.Modules\Bistrotic.Infrastructure.Modules.csproj" />
-		<ProjectReference Include="..\Bistrotic.Infrastructure.VisualLayouts\Bistrotic.Infrastructure.VisualLayouts.csproj" />
 	</ItemGroup>
 </Project>

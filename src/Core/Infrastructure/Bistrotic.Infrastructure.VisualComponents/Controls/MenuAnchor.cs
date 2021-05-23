@@ -1,6 +1,6 @@
 ﻿namespace Bistrotic.Infrastructure.VisualComponents.Controls
 {
-    public class Logo : BlazorComponent
+    public class MenuAnchor : Anchor
     {
     }
 }

@@ -4,6 +4,7 @@
     {
         None,
         Fast,
-        Fluent
+        Fluent,
+        MudBlazor
     }
 }

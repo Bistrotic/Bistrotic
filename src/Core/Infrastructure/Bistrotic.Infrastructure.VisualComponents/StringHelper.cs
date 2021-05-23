@@ -2,7 +2,7 @@
 
 namespace Bistrotic.Infrastructure.VisualComponents
 {
-    internal static class StringHelper
+    public static class StringHelper
     {
         public static string DashCase(this string value)
         {

@@ -8,6 +8,7 @@ namespace Bistrotic.Infrastructure.BlazorClient
     using Bistrotic.Infrastructure.Modules;
     using Bistrotic.Infrastructure.Modules.Definitions;
 
+    using Microsoft.AspNetCore.Components;
     using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
     using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
     using Microsoft.Extensions.Configuration;
@@ -19,13 +20,18 @@ namespace Bistrotic.Infrastructure.BlazorClient
     {
         public static IServiceCollection AddBistroticClient(this IServiceCollection services, IWebAssemblyHostEnvironment hostEnvironment, string clientName, string serverApiName)
         {
-            services
-                 .AddHttpClient<BistroticHttpClient>(serverApiName, client =>
-                            client.BaseAddress = new Uri(hostEnvironment.BaseAddress)
-                         )
-                         .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
-            // Supply HttpClient instances that include access tokens when making requests to the
-            // server project
+            // Server Side Blazor doesn't register HttpClient by default
+            if (!services.Any(x => x.ServiceType == typeof(BistroticHttpClient)))
+            {
+                // Setup HttpClient for server side in a client side compatible fashion Supply
+                // HttpClient instances that include access tokens when making requests to the
+                // server project
+                services
+                    .AddHttpClient<BistroticHttpClient>(serverApiName, client =>
+                                client.BaseAddress = new Uri(hostEnvironment.BaseAddress)
+                             )
+                             .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
+            }
             services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient(serverApiName));
 
             services.AddOptions();

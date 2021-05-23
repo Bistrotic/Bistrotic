@@ -48,6 +48,8 @@
     using Microsoft.Identity.Web.UI;
     using Microsoft.OpenApi.Models;
 
+    using MudBlazor.Services;
+
     public sealed class Startup
     {
         private readonly IConfiguration _configuration;
@@ -179,8 +181,9 @@
             services.AddTransient<IEventBus, IocEventBus>();
             services.AddSingleton<IMenuService, MenuService>();
             services.AddSingleton<IIconRenderer, LineAwesomeIconRenderer>();
-            services.AddSingleton<IComponentRenderer, FastComponentRenderer>();
+            services.AddSingleton<IComponentRenderer, MudBlazorRenderer>();
             services.AddDatabaseDeveloperPageExceptionFilter();
+            services.AddMudServices();
         }
 
         internal static Dictionary<Type, Func<IConfiguration, IWebHostEnvironment, IServerModule>> GetModuleFactory()

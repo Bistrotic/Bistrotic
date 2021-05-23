@@ -29,5 +29,6 @@
 		<ExtendedXmlSerializerVersion>3.7.0</ExtendedXmlSerializerVersion>
 		<SharpCompressVersion>0.28.2</SharpCompressVersion>
 		<EfCoreTestSupportVersion>5.0.0</EfCoreTestSupportVersion>
+		<MudBlazorVersion>5.0.9</MudBlazorVersion>
 	</PropertyGroup>
 </Project>

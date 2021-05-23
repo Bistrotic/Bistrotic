@@ -1,10 +1,10 @@
 ﻿namespace Bistrotic.Infrastructure.VisualComponents.Controls
 {
-    using System.Collections.Generic;
-
     using Bistrotic.Infrastructure.VisualComponents.Themes;
 
     using Microsoft.AspNetCore.Components;
+
+    using System.Collections.Generic;
 
     public class Icon : BlazorComponent
     {
@@ -31,7 +31,5 @@
                 return classes;
             }
         }
-
-        public override string DefaultTagName => "i";
     }
 }

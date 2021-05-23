@@ -1,17 +1,16 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-using Bistrotic.Application.Commands;
+﻿using Bistrotic.Application.Commands;
 using Bistrotic.Application.Messages;
 using Bistrotic.Domain.ValueTypes;
 using Bistrotic.Emails.Application.Settings;
-using Bistrotic.Emails.Exceptions;
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Bistrotic.Emails
 {
@@ -32,23 +31,27 @@ namespace Bistrotic.Emails
             _logger = logger;
         }
 
-        public abstract TCommand Command { get; }
-
-        public string Recipient => Settings.ReceiveEmailsRecipient
-               ?? throw new MailboxRecipientNotDefinedException($"Job {TaskName}.");
-
         public abstract int Recurrence { get; }
+
         public string TaskName => typeof(TCommand).Name;
+
         protected EmailsSettings Settings => _settings.Value;
+
+        public abstract TCommand GetCommand(string recipient);
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            if (string.IsNullOrWhiteSpace(_settings.Value.ReceiveEmailsRecipient))
+            {
+                _logger.LogWarning($"No recipient defined for {GetType().Name}.");
+                return;
+            }
+            string recipient = _settings.Value.ReceiveEmailsRecipient;
             var startInSeconds = Math.Max(10, Settings.ReceiveMailsStartSeconds);
 
             _logger.LogDebug($"Job {TaskName} : Starting. Wait before first execution : {startInSeconds} seconds; Recurrence : {Recurrence} seconds.");
 
-            stoppingToken.Register(() =>
-                _logger.LogDebug($"Job {TaskName} : Stopping."));
+            stoppingToken.Register(() => _logger.LogDebug($"Job {TaskName} : Stopping."));
 
             await Task.Delay(startInSeconds * 1000, stoppingToken);
             while (!stoppingToken.IsCancellationRequested)
@@ -60,9 +63,8 @@ namespace Bistrotic.Emails
                 {
                     using var scope = _serviceProvider.CreateScope();
                     ICommandBus commandBus = scope.ServiceProvider.GetRequiredService<ICommandBus>();
-                    IOptions<EmailsSettings> settings = scope.ServiceProvider.GetRequiredService<IOptions<EmailsSettings>>();
                     await commandBus.Send(new Envelope<TCommand>(
-                            Command,
+                            GetCommand(recipient),
                             messageId,
                             "scheduler",
                             DateTimeOffset.Now

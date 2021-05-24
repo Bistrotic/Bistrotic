@@ -22,7 +22,10 @@
         }
         protected override int RenderAttributes(int sequence, BlazorComponent blazorComponent, RenderTreeBuilder builder)
         {
-            builder.AddAttribute(sequence++, "use-defaults");
+            if (blazorComponent.AdditionalAttributes == null || blazorComponent.AdditionalAttributes.Count == 0)
+                builder.AddAttribute(sequence++, "use-defaults");
+            else
+                builder.AddMultipleAttributes(sequence++, blazorComponent.AdditionalAttributes);
             return base.RenderAttributes(sequence, blazorComponent, builder);
         }
 

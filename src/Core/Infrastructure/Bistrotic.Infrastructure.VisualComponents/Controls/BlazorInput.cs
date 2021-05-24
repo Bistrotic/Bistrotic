@@ -7,10 +7,6 @@
 
     public abstract class BlazorInput<T> : InputBase<T>
     {
-        [Parameter]
-        public RenderFragment? ChildContent { get; set; }
 
-        [CascadingParameter]
-        protected IComponentRenderer? ThemeRenderer { get; set; }
     }
 }

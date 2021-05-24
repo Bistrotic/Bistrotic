@@ -29,7 +29,8 @@
         public HttpClient HttpClient { get; }
         public NavigationManager NavigationManager { get; }
 
-        public async Task<TResult> Ask<TQuery, TResult>(string? messageId, TQuery query) where TQuery : class, IQuery<TResult>
+        public async Task<TResult> Ask<TQuery, TResult>(string? messageId, TQuery query)
+            where TQuery : class
         {
             var queryType = typeof(TQuery);
             try

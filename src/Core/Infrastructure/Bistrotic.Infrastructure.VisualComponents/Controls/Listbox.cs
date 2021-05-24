@@ -1,6 +1,6 @@
 ﻿namespace Bistrotic.Infrastructure.VisualComponents.Controls
 {
-    public class Listbox : BlazorComponent
+    public class Listbox : BlazorComponentWithContent
     {
     }
 }

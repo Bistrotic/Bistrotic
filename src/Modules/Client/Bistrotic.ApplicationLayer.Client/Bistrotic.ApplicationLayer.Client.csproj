@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<RootNamespace>Bistrotic.ApplicationLayer</RootNamespace>
+		<ModuleName>ApplicationLayer</ModuleName>
+	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\Shared\Bistrotic.ApplicationLayer.Common\Bistrotic.ApplicationLayer.Common.csproj" />
+	</ItemGroup>
+</Project>

@@ -277,9 +277,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MexicanDigitalInvoice", "Me
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.MexicanDigitalInvoice.Common.Tests", "test\Modules\MexicanDigitalInvoice\Bistrotic.MexicanDigitalInvoice.Common.Tests\Bistrotic.MexicanDigitalInvoice.Common.Tests.csproj", "{F0DDA358-F9BE-45E8-84DE-C8594E5E6052}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Infrastructure.VisualComponents.MudBlazor", "src\Core\Infrastructure\Bistrotic.Infrastructure.VisualComponents.MudBlazor\Bistrotic.Infrastructure.VisualComponents.MudBlazor.csproj", "{5CF0DD6A-7328-4D6F-B9C6-935D8ED440D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Infrastructure.VisualComponents.MudBlazor", "src\Core\Infrastructure\Bistrotic.Infrastructure.VisualComponents.MudBlazor\Bistrotic.Infrastructure.VisualComponents.MudBlazor.csproj", "{5CF0DD6A-7328-4D6F-B9C6-935D8ED440D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bistrotic.Infrastructure.VisualComponents.FastAndFluent", "src\Core\Infrastructure\Bistrotic.Infrastructure.VisualComponents.FastAndFluent\Bistrotic.Infrastructure.VisualComponents.FastAndFluent.csproj", "{38B20841-CF4E-44AE-97D9-5BA4D2C6D7A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.Infrastructure.VisualComponents.FastAndFluent", "src\Core\Infrastructure\Bistrotic.Infrastructure.VisualComponents.FastAndFluent\Bistrotic.Infrastructure.VisualComponents.FastAndFluent.csproj", "{38B20841-CF4E-44AE-97D9-5BA4D2C6D7A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApplicationLayer", "ApplicationLayer", "{F7D7955E-0C9C-4B8B-AD78-628B3103C899}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.ApplicationLayer.Client", "src\Modules\Client\Bistrotic.ApplicationLayer.Client\Bistrotic.ApplicationLayer.Client.csproj", "{34A121DA-6D33-471E-A523-5F1B697C1D85}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.ApplicationLayer.Server", "src\Modules\Server\Bistrotic.ApplicationLayer.Server\Bistrotic.ApplicationLayer.Server.csproj", "{D78CE164-E85B-4093-978B-D2C7043014ED}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.ApplicationLayer.Common", "src\Modules\Shared\Bistrotic.ApplicationLayer.Common\Bistrotic.ApplicationLayer.Common.csproj", "{75D9FA28-DFB7-4458-80AA-845949887397}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.ApplicationLayer.Contracts", "src\Modules\Shared\Bistrotic.ApplicationLayer.Contracts\Bistrotic.ApplicationLayer.Contracts.csproj", "{375C54B5-8F53-46D9-8F14-2A879CBC88D5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bistrotic.ApplicationLayer.Projections", "src\Modules\Shared\Bistrotic.ApplicationLayer.Projections\Bistrotic.ApplicationLayer.Projections.csproj", "{4E5626ED-695D-4035-A90D-E235623A8E18}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{14C25416-F818-481C-8D00-F59815EA9284}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -633,6 +650,26 @@ Global
 		{38B20841-CF4E-44AE-97D9-5BA4D2C6D7A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38B20841-CF4E-44AE-97D9-5BA4D2C6D7A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38B20841-CF4E-44AE-97D9-5BA4D2C6D7A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34A121DA-6D33-471E-A523-5F1B697C1D85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34A121DA-6D33-471E-A523-5F1B697C1D85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34A121DA-6D33-471E-A523-5F1B697C1D85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34A121DA-6D33-471E-A523-5F1B697C1D85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D78CE164-E85B-4093-978B-D2C7043014ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D78CE164-E85B-4093-978B-D2C7043014ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D78CE164-E85B-4093-978B-D2C7043014ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D78CE164-E85B-4093-978B-D2C7043014ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75D9FA28-DFB7-4458-80AA-845949887397}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75D9FA28-DFB7-4458-80AA-845949887397}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75D9FA28-DFB7-4458-80AA-845949887397}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75D9FA28-DFB7-4458-80AA-845949887397}.Release|Any CPU.Build.0 = Release|Any CPU
+		{375C54B5-8F53-46D9-8F14-2A879CBC88D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{375C54B5-8F53-46D9-8F14-2A879CBC88D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{375C54B5-8F53-46D9-8F14-2A879CBC88D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{375C54B5-8F53-46D9-8F14-2A879CBC88D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E5626ED-695D-4035-A90D-E235623A8E18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E5626ED-695D-4035-A90D-E235623A8E18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E5626ED-695D-4035-A90D-E235623A8E18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E5626ED-695D-4035-A90D-E235623A8E18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -749,6 +786,12 @@ Global
 		{F0DDA358-F9BE-45E8-84DE-C8594E5E6052} = {FE4DD31D-7767-4574-BB79-8CF20786B7E6}
 		{5CF0DD6A-7328-4D6F-B9C6-935D8ED440D8} = {17634B5D-1BCA-4A1D-BA37-4293453A5CEC}
 		{38B20841-CF4E-44AE-97D9-5BA4D2C6D7A0} = {17634B5D-1BCA-4A1D-BA37-4293453A5CEC}
+		{F7D7955E-0C9C-4B8B-AD78-628B3103C899} = {5DEBE9B8-E56C-4E95-A592-9CB0194A8221}
+		{34A121DA-6D33-471E-A523-5F1B697C1D85} = {F7D7955E-0C9C-4B8B-AD78-628B3103C899}
+		{D78CE164-E85B-4093-978B-D2C7043014ED} = {F7D7955E-0C9C-4B8B-AD78-628B3103C899}
+		{75D9FA28-DFB7-4458-80AA-845949887397} = {F7D7955E-0C9C-4B8B-AD78-628B3103C899}
+		{375C54B5-8F53-46D9-8F14-2A879CBC88D5} = {F7D7955E-0C9C-4B8B-AD78-628B3103C899}
+		{4E5626ED-695D-4035-A90D-E235623A8E18} = {F7D7955E-0C9C-4B8B-AD78-628B3103C899}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA165E9D-6B6A-49BD-9879-44123F389ACD}

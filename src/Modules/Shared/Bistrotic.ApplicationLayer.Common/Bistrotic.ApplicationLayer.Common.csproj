@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<RootNamespace>Bistrotic.ApplicationLayer</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="Layouts\Application.razor" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Layouts\Application.razor">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Core\Domain\Bistrotic.Domain.Abstractions\Bistrotic.Domain.Abstractions.csproj" />
+		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.VisualComponents\Bistrotic.Infrastructure.VisualComponents.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Renderers\FluentUI\" />
+		<Folder Include="Renderers\FastUI\" />
+	</ItemGroup>
+</Project>

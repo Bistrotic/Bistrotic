@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<OutputType>Library</OutputType>
+		<RootNamespace>Bistrotic.ApplicationLayer</RootNamespace>
+		<ModuleName>ApplicationLayer</ModuleName>
+	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\Shared\Bistrotic.ApplicationLayer.Common\Bistrotic.ApplicationLayer.Common.csproj" />
+		<ProjectReference Include="..\..\Shared\Bistrotic.ApplicationLayer.Projections\Bistrotic.ApplicationLayer.Projections.csproj" />
+	</ItemGroup>
+</Project>

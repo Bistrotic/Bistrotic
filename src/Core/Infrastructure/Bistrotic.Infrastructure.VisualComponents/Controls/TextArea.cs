@@ -1,6 +1,6 @@
 ﻿namespace Bistrotic.Infrastructure.VisualComponents.Controls
 {
-    public class TextArea : BlazorComponent
+    public class TextArea : BlazorComponentWithContent
     {
     }
 }

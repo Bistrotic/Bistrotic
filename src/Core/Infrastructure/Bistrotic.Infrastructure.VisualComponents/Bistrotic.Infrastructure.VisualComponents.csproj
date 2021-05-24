@@ -15,4 +15,7 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="$(MicrosoftAspNetCoreComponentsWebVersion)" />
 	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Application\Bistrotic.Application.Abstractions\Bistrotic.Application.Abstractions.csproj" />
+	</ItemGroup>
 </Project>

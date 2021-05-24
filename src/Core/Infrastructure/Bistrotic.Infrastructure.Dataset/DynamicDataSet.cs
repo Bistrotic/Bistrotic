@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Data;
     using System.Dynamic;
+    using System.Globalization;
 
     public class DynamicDataSet
     {
@@ -38,7 +39,7 @@
             {
                 if (char.IsDigit(c) || char.IsLetter(c))
                 {
-                    normalized += (ToUpper) ? char.ToUpper(c) : c;
+                    normalized += (ToUpper) ? char.ToUpper(c, CultureInfo.InvariantCulture) : c;
                     ToUpper = false;
                 }
                 else

@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<RootNamespace>Bistrotic.ApplicationLayer</RootNamespace>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Grpc.Tools" Version="$(GrpcToolsVersion)">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="protobuf-net" Version="$(ProtobufNetVersion)" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Core\Application\Bistrotic.Application\Bistrotic.Application.csproj" />
+		<ProjectReference Include="..\Bistrotic.ApplicationLayer.Common\Bistrotic.ApplicationLayer.Common.csproj" />
+		<ProjectReference Include="..\Bistrotic.ApplicationLayer.Contracts\Bistrotic.ApplicationLayer.Contracts.csproj" />
+	</ItemGroup>
+</Project>

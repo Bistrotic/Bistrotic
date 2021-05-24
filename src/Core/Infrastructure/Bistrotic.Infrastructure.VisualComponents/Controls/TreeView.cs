@@ -1,6 +1,6 @@
 ﻿namespace Bistrotic.Infrastructure.VisualComponents.Controls
 {
-    public class TreeView : BlazorComponent
+    public class TreeView : BlazorComponentWithContent
     {
     }
 }

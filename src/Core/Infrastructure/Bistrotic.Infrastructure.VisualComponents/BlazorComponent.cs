@@ -1,12 +1,13 @@
 ﻿namespace Bistrotic.Infrastructure.VisualComponents
 {
-    using Bistrotic.Infrastructure.VisualComponents.Themes;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using Bistrotic.Infrastructure.VisualComponents.Renderers;
 
     using Microsoft.AspNetCore.Components;
     using Microsoft.AspNetCore.Components.Rendering;
-
-    using System.Collections.Generic;
-    using System.Linq;
 
     public class BlazorComponent : ComponentBase
     {
@@ -15,7 +16,12 @@
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
         [Inject]
-        protected IComponentRenderer ComponentRenderer { get; init; }
+        protected IComponentRendererProvider RendererProvider { get; init; }
+
+        public int RenderContent(int sequence, RenderTreeBuilder builder)
+        {
+            throw new NotImplementedException();
+        }
 
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
@@ -59,10 +65,20 @@
         /// </summary>
         [Parameter] public object? Tag { get; set; }
 
+        [CascadingParameter] public string ThemeName { get; set; } = default!;
+
+
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
-            base.BuildRenderTree(builder);
-            ComponentRenderer.BuildRenderTree(0, this, builder);
+            var renderer = RendererProvider.GetRenderer(ThemeName, GetType());
+            if (renderer == null)
+            {
+                base.BuildRenderTree(builder);
+            }
+            else
+            {
+                renderer.BuildRenderTree(this, builder);
+            }
         }
     }
 }

@@ -21,18 +21,13 @@
                 // these are the defaults
                 q.UseSimpleTypeLoader();
                 q.UseInMemoryStore();
-                q.UseDefaultThreadPool(tp =>
-                {
-                    tp.MaxConcurrency = 10;
-                });
+                q.UseDefaultThreadPool(tp => tp.MaxConcurrency = 10);
             });
 
             // ASP.NET Core hosting
             services.AddQuartzServer(options =>
-            {
                 // when shutting down we want jobs to complete gracefully
-                options.WaitForJobsToComplete = true;
-            });
+                options.WaitForJobsToComplete = true);
             return services;
         }
     }

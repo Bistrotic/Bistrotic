@@ -83,9 +83,9 @@ namespace Bistrotic.Emails.Server.Tests
                     It.Is<string>(p => p == receive.EmailId),
                     It.Is<IRepositoryMetadata>(p => p.MessageId == "msgid123" && p.UserName == "test user"),
                     It.Is<IRepositoryData<IEmailState>>(p =>
-                        p.State.CopyToRecipients.Count() == receive.CopyToRecipients.Count() &&
-                        p.State.ToRecipients.Count() == receive.ToRecipients.Count() &&
-                        p.State.Attachments.Count() == receive.Attachments.Count() &&
+                        p.State.CopyToRecipients.Count == receive.CopyToRecipients.Count() &&
+                        p.State.ToRecipients.Count == receive.ToRecipients.Count() &&
+                        p.State.Attachments.Count == receive.Attachments.Count() &&
                         p.State.Body == receive.Body &&
                         p.State.Recipient == receive.Recipient &&
                         p.State.Subject == receive.Subject &&

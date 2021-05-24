@@ -6,7 +6,7 @@
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<Deterministic>true</Deterministic>
 		<IsPackable>false</IsPackable>
-		<NoWarn>CA1014;RCS1090;$(NoWarn)</NoWarn>
+		<NoWarn>IDE0058;CA1014;RCS1090;$(NoWarn)</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>

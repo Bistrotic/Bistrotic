@@ -13,7 +13,7 @@ namespace Bistrotic.Application.Client.Exceptions
         {
         }
 
-        public QueryResultNullException(IQuery query, string? message = null, Exception? innerException = null)
+        public QueryResultNullException(object query, string? message = null, Exception? innerException = null)
             : base($"The query '{query.GetType().Name}' failed. The result object is null.{message}\n{JsonSerializer.Serialize(query)}", innerException)
         {
         }

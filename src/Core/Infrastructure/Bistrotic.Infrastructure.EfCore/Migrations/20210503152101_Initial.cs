@@ -1,8 +1,10 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿#pragma warning disable IDE0053 // Use expression body for lambda expressions
 
 namespace Bistrotic.Infrastructure.EfCore.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
     public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

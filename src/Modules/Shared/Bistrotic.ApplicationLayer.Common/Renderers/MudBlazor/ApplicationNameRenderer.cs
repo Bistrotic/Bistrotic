@@ -1,21 +1,18 @@
 ﻿namespace Bistrotic.ApplicationLayer.Renderers.MudBlazor
 {
     using Bistrotic.ApplicationLayer.Controls;
-    using Bistrotic.Infrastructure.VisualComponents.Controls;
+    using Bistrotic.Infrastructure.VisualComponents;
+    using Bistrotic.Infrastructure.VisualComponents.MudBlazor.Renderers;
+
+    using global::MudBlazor;
 
     using Microsoft.AspNetCore.Components.Rendering;
 
-    using MudBlazor;
-
-    internal class ApplicationNameRenderer : MudBlazorComponentRenderer<ApplicationName>
+    internal class ApplicationNameRenderer : MudComponentBaseRenderer<ApplicationName, MudText>
     {
-        public ApplicationNameRenderer(ApplicationName component, RenderTreeBuilder builder) : base(component, builder)
+        public override int RenderContent(int sequence, BlazorComponent blazorComponent, RenderTreeBuilder builder)
         {
-        }
-
-        public override int RenderContent(int sequence)
-        {
-            _builder.AddContent(sequence++, _component.Name);
+            builder.AddContent(sequence++, ((ApplicationName)blazorComponent).Name);
             return sequence;
         }
     }

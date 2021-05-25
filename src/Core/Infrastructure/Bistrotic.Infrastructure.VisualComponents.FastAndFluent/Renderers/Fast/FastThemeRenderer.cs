@@ -5,9 +5,9 @@
 
     using Microsoft.AspNetCore.Components.Rendering;
 
-    public class FluentThemeRenderer : FastComponentRendererBase<Theme>
+    public class FastThemeRenderer : FastComponentRendererBase<Theme>
     {
-        public FluentThemeRenderer() : base("fast-design-system-provider")
+        public FastThemeRenderer() : base("fast-design-system-provider")
         {
 
         }

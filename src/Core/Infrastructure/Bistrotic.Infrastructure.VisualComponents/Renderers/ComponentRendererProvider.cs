@@ -3,20 +3,27 @@ using System.Collections.Generic;
 
 namespace Bistrotic.Infrastructure.VisualComponents.Renderers
 {
-    public class ComponentRendererProvider : Dictionary<Type, Func<IComponentRenderer>>, IComponentRendererProvider
+    public class ComponentRendererProvider : IComponentRendererProvider
     {
-        public ComponentRendererProvider(Dictionary<Type, Func<IComponentRenderer>> renderers)
-        {
+        Dictionary<string, Dictionary<Type, Func<IComponentRenderer>>> _renderers;
 
+        public ComponentRendererProvider(Dictionary<string, Dictionary<Type, Func<IComponentRenderer>>> renderers)
+        {
+            _renderers = renderers;
         }
-        public IComponentRenderer<TComponent>? GetRenderer<TComponent>() where TComponent : BlazorComponent
-            => (IComponentRenderer<TComponent>?)GetRenderer(typeof(TComponent));
+        public IComponentRenderer<TComponent>? GetRenderer<TComponent>(string themeName) where TComponent : BlazorComponent
+            => (IComponentRenderer<TComponent>?)GetRenderer(themeName, typeof(TComponent));
 
-        public IComponentRenderer? GetRenderer(Type componentType)
+        public IComponentRenderer? GetRenderer(string themeName, Type componentType)
         {
-            TryGetValue(componentType, out Func<IComponentRenderer>? renderer);
-            return renderer?.Invoke();
+            if (_renderers.TryGetValue(themeName, out Dictionary<Type, Func<IComponentRenderer>>? theme))
+            {
+                if (theme.TryGetValue(componentType, out Func<IComponentRenderer>? renderer))
+                {
+                    return renderer.Invoke();
+                }
+            }
+            return null;
         }
     }
-}           
-  
+}

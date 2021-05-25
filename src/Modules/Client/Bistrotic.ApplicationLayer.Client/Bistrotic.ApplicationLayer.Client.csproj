@@ -6,5 +6,6 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\Shared\Bistrotic.ApplicationLayer.Common\Bistrotic.ApplicationLayer.Common.csproj" />
+		<ProjectReference Include="..\..\Shared\Bistrotic.ApplicationLayer.Contracts\Bistrotic.ApplicationLayer.Contracts.csproj" />
 	</ItemGroup>
 </Project>

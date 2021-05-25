@@ -34,5 +34,7 @@
         {
             Render(0, blazorComponent, builder);
         }
+
+        public string ThemeName => nameof(MudBlazor);
     }
 }

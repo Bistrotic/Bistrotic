@@ -21,7 +21,6 @@
     using Bistrotic.Infrastructure.Ioc.Commands;
     using Bistrotic.Infrastructure.Ioc.Events;
     using Bistrotic.Infrastructure.Ioc.Queries;
-    using Bistrotic.Infrastructure.VisualComponents.Themes;
     using Bistrotic.Infrastructure.WebServer.Controllers;
     using Bistrotic.Infrastructure.WebServer.Exceptions;
     using Bistrotic.Infrastructure.WebServer.Modules;
@@ -180,8 +179,8 @@
             services.AddTransient<ICommandBus, IocCommandBus>();
             services.AddTransient<IEventBus, IocEventBus>();
             services.AddSingleton<IMenuService, MenuService>();
-            services.AddSingleton<IIconRenderer, LineAwesomeIconRenderer>();
-            services.AddSingleton<IComponentRenderer, MudBlazorRenderer>();
+//            services.AddSingleton<IIconRenderer, LineAwesomeIconRenderer>();
+//            services.AddSingleton<IComponentRenderer, MudBlazorRenderer>();
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddMudServices();
         }

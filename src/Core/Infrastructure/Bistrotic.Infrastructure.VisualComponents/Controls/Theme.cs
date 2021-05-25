@@ -7,7 +7,7 @@
     {
         [Parameter] public string Name { get; set; } = default!;
 
-        public int RenderContent(int sequence, RenderTreeBuilder builder)
+        public override int RenderContent(int sequence, RenderTreeBuilder builder)
         {
             if (ChildContent != null)
             {

@@ -1,0 +1,18 @@
+﻿<Theme>
+	<ApplicationLayout>
+		<ApplicationBar>
+			<MenuAnchor/>
+			<Spacer/>
+			<ApplicationName/>
+			<ApplicationSearch/>
+		</ApplicationBar>
+		<ApplicationMenu/>
+		<ApplicationContent>
+			@ChildContent
+		</ApplicationContent>
+	</ApplicationLayout>
+</Theme>
+@code {
+	[Parameter]
+	public RenderFragment? ChildContent { get; set; }
+}

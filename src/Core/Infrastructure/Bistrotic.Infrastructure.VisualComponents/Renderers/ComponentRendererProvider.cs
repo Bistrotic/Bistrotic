@@ -5,25 +5,35 @@ namespace Bistrotic.Infrastructure.VisualComponents.Renderers
 {
     public class ComponentRendererProvider : IComponentRendererProvider
     {
-        Dictionary<string, Dictionary<Type, Func<IComponentRenderer>>> _renderers;
+        Dictionary<string, Dictionary<Type, IComponentRenderer>> _renderers;
 
-        public ComponentRendererProvider(Dictionary<string, Dictionary<Type, Func<IComponentRenderer>>> renderers)
+        public ComponentRendererProvider(IEnumerable<IComponentRenderer> renderers)
         {
-            _renderers = renderers;
+            _renderers = new ();
+            foreach(var renderer in renderers)
+            {
+                if (!_renderers.TryGetValue(renderer.ThemeName, out var theme))
+                {
+                    theme = new();
+                    _renderers.Add(renderer.ThemeName, theme);
+                }
+                theme.Add(renderer.ControlType, renderer);
+            }
         }
         public IComponentRenderer<TComponent>? GetRenderer<TComponent>(string themeName) where TComponent : BlazorComponent
             => (IComponentRenderer<TComponent>?)GetRenderer(themeName, typeof(TComponent));
 
         public IComponentRenderer? GetRenderer(string themeName, Type componentType)
         {
-            if (_renderers.TryGetValue(themeName, out Dictionary<Type, Func<IComponentRenderer>>? theme))
+            if (_renderers.TryGetValue(themeName, out Dictionary<Type, IComponentRenderer>? theme))
             {
-                if (theme.TryGetValue(componentType, out Func<IComponentRenderer>? renderer))
+                if (theme.TryGetValue(componentType, out IComponentRenderer? renderer))
                 {
-                    return renderer.Invoke();
+                    return renderer;
                 }
             }
             return null;
         }
+ 
     }
 }

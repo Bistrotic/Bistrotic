@@ -1,9 +1,10 @@
 ﻿namespace Bistrotic.Infrastructure.VisualComponents.Renderers
 {
+    using System;
 
     using Microsoft.AspNetCore.Components.Rendering;
 
-    public abstract class ComponentRendererBase<TComponent> : IComponentRenderer<TComponent>
+    public abstract record ComponentRendererBase<TComponent> : IComponentRenderer<TComponent>
         where TComponent : BlazorComponent
     {
         public ComponentRendererBase(string themeName, string? componentName = null)
@@ -39,5 +40,7 @@
         {
             return sequence;
         }
+
+        public Type ControlType => typeof(TComponent);
     }
 }

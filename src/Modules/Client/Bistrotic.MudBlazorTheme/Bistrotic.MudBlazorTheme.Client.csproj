@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<RootNamespace>Bistrotic.MudBlazorTheme</RootNamespace>
+		<ModuleName>MudBlazorTheme</ModuleName>
+	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\Shared\Bistrotic.MudBlazorTheme.Common\Bistrotic.MudBlazorTheme.Common.csproj" />
+		<ProjectReference Include="..\..\Shared\Bistrotic.MudBlazorTheme.Contracts\Bistrotic.MudBlazorTheme.Contracts.csproj" />
+	</ItemGroup>
+</Project>

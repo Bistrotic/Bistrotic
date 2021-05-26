@@ -23,6 +23,7 @@
     using Bistrotic.Infrastructure.Ioc.Queries;
     using Bistrotic.Infrastructure.WebServer.Controllers;
     using Bistrotic.Infrastructure.WebServer.Exceptions;
+    using Bistrotic.Infrastructure.WebServer.Helpers;
     using Bistrotic.Infrastructure.WebServer.Modules;
     using Bistrotic.Infrastructure.WebServer.Settings;
     using Bistrotic.MexicanDigitalInvoice;
@@ -182,7 +183,7 @@
 //            services.AddSingleton<IIconRenderer, LineAwesomeIconRenderer>();
 //            services.AddSingleton<IComponentRenderer, MudBlazorRenderer>();
             services.AddDatabaseDeveloperPageExceptionFilter();
-            services.AddMudServices();
+            services.AddWebServer();
         }
 
         internal static Dictionary<Type, Func<IConfiguration, IWebHostEnvironment, IServerModule>> GetModuleFactory()

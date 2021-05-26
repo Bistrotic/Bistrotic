@@ -8,7 +8,7 @@
 
     using Microsoft.AspNetCore.Components.Rendering;
 
-    internal class ApplicationNameRenderer : MudComponentBaseRenderer<ApplicationName, MudText>
+    internal sealed record ApplicationNameRenderer : MudComponentBaseRenderer<ApplicationName, MudText>
     {
         public override int RenderContent(int sequence, BlazorComponent blazorComponent, RenderTreeBuilder builder)
         {

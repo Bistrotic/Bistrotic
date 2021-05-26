@@ -21,5 +21,6 @@
 		<ProjectReference Include="..\Bistrotic.Infrastructure.Abstractions\Bistrotic.Infrastructure.Abstractions.csproj" />
 		<ProjectReference Include="..\Bistrotic.Infrastructure.Host\Bistrotic.Infrastructure.Host.csproj" />
 		<ProjectReference Include="..\Bistrotic.Infrastructure.Modules\Bistrotic.Infrastructure.Modules.csproj" />
+		<ProjectReference Include="..\Bistrotic.Infrastructure.VisualComponents\Bistrotic.Infrastructure.VisualComponents.csproj" />
 	</ItemGroup>
 </Project>

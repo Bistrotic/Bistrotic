@@ -2,8 +2,8 @@
 
 namespace Bistrotic.MudBlazorTheme.Services
 {
-    public interface IApplicationNameService
+    public interface IMudBlazorThemeService
     {
-        Task<string> GetName();
+        Task<string> GetMudBlazorThemeSetup();
     }
 }

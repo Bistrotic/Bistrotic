@@ -10,8 +10,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.InMemory\Bistrotic.Infrastructure.InMemory.csproj" />
 		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.Ioc\Bistrotic.Infrastructure.Ioc.csproj" />
-		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.VisualComponents.FastAndFluent\Bistrotic.Infrastructure.VisualComponents.FastAndFluent.csproj" />
-		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.VisualComponents.MudBlazor\Bistrotic.Infrastructure.VisualComponents.MudBlazor.csproj" />
 		<ProjectReference Include="..\..\Modules\Server\Bistrotic.DataIntegrations.Server\Bistrotic.DataIntegrations.Server.csproj" />
 		<ProjectReference Include="..\..\Modules\Server\Bistrotic.Emails.Server\Bistrotic.Emails.Server.csproj" />
 		<ProjectReference Include="..\..\Modules\Server\Bistrotic.EventStores.Server\Bistrotic.EventStores.Server.csproj" />

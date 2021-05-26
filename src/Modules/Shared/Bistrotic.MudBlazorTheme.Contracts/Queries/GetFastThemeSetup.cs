@@ -6,7 +6,10 @@
 
     [ProtoContract]
     [Query]
-    public sealed class GetApplicationName
+    public sealed class GetMudBlazorThemeSetup
     {
+        [ProtoMember(1)]
+        public string UserName { get; set; } = string.Empty;
+
     }
 }

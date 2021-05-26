@@ -17,7 +17,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\Core\Domain\Bistrotic.Domain.Abstractions\Bistrotic.Domain.Abstractions.csproj" />
-		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.VisualComponents.MudBlazor\Bistrotic.Infrastructure.VisualComponents.MudBlazor.csproj" />
 		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.VisualComponents\Bistrotic.Infrastructure.VisualComponents.csproj" />
 	</ItemGroup>
 </Project>

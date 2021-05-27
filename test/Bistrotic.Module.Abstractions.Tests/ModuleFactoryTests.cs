@@ -23,7 +23,7 @@ namespace Bistrotic.Module.Abstractions.Tests
         [Fact]
         public async Task GetModules_FromOneLoaderAndOneActivator()
         {
-            IConfiguration configuration = (new Mock<IConfiguration>()).Object;
+            IConfiguration configuration = new Mock<IConfiguration>().Object;
             var factory = new ModuleFactory(
                 new List<Func<IModuleDefinitionLoader>> {
                 () => new FakeModuleDefinitionLoader1()
@@ -39,7 +39,7 @@ namespace Bistrotic.Module.Abstractions.Tests
         [Fact]
         public async Task GetModules_FromTwoActivators()
         {
-            IConfiguration configuration = (new Mock<IConfiguration>()).Object;
+            IConfiguration configuration = new Mock<IConfiguration>().Object;
             var factory = new ModuleFactory(
                 new List<Func<IModuleDefinitionLoader>> {
                 () => new FakeModuleDefinitionLoader1(),
@@ -56,7 +56,7 @@ namespace Bistrotic.Module.Abstractions.Tests
         [Fact]
         public Task GetModules_WithCircularDependency()
         {
-            IConfiguration configuration = (new Mock<IConfiguration>()).Object;
+            IConfiguration configuration = new Mock<IConfiguration>().Object;
             var factory = new ModuleFactory(
                 new List<Func<IModuleDefinitionLoader>> {
                 () => new FakeModuleDefinitionWithCircularDependenciesLoader(),
@@ -75,7 +75,7 @@ namespace Bistrotic.Module.Abstractions.Tests
         [Fact]
         public async Task GetModules_WithDependencies()
         {
-            IConfiguration configuration = (new Mock<IConfiguration>()).Object;
+            IConfiguration configuration = new Mock<IConfiguration>().Object;
             var factory = new ModuleFactory(
                 new List<Func<IModuleDefinitionLoader>> {
                 () => new FakeModuleDefinitionWithDependenciesLoader(),
@@ -96,7 +96,7 @@ namespace Bistrotic.Module.Abstractions.Tests
         [Fact]
         public async Task GetModules_WithDuplicateActivations()
         {
-            IConfiguration configuration = (new Mock<IConfiguration>()).Object;
+            IConfiguration configuration = new Mock<IConfiguration>().Object;
             var factory = new ModuleFactory(
                 new List<Func<IModuleDefinitionLoader>> {
                 () => new FakeModuleDefinitionLoader1()
@@ -113,7 +113,7 @@ namespace Bistrotic.Module.Abstractions.Tests
         [Fact]
         public Task GetModules_WithDuplicateModuleDefinitions()
         {
-            IConfiguration configuration = (new Mock<IConfiguration>()).Object;
+            IConfiguration configuration = new Mock<IConfiguration>().Object;
             var factory = new ModuleFactory(
                 new List<Func<IModuleDefinitionLoader>> {
                 () => new FakeDuplicatesModuleDefinitionLoader(),
@@ -132,7 +132,7 @@ namespace Bistrotic.Module.Abstractions.Tests
         [Fact]
         public async Task GetModules_WithPriority()
         {
-            IConfiguration configuration = (new Mock<IConfiguration>()).Object;
+            IConfiguration configuration = new Mock<IConfiguration>().Object;
             var factory = new ModuleFactory(
                 new List<Func<IModuleDefinitionLoader>> {
                 () => new FakeModuleDefinitionWithPrioriryLoader(),

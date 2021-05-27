@@ -5,12 +5,12 @@ namespace Bistrotic.Infrastructure.VisualComponents.Renderers
 {
     public class ComponentRendererProvider : IComponentRendererProvider
     {
-        Dictionary<string, Dictionary<Type, IComponentRenderer>> _renderers;
+        private readonly Dictionary<string, Dictionary<Type, IComponentRenderer>> _renderers;
 
         public ComponentRendererProvider(IEnumerable<IComponentRenderer> renderers)
         {
-            _renderers = new ();
-            foreach(var renderer in renderers)
+            _renderers = new();
+            foreach (var renderer in renderers)
             {
                 if (!_renderers.TryGetValue(renderer.ThemeName, out var theme))
                 {
@@ -20,6 +20,7 @@ namespace Bistrotic.Infrastructure.VisualComponents.Renderers
                 theme.Add(renderer.ControlType, renderer);
             }
         }
+
         public IComponentRenderer<TComponent>? GetRenderer<TComponent>(string themeName) where TComponent : BlazorComponent
             => (IComponentRenderer<TComponent>?)GetRenderer(themeName, typeof(TComponent));
 
@@ -34,6 +35,5 @@ namespace Bistrotic.Infrastructure.VisualComponents.Renderers
             }
             return null;
         }
- 
     }
 }

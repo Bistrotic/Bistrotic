@@ -21,6 +21,8 @@
 		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.VisualComponents\Bistrotic.Infrastructure.VisualComponents.csproj" />
 		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.BlazorClient\Bistrotic.Infrastructure.BlazorClient.csproj" />
 		<ProjectReference Include="..\..\Modules\Client\Bistrotic.ApplicationLayer.Client\Bistrotic.ApplicationLayer.Client.csproj" />
+		<ProjectReference Include="..\..\Modules\Client\Bistrotic.FastTheme\Bistrotic.FastTheme.Client.csproj" />
+		<ProjectReference Include="..\..\Modules\Client\Bistrotic.MudBlazorTheme\Bistrotic.MudBlazorTheme.Client.csproj" />
 		<ProjectReference Include="..\..\Modules\Client\Bistrotic.Roles.Client\Bistrotic.Roles.Client.csproj" />
 		<ProjectReference Include="..\..\Modules\Client\Bistrotic.OpenIdDict.Client\Bistrotic.OpenIdDict.Client.csproj" />
 		<ProjectReference Include="..\..\Modules\Client\Bistrotic.Units.Client\Bistrotic.Units.Client.csproj" />

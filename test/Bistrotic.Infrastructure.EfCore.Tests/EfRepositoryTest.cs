@@ -38,7 +38,7 @@ namespace Bistrotic.Infrastructure.EfCore.Tests
 
         protected override IRepository CreateNewRepository()
         {
-            StateStoreDbContext context = new StateStoreDbContext(SqliteInMemory.CreateOptions<StateStoreDbContext>());
+            StateStoreDbContext context = new(SqliteInMemory.CreateOptions<StateStoreDbContext>());
             context.Database.EnsureCreated();
             return new EfRepository<IDummyState, DummyState>(context, new Mock<IEventBus>().Object, new Mock<Logger<EfRepository<IDummyState, DummyState>>>().Object);
         }

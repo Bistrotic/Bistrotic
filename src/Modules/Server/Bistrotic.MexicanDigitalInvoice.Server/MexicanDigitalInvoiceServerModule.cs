@@ -18,7 +18,9 @@
 
     public sealed class MexicanDigitalInvoiceServerModule : ServerModule
     {
+#pragma warning disable IDE0052 // Remove unread private members
         private readonly MexicanDigitalInvoiceSettings _settings;
+#pragma warning restore IDE0052 // Remove unread private members
 
         public MexicanDigitalInvoiceServerModule(IConfiguration configuration, IWebHostEnvironment environment)
             : base(configuration, environment)

@@ -10,7 +10,7 @@ namespace Bistrotic.UblDocuments.Helpers
 
         public static DateTimeOffset ToDateTime(this (string date, string? time) dateTime)
         {
-            DateTime d = new DateTime(1, 1, 1);
+            DateTime d = new(1, 1, 1);
             if (string.IsNullOrWhiteSpace(dateTime.date))
             {
                 if (string.IsNullOrWhiteSpace(dateTime.time))

@@ -50,7 +50,6 @@
         }
 
 #pragma warning disable CA1822 // Mark members as static
-
         public void Apply(UserRenameAttemptFailed _)
 #pragma warning restore CA1822 // Mark members as static
         {

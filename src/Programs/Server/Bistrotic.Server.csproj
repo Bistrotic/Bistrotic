@@ -10,6 +10,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.InMemory\Bistrotic.Infrastructure.InMemory.csproj" />
 		<ProjectReference Include="..\..\Core\Infrastructure\Bistrotic.Infrastructure.Ioc\Bistrotic.Infrastructure.Ioc.csproj" />
+		<ProjectReference Include="..\..\Modules\Server\Bistrotic.ApplicationLayer.Server\Bistrotic.ApplicationLayer.Server.csproj" />
 		<ProjectReference Include="..\..\Modules\Server\Bistrotic.DataIntegrations.Server\Bistrotic.DataIntegrations.Server.csproj" />
 		<ProjectReference Include="..\..\Modules\Server\Bistrotic.Emails.Server\Bistrotic.Emails.Server.csproj" />
 		<ProjectReference Include="..\..\Modules\Server\Bistrotic.EventStores.Server\Bistrotic.EventStores.Server.csproj" />

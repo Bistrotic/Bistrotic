@@ -21,6 +21,6 @@
         {
         }
 
-        public static implicit operator Etag(string value) => new Etag(value);
+        public static implicit operator Etag(string value) => new (value);
     }
 }

@@ -5,7 +5,18 @@
 
     public class Theme : BlazorComponentWithContent
     {
-        [Parameter] public string Name { get; set; } = default!;
+        private string _name = string.Empty;
+
+        [Parameter]
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                _name = value;
+                ThemeName = _name;
+            }
+        }
 
         public override int RenderContent(int sequence, RenderTreeBuilder builder)
         {
@@ -22,6 +33,5 @@
             }
             return sequence;
         }
-
     }
 }

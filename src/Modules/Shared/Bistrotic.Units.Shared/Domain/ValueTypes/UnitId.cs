@@ -23,6 +23,6 @@ namespace Bistrotic.Units.Domain.ValueTypes
         {
         }
 
-        public static implicit operator UnitId(string value) => new UnitId(value);
+        public static implicit operator UnitId(string value) => new (value);
     }
 }

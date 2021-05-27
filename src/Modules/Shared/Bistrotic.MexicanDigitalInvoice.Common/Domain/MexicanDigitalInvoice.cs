@@ -1,5 +1,6 @@
 ﻿namespace Bistrotic.MexicanDigitalInvoice.Domain
 {
+    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -9,12 +10,12 @@
 
     public class MexicanDigitalInvoice
     {
-        private readonly string _id;
         private readonly IMexicanDigitalInvoiceState _state;
 
         public MexicanDigitalInvoice(string id, IMexicanDigitalInvoiceState state)
         {
-            _id = id;
+            if (string.IsNullOrWhiteSpace(id))
+                throw new ArgumentNullException(nameof(id));
             _state = state;
         }
 

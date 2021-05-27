@@ -23,6 +23,6 @@ namespace Bistrotic.Roles.Domain.ValueTypes
         {
         }
 
-        public static implicit operator RoleId(string value) => new RoleId(value);
+        public static implicit operator RoleId(string value) => new(value);
     }
 }

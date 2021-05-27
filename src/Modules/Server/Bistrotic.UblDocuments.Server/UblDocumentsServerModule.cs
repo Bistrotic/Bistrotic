@@ -18,7 +18,9 @@
 
     public sealed class UblDocumentsServerModule : ServerModule
     {
+#pragma warning disable IDE0052 // Remove unread private members
         private readonly UblDocumentsSettings _settings;
+#pragma warning restore IDE0052 // Remove unread private members
 
         public UblDocumentsServerModule(IConfiguration configuration, IWebHostEnvironment environment)
             : base(configuration, environment)

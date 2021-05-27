@@ -16,7 +16,7 @@
         {
         }
 
-        public static implicit operator TestId(string value) => new TestId(value);
+        public static implicit operator TestId(string value) => new (value);
     }
 
     public class TestIdCommand

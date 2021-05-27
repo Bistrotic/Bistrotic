@@ -32,17 +32,10 @@
                 .Build()
                 .GetSettings<MicrosoftGraphAuthenticationSettings>();
 
-        private GraphAuthenticationService InitializeService()
-        {
-            if (
-                string.IsNullOrWhiteSpace(Settings.TenantId) ||
+        private GraphAuthenticationService InitializeService() => string.IsNullOrWhiteSpace(Settings.TenantId) ||
                 string.IsNullOrWhiteSpace(Settings.ClientId) ||
                 string.IsNullOrWhiteSpace(Settings.ClientSecret)
-                )
-            {
-                throw new Exception("Configuration error");
-            }
-            return new GraphAuthenticationService(Settings.TenantId, Settings.ClientId, Settings.ClientSecret, Settings.Authority);
-        }
+                ? throw new Exception("Configuration error")
+                : new GraphAuthenticationService(Settings.TenantId, Settings.ClientId, Settings.ClientSecret, Settings.Authority);
     }
 }

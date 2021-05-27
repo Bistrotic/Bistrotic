@@ -66,7 +66,6 @@
 
         [CascadingParameter] public string ThemeName { get; set; } = default!;
 
-
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
             var renderer = RendererProvider.GetRenderer(ThemeName, GetType());

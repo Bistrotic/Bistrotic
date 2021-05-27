@@ -5,7 +5,6 @@
     using System.Threading.Tasks;
 
     using Bistrotic.Application.Commands;
-    using Bistrotic.Application.Events;
     using Bistrotic.Application.Exceptions;
     using Bistrotic.Application.Helpers;
     using Bistrotic.Application.Messages;
@@ -19,13 +18,11 @@
     [CommandHandler(Command = typeof(SubmitDataIntegration))]
     public class SubmitDataIntegrationHandler : ICommandHandler<SubmitDataIntegration>
     {
-        private readonly IEventBus _eventBus;
         private readonly ILogger<NormalizeDataIntegrationHandler> _logger;
         private readonly IRepository<IDataIntegrationState> _repository;
 
-        public SubmitDataIntegrationHandler(IEventBus eventBus, IRepository<IDataIntegrationState> repository, ILogger<NormalizeDataIntegrationHandler> logger)
+        public SubmitDataIntegrationHandler(IRepository<IDataIntegrationState> repository, ILogger<NormalizeDataIntegrationHandler> logger)
         {
-            _eventBus = eventBus;
             _repository = repository;
             _logger = logger;
         }

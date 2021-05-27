@@ -3,13 +3,15 @@ namespace Bistrotic.Client
     using System;
     using System.Threading.Tasks;
 
+    using Bistrotic.ApplicationLayer.Client;
+    using Bistrotic.FastTheme.Client;
     using Bistrotic.Infrastructure;
     using Bistrotic.Infrastructure.BlazorClient;
     using Bistrotic.Infrastructure.Client;
+    using Bistrotic.MudBlazorTheme.Client;
 
     using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
     using Microsoft.Extensions.DependencyInjection;
-
 
     public static class Program
     {
@@ -27,12 +29,13 @@ namespace Bistrotic.Client
 
             builder.Services.AddBistroticClient(builder.HostEnvironment, typeof(Program).Namespace ?? string.Empty, BistroticConstants.ServerApiName);
             builder.Logging.AddBistroticClient();
-
+            builder.AddFastThemeClient();
+            builder.AddMudBlazorThemeClient();
+            builder.AddApplicationLayerClient();
             builder.Services.AddSingleton<IMenuService, MenuService>();
             //builder.Services.AddSingleton<IIconRenderer, LineAwesomeIconRenderer>();
             //builder.Services.AddSingleton<IComponentRenderer, MudBlazorRenderer>();
             await builder.Build().RunAsync();
-            Console.WriteLine("Main ended");
         }
     }
 }

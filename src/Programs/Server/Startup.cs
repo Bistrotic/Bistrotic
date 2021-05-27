@@ -9,6 +9,7 @@
     using Bistrotic.Application.Commands;
     using Bistrotic.Application.Events;
     using Bistrotic.Application.Queries;
+    using Bistrotic.ApplicationLayer;
     using Bistrotic.Client;
     using Bistrotic.DataIntegrations;
     using Bistrotic.Emails;
@@ -180,8 +181,8 @@
             services.AddTransient<ICommandBus, IocCommandBus>();
             services.AddTransient<IEventBus, IocEventBus>();
             services.AddSingleton<IMenuService, MenuService>();
-//            services.AddSingleton<IIconRenderer, LineAwesomeIconRenderer>();
-//            services.AddSingleton<IComponentRenderer, MudBlazorRenderer>();
+            // services.AddSingleton<IIconRenderer, LineAwesomeIconRenderer>();
+            // services.AddSingleton<IComponentRenderer, MudBlazorRenderer>();
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddWebServer();
         }
@@ -205,7 +206,8 @@
                 { typeof(WorkItemsServerModule), (config, env) => new WorkItemsServerModule(config, env) },
                 { typeof(SalesHistoryServerModule), (config, env) => new SalesHistoryServerModule(config, env) },
                 { typeof(FastThemeServerModule), (config, env) => new FastThemeServerModule(config, env) },
-                { typeof(MudBlazorThemeServerModule), (config, env) => new MudBlazorThemeServerModule(config, env) }
+                { typeof(MudBlazorThemeServerModule), (config, env) => new MudBlazorThemeServerModule(config, env) },
+                { typeof(ApplicationLayerServerModule), (config, env) => new ApplicationLayerServerModule(config, env) }
             };
         }
 

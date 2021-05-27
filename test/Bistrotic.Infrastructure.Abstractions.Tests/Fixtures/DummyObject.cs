@@ -1,9 +1,5 @@
-﻿#pragma warning disable RCS1169 // Make field read-only.
-#pragma warning disable S1144 // Unused private types or members should be removed
-#pragma warning disable S2933 // Fields that are only assigned in the constructor should be "readonly"
-#pragma warning disable IDE0044 // Add readonly modifier
+﻿#pragma warning disable IDE0044 // Add readonly modifier
 #pragma warning disable IDE0051 // Remove unused private members
-#pragma warning disable RCS1213 // Remove unused member declaration.
 #pragma warning disable CS0414
 
 namespace Bistrotic.Infrastructure.Abstractions.Tests.Fixtures

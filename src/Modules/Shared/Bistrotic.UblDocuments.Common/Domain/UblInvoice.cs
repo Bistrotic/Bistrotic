@@ -1,20 +1,23 @@
 ﻿namespace Bistrotic.UblDocuments.Domain
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
     using Bistrotic.UblDocuments.Domain.States;
     using Bistrotic.UblDocuments.Events;
     using Bistrotic.UblDocuments.Types.Aggregates;
 
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-
     public class UblInvoice
     {
-        private readonly string _id;
         private readonly IUblInvoiceState _state;
 
         public UblInvoice(string id, IUblInvoiceState state)
         {
-            _id = id;
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
             _state = state;
         }
 

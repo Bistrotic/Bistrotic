@@ -40,13 +40,13 @@
             CheckEqual(await repository.GetMetadata(nameof(state3)), meta3);
             CheckEqual(await repository.GetMetadata(nameof(state4)), meta4);
         }
-        private void CheckEqual(DummyState state1, DummyState state2)
+        private static void CheckEqual(DummyState state1, DummyState state2)
         {
             state2.Value1.Should().Be(state1.Value1);
             state2.Value2.Should().Be(state1.Value2);
             state2.Value3.Should().Be(state1.Value3);
         }
-        private void CheckEqual(IRepositoryStateMetadata meta, IRepositoryMetadata createMeta, IRepositoryMetadata updateMeta = null)
+        private static void CheckEqual(IRepositoryStateMetadata meta, IRepositoryMetadata createMeta, IRepositoryMetadata updateMeta = null)
         {
             meta.CreatedByUser.Should().Be(createMeta.UserName);
             meta.CreatedUtcDateTime.Should().Be(createMeta.SystemUtcDateTime);

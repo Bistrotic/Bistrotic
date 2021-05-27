@@ -17,6 +17,6 @@ namespace Bistrotic.Users.Domain.ValueTypes
 
         public UserId(string value) : base(value) { }
 
-        public static implicit operator UserId(string value) => new UserId(value);
+        public static implicit operator UserId(string value) => new (value);
     }
 }

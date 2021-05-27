@@ -23,6 +23,6 @@
         {
         }
 
-        public static implicit operator MessageId(string value) => new MessageId(value);
+        public static implicit operator MessageId(string value) => new (value);
     }
 }

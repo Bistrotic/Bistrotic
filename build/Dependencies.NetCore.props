@@ -30,6 +30,7 @@
 		<MicrosoftCodeAnalysisCommonVersion>3.9.0</MicrosoftCodeAnalysisCommonVersion>
 		<MicrosoftCodeAnalysisWorkspacesVersion>3.9.0</MicrosoftCodeAnalysisWorkspacesVersion>
 		<MicrosoftEntityFrameworkCoreVersion>5.0.5</MicrosoftEntityFrameworkCoreVersion>
+		<MicrosoftCSharpVersion>4.7.0</MicrosoftCSharpVersion>
 		<MicrosoftEntityFrameworkCoreSqlServerVersion>$(MicrosoftEntityFrameworkCoreVersion)</MicrosoftEntityFrameworkCoreSqlServerVersion>
 		<MicrosoftEntityFrameworkCoreDesignVersion>$(MicrosoftEntityFrameworkCoreVersion)</MicrosoftEntityFrameworkCoreDesignVersion>
 		<MicrosoftEntityFrameworkCoreToolsVersion>$(MicrosoftEntityFrameworkCoreVersion)</MicrosoftEntityFrameworkCoreToolsVersion>

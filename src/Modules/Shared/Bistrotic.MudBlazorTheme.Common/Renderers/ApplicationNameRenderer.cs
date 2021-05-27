@@ -1,8 +1,8 @@
 ﻿namespace Bistrotic.MudBlazorTheme.Renderers.MudBlazor
 {
+    using Bistrotic.ApplicationLayer.Controls;
     using Bistrotic.Infrastructure.VisualComponents;
     using Bistrotic.Infrastructure.VisualComponents.MudBlazor.Renderers;
-    using Bistrotic.MudBlazorTheme.Controls;
 
     using global::MudBlazor;
 

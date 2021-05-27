@@ -6,21 +6,22 @@
     using Bistrotic.Application.Queries;
     using Bistrotic.MudBlazorTheme.Queries;
     using Bistrotic.MudBlazorTheme.Settings;
+    using Bistrotic.MudBlazorTheme.ViewModels;
 
     using Microsoft.Extensions.Options;
 
-    public class GetApplicationNameHandler : QueryHandler<GetApplicationName, string>
+    public class GetMudBlazorThemeSetupHandler : QueryHandler<GetMudBlazorThemeSetup, MudBlazorThemeSetup>
     {
         private readonly IOptions<MudBlazorThemeSettings> _settings;
 
-        public GetApplicationNameHandler(IOptions<MudBlazorThemeSettings> settings)
+        public GetMudBlazorThemeSetupHandler(IOptions<MudBlazorThemeSettings> settings)
         {
             _settings = settings;
         }
 
-        public override Task<string> Handle(Envelope<GetApplicationName> envelope)
+        public override Task<MudBlazorThemeSetup> Handle(Envelope<GetMudBlazorThemeSetup> envelope)
         {
-            return Task.FromResult(_settings.Value.ApplicationName);
+            return Task.FromResult(new MudBlazorThemeSetup { BaseColor = _settings.Value.BaseColor });
         }
     }
 }

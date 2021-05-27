@@ -2,6 +2,7 @@
 {
     using Bistrotic.Infrastructure;
     using Bistrotic.Infrastructure.BlazorClient;
+    using Bistrotic.Infrastructure.VisualComponents.MudBlazor.Helpers;
     using Bistrotic.MudBlazorTheme.Services;
 
     using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -20,6 +21,7 @@
 
         public override void ConfigureServices(IServiceCollection services)
         {
+            services.AddMudBlazorRenderers();
             services.AddTransient<IMudBlazorThemeService, MudBlazorThemeService>();
         }
     }

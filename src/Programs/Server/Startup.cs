@@ -13,6 +13,7 @@
     using Bistrotic.DataIntegrations;
     using Bistrotic.Emails;
     using Bistrotic.EventStores;
+    using Bistrotic.FastTheme;
     using Bistrotic.GoogleIdentity;
     using Bistrotic.Infrastructure.Client;
     using Bistrotic.Infrastructure.EfCore.Repositories;
@@ -27,6 +28,7 @@
     using Bistrotic.Infrastructure.WebServer.Modules;
     using Bistrotic.Infrastructure.WebServer.Settings;
     using Bistrotic.MexicanDigitalInvoice;
+    using Bistrotic.MudBlazorTheme;
     using Bistrotic.OpenIdDict;
     using Bistrotic.QuartzScheduler;
     using Bistrotic.Roles;
@@ -47,8 +49,6 @@
     using Microsoft.Extensions.Hosting;
     using Microsoft.Identity.Web.UI;
     using Microsoft.OpenApi.Models;
-
-    using MudBlazor.Services;
 
     public sealed class Startup
     {
@@ -203,7 +203,9 @@
                 { typeof(UsersServerModule), (config, env) => new UsersServerModule(config, env) },
                 { typeof(UnitsServerModule), (config, env) => new UnitsServerModule(config, env) },
                 { typeof(WorkItemsServerModule), (config, env) => new WorkItemsServerModule(config, env) },
-                { typeof(SalesHistoryServerModule), (config, env) => new SalesHistoryServerModule(config, env) }
+                { typeof(SalesHistoryServerModule), (config, env) => new SalesHistoryServerModule(config, env) },
+                { typeof(FastThemeServerModule), (config, env) => new FastThemeServerModule(config, env) },
+                { typeof(MudBlazorThemeServerModule), (config, env) => new MudBlazorThemeServerModule(config, env) }
             };
         }
 

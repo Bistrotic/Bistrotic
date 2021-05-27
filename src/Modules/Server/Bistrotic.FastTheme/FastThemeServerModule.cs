@@ -7,6 +7,7 @@
     using Bistrotic.FastTheme.Projections.Handlers;
     using Bistrotic.FastTheme.Queries;
     using Bistrotic.FastTheme.Settings;
+using Bistrotic.FastTheme.ViewModels;
     using Bistrotic.Infrastructure.Helpers;
     using Bistrotic.Infrastructure.WebServer.Modules;
 
@@ -34,7 +35,7 @@
         {
             base.ConfigureServices(services);
             services.ConfigureSettings<FastThemeSettings>(Configuration);
-            services.AddTransient<IQueryHandler<GetFastThemeSetup, string>, GetFastThemeSetupHandler>();
+            services.AddTransient<IQueryHandler<GetFastThemeSetup, FastThemeSetup>, GetFastThemeSetupHandler>();
         }
     }
 }

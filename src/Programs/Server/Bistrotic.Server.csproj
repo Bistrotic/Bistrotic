@@ -13,8 +13,10 @@
 		<ProjectReference Include="..\..\Modules\Server\Bistrotic.DataIntegrations.Server\Bistrotic.DataIntegrations.Server.csproj" />
 		<ProjectReference Include="..\..\Modules\Server\Bistrotic.Emails.Server\Bistrotic.Emails.Server.csproj" />
 		<ProjectReference Include="..\..\Modules\Server\Bistrotic.EventStores.Server\Bistrotic.EventStores.Server.csproj" />
+		<ProjectReference Include="..\..\Modules\Server\Bistrotic.FastTheme\Bistrotic.FastTheme.Server.csproj" />
 		<ProjectReference Include="..\..\Modules\Server\Bistrotic.GoogleIdentity.Server\Bistrotic.GoogleIdentity.Server.csproj" />
 		<ProjectReference Include="..\..\Modules\Server\Bistrotic.MexicanDigitalInvoice.Server\Bistrotic.MexicanDigitalInvoice.Server.csproj" />
+		<ProjectReference Include="..\..\Modules\Server\Bistrotic.MudBlazorTheme\Bistrotic.MudBlazorTheme.Server.csproj" />
 		<ProjectReference Include="..\..\Modules\Server\Bistrotic.QuartzScheduler.Server\Bistrotic.QuartzScheduler.Server.csproj" />
 		<ProjectReference Include="..\..\Modules\Server\Bistrotic.Roles.Server\Bistrotic.Roles.Server.csproj" />
 		<ProjectReference Include="..\..\Modules\Server\Bistrotic.MicrosoftIdentity.Server\Bistrotic.MicrosoftIdentity.Server.csproj" />

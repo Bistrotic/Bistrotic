@@ -1,5 +1,6 @@
 ﻿namespace Bistrotic.Infrastructure.VisualComponents.Renderers.Fluent
 {
+    using Bistrotic.Infrastructure.FastTheme.Renderers;
     using Bistrotic.Infrastructure.VisualComponents.Renderers;
 
     public abstract record FluentComponentRendererBase<TComponent> : FastAndFluentComponentRendererBase<TComponent>

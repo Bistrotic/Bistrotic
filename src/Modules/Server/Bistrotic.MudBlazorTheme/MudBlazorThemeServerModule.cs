@@ -5,10 +5,12 @@
     using Bistrotic.Application.Messages;
     using Bistrotic.Application.Queries;
     using Bistrotic.Infrastructure.Helpers;
+    using Bistrotic.Infrastructure.VisualComponents.MudBlazor.Helpers;
     using Bistrotic.Infrastructure.WebServer.Modules;
     using Bistrotic.MudBlazorTheme.Projections.Handlers;
     using Bistrotic.MudBlazorTheme.Queries;
     using Bistrotic.MudBlazorTheme.Settings;
+using Bistrotic.MudBlazorTheme.ViewModels;
 
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
@@ -34,7 +36,8 @@
         {
             base.ConfigureServices(services);
             services.ConfigureSettings<MudBlazorThemeSettings>(Configuration);
-            services.AddTransient<IQueryHandler<GetApplicationName, string>, GetApplicationNameHandler>();
+            services.AddTransient<IQueryHandler<GetMudBlazorThemeSetup, MudBlazorThemeSetup>, GetMudBlazorThemeSetupHandler>();
+            services.AddMudBlazorRenderers();
         }
     }
 }

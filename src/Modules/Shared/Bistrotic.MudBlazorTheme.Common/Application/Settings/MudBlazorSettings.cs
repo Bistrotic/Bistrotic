@@ -2,6 +2,6 @@
 {
     public class MudBlazorThemeSettings
     {
-        public string ApplicationName { get; init; } = string.Empty;
+        public int BaseColor { get; init; }
     }
 }

@@ -10,7 +10,6 @@ namespace Bistrotic.Client
     using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
     using Microsoft.Extensions.DependencyInjection;
 
-    using MudBlazor.Services;
 
     public static class Program
     {
@@ -27,7 +26,6 @@ namespace Bistrotic.Client
             }
 
             builder.Services.AddBistroticClient(builder.HostEnvironment, typeof(Program).Namespace ?? string.Empty, BistroticConstants.ServerApiName);
-            builder.Services.AddMudServices();
             builder.Logging.AddBistroticClient();
 
             builder.Services.AddSingleton<IMenuService, MenuService>();

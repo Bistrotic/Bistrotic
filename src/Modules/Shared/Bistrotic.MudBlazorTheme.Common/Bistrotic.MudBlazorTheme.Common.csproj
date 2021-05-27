@@ -6,17 +6,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="Layouts\Application.razor" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Content Include="Layouts\Application.razor">
-	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-	  </Content>
+	  <PackageReference Include="MudBlazor" Version="$(MudBlazorVersion)" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\Core\Domain\Bistrotic.Domain.Abstractions\Bistrotic.Domain.Abstractions.csproj" />
 		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.VisualComponents\Bistrotic.Infrastructure.VisualComponents.csproj" />
+		<ProjectReference Include="..\Bistrotic.ApplicationLayer.Common\Bistrotic.ApplicationLayer.Common.csproj" />
+		<ProjectReference Include="..\Bistrotic.MudBlazorTheme.Contracts\Bistrotic.MudBlazorTheme.Contracts.csproj" />
 	</ItemGroup>
 </Project>

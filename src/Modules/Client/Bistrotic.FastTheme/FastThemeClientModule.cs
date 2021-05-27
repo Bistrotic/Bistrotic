@@ -20,7 +20,7 @@
 
         public override void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IApplicationNameService, FastThemeService>();
+            services.AddTransient<IFastThemeService, FastThemeService>();
         }
     }
 }

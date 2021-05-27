@@ -19,9 +19,4 @@
 		<ProjectReference Include="..\..\..\Core\Domain\Bistrotic.Domain.Abstractions\Bistrotic.Domain.Abstractions.csproj" />
 		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.VisualComponents\Bistrotic.Infrastructure.VisualComponents.csproj" />
 	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Renderers\Fluent\" />
-		<Folder Include="Renderers\Fast\" />
-	</ItemGroup>
 </Project>

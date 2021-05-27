@@ -2,6 +2,9 @@
 {
     using System;
 
+    using Bistrotic.Infrastructure.VisualComponents;
+    using Bistrotic.Infrastructure.VisualComponents.Renderers;
+
     using Microsoft.AspNetCore.Components.Rendering;
 
     public abstract record FastAndFluentComponentRendererBase<TComponent> : IComponentRenderer<TComponent>

@@ -18,5 +18,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\Core\Domain\Bistrotic.Domain.Abstractions\Bistrotic.Domain.Abstractions.csproj" />
 		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.VisualComponents\Bistrotic.Infrastructure.VisualComponents.csproj" />
+		<ProjectReference Include="..\Bistrotic.FastTheme.Contracts\Bistrotic.FastTheme.Contracts.csproj" />
 	</ItemGroup>
 </Project>

@@ -7,5 +7,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\Shared\Bistrotic.FastTheme.Common\Bistrotic.FastTheme.Common.csproj" />
 		<ProjectReference Include="..\..\Shared\Bistrotic.FastTheme.Contracts\Bistrotic.FastTheme.Contracts.csproj" />
+		<ProjectReference Include="..\Bistrotic.ApplicationLayer.Client\Bistrotic.ApplicationLayer.Client.csproj" />
 	</ItemGroup>
 </Project>

@@ -3,6 +3,8 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    using Bistrotic.Application.Commands;
+    using Bistrotic.Application.Queries;
     using Bistrotic.Infrastructure.VisualComponents.Renderers;
 
     using Microsoft.AspNetCore.Components;
@@ -12,17 +14,14 @@
     {
         #region Dependencies
 
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+        [Inject]
+        protected ICommandService CommandService { get; init; } = default!;
 
         [Inject]
-        protected IComponentRendererProvider RendererProvider { get; init; }
+        protected IQueryService QueryService { get; init; } = default!;
 
-        public virtual int RenderContent(int sequence, RenderTreeBuilder builder)
-        {
-            return sequence;
-        }
-
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+        [Inject]
+        protected IComponentRendererProvider RendererProvider { get; init; } = default!;
 
         #endregion Dependencies
 
@@ -39,7 +38,7 @@
         /// </summary>
         [Parameter] public string? AdditionalStyles { get; set; }
 
-        public virtual RenderFragment? ChildFragment => null;
+        [Parameter] public RenderFragment? ChildContent { get; set; }
 
         public virtual IReadOnlyCollection<string> Classes
         {
@@ -65,6 +64,15 @@
         [Parameter] public object? Tag { get; set; }
 
         [CascadingParameter] public string ThemeName { get; set; } = default!;
+
+        public virtual int RenderContent(int sequence, RenderTreeBuilder builder)
+        {
+            if (ChildContent != null)
+            {
+                builder.AddContent(sequence++, ChildContent);
+            }
+            return sequence;
+        }
 
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {

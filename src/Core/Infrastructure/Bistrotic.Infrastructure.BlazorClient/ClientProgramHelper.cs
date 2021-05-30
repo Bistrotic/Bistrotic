@@ -5,6 +5,8 @@ namespace Bistrotic.Infrastructure.BlazorClient
     using System.Linq;
     using System.Net.Http;
 
+    using Bistrotic.Application.Commands;
+    using Bistrotic.Application.Queries;
     using Bistrotic.Infrastructure.Modules;
     using Bistrotic.Infrastructure.Modules.Definitions;
 
@@ -50,6 +52,8 @@ namespace Bistrotic.Infrastructure.BlazorClient
                 options.AuthenticationPaths.RemoteRegisterPath = new Uri(new Uri(hostEnvironment.BaseAddress), "Identity/Account/Register").ToString();
             });
             services.AddBistroticClientModules(hostEnvironment, clientName, serverApiName);
+            services.AddTransient<IQueryService, BistroticHttpClient>();
+            services.AddTransient<ICommandService, BistroticHttpClient>();
             return services;
         }
 

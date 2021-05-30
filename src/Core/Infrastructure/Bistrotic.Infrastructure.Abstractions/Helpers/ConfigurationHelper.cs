@@ -1,9 +1,9 @@
 ﻿namespace Bistrotic.Infrastructure.Helpers
 {
+    using System;
+
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-
-    using System;
 
     public static class ConfigurationHelper
     {

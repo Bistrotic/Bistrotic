@@ -1,5 +1,6 @@
 ﻿namespace Bistrotic.Application.Queries
 {
+    using System.Threading;
     using System.Threading.Tasks;
 
     using Bistrotic.Application.Messages;
@@ -18,7 +19,7 @@
             _options = options;
         }
 
-        public override Task<TSettings> Handle(Envelope<TQuery> envelope)
+        public override Task<TSettings> Handle(Envelope<TQuery> envelope, CancellationToken cancellationToken = default)
         {
             return Task.FromResult(_options.Value);
         }

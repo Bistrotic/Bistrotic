@@ -1,6 +1,6 @@
 ﻿namespace Bistrotic.Infrastructure.VisualComponents.Controls
 {
-    public class TextField : BlazorComponentWithContent
+    public class TextField : BlazorComponent
     {
     }
 }

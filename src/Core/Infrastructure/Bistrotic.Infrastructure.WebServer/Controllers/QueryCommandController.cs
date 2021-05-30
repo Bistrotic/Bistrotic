@@ -1,6 +1,7 @@
 ﻿namespace Bistrotic.Infrastructure.WebServer.Controllers
 {
     using System;
+    using System.Threading;
     using System.Threading.Tasks;
     using System.Web;
 
@@ -18,17 +19,17 @@
     {
         private readonly ILogger<QueryCommandController> _logger;
         private readonly IMessageFactory _messageFactory;
-        private readonly IQueryDispatcher _queryDispatcher;
+        private readonly IQueryBus _queryBus;
 
-        public QueryCommandController(IQueryDispatcher queryDispatcher, IMessageFactory messageFactory, ILogger<QueryCommandController> logger)
+        public QueryCommandController(IQueryBus queryBus, IMessageFactory messageFactory, ILogger<QueryCommandController> logger)
         {
-            _queryDispatcher = queryDispatcher ?? throw new ArgumentNullException(nameof(queryDispatcher));
-            _messageFactory = messageFactory;
+            _queryBus = queryBus ?? throw new ArgumentNullException(nameof(queryBus));
+            _messageFactory = messageFactory ?? throw new ArgumentNullException(nameof(messageFactory));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         [HttpGet("{queryName}")]
-        public async Task<IActionResult> Ask(string queryName)
+        public async Task<IActionResult> Ask(string queryName, CancellationToken cancellationToken)
         {
             string? userName = User?.Identity?.Name;
             if (string.IsNullOrWhiteSpace(userName))
@@ -41,13 +42,13 @@
             _logger.LogDebug($"User '{userName}' asked for query : {queryType.Name}");
             try
             {
-                return Ok(await _queryDispatcher
+                return Ok(await _queryBus
                     .Dispatch(new Envelope<IQuery>(
                         query,
                         new MessageId(),
                         userName,
                         DateTimeOffset.Now
-                        ))
+                        ), cancellationToken)
                     .ConfigureAwait(false));
             }
             catch (QueryHandlerNotFoundException e)
@@ -68,7 +69,7 @@
         }
 
         [HttpPost("{commandName}")]
-        public async Task<IActionResult> Tell(string commandName, [FromBody] string jsonValue)
+        public async Task<IActionResult> Tell(string commandName, [FromBody] string jsonValue, CancellationToken cancellationToken)
         {
             if (string.IsNullOrWhiteSpace(User?.Identity?.Name))
                 return Unauthorized("User name is not defined");
@@ -77,13 +78,13 @@
             _logger.LogDebug($"User '{User.Identity.Name}' told to execute command : {commandType.Name}");
             try
             {
-                return Ok(await _queryDispatcher
+                return Ok(await _queryBus
                     .Dispatch(new Envelope<object>(
                         command,
                         new MessageId(),
                         User.Identity.Name,
                         DateTimeOffset.Now
-                        ))
+                        ), cancellationToken)
                     .ConfigureAwait(false));
             }
             catch (CommandHandlerNotFoundException)

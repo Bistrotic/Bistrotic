@@ -1,6 +1,6 @@
 ﻿namespace Bistrotic.Infrastructure.VisualComponents.Controls
 {
-    public class RadioGroup : BlazorComponentWithContent
+    public class RadioGroup : BlazorComponent
     {
     }
 }

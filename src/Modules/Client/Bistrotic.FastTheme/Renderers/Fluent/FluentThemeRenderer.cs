@@ -1,33 +1,9 @@
-﻿namespace Bistrotic.Infrastructure.VisualComponents.Renderers.Fluent
+﻿namespace Bistrotic.FastTheme.Renderers.Fluent
 {
-    using Bistrotic.Infrastructure.VisualComponents;
-    using Bistrotic.Infrastructure.VisualComponents.Controls;
-
-    using Microsoft.AspNetCore.Components.Rendering;
-
-    public sealed record FluentThemeRenderer : FluentComponentRendererBase<Theme>
+    public sealed record FluentThemeRenderer : ThemeRenderer
     {
-        public FluentThemeRenderer() : base("fluent-design-system-provider")
+        public FluentThemeRenderer() : base(nameof(Fluent), "https://unpkg.com/@fluentui/web-components")
         {
-
         }
-        protected override int RenderElement(int sequence, BlazorComponent blazorComponent, RenderTreeBuilder builder)
-        {
-            sequence = base.RenderElement(sequence, blazorComponent, builder);
-            builder.OpenElement(sequence++, "script");
-            builder.AddAttribute(sequence++, "type", "module");
-            builder.AddAttribute(sequence++, "src", "https://unpkg.com/@fluentui/web-components");
-            builder.CloseElement();
-            return sequence;
-        }
-        protected override int RenderAttributes(int sequence, BlazorComponent blazorComponent, RenderTreeBuilder builder)
-        {
-            if (blazorComponent.AdditionalAttributes == null || blazorComponent.AdditionalAttributes.Count == 0)
-                builder.AddAttribute(sequence++, "use-defaults");
-            else
-                builder.AddMultipleAttributes(sequence++, blazorComponent.AdditionalAttributes);
-            return base.RenderAttributes(sequence, blazorComponent, builder);
-        }
-
     }
 }

@@ -14,9 +14,9 @@
     public abstract class QueryCommandControllerBase : ControllerBase
     {
         private readonly ILogger _logger;
-        private readonly IQueryDispatcher _queryDispatcher;
+        private readonly IQueryBus _queryDispatcher;
 
-        protected QueryCommandControllerBase(IQueryDispatcher queryDispatcher, ILogger logger)
+        protected QueryCommandControllerBase(IQueryBus queryDispatcher, ILogger logger)
         {
             _queryDispatcher = queryDispatcher ?? throw new ArgumentNullException(nameof(queryDispatcher));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));

@@ -8,6 +8,7 @@
     using Bistrotic.ApplicationLayer.Queries;
 
     using Microsoft.Extensions.Options;
+    using System.Threading;
 
     public class GetApplicationNameHandler : QueryHandler<GetApplicationName, string>
     {
@@ -18,7 +19,7 @@
             _settings = settings;
         }
 
-        public override Task<string> Handle(Envelope<GetApplicationName> envelope)
+        public override Task<string> Handle(Envelope<GetApplicationName> envelope, CancellationToken cancellationToken = default)
         {
             return Task.FromResult(_settings.Value.ApplicationName);
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Bistrotic.Application.Messages;
@@ -13,11 +14,11 @@ namespace Bistrotic.Application.Queries
             return queryType == typeof(TQuery);
         }
 
-        public abstract Task<TResult> Handle(Envelope<TQuery> envelope);
+        public abstract Task<TResult> Handle(Envelope<TQuery> envelope, CancellationToken cancellationToken = default);
 
-        public async Task<object?> Handle(IEnvelope envelope)
+        public async Task<object?> Handle(IEnvelope envelope, CancellationToken cancellationToken = default)
         {
-            return await Handle(new Envelope<TQuery>(envelope))
+            return await Handle(new Envelope<TQuery>(envelope), cancellationToken)
                 .ConfigureAwait(false);
         }
     }

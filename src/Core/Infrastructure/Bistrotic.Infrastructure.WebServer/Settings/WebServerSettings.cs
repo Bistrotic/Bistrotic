@@ -1,7 +1,9 @@
-﻿namespace Bistrotic.Infrastructure.WebServer.Settings
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+
+namespace Bistrotic.Infrastructure.WebServer.Settings
 {
     public class WebServerSettings
     {
-        public ClientMode ClientMode { get; init; }
+        public RenderMode ClientMode { get; init; } = RenderMode.Server;
     }
 }

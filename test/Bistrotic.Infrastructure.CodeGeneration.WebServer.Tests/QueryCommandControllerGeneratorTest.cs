@@ -99,7 +99,7 @@ namespace MyCode.Commands
                 MetadataReference.CreateFromFile(typeof(RouteAttribute).GetTypeInfo().Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(AuthorizeAttribute).GetTypeInfo().Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(ApiControllerAttribute).GetTypeInfo().Assembly.Location),
-                MetadataReference.CreateFromFile(typeof(IQueryDispatcher).GetTypeInfo().Assembly.Location),
+                MetadataReference.CreateFromFile(typeof(IQueryBus).GetTypeInfo().Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(IMessageFactory).GetTypeInfo().Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(ILogger).GetTypeInfo().Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(TestCommand).GetTypeInfo().Assembly.Location)

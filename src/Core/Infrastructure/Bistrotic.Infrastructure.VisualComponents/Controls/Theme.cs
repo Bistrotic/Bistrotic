@@ -3,7 +3,7 @@
     using Microsoft.AspNetCore.Components;
     using Microsoft.AspNetCore.Components.Rendering;
 
-    public class Theme : BlazorComponentWithContent
+    public class Theme : BlazorComponent
     {
         private string _name = string.Empty;
 
@@ -15,21 +15,19 @@
             {
                 _name = value;
                 ThemeName = _name;
+                this.StateHasChanged();
             }
         }
 
         public override int RenderContent(int sequence, RenderTreeBuilder builder)
         {
-            if (ChildContent != null)
+            if (ChildContent != null && !string.IsNullOrWhiteSpace(ThemeName))
             {
-                if (string.IsNullOrWhiteSpace(ThemeName))
-                {
-                    builder.OpenComponent<CascadingValue<string>>(sequence++);
-                    builder.AddAttribute(sequence++, "Name", nameof(ThemeName));
-                    builder.AddAttribute(sequence++, "Value", Name);
-                    builder.AddContent(sequence++, ChildContent);
-                    builder.CloseComponent();
-                }
+                builder.OpenComponent<CascadingValue<string>>(sequence++);
+                builder.AddAttribute(sequence++, "Name", nameof(ThemeName));
+                builder.AddAttribute(sequence++, "Value", Name);
+                builder.AddAttribute(sequence++, "ChildContent", ChildContent);
+                builder.CloseComponent();
             }
             return sequence;
         }

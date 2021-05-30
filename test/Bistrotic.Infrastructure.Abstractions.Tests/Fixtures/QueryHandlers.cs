@@ -5,6 +5,7 @@
 
     using System;
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
 
     public sealed class Query1 : TestQuery<int>
@@ -25,7 +26,7 @@
 
     public class QueryHandlerGuid : QueryHandler<Query3, Guid>
     {
-        public override Task<Guid> Handle(Envelope<Query3> envelope)
+        public override Task<Guid> Handle(Envelope<Query3> envelope, CancellationToken cancellationToken = default)
         {
             return Task.FromResult(new Guid("66CABB1C-18E3-4E26-AE0F-EA603D9F11FB"));
         }
@@ -33,7 +34,7 @@
 
     public class QueryHandlerId : QueryHandler<Query4, string>
     {
-        public override Task<string> Handle(Envelope<Query4> envelope)
+        public override Task<string> Handle(Envelope<Query4> envelope, CancellationToken cancellationToken = default)
         {
             return Task.FromResult(envelope.Message.MessageId);
         }
@@ -41,7 +42,7 @@
 
     public class QueryHandlerInt : QueryHandler<Query1, int>
     {
-        public override Task<int> Handle(Envelope<Query1> envelope)
+        public override Task<int> Handle(Envelope<Query1> envelope, CancellationToken cancellationToken = default)
         {
             return Task.FromResult(1);
         }
@@ -60,7 +61,7 @@
 
     public class QueryHandlerString : QueryHandler<Query2, string>
     {
-        public override Task<string> Handle(Envelope<Query2> envelope)
+        public override Task<string> Handle(Envelope<Query2> envelope, CancellationToken cancellationToken = default)
         {
             return Task.FromResult("2");
         }

@@ -1,5 +1,6 @@
 ﻿namespace Bistrotic.MudBlazorTheme.Projections.Handlers
 {
+    using System.Threading;
     using System.Threading.Tasks;
 
     using Bistrotic.Application.Messages;
@@ -19,7 +20,7 @@
             _settings = settings;
         }
 
-        public override Task<MudBlazorThemeSetup> Handle(Envelope<GetMudBlazorThemeSetup> envelope)
+        public override Task<MudBlazorThemeSetup> Handle(Envelope<GetMudBlazorThemeSetup> envelope, CancellationToken cancellationToken = default)
         {
             return Task.FromResult(new MudBlazorThemeSetup { BaseColor = _settings.Value.BaseColor });
         }

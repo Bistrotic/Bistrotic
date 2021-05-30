@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using Bistrotic.Infrastructure.VisualComponents.Exceptions;
+
 namespace Bistrotic.Infrastructure.VisualComponents.Renderers
 {
     public class ComponentRendererProvider : IComponentRendererProvider
@@ -17,16 +19,24 @@ namespace Bistrotic.Infrastructure.VisualComponents.Renderers
                     theme = new();
                     _renderers.Add(renderer.ThemeName, theme);
                 }
-                theme.Add(renderer.ControlType, renderer);
+                if (!theme.TryAdd(renderer.ControlType, renderer))
+                {
+                    throw new DuplicateComponentRendererException(theme: renderer.ThemeName,
+                                                                  control: renderer.ControlType,
+                                                                  newRenderer: renderer.GetType(),
+                                                                  existingRenderer: theme[renderer.ControlType].GetType());
+                }
             }
         }
 
+        public IEnumerable<string> ThemeNames => _renderers.Keys;
+
         public IComponentRenderer<TComponent>? GetRenderer<TComponent>(string themeName) where TComponent : BlazorComponent
-            => (IComponentRenderer<TComponent>?)GetRenderer(themeName, typeof(TComponent));
+                    => (IComponentRenderer<TComponent>?)GetRenderer(themeName, typeof(TComponent));
 
         public IComponentRenderer? GetRenderer(string themeName, Type componentType)
         {
-            if (_renderers.TryGetValue(themeName, out Dictionary<Type, IComponentRenderer>? theme))
+            if (!string.IsNullOrWhiteSpace(themeName) && _renderers.TryGetValue(themeName, out Dictionary<Type, IComponentRenderer>? theme))
             {
                 if (theme.TryGetValue(componentType, out IComponentRenderer? renderer))
                 {

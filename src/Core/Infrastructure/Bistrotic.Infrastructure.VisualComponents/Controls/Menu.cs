@@ -1,6 +1,6 @@
 ﻿namespace Bistrotic.Infrastructure.VisualComponents.Controls
 {
-    public class Menu : BlazorComponentWithContent
+    public class Menu : BlazorComponent
     {
     }
 }

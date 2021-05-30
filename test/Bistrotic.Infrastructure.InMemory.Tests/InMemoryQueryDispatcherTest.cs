@@ -17,7 +17,7 @@ namespace Bistrotic.Infrastructure.InMemory.Tests
         [Fact]
         public async Task Dispatch_query_check_return_values()
         {
-            var dispatcher = new InMemoryQueryDispatcher(new QueryHandlers());
+            var dispatcher = new InMemoryQueryBus(new QueryHandlers());
             (await dispatcher.Dispatch<Query1, int>(
                     new Envelope<Query1>(new Query1(), new MessageId(), new UserName("User 1"), DateTimeOffset.Now)
                     ).ConfigureAwait(false))

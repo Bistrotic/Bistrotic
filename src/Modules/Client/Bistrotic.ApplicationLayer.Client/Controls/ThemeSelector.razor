@@ -1,0 +1,33 @@
+﻿@inject IComponentRendererProvider ThemeProvider
+@if(ThemeNames == null)
+{
+	<div>Initializing...</div>
+}
+else
+{
+	<Listbox>
+		@foreach(var name in ThemeNames)
+		{
+			<Option onclick="@OnClick(name)">name</Option>
+		}
+	</Listbox>
+}
+@code {
+	IEnumerable<string>? ThemeNames = null;
+
+	[CascadingParameter]
+	public string? ThemeName { get; set; }
+
+	protected override void OnInitialized()
+	{
+		if (ThemeNames == null)
+		{
+			ThemeNames = ThemeProvider.ThemeNames;
+		}
+	}
+	private bool OnClick(string name)
+	{
+		ThemeName = name;
+		return true;
+	}
+}

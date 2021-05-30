@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using Bistrotic.Application.Messages;
@@ -18,17 +19,17 @@
 
     public class GetIssuesWithSlaHandler : QueryHandler<GetIssuesWithSla, List<IssueWithSla>>
     {
-        private readonly IQueryDispatcher _queryDispatcher;
+        private readonly IQueryBus _queryDispatcher;
 
-        public GetIssuesWithSlaHandler(IQueryDispatcher queryDispatcher)
+        public GetIssuesWithSlaHandler(IQueryBus queryDispatcher)
         {
             _queryDispatcher = queryDispatcher;
         }
 
-        public async override Task<List<IssueWithSla>> Handle(Envelope<GetIssuesWithSla> envelope)
+        public async override Task<List<IssueWithSla>> Handle(Envelope<GetIssuesWithSla> envelope, CancellationToken cancellationToken = default)
         {
             var settings = await _queryDispatcher
-                .Dispatch<GetWorkItemModuleSettings, WorkItemModuleSettings>(new Envelope<GetWorkItemModuleSettings>(new GetWorkItemModuleSettings(), new MessageId(), envelope)).ConfigureAwait(false);
+                .Dispatch<GetWorkItemModuleSettings, WorkItemModuleSettings>(new Envelope<GetWorkItemModuleSettings>(new GetWorkItemModuleSettings(), new MessageId(), envelope), cancellationToken).ConfigureAwait(false);
             if (string.IsNullOrWhiteSpace(settings.AzureDevOpsServerUrl) || string.IsNullOrWhiteSpace(settings.PersonalAccessToken))
             {
                 throw new DevOpsServerConfigurationMissingException();
@@ -39,7 +40,7 @@
             }
             var slaMembers = await _queryDispatcher
                 .Dispatch<GetSecurityGroupMembers, IEnumerable<SecurityGroupMember>>(
-                new Envelope<GetSecurityGroupMembers>(new GetSecurityGroupMembers(settings.SlaGroupName), new MessageId(), envelope)
+                new Envelope<GetSecurityGroupMembers>(new GetSecurityGroupMembers(settings.SlaGroupName), new MessageId(), envelope), cancellationToken
                 ).ConfigureAwait(false);
 
             var server = new DevOpsServer(settings.AzureDevOpsServerUrl, settings.PersonalAccessToken);
@@ -69,7 +70,7 @@
                     .Dispatch<GetWorkItemChangeHistory, IEnumerable<WorkItemChange>>(
                     new Envelope<GetWorkItemChangeHistory>(
                         new GetWorkItemChangeHistory(
-                            new WorkItemId(wi.Id.ToString(CultureInfo.InvariantCulture))), new MessageId(), envelope)
+                            new WorkItemId(wi.Id.ToString(CultureInfo.InvariantCulture))), new MessageId(), envelope), cancellationToken
                     ).ConfigureAwait(false);
                 var slaLog = new WorkItemSlaLog(wiHistory
                     .OrderBy(p => p.ChangeDate)

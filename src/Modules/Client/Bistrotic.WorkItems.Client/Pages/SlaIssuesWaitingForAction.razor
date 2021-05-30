@@ -1,6 +1,6 @@
 ﻿@page "/issues/sla/waitingaction"
 @using Bistrotic.Domain.ValueTypes
-@inject BistroticHttpClient service
+@inject IQueryService service
 
 <h1>Issue SLA</h1>
 
@@ -68,7 +68,7 @@ else
 	{
 		try
 		{
-			issues = await service.Ask<GetIssuesWithSla, List<IssueWithSla>>(new MessageId(), new GetIssuesWithSla(true, true));
+			issues = await service.Ask<GetIssuesWithSla, List<IssueWithSla>>(new GetIssuesWithSla(true, true));
 		}
 		catch (AccessTokenNotAvailableException exception)
 		{

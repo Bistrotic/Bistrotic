@@ -1,6 +1,6 @@
 ﻿namespace Bistrotic.Infrastructure.VisualComponents.Controls
 {
-    public class Dialog : BlazorComponentWithContent
+    public class Dialog : BlazorComponent
     {
     }
 }

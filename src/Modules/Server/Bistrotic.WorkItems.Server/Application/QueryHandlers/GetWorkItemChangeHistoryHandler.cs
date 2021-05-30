@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using Bistrotic.Application.Messages;
@@ -17,18 +18,18 @@
 
     public class GetWorkItemChangeHistoryHandler : QueryHandler<GetWorkItemChangeHistory, IEnumerable<WorkItemChange>>
     {
-        private readonly IQueryDispatcher _queryDispatcher;
+        private readonly IQueryBus _queryDispatcher;
 
-        public GetWorkItemChangeHistoryHandler(IQueryDispatcher queryDispatcher)
+        public GetWorkItemChangeHistoryHandler(IQueryBus queryDispatcher)
         {
             _queryDispatcher = queryDispatcher;
         }
 
-        public override async Task<IEnumerable<WorkItemChange>> Handle(Envelope<GetWorkItemChangeHistory> envelope)
+        public override async Task<IEnumerable<WorkItemChange>> Handle(Envelope<GetWorkItemChangeHistory> envelope, CancellationToken cancellationToken = default)
         {
             var settings = await _queryDispatcher
                 .Dispatch<GetWorkItemModuleSettings, WorkItemModuleSettings>(
-                    new Envelope<GetWorkItemModuleSettings>(new GetWorkItemModuleSettings(), new MessageId(), envelope)
+                    new Envelope<GetWorkItemModuleSettings>(new GetWorkItemModuleSettings(), new MessageId(), envelope), cancellationToken
                     );
             if (string.IsNullOrWhiteSpace(settings.AzureDevOpsServerUrl) || string.IsNullOrWhiteSpace(settings.PersonalAccessToken))
             {
@@ -40,7 +41,7 @@
 
             var wiCollection = new WorkItemCollection(server);
             int id = Convert.ToInt32(envelope.Message.WorkItemId, CultureInfo.InvariantCulture);
-            return (await wiCollection.GetWorkItemHistory(id))
+            return (await wiCollection.GetWorkItemHistory(id, cancellationToken))
                 .Select(p => new WorkItemChange
                 {
                     ChangeDate = p.ChangedDate ?? DateTime.MinValue,

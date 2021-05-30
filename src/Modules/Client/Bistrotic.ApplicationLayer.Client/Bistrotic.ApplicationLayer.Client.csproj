@@ -5,6 +5,7 @@
 		<ModuleName>ApplicationLayer</ModuleName>
 	</PropertyGroup>
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\Core\Infrastructure\Bistrotic.Infrastructure.VisualComponents\Bistrotic.Infrastructure.VisualComponents.csproj" />
 		<ProjectReference Include="..\..\Shared\Bistrotic.ApplicationLayer.Common\Bistrotic.ApplicationLayer.Common.csproj" />
 		<ProjectReference Include="..\..\Shared\Bistrotic.ApplicationLayer.Contracts\Bistrotic.ApplicationLayer.Contracts.csproj" />
 	</ItemGroup>

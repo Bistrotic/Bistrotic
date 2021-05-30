@@ -15,14 +15,5 @@
             builder.AddAttribute(sequence++, nameof(MudComponentBase.Tag), blazorComponent.Tag);
             return base.RenderAttributes(sequence++, blazorComponent, builder);
         }
-
-        public override int RenderContent(int sequence, BlazorComponent blazorComponent, RenderTreeBuilder builder)
-        {
-            if (blazorComponent.ChildFragment != null)
-            {
-                builder.AddContent(sequence++, blazorComponent.ChildFragment);
-            }
-            return base.RenderContent(sequence, blazorComponent, builder);
-        }
     }
 }

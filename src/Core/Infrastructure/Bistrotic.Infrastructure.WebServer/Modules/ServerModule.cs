@@ -1,7 +1,9 @@
 ﻿namespace Bistrotic.Infrastructure.WebServer.Modules
 {
     using Bistrotic.Application.Messages;
+    using Bistrotic.Infrastructure.Helpers;
     using Bistrotic.Infrastructure.Modules;
+    using Bistrotic.Infrastructure.WebServer.Settings;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;

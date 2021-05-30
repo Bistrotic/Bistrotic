@@ -10,11 +10,13 @@
     using Bistrotic.Application.Events;
     using Bistrotic.Application.Queries;
     using Bistrotic.ApplicationLayer;
+    using Bistrotic.ApplicationLayer.Helpers;
     using Bistrotic.Client;
     using Bistrotic.DataIntegrations;
     using Bistrotic.Emails;
     using Bistrotic.EventStores;
     using Bistrotic.FastTheme;
+    using Bistrotic.FastTheme.Helpers;
     using Bistrotic.GoogleIdentity;
     using Bistrotic.Infrastructure.Client;
     using Bistrotic.Infrastructure.EfCore.Repositories;
@@ -23,6 +25,7 @@
     using Bistrotic.Infrastructure.Ioc.Commands;
     using Bistrotic.Infrastructure.Ioc.Events;
     using Bistrotic.Infrastructure.Ioc.Queries;
+    using Bistrotic.Infrastructure.VisualComponents.MudBlazor.Helpers;
     using Bistrotic.Infrastructure.WebServer.Controllers;
     using Bistrotic.Infrastructure.WebServer.Exceptions;
     using Bistrotic.Infrastructure.WebServer.Helpers;
@@ -158,7 +161,6 @@
                 };
             });
 
-            services.AddTransient<IQueryDispatcher, IocQueryDispatcher>();
             services.AddControllersWithViews();
             var mvc = services
                 .AddRazorPages()
@@ -181,10 +183,14 @@
             services.AddTransient<ICommandBus, IocCommandBus>();
             services.AddTransient<IEventBus, IocEventBus>();
             services.AddSingleton<IMenuService, MenuService>();
+            services.AddTransient<IQueryBus, IocQueryBus>();
             // services.AddSingleton<IIconRenderer, LineAwesomeIconRenderer>();
             // services.AddSingleton<IComponentRenderer, MudBlazorRenderer>();
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddWebServer();
+            services.AddMudBlazorTheme();
+            services.AddFastTheme();
+            services.AddApplicationLayer();
         }
 
         internal static Dictionary<Type, Func<IConfiguration, IWebHostEnvironment, IServerModule>> GetModuleFactory()

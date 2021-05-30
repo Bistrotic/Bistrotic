@@ -32,12 +32,11 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<title>Bistrotic</title>
-	<link rel="stylesheet" href="_content/Bistrotic.Infrastructure.VisualLayouts/css/styles.css" />
 </head>
 
 <body>
 	@(Html.AntiForgeryToken())
-	<component type="typeof(App)" render-mode="Server" />
+	<component type="typeof(App)" render-mode="@(settings.Value?.ClientMode ?? RenderMode.Server)" />
 	<div id="blazor-error-ui">
 		<environment include="Staging,Production">
 			An error has occurred. This application may no longer respond until reloaded.
@@ -49,7 +48,7 @@
 		<a class="dismiss">🗙</a>
 	</div>
 
-	@if (settings?.Value?.ClientMode == ClientMode.WebAssembly)
+	@if (settings?.Value?.ClientMode == RenderMode.WebAssembly || settings?.Value?.ClientMode == RenderMode.WebAssemblyPrerendered)
 	{
 	 <script src="_framework/blazor.webassembly.js"></script>
 	 <script src="_content/Microsoft.AspNetCore.Components.WebAssembly.Authentication/AuthenticationService.js"></script>

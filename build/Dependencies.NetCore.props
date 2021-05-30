@@ -19,18 +19,18 @@
 		<MicrosoftExtensionsSecretManagerToolsVersion>2.0.2</MicrosoftExtensionsSecretManagerToolsVersion>
 		<MicrosoftExtensionsOptionsVersion>5.0.0</MicrosoftExtensionsOptionsVersion>
 		<MicrosoftExtensionsIdentityStoresVersion>5.0.0</MicrosoftExtensionsIdentityStoresVersion>
-		<MicrosoftExtensionsPrimitivesVersion>5.0.0</MicrosoftExtensionsPrimitivesVersion>
+		<MicrosoftExtensionsPrimitivesVersion>5.0.1</MicrosoftExtensionsPrimitivesVersion>
 		<MicrosoftExtensionsOptionsConfigurationExtensionsVersion>5.0.0</MicrosoftExtensionsOptionsConfigurationExtensionsVersion>
-		<MicrosoftExtensionsLocalizationVersion>5.0.4</MicrosoftExtensionsLocalizationVersion>
+		<MicrosoftExtensionsLocalizationVersion>5.0.6</MicrosoftExtensionsLocalizationVersion>
 		<MicrosoftJSInteropWebAssemblyVersion>5.0.3</MicrosoftJSInteropWebAssemblyVersion>
-		<MicrosoftIdentityWebVersion>1.8.2</MicrosoftIdentityWebVersion>
+		<MicrosoftIdentityWebVersion>1.11.0</MicrosoftIdentityWebVersion>
 		<MicrosoftIdentityWebUIVersion>$(MicrosoftIdentityWebVersion)</MicrosoftIdentityWebUIVersion>
 		<MicrosoftIdentityWebMicrosoftGraphVersion>$(MicrosoftIdentityWebVersion)</MicrosoftIdentityWebMicrosoftGraphVersion>
 		<MicrosoftCodeAnalysisCSharpVersion>3.9.0</MicrosoftCodeAnalysisCSharpVersion>
 		<MicrosoftCodeAnalysisCommonVersion>3.9.0</MicrosoftCodeAnalysisCommonVersion>
 		<MicrosoftCodeAnalysisWorkspacesVersion>3.9.0</MicrosoftCodeAnalysisWorkspacesVersion>
-		<MicrosoftEntityFrameworkCoreVersion>5.0.5</MicrosoftEntityFrameworkCoreVersion>
 		<MicrosoftCSharpVersion>4.7.0</MicrosoftCSharpVersion>
+		<MicrosoftEntityFrameworkCoreVersion>5.0.6</MicrosoftEntityFrameworkCoreVersion>
 		<MicrosoftEntityFrameworkCoreSqlServerVersion>$(MicrosoftEntityFrameworkCoreVersion)</MicrosoftEntityFrameworkCoreSqlServerVersion>
 		<MicrosoftEntityFrameworkCoreDesignVersion>$(MicrosoftEntityFrameworkCoreVersion)</MicrosoftEntityFrameworkCoreDesignVersion>
 		<MicrosoftEntityFrameworkCoreToolsVersion>$(MicrosoftEntityFrameworkCoreVersion)</MicrosoftEntityFrameworkCoreToolsVersion>

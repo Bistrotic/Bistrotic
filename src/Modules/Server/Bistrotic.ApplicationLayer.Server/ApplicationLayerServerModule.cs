@@ -6,7 +6,6 @@
     using Bistrotic.Application.Queries;
     using Bistrotic.ApplicationLayer.Projections.Handlers;
     using Bistrotic.ApplicationLayer.Queries;
-    using Bistrotic.ApplicationLayer.Services;
     using Bistrotic.ApplicationLayer.Settings;
     using Bistrotic.Infrastructure.Helpers;
     using Bistrotic.Infrastructure.WebServer.Modules;

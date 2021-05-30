@@ -1,5 +1,6 @@
 ﻿namespace Bistrotic.FastTheme.Projections.Handlers
 {
+    using System.Threading;
     using System.Threading.Tasks;
 
     using Bistrotic.Application.Messages;
@@ -19,7 +20,7 @@
             _settings = settings;
         }
 
-        public override Task<FluentThemeSetup> Handle(Envelope<GetFluentThemeSetup> envelope)
+        public override Task<FluentThemeSetup> Handle(Envelope<GetFluentThemeSetup> envelope, CancellationToken cancellationToken = default)
         {
             return Task.FromResult(new FluentThemeSetup { BaseColor = _settings.Value.FluentBaseColor });
         }

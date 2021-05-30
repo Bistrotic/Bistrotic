@@ -1,6 +1,6 @@
 ﻿namespace Bistrotic.Infrastructure.VisualComponents.Controls
 {
-    public class TabPanel : BlazorComponentWithContent
+    public class TabPanel : BlazorComponent
     {
     }
 }

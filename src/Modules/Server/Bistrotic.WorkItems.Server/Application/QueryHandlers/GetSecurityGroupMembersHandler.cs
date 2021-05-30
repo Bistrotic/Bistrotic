@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using Bistrotic.Application.Messages;
@@ -14,17 +15,18 @@
 
     public class GetSecurityGroupMembersHandler : QueryHandler<GetSecurityGroupMembers, IEnumerable<SecurityGroupMember>>
     {
-        private readonly IQueryDispatcher _queryDispatcher;
+        private readonly IQueryBus _queryDispatcher;
 
-        public GetSecurityGroupMembersHandler(IQueryDispatcher queryDispatcher)
+        public GetSecurityGroupMembersHandler(IQueryBus queryDispatcher)
         {
             _queryDispatcher = queryDispatcher;
         }
 
-        public override async Task<IEnumerable<SecurityGroupMember>> Handle(Envelope<GetSecurityGroupMembers> envelope)
+        public override async Task<IEnumerable<SecurityGroupMember>> Handle(Envelope<GetSecurityGroupMembers> envelope, CancellationToken cancellationToken = default)
         {
             var settings = await _queryDispatcher
-                 .Dispatch<GetWorkItemModuleSettings, WorkItemModuleSettings>(new Envelope<GetWorkItemModuleSettings>(new GetWorkItemModuleSettings(), new MessageId(), envelope));
+                 .Dispatch<GetWorkItemModuleSettings, WorkItemModuleSettings>(new Envelope<GetWorkItemModuleSettings>(new GetWorkItemModuleSettings(), new MessageId(), envelope), cancellationToken
+                 );
             if (string.IsNullOrWhiteSpace(settings.AzureDevOpsServerUrl) || string.IsNullOrWhiteSpace(settings.PersonalAccessToken))
             {
                 throw new DevOpsServerConfigurationMissingException();
@@ -37,7 +39,7 @@
 
             server.Connect();
             var devOpsGroup = new DevOpsGroup(server, settings.SlaGroupName);
-            return (await devOpsGroup.GetMembers())
+            return (await devOpsGroup.GetMembers(cancellationToken))
                 .Select(p => new SecurityGroupMember
                 {
                     Name = p.PrincipalName ?? string.Empty

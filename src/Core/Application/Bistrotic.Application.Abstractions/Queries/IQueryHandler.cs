@@ -1,6 +1,7 @@
 ﻿namespace Bistrotic.Application.Queries
 {
     using System;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using Bistrotic.Application.Messages;
@@ -9,12 +10,12 @@
     {
         public bool CanHandle(Type queryType);
 
-        Task<object?> Handle(IEnvelope envelope);
+        Task<object?> Handle(IEnvelope envelope, CancellationToken cancellationToken = default);
     }
 
     public interface IQueryHandler<TQuery, TResult> : IQueryHandler
         where TQuery : class
     {
-        Task<TResult> Handle(Envelope<TQuery> envelope);
+        Task<TResult> Handle(Envelope<TQuery> envelope, CancellationToken cancellationToken = default);
     }
 }

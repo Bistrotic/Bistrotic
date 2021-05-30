@@ -1,4 +1,4 @@
-﻿namespace Bistrotic.Infrastructure.FastTheme.Renderers
+﻿namespace Bistrotic.FastTheme.Renderers
 {
     using System;
 

@@ -8,7 +8,7 @@
 		<DaprAspNetCoreVersion>1.2.0</DaprAspNetCoreVersion>
 		<SwashbuckleAspNetCoreVersion>6.1.4</SwashbuckleAspNetCoreVersion>
 		<MinVerVersion>2.5.0</MinVerVersion>
-		<OpenIddictVersion>3.0.3</OpenIddictVersion>
+		<OpenIddictVersion>3.0.4</OpenIddictVersion>
 		<OpenIddictAspNetCoreVersion>$(OpenIddictVersion)</OpenIddictAspNetCoreVersion>
 		<OpenIddictEntityFrameworkCoreVersion>$(OpenIddictVersion)</OpenIddictEntityFrameworkCoreVersion>
 		<OpenIddictQuartzVersion>$(OpenIddictVersion)</OpenIddictQuartzVersion>
@@ -16,10 +16,10 @@
 		<MediatRExtensionsMicrosoftDependencyInjectionVersion>9.0.0</MediatRExtensionsMicrosoftDependencyInjectionVersion>
 		<MicrosoftExtensionsLoggingAzureAppServicesVersion>5.0.4</MicrosoftExtensionsLoggingAzureAppServicesVersion>
 		<QuartzAspNetCoreVersion>3.3.2</QuartzAspNetCoreVersion>
-		<ScribanVersion>3.7.0</ScribanVersion>
-		<MicrosoftGraphVersion>3.29.0</MicrosoftGraphVersion>
+		<ScribanVersion>3.8.2</ScribanVersion>
+		<MicrosoftGraphVersion>3.33.0</MicrosoftGraphVersion>
 		<MicrosoftGraphAuthVersion>1.0.0-preview.6</MicrosoftGraphAuthVersion>
-		<MicrosoftIdentityClientVersion>4.29.0</MicrosoftIdentityClientVersion>
+		<MicrosoftIdentityClientVersion>4.31.0</MicrosoftIdentityClientVersion>
 		<GrpcToolsVersion>2.38.0</GrpcToolsVersion>
 		<ProtobufNetVersion>3.0.101</ProtobufNetVersion>
 		<GoogleProtobufVersion>3.15.6</GoogleProtobufVersion>
@@ -29,6 +29,6 @@
 		<ExtendedXmlSerializerVersion>3.7.1</ExtendedXmlSerializerVersion>
 		<SharpCompressVersion>0.28.2</SharpCompressVersion>
 		<EfCoreTestSupportVersion>5.0.0</EfCoreTestSupportVersion>
-		<MudBlazorVersion>5.0.9</MudBlazorVersion>
+		<MudBlazorVersion>5.0.10</MudBlazorVersion>
 	</PropertyGroup>
 </Project>

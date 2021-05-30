@@ -16,7 +16,7 @@ namespace {{namespace}}
     {
          public {{ modulename }}ApiController(
             IServiceProvider serviceProvider,
-            IQueryDispatcher queryDispatcher,
+            IQueryBus queryDispatcher,
             ILogger<{{ modulename }}ApiController> logger)
             : base(queryDispatcher, logger)
         {

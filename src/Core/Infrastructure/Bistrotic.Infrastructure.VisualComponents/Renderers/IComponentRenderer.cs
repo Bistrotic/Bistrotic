@@ -1,17 +1,23 @@
-﻿using System;
-
-using Microsoft.AspNetCore.Components.Rendering;
+﻿#pragma warning disable CS3024 // Constraint type is not CLS-compliant
 
 namespace Bistrotic.Infrastructure.VisualComponents.Renderers
 {
+    using System;
+
+    using Microsoft.AspNetCore.Components;
+    using Microsoft.AspNetCore.Components.Rendering;
+
     public interface IComponentRenderer
     {
-        void BuildRenderTree(BlazorComponent blazorComponent, RenderTreeBuilder builder);
-        public string ThemeName { get; }
         public Type ControlType { get; }
+
+        public string ThemeName { get; }
+
+        void BuildRenderTree(IComponent blazorComponent, RenderTreeBuilder builder);
     }
+
     public interface IComponentRenderer<TComponent> : IComponentRenderer
-        where TComponent : BlazorComponent
+        where TComponent : IComponent
     {
     }
 }

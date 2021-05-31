@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
 		<UserSecretsId>Bistrotic.Server-1FC1BD61-13EC-45BE-BAC1-DDBF55AE4137</UserSecretsId>
 		<NoWarn>1701;1702;$(NoWarn)</NoWarn>
 		<GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>

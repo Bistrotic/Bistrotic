@@ -1,5 +1,7 @@
 ﻿namespace Bistrotic.SalesHistory
 {
+    using System;
+
     using Bistrotic.Application.Events;
     using Bistrotic.Application.Messages;
     using Bistrotic.Infrastructure.Helpers;
@@ -29,15 +31,26 @@
 
         public override void ConfigureMessages(IMessageFactoryBuilder messageBuilder)
         {
+            if (messageBuilder == null)
+            {
+                throw new ArgumentNullException(nameof(messageBuilder));
+            }
             messageBuilder.AddAssemblyMessages(typeof(GetSalesHistoryCount).Assembly);
         }
 
         public override void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<SalesHistoryDbContext>(o => o.UseSqlServer(_settings.ConnectionString), ServiceLifetime.Transient);
-            services.AddTransient<IEventHandler<UblInvoiceSubmitted>, UblInvoiceSubmittedHandler>();
-            services.AddTransient<IEventHandler<MexicanDigitalInvoiceSubmitted>, MexicanDigitalInvoiceSubmittedHandler>();
-            services.AddTransient<ISalesHistoryRepository, SalesHistoryRepository>();
+            if (!string.IsNullOrWhiteSpace(_settings.ConnectionString))
+            {
+                services.AddDbContext<SalesHistoryDbContext>(o => o.UseSqlServer(_settings.ConnectionString), ServiceLifetime.Transient);
+                services.AddTransient<IEventHandler<UblInvoiceSubmitted>, UblInvoiceSubmittedHandler>();
+                services.AddTransient<IEventHandler<MexicanDigitalInvoiceSubmitted>, MexicanDigitalInvoiceSubmittedHandler>();
+                services.AddTransient<ISalesHistoryRepository, SalesHistoryRepository>();
+            }
+            else
+            {
+                Console.WriteLine($"Info: Database settings ({nameof(SalesHistorySettings) + ":" + nameof(SalesHistorySettings.ConnectionString)}) not set for sales history module.");
+            }
         }
     }
 }

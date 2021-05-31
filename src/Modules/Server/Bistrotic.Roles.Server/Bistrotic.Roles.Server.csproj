@@ -1,11 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
 		<OutputType>Library</OutputType>
 		<RootNamespace>Bistrotic.Roles</RootNamespace>
 		<ModuleName>Roles</ModuleName>
 	</PropertyGroup>
 	<Import Project="..\..\Shared\Bistrotic.Roles.Shared\Bistrotic.Roles.Shared.projitems" Label="Shared" />
-
 </Project>

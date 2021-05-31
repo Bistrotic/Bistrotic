@@ -1,16 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Bistrotic.Infrastructure.VisualComponents.Exceptions;
+﻿#pragma warning disable CS3024 // Constraint type is not CLS-compliant
 
 namespace Bistrotic.Infrastructure.VisualComponents.Renderers
 {
+    using System;
+    using System.Collections.Generic;
+
+    using Bistrotic.Infrastructure.VisualComponents.Exceptions;
+
+    using Microsoft.AspNetCore.Components;
+
     public class ComponentRendererProvider : IComponentRendererProvider
     {
         private readonly Dictionary<string, Dictionary<Type, IComponentRenderer>> _renderers;
 
         public ComponentRendererProvider(IEnumerable<IComponentRenderer> renderers)
         {
+            if (renderers == null)
+            {
+                throw new ArgumentNullException(nameof(renderers));
+            }
             _renderers = new();
             foreach (var renderer in renderers)
             {
@@ -31,7 +39,7 @@ namespace Bistrotic.Infrastructure.VisualComponents.Renderers
 
         public IEnumerable<string> ThemeNames => _renderers.Keys;
 
-        public IComponentRenderer<TComponent>? GetRenderer<TComponent>(string themeName) where TComponent : BlazorComponent
+        public IComponentRenderer<TComponent>? GetRenderer<TComponent>(string themeName) where TComponent : IComponent
                     => (IComponentRenderer<TComponent>?)GetRenderer(themeName, typeof(TComponent));
 
         public IComponentRenderer? GetRenderer(string themeName, Type componentType)

@@ -1,17 +1,23 @@
 ﻿namespace Bistrotic.Infrastructure.VisualComponents.Controls
 {
+    using System;
+
     using Microsoft.AspNetCore.Components;
     using Microsoft.AspNetCore.Components.Rendering;
 
     public class Theme : ComponentBase
     {
-        [Parameter] public RenderFragment? ChildContent { get; set; }
+        [Parameter] public RenderFragment ChildContent { get; set; } = default!;
 
         [CascadingParameter(Name = nameof(ThemeName))]
         public string ThemeName { get; set; } = "Fast";
 
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
+            if (builder == null)
+            {
+                throw new ArgumentNullException(nameof(builder));
+            }
             int sequence = 0;
             if (ChildContent != null && !string.IsNullOrWhiteSpace(ThemeName))
             {
@@ -24,10 +30,7 @@
                     builder.OpenElement(sequence++, "fluent-design-system-provider");
                 }
                 builder.AddAttribute(sequence++, "use-defaults");
-                if (ChildContent != null)
-                {
-                    builder.AddContent(sequence++, ChildContent);
-                }
+                builder.AddContent(sequence++, ChildContent);
                 builder.CloseElement();
                 if (ThemeName == "Fast")
                 {

@@ -22,7 +22,7 @@
         {
             services.ConfigureSettings<GoogleIdentitySettings>(Configuration);
 
-            if (!string.IsNullOrWhiteSpace(Settings.ClientId))
+            if (!string.IsNullOrWhiteSpace(Settings.ClientId) && !string.IsNullOrWhiteSpace(Settings.ClientSecret))
             {
                 services
                     .AddAuthentication(o =>

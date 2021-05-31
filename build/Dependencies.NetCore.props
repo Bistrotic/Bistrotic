@@ -1,39 +1,35 @@
 <Project>
 	<PropertyGroup>
-		<SystemNetHttpJsonVersion>5.0.0</SystemNetHttpJsonVersion>
-		<SystemTextJsonVersion>5.0.2</SystemTextJsonVersion>
-		<SystemNetHttpVersion>5.0.0</SystemNetHttpVersion>
-		<SystemTextEncodingCodePagesVersion>5.0.0</SystemTextEncodingCodePagesVersion>
-		<MicrosoftExtensionsHttpVersion>5.0.0</MicrosoftExtensionsHttpVersion>
-		<MicrosoftExtensionsHostingVersion>5.0.0</MicrosoftExtensionsHostingVersion>
-		<MicrosoftExtensionsHostingAbstractionsVersion>5.0.0</MicrosoftExtensionsHostingAbstractionsVersion>
+		<DotNetVersion>6.0.0-preview.4.21253.7</DotNetVersion>
+		<SystemNetHttpJsonVersion>$(DotNetVersion)</SystemNetHttpJsonVersion>
+		<SystemTextJsonVersion>$(DotNetVersion)</SystemTextJsonVersion>
+		<SystemNetHttpVersion>$(DotNetVersion)</SystemNetHttpVersion>
+		<SystemTextEncodingCodePagesVersion>$(DotNetVersion)</SystemTextEncodingCodePagesVersion>
+		<MicrosoftExtensionsHttpVersion>$(DotNetVersion)</MicrosoftExtensionsHttpVersion>
+		<MicrosoftExtensionsHostingVersion>$(DotNetVersion)</MicrosoftExtensionsHostingVersion>
+		<MicrosoftExtensionsHostingAbstractionsVersion>$(DotNetVersion)</MicrosoftExtensionsHostingAbstractionsVersion>
 		<MicrosoftExtensionsDependencyInjectionVersion>5.0.1</MicrosoftExtensionsDependencyInjectionVersion>
-		<MicrosoftExtensionsLoggingAbstractionsVersion>5.0.0</MicrosoftExtensionsLoggingAbstractionsVersion>
-		<MicrosoftExtensionsLoggingConsoleVersion>5.0.0</MicrosoftExtensionsLoggingConsoleVersion>
-		<MicrosoftExtensionsLoggingConfigurationVersion>5.0.0</MicrosoftExtensionsLoggingConfigurationVersion>
-		<MicrosoftExtensionsConfigurationAbstractionsVersion>5.0.0</MicrosoftExtensionsConfigurationAbstractionsVersion>
-		<MicrosoftExtensionsConfigurationVersion>5.0.0</MicrosoftExtensionsConfigurationVersion>
-		<MicrosoftExtensionsConfigurationJsonVersion>5.0.0</MicrosoftExtensionsConfigurationJsonVersion>
-		<MicrosoftExtensionsConfigurationBinderVersion>5.0.0</MicrosoftExtensionsConfigurationBinderVersion>
-		<MicrosoftExensionsConfigurationUserSecretsVersion>5.0.0</MicrosoftExensionsConfigurationUserSecretsVersion>
-		<MicrosoftExtensionsSecretManagerToolsVersion>2.0.2</MicrosoftExtensionsSecretManagerToolsVersion>
-		<MicrosoftExtensionsOptionsVersion>5.0.0</MicrosoftExtensionsOptionsVersion>
-		<MicrosoftExtensionsIdentityStoresVersion>5.0.0</MicrosoftExtensionsIdentityStoresVersion>
-		<MicrosoftExtensionsPrimitivesVersion>5.0.1</MicrosoftExtensionsPrimitivesVersion>
-		<MicrosoftExtensionsOptionsConfigurationExtensionsVersion>5.0.0</MicrosoftExtensionsOptionsConfigurationExtensionsVersion>
-		<MicrosoftExtensionsLocalizationVersion>5.0.6</MicrosoftExtensionsLocalizationVersion>
-		<MicrosoftJSInteropWebAssemblyVersion>5.0.3</MicrosoftJSInteropWebAssemblyVersion>
-		<MicrosoftIdentityWebVersion>1.11.0</MicrosoftIdentityWebVersion>
-		<MicrosoftIdentityWebUIVersion>$(MicrosoftIdentityWebVersion)</MicrosoftIdentityWebUIVersion>
-		<MicrosoftIdentityWebMicrosoftGraphVersion>$(MicrosoftIdentityWebVersion)</MicrosoftIdentityWebMicrosoftGraphVersion>
-		<MicrosoftCodeAnalysisCSharpVersion>3.9.0</MicrosoftCodeAnalysisCSharpVersion>
-		<MicrosoftCodeAnalysisCommonVersion>3.9.0</MicrosoftCodeAnalysisCommonVersion>
-		<MicrosoftCodeAnalysisWorkspacesVersion>3.9.0</MicrosoftCodeAnalysisWorkspacesVersion>
-		<MicrosoftCSharpVersion>4.7.0</MicrosoftCSharpVersion>
-		<MicrosoftEntityFrameworkCoreVersion>5.0.6</MicrosoftEntityFrameworkCoreVersion>
+		<MicrosoftExtensionsLoggingAbstractionsVersion>$(DotNetVersion)</MicrosoftExtensionsLoggingAbstractionsVersion>
+		<MicrosoftExtensionsLoggingConsoleVersion>$(DotNetVersion)</MicrosoftExtensionsLoggingConsoleVersion>
+		<MicrosoftExtensionsLoggingConfigurationVersion>$(DotNetVersion)</MicrosoftExtensionsLoggingConfigurationVersion>
+		<MicrosoftExtensionsConfigurationAbstractionsVersion>$(DotNetVersion)</MicrosoftExtensionsConfigurationAbstractionsVersion>
+		<MicrosoftExtensionsConfigurationVersion>$(DotNetVersion)</MicrosoftExtensionsConfigurationVersion>
+		<MicrosoftExtensionsConfigurationJsonVersion>$(DotNetVersion)</MicrosoftExtensionsConfigurationJsonVersion>
+		<MicrosoftExtensionsConfigurationBinderVersion>$(DotNetVersion)</MicrosoftExtensionsConfigurationBinderVersion>
+		<MicrosoftExensionsConfigurationUserSecretsVersion>$(DotNetVersion)</MicrosoftExensionsConfigurationUserSecretsVersion>
+		<MicrosoftExtensionsOptionsVersion>$(DotNetVersion)</MicrosoftExtensionsOptionsVersion>
+		<MicrosoftExtensionsIdentityStoresVersion>$(DotNetVersion)</MicrosoftExtensionsIdentityStoresVersion>
+		<MicrosoftExtensionsPrimitivesVersion>$(DotNetVersion)</MicrosoftExtensionsPrimitivesVersion>
+		<MicrosoftExtensionsOptionsConfigurationExtensionsVersion>$(DotNetVersion)</MicrosoftExtensionsOptionsConfigurationExtensionsVersion>
+		<MicrosoftExtensionsLocalizationVersion>6.0.0-preview.4.21253.5</MicrosoftExtensionsLocalizationVersion>
+		<MicrosoftJSInteropWebAssemblyVersion>$(DotNetVersion)</MicrosoftJSInteropWebAssemblyVersion>
+		<MicrosoftEntityFrameworkCoreVersion>6.0.0-preview.4.21253.1</MicrosoftEntityFrameworkCoreVersion>
 		<MicrosoftEntityFrameworkCoreSqlServerVersion>$(MicrosoftEntityFrameworkCoreVersion)</MicrosoftEntityFrameworkCoreSqlServerVersion>
 		<MicrosoftEntityFrameworkCoreDesignVersion>$(MicrosoftEntityFrameworkCoreVersion)</MicrosoftEntityFrameworkCoreDesignVersion>
 		<MicrosoftEntityFrameworkCoreToolsVersion>$(MicrosoftEntityFrameworkCoreVersion)</MicrosoftEntityFrameworkCoreToolsVersion>
 		<MicrosoftEntityFrameworkCoreSqliteVersion>$(MicrosoftEntityFrameworkCoreVersion)</MicrosoftEntityFrameworkCoreSqliteVersion>
+		<MicrosoftIdentityWebVersion>1.11.0</MicrosoftIdentityWebVersion>
+		<MicrosoftIdentityWebUIVersion>$(MicrosoftIdentityWebVersion)</MicrosoftIdentityWebUIVersion>
+		<MicrosoftIdentityWebMicrosoftGraphVersion>$(MicrosoftIdentityWebVersion)</MicrosoftIdentityWebMicrosoftGraphVersion>
 	</PropertyGroup>
 </Project>

@@ -1,5 +1,7 @@
 ﻿namespace Bistrotic.Infrastructure.VisualComponents.MudBlazor.Helpers
 {
+    using System;
+
     using global::MudBlazor.Services;
 
     using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -14,6 +16,10 @@
 
         public static void AddMudBlazorThemeClient(this WebAssemblyHostBuilder builder)
         {
+            if (builder == null)
+            {
+                throw new ArgumentNullException(nameof(builder));
+            }
             builder.Services.AddMudBlazorTheme();
         }
     }

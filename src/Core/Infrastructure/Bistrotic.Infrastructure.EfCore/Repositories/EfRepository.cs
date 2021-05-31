@@ -23,7 +23,7 @@
         private readonly StateStoreDbContext _context;
         private readonly IEventBus _eventBus;
         private readonly ILogger<EfRepository<TIState, TState>> _logger;
-        private readonly string sessionId = new AutoIdentifier();
+        private readonly string _sessionId = new AutoIdentifier();
 
         public EfRepository(StateStoreDbContext context, IEventBus eventBus, ILogger<EfRepository<TIState, TState>> logger)
         {
@@ -34,6 +34,10 @@
 
         public override async Task AddStateLog(string id, IRepositoryMetadata metadata, IEnumerable<object> events, CancellationToken cancellationToken = default)
         {
+            if (metadata == null)
+            {
+                throw new ArgumentNullException(nameof(metadata));
+            }
             int version = await GetStreamLatestVersion(id, cancellationToken).ConfigureAwait(false);
             _context.Add(GetStateStreamItem(events, id, metadata, version + 1));
         }
@@ -53,11 +57,7 @@
             var value = (await GetRecord(id, cancellationToken)
                             .ConfigureAwait(false)
                         ).Value;
-            if (value is TIState state)
-            {
-                return state;
-            }
-            throw new RepositoryStateDeserializeException(this, id);
+            return value is TIState state ? state : throw new RepositoryStateDeserializeException(this, id);
         }
 
         public override Task<IRepositoryStream> GetStream(string id, CancellationToken cancellationToken = default)
@@ -65,9 +65,13 @@
 
         public override Task Publish(IEnumerable<IEnvelope> events, CancellationToken cancellationToken = default)
         {
+            if (events == null)
+            {
+                throw new ArgumentNullException(nameof(events));
+            }
             foreach (var envelope in events)
             {
-                _context.Add(envelope.ToOutboxMessage(sessionId));
+                _context.Add(envelope.ToOutboxMessage(_sessionId));
             }
             return Task.CompletedTask;
         }
@@ -83,13 +87,17 @@
 
         public override async Task SetState(string id, IRepositoryMetadata metadata, TIState state, CancellationToken cancellationToken = default)
         {
+            if (metadata == null)
+            {
+                throw new ArgumentNullException(nameof(metadata));
+            }
             if (state == null)
             {
                 throw new RepositoryStateNullException(
                         this,
                         id, $"The state object given for saving Id='{id}' is null. Repository:'{GetType().Name}'.");
             }
-            State data = await _context.States
+            State? data = await _context.States
                 .FindAsync(GetKey(id), cancellationToken)
                 .ConfigureAwait(false);
             if (data == null)
@@ -136,9 +144,7 @@
                 .States
                 .FindAsync(GetKey(id), cancellationToken)
                 .ConfigureAwait(false);
-            if (state == null)
-                throw new RepositoryStateNotFoundException(this, id);
-            return state;
+            return state ?? throw new RepositoryStateNotFoundException(this, id);
         }
 
         private Task<int> GetStreamLatestVersion(string id, CancellationToken cancellationToken = default)
@@ -151,7 +157,7 @@
 
         private async Task PublishOutboxMessage(int id, CancellationToken cancellationToken = default)
         {
-            OutboxMessage outboxMessage = await _context.MessageOutbox.FindAsync(new object[] { id }, cancellationToken)
+            OutboxMessage outboxMessage = await _context.MessageOutbox.FindAsync(new object[] { id }, cancellationToken).ConfigureAwait(false)
                 ?? throw new KeyNotFoundException($"{nameof(OutboxMessage)} with Id={id} not found.");
             outboxMessage.InProgressSince = DateTime.UtcNow;
             await _context.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
@@ -193,7 +199,7 @@
         {
             foreach (var id in await _context
                     .MessageOutbox
-                    .Where(p => p.SentUtcDateTime == null && p.SessionId == sessionId)
+                    .Where(p => p.SentUtcDateTime == null && p.SessionId == _sessionId)
                     .OrderBy(p => p.Id)
                     .Select(p => p.Id)
                     .ToListAsync(cancellationToken)

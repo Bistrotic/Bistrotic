@@ -140,7 +140,9 @@
                     }
 
                     var authToken = httpContextAccessor.HttpContext.Request.Cookies[".AspNetCore.Identity.Application"];
-                    var client = new HttpClient(new HttpClientHandler { UseCookies = false });
+                    HttpClientHandler httpHandler = new() { UseCookies = false };
+                    httpHandler.CheckCertificateRevocationList = true;
+                    var client = new HttpClient(httpHandler);
                     if (authToken != null)
                     {
                         client.DefaultRequestHeaders.Add("Cookie", ".AspNetCore.Identity.Application=" + authToken);

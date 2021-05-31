@@ -5,7 +5,9 @@
 }
 else
 {
-	<Listbox>
+	<label id="theme-selector">Theme</label>
+	<br />
+	<Listbox aria-labelledby="theme-selector" name="theme-selector">
 		@foreach(var name in ThemeNames)
 		{
 			<Option Selected="@IsSelectedTheme(name)" Value="@name">@name</Option>
@@ -35,5 +37,5 @@ else
 		ThemeName = name;
 		return true;
 	}
-	private bool IsSelectedTheme(string themeName) => ThemeName.Equals(themeName); 
+	private bool IsSelectedTheme(string themeName) => themeName.Equals(ThemeName); 
 }

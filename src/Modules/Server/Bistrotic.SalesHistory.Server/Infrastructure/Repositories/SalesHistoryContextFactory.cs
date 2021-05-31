@@ -1,5 +1,6 @@
 ﻿namespace Bistrotic.SalesHistory.Infrastructure.Repositories
 {
+    using System;
     using System.IO;
 
     using Bistrotic.Infrastructure.Helpers;
@@ -20,8 +21,14 @@
             var settings = configuration.GetSettings<SalesHistorySettings>();
             var dbContextBuilder = new DbContextOptionsBuilder<SalesHistoryDbContext>();
 
-            dbContextBuilder.UseSqlServer(settings.ConnectionString);
-
+            if (!string.IsNullOrWhiteSpace(settings.ConnectionString))
+            {
+                dbContextBuilder.UseSqlServer(settings.ConnectionString);
+            }
+            else
+            {
+                Console.WriteLine($"Info: Database settings ({nameof(SalesHistorySettings) + ":" + nameof(SalesHistorySettings.ConnectionString)}) not set for sales history module.");
+            }
             return new SalesHistoryDbContext(dbContextBuilder.Options);
         }
     }

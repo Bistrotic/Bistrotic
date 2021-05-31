@@ -1,14 +1,14 @@
 <Project>
 	<Import Project="../build/Dependencies.props" />
 	<PropertyGroup>
-		<LangVersion>latest</LangVersion>
+		<LangVersion>preview</LangVersion>
 		<Nullable>enable</Nullable>
-		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+		<EnforceCodeStyleInBuild>false</EnforceCodeStyleInBuild>
 		<AnalysisMode>AllEnabledByDefault</AnalysisMode>
 		<CodeAnalysisTreatWarningsAsErrors>false</CodeAnalysisTreatWarningsAsErrors>
-		<AnalysisLevel>latest</AnalysisLevel>
-		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<AnalysisLevel>preview</AnalysisLevel>
+		<EnableNETAnalyzers>false</EnableNETAnalyzers>
 		<NoWarn>$(NoWarn);CA1014;CS3001;CS3003;CS3009;SA1633;SA1600;SA1101;CA2225;CA1054;CA1055</NoWarn>
 		<MinVerTagPrefix>v</MinVerTagPrefix>
 		<MinVerDefaultPreReleasePhase>preview</MinVerDefaultPreReleasePhase>
@@ -19,10 +19,6 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<!--<PackageReference Include="StyleCop.Analyzers" Version="$(StyleCopAnalyzersVersion)">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>-->
 	</ItemGroup>
 	<ItemGroup>
 		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">

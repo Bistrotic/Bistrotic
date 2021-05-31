@@ -3,33 +3,47 @@
     using Microsoft.AspNetCore.Components;
     using Microsoft.AspNetCore.Components.Rendering;
 
-    public class Theme : BlazorComponent
+    public class Theme : ComponentBase
     {
-        private string _name = string.Empty;
+        [Parameter] public RenderFragment? ChildContent { get; set; }
 
-        [Parameter]
-        public string Name
-        {
-            get => _name;
-            set
-            {
-                _name = value;
-                ThemeName = _name;
-                this.StateHasChanged();
-            }
-        }
+        [CascadingParameter(Name = nameof(ThemeName))]
+        public string ThemeName { get; set; } = "Fast";
 
-        public override int RenderContent(int sequence, RenderTreeBuilder builder)
+        protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
+            int sequence = 0;
             if (ChildContent != null && !string.IsNullOrWhiteSpace(ThemeName))
             {
-                builder.OpenComponent<CascadingValue<string>>(sequence++);
-                builder.AddAttribute(sequence++, "Name", nameof(ThemeName));
-                builder.AddAttribute(sequence++, "Value", Name);
-                builder.AddAttribute(sequence++, "ChildContent", ChildContent);
-                builder.CloseComponent();
+                if (ThemeName == "Fast")
+                {
+                    builder.OpenElement(sequence++, "fast-design-system-provider");
+                }
+                else if (ThemeName == "Fluent")
+                {
+                    builder.OpenElement(sequence++, "fluent-design-system-provider");
+                }
+                builder.AddAttribute(sequence++, "use-defaults");
+                if (ChildContent != null)
+                {
+                    builder.AddContent(sequence++, ChildContent);
+                }
+                builder.CloseElement();
+                if (ThemeName == "Fast")
+                {
+                    builder.OpenElement(sequence++, "script");
+                    builder.AddAttribute(sequence++, "type", "module");
+                    builder.AddAttribute(sequence++, "src", "https://unpkg.com/@microsoft/fast-components");
+                    builder.CloseElement();
+                }
+                else if (ThemeName == "Fluent")
+                {
+                    builder.OpenElement(sequence++, "script");
+                    builder.AddAttribute(sequence++, "type", "module");
+                    builder.AddAttribute(sequence++, "src", "https://unpkg.com/@fluentui/web-components");
+                    builder.CloseElement();
+                }
             }
-            return sequence;
         }
     }
 }

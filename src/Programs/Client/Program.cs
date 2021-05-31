@@ -4,8 +4,6 @@ namespace Bistrotic.Client
     using System.Threading.Tasks;
 
     using Bistrotic.ApplicationLayer.Helpers;
-    using Bistrotic.FastTheme;
-    using Bistrotic.FastTheme.Helpers;
     using Bistrotic.Infrastructure;
     using Bistrotic.Infrastructure.BlazorClient;
     using Bistrotic.Infrastructure.Client;
@@ -31,7 +29,6 @@ namespace Bistrotic.Client
 
             builder.Services.AddBistroticClient(builder.HostEnvironment, typeof(Program).Namespace ?? string.Empty, BistroticConstants.ServerApiName);
             builder.Logging.AddBistroticClient();
-            builder.AddFastTheme();
             builder.AddMudBlazorThemeClient();
             builder.AddApplicationLayer();
             builder.Services.AddSingleton<IMenuService, MenuService>();

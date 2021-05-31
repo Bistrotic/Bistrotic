@@ -15,8 +15,6 @@
     using Bistrotic.DataIntegrations;
     using Bistrotic.Emails;
     using Bistrotic.EventStores;
-    using Bistrotic.FastTheme;
-    using Bistrotic.FastTheme.Helpers;
     using Bistrotic.GoogleIdentity;
     using Bistrotic.Infrastructure.Client;
     using Bistrotic.Infrastructure.EfCore.Repositories;
@@ -189,7 +187,6 @@
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddWebServer();
             services.AddMudBlazorTheme();
-            services.AddFastTheme();
             services.AddApplicationLayer();
         }
 
@@ -211,7 +208,6 @@
                 { typeof(UnitsServerModule), (config, env) => new UnitsServerModule(config, env) },
                 { typeof(WorkItemsServerModule), (config, env) => new WorkItemsServerModule(config, env) },
                 { typeof(SalesHistoryServerModule), (config, env) => new SalesHistoryServerModule(config, env) },
-                { typeof(FastThemeServerModule), (config, env) => new FastThemeServerModule(config, env) },
                 { typeof(MudBlazorThemeServerModule), (config, env) => new MudBlazorThemeServerModule(config, env) },
                 { typeof(ApplicationLayerServerModule), (config, env) => new ApplicationLayerServerModule(config, env) }
             };

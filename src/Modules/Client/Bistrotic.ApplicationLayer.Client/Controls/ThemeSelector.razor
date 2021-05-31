@@ -8,21 +8,26 @@ else
 	<Listbox>
 		@foreach(var name in ThemeNames)
 		{
-			<Option onclick="@OnClick(name)">name</Option>
+			<Option Selected="@IsSelectedTheme(name)" Value="@name">@name</Option>
 		}
 	</Listbox>
 }
 @code {
 	IEnumerable<string>? ThemeNames = null;
 
-	[CascadingParameter]
-	public string? ThemeName { get; set; }
+	[CascadingParameter(Name = nameof(ThemeName))]
+	public string ThemeName { get; set; } = default!;
 
 	protected override void OnInitialized()
 	{
 		if (ThemeNames == null)
 		{
-			ThemeNames = ThemeProvider.ThemeNames;
+			HashSet<string> themeNames = new (new string[] {"Fast", "Fluent" });
+			foreach (var theme in ThemeProvider.ThemeNames)
+			{
+				themeNames.Add(theme);
+			}
+			ThemeNames = themeNames;
 		}
 	}
 	private bool OnClick(string name)
@@ -30,4 +35,5 @@ else
 		ThemeName = name;
 		return true;
 	}
+	private bool IsSelectedTheme(string themeName) => ThemeName.Equals(themeName); 
 }

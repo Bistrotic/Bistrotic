@@ -10,7 +10,7 @@
     using Microsoft.AspNetCore.Components;
     using Microsoft.AspNetCore.Components.Rendering;
 
-    public class BlazorComponent : ComponentBase
+    public abstract class BlazorComponent : ComponentBase
     {
         #region Dependencies
 
@@ -63,7 +63,27 @@
         /// </summary>
         [Parameter] public object? Tag { get; set; }
 
-        [CascadingParameter] public string ThemeName { get; set; } = default!;
+        [CascadingParameter(Name = nameof(ThemeName))]
+        public string ThemeName
+        {
+            get => _themeName;
+            set { _themeName = value; StateHasChanged(); }
+        }
+
+        private string _themeName { get; set; } = "Fast";
+
+        public virtual int Render(int sequence, RenderTreeBuilder builder)
+        {
+            base.BuildRenderTree(builder);
+            builder.OpenElement(sequence++, "div");
+            builder.AddContent(sequence++, (string.IsNullOrWhiteSpace(ThemeName)) ? $"No theme name defined for component '{GetType().Name}'." : $"No renderer found for '{GetType().Name}' in theme '{ThemeName}'");
+            if (ChildContent != null)
+            {
+                builder.AddContent(sequence++, ChildContent);
+            }
+            builder.CloseElement();
+            return sequence;
+        }
 
         public virtual int RenderContent(int sequence, RenderTreeBuilder builder)
         {
@@ -79,7 +99,7 @@
             var renderer = RendererProvider.GetRenderer(ThemeName, GetType());
             if (renderer == null)
             {
-                base.BuildRenderTree(builder);
+                Render(0, builder);
             }
             else
             {
